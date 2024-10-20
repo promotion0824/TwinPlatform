@@ -1,0 +1,354 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "AdminApp",
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/state": {
+      "get": {
+        "tags": [
+          "AdminApp"
+        ],
+        "operationId": "State",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OverallState"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/healthz": {
+      "get": {
+        "tags": [
+          "AdminApp"
+        ],
+        "operationId": "Healthchecks",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthCheckDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/livez": {
+      "get": {
+        "tags": [
+          "AdminApp"
+        ],
+        "operationId": "Liveness probe",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/readyz": {
+      "get": {
+        "tags": [
+          "AdminApp"
+        ],
+        "operationId": "Readiness probe",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ApplicationInstance": {
+        "type": "object",
+        "properties": {
+          "isPrimary": {
+            "type": "boolean"
+          },
+          "region": {
+            "type": "string",
+            "nullable": true
+          },
+          "devOrPrd": {
+            "type": "string",
+            "nullable": true
+          },
+          "customerInstanceCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "applicationName": {
+            "type": "string",
+            "nullable": true
+          },
+          "deploymentPhase": {
+            "$ref": "#/components/schemas/DeploymentPhase"
+          },
+          "domain": {
+            "type": "string",
+            "nullable": true
+          },
+          "isSingleTenant": {
+            "type": "boolean"
+          },
+          "url": {
+            "type": "string",
+            "nullable": true
+          },
+          "healthUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "cloudRoleName": {
+            "type": "string",
+            "nullable": true
+          },
+          "applicationInsightsLink": {
+            "type": "string",
+            "nullable": true
+          },
+          "applicationInsightsExceptionsLink": {
+            "type": "string",
+            "nullable": true
+          },
+          "health": {
+            "$ref": "#/components/schemas/HealthCheckDto"
+          },
+          "last": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ApplicationSpecification": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "path": {
+            "type": "string",
+            "nullable": true
+          },
+          "healthEndpointPath": {
+            "type": "string",
+            "nullable": true
+          },
+          "roleName": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CustomerInstance": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "domain": {
+            "type": "string",
+            "nullable": true
+          },
+          "deploymentPhase": {
+            "$ref": "#/components/schemas/DeploymentPhase"
+          },
+          "resourceGroup": {
+            "type": "string",
+            "nullable": true
+          },
+          "resourceGroupLink": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          },
+          "subscription": {
+            "type": "string",
+            "nullable": true
+          },
+          "isHybrid": {
+            "type": "boolean"
+          },
+          "isDevelopment": {
+            "type": "boolean"
+          },
+          "region": {
+            "type": "string",
+            "nullable": true
+          },
+          "customerInstanceCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "fullCustomerInstanceName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lifeCycleState": {
+            "$ref": "#/components/schemas/LifeCycleState"
+          },
+          "applications": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApplicationSpecification"
+            },
+            "nullable": true
+          },
+          "isNewBuild": {
+            "type": "boolean"
+          },
+          "logUrl": {
+            "type": "string",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CustomerInstanceState": {
+        "type": "object",
+        "properties": {
+          "customerInstance": {
+            "$ref": "#/components/schemas/CustomerInstance"
+          },
+          "statuses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/HealthStatus"
+            },
+            "nullable": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/HealthStatus"
+          }
+        },
+        "additionalProperties": false
+      },
+      "DeploymentPhase": {
+        "enum": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "HealthCheckDto": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/HealthStatus"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "version": {
+            "type": "string",
+            "nullable": true
+          },
+          "entries": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/HealthCheckDto"
+            },
+            "nullable": true
+          },
+          "entriesWithPayload": {
+            "type": "object",
+            "additionalProperties": { },
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "HealthStatus": {
+        "enum": [
+          0,
+          1,
+          2
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "LifeCycleState": {
+        "enum": [
+          "Unknown",
+          "Empty",
+          "Commissioning",
+          "Live",
+          "Decommissioning",
+          "Decommissioned"
+        ],
+        "type": "string"
+      },
+      "OverallState": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "$ref": "#/components/schemas/HealthStatus"
+          },
+          "customerInstances": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CustomerInstanceState"
+            },
+            "nullable": true,
+            "readOnly": true
+          },
+          "applicationInstances": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApplicationInstance"
+            },
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

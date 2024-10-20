@@ -1,0 +1,14 @@
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
+EXPOSE 5000
+WORKDIR /app
+
+# Copy the npm build front end files - do npm run build before docker build
+COPY ["tools/WillowWSUP/ClientApp/dist/", "ClientApp"]
+
+# Copy the published .NET project over - do dotnet publish in build pipeline
+COPY ["tools/WillowWSUP/AdminApp/bin/Release/net8.0/publish", "."]
+
+RUN chown -R 1000:1000 /app
+USER 1000
+ENV ASPNETCORE_URLS http://*:5000
+ENTRYPOINT ["dotnet", "AdminApp.dll"]

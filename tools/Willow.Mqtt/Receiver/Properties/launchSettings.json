@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Receiver": {
+      "commandName": "Project",
+      "commandLineArgs": "-c G:\\Temp\\certs\\devtest.pfx -s devtest -m evgns-dev-eus-01-wil-in1-ebea5a2a.eastus-1.ts.eventgrid.azure.net"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "profiles": {
+    "TelemetryGenerator": {
+      "commandName": "Project",
+      "commandLineArgs": "telemetry --connectorid 00000000-35c5-4415-a4b3-7b798d0568e8 --externalid PNTToqq8ozHE3E8hNuar9hNsT --dtid PNTToqq8ozHE3E8hNuar9hNsT",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    },
+    "Snowflake": {
+      "commandName": "Project",
+      "commandLineArgs": "snowflake --uri https://evgt-error-sbxaueiot03wilamc1datacore.australiaeast-1.eventgrid.azure.net/api/events",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

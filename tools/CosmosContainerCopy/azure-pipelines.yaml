@@ -1,0 +1,88 @@
+trigger: none
+
+pr: none
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  - name: srcLocation
+    value: 'tools/CosmosContainerCopy'
+  - name: artifactName
+    value: 'drop.CosmosContainerCopy'
+
+parameters:
+  - name: serviceConnection
+    displayName: Service Connection
+    type: string
+    default: az-k8s-internal-Twin Platform
+  - name: cosmosDbEndpointUri
+    displayName: CosmosDb Endpoint Uri
+    type: string
+  - name: source
+    displayName: Source Container
+    type: string
+  - name: destination
+    displayName: Destination Container
+    type: string
+  - name: partitionKey
+    displayName: Partition Key
+    type: string
+  - name: environment
+    type: string
+    default: dev
+    
+
+stages:
+  - stage: Build
+    jobs:
+      - job: Build_Artifacts
+        steps:
+          - task: UseDotNet@2
+            displayName: 'Use .NET 6.x'
+            inputs:
+              packageType: 'sdk'
+              version: '6.x'
+
+          - script: |
+              dotnet publish $(srcLocation)/CosmosContainerCopy.csproj -o $(Build.ArtifactStagingDirectory) -r 'linux-x64'
+            displayName: 'Build CosmosContainerCopy'
+
+          - task: PublishBuildArtifacts@1
+            displayName: 'Publish artifacts'
+            inputs:
+              pathToPublish: '$(Build.ArtifactStagingDirectory)'
+              artifactName: ${{ variables.artifactName }}
+
+  - stage: Execute
+    dependsOn: Build
+    jobs:
+    - deployment: CosmosContainerCopy
+      displayName: Deploy Cosmos Container Copy
+      environment: ${{ parameters.environment }}
+      strategy:
+        runOnce:
+          deploy:
+            steps:
+              - download: none
+              - download: current
+                artifact: ${{ variables.artifactName }}
+              - script: |
+                  chmod +x CosmosContainerCopy
+                displayName: As executable
+                workingDirectory: $(Agent.BuildDirectory)/${{ variables.artifactName }}
+              - task: AzureCLI@2
+                displayName: Copy Cosmos DB container
+                inputs:
+                  azureSubscription: ${{ parameters.serviceConnection }}
+                  addSpnToEnvironment: true
+                  scriptType: 'pscore'
+                  scriptLocation: 'inlineScript'
+                  inlineScript: |
+                    ./CosmosContainerCopy copycontainer `
+                    --cosmosDbEndpointUri "${{ parameters.cosmosDbEndpointUri }}" `
+                    --database TwinPlatform `
+                    --from ${{ parameters.source }} `
+                    --to ${{ parameters.destination }} `
+                    --partitionKey ${{ parameters.partitionKey }}
+                  workingDirectory: $(Agent.BuildDirectory)/${{ variables.artifactName }}

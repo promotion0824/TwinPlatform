@@ -1,0 +1,27 @@
+@WsupApi_HostAddress = http://localhost:5193
+
+GET {{WsupApi_HostAddress}}/applications/
+Accept: application/json
+
+GET {{WsupApi_HostAddress}}/customerinstanceapplications/
+Accept: application/json
+
+GET {{WsupApi_HostAddress}}/customerinstances/
+Accept: application/json
+
+GET {{WsupApi_HostAddress}}/customers/
+Accept: application/json
+
+GET {{WsupApi_HostAddress}}/environments/
+Accept: application/json
+
+GET {{WsupApi_HostAddress}}/regions/
+Accept: application/json
+
+GET {{WsupApi_HostAddress}}/stamps/
+Accept: application/json
+
+GET {{WsupApi_HostAddress}}/teams/
+Accept: application/json
+
+###

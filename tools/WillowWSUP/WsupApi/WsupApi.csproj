@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.7" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.7">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="NSwag.AspNetCore" Version="14.1.0" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+        <PackageReference Include="Willow.HealthChecks" Version="2.2.2226" />
+        <PackageReference Include="Willow.Telemetry.Web" Version="2.2.2226" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Willow.Infrastructure.Entities\Willow.Infrastructure.Entities.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Include="appsettings.*.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
+    <Target Name="NSwag" BeforeTargets="AfterBuild" Condition="'$(Configuration)'=='Debug'">
+        <Exec WorkingDirectory="$(ProjectDir)" Command="dotnet new tool-manifest --force" />
+        <Exec WorkingDirectory="$(ProjectDir)" Command="dotnet tool install NSwag.ConsoleCore --disable-parallel --ignore-failed-sources" />
+        <Exec ContinueOnError="true" WorkingDirectory="$(ProjectDir)" EnvironmentVariables="ASPNETCORE_ENVIRONMENT=Development" Command="dotnet nswag run nswag.json /variables:Configuration=$(Configuration)" />
+        <Exec WorkingDirectory="$(ProjectDir)" Command="dotnet tool uninstall NSwag.ConsoleCore" />
+        <Exec IgnoreExitCode="true" Command="dotnet tool install makeGenericAgain --disable-parallel --ignore-failed-sources" />
+        <Exec WorkingDirectory="$(ProjectDir)" Command="dotnet makeGenericAgain -f ..\\lib\\Willow.Support.SDK\\WsupClient.cs" />
+        <Exec WorkingDirectory="$(ProjectDir)" Command="dotnet tool uninstall makegenericAgain" />
+    </Target>
+
+</Project>

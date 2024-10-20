@@ -1,0 +1,13 @@
+﻿{
+  "profiles": {
+    "OntologyGraphTool": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "applicationUrl": "https://localhost:3100",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_URLS": "http://localhost:7070"
+      }
+    }
+  }
+}

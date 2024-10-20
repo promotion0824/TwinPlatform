@@ -1,0 +1,22 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C#: WSUP AdminApp Debug",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "launchSettingsProfile": "http",
+      "program": "${workspaceFolder}/AdminApp/bin/Debug/net8.0/AdminApp",
+      "console": "internalConsole",
+      "cwd": "${workspaceFolder}/AdminApp",
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_URLS": "http://localhost:5000;"
+      },
+    }
+  ]
+}

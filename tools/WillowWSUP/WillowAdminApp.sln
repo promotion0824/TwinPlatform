@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdminApp", "AdminApp\AdminApp.csproj", "{431A90BF-A4C7-43C3-B0FD-6412428701A9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{36921EF5-CBD0-42C2-8729-5414AE50DE46}"
+	ProjectSection(SolutionItems) = preProject
+		build.sh = build.sh
+		Directory.Build.props = Directory.Build.props
+		Dockerfile = Dockerfile
+		Dockerfile.prd = Dockerfile.prd
+		nuget.config = nuget.config
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Willow.Infrastructure.Entities", "Willow.Infrastructure.Entities\Willow.Infrastructure.Entities.csproj", "{27EA82F3-FCEC-415C-B2DC-E5F8C13112FE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WsupApi", "WsupApi\WsupApi.csproj", "{B09BC86C-69E0-4F26-82ED-7EE39B14BCDB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Willow.Support.SDK", "lib\Willow.Support.SDK\Willow.Support.SDK.csproj", "{E8ABE182-EEB2-4989-BFFD-3049F4A48715}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{431A90BF-A4C7-43C3-B0FD-6412428701A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{431A90BF-A4C7-43C3-B0FD-6412428701A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{431A90BF-A4C7-43C3-B0FD-6412428701A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{431A90BF-A4C7-43C3-B0FD-6412428701A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27EA82F3-FCEC-415C-B2DC-E5F8C13112FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27EA82F3-FCEC-415C-B2DC-E5F8C13112FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27EA82F3-FCEC-415C-B2DC-E5F8C13112FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27EA82F3-FCEC-415C-B2DC-E5F8C13112FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B09BC86C-69E0-4F26-82ED-7EE39B14BCDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B09BC86C-69E0-4F26-82ED-7EE39B14BCDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B09BC86C-69E0-4F26-82ED-7EE39B14BCDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B09BC86C-69E0-4F26-82ED-7EE39B14BCDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8ABE182-EEB2-4989-BFFD-3049F4A48715}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8ABE182-EEB2-4989-BFFD-3049F4A48715}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8ABE182-EEB2-4989-BFFD-3049F4A48715}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8ABE182-EEB2-4989-BFFD-3049F4A48715}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {60B34C02-9DBF-4A9B-85C3-6BF806DF3A05}
+	EndGlobalSection
+EndGlobal

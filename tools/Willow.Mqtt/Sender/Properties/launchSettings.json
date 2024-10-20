@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Sender": {
+      "commandName": "Project",
+      "commandLineArgs": "-c G:\\Temp\\certs\\willow.pfx -s willow -m evgns-dev-eus-01-wil-in1-ebea5a2a.eastus-1.ts.eventgrid.azure.net -d devtest -ci 2c2c9257-3ea2-4f63-ae85-6dab3750fa8 -ei T1234"
+    }
+  }
+}
