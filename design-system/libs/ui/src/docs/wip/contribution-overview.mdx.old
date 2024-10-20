@@ -1,0 +1,91 @@
+import { Meta } from '@storybook/blocks'
+import { DocsWip } from '../_components/DocsWip'
+
+{/* <Meta title="WIP/Contribution Overview" /> */}
+
+<DocsWip />
+
+# Overview
+
+## Pre-build
+
+### Designers
+
+Designers do designer things.
+
+### Developers
+
+Independent of the design process, developers should start considering the API of the component they are wanting to build. Keeping in mind the use case of the component, devs should look to the following places for inspiration:
+
+- Existing technologies we are using
+  - ariakit
+  - styled-components and other css-in-js patterns
+- Existing Willow code that achieves that same use case, baring in mind that some of the codebases won't have the most up-to-date components as the ones labeled as such.
+  - Real Estate codebase - and ask Andrew Magee where the most up-to-date components are
+  - Rail codebase - and ask David Stevens where the most up-to-date components are
+  - Mining codebase - and ask Stuart Hallows or JO Reyes where the most recent components are
+- Popular design systems with UI libraries
+  - [Vercel](https://vercel.com/design)
+  - [Carbon] (https://react.carbondesignsystem.com)
+- Popular all-purpose UI libraries
+  - [MUI.com](mui.com)
+  - [React Bootstrap](https://react-bootstrap.github.io)
+  - [Ant Design](https://ant.design)
+  - [Chakra UI](https://chakra-ui.com)
+  - [Fluent UI](https://developer.microsoft.com/en-us/fluentui)
+  - Narrowly scoped UI component libraries, such as
+    - React-Select
+    - React Table
+    - React-popper
+- Popular libraries that influence React UI API design, such as
+  - Formik, react-hook-form
+  - React router, React-Native
+  - State management libraries, such as Redux, React-Query, react-i18next
+  - Any libraries that half the community are using
+  - And of course, React itself
+- The platforms themselves, including
+  - HTML
+  - CSS
+  - JS + TS
+  - ARIA
+- Existing components in the library
+
+Developers are expected to have researched how other people are constructing their components before starting to build. We are not aiming to do anything special with our UI beyond assembling the best patterns we can find from multiple sources. Therefore, if 80% of the above are doing things in a particular way we would need a very good reason to diverge from them.
+
+## Build
+
+- Designer hands off designs to devs, hand over meeting, answer questions
+
+  - Note web specific quirks that a designer may have missed, such as
+    - responsive behavior (widths, flexing, overflow)
+    - interactive behavior (hover, focus, activated)
+    - device behavior (pointers, touch behavior)
+
+- create new folder in "libs/ui/src/lib" called "Button"
+- create a "Button.stories.tsx" file inside folder
+
+- Create the component API via creating stories
+- Create your component
+
+- Note any inconsistencies with your interpretation of the design system
+
+  - clarify these with your designer
+  - further clarification can be sought from the design system lead designer
+
+- Make a PR with your contribution. The maintainers will specifically be looking for the following:
+  - API is consistent with the Design System API philosophy and prior art, or has good reasons to diverge
+  - Testing, etc, etc
+
+The maintainers can be consulted about the above at anytime, you don't have to wait until you are finished - collaboration will save us all time!
+
+## Submitting An Issue
+
+TODO
+
+## Submitting A Pull Request
+
+TODO
+
+# Installation
+
+TODO

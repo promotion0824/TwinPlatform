@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "UiComponentGenerator",
+  "title": "",
+  "type": "object",
+  "properties": {
+    "componentName": {
+      "type": "string",
+      "description": "",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "What name would you like to use for the component?"
+    },
+    "groupName": {
+      "type": "string",
+      "description": "",
+      "$default": {
+        "$source": "argv",
+        "index": 1
+      },
+      "x-prompt": "Which group should this component be placed in?"
+    },
+    "fileName": {
+      "type": "string",
+      "description": "Name of each file"
+    },
+    "componentDirectory": {
+      "type": "string",
+      "description": "A directory where the new component is placed"
+    },
+    "visualTestDirectory": {
+      "type": "string",
+      "description": "A directory where the visual regression test for the component is placed"
+    }
+  },
+  "required": ["componentName", "groupName"]
+}

@@ -1,0 +1,30 @@
+parameters:
+  - name: applicationName
+    type: string
+  - name: productName
+    type: string
+    default: Twin Platform
+  - name: whitesourceUserKey
+    type: string
+  - name: whitesourceProjectToken
+    type: string
+  - name: whitesourceExclusionsCsv
+    type: string
+    default: ""
+
+steps:
+- task: PowerShell@2
+  inputs:
+    targetType: 'filePath'
+    filePath: $(Build.SourcesDirectory)/libraries/scripts/Find-MajorWhitesourceScanAlerts.ps1
+    arguments: > # Use this to avoid newline characters in multiline string
+      -UserKey $env:whitesourceUserKey
+      -ProjectToken $env:whitesourceProjectToken
+      -ExcludedArtifactsCsv "${{ parameters.whitesourceExclusionsCsv }}"
+      -SystemAccessToken $(System.AccessToken)
+      -ProjectName "${{ parameters.productName }}/${{ parameters.applicationName }}"
+      -Verbose
+  displayName: 'Check WhiteSource for Major Alerts'
+  env:
+    whitesourceUserKey:  ${{ parameters.whitesourceUserKey }}
+    whitesourceProjectToken: ${{ parameters.whitesourceProjectToken }}

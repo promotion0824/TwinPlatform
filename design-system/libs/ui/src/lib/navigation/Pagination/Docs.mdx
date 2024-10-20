@@ -1,0 +1,18 @@
+import { Canvas, Meta, Description, Stories } from '@storybook/blocks'
+import { SourceLink } from '../../../storybookUtils'
+import { GroupNames } from '../../utils/constant'
+
+import * as stories from './Pagination.stories'
+import { Pagination } from '.'
+
+<Meta of={stories} />
+
+# Pagination
+
+<Description of={Pagination} />
+
+<Canvas of={stories.Playground} />
+
+<SourceLink name="Pagination" groupName={GroupNames.Navigation} />
+
+<Stories includePrimary={false} title="Stories" />

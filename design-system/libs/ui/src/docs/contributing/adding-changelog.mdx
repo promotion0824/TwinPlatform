@@ -1,0 +1,194 @@
+import { Meta } from '@storybook/blocks'
+
+<Meta title="Contributing/Adding Changelog" />
+
+# Adding changelog
+
+We use <a href="https://github.com/changesets/changesets" target="_blank">Changesets</a>
+to manage the versionings and changelogs for the **publishable packages** due to the
+monorepo nature of the project. The changesets config and unreleased changelogs can
+be found in the `.changeset` folder.
+
+## Add a changelog
+
+In order to keep track of changes in between each release, an opened PR must have
+a changelog added if there are code changes in any of the **publishable packages**.
+These changelogs will be used to generate release notes when we [published](/docs/contributing-distribution--docs)
+these packages.
+
+There are 3 change types when adding a changelog:
+
+- Patch: A commit of type `bugfix` to patch a bug in the codebase.
+- Minor: A commit of type `feature` to introduce new feature into the codebase.
+- Major: Breaking change
+
+To add a changelog, first stage your changes with Git CLI or your favorite GUI, run:
+
+```bash
+npm run changelog
+
+# Sometimes you *may want* to commit a change without adding any changelog.
+# In this case, you can add an empty changelog:
+npx changeset --empty
+```
+
+You will be prompted with the following questions (Use space to select an option):
+
+1. Select the packages to include. These are defined in the main `package.json`
+   under `workspaces`. If your affected code changes are not relevant to any of
+   the packages selection, then simply abort the command as no changelog is
+   required.
+
+   - **Note**: If there is a change to a package which another package depends on, please select
+     both packages so the dependencies are updated accordingly. For example, `ui` depends on `theme`.
+     If there are changes in `theme`, the affected packages to select here will be `theme` and `ui`.
+
+2. Select the package(s) to have _major_ bump or _minor_ change. Any unselected packages will be treated as _patch_.
+3. Enter a short summary of the changes as outlined in [Changelog convention](#changelog-convention). To enter a
+   longer summary, submit an empty line to open an external editor.
+
+Once completed, a changelog will be added in `.changeset` folder, staged and a Git commit message will be added.
+You can simply push your changes and proceed to open a PR.
+
+### Amending changelog message
+
+- If you wish to change the changelog message, simply find the correct markdown file within `.changeset` folder
+  and update the message.
+- You can also add a markdown file with random file name with the following format:
+
+```markdown
+---
+'<package_name>': <patch|minor|major>
+---
+
+... Insert changelog message here ...
+```
+
+Example:
+
+```markdown
+---
+'@willowinc/theme': patch
+'@willowinc/ui': minor
+---
+
+date-picker: Updated the styling of date picker AB#12345
+```
+
+## Changelog convention
+
+The changelog convention is adapted from <a href="https://www.conventionalcommits.org/en/v1.0.0/" target="_blank">Conventional Commits</a>
+to describe the features, fixes and breaking changes made in changelog for our release notes.
+
+```
+<scope>: <description> AB#<ticket number>
+
+[optional body]
+
+[optional footer]
+```
+
+The generation of changelog is customized to:
+
+- Use `AB#<TICKET_NUMBER>` for reference to work item on Azure Board,
+- Link to the changelog of the depdencency package,
+- Link to the commit id on Github.
+
+### Examples
+
+Changelog summary without scope
+
+```
+Update developer contribution guide (AB#123456)
+```
+
+Changelog summary with scope and reference to multiple work item
+
+```
+docs: Update developer contribution guide - AB#11111, AB#2222
+```
+
+Changelog summary with issue number
+
+```
+docs: Update developer contribution guide (AB#123456)
+```
+
+Changelog summary with scope, `!` to draw attention to breaking and breaking change footer
+
+```
+theme!: Update theme tokens (AB#123456)
+
+BREAKING CHANGE: Restructured theme tokens and added new theme keys
+```
+
+## Prerelease
+
+To do a prerelease, you will need to enter a prerelease mode and pass a prerelease tag name
+to be used in the versioning. This will creates a `pre.json` file which stores information
+about the state the prerelease is in. Once you are ready to do a release, exit the prerelease
+mode and do a version bump. The changelog generated for a release will be an aggregation
+of all the changelog messages used in prerelease, with ordering based on the `changesets`
+array in `pre.json` the config.
+
+### Enters prerelease mode
+
+```bash
+# Enters into prerelease mode
+npx changeset pre enter <TAG_NAME>
+```
+
+### Exits prerelease mode
+
+```bash
+# When you're ready to do final release, exits the prerelease mode.
+npx changeset pre exit
+# Update the versioning to remove the prerelease tag from versions.
+npm run bump-versions
+```
+
+### Note about `pre` mode:
+
+- Any type of changes (major/minor/patch) in prerelease mode will only increment
+  the prerelease version number and will not increment the major/minor/patch
+  number of the package version.
+
+  Example release flow as follows:
+
+  - Current version is 1.0.0-alpha.20
+  - `Patch` added. Version bump => 1.0.0-alpha.21
+  - `Minor` added. Version bump => 1.0.0-alpha.22
+  - `Major` added. Version bump => 1.0.0-alpha.23
+  - Exit prerelease. Version bump => 1.0.0
+  - `Patch` added. Version bump => 1.0.1
+  - `Minor` added. Version bump => 1.1.1
+  - `Major` added. Version bump => 2.0.0
+  - Enter prerelease. Version bump => 2.0.0-alpha.1
+
+- When doing running `npx changeset version`, the `pre.json` file is not
+  automatically staged and commited. This is currently a known bug in [changesets](https://github.com/changesets/changesets/issues/1150).
+  We have a workaround in `npm run bump-versions` to ensure all files in `.changeset` directory
+  are staged.
+
+### Example of prerelease workflow
+
+```bash
+# Current package version 1.0.0
+# Enters into prerelease mode
+# Creates a pre.json file in .changeset directory to keep track of all alpha release changes.
+npx changeset pre enter alpha
+
+# Add a changelog
+npm run changelog
+
+# Version bump - Bump to version 1.0.0-alpha.0
+npm run bump-versions
+
+# Exit prerelease mode
+npx changeset pre exit
+
+# Version bump - Bump to version 1.0.0
+# Generates changelog with the combination of changelog messages from alpha release.
+# Deletes pre.json file and all the markdown changelogs in .changeset directory.
+npm run bump-versions
+```

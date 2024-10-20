@@ -1,0 +1,84 @@
+{
+  "name": "mui-theme-demo",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/mui-theme-demo/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/apps/mui-theme-demo",
+        "emptyOutDir": true
+      },
+      "configurations": {
+        "development": {
+          "mode": "development"
+        },
+        "production": {
+          "mode": "production"
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/vite:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "mui-theme-demo:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "mui-theme-demo:build:development",
+          "hmr": true
+        },
+        "production": {
+          "buildTarget": "mui-theme-demo:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "preview": {
+      "executor": "@nx/vite:preview-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "mui-theme-demo:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "mui-theme-demo:build:development"
+        },
+        "production": {
+          "buildTarget": "mui-theme-demo:build:production"
+        }
+      }
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": ["{workspaceRoot}/coverage/apps/mui-theme-demo"],
+      "options": {
+        "passWithNoTests": true,
+        "reportsDirectory": "../../coverage/apps/mui-theme-demo"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "serve-static": {
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "mui-theme-demo:build"
+      }
+    },
+    "type-check": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "tsc --project apps/mui-theme-demo/tsconfig.app.json --noEmit"
+        ],
+        "parallel": true
+      }
+    }
+  }
+}

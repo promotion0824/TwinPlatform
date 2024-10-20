@@ -1,0 +1,1419 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`generateTheme Dark theme should match snapshot 1`] = `
+Object {
+  "breakpoints": Object {
+    "mobile": "600px",
+    "monitor": "1800px",
+    "tabletLandscape": "1200px",
+    "tabletPortrait": "900px",
+  },
+  "color": Object {
+    "core": Object {
+      "blue": Object {
+        "bg": Object {
+          "bold": Object {
+            "activated": "#24477a",
+            "default": "#265ea5",
+            "hovered": "#26528e",
+          },
+          "muted": Object {
+            "activated": "#24477a",
+            "default": "#20365b",
+            "hovered": "#213b64",
+          },
+          "subtle": Object {
+            "activated": "#265ea533",
+            "default": "#265ea533",
+            "hovered": "#265ea533",
+          },
+        },
+        "border": Object {
+          "activated": "#265ea5",
+          "default": "#2f77d0",
+          "hovered": "#6991da",
+        },
+        "fg": Object {
+          "activated": "#2f77d0",
+          "default": "#6991da",
+          "hovered": "#92abe3",
+        },
+      },
+      "cyan": Object {
+        "bg": Object {
+          "bold": Object {
+            "activated": "#214d53",
+            "default": "#266770",
+            "hovered": "#235961",
+          },
+          "muted": Object {
+            "activated": "#214d53",
+            "default": "#1c3b40",
+            "hovered": "#1e4045",
+          },
+          "subtle": Object {
+            "activated": "#26677033",
+            "default": "#26677033",
+            "hovered": "#26677033",
+          },
+        },
+        "border": Object {
+          "activated": "#266770",
+          "default": "#29838e",
+          "hovered": "#2b9fae",
+        },
+        "fg": Object {
+          "activated": "#29838e",
+          "default": "#2b9fae",
+          "hovered": "#43baca",
+        },
+      },
+      "gray": Object {
+        "bg": Object {
+          "bold": Object {
+            "activated": "#474747",
+            "default": "#5e5e5e",
+            "hovered": "#525252",
+          },
+          "muted": Object {
+            "activated": "#474747",
+            "default": "#363636",
+            "hovered": "#3b3b3b",
+          },
+          "subtle": Object {
+            "activated": "#5e5e5e33",
+            "default": "#5e5e5e33",
+            "hovered": "#5e5e5e33",
+          },
+        },
+        "border": Object {
+          "activated": "#5e5e5e",
+          "default": "#777777",
+          "hovered": "#919191",
+        },
+        "fg": Object {
+          "activated": "#777777",
+          "default": "#919191",
+          "hovered": "#ababab",
+        },
+      },
+      "green": Object {
+        "bg": Object {
+          "bold": Object {
+            "activated": "#235120",
+            "default": "#2a6b27",
+            "hovered": "#265d23",
+          },
+          "muted": Object {
+            "activated": "#235120",
+            "default": "#1e3e1a",
+            "hovered": "#1f431c",
+          },
+          "subtle": Object {
+            "activated": "#2a6b2733",
+            "default": "#2a6b2733",
+            "hovered": "#2a6b2733",
+          },
+        },
+        "border": Object {
+          "activated": "#2a6b27",
+          "default": "#30882e",
+          "hovered": "#35a635",
+        },
+        "fg": Object {
+          "activated": "#30882e",
+          "default": "#35a635",
+          "hovered": "#6ebd65",
+        },
+      },
+      "orange": Object {
+        "bg": Object {
+          "bold": Object {
+            "activated": "#713715",
+            "default": "#984717",
+            "hovered": "#833f16",
+          },
+          "muted": Object {
+            "activated": "#713715",
+            "default": "#562b13",
+            "hovered": "#5e2e13",
+          },
+          "subtle": Object {
+            "activated": "#98471733",
+            "default": "#98471733",
+            "hovered": "#98471733",
+          },
+        },
+        "border": Object {
+          "activated": "#984717",
+          "default": "#c15919",
+          "hovered": "#e07333",
+        },
+        "fg": Object {
+          "activated": "#c15919",
+          "default": "#e07333",
+          "hovered": "#ee9665",
+        },
+      },
+      "pink": Object {
+        "bg": Object {
+          "bold": Object {
+            "activated": "#702a71",
+            "default": "#963499",
+            "hovered": "#822f84",
+          },
+          "muted": Object {
+            "activated": "#702a71",
+            "default": "#552356",
+            "hovered": "#5c255d",
+          },
+          "subtle": Object {
+            "activated": "#96349933",
+            "default": "#96349933",
+            "hovered": "#96349933",
+          },
+        },
+        "border": Object {
+          "activated": "#963499",
+          "default": "#b250b4",
+          "hovered": "#c475c3",
+        },
+        "fg": Object {
+          "activated": "#b250b4",
+          "default": "#c475c3",
+          "hovered": "#d497d2",
+        },
+      },
+      "purple": Object {
+        "bg": Object {
+          "bold": Object {
+            "activated": "#4434a4",
+            "default": "#5945d7",
+            "hovered": "#4d3ac0",
+          },
+          "muted": Object {
+            "activated": "#4434a4",
+            "default": "#37297a",
+            "hovered": "#3b2c86",
+          },
+          "subtle": Object {
+            "activated": "#5945d733",
+            "default": "#5945d733",
+            "hovered": "#5945d733",
+          },
+        },
+        "border": Object {
+          "activated": "#5945d7",
+          "default": "#7d62df",
+          "hovered": "#9b81e6",
+        },
+        "fg": Object {
+          "activated": "#7d62df",
+          "default": "#9b81e6",
+          "hovered": "#b59fed",
+        },
+      },
+      "red": Object {
+        "bg": Object {
+          "bold": Object {
+            "activated": "#832528",
+            "default": "#b02b33",
+            "hovered": "#99282d",
+          },
+          "muted": Object {
+            "activated": "#832528",
+            "default": "#632020",
+            "hovered": "#6c2122",
+          },
+          "subtle": Object {
+            "activated": "#b02b3333",
+            "default": "#b02b3333",
+            "hovered": "#b02b3333",
+          },
+        },
+        "border": Object {
+          "activated": "#b02b33",
+          "default": "#c7504f",
+          "hovered": "#d77570",
+        },
+        "fg": Object {
+          "activated": "#c7504f",
+          "default": "#d77570",
+          "hovered": "#e59690",
+        },
+      },
+      "teal": Object {
+        "bg": Object {
+          "bold": Object {
+            "activated": "#1e503e",
+            "default": "#236a51",
+            "hovered": "#215c47",
+          },
+          "muted": Object {
+            "activated": "#1e503e",
+            "default": "#1a3d30",
+            "hovered": "#1c4234",
+          },
+          "subtle": Object {
+            "activated": "#236a5133",
+            "default": "#236a5133",
+            "hovered": "#236a5133",
+          },
+        },
+        "border": Object {
+          "activated": "#236a51",
+          "default": "#258666",
+          "hovered": "#26a47c",
+        },
+        "fg": Object {
+          "activated": "#258666",
+          "default": "#26a47c",
+          "hovered": "#25c191",
+        },
+      },
+      "yellow": Object {
+        "bg": Object {
+          "bold": Object {
+            "activated": "#5c4300",
+            "default": "#7a5900",
+            "hovered": "#6a4d00",
+          },
+          "muted": Object {
+            "activated": "#5c4300",
+            "default": "#473400",
+            "hovered": "#4c3800",
+          },
+          "subtle": Object {
+            "activated": "#7a590033",
+            "default": "#7a590033",
+            "hovered": "#7a590033",
+          },
+        },
+        "border": Object {
+          "activated": "#7a5900",
+          "default": "#9a7000",
+          "hovered": "#bb8800",
+        },
+        "fg": Object {
+          "activated": "#9a7000",
+          "default": "#bb8800",
+          "hovered": "#dca100",
+        },
+      },
+    },
+    "data": Object {
+      "qualitative": Object {
+        "q1": "#7d62df",
+        "q10": "#ee9665",
+        "q11": "#2f77d0",
+        "q12": "#d497d2",
+        "q13": "#9a7000",
+        "q14": "#43baca",
+        "q2": "#25c191",
+        "q3": "#c15919",
+        "q4": "#92abe3",
+        "q5": "#b250b4",
+        "q6": "#dca100",
+        "q7": "#29838e",
+        "q8": "#b59fed",
+        "q9": "#258666",
+      },
+    },
+    "intent": Object {
+      "negative": Object {
+        "bg": Object {
+          "bold": Object {
+            "activated": "#832528",
+            "default": "#b02b33",
+            "hovered": "#99282d",
+          },
+          "muted": Object {
+            "activated": "#832528",
+            "default": "#632020",
+            "hovered": "#6c2122",
+          },
+          "subtle": Object {
+            "activated": "#b02b3333",
+            "default": "#b02b3333",
+            "hovered": "#b02b3333",
+          },
+        },
+        "border": Object {
+          "activated": "#b02b33",
+          "default": "#c7504f",
+          "hovered": "#d77570",
+        },
+        "fg": Object {
+          "activated": "#c7504f",
+          "default": "#d77570",
+          "hovered": "#e59690",
+        },
+      },
+      "notice": Object {
+        "bg": Object {
+          "bold": Object {
+            "activated": "#713715",
+            "default": "#984717",
+            "hovered": "#833f16",
+          },
+          "muted": Object {
+            "activated": "#713715",
+            "default": "#562b13",
+            "hovered": "#5e2e13",
+          },
+          "subtle": Object {
+            "activated": "#98471733",
+            "default": "#98471733",
+            "hovered": "#98471733",
+          },
+        },
+        "border": Object {
+          "activated": "#984717",
+          "default": "#c15919",
+          "hovered": "#e07333",
+        },
+        "fg": Object {
+          "activated": "#c15919",
+          "default": "#e07333",
+          "hovered": "#ee9665",
+        },
+      },
+      "positive": Object {
+        "bg": Object {
+          "bold": Object {
+            "activated": "#235120",
+            "default": "#2a6b27",
+            "hovered": "#265d23",
+          },
+          "muted": Object {
+            "activated": "#235120",
+            "default": "#1e3e1a",
+            "hovered": "#1f431c",
+          },
+          "subtle": Object {
+            "activated": "#2a6b2733",
+            "default": "#2a6b2733",
+            "hovered": "#2a6b2733",
+          },
+        },
+        "border": Object {
+          "activated": "#2a6b27",
+          "default": "#30882e",
+          "hovered": "#35a635",
+        },
+        "fg": Object {
+          "activated": "#30882e",
+          "default": "#35a635",
+          "hovered": "#6ebd65",
+        },
+      },
+      "primary": Object {
+        "bg": Object {
+          "bold": Object {
+            "activated": "#4434a4",
+            "default": "#5945d7",
+            "hovered": "#4d3ac0",
+          },
+          "muted": Object {
+            "activated": "#4434a4",
+            "default": "#37297a",
+            "hovered": "#3b2c86",
+          },
+          "subtle": Object {
+            "activated": "#5945d766",
+            "default": "#5945d733",
+            "hovered": "#5945d74D",
+          },
+        },
+        "border": Object {
+          "activated": "#5945d7",
+          "default": "#7d62df",
+          "hovered": "#9b81e6",
+        },
+        "fg": Object {
+          "activated": "#7d62df",
+          "default": "#9b81e6",
+          "hovered": "#b59fed",
+        },
+      },
+      "secondary": Object {
+        "bg": Object {
+          "bold": Object {
+            "activated": "#474747",
+            "default": "#5e5e5e",
+            "hovered": "#525252",
+          },
+          "muted": Object {
+            "activated": "#474747",
+            "default": "#363636",
+            "hovered": "#3b3b3b",
+          },
+          "subtle": Object {
+            "activated": "#5e5e5e66",
+            "default": "#5e5e5e33",
+            "hovered": "#5e5e5e4D",
+          },
+        },
+        "border": Object {
+          "activated": "#5e5e5e",
+          "default": "#777777",
+          "hovered": "#919191",
+        },
+        "fg": Object {
+          "activated": "#777777",
+          "default": "#919191",
+          "hovered": "#ababab",
+        },
+      },
+    },
+    "neutral": Object {
+      "bg": Object {
+        "accent": Object {
+          "activated": "#363636",
+          "default": "#2c2c2c",
+          "hovered": "#313131",
+        },
+        "base": Object {
+          "activated": "#1f1f1f",
+          "default": "#171717",
+          "hovered": "#1c1c1c",
+        },
+        "panel": Object {
+          "activated": "#2c2c2c",
+          "default": "#242424",
+          "hovered": "#272727",
+        },
+      },
+      "border": Object {
+        "default": "#3b3b3b",
+        "highlight": "#777777",
+      },
+      "fg": Object {
+        "default": "#c6c6c6",
+        "highlight": "#e2e2e2",
+        "muted": "#919191",
+        "subtle": "#777777",
+      },
+    },
+    "state": Object {
+      "disabled": Object {
+        "bg": "#313131",
+        "border": "#272727",
+        "fg": "#474747",
+      },
+      "focus": Object {
+        "border": "#ababab",
+      },
+      "selected": Object {
+        "bg": "#5945d733",
+      },
+    },
+  },
+  "font": Object {
+    "body": Object {
+      "lg": Object {
+        "regular": Object {
+          "fontFamily": "Poppins, Arial, sans-serif",
+          "fontSize": "0.8125rem",
+          "fontWeight": "400",
+          "lineHeight": "1.25rem",
+        },
+        "semibold": Object {
+          "fontFamily": "Poppins, Arial, sans-serif",
+          "fontSize": "0.8125rem",
+          "fontWeight": "600",
+          "lineHeight": "1.25rem",
+        },
+      },
+      "md": Object {
+        "regular": Object {
+          "fontFamily": "Poppins, Arial, sans-serif",
+          "fontSize": "0.75rem",
+          "fontWeight": "400",
+          "lineHeight": "1.25rem",
+        },
+        "semibold": Object {
+          "fontFamily": "Poppins, Arial, sans-serif",
+          "fontSize": "0.75rem",
+          "fontWeight": "600",
+          "lineHeight": "1.25rem",
+        },
+      },
+      "sm": Object {
+        "regular": Object {
+          "fontFamily": "Poppins, Arial, sans-serif",
+          "fontSize": "0.6875rem",
+          "fontWeight": "400",
+          "lineHeight": "1rem",
+        },
+        "semibold": Object {
+          "fontFamily": "Poppins, Arial, sans-serif",
+          "fontSize": "0.6875rem",
+          "fontWeight": "600",
+          "lineHeight": "1rem",
+        },
+      },
+      "xs": Object {
+        "regular": Object {
+          "fontFamily": "Poppins, Arial, sans-serif",
+          "fontSize": "0.625rem",
+          "fontWeight": "400",
+          "lineHeight": "1rem",
+        },
+        "semibold": Object {
+          "fontFamily": "Poppins, Arial, sans-serif",
+          "fontSize": "0.625rem",
+          "fontWeight": "600",
+          "lineHeight": "1rem",
+        },
+      },
+    },
+    "display": Object {
+      "lg": Object {
+        "light": Object {
+          "fontFamily": "Poppins, Arial, sans-serif",
+          "fontSize": "2rem",
+          "fontWeight": "300",
+          "lineHeight": "2.5rem",
+        },
+        "medium": Object {
+          "fontFamily": "Poppins, Arial, sans-serif",
+          "fontSize": "1.5rem",
+          "fontWeight": "500",
+          "lineHeight": "2rem",
+        },
+      },
+      "md": Object {
+        "light": Object {
+          "fontFamily": "Poppins, Arial, sans-serif",
+          "fontSize": "1.75rem",
+          "fontWeight": "300",
+          "lineHeight": "2.5rem",
+        },
+        "medium": Object {
+          "fontFamily": "Poppins, Arial, sans-serif",
+          "fontSize": "1.5rem",
+          "fontWeight": "500",
+          "lineHeight": "2rem",
+        },
+      },
+      "sm": Object {
+        "light": Object {
+          "fontFamily": "Poppins, Arial, sans-serif",
+          "fontSize": "1.5rem",
+          "fontWeight": "300",
+          "lineHeight": "2rem",
+        },
+        "medium": Object {
+          "fontFamily": "Poppins, Arial, sans-serif",
+          "fontSize": "1.5rem",
+          "fontWeight": "500",
+          "lineHeight": "2rem",
+        },
+      },
+    },
+    "heading": Object {
+      "group": Object {
+        "fontFamily": "Poppins, Arial, sans-serif",
+        "fontSize": "0.625rem",
+        "fontWeight": "600",
+        "letterSpacing": "0.03125rem",
+        "lineHeight": "1rem",
+        "textTransform": "uppercase",
+      },
+      "lg": Object {
+        "fontFamily": "Poppins, Arial, sans-serif",
+        "fontSize": "1rem",
+        "fontWeight": "500",
+        "lineHeight": "1.25rem",
+      },
+      "md": Object {
+        "fontFamily": "Poppins, Arial, sans-serif",
+        "fontSize": "0.875rem",
+        "fontWeight": "500",
+        "lineHeight": "1.25rem",
+      },
+      "sm": Object {
+        "fontFamily": "Poppins, Arial, sans-serif",
+        "fontSize": "0.8125rem",
+        "fontWeight": "500",
+        "lineHeight": "1.25rem",
+      },
+      "xl": Object {
+        "fontFamily": "Poppins, Arial, sans-serif",
+        "fontSize": "1.125rem",
+        "fontWeight": "500",
+        "lineHeight": "1.5rem",
+      },
+      "xl2": Object {
+        "fontFamily": "Poppins, Arial, sans-serif",
+        "fontSize": "1.25rem",
+        "fontWeight": "500",
+        "lineHeight": "1.75rem",
+      },
+      "xs": Object {
+        "fontFamily": "Poppins, Arial, sans-serif",
+        "fontSize": "0.75rem",
+        "fontWeight": "500",
+        "lineHeight": "1.25rem",
+      },
+    },
+  },
+  "radius": Object {
+    "pill": "9999px",
+    "r2": "2px",
+    "r4": "4px",
+    "round": "50%",
+  },
+  "shadow": Object {
+    "s1": "0 1px 2px 0 rgba(0,0,0,16%)",
+    "s2": "0 2px 4px 0 rgba(0,0,0,16%)",
+    "s3": "0 4px 8px 0 rgba(0,0,0,25%)",
+    "s4": "0 8px 12px 0 rgba(0,0,0,20%)",
+    "s5": "0 12px 16px 0 rgba(0,0,0,20%)",
+  },
+  "spacing": Object {
+    "s12": "0.75rem",
+    "s16": "1rem",
+    "s2": "0.125rem",
+    "s20": "1.25rem",
+    "s24": "1.5rem",
+    "s32": "2rem",
+    "s4": "0.25rem",
+    "s40": "2.5rem",
+    "s48": "3rem",
+    "s6": "0.375rem",
+    "s8": "0.5rem",
+  },
+  "transparent": Object {
+    "t10": "1A",
+    "t15": "26",
+    "t20": "33",
+    "t30": "4D",
+    "t40": "66",
+    "t50": "80",
+    "t60": "99",
+    "t80": "CC",
+    "y70": "B3",
+    "y90": "E6",
+  },
+  "zIndex": Object {
+    "deep": "-999999",
+    "modal": "900",
+    "navigation": "400",
+    "overlay": "500",
+    "popover": "700",
+    "sticky": "300",
+    "toast": "800",
+  },
+}
+`;
+
+exports[`generateTheme Light theme should match snapshot 1`] = `
+Object {
+  "breakpoints": Object {
+    "mobile": "600px",
+    "monitor": "1800px",
+    "tabletLandscape": "1200px",
+    "tabletPortrait": "900px",
+  },
+  "color": Object {
+    "core": Object {
+      "blue": Object {
+        "bg": Object {
+          "bold": Object {
+            "activated": "#8ca6e2",
+            "default": "#5b89d7",
+            "hovered": "#7698dd",
+          },
+          "muted": Object {
+            "activated": "#8ca6e2",
+            "default": "#adbdea",
+            "hovered": "#a2b6e7",
+          },
+          "subtle": Object {
+            "activated": "#5b89d733",
+            "default": "#5b89d733",
+            "hovered": "#5b89d733",
+          },
+        },
+        "border": Object {
+          "activated": "#5b89d7",
+          "default": "#266fc5",
+          "hovered": "#265898",
+        },
+        "fg": Object {
+          "activated": "#266fc5",
+          "default": "#265898",
+          "hovered": "#234373",
+        },
+      },
+      "cyan": Object {
+        "bg": Object {
+          "bold": Object {
+            "activated": "#2bb6c7",
+            "default": "#2b97a4",
+            "hovered": "#2ba7b6",
+          },
+          "muted": Object {
+            "activated": "#2bb6c7",
+            "default": "#79cad6",
+            "hovered": "#67c4d2",
+          },
+          "subtle": Object {
+            "activated": "#2b97a433",
+            "default": "#2b97a433",
+            "hovered": "#2b97a433",
+          },
+        },
+        "border": Object {
+          "activated": "#2b97a4",
+          "default": "#287984",
+          "hovered": "#256068",
+        },
+        "fg": Object {
+          "activated": "#287984",
+          "default": "#256068",
+          "hovered": "#20494f",
+        },
+      },
+      "gray": Object {
+        "bg": Object {
+          "bold": Object {
+            "activated": "#a6a6a6",
+            "default": "#898989",
+            "hovered": "#989898",
+          },
+          "muted": Object {
+            "activated": "#a6a6a6",
+            "default": "#bdbdbd",
+            "hovered": "#b6b6b6",
+          },
+          "subtle": Object {
+            "activated": "#89898933",
+            "default": "#89898933",
+            "hovered": "#89898933",
+          },
+        },
+        "border": Object {
+          "activated": "#898989",
+          "default": "#6e6e6e",
+          "hovered": "#575757",
+        },
+        "fg": Object {
+          "activated": "#6e6e6e",
+          "default": "#575757",
+          "hovered": "#434343",
+        },
+      },
+      "green": Object {
+        "bg": Object {
+          "bold": Object {
+            "activated": "#64b95b",
+            "default": "#339d33",
+            "hovered": "#42ad3f",
+          },
+          "muted": Object {
+            "activated": "#64b95b",
+            "default": "#90cc86",
+            "hovered": "#84c77a",
+          },
+          "subtle": Object {
+            "activated": "#339d3333",
+            "default": "#339d3333",
+            "hovered": "#339d3333",
+          },
+        },
+        "border": Object {
+          "activated": "#339d33",
+          "default": "#2e7e2c",
+          "hovered": "#286325",
+        },
+        "fg": Object {
+          "activated": "#2e7e2c",
+          "default": "#286325",
+          "hovered": "#224c1f",
+        },
+      },
+      "orange": Object {
+        "bg": Object {
+          "bold": Object {
+            "activated": "#ec8f5b",
+            "default": "#db6823",
+            "hovered": "#e47c41",
+          },
+          "muted": Object {
+            "activated": "#ec8f5b",
+            "default": "#f6ad86",
+            "hovered": "#f3a47a",
+          },
+          "subtle": Object {
+            "activated": "#db682333",
+            "default": "#db682333",
+            "hovered": "#db682333",
+          },
+        },
+        "border": Object {
+          "activated": "#db6823",
+          "default": "#b35318",
+          "hovered": "#8d4217",
+        },
+        "fg": Object {
+          "activated": "#b35318",
+          "default": "#8d4217",
+          "hovered": "#6c3415",
+        },
+      },
+      "pink": Object {
+        "bg": Object {
+          "bold": Object {
+            "activated": "#d191cf",
+            "default": "#bf6abf",
+            "hovered": "#c87ec7",
+          },
+          "muted": Object {
+            "activated": "#d191cf",
+            "default": "#deaedc",
+            "hovered": "#daa5d8",
+          },
+          "subtle": Object {
+            "activated": "#bf6abf33",
+            "default": "#bf6abf33",
+            "hovered": "#bf6abf33",
+          },
+        },
+        "border": Object {
+          "activated": "#bf6abf",
+          "default": "#ac43af",
+          "hovered": "#8b318e",
+        },
+        "fg": Object {
+          "activated": "#ac43af",
+          "default": "#8b318e",
+          "hovered": "#6a296b",
+        },
+      },
+      "purple": Object {
+        "bg": Object {
+          "bold": Object {
+            "activated": "#b199ec",
+            "default": "#9278e4",
+            "hovered": "#a389e8",
+          },
+          "muted": Object {
+            "activated": "#b199ec",
+            "default": "#c7b3f1",
+            "hovered": "#c1acf0",
+          },
+          "subtle": Object {
+            "activated": "#9278e433",
+            "default": "#9278e433",
+            "hovered": "#9278e433",
+          },
+        },
+        "border": Object {
+          "activated": "#9278e4",
+          "default": "#7258dc",
+          "hovered": "#513ece",
+        },
+        "fg": Object {
+          "activated": "#7258dc",
+          "default": "#513ece",
+          "hovered": "#41319b",
+        },
+      },
+      "red": Object {
+        "bg": Object {
+          "bold": Object {
+            "activated": "#e3918b",
+            "default": "#d36a66",
+            "hovered": "#db7e78",
+          },
+          "muted": Object {
+            "activated": "#e3918b",
+            "default": "#edaea9",
+            "hovered": "#eaa6a0",
+          },
+          "subtle": Object {
+            "activated": "#d36a6633",
+            "default": "#d36a6633",
+            "hovered": "#d36a6633",
+          },
+        },
+        "border": Object {
+          "activated": "#d36a66",
+          "default": "#c14345",
+          "hovered": "#a32a30",
+        },
+        "fg": Object {
+          "activated": "#c14345",
+          "default": "#a32a30",
+          "hovered": "#7c2426",
+        },
+      },
+      "teal": Object {
+        "bg": Object {
+          "bold": Object {
+            "activated": "#25bc8d",
+            "default": "#269b75",
+            "hovered": "#26ac81",
+          },
+          "muted": Object {
+            "activated": "#25bc8d",
+            "default": "#22d6a0",
+            "hovered": "#23ce9a",
+          },
+          "subtle": Object {
+            "activated": "#269b7533",
+            "default": "#269b7533",
+            "hovered": "#269b7533",
+          },
+        },
+        "border": Object {
+          "activated": "#269b75",
+          "default": "#257d5f",
+          "hovered": "#22624b",
+        },
+        "fg": Object {
+          "activated": "#257d5f",
+          "default": "#22624b",
+          "hovered": "#1e4b3a",
+        },
+      },
+      "yellow": Object {
+        "bg": Object {
+          "bold": Object {
+            "activated": "#d69d00",
+            "default": "#b18100",
+            "hovered": "#c48f00",
+          },
+          "muted": Object {
+            "activated": "#d69d00",
+            "default": "#f4b200",
+            "hovered": "#ebac00",
+          },
+          "subtle": Object {
+            "activated": "#b1810033",
+            "default": "#b1810033",
+            "hovered": "#b1810033",
+          },
+        },
+        "border": Object {
+          "activated": "#b18100",
+          "default": "#8f6900",
+          "hovered": "#715200",
+        },
+        "fg": Object {
+          "activated": "#8f6900",
+          "default": "#715200",
+          "hovered": "#574000",
+        },
+      },
+    },
+    "data": Object {
+      "qualitative": Object {
+        "q1": "#7258dc",
+        "q10": "#6c3415",
+        "q11": "#266fc5",
+        "q12": "#6a296b",
+        "q13": "#8f6900",
+        "q14": "#20494f",
+        "q2": "#1e4b3a",
+        "q3": "#b35318",
+        "q4": "#234373",
+        "q5": "#ac43af",
+        "q6": "#574000",
+        "q7": "#287984",
+        "q8": "#41319b",
+        "q9": "#257d5f",
+      },
+    },
+    "intent": Object {
+      "negative": Object {
+        "bg": Object {
+          "bold": Object {
+            "activated": "#e3918b",
+            "default": "#d36a66",
+            "hovered": "#db7e78",
+          },
+          "muted": Object {
+            "activated": "#e3918b",
+            "default": "#edaea9",
+            "hovered": "#eaa6a0",
+          },
+          "subtle": Object {
+            "activated": "#d36a6633",
+            "default": "#d36a6633",
+            "hovered": "#d36a6633",
+          },
+        },
+        "border": Object {
+          "activated": "#d36a66",
+          "default": "#c14345",
+          "hovered": "#a32a30",
+        },
+        "fg": Object {
+          "activated": "#c14345",
+          "default": "#a32a30",
+          "hovered": "#7c2426",
+        },
+      },
+      "notice": Object {
+        "bg": Object {
+          "bold": Object {
+            "activated": "#ec8f5b",
+            "default": "#db6823",
+            "hovered": "#e47c41",
+          },
+          "muted": Object {
+            "activated": "#ec8f5b",
+            "default": "#f6ad86",
+            "hovered": "#f3a47a",
+          },
+          "subtle": Object {
+            "activated": "#db682333",
+            "default": "#db682333",
+            "hovered": "#db682333",
+          },
+        },
+        "border": Object {
+          "activated": "#db6823",
+          "default": "#b35318",
+          "hovered": "#8d4217",
+        },
+        "fg": Object {
+          "activated": "#b35318",
+          "default": "#8d4217",
+          "hovered": "#6c3415",
+        },
+      },
+      "positive": Object {
+        "bg": Object {
+          "bold": Object {
+            "activated": "#64b95b",
+            "default": "#339d33",
+            "hovered": "#42ad3f",
+          },
+          "muted": Object {
+            "activated": "#64b95b",
+            "default": "#90cc86",
+            "hovered": "#84c77a",
+          },
+          "subtle": Object {
+            "activated": "#339d3333",
+            "default": "#339d3333",
+            "hovered": "#339d3333",
+          },
+        },
+        "border": Object {
+          "activated": "#339d33",
+          "default": "#2e7e2c",
+          "hovered": "#286325",
+        },
+        "fg": Object {
+          "activated": "#2e7e2c",
+          "default": "#286325",
+          "hovered": "#224c1f",
+        },
+      },
+      "primary": Object {
+        "bg": Object {
+          "bold": Object {
+            "activated": "#b199ec",
+            "default": "#9278e4",
+            "hovered": "#a389e8",
+          },
+          "muted": Object {
+            "activated": "#b199ec",
+            "default": "#c7b3f1",
+            "hovered": "#c1acf0",
+          },
+          "subtle": Object {
+            "activated": "#9278e466",
+            "default": "#9278e433",
+            "hovered": "#9278e44D",
+          },
+        },
+        "border": Object {
+          "activated": "#9278e4",
+          "default": "#7258dc",
+          "hovered": "#513ece",
+        },
+        "fg": Object {
+          "activated": "#7258dc",
+          "default": "#513ece",
+          "hovered": "#41319b",
+        },
+      },
+      "secondary": Object {
+        "bg": Object {
+          "bold": Object {
+            "activated": "#a6a6a6",
+            "default": "#898989",
+            "hovered": "#989898",
+          },
+          "muted": Object {
+            "activated": "#a6a6a6",
+            "default": "#bdbdbd",
+            "hovered": "#b6b6b6",
+          },
+          "subtle": Object {
+            "activated": "#89898966",
+            "default": "#89898933",
+            "hovered": "#8989894D",
+          },
+        },
+        "border": Object {
+          "activated": "#898989",
+          "default": "#6e6e6e",
+          "hovered": "#575757",
+        },
+        "fg": Object {
+          "activated": "#6e6e6e",
+          "default": "#575757",
+          "hovered": "#434343",
+        },
+      },
+    },
+    "neutral": Object {
+      "bg": Object {
+        "accent": Object {
+          "activated": "#c5c5c5",
+          "default": "#d2d2d2",
+          "hovered": "#cccccc",
+        },
+        "base": Object {
+          "activated": "#d2d2d2",
+          "default": "#dddddd",
+          "hovered": "#d5d5d5",
+        },
+        "panel": Object {
+          "activated": "#dddddd",
+          "default": "#e6e6e6",
+          "hovered": "#e0e0e0",
+        },
+      },
+      "border": Object {
+        "default": "#b6b6b6",
+        "highlight": "#6e6e6e",
+      },
+      "fg": Object {
+        "default": "#303030",
+        "highlight": "#1a1a1a",
+        "muted": "#575757",
+        "subtle": "#6e6e6e",
+      },
+    },
+    "state": Object {
+      "disabled": Object {
+        "bg": "#c5c5c5",
+        "border": "#d2d2d2",
+        "fg": "#a6a6a6",
+      },
+      "focus": Object {
+        "border": "#434343",
+      },
+      "selected": Object {
+        "bg": "#9278e433",
+      },
+    },
+  },
+  "font": Object {
+    "body": Object {
+      "lg": Object {
+        "regular": Object {
+          "fontFamily": "Poppins, Arial, sans-serif",
+          "fontSize": "0.8125rem",
+          "fontWeight": "400",
+          "lineHeight": "1.25rem",
+        },
+        "semibold": Object {
+          "fontFamily": "Poppins, Arial, sans-serif",
+          "fontSize": "0.8125rem",
+          "fontWeight": "600",
+          "lineHeight": "1.25rem",
+        },
+      },
+      "md": Object {
+        "regular": Object {
+          "fontFamily": "Poppins, Arial, sans-serif",
+          "fontSize": "0.75rem",
+          "fontWeight": "400",
+          "lineHeight": "1.25rem",
+        },
+        "semibold": Object {
+          "fontFamily": "Poppins, Arial, sans-serif",
+          "fontSize": "0.75rem",
+          "fontWeight": "600",
+          "lineHeight": "1.25rem",
+        },
+      },
+      "sm": Object {
+        "regular": Object {
+          "fontFamily": "Poppins, Arial, sans-serif",
+          "fontSize": "0.6875rem",
+          "fontWeight": "400",
+          "lineHeight": "1rem",
+        },
+        "semibold": Object {
+          "fontFamily": "Poppins, Arial, sans-serif",
+          "fontSize": "0.6875rem",
+          "fontWeight": "600",
+          "lineHeight": "1rem",
+        },
+      },
+      "xs": Object {
+        "regular": Object {
+          "fontFamily": "Poppins, Arial, sans-serif",
+          "fontSize": "0.625rem",
+          "fontWeight": "400",
+          "lineHeight": "1rem",
+        },
+        "semibold": Object {
+          "fontFamily": "Poppins, Arial, sans-serif",
+          "fontSize": "0.625rem",
+          "fontWeight": "600",
+          "lineHeight": "1rem",
+        },
+      },
+    },
+    "display": Object {
+      "lg": Object {
+        "light": Object {
+          "fontFamily": "Poppins, Arial, sans-serif",
+          "fontSize": "2rem",
+          "fontWeight": "300",
+          "lineHeight": "2.5rem",
+        },
+        "medium": Object {
+          "fontFamily": "Poppins, Arial, sans-serif",
+          "fontSize": "1.5rem",
+          "fontWeight": "500",
+          "lineHeight": "2rem",
+        },
+      },
+      "md": Object {
+        "light": Object {
+          "fontFamily": "Poppins, Arial, sans-serif",
+          "fontSize": "1.75rem",
+          "fontWeight": "300",
+          "lineHeight": "2.5rem",
+        },
+        "medium": Object {
+          "fontFamily": "Poppins, Arial, sans-serif",
+          "fontSize": "1.5rem",
+          "fontWeight": "500",
+          "lineHeight": "2rem",
+        },
+      },
+      "sm": Object {
+        "light": Object {
+          "fontFamily": "Poppins, Arial, sans-serif",
+          "fontSize": "1.5rem",
+          "fontWeight": "300",
+          "lineHeight": "2rem",
+        },
+        "medium": Object {
+          "fontFamily": "Poppins, Arial, sans-serif",
+          "fontSize": "1.5rem",
+          "fontWeight": "500",
+          "lineHeight": "2rem",
+        },
+      },
+    },
+    "heading": Object {
+      "group": Object {
+        "fontFamily": "Poppins, Arial, sans-serif",
+        "fontSize": "0.625rem",
+        "fontWeight": "600",
+        "letterSpacing": "0.03125rem",
+        "lineHeight": "1rem",
+        "textTransform": "uppercase",
+      },
+      "lg": Object {
+        "fontFamily": "Poppins, Arial, sans-serif",
+        "fontSize": "1rem",
+        "fontWeight": "500",
+        "lineHeight": "1.25rem",
+      },
+      "md": Object {
+        "fontFamily": "Poppins, Arial, sans-serif",
+        "fontSize": "0.875rem",
+        "fontWeight": "500",
+        "lineHeight": "1.25rem",
+      },
+      "sm": Object {
+        "fontFamily": "Poppins, Arial, sans-serif",
+        "fontSize": "0.8125rem",
+        "fontWeight": "500",
+        "lineHeight": "1.25rem",
+      },
+      "xl": Object {
+        "fontFamily": "Poppins, Arial, sans-serif",
+        "fontSize": "1.125rem",
+        "fontWeight": "500",
+        "lineHeight": "1.5rem",
+      },
+      "xl2": Object {
+        "fontFamily": "Poppins, Arial, sans-serif",
+        "fontSize": "1.25rem",
+        "fontWeight": "500",
+        "lineHeight": "1.75rem",
+      },
+      "xs": Object {
+        "fontFamily": "Poppins, Arial, sans-serif",
+        "fontSize": "0.75rem",
+        "fontWeight": "500",
+        "lineHeight": "1.25rem",
+      },
+    },
+  },
+  "radius": Object {
+    "pill": "9999px",
+    "r2": "2px",
+    "r4": "4px",
+    "round": "50%",
+  },
+  "shadow": Object {
+    "s1": "0 1px 2px 0 rgba(0,0,0,16%)",
+    "s2": "0 2px 4px 0 rgba(0,0,0,16%)",
+    "s3": "0 4px 8px 0 rgba(0,0,0,25%)",
+    "s4": "0 8px 12px 0 rgba(0,0,0,20%)",
+    "s5": "0 12px 16px 0 rgba(0,0,0,20%)",
+  },
+  "spacing": Object {
+    "s12": "0.75rem",
+    "s16": "1rem",
+    "s2": "0.125rem",
+    "s20": "1.25rem",
+    "s24": "1.5rem",
+    "s32": "2rem",
+    "s4": "0.25rem",
+    "s40": "2.5rem",
+    "s48": "3rem",
+    "s6": "0.375rem",
+    "s8": "0.5rem",
+  },
+  "transparent": Object {
+    "t10": "1A",
+    "t15": "26",
+    "t20": "33",
+    "t30": "4D",
+    "t40": "66",
+    "t50": "80",
+    "t60": "99",
+    "t80": "CC",
+    "y70": "B3",
+    "y90": "E6",
+  },
+  "zIndex": Object {
+    "deep": "-999999",
+    "modal": "900",
+    "navigation": "400",
+    "overlay": "500",
+    "popover": "700",
+    "sticky": "300",
+    "toast": "800",
+  },
+}
+`;

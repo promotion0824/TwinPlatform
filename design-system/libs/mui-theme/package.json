@@ -1,0 +1,20 @@
+{
+  "name": "@willowinc/mui-theme",
+  "version": "1.0.0-alpha.63",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/WillowInc/TwinPlatform.git",
+    "directory": "design-system/libs/mui-theme"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "directory": "../../dist/libs/mui-theme"
+  },
+  "dependencies": {
+    "@mui/material": "^5.0.0",
+    "@willowinc/palette": "1.0.0-alpha.63",
+    "react": "^18.2.0"
+  },
+  "main": "./src/index.js",
+  "typings": "./src/index.d.ts"
+}

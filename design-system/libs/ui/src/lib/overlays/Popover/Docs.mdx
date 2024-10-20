@@ -1,0 +1,20 @@
+import { Canvas, Meta, Description, Stories } from '@storybook/blocks'
+import { SourceLink } from '../../../storybookUtils'
+import { GroupNames } from '../../utils/constant'
+
+import * as stories from './Popover.stories'
+import { Popover } from '.'
+
+<Meta of={stories} />
+
+# Popover
+
+<Description of={Popover} />
+<Description of={Popover.Target} />
+<Description of={Popover.Dropdown} />
+
+<Canvas of={stories.Playground} />
+
+<SourceLink name="Popover" groupName={GroupNames.Overlays} />
+
+<Stories includePrimary={false} title="Stories" />

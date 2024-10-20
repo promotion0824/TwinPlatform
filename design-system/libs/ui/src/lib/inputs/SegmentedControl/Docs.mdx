@@ -1,0 +1,18 @@
+import { Canvas, Meta, Description, Stories } from '@storybook/blocks'
+import { SourceLink } from '../../../storybookUtils'
+import { GroupNames } from '../../utils/constant'
+
+import * as stories from './SegmentedControl.stories'
+import { SegmentedControl } from '.'
+
+<Meta of={stories} />
+
+# SegmentedControl
+
+<Description of={SegmentedControl} />
+
+<Canvas of={stories.Playground} />
+
+<SourceLink name="SegmentedControl" groupName={GroupNames.Inputs} />
+
+<Stories includePrimary={false} title="Stories" />

@@ -1,0 +1,82 @@
+parameters:
+- name: srcProjectDir
+  type: string
+- name: testProjectDir
+  type: string
+- name: buildConfiguration
+  type: string
+  default: Release
+- name: buildVersion
+  type: string
+  default: 1.0.0.0
+- name: dotnetVersion
+  type: string
+  default: 6.0.x
+- name: preBuildSteps
+  type: stepList
+  default: []
+- name: restoreGithubNugetPackages
+  type: boolean
+  default: false
+
+steps:
+- ${{ each step in parameters.preBuildSteps }}:
+  - ${{ step }}
+
+- task: UseDotNet@2
+  displayName: Use .NET ${{ parameters.dotnetVersion }}
+  inputs:
+    packageType: 'sdk'
+    version: ${{ parameters.dotnetVersion }}
+
+- task: NuGetAuthenticate@1
+  displayName: "Nuget Authentication"
+  condition: eq(${{ parameters.restoreGithubNugetPackages }}, true)
+
+- task: Bash@3
+  displayName: 'Add Github credentials to Nuget config'
+  condition: eq(${{ parameters.restoreGithubNugetPackages }}, true)
+  inputs:
+    targetType: 'inline'
+    script: |
+      dotnet nuget remove source WillowGithub --configfile NuGet.Config
+      dotnet nuget add source --store-password-in-clear-text --username pat --password "$(GITHUBPAT)" --name WillowGithub "https://nuget.pkg.github.com/willowinc/index.json" --configfile NuGet.Config
+
+- task: Bash@3
+  displayName: 'Dump nuget config'
+  condition: eq(${{ parameters.restoreGithubNugetPackages }}, true)
+  inputs:
+    targetType: 'inline'
+    script: |
+      cat NuGet.Config
+
+- task: DotNetCoreCLI@2
+  displayName: 'Restore Github nuget packages'
+  condition: eq(${{ parameters.restoreGithubNugetPackages }}, true)
+  inputs:
+    command: restore
+    selectOrConfig: config
+    nugetConfigPath: NuGet.Config
+    projects: |
+      ${{ parameters.srcProjectDir }}
+      ${{ parameters.testProjectDir }}
+
+- task: DotNetCoreCLI@2
+  displayName: 'Restore nuget packages'
+  inputs:
+    command: restore
+    feedsToUse: config
+    nugetConfigPath: NuGet.Config
+    externalFeedCredentials: 'TwinPlatformGitHub'
+    projects: |
+      ${{ parameters.srcProjectDir }}
+      ${{ parameters.testProjectDir }}
+
+- task: DotNetCoreCLI@2
+  displayName: 'Build Project for ${{ parameters.buildConfiguration }}'
+  inputs:
+    command: build
+    arguments: '--no-restore --configuration ${{ parameters.buildConfiguration }} /p:Version=${{ parameters.buildVersion }}'
+    projects: |
+      ${{ parameters.srcProjectDir }}
+      ${{ parameters.testProjectDir }}

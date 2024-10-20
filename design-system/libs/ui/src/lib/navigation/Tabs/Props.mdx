@@ -1,0 +1,28 @@
+import { Meta } from '@storybook/blocks'
+import { ArgTypes, ToMantineProps } from '../../../docs/_components'
+
+import { Tabs } from '.'
+import { ComponentForStorybookArgTypes } from './Tabs.tsx'
+import * as stories from './Tabs.stories'
+
+<Meta of={stories} />
+
+# Props
+
+## Tabs
+
+<ArgTypes of={ComponentForStorybookArgTypes} />
+
+### Tabs.Tab
+
+<ArgTypes of={Tabs.Tab} />
+
+### Tabs.List
+
+<ArgTypes of={Tabs.List} />
+
+### Tabs.Panel
+
+<ArgTypes of={Tabs.Panel} />
+
+<ToMantineProps componentName="Tabs" />

@@ -1,0 +1,18 @@
+import { Canvas, Meta, Description, Stories } from '@storybook/blocks'
+import { SourceLink } from '../../../storybookUtils'
+import { GroupNames } from '../../utils/constant'
+
+import * as stories from './ChartTable.stories'
+import { ChartTable } from '.'
+
+<Meta of={stories} />
+
+# ChartTable
+
+<Description of={ChartTable} />
+
+<Canvas of={stories.Playground} />
+
+<SourceLink name="ChartTable" groupName={GroupNames.Charts} />
+
+<Stories includePrimary={false} title="Stories" />

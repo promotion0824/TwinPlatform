@@ -1,0 +1,23 @@
+import { Meta } from '@storybook/blocks'
+import { ArgTypes, ToMantineProps } from '../../../docs/_components'
+
+import { NavList } from '.'
+import * as stories from './NavList.stories'
+
+<Meta of={stories} />
+
+# Props
+
+## NavList
+
+<ArgTypes excludeStyleProps of={NavList} />
+
+## NavList.Group
+
+<ArgTypes excludeStyleProps of={NavList.Group} />
+
+## NavList.Item
+
+<ArgTypes excludeStyleProps of={NavList.Item} />
+
+<ToMantineProps componentName="NavLink" />

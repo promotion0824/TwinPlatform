@@ -1,0 +1,18 @@
+import { Canvas, Meta, Description, Stories } from '@storybook/blocks'
+import { SourceLink } from '../../../storybookUtils'
+import { GroupNames } from '../../utils/constant'
+
+import * as stories from './Sidebar.stories'
+import { Sidebar } from '.'
+
+<Meta of={stories} />
+
+# Sidebar
+
+<Description of={Sidebar} />
+
+<Canvas of={stories.Playground} />
+
+<SourceLink name="Sidebar" groupName={GroupNames.UiChrome} />
+
+<Stories includePrimary={false} title="Stories" />

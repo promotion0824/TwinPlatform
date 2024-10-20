@@ -1,0 +1,60 @@
+import { Meta } from '@storybook/blocks'
+import ExampleCard from './StylePropsExample'
+
+<Meta title="Design System/Style Props" />
+
+# Style Props
+
+The following style props are available for use on all of our components, except for those listed below. These props should be used to reduce boilerplate when adding adhoc styles to components when needed, and to provide easy access to our theme tokens as needed.
+
+## Unsupported Components
+
+- [DataGrid](?path=/docs/components-datagrid--docs)
+- [NavList](?path=/docs/components-navlist--docs)
+- [Snackbar](?path=/docs/components-snackbar--docs)
+- All chart components except for [ChartCard](?path=/docs/components-charts-chartcard--docs) and [Tracker](?path=/docs/components-charts-tracker--props)
+
+## Example
+
+```tsx
+<Card c="intent.notice.fg.default" m="s16" p="s16">
+  Example Card
+</Card>
+```
+
+<ExampleCard />
+
+## Props
+
+| Name     | CSS Property   | Description                  |
+| -------- | -------------- | ---------------------------- |
+| `m`      | margin         | Accepts theme spacing tokens |
+| `mt`     | margin-top     | Accepts theme spacing tokens |
+| `mb`     | margin-bottom  | Accepts theme spacing tokens |
+| `ml`     | margin-left    | Accepts theme spacing tokens |
+| `mr`     | margin-right   | Accepts theme spacing tokens |
+| `mx`     | margin-inline  | Accepts theme spacing tokens |
+| `my`     | margin-block   | Accepts theme spacing tokens |
+| `ms`     | margin-start   | Accepts theme spacing tokens |
+| `me`     | margin-end     | Accepts theme spacing tokens |
+| `p`      | padding        | Accepts theme spacing tokens |
+| `pt`     | padding-top    | Accepts theme spacing tokens |
+| `pb`     | padding-bottom | Accepts theme spacing tokens |
+| `pl`     | padding-left   | Accepts theme spacing tokens |
+| `pr`     | padding-right  | Accepts theme spacing tokens |
+| `px`     | padding-inline | Accepts theme spacing tokens |
+| `py`     | padding-block  | Accepts theme spacing tokens |
+| `ps`     | padding-start  | Accepts theme spacing tokens |
+| `pe`     | padding-end    | Accepts theme spacing tokens |
+| `top`    | top            | Accepts theme spacing tokens |
+| `left`   | left           | Accepts theme spacing tokens |
+| `bottom` | bottom         | Accepts theme spacing tokens |
+| `right`  | right          | Accepts theme spacing tokens |
+| `w`      | width          | Accepts theme spacing tokens |
+| `minW`   | min-width      | Accepts theme spacing tokens |
+| `maxW`   | max-width      | Accepts theme spacing tokens |
+| `h`      | height         | Accepts theme spacing tokens |
+| `minH`   | min-height     | Accepts theme spacing tokens |
+| `maxH`   | max-height     | Accepts theme spacing tokens |
+| `bg`     | background     | Accepts theme color tokens   |
+| `c`      | color          | Accepts theme color tokens   |

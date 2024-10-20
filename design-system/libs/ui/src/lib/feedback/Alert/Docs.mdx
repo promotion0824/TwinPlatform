@@ -1,0 +1,18 @@
+import { Canvas, Meta, Description, Stories } from '@storybook/blocks'
+import { SourceLink } from '../../../storybookUtils'
+import { GroupNames } from '../../utils/constant'
+
+import * as stories from './Alert.stories'
+import { Alert } from '.'
+
+<Meta of={stories} />
+
+# Alert
+
+<Description of={Alert} />
+
+<Canvas of={stories.Playground} />
+
+<SourceLink name="Alert" groupName={GroupNames.Feedback} />
+
+<Stories includePrimary={false} title="Stories" />

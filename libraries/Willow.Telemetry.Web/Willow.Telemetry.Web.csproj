@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net8.0;net6.0;net7.0;</TargetFrameworks>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<PackageReadmeFile>ReadMe.md</PackageReadmeFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+		<None Include="..\Willow.Telemetry\ReadMe.md" Link="ReadMe.md" Pack="true" PackagePath="\" />
+		<PackageReference Include="Azure.Monitor.OpenTelemetry.Exporter" Version="1.2.0" />
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="OpenTelemetry.Exporter.Console" Version="1.8.1" />
+		<PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.8.1" />
+		<PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.8.1" />
+		<PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.8.1" />
+		<PackageReference Include="OpenTelemetry.Instrumentation.SqlClient" Version="1.8.0-beta.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Willow.AppContext\Willow.AppContext.csproj" />
+		<ProjectReference Include="..\Willow.Telemetry\Willow.Telemetry.csproj">
+			<TreatAsUsed>true</TreatAsUsed>
+		</ProjectReference>
+	</ItemGroup>
+
+</Project>

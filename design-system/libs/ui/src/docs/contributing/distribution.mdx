@@ -1,0 +1,97 @@
+import { Meta } from '@storybook/blocks'
+import { Tip } from '../_components/Tip'
+
+<Meta title="Contributing/Distribution" />
+
+# Distribution
+
+The Willow UI library is published to <a href='https://github.com/orgs/WillowInc/packages?repo_name=TwinPlatform' target='_blank'>
+Github registry</a> which is triggered after you merge a pull request that bump 
+the versions for the publishable packages. To keep versioning simple, we have 
+adapted the fixed version so all the `@willowinc` packages will follow the same 
+version even if there are no changes added for the release.
+
+This section documents the following processes:
+- [Creates a publishable package](#creates-a-publishable-library)
+- [Publishing packages](#automated_publish)
+- [Manually publishing packages](#manually_publish)
+
+If you have changes that are not yet ready to be published but you would like to test them, 
+please refer to the [Testing local changes](?path=/docs/contributing-getting-started--docs#testing-local-changes) 
+guide to publish and install the changes locally to test them.
+
+## Creates a publishable library
+
+1. Include the library in changelog menu:
+   - Go to the main `package.json`
+   - In `workspaces` key, add the directory path to library that contains `package.json`.
+
+1. Update library's `package.json`. See `libs/ui/package.json` for reference:
+   - Update the `version` to match the current version of the @willowinc packages.
+   - Update the `repository` and `publishConfig`. 
+   - If the library uses a @willowinc package as dependency, or is a dependency to
+   another @willowinc package, please also update the `dependency`. 
+   - If the version is currently in prerelease, go to `.changeset/pre.json` and 
+   include the new library and version in the `initialVersions`.
+
+1. Run `npm install` to update `package-lock.json` to include the newly added 
+publishable library. Open and verify the changes in `package-lock.json`.
+
+1. Add `tags` to the library's `project.json` with 
+   - `ci:build` - Note: If the build of the library is triggered by current 
+   library with `ci:build` tag, you can exclude this tag from the project config.
+   - `ci:publish`
+
+## Publishing packages <a id="automated_publish" />
+
+1. Create a release branch `release/pui/<VERSION-NUMBER>`
+
+2. Bump version
+
+   ```bash
+   npm run bump-versions
+   ```
+
+   This command will:
+
+   - Run `changeset version` which:
+     - Bump the verion for the affected package(s) based on the changelog added that are unreleased,
+     - Updates the CHANGELOG.md for release note,
+     - Creates a commit message for releasing of package(s),
+   - Update the versions of `@willowinc` packages in `package-lock.json`,
+   - Stage any updated prerelease configs (due to known bug in [Changesets](https://github.com/changesets/changesets/issues/1150)),
+   - Adds an empty changelog to keep the CI happy.
+
+3. Push the change and create a Pull Request
+
+4. Merge it after approval
+
+After merged into main, it will automatically trigger the publish pipeline and will publish the latest changes on main branch with the version number in your branch.
+
+## Manually publishing packages <a id="manually_publish" />
+
+<Tip>This process is not encouraged.</Tip>
+
+1. Authentication
+
+   Follow steps in [authentication](/docs/getting-started-developers--docs#authentication), and make sure you have _write:packages_ permission to be able to publish a package locally.
+
+2. Bumping versions
+
+   Bump the versions by following the same bump version step in [Publishing packages](#automated_publish)
+
+3. Build
+
+   Build the **ui** library will also build the dependency **theme** and **palette** libraries and produce output in the `dist/libs` folder.
+
+   ```bash
+   nx run-many --target=build --projects=tag:ci:build
+   ```
+
+4. Publish Libraries
+
+   This will update the package in <a href='https://github.com/orgs/WillowInc/packages?repo_name=TwinPlatform' target='_blank'>Github registry</a>.
+
+   ```bash
+   npm run publish-packages
+   ```

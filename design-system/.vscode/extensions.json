@@ -1,0 +1,9 @@
+{
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "jpoissonnier.vscode-styled-components",
+    "ms-playwright.playwright",
+    "orta.vscode-jest"
+  ]
+}

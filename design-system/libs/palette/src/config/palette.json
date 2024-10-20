@@ -1,0 +1,89 @@
+{
+  "contrast": 1,
+  "saturation": 100,
+  "ratios": {
+    "80": -1.04,
+    "100": 1,
+    "120": 1.04,
+    "140": 1.11,
+    "160": 1.15,
+    "180": 1.23,
+    "200": 1.31,
+    "225": 1.43,
+    "250": 1.54,
+    "300": 1.85,
+    "350": 2.2,
+    "400": 2.66,
+    "500": 3.85,
+    "600": 5.47,
+    "700": 7.5,
+    "800": 10.08,
+    "900": 13.3
+  },
+  "baseColor": {
+    "name": "gray",
+    "colorspace": "LCH",
+    "smooth": false,
+    "color": "#000000"
+  },
+  "colors": [
+    {
+      "name": "red",
+      "colorspace": "LCH",
+      "smooth": false,
+      "color": "#b82c35"
+    },
+    {
+      "name": "orange",
+      "colorspace": "LCH",
+      "smooth": false,
+      "color": "#d86219"
+    },
+    {
+      "name": "yellow",
+      "colorspace": "RGB",
+      "smooth": false,
+      "color": "#f9b600"
+    },
+    {
+      "name": "green",
+      "colorspace": "LCH",
+      "smooth": false,
+      "color": "#35a936"
+    },
+    {
+      "name": "teal",
+      "colorspace": "LCH",
+      "smooth": false,
+      "color": "#22d7a1"
+    },
+    {
+      "name": "cyan",
+      "colorspace": "LCH",
+      "smooth": false,
+      "color": "#2bb6c7"
+    },
+    {
+      "name": "blue",
+      "colorspace": "LCH",
+      "smooth": false,
+      "color": "#2575cf"
+    },
+    {
+      "name": "purple",
+      "colorspace": "LCH",
+      "smooth": false,
+      "color": "#5340D6"
+    },
+    {
+      "name": "pink",
+      "colorspace": "LCH",
+      "smooth": false,
+      "color": "#a838ab"
+    }
+  ],
+  "lightness": {
+    "dark": 10,
+    "light": 90
+  }
+}

@@ -1,0 +1,18 @@
+import { Canvas, Meta, Description, Stories } from '@storybook/blocks'
+import { SourceLink } from '../../../storybookUtils'
+import { GroupNames } from '../../utils/constant'
+
+import * as stories from './Modal.stories'
+import { Modal } from '.'
+
+<Meta of={stories} />
+
+# Modal
+
+<Description of={Modal} />
+
+<Canvas of={stories.Playground} />
+
+<SourceLink name="Modal" groupName={GroupNames.Overlays} />
+
+<Stories includePrimary={false} title="Stories" />

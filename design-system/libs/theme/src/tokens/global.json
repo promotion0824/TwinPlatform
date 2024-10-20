@@ -1,0 +1,118 @@
+{
+  "fontFamily": {
+    "poppins": {
+      "value": "Poppins, Arial, sans-serif",
+      "type": "fontFamilies"
+    }
+  },
+  "fontWeight": {
+    "light": {
+      "value": "300",
+      "type": "fontWeights"
+    },
+    "regular": {
+      "value": "400",
+      "type": "fontWeights"
+    },
+    "medium": {
+      "value": "500",
+      "type": "fontWeights"
+    },
+    "semibold": {
+      "value": "600",
+      "type": "fontWeights"
+    }
+  },
+  "textCase": {
+    "uppercase": {
+      "value": "uppercase",
+      "type": "textCase"
+    }
+  },
+  "fontSize": {
+    "10": {
+      "value": "0.625rem",
+      "type": "fontSizes"
+    },
+    "11": {
+      "value": "0.6875rem",
+      "type": "fontSizes"
+    },
+    "12": {
+      "value": "0.75rem",
+      "type": "fontSizes"
+    },
+    "13": {
+      "value": "0.8125rem",
+      "type": "fontSizes"
+    },
+    "14": {
+      "value": "0.875rem",
+      "type": "fontSizes"
+    },
+    "16": {
+      "value": "1rem",
+      "type": "fontSizes"
+    },
+    "18": {
+      "value": "1.125rem",
+      "type": "fontSizes"
+    },
+    "20": {
+      "value": "1.25rem",
+      "type": "fontSizes"
+    },
+    "24": {
+      "value": "1.5rem",
+      "type": "fontSizes"
+    },
+    "28": {
+      "value": "1.75rem",
+      "type": "fontSizes"
+    },
+    "32": {
+      "value": "2rem",
+      "type": "fontSizes"
+    }
+  },
+  "lineHeight": {
+    "16": {
+      "value": "1rem",
+      "type": "lineHeights"
+    },
+    "20": {
+      "value": "1.25rem",
+      "type": "lineHeights"
+    },
+    "24": {
+      "value": "1.5rem",
+      "type": "lineHeights"
+    },
+    "28": {
+      "value": "1.75rem",
+      "type": "lineHeights"
+    },
+    "32": {
+      "value": "2rem",
+      "type": "lineHeights"
+    },
+    "36": {
+      "value": "2.25rem",
+      "type": "lineHeights"
+    },
+    "40": {
+      "value": "2.5rem",
+      "type": "lineHeights"
+    }
+  },
+  "textDecoration": {
+    "none": {
+      "value": "none",
+      "type": "textDecoration"
+    },
+    "underline": {
+      "value": "underline",
+      "type": "textDecoration"
+    }
+  }
+}

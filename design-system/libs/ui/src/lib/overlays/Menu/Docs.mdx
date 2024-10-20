@@ -1,0 +1,18 @@
+import { Canvas, Meta, Description, Stories } from '@storybook/blocks'
+import { SourceLink } from '../../../storybookUtils'
+import { GroupNames } from '../../utils/constant'
+
+import * as stories from './Menu.stories'
+import { Menu } from '.'
+
+<Meta of={stories} />
+
+# Menu
+
+<Description of={Menu} />
+
+<Canvas of={stories.Playground} />
+
+<SourceLink name="Menu" groupName={GroupNames.Overlays} />
+
+<Stories includePrimary={false} title="Stories" />

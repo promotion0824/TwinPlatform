@@ -1,0 +1,122 @@
+parameters:
+- name: dockerfile
+  type: string
+- name: dockerContext
+  type: string
+- name: imageName
+  type: string
+- name: productName
+  type: string
+  default: 'twin'
+- name: pushToSbx
+  type: boolean
+  default: false
+- name: pushToSingleTenantDev
+  type: boolean
+  default: false
+
+steps:
+
+- task: Bash@3
+  displayName: 'Set Repository Name'
+  inputs:
+    targetType: 'inline'
+    script: |
+      echo "##vso[task.setvariable variable=imageRepository]${{ parameters.productName }}/${{ parameters.imageName }}"
+
+- task: Docker@2
+  displayName: 'Build image for nonprod'
+  inputs:
+    command: build
+    dockerfile: ${{ parameters.dockerfile }}
+    containerRegistry: acr-nonprod-platformshared-Twin Platform
+    repository: $(imageRepository)
+    buildContext: ${{ parameters.dockerContext }}
+    arguments: --build-arg Version=$(Build.BuildNumber)
+    ${{ if eq(variables['Build.SourceBranchName'], 'main') }}:
+      tags: |
+        $(Build.BuildNumber)
+        latest
+    ${{ if ne(variables['Build.SourceBranchName'], 'main') }}:
+      tags: |
+        $(Build.BuildNumber)
+
+- task: Docker@2
+  displayName: 'Push image to nonprod ACR'
+  inputs:
+    command: push
+    containerRegistry: acr-nonprod-platformshared-Twin Platform
+    repository: $(imageRepository)
+    ${{ if eq(variables['Build.SourceBranchName'], 'main') }}:
+      tags: |
+        $(Build.BuildNumber)
+        latest
+    ${{ if ne(variables['Build.SourceBranchName'], 'main') }}:
+      tags: |
+        $(Build.BuildNumber)
+
+- task: Docker@2
+  displayName: 'Build image for sandbox'
+  condition: and(succeeded(), eq('${{ parameters.pushToSbx }}', 'true'))
+  inputs:
+    command: build
+    dockerfile: ${{ parameters.dockerfile }}
+    containerRegistry: crwilsbxshared01-Twin Platform
+    repository: $(imageRepository)
+    buildContext: ${{ parameters.dockerContext }}
+    arguments: --build-arg Version=$(Build.BuildNumber)
+    ${{ if eq(variables['Build.SourceBranchName'], 'main') }}:
+      tags: |
+        $(Build.BuildNumber)
+        latest
+    ${{ if ne(variables['Build.SourceBranchName'], 'main') }}:
+      tags: |
+        $(Build.BuildNumber)
+
+- task: Docker@2
+  displayName: 'Push image to sbx ACR'
+  condition: and(succeeded(), eq('${{ parameters.pushToSbx }}', 'true'))
+  inputs:
+    command: push
+    containerRegistry: crwilsbxshared01-Twin Platform
+    repository: $(imageRepository)
+    ${{ if eq(variables['Build.SourceBranchName'], 'main') }}:
+      tags: |
+        $(Build.BuildNumber)
+        latest
+    ${{ if ne(variables['Build.SourceBranchName'], 'main') }}:
+      tags: |
+        $(Build.BuildNumber)
+
+- task: Docker@2
+  displayName: 'Build image for Single Tenant Dev'
+  condition: and(succeeded(), eq('${{ parameters.pushToSingleTenantDev }}', 'true'))
+  inputs:
+    command: build
+    dockerfile: ${{ parameters.dockerfile }}
+    containerRegistry: acr-dev-shared-Twin Platform
+    repository: $(imageRepository)
+    buildContext: ${{ parameters.dockerContext }}
+    arguments: --build-arg Version=$(Build.BuildNumber)
+    ${{ if eq(variables['Build.SourceBranchName'], 'main') }}:
+      tags: |
+        $(Build.BuildNumber)
+        latest
+    ${{ if ne(variables['Build.SourceBranchName'], 'main') }}:
+      tags: |
+        $(Build.BuildNumber)
+
+- task: Docker@2
+  displayName: 'Push image to Single Tenant DEV ACR'
+  condition: and(succeeded(), eq('${{ parameters.pushToSingleTenantDev }}', 'true'))
+  inputs:
+    command: push
+    containerRegistry: acr-dev-shared-Twin Platform
+    repository: $(imageRepository)
+    ${{ if eq(variables['Build.SourceBranchName'], 'main') }}:
+      tags: |
+        $(Build.BuildNumber)
+        latest
+    ${{ if ne(variables['Build.SourceBranchName'], 'main') }}:
+      tags: |
+        $(Build.BuildNumber)

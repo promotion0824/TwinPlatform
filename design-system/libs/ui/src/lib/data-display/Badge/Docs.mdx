@@ -1,0 +1,18 @@
+import { Canvas, Meta, Description, Stories } from '@storybook/blocks'
+import { SourceLink } from '../../../storybookUtils'
+import { GroupNames } from '../../utils/constant'
+
+import * as stories from './Badge.stories'
+import { Badge } from '.'
+
+<Meta of={stories} />
+
+# Badge
+
+<Description of={Badge} />
+
+<Canvas of={stories.Playground} />
+
+<SourceLink name="Badge" groupName={GroupNames.DataDisplay} />
+
+<Stories includePrimary={false} title="Stories" />

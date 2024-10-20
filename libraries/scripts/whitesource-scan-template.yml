@@ -1,0 +1,34 @@
+parameters:
+  - name: applicationName
+    type: string
+  - name: productName
+    type: string
+    default: Twin Platform
+  - name: srcProjectDir
+    type: string
+  - name: whitesourceApiKey
+    type: string
+  - name: whitesourceUserKey
+    type: string
+  - name: whitesourceProjectToken
+    type: string
+  - name: whitesourceExclusionsCsv
+    type: string
+    default: ""
+
+steps:
+- template: whitesource-scan.yml
+  parameters:
+    applicationName: ${{ parameters.applicationName }}
+    srcProjectDir: ${{ parameters.srcProjectDir }}
+    whitesourceApiKey: $(whitesource-api-key)
+    productName: ${{ parameters.productName }}
+
+
+- template: whitesource-check.yml
+  parameters:
+    applicationName: ${{ parameters.applicationName }}
+    productName: ${{ parameters.productName }}
+    whitesourceUserKey: $(whitesource-user-key)
+    whitesourceProjectToken: ${{ parameters.whitesourceProjectToken }}
+    whitesourceExclusionsCsv: ${{ parameters.whitesourceExclusionsCsv }}

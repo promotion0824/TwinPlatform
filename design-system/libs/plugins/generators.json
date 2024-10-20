@@ -1,0 +1,9 @@
+{
+  "generators": {
+    "ui-component-generator": {
+      "factory": "./src/generators/ui-component-generator/generator",
+      "schema": "./src/generators/ui-component-generator/schema.json",
+      "description": "ui-component-generator generator"
+    }
+  }
+}

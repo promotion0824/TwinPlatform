@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<Target Name="NSwag" BeforeTargets="BeforeBuild" Condition="'$(Configuration)'=='Debug'">
+		<Exec WorkingDirectory="$(ProjectDir)" Command="dotnet new tool-manifest --force" />
+		<Exec WorkingDirectory="$(ProjectDir)" Command="dotnet tool install NSwag.ConsoleCore --disable-parallel --ignore-failed-sources" />
+		<Exec ContinueOnError="true" WorkingDirectory="$(ProjectDir)" EnvironmentVariables="ASPNETCORE_ENVIRONMENT=Development" Command="dotnet nswag run nswag.json /variables:Configuration=$(Configuration)" />
+		<Exec WorkingDirectory="$(ProjectDir)" Command="dotnet tool uninstall NSwag.ConsoleCore" />
+	</Target>
+
+	<ItemGroup>
+	  <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
+	  <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0" />
+	</ItemGroup>
+
+</Project>

@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net8.0</TargetFrameworks>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>Willow.SpecFlow</PackageId>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/WillowInc/TwinPlatform</RepositoryUrl>
+    <PackageLicenseExpression></PackageLicenseExpression>
+    <Description>Increases the usability of SpecFlow.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SpecFlow" Version="3.9.74" />
+    <PackageReference Include="Willow.Expressions" Version="2.2.2600" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="TechTalk.SpecFlow"/>
+    <Using Include="Willow.SpecFlow.Constants" Static="true" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,20 @@
+import { Canvas, Meta, Description, Stories } from '@storybook/blocks'
+import { SourceLink } from '../../../storybookUtils'
+import { GroupNames } from '../../utils/constant'
+
+import * as stories from './Icon.stories'
+import { Icon } from '.'
+
+<Meta of={stories} />
+
+# Icon
+
+<Description of={Icon} />
+
+The icon component wraps our icon library. See the [Icons](/docs/design-system-iconography--docs) page for more information on Icons.
+
+<Canvas of={stories.Playground} />
+
+<SourceLink name="Icon" groupName={GroupNames.Misc} />
+
+<Stories includePrimary={false} title="Stories" />

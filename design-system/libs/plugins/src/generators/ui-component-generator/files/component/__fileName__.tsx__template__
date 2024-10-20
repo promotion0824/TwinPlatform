@@ -1,0 +1,30 @@
+import {
+  <%= componentName %> as Mantine<%= componentName %>,
+  <%= componentName %>Props as Mantine<%= componentName %>Props,
+} from '@mantine/core'
+import { forwardRef } from 'react'
+import styled, { css } from 'styled-components'
+import {
+  WillowStyleProps,
+  useWillowStyleProps,
+} from '../../utils'
+
+export interface <%= componentName %>Props 
+  extends WillowStyleProps,
+    Omit<Mantine<%= componentName %>Props, keyof WillowStyleProps> {}
+
+/**
+ * `<%= componentName %>` is (TODO: add component description).
+ */
+export const <%= componentName %> = forwardRef<HTMLDivElement, <%= componentName %>Props>(({ ...restProps }, ref) => {
+  return (
+    <Styled<%= componentName %>
+      {...restProps}
+      {...useWillowStyleProps(restProps)}
+      ref={ref}
+    />
+  )
+})
+
+const Styled<%= componentName %> = styled(Mantine<%= componentName %>)(
+  ({ theme }) => css``)

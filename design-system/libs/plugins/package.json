@@ -1,0 +1,11 @@
+{
+  "name": "@design-system/plugins",
+  "version": "0.0.1",
+  "type": "commonjs",
+  "generators": "./generators.json",
+  "dependencies": {
+    "@nx/devkit": "19.3.2",
+    "lodash": "^4.17.21",
+    "tslib": "^2.3.0"
+  }
+}

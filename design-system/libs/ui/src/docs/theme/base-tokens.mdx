@@ -1,0 +1,78 @@
+import { Meta } from '@storybook/blocks'
+import { font, spacing, zIndex } from '../_components/tokenRows'
+import { Tip } from '../_components/Tip'
+
+<Meta title="Theme/Base Tokens" />
+
+# Base Tokens
+
+Base tokens contain values that remain consistent across all themes.
+
+## Font
+
+<Tip>
+  The value of these tokens are valid CSS-in-JS objects, and can be spread
+  within any css prop.
+</Tip>
+
+### Display
+
+<table className="wds-token-table">
+  <colgroup>
+    <col width="120px" />
+    <col width="100%" />
+    <col width="100%" />
+    <col width="100%" />
+  </colgroup>
+  <thead>{font.headings}</thead>
+  <tbody>{Object.keys(font.rows.display).map(size => Object.values(font.rows.display[size]))}</tbody>
+</table>
+
+### Heading
+
+<table className="wds-token-table">
+  <colgroup>
+    <col width="120px" />
+    <col width="100%" />
+    <col width="100%" />
+    <col width="100%" />
+  </colgroup>
+  <thead>{font.headings}</thead>
+  <tbody>{Object.values(font.rows.heading)}</tbody>
+</table>
+
+### Body
+
+<table className="wds-token-table">
+  <colgroup>
+    <col width="120px" />
+    <col width="100%" />
+    <col width="100%" />
+    <col width="100%" />
+  </colgroup>
+  <thead>{font.headings}</thead>
+  <tbody>{Object.keys(font.rows.body).map(size => Object.values(font.rows.body[size]))}</tbody>
+</table>
+
+## Spacing
+
+<table className="wds-token-table">
+  <colgroup>
+    <col width="120px" />
+    <col width="100%" />
+    <col width="100%" />
+  </colgroup>
+  <thead>{spacing.headings}</thead>
+  <tbody>{Object.values(spacing.rows)}</tbody>
+</table>
+
+## Z-Index
+
+<table className="wds-token-table">
+  <colgroup>
+    <col width="100%" />
+    <col width="100%" />
+  </colgroup>
+  <thead>{zIndex.headings}</thead>
+  <tbody>{Object.values(zIndex.rows)}</tbody>
+</table>

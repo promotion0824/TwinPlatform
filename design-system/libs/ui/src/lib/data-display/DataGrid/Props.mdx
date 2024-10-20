@@ -1,0 +1,87 @@
+import { Meta } from '@storybook/blocks'
+import { ArgTypes } from '../../../docs/_components'
+import * as stories from './DataGrid.stories.tsx'
+import { DataGrid } from '.'
+
+<Meta title="Data Grid" of={stories} />
+
+# Props
+
+## DataGrid
+
+Please refer to the <a href="https://mui.com/x/api/data-grid/data-grid-pro/#props" target="_blank">official documentation for the MUI Data Grid Pro</a> for more customizable options.
+
+### Basic props
+
+<ArgTypes
+  excludeStyleProps
+  of={DataGrid}
+  include={[
+    'columns',
+    'rows',
+    'initialState',
+    'disableColumnMenu',
+    'noRowsOverlayMessage',
+    'noResultsOverlayMessage',
+    'slots',
+  ]}
+/>
+
+### Row reordering
+
+<ArgTypes
+  excludeStyleProps
+  of={DataGrid}
+  include={['rowReordering', 'onRowOrderChange']}
+/>
+
+### Column reordering
+
+<ArgTypes excludeStyleProps of={DataGrid} include={['disableColumnReorder']} />
+
+### Sorting
+
+<ArgTypes
+  excludeStyleProps
+  of={DataGrid}
+  include={[
+    'disableMultipleColumnsSorting',
+    'onSortModelChange',
+    'sortingMode',
+    'sortingOrder',
+    'sortModel',
+  ]}
+/>
+
+### Selection
+
+<ArgTypes
+  excludeStyleProps
+  of={DataGrid}
+  include={[
+    'rowSelection',
+    'rowSelectionModel',
+    'onRowSelectionModelChange',
+    'checkboxSelection',
+    'checkboxSelectionVisibleOnly',
+    'disableMultipleRowSelection',
+    'disableRowSelectionOnClick',
+    'hideFooterSelectedRowCount',
+    'isRowSelectable',
+    'keepNonExistentRowsSelected',
+  ]}
+/>
+
+### Tree data
+
+<ArgTypes
+  excludeStyleProps
+  of={DataGrid}
+  include={[
+    'treeData',
+    'getTreeDataPath',
+    'disableChildrenFiltering',
+    'disableChildrenSorting',
+    'groupingColDef',
+  ]}
+/>

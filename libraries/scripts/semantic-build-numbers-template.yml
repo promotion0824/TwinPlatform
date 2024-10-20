@@ -1,0 +1,13 @@
+parameters:
+- name: majorVersion
+  default: 0
+
+steps:
+
+- task: Bash@3
+  displayName: 'Set Build Number'
+  inputs:
+    targetType: 'inline'
+    script: |
+      buildid=$(Build.BuildId)
+      echo "##vso[build.updatebuildnumber]${{ parameters.majorVersion }}.${buildid:0:2}.${buildid:2}"

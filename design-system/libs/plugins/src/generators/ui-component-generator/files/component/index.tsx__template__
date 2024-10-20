@@ -1,0 +1,1 @@
+export { <%= componentName %>, type <%= componentName %>Props } from './<%= componentName %>'

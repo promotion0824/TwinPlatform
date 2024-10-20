@@ -1,0 +1,15 @@
+import { Meta } from '@storybook/blocks'
+import { ArgTypes, ToMantineProps } from '../../../docs/_components'
+
+import { <%= componentName %> } from '.'
+import * as stories from './<%= componentName %>.stories'
+
+<Meta of={stories} />
+
+# Props
+
+## <%= componentName %>
+
+<ArgTypes of={<%= componentName %>} />
+
+<ToMantineProps componentName="<%= componentName %>" />

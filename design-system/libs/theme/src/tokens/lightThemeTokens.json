@@ -1,0 +1,1485 @@
+{
+  "color": {
+    "neutral": {
+      "fg": {
+        "highlight": {
+          "value": "{palette.gray.900}",
+          "type": "color"
+        },
+        "default": {
+          "value": "{palette.gray.800}",
+          "type": "color"
+        },
+        "muted": {
+          "value": "{palette.gray.600}",
+          "type": "color"
+        },
+        "subtle": {
+          "value": "{palette.gray.500}",
+          "type": "color"
+        }
+      },
+      "bg": {
+        "base": {
+          "default": {
+            "value": "{palette.gray.120}",
+            "type": "color"
+          },
+          "hovered": {
+            "value": "{palette.gray.140}",
+            "type": "color"
+          },
+          "activated": {
+            "value": "{palette.gray.160}",
+            "type": "color"
+          }
+        },
+        "panel": {
+          "default": {
+            "value": "{palette.gray.80}",
+            "type": "color"
+          },
+          "hovered": {
+            "value": "{palette.gray.100}",
+            "type": "color"
+          },
+          "activated": {
+            "value": "{palette.gray.120}",
+            "type": "color"
+          }
+        },
+        "accent": {
+          "default": {
+            "value": "{palette.gray.160}",
+            "type": "color"
+          },
+          "hovered": {
+            "value": "{palette.gray.180}",
+            "type": "color"
+          },
+          "activated": {
+            "value": "{palette.gray.200}",
+            "type": "color"
+          }
+        }
+      },
+      "border": {
+        "highlight": {
+          "value": "{palette.gray.500}",
+          "type": "color",
+          "description": "Highlighted interface border and separator color, could be used as a hover state for default borders"
+        },
+        "default": {
+          "value": "{palette.gray.250}",
+          "type": "color",
+          "description": "Default interface border and separator color"
+        }
+      }
+    },
+    "intent": {
+      "primary": {
+        "fg": {
+          "default": {
+            "value": "{palette.purple.600}",
+            "type": "color",
+            "description": "Text and icon color for important actions and user feedback components, eg Link and Toast"
+          },
+          "hovered": {
+            "value": "{palette.purple.700}",
+            "type": "color",
+            "description": "Optional hover state color."
+          },
+          "activated": {
+            "value": "{palette.purple.500}",
+            "type": "color",
+            "description": "Optional active state color."
+          }
+        },
+        "bg": {
+          "bold": {
+            "default": {
+              "value": "{palette.purple.400}",
+              "type": "color",
+              "description": "High emphasis background color for important action and user feedback components, eg Button."
+            },
+            "hovered": {
+              "value": "{palette.purple.350}",
+              "type": "color",
+              "description": "Optional hover state color."
+            },
+            "activated": {
+              "value": "{palette.purple.300}",
+              "type": "color",
+              "description": "Optional active state color."
+            }
+          },
+          "muted": {
+            "default": {
+              "value": "{palette.purple.225}",
+              "type": "color"
+            },
+            "hovered": {
+              "value": "{palette.purple.250}",
+              "type": "color"
+            },
+            "activated": {
+              "value": "{palette.purple.300}",
+              "type": "color"
+            }
+          },
+          "subtle": {
+            "default": {
+              "value": "{palette.purple.400}{transparent.t20}",
+              "type": "color",
+              "description": "Low emphasis background color for less important user feedback components, eg Toast."
+            },
+            "hovered": {
+              "value": "{palette.purple.400}{transparent.t30}",
+              "type": "color",
+              "description": "Optional hover state color."
+            },
+            "activated": {
+              "value": "{palette.purple.400}{transparent.t40}",
+              "type": "color",
+              "description": "Optional active state color."
+            }
+          }
+        },
+        "border": {
+          "default": {
+            "value": "{palette.purple.500}",
+            "type": "color",
+            "description": "Muted emphasis primary background, used for toasts"
+          },
+          "hovered": {
+            "value": "{palette.purple.600}",
+            "type": "color",
+            "description": "Optional hover state color."
+          },
+          "activated": {
+            "value": "{palette.purple.400}",
+            "type": "color",
+            "description": "Optional active state color."
+          }
+        }
+      },
+      "secondary": {
+        "fg": {
+          "default": {
+            "value": "{palette.gray.600}",
+            "type": "color"
+          },
+          "hovered": {
+            "value": "{palette.gray.700}",
+            "type": "color",
+            "description": "Optional hover state color."
+          },
+          "activated": {
+            "value": "{palette.gray.500}",
+            "type": "color",
+            "description": "Optional active state color."
+          }
+        },
+        "bg": {
+          "bold": {
+            "default": {
+              "value": "{palette.gray.400}",
+              "type": "color",
+              "description": "High emphasis background color for less important action and user feedback components, eg Button."
+            },
+            "hovered": {
+              "value": "{palette.gray.350}",
+              "type": "color",
+              "description": "Optional hover state color."
+            },
+            "activated": {
+              "value": "{palette.gray.300}",
+              "type": "color",
+              "description": "Optional active state color."
+            }
+          },
+          "muted": {
+            "default": {
+              "value": "{palette.gray.225}",
+              "type": "color"
+            },
+            "hovered": {
+              "value": "{palette.gray.250}",
+              "type": "color"
+            },
+            "activated": {
+              "value": "{palette.gray.300}",
+              "type": "color"
+            }
+          },
+          "subtle": {
+            "default": {
+              "value": "{palette.gray.400}{transparent.t20}",
+              "type": "color"
+            },
+            "hovered": {
+              "value": "{palette.gray.400}{transparent.t30}",
+              "type": "color",
+              "description": "Optional hover state color."
+            },
+            "activated": {
+              "value": "{palette.gray.400}{transparent.t40}",
+              "type": "color",
+              "description": "Optional active state color."
+            }
+          }
+        },
+        "border": {
+          "default": {
+            "value": "{palette.gray.500}",
+            "type": "color"
+          },
+          "hovered": {
+            "value": "{palette.gray.600}",
+            "type": "color",
+            "description": "Optional hover state color."
+          },
+          "activated": {
+            "value": "{palette.gray.400}",
+            "type": "color",
+            "description": "Optional active state color."
+          }
+        }
+      },
+      "positive": {
+        "fg": {
+          "default": {
+            "value": "{palette.green.600}",
+            "type": "color"
+          },
+          "hovered": {
+            "value": "{palette.green.700}",
+            "type": "color",
+            "description": "Optional hover state color."
+          },
+          "activated": {
+            "value": "{palette.green.500}",
+            "type": "color",
+            "description": "Optional active state color."
+          }
+        },
+        "bg": {
+          "bold": {
+            "default": {
+              "value": "{palette.green.400}",
+              "type": "color",
+              "description": "High emphasis background color for positive user feedback and application state."
+            },
+            "hovered": {
+              "value": "{palette.green.350}",
+              "type": "color",
+              "description": "Optional hover state color."
+            },
+            "activated": {
+              "value": "{palette.green.300}",
+              "type": "color",
+              "description": "Optional active state color."
+            }
+          },
+          "muted": {
+            "default": {
+              "value": "{palette.green.225}",
+              "type": "color"
+            },
+            "hovered": {
+              "value": "{palette.green.250}",
+              "type": "color"
+            },
+            "activated": {
+              "value": "{palette.green.300}",
+              "type": "color"
+            }
+          },
+          "subtle": {
+            "default": {
+              "value": "{palette.green.400}{transparent.t20}",
+              "type": "color",
+              "description": "Low emphasis background color for positive user feedback and application state."
+            },
+            "hovered": {
+              "value": "{palette.green.400}{transparent.t20}",
+              "type": "color",
+              "description": "Optional hover state color."
+            },
+            "activated": {
+              "value": "{palette.green.400}{transparent.t20}",
+              "type": "color",
+              "description": "Optional active state color."
+            }
+          }
+        },
+        "border": {
+          "default": {
+            "value": "{palette.green.500}",
+            "type": "color",
+            "description": "Border color for positive user feedback and applicate state."
+          },
+          "hovered": {
+            "value": "{palette.green.600}",
+            "type": "color",
+            "description": "Optional hover state color."
+          },
+          "activated": {
+            "value": "{palette.green.400}",
+            "type": "color",
+            "description": "Optional active state color."
+          }
+        }
+      },
+      "negative": {
+        "fg": {
+          "default": {
+            "value": "{palette.red.600}",
+            "type": "color"
+          },
+          "hovered": {
+            "value": "{palette.red.700}",
+            "type": "color",
+            "description": "Optional hover state color."
+          },
+          "activated": {
+            "value": "{palette.red.500}",
+            "type": "color",
+            "description": "Optional active state color."
+          }
+        },
+        "bg": {
+          "bold": {
+            "default": {
+              "value": "{palette.red.400}",
+              "type": "color",
+              "description": "High emphasis background color for negative (danger, destructive) actions, user feedback and application state."
+            },
+            "hovered": {
+              "value": "{palette.red.350}",
+              "type": "color",
+              "description": "Optional hover state color."
+            },
+            "activated": {
+              "value": "{palette.red.300}",
+              "type": "color",
+              "description": "Optional active state color."
+            }
+          },
+          "muted": {
+            "default": {
+              "value": "{palette.red.225}",
+              "type": "color"
+            },
+            "hovered": {
+              "value": "{palette.red.250}",
+              "type": "color"
+            },
+            "activated": {
+              "value": "{palette.red.300}",
+              "type": "color"
+            }
+          },
+          "subtle": {
+            "default": {
+              "value": "{palette.red.400}{transparent.t20}",
+              "type": "color",
+              "description": "Low emphasis background color for negative user feedback and application state. Keywords: danger, destructive."
+            },
+            "hovered": {
+              "value": "{palette.red.400}{transparent.t20}",
+              "type": "color",
+              "description": "Optional hover state color."
+            },
+            "activated": {
+              "value": "{palette.red.400}{transparent.t20}",
+              "type": "color",
+              "description": "Optional active state color."
+            }
+          }
+        },
+        "border": {
+          "default": {
+            "value": "{palette.red.500}",
+            "type": "color"
+          },
+          "hovered": {
+            "value": "{palette.red.600}",
+            "type": "color",
+            "description": "Optional hover state color."
+          },
+          "activated": {
+            "value": "{palette.red.400}",
+            "type": "color",
+            "description": "Optional active state color."
+          }
+        }
+      },
+      "notice": {
+        "fg": {
+          "default": {
+            "value": "{palette.orange.600}",
+            "type": "color"
+          },
+          "hovered": {
+            "value": "{palette.orange.700}",
+            "type": "color",
+            "description": "Optional hover state color."
+          },
+          "activated": {
+            "value": "{palette.orange.500}",
+            "type": "color",
+            "description": "Optional active state color."
+          }
+        },
+        "bg": {
+          "bold": {
+            "default": {
+              "value": "{palette.orange.400}",
+              "type": "color"
+            },
+            "hovered": {
+              "value": "{palette.orange.350}",
+              "type": "color",
+              "description": "Optional hover state color."
+            },
+            "activated": {
+              "value": "{palette.orange.300}",
+              "type": "color",
+              "description": "Optional active state color."
+            }
+          },
+          "muted": {
+            "default": {
+              "value": "{palette.orange.225}",
+              "type": "color"
+            },
+            "hovered": {
+              "value": "{palette.orange.250}",
+              "type": "color"
+            },
+            "activated": {
+              "value": "{palette.orange.300}",
+              "type": "color"
+            }
+          },
+          "subtle": {
+            "default": {
+              "value": "{palette.orange.400}{transparent.t20}",
+              "type": "color"
+            },
+            "hovered": {
+              "value": "{palette.orange.400}{transparent.t20}",
+              "type": "color",
+              "description": "Optional hover state color."
+            },
+            "activated": {
+              "value": "{palette.orange.400}{transparent.t20}",
+              "type": "color",
+              "description": "Optional active state color."
+            }
+          }
+        },
+        "border": {
+          "default": {
+            "value": "{palette.orange.500}",
+            "type": "color"
+          },
+          "hovered": {
+            "value": "{palette.orange.600}",
+            "type": "color",
+            "description": "Optional hover state color."
+          },
+          "activated": {
+            "value": "{palette.orange.400}",
+            "type": "color",
+            "description": "Optional active state color."
+          }
+        }
+      }
+    },
+    "core": {
+      "gray": {
+        "fg": {
+          "default": {
+            "value": "{palette.gray.600}",
+            "type": "color"
+          },
+          "hovered": {
+            "value": "{palette.gray.700}",
+            "type": "color",
+            "description": "Optional hover state color."
+          },
+          "activated": {
+            "value": "{palette.gray.500}",
+            "type": "color",
+            "description": "Optional active state color."
+          }
+        },
+        "bg": {
+          "bold": {
+            "default": {
+              "value": "{palette.gray.400}",
+              "type": "color"
+            },
+            "hovered": {
+              "value": "{palette.gray.350}",
+              "type": "color",
+              "description": "Optional hover state color."
+            },
+            "activated": {
+              "value": "{palette.gray.300}",
+              "type": "color",
+              "description": "Optional active state color."
+            }
+          },
+          "muted": {
+            "default": {
+              "value": "{palette.gray.225}",
+              "type": "color"
+            },
+            "hovered": {
+              "value": "{palette.gray.250}",
+              "type": "color"
+            },
+            "activated": {
+              "value": "{palette.gray.300}",
+              "type": "color"
+            }
+          },
+          "subtle": {
+            "default": {
+              "value": "{palette.gray.400}{transparent.t20}",
+              "type": "color"
+            },
+            "hovered": {
+              "value": "{palette.gray.400}{transparent.t20}",
+              "type": "color",
+              "description": "Optional hover state color."
+            },
+            "activated": {
+              "value": "{palette.gray.400}{transparent.t20}",
+              "type": "color",
+              "description": "Optional active state color."
+            }
+          }
+        },
+        "border": {
+          "default": {
+            "value": "{palette.gray.500}",
+            "type": "color"
+          },
+          "hovered": {
+            "value": "{palette.gray.600}",
+            "type": "color",
+            "description": "Optional hover state color."
+          },
+          "activated": {
+            "value": "{palette.gray.400}",
+            "type": "color",
+            "description": "Optional active state color."
+          }
+        }
+      },
+      "purple": {
+        "fg": {
+          "default": {
+            "value": "{palette.purple.600}",
+            "type": "color"
+          },
+          "hovered": {
+            "value": "{palette.purple.700}",
+            "type": "color",
+            "description": "Optional hover state color."
+          },
+          "activated": {
+            "value": "{palette.purple.500}",
+            "type": "color",
+            "description": "Optional active state color."
+          }
+        },
+        "bg": {
+          "bold": {
+            "default": {
+              "value": "{palette.purple.400}",
+              "type": "color"
+            },
+            "hovered": {
+              "value": "{palette.purple.350}",
+              "type": "color",
+              "description": "Optional hover state color."
+            },
+            "activated": {
+              "value": "{palette.purple.300}",
+              "type": "color",
+              "description": "Optional active state color."
+            }
+          },
+          "muted": {
+            "default": {
+              "value": "{palette.purple.225}",
+              "type": "color"
+            },
+            "hovered": {
+              "value": "{palette.purple.250}",
+              "type": "color"
+            },
+            "activated": {
+              "value": "{palette.purple.300}",
+              "type": "color"
+            }
+          },
+          "subtle": {
+            "default": {
+              "value": "{palette.purple.400}{transparent.t20}",
+              "type": "color"
+            },
+            "hovered": {
+              "value": "{palette.purple.400}{transparent.t20}",
+              "type": "color",
+              "description": "Optional hover state color."
+            },
+            "activated": {
+              "value": "{palette.purple.400}{transparent.t20}",
+              "type": "color",
+              "description": "Optional active state color."
+            }
+          }
+        },
+        "border": {
+          "default": {
+            "value": "{palette.purple.500}",
+            "type": "color"
+          },
+          "hovered": {
+            "value": "{palette.purple.600}",
+            "type": "color",
+            "description": "Optional hover state color."
+          },
+          "activated": {
+            "value": "{palette.purple.400}",
+            "type": "color",
+            "description": "Optional active state color."
+          }
+        }
+      },
+      "red": {
+        "fg": {
+          "default": {
+            "value": "{palette.red.600}",
+            "type": "color"
+          },
+          "hovered": {
+            "value": "{palette.red.700}",
+            "type": "color",
+            "description": "Optional hover state color."
+          },
+          "activated": {
+            "value": "{palette.red.500}",
+            "type": "color",
+            "description": "Optional active state color."
+          }
+        },
+        "bg": {
+          "bold": {
+            "default": {
+              "value": "{palette.red.400}",
+              "type": "color"
+            },
+            "hovered": {
+              "value": "{palette.red.350}",
+              "type": "color",
+              "description": "Optional hover state color."
+            },
+            "activated": {
+              "value": "{palette.red.300}",
+              "type": "color",
+              "description": "Optional active state color."
+            }
+          },
+          "muted": {
+            "default": {
+              "value": "{palette.red.225}",
+              "type": "color"
+            },
+            "hovered": {
+              "value": "{palette.red.250}",
+              "type": "color"
+            },
+            "activated": {
+              "value": "{palette.red.300}",
+              "type": "color"
+            }
+          },
+          "subtle": {
+            "default": {
+              "value": "{palette.red.400}{transparent.t20}",
+              "type": "color"
+            },
+            "hovered": {
+              "value": "{palette.red.400}{transparent.t20}",
+              "type": "color",
+              "description": "Optional hover state color."
+            },
+            "activated": {
+              "value": "{palette.red.400}{transparent.t20}",
+              "type": "color",
+              "description": "Optional active state color."
+            }
+          }
+        },
+        "border": {
+          "default": {
+            "value": "{palette.red.500}",
+            "type": "color"
+          },
+          "hovered": {
+            "value": "{palette.red.600}",
+            "type": "color",
+            "description": "Optional hover state color."
+          },
+          "activated": {
+            "value": "{palette.red.400}",
+            "type": "color",
+            "description": "Optional active state color."
+          }
+        }
+      },
+      "green": {
+        "fg": {
+          "default": {
+            "value": "{palette.green.600}",
+            "type": "color"
+          },
+          "hovered": {
+            "value": "{palette.green.700}",
+            "type": "color",
+            "description": "Optional hover state color."
+          },
+          "activated": {
+            "value": "{palette.green.500}",
+            "type": "color",
+            "description": "Optional active state color."
+          }
+        },
+        "bg": {
+          "bold": {
+            "default": {
+              "value": "{palette.green.400}",
+              "type": "color"
+            },
+            "hovered": {
+              "value": "{palette.green.350}",
+              "type": "color",
+              "description": "Optional hover state color."
+            },
+            "activated": {
+              "value": "{palette.green.300}",
+              "type": "color",
+              "description": "Optional active state color."
+            }
+          },
+          "muted": {
+            "default": {
+              "value": "{palette.green.225}",
+              "type": "color"
+            },
+            "hovered": {
+              "value": "{palette.green.250}",
+              "type": "color"
+            },
+            "activated": {
+              "value": "{palette.green.300}",
+              "type": "color"
+            }
+          },
+          "subtle": {
+            "default": {
+              "value": "{palette.green.400}{transparent.t20}",
+              "type": "color"
+            },
+            "hovered": {
+              "value": "{palette.green.400}{transparent.t20}",
+              "type": "color",
+              "description": "Optional hover state color."
+            },
+            "activated": {
+              "value": "{palette.green.400}{transparent.t20}",
+              "type": "color",
+              "description": "Optional active state color."
+            }
+          }
+        },
+        "border": {
+          "default": {
+            "value": "{palette.green.500}",
+            "type": "color"
+          },
+          "hovered": {
+            "value": "{palette.green.600}",
+            "type": "color",
+            "description": "Optional hover state color."
+          },
+          "activated": {
+            "value": "{palette.green.400}",
+            "type": "color",
+            "description": "Optional active state color."
+          }
+        }
+      },
+      "teal": {
+        "fg": {
+          "default": {
+            "value": "{palette.teal.600}",
+            "type": "color",
+            "description": "Teal text and icons"
+          },
+          "hovered": {
+            "value": "{palette.teal.700}",
+            "type": "color",
+            "description": "Optional hover state color."
+          },
+          "activated": {
+            "value": "{palette.teal.500}",
+            "type": "color",
+            "description": "Optional active state color."
+          }
+        },
+        "bg": {
+          "bold": {
+            "default": {
+              "value": "{palette.teal.400}",
+              "type": "color",
+              "description": "High emphasis teal backgrounds"
+            },
+            "hovered": {
+              "value": "{palette.teal.350}",
+              "type": "color",
+              "description": "Optional hover state color."
+            },
+            "activated": {
+              "value": "{palette.teal.300}",
+              "type": "color",
+              "description": "Optional active state color."
+            }
+          },
+          "muted": {
+            "default": {
+              "value": "{palette.teal.225}",
+              "type": "color",
+              "description": "Medium emphasis teal backgrounds"
+            },
+            "hovered": {
+              "value": "{palette.teal.250}",
+              "type": "color",
+              "description": "Optional hover state color."
+            },
+            "activated": {
+              "value": "{palette.teal.300}",
+              "type": "color",
+              "description": "Optional active state color."
+            }
+          },
+          "subtle": {
+            "default": {
+              "value": "{palette.teal.400}{transparent.t20}",
+              "type": "color",
+              "description": "Low emphasis teal backgrounds"
+            },
+            "hovered": {
+              "value": "{palette.teal.400}{transparent.t20}",
+              "type": "color",
+              "description": "Optional hover state color."
+            },
+            "activated": {
+              "value": "{palette.teal.400}{transparent.t20}",
+              "type": "color",
+              "description": "Optional active state color."
+            }
+          }
+        },
+        "border": {
+          "default": {
+            "value": "{palette.teal.500}",
+            "type": "color",
+            "description": "Teal borders"
+          },
+          "hovered": {
+            "value": "{palette.teal.600}",
+            "type": "color",
+            "description": "Optional hover state color."
+          },
+          "activated": {
+            "value": "{palette.teal.400}",
+            "type": "color",
+            "description": "Optional active state color."
+          }
+        }
+      },
+      "orange": {
+        "fg": {
+          "default": {
+            "value": "{palette.orange.600}",
+            "type": "color"
+          },
+          "hovered": {
+            "value": "{palette.orange.700}",
+            "type": "color",
+            "description": "Optional hover state color."
+          },
+          "activated": {
+            "value": "{palette.orange.500}",
+            "type": "color",
+            "description": "Optional active state color."
+          }
+        },
+        "bg": {
+          "bold": {
+            "default": {
+              "value": "{palette.orange.400}",
+              "type": "color"
+            },
+            "hovered": {
+              "value": "{palette.orange.350}",
+              "type": "color",
+              "description": "Optional hover state color."
+            },
+            "activated": {
+              "value": "{palette.orange.300}",
+              "type": "color",
+              "description": "Optional active state color."
+            }
+          },
+          "muted": {
+            "default": {
+              "value": "{palette.orange.225}",
+              "type": "color"
+            },
+            "hovered": {
+              "value": "{palette.orange.250}",
+              "type": "color"
+            },
+            "activated": {
+              "value": "{palette.orange.300}",
+              "type": "color"
+            }
+          },
+          "subtle": {
+            "default": {
+              "value": "{palette.orange.400}{transparent.t20}",
+              "type": "color"
+            },
+            "hovered": {
+              "value": "{palette.orange.400}{transparent.t20}",
+              "type": "color",
+              "description": "Optional hover state color."
+            },
+            "activated": {
+              "value": "{palette.orange.400}{transparent.t20}",
+              "type": "color",
+              "description": "Optional active state color."
+            }
+          }
+        },
+        "border": {
+          "default": {
+            "value": "{palette.orange.500}",
+            "type": "color"
+          },
+          "hovered": {
+            "value": "{palette.orange.600}",
+            "type": "color",
+            "description": "Optional hover state color."
+          },
+          "activated": {
+            "value": "{palette.orange.400}",
+            "type": "color",
+            "description": "Optional active state color."
+          }
+        }
+      },
+      "yellow": {
+        "fg": {
+          "default": {
+            "value": "{palette.yellow.600}",
+            "type": "color"
+          },
+          "hovered": {
+            "value": "{palette.yellow.700}",
+            "type": "color",
+            "description": "Optional hover state color."
+          },
+          "activated": {
+            "value": "{palette.yellow.500}",
+            "type": "color",
+            "description": "Optional active state color."
+          }
+        },
+        "bg": {
+          "bold": {
+            "default": {
+              "value": "{palette.yellow.400}",
+              "type": "color"
+            },
+            "hovered": {
+              "value": "{palette.yellow.350}",
+              "type": "color",
+              "description": "Optional hover state color."
+            },
+            "activated": {
+              "value": "{palette.yellow.300}",
+              "type": "color",
+              "description": "Optional active state color."
+            }
+          },
+          "muted": {
+            "default": {
+              "value": "{palette.yellow.225}",
+              "type": "color"
+            },
+            "hovered": {
+              "value": "{palette.yellow.250}",
+              "type": "color"
+            },
+            "activated": {
+              "value": "{palette.yellow.300}",
+              "type": "color"
+            }
+          },
+          "subtle": {
+            "default": {
+              "value": "{palette.yellow.400}{transparent.t20}",
+              "type": "color"
+            },
+            "hovered": {
+              "value": "{palette.yellow.400}{transparent.t20}",
+              "type": "color",
+              "description": "Optional hover state color."
+            },
+            "activated": {
+              "value": "{palette.yellow.400}{transparent.t20}",
+              "type": "color",
+              "description": "Optional active state color."
+            }
+          }
+        },
+        "border": {
+          "default": {
+            "value": "{palette.yellow.500}",
+            "type": "color"
+          },
+          "hovered": {
+            "value": "{palette.yellow.600}",
+            "type": "color",
+            "description": "Optional hover state color."
+          },
+          "activated": {
+            "value": "{palette.yellow.400}",
+            "type": "color",
+            "description": "Optional active state color."
+          }
+        }
+      },
+      "pink": {
+        "fg": {
+          "default": {
+            "value": "{palette.pink.600}",
+            "type": "color"
+          },
+          "hovered": {
+            "value": "{palette.pink.700}",
+            "type": "color",
+            "description": "Optional hover state color."
+          },
+          "activated": {
+            "value": "{palette.pink.500}",
+            "type": "color",
+            "description": "Optional active state color."
+          }
+        },
+        "bg": {
+          "bold": {
+            "default": {
+              "value": "{palette.pink.400}",
+              "type": "color"
+            },
+            "hovered": {
+              "value": "{palette.pink.350}",
+              "type": "color",
+              "description": "Optional hover state color."
+            },
+            "activated": {
+              "value": "{palette.pink.300}",
+              "type": "color",
+              "description": "Optional active state color."
+            }
+          },
+          "muted": {
+            "default": {
+              "value": "{palette.pink.225}",
+              "type": "color"
+            },
+            "hovered": {
+              "value": "{palette.pink.250}",
+              "type": "color"
+            },
+            "activated": {
+              "value": "{palette.pink.300}",
+              "type": "color"
+            }
+          },
+          "subtle": {
+            "default": {
+              "value": "{palette.pink.400}{transparent.t20}",
+              "type": "color"
+            },
+            "hovered": {
+              "value": "{palette.pink.400}{transparent.t20}",
+              "type": "color",
+              "description": "Optional hover state color."
+            },
+            "activated": {
+              "value": "{palette.pink.400}{transparent.t20}",
+              "type": "color",
+              "description": "Optional active state color."
+            }
+          }
+        },
+        "border": {
+          "default": {
+            "value": "{palette.pink.500}",
+            "type": "color"
+          },
+          "hovered": {
+            "value": "{palette.pink.600}",
+            "type": "color",
+            "description": "Optional hover state color."
+          },
+          "activated": {
+            "value": "{palette.pink.400}",
+            "type": "color",
+            "description": "Optional active state color."
+          }
+        }
+      },
+      "blue": {
+        "fg": {
+          "default": {
+            "value": "{palette.blue.600}",
+            "type": "color"
+          },
+          "hovered": {
+            "value": "{palette.blue.700}",
+            "type": "color",
+            "description": "Optional hover state color."
+          },
+          "activated": {
+            "value": "{palette.blue.500}",
+            "type": "color",
+            "description": "Optional active state color."
+          }
+        },
+        "bg": {
+          "bold": {
+            "default": {
+              "value": "{palette.blue.400}",
+              "type": "color"
+            },
+            "hovered": {
+              "value": "{palette.blue.350}",
+              "type": "color",
+              "description": "Optional hover state color."
+            },
+            "activated": {
+              "value": "{palette.blue.300}",
+              "type": "color",
+              "description": "Optional active state color."
+            }
+          },
+          "muted": {
+            "default": {
+              "value": "{palette.blue.225}",
+              "type": "color"
+            },
+            "hovered": {
+              "value": "{palette.blue.250}",
+              "type": "color"
+            },
+            "activated": {
+              "value": "{palette.blue.300}",
+              "type": "color"
+            }
+          },
+          "subtle": {
+            "default": {
+              "value": "{palette.blue.400}{transparent.t20}",
+              "type": "color"
+            },
+            "hovered": {
+              "value": "{palette.blue.400}{transparent.t20}",
+              "type": "color",
+              "description": "Optional hover state color."
+            },
+            "activated": {
+              "value": "{palette.blue.400}{transparent.t20}",
+              "type": "color",
+              "description": "Optional active state color."
+            }
+          }
+        },
+        "border": {
+          "default": {
+            "value": "{palette.blue.500}",
+            "type": "color"
+          },
+          "hovered": {
+            "value": "{palette.blue.600}",
+            "type": "color",
+            "description": "Optional hover state color."
+          },
+          "activated": {
+            "value": "{palette.blue.400}",
+            "type": "color",
+            "description": "Optional active state color."
+          }
+        }
+      },
+      "cyan": {
+        "fg": {
+          "default": {
+            "value": "{palette.cyan.600}",
+            "type": "color"
+          },
+          "hovered": {
+            "value": "{palette.cyan.700}",
+            "type": "color",
+            "description": "Optional hover state color."
+          },
+          "activated": {
+            "value": "{palette.cyan.500}",
+            "type": "color",
+            "description": "Optional active state color."
+          }
+        },
+        "bg": {
+          "bold": {
+            "default": {
+              "value": "{palette.cyan.400}",
+              "type": "color"
+            },
+            "hovered": {
+              "value": "{palette.cyan.350}",
+              "type": "color",
+              "description": "Optional hover state color."
+            },
+            "activated": {
+              "value": "{palette.cyan.300}",
+              "type": "color",
+              "description": "Optional active state color."
+            }
+          },
+          "muted": {
+            "default": {
+              "value": "{palette.cyan.225}",
+              "type": "color"
+            },
+            "hovered": {
+              "value": "{palette.cyan.250}",
+              "type": "color"
+            },
+            "activated": {
+              "value": "{palette.cyan.300}",
+              "type": "color"
+            }
+          },
+          "subtle": {
+            "default": {
+              "value": "{palette.cyan.400}{transparent.t20}",
+              "type": "color"
+            },
+            "hovered": {
+              "value": "{palette.cyan.400}{transparent.t20}",
+              "type": "color",
+              "description": "Optional hover state color."
+            },
+            "activated": {
+              "value": "{palette.cyan.400}{transparent.t20}",
+              "type": "color",
+              "description": "Optional active state color."
+            }
+          }
+        },
+        "border": {
+          "default": {
+            "value": "{palette.cyan.500}",
+            "type": "color"
+          },
+          "hovered": {
+            "value": "{palette.cyan.600}",
+            "type": "color",
+            "description": "Optional hover state color."
+          },
+          "activated": {
+            "value": "{palette.cyan.400}",
+            "type": "color",
+            "description": "Optional active state color."
+          }
+        }
+      }
+    },
+    "state": {
+      "focus": {
+        "border": {
+          "value": "{palette.gray.700}",
+          "type": "color"
+        }
+      },
+      "disabled": {
+        "bg": {
+          "value": "{palette.gray.200}",
+          "type": "color",
+          "description": "Disabled inputs and buttons background color"
+        },
+        "fg": {
+          "value": "{palette.gray.300}",
+          "type": "color",
+          "description": "Disabled inputs and buttons text and icon color"
+        },
+        "border": {
+          "value": "{palette.gray.160}",
+          "type": "color",
+          "description": "Disabled inputs and buttons border color"
+        }
+      },
+      "selected": {
+        "bg": {
+          "value": "{palette.purple.400}{transparent.t20}",
+          "type": "color"
+        }
+      }
+    },
+    "data": {
+      "qualitative": {
+        "q1": {
+          "value": "{palette.purple.500}",
+          "type": "color"
+        },
+        "q2": {
+          "value": "{palette.teal.700}",
+          "type": "color"
+        },
+        "q3": {
+          "value": "{palette.orange.500}",
+          "type": "color"
+        },
+        "q4": {
+          "value": "{palette.blue.700}",
+          "type": "color"
+        },
+        "q5": {
+          "value": "{palette.pink.500}",
+          "type": "color"
+        },
+        "q6": {
+          "value": "{palette.yellow.700}",
+          "type": "color"
+        },
+        "q7": {
+          "value": "{palette.cyan.500}",
+          "type": "color"
+        },
+        "q8": {
+          "value": "{palette.purple.700}",
+          "type": "color"
+        },
+        "q9": {
+          "value": "{palette.teal.500}",
+          "type": "color"
+        },
+        "q10": {
+          "value": "{palette.orange.700}",
+          "type": "color"
+        },
+        "q11": {
+          "value": "{palette.blue.500}",
+          "type": "color"
+        },
+        "q12": {
+          "value": "{palette.pink.700}",
+          "type": "color"
+        },
+        "q13": {
+          "value": "{palette.yellow.500}",
+          "type": "color"
+        },
+        "q14": {
+          "value": "{palette.cyan.700}",
+          "type": "color"
+        }
+      }
+    }
+  },
+  "shadow": {
+    "s1": {
+      "value": {
+        "x": "0",
+        "y": "1px",
+        "blur": "2px",
+        "spread": "0",
+        "color": "rgba(0,0,0,16%)",
+        "type": "dropShadow"
+      },
+      "type": "boxShadow"
+    },
+    "s2": {
+      "value": {
+        "x": "0",
+        "y": "2px",
+        "blur": "4px",
+        "spread": "0",
+        "color": "rgba(0,0,0,16%)",
+        "type": "dropShadow"
+      },
+      "type": "boxShadow"
+    },
+    "s3": {
+      "value": {
+        "x": "0",
+        "y": "4px",
+        "blur": "8px",
+        "spread": "0",
+        "color": "rgba(0,0,0,25%)",
+        "type": "dropShadow"
+      },
+      "type": "boxShadow"
+    },
+    "s4": {
+      "value": {
+        "x": "0",
+        "y": "8px",
+        "blur": "12px",
+        "spread": "0",
+        "color": "rgba(0,0,0,20%)",
+        "type": "dropShadow"
+      },
+      "type": "boxShadow"
+    },
+    "s5": {
+      "value": {
+        "x": "0",
+        "y": "12px",
+        "blur": "16px",
+        "spread": "0",
+        "color": "rgba(0,0,0,20%)",
+        "type": "dropShadow"
+      },
+      "type": "boxShadow"
+    }
+  },
+  "leonardo": {
+    "lightness": {
+      "value": "90",
+      "type": "other"
+    }
+  }
+}

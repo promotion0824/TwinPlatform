@@ -1,0 +1,18 @@
+import { Canvas, Meta, Description, Stories } from '@storybook/blocks'
+import { SourceLink } from '../../../storybookUtils'
+import { GroupNames } from '../../utils/constant'
+
+import * as stories from './StackedBarChart.stories'
+import { StackedBarChart } from '.'
+
+<Meta of={stories} />
+
+# StackedBarChart
+
+<Description of={StackedBarChart} />
+
+<Canvas of={stories.Playground} />
+
+<SourceLink name="StackedBarChart" groupName={GroupNames.Charts} />
+
+<Stories includePrimary={false} title="Stories" />

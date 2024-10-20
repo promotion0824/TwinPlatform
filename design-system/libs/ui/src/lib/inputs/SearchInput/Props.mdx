@@ -1,0 +1,18 @@
+import { Meta } from '@storybook/blocks'
+import { ArgTypes, ToMantineProps } from '../../../docs/_components'
+
+import { BasePropsDiv } from './SearchInput'
+import * as stories from './SearchInput.stories'
+
+<Meta of={stories} />
+
+# Props
+
+## SearchInput
+
+<ArgTypes
+  of={BasePropsDiv}
+  exclude={['required', 'readOnly', 'error', 'errorProps']}
+/>
+
+<ToMantineProps componentName="SearchInput" />

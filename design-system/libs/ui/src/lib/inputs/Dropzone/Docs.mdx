@@ -1,0 +1,18 @@
+import { Canvas, Meta, Description, Stories } from '@storybook/blocks'
+import { SourceLink } from '../../../storybookUtils'
+import { GroupNames } from '../../utils/constant'
+
+import * as stories from './Dropzone.stories'
+import { Dropzone } from '.'
+
+<Meta of={stories} />
+
+# Dropzone
+
+<Description of={Dropzone} />
+
+<Canvas of={stories.Playground} />
+
+<SourceLink name="Dropzone" groupName={GroupNames.Inputs} />
+
+<Stories includePrimary={false} title="Stories" />

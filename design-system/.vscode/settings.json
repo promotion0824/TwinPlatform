@@ -1,0 +1,7 @@
+{
+  "eslint.validate": ["json"],
+  "cSpell.language": "en",
+  "cSpell.words": ["autosize", "Autosizing", "echarts", "Popover", "Snackbars"],
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
+}

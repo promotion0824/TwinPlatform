@@ -1,0 +1,12 @@
+<Project>
+ <PropertyGroup>
+    <Copyright>2023</Copyright>
+    <Authors>Ian Mercer</Authors>
+    <Company>Willow</Company>
+    <Version>1.1.0</Version>
+    <AssemblyVersion>1.1.0</AssemblyVersion>
+    <AssemblyFileVersion>1.1.0</AssemblyFileVersion>
+    <NoWarn>SA1300;SA1512;SA1629;SA1615;S3263;S2743;SA1200;SA1642;SA1311;SA1611;SA1618;SA1633;SA1101;SA1515;SA1116;SA1616;SA1009;SA1005;</NoWarn>
+ </PropertyGroup>
+  <Import Project="$(MSBuildThisFileDirectory)\..\..\.config\common.props" />
+</Project>

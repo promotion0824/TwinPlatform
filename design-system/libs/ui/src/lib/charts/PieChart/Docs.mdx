@@ -1,0 +1,18 @@
+import { Canvas, Meta, Description, Stories } from '@storybook/blocks'
+import { SourceLink } from '../../../storybookUtils'
+import { GroupNames } from '../../utils/constant'
+
+import * as stories from './PieChart.stories'
+import { PieChart } from '.'
+
+<Meta of={stories} />
+
+# PieChart
+
+<Description of={PieChart} />
+
+<Canvas of={stories.Playground} />
+
+<SourceLink name="PieChart" groupName={GroupNames.Charts} />
+
+<Stories includePrimary={false} title="Stories" />

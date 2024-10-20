@@ -1,0 +1,11 @@
+<Project>
+ <PropertyGroup>
+    <Copyright>2023</Copyright>
+    <Authors>Ian Mercer</Authors>
+    <Company>Willow</Company>
+    <Version>1.1.0</Version>
+    <AssemblyVersion>1.1.0</AssemblyVersion>
+    <AssemblyFileVersion>1.1.0</AssemblyFileVersion>
+ </PropertyGroup>
+  <Import Project="$(MSBuildThisFileDirectory)\..\..\.config\common.props" />
+</Project>

@@ -1,0 +1,94 @@
+import { Meta } from '@storybook/blocks'
+
+{/* <Meta title="WIP/Modifying UI Code Inside A Monorepo" /> */}
+
+Note: This document is for Platform UI to work on, and will eventually be turned into an RFC - discussion should take place there.
+
+# Modifying UI code inside a monorepo
+
+## The short version
+
+- This RFC assumes that frontend consumers will directly link to the UI library code in the monorepo directly and not consume a package. For discussion on this see [LINK](#Continuing to link to UI packages with SemVer within a monorepo), including a case for why the proposal in this RFC stands regardless of this point.
+- Maintainers cannot make changes to UI components and be responsible for ensuring consumers' code still functions in a feasible way.
+- This is solved by ensuring that consumers are aware of the supported functionality of the UI components, and contracting them to work with the maintainers to express any edge-case uses in automated tests.
+- These automated tests then give maintainers confidence that changes can be made without breaking downstream code.
+
+## The problem
+
+A stated goal of Willow's monorepo is to shift the burden of responsibility for changes upstream. Traditionally an upstream library author makes an update by issuing a versioned package, and downstream consumers chooses when they wish to upgrade to the latest version, resolving any tasks related to the version change at a time suitable to them. Downstream consumers can choose to forgo the updates which, in the context of a Willow-author to Willow-consumer relationship, we consider technical debt.
+
+A monorepo with direct linking between libraries removes the possibility of choosing to incur this technical debt. By directly linking between files on the same git branch, all updates are immediately propogated downstream. Thus when making changes, one must be confident that all usages of that changed code are still valid. In fact, it is a key principle of working in a monorepo that the upstream author of changes is reponsible for making sure that downstream consumption is still functional, and must update any now incorrect usages in the same pull request that does the change.
+
+Typically this confidence is gained not by manually examining the potentially thousands of usages of the library, but by creating test cases that automatically test the entire API surface available. The downstream usages are identical in form to the test cases, and thus confidence is achieved that changes are non-breaking, else a signal is given that a change might need changes downstream. In the case of most library code, for example a math function adding two numbers, this confidence can be achieved with a handful of unit test cases, dependent on static typing; and this confidence then stretches to however many thousands of usages of this function.
+
+The situation is harder for a library that produces UI. The API surface area is less defined and greater. A simple `<Button>` react component can be rendered in any number of different block formatting contexts, inheriting from different parents, with different spacing available to it. To be useful it must expose custom CSS styling methods which allows it to be interacted with in countless ways, and it is infeasible to explicitly list out which of these are encouraged or discouraged. Not to mention the hundreds of ways a consumer might want to interact with the composed HTML `<button>` which might be changed when wrapping it in the `<Button>`.
+
+As a simple but common enough example, imagine we want to change the padding in the right-side of the `<Button>`, perhaps adjusting the space for any embedded icon. This would increase the width of the button, but in most cases this will be negligible. In some cases however this could push a subsequent element slightly to the right, causing an overflow that removes a control from the user's view, breaking the function of the page. That is, any of the hundreds of ways a UI element may realisticly change in the future can cause breaking changes, and covering all these hundreds of ways preemptively with tests is impratical.
+
+In short, testing UI is notorious for being a hard problem.
+
+## A solution
+
+I propose that we gain confidence in the future changes of our UI components with the following:
+
+- The maintainers of a UI library create an initial set of automated tests that cover some pratical use cases when creating a component.
+- These tests are named for the functionality and assurance they provide to users.
+- These names are displayed in the documentation of the component
+- Users are expected to check these when first reading about a component to confirm this component supports what they think it does
+- Users add their own edge-cases to these automated tests if they need to use a component in a less-conventional way
+- Users can then have the confidence that any upstream changes will not break their code
+- Maintainers can then have the confidence that all downstream use cases are covered by automated tests, and can maintain the codebase with ease and speed
+
+Practically speaking, this process is designed to stop over-engineering of tests while still providing the required assurance, and might look something like the following:
+
+- A button component is released, with brief documentation containing a small list of 'assurances' such as "can be used in a block formatting context" and "can be used in a flex context". This list is created by the maintainers, intended to cover 95% of use cases but is short, perhaps only 10ish.
+- These are connected to tests in an automated pipeline.
+- Most users quickly scan these assurances when they initially start using the component, but quickly internalize that 'everything is normal' and they can use the components how they would expect, intuitively.
+- A user wants to use the button inside an absolutely positioned element. They acknowledge that this might be a new use case and check the list to find it isn't currently supported. They make a pull request to the test suite with a test "can be used inside an absolutely positioned element", adjusting the code to pass if needed. The maintainers acknowledge this is a valid use case and is consistent with the intention of the component and approve.
+- A user wants to use an image inside the button. The maintainers acknowledge this isn't consistent with the intention of the button and suggest creating a separate component. If the user puts images inside the button then they do not have the assurance that the behaviour will work in the future - that risk they take is clearly communicated by the process.
+- Any future changes to the button is tested against the list of assurances and backwards compatibility is maintained.
+- Any backwards incompatible changes is the responsibility of the author, and they choose how to handle it - the deprecation process (separate to this RFC) is followed, or they can choose to update all the breaking downstream code themselves.
+
+## Challenges
+
+All this is easier said than done. Note that none of the above indicate how those tests are executed. My intention is that this RFC outlines the principle that we are trying to acheive, and how to achieve that will be an iterative, possibly debate-filled, challenging process. Indeed, some might think this is innovative, and others think that it is just business as usual - users contributing to tests is hardly unusual. This just formalizes the process, makes the feedback between UI maintainers and UI users two-way, and gets us all pointing towards the same goal. The intention is that this text is added to our documentation explaining the direction we are taking.
+
+## Further notes
+
+- The automated tests that are less important to users may be tucked away even further inside an accordion. The goal is that the documentation pages are still informative and minimal.
+- Note what is outside the scope of this RFC: The method and libraries of the tests, and anything about changelogs, version numbers, release notes and promotion of changes - yes, we'll still have them.
+
+## Prior art and alternatives
+
+What I have seen is variants of the following:
+
+### Creating exhaustive UI tests
+
+However:
+
+- 100% coverage is rarely a measurable thing, and people generally just guess - sometimes with the help of automated tooling that ensures that you have hit every line of code. For a UI library that has visual output not made explicit by lines of code this is even less helpful.
+- If we increase our test coverage beyond what is used by our consumers then we are restricting the changes we can make in the future.
+- The effort required to hit 100% coverage even on paper would be well beyond the output of our team, without considering the value most of those tests would provide.
+
+### Continuing to link to UI packages with SemVer within a monorepo
+
+A la npm, and other package managers.
+
+As mentioned, this RFC is predicated on this not being done. It goes against the technical direction of the rest of the company, who are moving to direct code linking within the monorepo. That said, we still will be issuing semantically versioned packages of the UI library for consumption - we must do this for our consumers outside the monorepo. For consumers inside the monorepo I'm leaving the discussion to Richard Banks as the DRI and the sectors themselves. We're doing our best to build for both methods of consumption.
+
+That said, even if all of our consumers would consume via a package, we still want to maximise the efficacy of our tests. The above proposal still stands to keep our test coverage across only the standard uses of the components, expose these assurances to the users, and encourage users to list their edge-case uses in explicit test cases. Again, this might be considered by some as 'business as usual'.
+
+### Manually reviewing downstream when changes are made
+
+This could be helped by typescript and automated tooling. But see the case above for why this is not feasible.
+
+### Commiting to not change any components already in use in the future
+
+I would love to say that we would get everything perfectly 'right' the first time around, but the experiences of other component libraries indicate otherwise. In addition, assuming we would get it all right the first time around, that is only 'right' at a fixed point in time. UX is a changing field. The users change. What is appropriate for users today will change tomorrow as new patterns are developed, and a UI library built to last must change with them.
+
+Alternatively Willow could commit to changing their underlying UI library every couple or so years. However, I believe we can do better than this, and I am aiming to build something adaptable as we grow, for considerably less cost.
+
+## Outcomes of this RFC
+
+- (Recommended) Agree the above is a principle we will strive for, and so we can continue building the pieces needed to achieve this, including a Proof Of Concept. Or,
+- An alternative that solves the above problems is outlined.

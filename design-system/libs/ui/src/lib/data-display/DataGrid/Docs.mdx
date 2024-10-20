@@ -1,0 +1,289 @@
+import { Canvas, Description, Meta } from '@storybook/blocks'
+import { SourceLink } from '../../../storybookUtils'
+import { GroupNames } from '../../utils/constant.ts'
+
+import * as stories from './DataGrid.stories.tsx'
+import { DataGrid } from '.'
+
+<Meta title="Data Grid" of={stories} />
+
+# DataGrid
+
+<Description of={DataGrid} />
+
+This component is still a work in progress and will only support the listed features below. If you have any other feature requests, you can simply use the provided one by MUI, but you might need to customize some styles. Alternatively, you can reach out to our team, and we will prioritize the feature for you.
+
+Please ensure that the container for the `DataGrid` has defined dimensions (height and width) to guarantee proper rendering.
+
+<Canvas of={stories.Playground} />
+
+<SourceLink name="DataGrid" groupName={GroupNames.DataDisplay} />
+
+## Responsiveness recommendations
+
+The `DataGrid` has <mark>no intrinsic dimensions</mark> by default. Instead, it takes up the space given by its parent. The DataGrid will raise an error in the console if its container has no intrinsic dimensions.
+
+To ensure general responsiveness, we recommend enclosing the `DataGrid` within a flex container. This allows it to adapt to varying screen widths and heights effectively.
+
+```jsx
+// Consider a panel that includes a header with controls and a body containing the `DataGrid`.
+<div css={{ display: 'flex', flexDirection: 'column' }}>
+  <YourHeaderComponent />
+  <div
+    css={{
+      width: '100%',
+      height: '100%',
+      overflowY:
+        'auto' /* this is important to allow vertical scroll when rows overflow */,
+    }}
+  >
+    <DataGrid {...data} />
+  </div>
+</div>
+```
+
+We recommend using either autosizing or predefined widths for the `DataGrid` columns to guarantee proper display of the columns. For additional information, please refer to the [autosizing section](#auto-resizing-for-columns).
+
+```jsx
+// If data is loaded asynchronously, you can use predefined width for each column
+  { field: 'id', headerName: 'ID', width: 120 },
+
+// If data is loaded synchronously, you can use `autosizeOnMount` prop with `includeHeaders` option. And the width for each column is optional.
+  <DataGrid
+    {...data}
+    autosizeOnMount
+    autosizeOptions={{
+      includeHeaders: true,
+    }}
+  />
+```
+
+### Cell Value Definition
+
+Please refer to the [column definition section](#column-definition) for the detailed difference on these value manipulation methods. In general, we recommend using the following order for column definitions when possible:
+
+```js
+// only replaces the text in the cell, using the original cell value for sorting.
+{ field: 'id', headerName: 'ID',  valueFormatter: (value) => formatValue(value)}
+
+// replaces both the text in the cell and the value used for sorting.
+{ field: 'id', headerName: 'ID',  valueGetter: ({ row }) => getValue(row)}
+
+// replaces the entire cell with a custom component but uses the original cell value for sorting.
+{ field: 'id', headerName: 'ID', renderCell: ({ row }) => <CustomComponent row={row} />}
+```
+
+### Default and Custom Sorting Rules
+
+The `DataGrid` includes built-in sorting rules for `string`, `number`, `boolean`, and `Date` types. To sort by a specific rule, you can utilize the `sortComparator` property of `GridColDef`. For instance, to compute a date value, you might use one of the following methods:
+
+```ts
+// When `formatDateTime` returns a formatted date value, the built-in
+// `dateComparator` of the `DataGrid` will function properly.
+{
+  field: 'createdDate',
+  headerName: 'Created Date',
+  valueGetter: ({ row }) : Date => formatDateTime(row.createdDate, row.timezone),
+  type: 'date' /* By specifying this type, you inform the DataGrid which built-in comparator to apply */
+}
+
+// When `formatDateTime` returns a string, you will need to apply a custom
+// `dateComparator` for sorting.
+import { dateComparator } from 'packages/ui/src/utils/dataGridComparators' /* exists in WillowApp */
+
+{
+  field: 'createdDate',
+  headerName: 'Created Date',
+  valueGetter: ({ row }) : string => formatDateTime(row.createdDate, row.timezone),
+  sortComparator: dateComparator /* This is crucial for correctly sorting the date string. */
+}
+```
+
+## Initial state
+
+This DataGrid will accept an optional `initialState` object. The `initialState` can only be used to set the initial value of the state. The Data Grid will not react if you change the `initialState` value later on.<br/>
+
+For more information about `initialState`, please refer to <a href="https://mui.com/x/react-data-grid/state/#access-the-state" target="_blank">this documentation page</a>.
+
+## Column definition
+
+Three methods are available to define column content in the `DataGrid`, and affecting the values used for sorting:
+
+- `valueFormatter` only converts the value before display, meaning it still uses the original cell value for sorting. A limitation of `valueFormatter` is its lack of access to the `row` data, which may be necessary to calculate values based on other `row` data.
+- `valueGetter` merely renders text in the cell, preserving various font styles like ellipses and the default tooltip from `DataGrid`. It replaces the sorting value with the value returned by `valueGetter`.
+- `renderCell` definition is similar to valueFormatter, but it allows for rendering a React node in the cell instead of just a string, while still using the original cell value for sorting.
+
+For more information about the usage of these three methods, please refer to the <a href="https://mui.com/x/react-data-grid/column-definition/#providing-content" target="_blank">official documentation</a>.
+
+<Canvas of={stories.CustomizedColumn} />
+
+For more information about the properties available for `GridColDef`, please refer to the <a href="https://next.mui.com/x/api/data-grid/grid-col-def/" target="_blank">official documentation</a>.
+
+## Row Selection
+
+We recommend only triggering row selection by clicking the checkbox and not changing the value of `disableRowSelectionOnClick` so that clicking a row won't select it.
+
+Multiple row selection is enabled by default, and you can check out <a href="https://mui.com/x/react-data-grid/row-selection/#multiple-row-selection" target="_blank">this documentation page</a> for more details.
+
+Check out <a href="https://mui.com/x/react-data-grid/row-selection/" target="_blank">more information of row selection</a>.
+
+### Simple row selection
+
+<Canvas of={stories.RowSelection} />
+
+### Controlled row selection
+
+<Canvas of={stories.ControlledRowSelection} />
+
+## Row Sorting
+
+By default, all columns are sortable. To disable sorting on a column, set the `sortable` property of `GridColDef` to `false`.
+
+Check out <a href="https://mui.com/x/react-data-grid/sorting/" target="_blank">more examples for row sorting</a>.
+
+### Simple row sorting
+
+<Canvas of={stories.Sorting} />
+
+### Controlled row sorting
+
+<Canvas of={stories.ControlledSorting} />
+
+### Customizable sorting comparator
+
+Each column type comes with a default comparator method. You can re-use them by importing the following functions:
+
+- `gridStringOrNumberComparator` (used by the string and singleSelect columns)
+- `gridNumberComparator` (used by the number and boolean columns)
+- `gridDateComparator` (used by the date and date-time columns)
+
+For custom sorting comparators in the DataGrid, you can use the `sortComparator` property of `GridColDef`. For more information, see <a href="https://next.mui.com/x/react-data-grid/sorting/#custom-comparator" target="_blank">this example</a> in the MUI documentation.
+
+## Reordering
+
+### Row Reordering
+
+Drag and drop a row to reorder it needs to be enabled by `rowReordering` prop. And you can config `__reorder__` property of `GridColDef` to define the content of the dragging row. <br/>
+
+Check out <a href="https://mui.com/x/react-data-grid/row-ordering/" target="_blank">more examples</a> for row reordering.
+
+<Canvas of={stories.RowReordering} />
+
+### Controlled row reordering
+
+<Canvas of={stories.ControlledRowReordering} />
+
+### Column Reordering
+
+Column reordering is enabled by default. You can pass `disableColumnReorder` to disabled the whole table, or add `{ disableReorder: true }` to any `GridColDef` to disabled it from reordering. <br/>
+
+Check out <a href="https://mui.com/x/react-data-grid/column-ordering/" target="_blank">more examples</a> for column reordering.
+
+<Canvas of={stories.ColumnReordering} />
+
+## Resizing
+
+### Auto resizing for columns
+
+`DataGrid` is able to autosize the columns' dimensions based on their content. Autosizing is enabled by default. To turn it off, pass the `disableAutosize` prop to the `DataGrid`.
+
+Autosizing can be used by one of the following methods:
+
+- Adding the `autosizeOnMount` prop
+- Double-clicking a column header separator on the grid
+- Calling the `apiRef.current.autosizeColumns(autosizeOptions)` API method
+
+It is recommended to enable the `autosizeOnMount` prop and enable `includeHeaders` for `autosizeOptions`:
+
+```jsx
+<DataGrid
+  {...data}
+  autosizeOnMount // autosizeOnMount won't work as expected if the data is loaded asynchronously
+  autosizeOptions={{
+    includeHeaders: true,
+  }}
+/>
+```
+
+In below example, we includes all the methods to autosize the columns. You can resize by
+
+- Clicking the button above the DataGrid to auto resize all columns
+- Hovering over the header row and dragging the resizing handle that shows up to resize a single column
+- Double clicking the resizing handle to auto resize the column
+
+<Canvas of={stories.Autosizing} />
+
+The `columns` configuration for the `DataGrid` mentioned above should be structured as follows. You may optionally define an initial `width` for each column; if not specified, it will default to `100px`. It is important to note that the `flex` option for `columns` cannot be used in conjunction with `autosizing`.
+
+#### Example column definition
+
+```Js
+[
+    {
+        "field": "id",
+        "headerName": "ID",
+        {/* no width defined for this column*/}
+     },
+    {
+        "field": "desk",
+        "headerName": "Desk",
+        "width": 110
+    },
+    {
+        "field": "commodity",
+        "headerName": "Commodity",
+        "width": 180,
+     },
+    {
+        "field": "traderName",
+        "headerName": "Trader Name",
+        "width": 120,
+     },
+    {
+        "field": "traderEmail",
+        "headerName": "Trader Email",
+        "width": 150,
+     },
+    {
+        "field": "quantity",
+        "headerName": "Quantity",
+        "type": "number",
+        "width": 140,
+     }
+]
+```
+
+## Column Pinning
+
+Column pinning is enabled by default. You can pass `disableColumnPinning` to disabled it completely.
+
+### Initializing the pinned columns
+
+To set pinned columns via `initialState`, pass an object with the following shape to this prop:
+
+```ts
+interface GridPinnedColumns {
+  left?: string[] // Optional field names to pin to the left
+  right?: string[] // Optional field names to pin to the right
+}
+```
+
+<Canvas of={stories.ColumnPinning} />
+
+## Tree data
+
+Tree data requires that all the data has the same row structure, which is different from row grouping. Check out <a href="https://mui.com/x/react-data-grid/tree-data/" target="_blank">this page</a> for more examples of using tree data.
+
+<Canvas of={stories.TreeData} />
+
+## No Data
+
+No rows overlay component rendered when the grid has no rows (empty).
+
+<Canvas of={stories.NoData} />
+
+## No Result
+
+No results overlay component rendered when the grid has no results after filtering.
+
+<Canvas of={stories.NoFilteredResult} />

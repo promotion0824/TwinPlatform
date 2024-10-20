@@ -1,0 +1,27 @@
+trigger: none
+
+parameters:
+  - name: imageName
+    type: string
+
+jobs:
+  - job: promote_to_prod_acr
+    displayName: 'Promote image to production container registry'
+
+    pool:
+      vmImage: 'ubuntu-latest'
+
+    steps:
+      - task: AzureCLI@2
+        displayName: Import image
+        inputs:
+          azureSubscription: 'az-products-shared-Twin Platform'
+          addSpnToEnvironment: true
+          scriptType: 'pscore'
+          scriptLocation: 'inlineScript'
+          inlineScript: |
+            az acr import `
+              --name 'prodplatformsharedcr' `
+              --source '${{ parameters.imageName }}' `
+              --image '${{ parameters.imageName }}' `
+              --registry /subscriptions/178b67d7-b6fd-46db-b4a3-b57f8a6b045f/resourceGroups/nonprod-platformshared/providers/Microsoft.ContainerRegistry/registries/nonprodplatformsharedcr

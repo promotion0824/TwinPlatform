@@ -1,0 +1,31 @@
+import { Description, Meta } from '@storybook/blocks'
+import { ArgTypes, ToMantineProps } from '../../../docs/_components'
+
+import { BasePropsDiv as SnackbarsPropsDiv } from './Snackbars.tsx'
+import {
+  SnackbarDataPropsDiv,
+  SnackbarMethodPropsDiv,
+} from './SnackbarProvider.tsx'
+import * as stories from './Snackbars.stories'
+
+<Meta of={stories} />
+
+# Props
+
+## useSnackbar hook
+
+`snackbar = useSnackbar()` has following methods:
+
+<ArgTypes excludeStyleProps of={SnackbarMethodPropsDiv} />
+
+### SnackbarData
+
+Props for `snackbar.show` and `snackbar.hide` methods
+
+<ArgTypes excludeStyleProps of={SnackbarDataPropsDiv} />
+
+## Snackbars component
+
+<ArgTypes excludeStyleProps of={SnackbarsPropsDiv} />
+
+<ToMantineProps linkToMantineProps="https://mantine.dev/x/notifications/?t=props" />

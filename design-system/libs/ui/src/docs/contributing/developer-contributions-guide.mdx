@@ -1,0 +1,68 @@
+import { Meta } from '@storybook/blocks'
+import { DocsWip } from '../_components/DocsWip'
+
+<Meta title="Contributing/Developer Contributions Guide" />
+
+{/* <DocsWip /> */}
+
+# Developer contributions Guide
+
+Contributions to Willow UI can be as simple as a bug fix or minor feature update, or as complex as adding a new component or capability.
+
+## Step 1 — Before starting development
+
+To ensure clear communication and accountability, it's a good idea to follow these steps:
+
+1. Confirm the shared value
+   Before you proceed, establish shared value {/* TODO: Add Code of Conduct */}. For bug fixes and minor changes, this step may not be required.
+
+2. Inform the Platform UI team
+   Let the PM know which ticket you plan to work on and make sure you have a clear understanding of the requirements. If it is a new issue or request that doesn't exist in the backlog, follow the process for [submitting a request](?path=/docs/contributing-bugs-and-requests--docs).
+
+3. Keep track of progress
+   In the Platform UI Azure board, assign the corresponding story to yourself. Make sure it's added to the current sprint.
+
+4. Keep track of the details
+   As you work on the ticket, keep updating the ticket details with progress and any relevant information.
+
+## Step 2 — Development
+
+To contribute to the TwinPlatform main repository, please follow these steps:
+
+1. Set up a local development environment (see the [Getting Started](?path=/docs/contributing-getting-started--docs#installation) page)
+
+1. Create a feature branch for your contribution by following the naming pattern `{taskType}/pui/{azureBoardTicketNumber}-{detailDescription}` as per <a href="https://willow.atlassian.net/wiki/spaces/PE/pages/717094953/Git+Branching+Conventions+Pull+Requests" target="_blank">Git Branching Conventions</a>
+
+   **Examples of taskTypes are:**
+
+   `feature`: all changes that introduce completely new code or new features <br />
+   `bugfix`: changes that fix a specific bug or updates to an outdated documentation <br />
+   `release`: version bump <br />
+
+1. If you are adding a new component, please use the customized Nx generator to generate a folder for your new component, following the PascalCase naming convention. The exact command and details can be found in the [Generate new component](?path=/docs/contributing-getting-started--docs#generate-new-component-with-template).
+
+1. We will aim to adhere to the API from the base libraries used for each component as much as possible, while also ensuring consistency with the patterns we have applied to existing components. If you are uncertain about the APIs, do not hesitate to initiate a discussion with our team.
+
+1. Please make sure to implement styling using our [theme](?path=/docs/theme-theme-package--docs).
+
+## Step 3 — Document, Test, and Validate
+
+1. Update storybook documentation with examples to incorporate your changes. If adding a new feature or variation, this may also include add stories to demonstrate the new feature.
+
+2. Ensure that relevant unit tests and visual regression tests have been added. For bug fixes, remember to include corresponding test scenarios.
+
+   For further information, refer to the [Quality Control](?path=/docs/contributing-quality-control--docs) section.
+
+3. When applicable, schedule a review meeting with the designer to demonstrate your work and receive feedback for potential improvements.
+
+{/* Ensure Sonar quality gates have been met. */}
+
+{/* - Ensure accessibility support is in place, including keyboard control, screen reader support, and proper use of ARIA tags, when necessary. */}
+
+## Step 4 — Submit Your PR
+
+1. Add a changelog if there are code changes in _publishable_ libraries - See [Adding Changelog](/docs/contributing-adding-changelog--docs).
+
+1. Push up your branch and create a Pull Request. It should automatically include `Design System Maintainers` as required reviewers. {/* TODO: See our commit guidelines for details. */}
+
+1. During review the Platform team will help determine whether your update will be a major, minor, or patch release.

@@ -1,0 +1,36 @@
+{
+  "exclude": ["node_modules", "tmp"],
+  "compilerOptions": {
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "strict": true,
+    "baseUrl": ".",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "paths": {
+      "@design-system/*": ["*"],
+      "@design-system/plugins": ["libs/plugins/src/index.ts"],
+      "@willowinc/mui-theme": ["libs/mui-theme/src/index.ts"],
+      "@willowinc/palette": ["libs/palette/src/index.ts"],
+      "@willowinc/theme": ["libs/theme/src/index.ts"],
+      "@willowinc/ui": ["libs/ui/src/index.ts"]
+    },
+    "resolveJsonModule": true,
+    "rootDir": ".",
+    "declaration": false,
+    "importHelpers": true,
+    "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "lib": ["dom", "es2022"],
+    "target": "es2015",
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true
+  },
+  "compileOnSave": false
+}

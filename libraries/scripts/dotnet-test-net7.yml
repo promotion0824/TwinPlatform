@@ -1,0 +1,26 @@
+parameters:
+- name: srcProjectDir
+  type: string
+- name: testProjectDir
+  type: string
+- name: excludeLibraries
+  type: string
+  default: \"[*]Microsoft.*,[*]System.*\"
+- name: buildConfiguration
+  type: string
+  default: Release
+
+steps:
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet test'
+  inputs:
+    command: 'test'
+    arguments: '--no-build --blame-hang-timeout 5m --configuration ${{ parameters.buildConfiguration }} --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=cobertura'
+    publishTestResults: true
+    projects: '$(Build.SourcesDirectory)/${{ parameters.testProjectDir }}'
+
+- task: PublishCodeCoverageResults@1
+  displayName: 'Publish code coverage report'
+  inputs:
+    codeCoverageTool: 'Cobertura'
+    summaryFileLocation: '$(Build.SourcesDirectory)/${{ parameters.srcProjectDir }}/CodeCoverage/Cobertura.xml'

@@ -1,0 +1,18 @@
+import { Canvas, Meta, Description, Stories } from '@storybook/blocks'
+import { SourceLink } from '../../../storybookUtils'
+import { GroupNames } from '../../utils/constant'
+
+import * as stories from './TimeInput.stories'
+import { TimeInput } from '.'
+
+<Meta of={stories} />
+
+# TimeInput
+
+<Description of={TimeInput} />
+
+<Canvas of={stories.Playground} />
+
+<SourceLink name="TimeInput" groupName={GroupNames.Dates} />
+
+<Stories includePrimary={false} title="Stories" />

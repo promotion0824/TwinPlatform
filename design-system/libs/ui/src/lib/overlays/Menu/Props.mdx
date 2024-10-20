@@ -1,0 +1,59 @@
+import { Description, Meta } from '@storybook/blocks'
+import { ArgTypes, ToMantineProps } from '../../../docs/_components'
+
+import { Menu } from '.'
+import { MenuItem } from './MenuItem'
+import { MenuLabel } from './MenuLabel'
+import { MenuTarget } from './MenuTarget'
+import { MenuDropdown } from './MenuDropdown'
+import { MenuSubMenu } from './MenuSubMenu'
+import { MenuDivider } from './MenuDivider'
+import * as stories from './Menu.stories'
+
+<Meta of={stories} />
+
+# Props
+
+## Menu
+
+<Description of={Menu} />
+
+<ArgTypes of={Menu} />
+
+## Menu.Target
+
+<Description of={MenuTarget} />
+
+<ArgTypes excludeStyleProps of={MenuTarget} />
+
+## Menu.Dropdown
+
+<Description of={MenuDropdown} />
+
+<ArgTypes of={MenuDropdown} />
+
+## Menu.Item
+
+<Description of={MenuItem} />
+
+<ArgTypes of={MenuItem} exclude={['component']} />
+
+## Menu.Label
+
+<Description of={MenuLabel} />
+
+<ArgTypes of={MenuLabel} />
+
+## Menu.Divider
+
+<Description of={MenuDivider} />
+
+<ArgTypes of={MenuDivider} />
+
+## Menu.SubMenu
+
+<Description of={MenuSubMenu} />
+
+<ArgTypes of={MenuSubMenu} />
+
+<ToMantineProps componentName="Menu" />

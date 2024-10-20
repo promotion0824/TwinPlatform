@@ -1,0 +1,113 @@
+import { Meta } from '@storybook/blocks'
+import { IconsTable } from './IconsTable'
+
+<Meta title="Design System/Iconography" />
+
+# Iconography
+
+Our `<Icon>` [component](?path=/docs/components-icon--docs) supports Google's [Material Symbols](https://fonts.google.com/icons) icon library.
+
+## Figma Library
+
+To promote consistency we maintains a small subset of icons alongside guidance for their usage in our Figma icons libary. This library can very easily be extended for sensible usecases. See the [Getting Started for Designers](?path=/docs/getting-started-designers--docs#enabling-figma-libraries) for instructions for how to add an icon to the library.
+
+## Design Subset
+
+### Audio & Video
+
+<IconsTable
+  icons={['fast_forward', 'fast_rewind', 'pause', 'play_arrow', 'speed']}
+/>
+
+### Business and Payments
+
+<IconsTable icons={['bar_chart', 'timeline']} />
+
+### Common Actions
+
+<IconsTable
+  icons={[
+    'calendar_today',
+    'error',
+    'help',
+    'history',
+    'info',
+    'preview',
+    'visibility',
+    'visibility_off',
+  ]}
+/>
+### Communication
+<IconsTable icons={['forum', 'inventory_2', 'notifications']} />
+
+### Hardware
+
+<IconsTable icons={['power', 'settings_input_component']} />
+
+### Maps
+
+<IconsTable icons={['explore', 'layers', 'map', 'multiple_stop']} />
+
+### Photo and Image
+
+<IconsTable icons={['edit', 'filter_alt', 'filter_alt_off', 'photo_camera']} />
+
+### Social
+
+<IconsTable icons={['group', 'person']} />
+
+### Text Formatting
+
+<IconsTable
+  icons={[
+    'assignment',
+    'attachment',
+    'cloud_download',
+    'draft',
+    'folder',
+    'format_align_left',
+    'subject',
+  ]}
+/>
+
+### Travel
+
+<IconsTable icons={['apartment', 'stairs']} />
+
+### UI Actions
+
+<IconsTable
+  icons={[
+    'add',
+    'first_page',
+    'last_page',
+    'arrow_back',
+    'arrow_drop_down',
+    'arrow_drop_up',
+    'arrow_forward',
+    'arrow_left',
+    'arrow_right',
+    'check',
+    'chevron_left',
+    'chevron_right',
+    'close',
+    'expand_less',
+    'expand_more',
+    'download',
+    'home',
+    'keyboard_double_arrow_left',
+    'keyboard_double_arrow_right',
+    'menu',
+    'more_vert',
+    'open_in_new',
+    'search',
+    'settings',
+    'star',
+    'swap_vert',
+    'view_column',
+    'view_list',
+    'view_quilt',
+    'zoom_in',
+    'zoom_out',
+  ]}
+/>

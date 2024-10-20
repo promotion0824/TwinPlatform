@@ -1,0 +1,58 @@
+{
+  "name": "mui-theme",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/mui-theme/src",
+  "projectType": "library",
+  "tags": ["ci:build", "ci:publish"],
+  "targets": {
+    "build": {
+      "executor": "@nx/rollup:rollup",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/mui-theme",
+        "main": "libs/mui-theme/src/index.ts",
+        "tsConfig": "libs/mui-theme/tsconfig.lib.json",
+        "format": ["esm", "cjs"],
+        "rollupConfig": [
+          "@nx/react/plugins/bundle-rollup",
+          "libs/ui/rollup.config.js"
+        ],
+        "assets": [
+          {
+            "glob": "libs/mui-theme/README.md",
+            "input": ".",
+            "output": "."
+          }
+        ],
+        "external": "all",
+        "project": "libs/mui-theme/package.json",
+        "compiler": "babel",
+        "babelUpwardRootMode": true
+      }
+    },
+    "publish": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["npm publish dist/libs/mui-theme"],
+        "parallel": false
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/mui-theme/**/*.{ts,tsx,js,jsx}",
+          "libs/mui-theme/package.json"
+        ]
+      }
+    },
+    "type-check": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["tsc --project libs/mui-theme/tsconfig.lib.json --noEmit"],
+        "parallel": true
+      }
+    }
+  }
+}

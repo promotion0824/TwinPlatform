@@ -1,0 +1,23 @@
+parameters:
+- name: testProjectDir
+  type: string
+- name: sonarQubePrefix
+  type: string
+  default: TwinPlatform
+- name: sonarQubeProjectName
+  type: string
+- name: excludePaths
+  type: string
+  default: ""
+
+steps:
+- task: SonarQubePrepare@4
+  displayName: 'SonarQube prepare'
+  inputs:
+    SonarQube: 'SonarQube'
+    scannerMode: 'MSBuild'
+    projectKey: '${{ parameters.sonarQubePrefix }}-${{ parameters.sonarQubeProjectName }}'
+    projectName: '${{ parameters.sonarQubePrefix }}-${{ parameters.sonarQubeProjectName }}'
+    extraProperties: |
+      sonar.cs.opencover.reportsPaths=$(Build.SourcesDirectory)/${{ parameters.testProjectDir }}/coverage.opencover.xml
+      sonar.exclusions=${{ parameters.excludePaths }}

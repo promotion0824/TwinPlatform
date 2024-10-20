@@ -1,0 +1,26 @@
+{
+  "extends": ["plugin:playwright/recommended", "../../.eslintrc.json"],
+  "ignorePatterns": ["!**/*"],
+  "parserOptions": {
+    "project": ["apps/ui-e2e/tsconfig.e2e.json"]
+  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "extends": ["../../.eslint-custom-overrides.json"]
+    },
+    {
+      "files": ["e2e/**/*.{ts,js,tsx,jsx}"],
+      "rules": {}
+    }
+  ],
+  "rules": {
+    "playwright/expect-expect": [
+      "warn",
+      {
+        // this name definition is not working as expected, so change it to warn
+        "assertFunctionNames": ["storybook.testInteractions"]
+      }
+    ]
+  }
+}

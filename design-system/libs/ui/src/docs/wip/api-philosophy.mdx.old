@@ -1,0 +1,50 @@
+import { Meta } from '@storybook/blocks'
+
+<Meta title="WIP/API Philosophy" />
+
+# API philosophy
+
+## As a user: Accessibility first
+
+## As a dev: Maintainability first
+
+## Make something people love to use
+
+## As a contributor: Collaboration first
+
+### Separation of code and infrastructure
+
+### Learn standard technologies, not a custom library
+
+Every UI library requires some learning.
+
+Many UI libraries require learning an API custom
+
+We are striving to keep our API as close to the key web technologies as possible: HTML, CSS, JS and ARIA. This allows us to make sure that the skills we teach our developers at Willow are transferable to their future jobs, and also make sure that when we hire new developers that know these web technologies they can pick up and use our library with minimal training.
+
+- HTML: Components that share a (capitalized) name with an HTML element will return that element and only that element (e.g. `<Button>` returns `<button>` and does not include any extra `<div>`s or `<label>`)
+- CSS: Every component will allow a `css` prop, spread to the outer element. Using this as the main styling method is encouraged, but the standard APIs are also available: `className` and `style`. Other props that are shorthand for CSS under-the-hood, such as `<MyDiv color="#123123">` are not provided.
+- JS: Rather than mixing CSS files and JS for dynamic CSS, we XXXXXXXXXXXXXXXXXXXXXXXXXX
+
+All this means we will be offering minimal 'convenience' APIs. For example, it is common to offer a `<Flex>` in a UI library. Initially this can be used tidily, but our experience shows that in the long run it is harder to maintain, as devs add more and more things to both the component and its usages. We want to offer an API surface as close to CSS as possible, and so encourage devs to stick to the longer but less magical API `<div css={{display: 'flex'}}>`.
+
+If you want convenience APIs you can always create them in the Sectors' codebases. Let us know if you are using a pattern reguarly - if it becomes standard across multiple sectors then that is a good candidate to revisit this decision.
+
+### Stay focused on the Design System and UI
+
+This is a Design System, and is focused on UI and styles. We don't do convenience code, or commonly used functions or hooks. We'll make other libraries for those.
+
+### Chatting about statuses
+
+The components in the library are divided into 4 groups, related to their support status:
+
+- Alpha: No notificaitons will occur when breaking changes are made. Intended for no users or one user only.
+- Beta: A list of users of this component will be maintained, and new users should add themselves to the list. When breaking changes occur these users will be notified. Intended for cross-sector components with few users, and these components haven't been decided to be supported across all sectors yet.
+- Stable:
+- Deprecated
+
+These are different to, but roughly aligned with the four phases of the technology life-cycle (R&D, ascent, maturity and decline), and the product lifecycle management stages (introduction, growth, maturity and decline).
+
+### Deprecating a component
+
+Code mod issued that moves it to @willow/ui/deprecated import and the component will issue a warning and instructions to update it to a supported component

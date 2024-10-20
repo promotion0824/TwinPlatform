@@ -1,0 +1,103 @@
+import { Meta } from '@storybook/blocks'
+import { Tip } from '../_components/Tip'
+
+<Meta title="Contributing/Quality Control" />
+
+# Test and checks for quality control
+
+We have a set of tests and checks to ensure the quality of our codebase. This document describes how to run these tests and checks locally.
+
+## Unit tests
+
+```bash
+# Run test for individual project
+npx nx test $PROJECT_NAME
+
+# Jest watch mode to re-run tests that relate to changes since last commit.
+npx nx test $PROJECT_NAME --watch
+
+# Run tests without cache
+npx nx test $PROJECT_NAME --skip-nx-cache
+
+# Execute unit tests affected by a change
+npx nx affected:test
+
+# Examples
+# Watch tests in UI folder
+npx nx test ui --watch
+
+```
+
+## Visual regression tests
+
+To ensures consistency and quality across different versions and platforms, we have introduced visual regression tests to our design system using [Playwright](https://playwright.dev/). This will help us to detect any visual changes in the UI components.
+
+```bash
+# Run visual regression tests for individual project
+npx nx e2e $PROJECT_NAME
+
+# Run all visual regression tests for individual project with Playwright watch mode
+npx nx e2e $PROJECT_NAME --ui
+
+# Update snapshots for individual project. Be careful for the difference when using this command.
+npx nx e2e $PROJECT_NAME --update-snapshots
+
+# Check test report
+npx nx show-report $PROJECT_NAME
+
+# Execute visual regression tests affected by a change
+npx nx affected:e2e
+
+# Examples
+npx nx e2e ui-e2e
+npx nx e2e ui-e2e --ui
+npx nx e2e ui-e2e --update-snapshots
+npx nx show-report ui-e2e
+```
+
+<Tip>
+  To avoid impact of hardware and software differences, we will use a workflow
+  to update the snapshots in a Pull Request. Simply add a comment
+  `/update-snapshots` in the target Pull Request and the workflow will commit
+  snapshots changes to the Pull Request.
+  <img src="./update-snapshots-example.png" width="450px" />
+</Tip>
+
+## Type check
+
+```bash
+# To perform type checking on all projects:
+npm run type-check-all
+
+# To perform type check for an individual project, run:
+npx nx type-check $PROJECT_NAME
+
+# Examples
+npx nx type-check palette
+npx nx type-check theme
+npx nx type-check ui
+```
+
+## Testing local changes<a id="custom-installation" />
+
+### WillowTwin app
+
+To ensure that your changes are functioning properly in the WillowTwin app, you can run the following script
+to install the latest version of the willow-design-system. Once installed, you can reference the components
+or functions in the app to test their functionality. This will help you verify that your changes are working
+as expected.
+
+```bash
+npm run custom-install
+```
+
+### Local installation for other apps
+
+```bash
+# Required args: [packages, dir]
+# Use --help for usage examples
+node ./tools/scripts/custom-install.js --packages=<PACKAGE_NAMES> --dir=<PATH/TO/PROJECT>
+
+# Examples
+node ./tools/scripts/custom-install.js --packages=palette,mui-theme --dir=core/RulesEngine/RulesEngine.Web/ClientApp
+```

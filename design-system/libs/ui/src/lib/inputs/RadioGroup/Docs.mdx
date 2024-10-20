@@ -1,0 +1,18 @@
+import { Canvas, Meta, Description, Stories } from '@storybook/blocks'
+import { SourceLink } from '../../../storybookUtils'
+import { GroupNames } from '../../utils/constant'
+
+import * as stories from './RadioGroup.stories'
+import { RadioGroup } from './RadioGroup'
+
+<Meta of={stories} />
+
+# RadioGroup
+
+<Description of={RadioGroup} />
+
+<Canvas of={stories.Playground} />
+
+<SourceLink name="RadioGroup" groupName={GroupNames.Inputs} />
+
+<Stories includePrimary={false} title="Stories" />

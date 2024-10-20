@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <LangVersion>10.0</LangVersion>
+    <GenerateDocumentationFile>False</GenerateDocumentationFile>
+    <!-- <IncludeSymbols>true</IncludeSymbols> -->
+    <DebugType>Embedded</DebugType>
+    <NoWarn>SA1513;SA1512;SA1515;SA1300;SA1503;SA1122;SA1128;SA1314;SA1119;SA1117;SA1413;SA1316;SA1129;SA1312;SA1407;SA1649;SA1125;SA1200;SA1201;SA1311;SA1307;SA1304;</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>Willow.Expressions</PackageId>
+    <PackageReadmeFile>readme.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/WillowInc/TwinPlatform</RepositoryUrl>
+    <PackageLicenseExpression></PackageLicenseExpression>
+    <Description>Contains the shared Willow Expression Language, Parsers and Visitors</Description>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+	</ItemGroup>
+
+  <ItemGroup>
+     <None Include="readme.md" Pack="true" PackagePath="\"/>
+  </ItemGroup>
+
+</Project>

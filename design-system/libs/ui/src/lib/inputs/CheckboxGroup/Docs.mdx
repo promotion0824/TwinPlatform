@@ -1,0 +1,18 @@
+import { Canvas, Meta, Description, Stories } from '@storybook/blocks'
+import { SourceLink } from '../../../storybookUtils'
+import { GroupNames } from '../../utils/constant'
+
+import * as stories from './CheckboxGroup.stories'
+import { CheckboxGroup } from '.'
+
+<Meta of={stories} />
+
+# CheckboxGroup
+
+<Description of={CheckboxGroup} />
+
+<Canvas of={stories.Playground} />
+
+<SourceLink name="CheckboxGroup" groupName={GroupNames.Inputs} />
+
+<Stories includePrimary={false} title="Stories" />

@@ -1,0 +1,8 @@
+steps:
+  - task: SonarQubeAnalyze@4
+    displayName: SonarQube - Analyze
+
+  - task: SonarQubePublish@4
+    inputs:
+      pollingTimeoutSec: "300"
+    displayName: SonarQube - Publish

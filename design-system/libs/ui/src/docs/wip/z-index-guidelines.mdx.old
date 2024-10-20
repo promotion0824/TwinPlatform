@@ -1,0 +1,14 @@
+import { Meta } from '@storybook/blocks'
+
+{/* <Meta title="WIP/Z-Index Guidelines" /> */}
+
+## TODO
+
+- (Diagram of overlapping UI components, with arrows pointing to the different z-indexes)
+- They are denominations of 100, to provide space to work in between
+- Think of it like ordinal CSS specificity, not like numbers
+- The design system works in the hundreds digit, 100, modal = 200, 300, etc
+- The UI library works in the tens digit, and composes from the design system: modal_icon_adjustment = modal + 10
+- The ones digit is reserved for users to tweak as they need: real-estate-modal-flashing-icon = modal_icon_adjustment + 1
+- As a user of the library, if you are uncertain as to how much to add to a z-index, just add 1. You can always increase it later if you need something to fall in-between. But using the smallest possible increment is unlikely to conflict with other things at any point, given most of the layering work is done at the design system level.
+- But add to the tokens, don't hard code the numbers that the tokens represent. i.e. do not do myIndex = 101, do myIndex = modal + 1

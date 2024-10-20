@@ -1,0 +1,205 @@
+import { Canvas, Meta } from '@storybook/blocks'
+
+<Meta title="Getting Started/Developers" />
+
+# Getting Started For Developers
+
+How to get started using our libraries in a react application.
+
+## Authentication
+
+Before importing a library into an application you need to configure npm with the permissions required to read or write packages to GitHub.
+
+To get started, add a personal access token to your user .npmrc file:
+
+1. Go to the <a href="https://github.com/settings/tokens" target="_blank">Personal access tokens (classic)</a> page in your GitHub account
+2. Select _Generate new token_ -> _Generate new token (classic)_
+3. Give your token a name and expiration period
+4. Select `read:packages` to be able to install a package into an app
+5. Generate the token and take a copy of the value
+6. Back on the tokens page in GitHub select _Configure SSO_ for your token and authorize the token for the WillowInc organization
+7. Edit the `.npmrc` file in your home directory.
+   <br/>If you're using Mac OS, just use the path `~/.npmrc` to find the file. If you're using Windows, you can find the file at `C:\Users\{your user name}\.npmrc`. Then add these two lines:
+
+```
+@willowinc:registry=https://npm.pkg.github.com/
+//npm.pkg.github.com/:_authToken=${YOUR_PAT_TOKEN}
+```
+
+Please see the following github docs pages for more information on this topic:
+
+- <a
+    href="https://docs.github.com/en/packages/learn-github-packages/introduction-to-github-packages#authenticating-to-github-packages"
+    target="_blank"
+  >Authenticating to GitHub packages</a>
+- <a
+    href="https://docs.github.com/en/packages/learn-github-packages/about-permissions-for-github-packages"
+    target="_blank"
+  >About Permissions for GitHub packages</a>
+- <a
+    href="https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry#installing-a-package"
+    target="_blank"
+  >Installing a package</a>
+
+## Consuming @willowinc packages
+
+**Prerequisites**:
+
+- Ensure that you are [authenticated](#authentication) to GitHub packages with `read:packages` permission as
+  mentioned above.
+- Add a file called `.npmrc` to the project at the same level as the `package.json` file, including a line specifying the package URL and account owner.
+
+  ```
+  @willowinc:registry=https://npm.pkg.github.com
+  ```
+
+### UI Components
+
+**Note**: Currently the `@willowinc/ui` package only supports `react: 18.x`, which might cause dependency conflicts when you install it into a project which has `react: 17.x` installed. Please contact us for such support.
+
+{/* To support different react versions, you will need theme and ui libraries package.json files has dependency of "react": "^17.0.0 || ^18.0.0". */}
+
+1. Install the Willow UI library as project dependencies. `@willowinc/theme` is a peer dependency of `@willowinc/ui` and will be installed automatically.
+
+```bash
+npm i @willowinc/ui
+```
+
+2. Wrap the application code in a `ThemeProvider` and start adding components:
+
+```tsx
+import { ThemeProvider, Button } from '@willowinc/ui'
+
+export const App = () => (
+  <ThemeProvider name="dark">
+    <Button>Willow UI Button</Button>
+  </ThemeProvider>
+)
+```
+
+Now start you app and enjoy your creation.
+
+### Material UI Theme
+
+1. Install the Willow MUI Theme library.
+
+```bash
+npm i @willowinc/mui-theme
+```
+
+2. Import and use Willow theme in MUI's ThemeProvider.
+
+```tsx
+import { ThemeProvider } from '@mui/material/styles'
+import getTheme from '@willowinc/mui-theme'
+
+const App = () => (
+  // Use the default Willow MUI Theme
+  <ThemeProvider theme={getTheme()}>...</ThemeProvider>
+)
+```
+
+3. Extending the MUI theme
+
+Using MUI's [createTheme](https://mui.com/material-ui/customization/theming/#createtheme-options-args-theme) API, you can easily extend Willow's MUI theme. For example:
+
+```tsx
+import { createTheme, ThemeProvider } from '@mui/material/styles'
+import { deepmerge } from '@mui/utils'
+import getTheme from '@willowinc/mui-theme'
+
+const willowTheme = getTheme()
+const customTheme = {
+  typography: {
+    body1: {
+      color: '#FF0000',
+    },
+  },
+}
+
+const theme = createTheme(deepmerge(willowTheme, customTheme))
+
+<ThemeProvider theme={theme}>...</ThemeProvider>
+```
+
+### Integrating custom MUI themes with our UI components
+
+There may be instances in certain projects where there's a need to integrate both a custom MUI theme and our UI components concurrently. This can be realized by utilizing the ThemeProvider from both the `@willowinc/ui` and `@mui/material`/styles packages. Here's a sample implementation:
+
+```tsx
+import { ThemeProvider as UiThemeProvider } from '@willowinc/ui'
+import {
+  StyledEngineProvider,
+  ThemeProvider as MuiThemeProvider,
+} from '@mui/material'
+
+const App = () => (
+  <StyledEngineProvider injectFirst>
+    <MuiThemeProvider theme={customizedMuiTheme}>
+      <UiThemeProvider name="dark">...</UiThemeProvider>
+    </MuiThemeProvider>
+  </StyledEngineProvider>
+)
+```
+
+However, it's crucial to note that specific style overrides from `@willowinc/ui`, such as those for the DataGrid, can influence the appearance of your custom MUI DataGrid across the application. To circumvent this, consider removing the top-level `UiThemeProvider` and only wrapping the migrated `@willowinc/ui` components with it. Here's an example showcasing this for a singular DataGrid component:
+
+
+```tsx
+import { ThemeProvider as UiThemeProvider, DataGrid } from '@willowinc/ui'
+
+const RulesDataGrid = () => (
+  <UiThemeProvider name="dark">
+    <DataGrid {...data} />
+  </UiThemeProvider>
+)
+```
+By adhering to this approach, you can restrict the `UiThemeProvider` styling to that single application page that uses this component.
+
+If you face challenges while integrating multiple themes, please reach out to us for assistance.
+
+## Consuming our theme tokens
+
+Please see the [Theme package](?path=/docs/theme-theme-package--docs) documentation for more information on our `theme` object.
+
+## Consuming packages in pipelines
+
+{/* below doc is not tested, and no one is using it, so comment off until we could test it. */}
+
+{/*
+
+### GitHub Actions
+
+For pipelines running on GitHub Actions, GitHub has build in support for this auth token, you only need to assign the auth token when set up node.
+
+````yaml
+- name: Setup node
+  uses: actions/setup-node@v3
+  with:
+    node-version: '16'
+    registry-url: 'https://npm.pkg.github.com'
+  env:
+    NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN  }}
+``` */}
+
+### Azure DevOps
+
+We already have a credentialed npm service connection set up and stored in Azure DevOps as `npm.pkg.github.com`. To proceed, you just need to add the script below before running `npm ci` in your workflow, and replace `${PATH_TO_NPMRC_FILE}` with the path to your project's `.npmrc` file. For example, `extensions/real-estate/front-end/Web/.npmrc`.
+
+```yaml
+# npm authenticate (for task runners) v0
+- task: npmAuthenticate@0
+  inputs:
+    workingFile: ${PATH_TO_NPMRC_FILE}
+    customEndpoint: npm.pkg.github.com
+  displayName: Set up auth for npm registry
+````
+
+Please refer to following documents for more information:
+
+- [Manage service connect](https://learn.microsoft.com/en-us/azure/devops/pipelines/library/service-endpoints?view=azure-devops&tabs=yaml)
+- [npm authenticate v0 task](https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/npm-authenticate-v0?view=azure-pipelines)
+
+## Contributing
+
+Please see the [contributing](/docs/contributing-developer-contributions--docs) guidelines.

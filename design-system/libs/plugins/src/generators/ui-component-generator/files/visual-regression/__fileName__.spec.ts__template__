@@ -1,0 +1,16 @@
+import { test, expect } from '@willowinc/playwright'
+
+const componentName = '<%= componentName %>'
+const groupName = '<%= groupName %>'
+
+test('default test', async ({ storybook, page }) => {
+  await storybook.goto(componentName, groupName, 'playground')
+
+  await expect(storybook.storyRoot).toHaveScreenshot()
+})
+
+test('default hidden test', async ({ storybook, page }) => {
+  await storybook.gotoHidden(componentName, 'hiddenStoryName')
+
+  await expect(storybook.storyRoot).toHaveScreenshot()
+})

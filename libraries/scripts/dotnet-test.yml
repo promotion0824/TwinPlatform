@@ -1,0 +1,39 @@
+parameters:
+- name: srcProjectDir
+  type: string
+- name: testProjectDir
+  type: string
+- name: excludeLibraries
+  type: string
+  default: \"[*]Microsoft.*,[*]System.*\"
+- name: buildConfiguration
+  type: string
+  default: Release
+
+steps:
+- script: |
+    dotnet test --no-build ${{ parameters.testProjectDir }} --logger trx /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:Exclude=${{ parameters.excludeLibraries }} --configuration ${{ parameters.buildConfiguration }}
+  displayName: 'Run unit tests'
+
+- script: |
+    dotnet tool install -g dotnet-reportgenerator-globaltool
+    reportgenerator -reports:$(Build.SourcesDirectory)/${{ parameters.testProjectDir }}/coverage.opencover.xml -targetdir:$(Build.SourcesDirectory)/${{ parameters.srcProjectDir }}/CodeCoverage -reporttypes:Cobertura
+  displayName: 'Create code coverage report'
+
+- publish: $(Build.SourcesDirectory)/${{ parameters.srcProjectDir }}/CodeCoverage
+  displayName: '[Debug] Publish cobertura report for debug'
+  artifact: 'opencover_report'
+
+- task: PublishTestResults@2
+  displayName: 'Publish test results'
+  condition: succeededOrFailed()
+  inputs:
+    testRunner: VSTest
+    testResultsFiles: '**/*.trx'
+
+- task: PublishCodeCoverageResults@1
+  displayName: 'Publish code coverage report'
+  inputs:
+    codeCoverageTool: Cobertura
+    summaryFileLocation: $(Build.SourcesDirectory)/${{ parameters.srcProjectDir }}/CodeCoverage/Cobertura.xml
+    reportDirectory: $(Build.SourcesDirectory)/${{ parameters.srcProjectDir }}/CodeCoverage

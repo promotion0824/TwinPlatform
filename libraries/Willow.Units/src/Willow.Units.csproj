@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <LangVersion>10.0</LangVersion>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <DebugType>Embedded</DebugType>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>Willow.Units</PackageId>
+    <PackageReadmeFile>readme.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/WillowInc/TwinPlatform</RepositoryUrl>
+    <PackageLicenseExpression></PackageLicenseExpression>
+    <Description>Contains the shared Willow Units of Measure library</Description>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+	</ItemGroup>
+
+  <ItemGroup>
+     <None Include="../readme.md" Pack="true" PackagePath="\"/>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,89 @@
+{
+  "name": "theme",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/theme/src",
+  "projectType": "library",
+  "tags": ["ci:publish"],
+  "targets": {
+    "build": {
+      "executor": "@nx/rollup:rollup",
+      "dependsOn": ["pre-build"],
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/theme",
+        "format": ["esm", "cjs"],
+        "tsConfig": "libs/theme/tsconfig.lib.json",
+        "project": "libs/theme/package.json",
+        "entryFile": "libs/theme/src/index.ts",
+        "external": "all",
+        "rollupConfig": [
+          "@nx/react/plugins/bundle-rollup",
+          "libs/ui/rollup.config.js"
+        ],
+        "compiler": "babel",
+        "assets": [
+          {
+            "glob": "libs/theme/README.md",
+            "input": ".",
+            "output": "."
+          },
+          {
+            "glob": "*.json",
+            "input": "libs/theme/src/dist",
+            "output": "src/dist"
+          }
+        ],
+        "babelUpwardRootMode": true
+      }
+    },
+    "build-palette": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["nx run palette:build"]
+      }
+    },
+    "pre-build": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build-palette"],
+      "options": {
+        "commands": [
+          "tsx --tsconfig libs/theme/tsconfig.lib.json libs/theme/src/build.ts"
+        ]
+      }
+    },
+    "publish": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["npm publish dist/libs/theme"],
+        "parallel": false
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/theme/**/*.{ts,tsx,js,jsx,json}",
+          "libs/theme/package.json"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/theme"],
+      "options": {
+        "jestConfig": "libs/theme/jest.config.ts"
+      }
+    },
+    "type-check": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "tsc --project libs/theme/tsconfig.lib.json --noEmit",
+          "tsc --project libs/theme/tsconfig.spec.json --noEmit"
+        ],
+        "parallel": true
+      }
+    }
+  }
+}

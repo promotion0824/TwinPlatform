@@ -1,0 +1,61 @@
+parameters:
+  - name: imageName
+    type: string
+  - name: productName
+    type: string
+    default: twin
+  - name: dependsOn
+    type: string
+    default: Build
+  - name: environments
+    type: object
+    default:
+      - name: sbx
+        acr: crwilsbxshared01
+        subscription: az-sandbox-shared-Twin Platform
+        registry: /subscriptions/249312a0-4c83-4d73-b164-18c5e72bf219/resourceGroups/rg-sbx/providers/Microsoft.ContainerRegistry/registries/crwilsbxshared01
+      - name: prod
+        acr: prodplatformsharedcr
+        subscription: az-products-shared-Twin Platform
+        registry: /subscriptions/178b67d7-b6fd-46db-b4a3-b57f8a6b045f/resourceGroups/nonprod-platformshared/providers/Microsoft.ContainerRegistry/registries/nonprodplatformsharedcr
+      - name: singleTenantPrd
+        acr: crwilprdshared01
+        subscription: az-prd-shared-Twin Platform
+        registry: /subscriptions/48a16780-c719-4528-a0f2-4e7640a9c850/resourceGroups/rg-dev/providers/Microsoft.ContainerRegistry/registries/crwildevshared01
+
+stages:
+  - ${{ if in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI', 'Manual') }}:
+    - ${{ each environment in parameters.environments }}:
+      - stage: PromoteTo${{ environment.name }}
+        dependsOn: ${{ parameters.dependsOn }}
+        displayName: Promote to ${{ environment.name }} ACR
+        jobs:
+          - job: waitForValidation
+            pool: server
+            displayName: Approve image promotion
+            timeoutInMinutes: 3
+            steps:
+              - task: ManualValidation@0
+                timeoutInMinutes: 1
+                continueOnError: true
+                inputs:
+                  instructions: 'Please approve image promotion'
+          - job: ImagePromotion
+            displayName: Push to ACR
+            dependsOn: waitForValidation
+            condition: eq(dependencies.waitForValidation.result, 'Succeeded')
+            steps:
+              - checkout: none
+              - task: AzureCLI@2
+                displayName: Import image
+                inputs:
+                  azureSubscription: ${{ environment.subscription }}
+                  addSpnToEnvironment: true
+                  scriptType: 'pscore'
+                  scriptLocation: 'inlineScript'
+                  inlineScript: |
+                    az acr import `
+                      --name '${{ environment.acr }}' `
+                      --source '${{ parameters.productName }}/${{ parameters.imageName }}:$(Build.BuildNumber)' `
+                      --image '${{ parameters.productName }}/${{ parameters.imageName }}:$(Build.BuildNumber)' `
+                      --registry ${{ environment.registry }}

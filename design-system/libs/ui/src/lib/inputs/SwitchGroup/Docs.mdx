@@ -1,0 +1,18 @@
+import { Canvas, Meta, Description, Stories } from '@storybook/blocks'
+import { SourceLink } from '../../../storybookUtils'
+import { GroupNames } from '../../utils/constant'
+
+import * as stories from './SwitchGroup.stories'
+import { SwitchGroup } from '.'
+
+<Meta of={stories} />
+
+# SwitchGroup
+
+<Description of={SwitchGroup} />
+
+<Canvas of={stories.Playground} />
+
+<SourceLink name="SwitchGroup" groupName={GroupNames.Inputs} />
+
+<Stories includePrimary={false} title="Stories" />

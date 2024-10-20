@@ -1,0 +1,20 @@
+import { Canvas, Meta, Description, Stories } from '@storybook/blocks'
+import { SourceLink } from '../../../storybookUtils'
+import { GroupNames } from '../../utils/constant'
+
+import * as stories from './Combobox.stories'
+import { Combobox } from '.'
+
+<Meta of={stories} />
+
+# Combobox
+
+<Description of={Combobox} />
+
+<Canvas of={stories.Playground} />
+
+<SourceLink name="Combobox" groupName={GroupNames.Inputs} />
+
+<Stories includePrimary={false} title="Stories" />
+
+Please check [Mantine combobox examples](https://mantine.dev/combobox/) for more custom components extended from Combobox.

@@ -1,0 +1,18 @@
+import { Canvas, Meta, Description, Stories } from '@storybook/blocks'
+import { SourceLink } from '../../../storybookUtils'
+import { GroupNames } from '../../utils/constant'
+
+import * as stories from './RingProgress.stories'
+import { RingProgress } from '.'
+
+<Meta of={stories} />
+
+# RingProgress
+
+<Description of={RingProgress} />
+
+<Canvas of={stories.Playground} />
+
+<SourceLink name="RingProgress" groupName={GroupNames.Feedback} />
+
+<Stories includePrimary={false} title="Stories" />

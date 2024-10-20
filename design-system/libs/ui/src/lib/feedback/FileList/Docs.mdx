@@ -1,0 +1,17 @@
+import { Canvas, Meta, Description, Stories } from '@storybook/blocks'
+import { SourceLink } from '../../../storybookUtils'
+
+import * as stories from './FileList.stories'
+import { FileList } from '.'
+
+<Meta of={stories} />
+
+# FileList
+
+<Description of={FileList} />
+
+<Canvas of={stories.Playground} />
+
+<SourceLink name="FileList" status="alpha" />
+
+<Stories includePrimary={false} title="Stories" />

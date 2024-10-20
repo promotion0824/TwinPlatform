@@ -1,0 +1,90 @@
+import { Canvas, Meta } from '@storybook/blocks'
+
+<Meta title="Design System/Color System" />
+
+# Color System
+
+Our color system is designed to enable a consistent product experience.
+
+## Overview
+
+Color is applied to our UI through the use of color tokens, which reference color values made available through the core palette.
+
+See all available color tokens on the Color Tokens page. This documentation will help understand the systems behind these tokens.
+
+### Naming
+
+Our color tokens do not follow a rigid naming structure, but all share common elements within their names:
+
+<img src="./color-system-naming.png" alt="color system naming" />
+
+- **Group** - top level objects that group colors according to their usage.
+- **Property** - indicates the property a color is be applied to.
+- **Variant** - can appear at any level, and some variants are shared across groups.
+- **State** - some token sets have common user interaction states built in.
+
+### Groups
+
+Top level groups give structure to our color tokens:
+
+<img src="./color-system-groups.png" alt="color system groups" />
+
+- `neutral` - desaturated colors for generic ui styling.
+- `intent` - colors with semantic names that indicate their intended usage.
+- `core` - access to all named colors (`red`, `blue` etc) from the core palette for creative usage that has no meaning.
+- `state` - groups state related colors that are shared across multiple components.
+- `data` - sets of colors designed specifically for datavizualization.
+
+### Properties
+
+Every color token (besides those in the `data` group) contain one of the following property variants:
+
+- `bg` - background colors.
+- `fg` - text and icon colors.
+- `border` - borders.
+
+These variants can appear at any level within a token’s name.
+
+<img src="./color-system-properties.png" alt="color system properties" />
+
+### States
+
+Some tokens have the common interaction state of `default`, `hovered` and `activated` built in.
+
+<img src="./color-system-states.png" alt="color system states" />
+
+States that involve consistent styling across many components are stored as top level groups.
+
+<img src="./color-system-state-group.png" alt="color system state group" />
+
+To read more about common states please see the States guidelines pages.
+
+## Neutral group
+
+Neutral colors should be used for generic application UI styling.
+
+<img src="./color-system-neutral-group.png" alt="color system neutral group" />
+
+[See all neutral tokens.](?path=/docs/theme-theme-tokens--docs#neutral)
+
+## Intent group
+
+Intent colors should be used for user actions (buttons, links), application feedback (validation, notifications), and application or data state (badges, selection indicators).
+
+<img src="./color-system-intent-group.png" alt="color system intent group" />
+
+- `primary` - actions or feedback of high importance.
+- `secondary` - actions of less importance.
+- `negative` - actions or feedback that is negative, dangerous or destructive.
+- `positive` - feedback that is positive, safe or productive.
+- `notice` - feedback that is neither negative or positive such as warnings.
+
+[See all intent tokens.](?path=/docs/theme-theme-tokens--docs#intent)
+
+## Core group
+
+Core colors are for creative usage when there is no meaning attached to the application of colour.
+
+<img src="./color-system-core-group.png" alt="color system core group" />
+
+[See all core tokens.](?path=/docs/theme-theme-tokens--docs#core)

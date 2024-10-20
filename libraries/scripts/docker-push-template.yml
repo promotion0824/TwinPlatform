@@ -1,0 +1,69 @@
+﻿parameters:
+- name: dockerContext
+  type: string
+- name: dockerfile
+  type: string
+- name: imageName
+  type: string
+- name: productName
+  type: string
+  default: 'twin'
+- name: branchTags
+  type: boolean
+  default: false
+- name: alwaysPush
+  type: boolean
+  default: false
+- name: containerRegistry
+  type: string
+  default: 'acr-nonprod-platformshared-Twin Platform'
+
+steps:
+  - ${{ if or(in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI', 'Manual'),  eq(parameters.alwaysPush, true)) }}:
+    - task: Bash@3
+      displayName: 'Set Repository Name'
+      inputs:
+        targetType: 'inline'
+        script: |
+          echo "##vso[task.setvariable variable=imageRepository]${{ parameters.productName }}/${{ parameters.imageName }}"
+
+    - ${{ if eq(parameters.branchTags, true) }}:
+      - script: |
+          branch=$(Build.SourceBranch)
+          prBranch=$(System.PullRequest.SourceBranch)
+          branchTag=${branch//[\/]/_}
+          prBranchTag=${prBranch//[\/]/_}
+          echo "Tag will be $branchtag Pr Branch Tag will be $prBranchTag"
+          echo "##vso[task.setvariable variable=branchTag;]$branchTag"
+          echo "##vso[task.setvariable variable=prBranchTag;]$prBranchTag"
+        displayName: "[Bash] Make Docker Tag From Branch name"
+
+    - task: Docker@2
+      displayName: 'Build and Push image to nonprod ACR'
+      inputs:
+        command: buildAndPush
+        containerRegistry: ${{ parameters.containerRegistry }}
+        repository: $(imageRepository)
+        arguments: --build-arg Version=$(Build.BuildNumber)
+        dockerfile: ${{ parameters.dockerfile }}
+        buildContext: ${{ parameters.dockerContext }}
+        ${{ if and(eq(variables['Build.SourceBranchName'], 'main'), eq(parameters.branchTags, true) ) }}:
+          tags: |
+            $(Build.BuildNumber)
+            latest
+            $(branchTag)
+            $(prBranchTag)
+        ${{ if and(ne(variables['Build.SourceBranchName'], 'main'), eq(parameters.branchTags, true) ) }}:
+          tags: |
+            $(Build.BuildNumber)
+            $(branchTag)
+            $(prBranchTag)
+        ${{ if and(eq(variables['Build.SourceBranchName'], 'main'), eq(parameters.branchTags, false) ) }}:
+          tags: |
+            $(Build.BuildNumber)
+            latest
+        ${{ if and(ne(variables['Build.SourceBranchName'], 'main'), eq(parameters.branchTags, false) ) }}:
+          tags: |
+            $(Build.BuildNumber)
+      env:
+        DOCKER_BUILDKIT: 1

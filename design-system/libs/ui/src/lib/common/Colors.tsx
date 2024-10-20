@@ -1,0 +1,11 @@
+export type Colors =
+  | 'gray'
+  | 'red'
+  | 'orange'
+  | 'yellow'
+  | 'teal'
+  | 'green'
+  | 'cyan'
+  | 'blue'
+  | 'purple'
+  | 'pink'

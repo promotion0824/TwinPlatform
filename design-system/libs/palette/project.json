@@ -1,0 +1,60 @@
+{
+  "name": "palette",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/palette/src",
+  "projectType": "library",
+  "tags": ["ci:publish"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "dependsOn": ["pre-build"],
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/palette",
+        "main": "libs/palette/src/index.ts",
+        "tsConfig": "libs/palette/tsconfig.lib.json",
+        "assets": ["libs/palette/*.md"]
+      }
+    },
+    "pre-build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["tsx libs/palette/src/build.ts"]
+      }
+    },
+    "publish": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["npm publish dist/libs/palette"],
+        "parallel": false
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/palette/**/*.{ts,tsx,js,jsx.json}",
+          "libs/palette/package.json"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/palette"],
+      "options": {
+        "jestConfig": "libs/palette/jest.config.ts"
+      }
+    },
+    "type-check": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "tsc --project libs/palette/tsconfig.lib.json --noEmit",
+          "tsc --project libs/palette/tsconfig.spec.json --noEmit"
+        ],
+        "parallel": true
+      }
+    }
+  }
+}

@@ -1,0 +1,92 @@
+[
+  {
+    "value": "2px",
+    "token": "s-2",
+    "figma": "Set 2px autolayout properties",
+    "usage": "Lorem Ipsum"
+  },
+  {
+    "value": "4px",
+    "token": "s-4",
+    "figma": "Set 4px autolayout properties",
+    "usage": "Lorem Ipsum"
+  },
+  {
+    "value": "6px",
+    "token": "s-6",
+    "figma": "Set 6px autolayout properties",
+    "usage": "Lorem Ipsum"
+  },
+  {
+    "value": "8px",
+    "token": "s-8",
+    "figma": "Set 8px autolayout properties",
+    "usage": "Lorem Ipsum"
+  },
+  {
+    "value": "12px",
+    "token": "s-12",
+    "figma": "Set 12px autolayout properties",
+    "usage": "Lorem Ipsum"
+  },
+  {
+    "value": "16px",
+    "token": "s-16",
+    "figma": "Set 16px autolayout properties",
+    "usage": "Lorem Ipsum"
+  },
+  {
+    "value": "20px",
+    "token": "s-20",
+    "figma": "Set 20px autolayout properties",
+    "usage": "Lorem Ipsum"
+  },
+  {
+    "value": "24px",
+    "token": "s-24",
+    "figma": "Set 24px autolayout properties",
+    "usage": "Lorem Ipsum"
+  },
+  {
+    "value": "28px",
+    "token": "s-28",
+    "figma": "Set 28px autolayout properties",
+    "usage": "Lorem Ipsum"
+  },
+  {
+    "value": "32px",
+    "token": "s-32",
+    "figma": "Set 32px autolayout properties",
+    "usage": "Lorem Ipsum"
+  },
+  {
+    "value": "40px",
+    "token": "s-40",
+    "figma": "Set 40px autolayout properties",
+    "usage": "Lorem Ipsum"
+  },
+  {
+    "value": "48px",
+    "token": "s-48",
+    "figma": "Set 48px autolayout properties",
+    "usage": "Lorem Ipsum"
+  },
+  {
+    "value": "56px",
+    "token": "s-56",
+    "figma": "Set 56px autolayout properties",
+    "usage": "Lorem Ipsum"
+  },
+  {
+    "value": "72px",
+    "token": "s-72",
+    "figma": "Set 72px autolayout properties",
+    "usage": "Lorem Ipsum"
+  },
+  {
+    "value": "96px",
+    "token": "s-96",
+    "figma": "Set 96px autolayout properties",
+    "usage": "Lorem Ipsum"
+  }
+]

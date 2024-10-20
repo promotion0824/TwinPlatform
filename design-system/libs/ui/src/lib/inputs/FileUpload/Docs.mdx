@@ -1,0 +1,18 @@
+import { Canvas, Meta, Description, Stories } from '@storybook/blocks'
+import { SourceLink } from '../../../storybookUtils'
+import { GroupNames } from '../../utils/constant'
+
+import * as stories from './FileUpload.stories'
+import { FileUpload } from '.'
+
+<Meta of={stories} />
+
+# FileUpload
+
+<Description of={FileUpload} />
+
+<Canvas of={stories.Playground} />
+
+<SourceLink name="FileUpload" groupName={GroupNames.Inputs} />
+
+<Stories includePrimary={false} title="Stories" />

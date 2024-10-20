@@ -1,0 +1,10 @@
+{
+  "solution": {
+    "path": "..\\libraries.sln",
+    "projects": [
+      "Willow.SpecFlow\\src\\Willow.SpecFlow.Xunit\\Willow.SpecFlow.Xunit.csproj",
+      "Willow.SpecFlow\\src\\Willow.SpecFlow\\Willow.SpecFlow.csproj",
+      "Willow.SpecFlow\\test\\Willow.SpecFlow.Tests\\Willow.SpecFlow.Tests.csproj"
+    ]
+  }
+}

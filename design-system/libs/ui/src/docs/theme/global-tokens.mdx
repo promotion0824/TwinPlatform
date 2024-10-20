@@ -1,0 +1,385 @@
+import { Meta } from '@storybook/blocks'
+
+<Meta title="Theme/Global Tokens" />
+
+# Global Tokens
+
+Global tokens are a special group that are used within the definition of other tokens. They currently constitute the building blocks behind our [font](?path=/docs/theme-base-tokens--docs) style tokens.
+
+Global tokens are not exported by the theme library.
+
+## Font weight
+
+<table className="wds-token-table">
+  <colgroup>
+    <col width="200px" />
+    <col width="200px" />
+    <col width="200px" />
+    <col width="100%" />
+  </colgroup>
+  <thead>
+    <tr>
+      <th>Example</th>
+      <th>Core Token</th>
+      <th>Value</th>
+      <th>Usage</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <p style={{ fontWeight: '300' }}>Font weight</p>
+      </td>
+      <td>
+        <code>fontWeight.light</code>
+      </td>
+      <td>300</td>
+      <td>Display text</td>
+    </tr>
+    <tr>
+      <td>
+        <p style={{ fontWeight: '400' }}>Font weight</p>
+      </td>
+      <td>
+        <code>fontWeight.regular</code>
+      </td>
+      <td>400</td>
+      <td>Body text</td>
+    </tr>
+    <tr>
+      <td>
+        <p style={{ fontWeight: '600' }}>Font weight</p>
+      </td>
+      <td>
+        <code>fontWeight.semibold</code>
+      </td>
+      <td>600</td>
+      <td>Headings</td>
+    </tr>
+    <tr>
+      <td>
+        <p style={{ fontWeight: '700' }}>Font weight</p>
+      </td>
+      <td>
+        <code>fontWeight.bold</code>
+      </td>
+      <td>700</td>
+      <td>Heading and bold body text</td>
+    </tr>
+  </tbody>
+</table>
+
+## Font Size
+
+<table className="wds-token-table">
+  <colgroup>
+    <col width="200px" />
+    <col width="200px" />
+    <col width="200px" />
+    <col width="100%" />
+  </colgroup>
+  <thead>
+    <tr>
+      <th>Example</th>
+      <th>Core Token</th>
+      <th>Value</th>
+      <th>Usage</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <p style={{ fontSize: '0.625rem', lineHeight: '1rem' }}>Font size</p>
+      </td>
+      <td>
+        <code>fontSize.10</code>
+      </td>
+      <td>0.625rem</td>
+      <td>Extra small body text</td>
+    </tr>
+    <tr>
+      <td>
+        <p style={{ fontSize: '0.6875rem', lineHeight: '1rem' }}>Font size</p>
+      </td>
+      <td>
+        <code>fontSize.11</code>
+      </td>
+      <td>0.6875rem</td>
+      <td>Small body text</td>
+    </tr>
+    <tr>
+      <td>
+        <p style={{ fontSize: '0.75rem', lineHeight: '1rem' }}>Font size</p>
+      </td>
+      <td>
+        <code>fontSize.12</code>
+      </td>
+      <td>0.75rem</td>
+      <td>Default body text / extra small headings</td>
+    </tr>
+    <tr>
+      <td>
+        <p style={{ fontSize: '0.8125rem', lineHeight: '1rem' }}>Font size</p>
+      </td>
+      <td>
+        <code>fontSize.13</code>
+      </td>
+      <td>0.8125rem</td>
+      <td>Large body text / small headings</td>
+    </tr>
+    <tr>
+      <td>
+        <p style={{ fontSize: '0.875rem', lineHeight: '1rem' }}>Font size</p>
+      </td>
+      <td>
+        <code>fontSize.14</code>
+      </td>
+      <td>0.875rem</td>
+      <td>Medium headings</td>
+    </tr>
+    <tr>
+      <td>
+        <p style={{ fontSize: '1rem', lineHeight: '1.25rem' }}>Font size</p>
+      </td>
+      <td>
+        <code>fontSize.16</code>
+      </td>
+      <td>1rem</td>
+      <td>Large headings</td>
+    </tr>
+    <tr>
+      <td>
+        <p style={{ fontSize: '1.125rem', lineHeight: '1.5rem' }}>Font size</p>
+      </td>
+      <td>
+        <code>fontSize.18</code>
+      </td>
+      <td>1.125rem</td>
+      <td>Extra large headings</td>
+    </tr>
+    <tr>
+      <td>
+        <p style={{ fontSize: '1.25rem', lineHeight: '1.75rem' }}>Font size</p>
+      </td>
+      <td>
+        <code>fontSize.20</code>
+      </td>
+      <td>1.25rem</td>
+      <td>2XL headings</td>
+    </tr>
+    <tr>
+      <td>
+        <p style={{ fontSize: '1.5rem', lineHeight: '2rem' }}>Font size</p>
+      </td>
+      <td>
+        <code>fontSize.24</code>
+      </td>
+      <td>1.5rem</td>
+      <td>Small display text</td>
+    </tr>
+    <tr>
+      <td>
+        <p style={{ fontSize: '1.75rem', lineHeight: '2.25rem' }}>Font size</p>
+      </td>
+      <td>
+        <code>fontSize.28</code>
+      </td>
+      <td>1.75rem</td>
+      <td>Medium display text</td>
+    </tr>
+    <tr>
+      <td>
+        <p style={{ fontSize: '2rem', lineHeight: '2.5rem' }}>Font size</p>
+      </td>
+      <td>
+        <code>fontSize.32</code>
+      </td>
+      <td>2rem</td>
+      <td>Large display text</td>
+    </tr>
+  </tbody>
+</table>
+
+## Line height
+
+<table className="wds-token-table">
+  <colgroup>
+    <col width="200px" />
+    <col width="200px" />
+    <col width="100%" />
+  </colgroup>
+  <thead>
+    <tr>
+      <th>Example</th>
+      <th>Core Token</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <p
+          style={{
+            lineHeight: '1rem',
+            fontSize: '0.6875rem',
+            backgroundColor: 'gray',
+          }}
+        >Line height</p>
+      </td>
+      <td>
+        <code>lineHeight.16</code>
+      </td>
+      <td>1rem</td>
+    </tr>
+    <tr>
+      <td>
+        <p
+          style={{
+            lineHeight: '1.25rem',
+            fontSize: '0.875rem',
+            backgroundColor: 'gray',
+          }}
+        >Line height</p>
+      </td>
+      <td>
+        <code>lineHeight.20</code>
+      </td>
+      <td>1.25rem</td>
+    </tr>
+    <tr>
+      <td>
+        <p
+          style={{
+            lineHeight: '1.5rem',
+            fontSize: '1rem',
+            backgroundColor: 'gray',
+          }}
+        >Line height</p>
+      </td>
+      <td>
+        <code>lineHeight.24</code>
+      </td>
+      <td>1.5rem</td>
+    </tr>
+    <tr>
+      <td>
+        <p
+          style={{
+            lineHeight: '1.75rem',
+            fontSize: '1.25rem',
+            backgroundColor: 'gray',
+          }}
+        >Line height</p>
+      </td>
+      <td>
+        <code>lineHeight.28</code>
+      </td>
+      <td>1.75rem</td>
+    </tr>
+    <tr>
+      <td>
+        <p
+          style={{
+            lineHeight: '2rem',
+            fontSize: '1.5rem',
+            backgroundColor: 'gray',
+          }}
+        >Line height</p>
+      </td>
+      <td>
+        <code>lineHeight.32</code>
+      </td>
+      <td>2rem</td>
+    </tr>
+    <tr>
+      <td>
+        <p
+          style={{
+            lineHeight: '2.25rem',
+            fontSize: '1.75rem',
+            backgroundColor: 'gray',
+          }}
+        >Line height</p>
+      </td>
+      <td>
+        <code>lineHeight.36</code>
+      </td>
+      <td>2.25rem</td>
+    </tr>
+  </tbody>
+</table>
+
+## Text Transform
+
+<table className="wds-token-table">
+  <colgroup>
+  <col width="200px" />
+  <col width="200px" />
+  <col width="200px" />
+  <col width="100%" />
+  </colgroup>
+
+  <thead>
+    <tr>
+      <th>Example</th>
+      <th>Core Token</th>
+      <th>Value</th>
+      <th>Usage</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <p style={{ textTransform: 'none' }}>Text transform</p>
+      </td>
+      <td>
+        <code>textTransform.none</code>
+      </td>
+      <td>none</td>
+      <td>Default text transform</td>
+    </tr>
+    <tr>
+      <td>
+        <p style={{ textTransform: 'uppercase' }}>Text transform</p>
+      </td>
+      <td>
+        <code>textTransform.uppercase</code>
+      </td>
+      <td>uppercase</td>
+      <td>Applied to group header</td>
+    </tr>
+  </tbody>
+</table>
+
+## Letter spacing
+
+<table className="wds-token-table">
+  <colgroup>
+    <col width="100%" />
+    <col width="200px" />
+    <col width="100%" />
+  </colgroup>
+  <thead>
+    <tr>
+      <th>Example</th>
+      <th>Value</th>
+      <th>Usage</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <p style={{ letterSpacing: '0' }}>Text transform</p>
+      </td>
+      <td>0</td>
+      <td>Default letter spacing</td>
+    </tr>
+    <tr>
+      <td>
+        <p style={{ letterSpacing: '0.0625rem' }}>Text transform</p>
+      </td>
+      <td>0.0625rem</td>
+      <td>Applied to group heading</td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,20 @@
+parameters:
+  - name: applicationName
+    type: string
+  - name: productName
+    type: string
+    default: Twin Platform
+  - name: srcProjectDir
+    type: string
+  - name: whitesourceApiKey
+    type: string
+
+steps:
+
+- script: 'curl -LJO https://github.com/whitesource/unified-agent-distribution/releases/latest/download/wss-unified-agent.jar'
+  displayName: 'Download the latest Unified Agent'
+  workingDirectory: ${{ parameters.srcProjectDir }}
+
+- script: 'java -jar wss-unified-agent.jar -c $(Build.SourcesDirectory)/libraries/scripts/wss-unified-agent.config -apiKey ${{ parameters.whitesourceApiKey }} -project ${{ parameters.applicationName }} -product "${{ parameters.productName }}" -scanComment "BuildId: $(Build.BuildId)"'
+  displayName: 'Run Unified Agent Scan'
+  workingDirectory: ${{ parameters.srcProjectDir }}

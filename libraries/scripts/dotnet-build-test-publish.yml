@@ -1,0 +1,53 @@
+parameters:
+- name: srcProjectDir
+  type: string
+- name: testProjectDir
+  type: string
+
+# Optional
+  default: TwinPlatform
+- name: excludeLibrariesCoverage
+  type: string
+  default: \"[*]Microsoft.*,[*]System.*\"
+- name: preBuildSteps
+  type: stepList
+  default: []
+- name: dotnetVersion
+  type: string
+  default: 6.0.x
+- name: buildConfiguration
+  type: string
+  default: Release
+- name: buildVersion
+  type: string
+  default: 1.0.0.0
+- name: zipAfterPublish
+  type: boolean
+  default: false
+- name: restoreGithubNugetPackages
+  type: boolean
+  default: false
+
+steps:
+  - template: dotnet-build.yml
+    parameters:
+      buildConfiguration: ${{ parameters.buildConfiguration }}
+      preBuildSteps: ${{ parameters.preBuildSteps }}
+      srcProjectDir: ${{ parameters.srcProjectDir }}
+      testProjectDir: ${{ parameters.testProjectDir }}
+      buildVersion: ${{ parameters.buildVersion }}
+      dotnetVersion: ${{ parameters.dotnetVersion }}
+      restoreGithubNugetPackages: ${{ parameters.restoreGithubNugetPackages }}
+
+  - template: dotnet-test.yml
+    parameters:
+      buildConfiguration: ${{ parameters.buildConfiguration }}
+      srcProjectDir: ${{ parameters.srcProjectDir }}
+      testProjectDir: ${{ parameters.testProjectDir }}
+      excludeLibraries: ${{ parameters.excludeLibrariesCoverage }}
+
+  - template: dotnet-publish.yml
+    parameters:
+      buildConfiguration: ${{ parameters.buildConfiguration }}
+      srcProjectDir: ${{ parameters.srcProjectDir }}
+      zipAfterPublish: ${{ parameters.zipAfterPublish }}

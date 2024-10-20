@@ -1,0 +1,28 @@
+import { Description, Meta } from '@storybook/blocks'
+import { ArgTypes, ToMantineProps } from '../../../docs/_components'
+
+import { Popover } from '.'
+import { PopoverDropdown } from './PopoverDropdown'
+import * as stories from './Popover.stories'
+
+<Meta of={stories} />
+
+# Props
+
+## Popover
+
+<ArgTypes of={Popover} />
+
+## Popover.Target
+
+<Description of={Popover.Target} />
+
+<ArgTypes excludeStyleProps of={Popover.Target} />
+
+## Popover.Dropdown
+
+<Description of={Popover.Dropdown} />
+
+<ArgTypes of={Popover.Dropdown} />
+
+<ToMantineProps componentName="Popover" />

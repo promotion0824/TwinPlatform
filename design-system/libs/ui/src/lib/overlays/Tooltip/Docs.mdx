@@ -1,0 +1,18 @@
+import { Canvas, Meta, Description, Stories } from '@storybook/blocks'
+import { SourceLink } from '../../../storybookUtils'
+import { GroupNames } from '../../utils/constant'
+
+import * as stories from './Tooltip.stories'
+import { Tooltip } from '.'
+
+<Meta of={stories} />
+
+# Tooltip
+
+<Description of={Tooltip} />
+
+<Canvas of={stories.Playground} />
+
+<SourceLink name="Tooltip" groupName={GroupNames.Overlays} />
+
+<Stories includePrimary={false} title="Stories" />

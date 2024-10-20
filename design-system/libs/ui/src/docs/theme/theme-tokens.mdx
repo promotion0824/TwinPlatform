@@ -1,0 +1,479 @@
+import { Meta } from '@storybook/blocks'
+import { color, shadow } from '../_components/tokenRows'
+import { Tip } from '../_components/Tip'
+
+<Meta title="Theme/Theme Tokens" />
+
+# Theme tokens
+
+Theme tokens contain values that change depending on theme.
+
+## Color
+
+<Tip>
+  Please see the{' '}
+  [Color System](?path=/docs/design-system-color-system--docs) page
+  for information on the structure of our color tokens.
+</Tip>
+
+### Neutral
+
+#### Background
+
+<table className="wds-token-table">
+  <colgroup>
+    <col width="120px" />
+    <col width="100%" />
+    <col width="120px" />
+    <col width="100%" />
+  </colgroup>
+  <thead>{color.headings}</thead>
+  <tbody>
+    {[
+      color.rows.neutral.bg.base.default,
+      color.rows.neutral.bg.panel.default,
+      color.rows.neutral.bg.accent.default,
+    ]}
+  </tbody>
+</table>
+
+All `neutral` backgrounds have state variants, eg:
+
+<table className="wds-token-table">
+  <colgroup>
+    <col width="120px" />
+    <col width="100%" />
+    <col width="120px" />
+    <col width="100%" />
+  </colgroup>
+  <thead>{color.headings}</thead>
+  <tbody>
+    {[
+      color.rows.neutral.bg.accent.hovered,
+      color.rows.neutral.bg.accent.activated,
+    ]}
+  </tbody>
+</table>
+
+#### Foreground
+
+<table className="wds-token-table">
+  <colgroup>
+    <col width="120px" />
+    <col width="100%" />
+    <col width="120px" />
+    <col width="100%" />
+  </colgroup>
+  <thead>{color.headings}</thead>
+  <tbody>
+    {[
+      color.rows.neutral.fg.highlight,
+      color.rows.neutral.fg.default,
+      color.rows.neutral.fg.muted,
+      color.rows.neutral.fg.subtle,
+    ]}
+  </tbody>
+</table>
+
+#### Border
+
+<table className="wds-token-table">
+  <colgroup>
+    <col width="120px" />
+    <col width="100%" />
+    <col width="120px" />
+    <col width="100%" />
+  </colgroup>
+  <thead>{color.headings}</thead>
+  <tbody>
+    {[color.rows.neutral.border.highlight, color.rows.neutral.border.default]}
+  </tbody>
+</table>
+
+### Intent
+
+#### Primary
+
+<table className="wds-token-table">
+  <colgroup>
+    <col width="120px" />
+    <col width="100%" />
+    <col width="120px" />
+    <col width="100%" />
+  </colgroup>
+  <thead>{color.headings}</thead>
+  <tbody>
+    {[
+      color.rows.intent.primary.fg.default,
+      color.rows.intent.primary.bg.bold.default,
+      color.rows.intent.primary.bg.muted.default,
+      color.rows.intent.primary.bg.subtle.default,
+      color.rows.intent.primary.border.default,
+    ]}
+  </tbody>
+</table>
+
+#### Secondary
+
+<table className="wds-token-table">
+  <colgroup>
+    <col width="120px" />
+    <col width="100%" />
+    <col width="120px" />
+    <col width="100%" />
+  </colgroup>
+  <thead>{color.headings}</thead>
+  <tbody>
+    {[
+      color.rows.intent.secondary.fg.default,
+      color.rows.intent.secondary.bg.bold.default,
+      color.rows.intent.secondary.bg.muted.default,
+      color.rows.intent.secondary.bg.subtle.default,
+      color.rows.intent.secondary.border.default,
+    ]}
+  </tbody>
+</table>
+
+#### Positive
+
+<table className="wds-token-table">
+  <colgroup>
+    <col width="120px" />
+    <col width="100%" />
+    <col width="120px" />
+    <col width="100%" />
+  </colgroup>
+  <thead>{color.headings}</thead>
+  <tbody>
+    {[
+      color.rows.intent.positive.fg.default,
+      color.rows.intent.positive.bg.bold.default,
+      color.rows.intent.positive.bg.muted.default,
+      color.rows.intent.positive.bg.subtle.default,
+      color.rows.intent.positive.border.default,
+    ]}
+  </tbody>
+</table>
+
+#### Negative
+
+<table className="wds-token-table">
+  <colgroup>
+    <col width="120px" />
+    <col width="100%" />
+    <col width="120px" />
+    <col width="100%" />
+  </colgroup>
+  <thead>{color.headings}</thead>
+  <tbody>
+    {[
+      color.rows.intent.negative.fg.default,
+      color.rows.intent.negative.bg.bold.default,
+      color.rows.intent.negative.bg.muted.default,
+      color.rows.intent.negative.bg.subtle.default,
+      color.rows.intent.negative.border.default,
+    ]}
+  </tbody>
+</table>
+
+#### Notice
+
+<table className="wds-token-table">
+  <colgroup>
+    <col width="120px" />
+    <col width="100%" />
+    <col width="120px" />
+    <col width="100%" />
+  </colgroup>
+  <thead>{color.headings}</thead>
+  <tbody>
+    {[
+      color.rows.intent.notice.fg.default,
+      color.rows.intent.notice.bg.bold.default,
+      color.rows.intent.notice.bg.muted.default,
+      color.rows.intent.notice.bg.subtle.default,
+      color.rows.intent.notice.border.default,
+    ]}
+  </tbody>
+</table>
+
+All `intent` foregrounds, backgrounds and borders have state variants, eg:
+
+<table className="wds-token-table">
+  <colgroup>
+    <col width="120px" />
+    <col width="100%" />
+    <col width="120px" />
+    <col width="100%" />
+  </colgroup>
+  <thead>{color.headings}</thead>
+  <tbody>
+    {[
+      color.rows.intent.notice.border.hovered,
+      color.rows.intent.notice.border.activated,
+    ]}
+  </tbody>
+</table>
+
+### Core
+
+#### Gray
+
+<table className="wds-token-table">
+  <colgroup>
+    <col width="120px" />
+    <col width="100%" />
+    <col width="120px" />
+    <col width="100%" />
+  </colgroup>
+  <thead>{color.headings}</thead>
+  <tbody>
+    {[
+      color.rows.core.gray.fg.default,
+      color.rows.core.gray.bg.bold.default,
+      color.rows.core.gray.bg.muted.default,
+      color.rows.core.gray.bg.subtle.default,
+      color.rows.core.gray.border.default,
+    ]}
+  </tbody>
+</table>
+
+#### Red
+
+<table className="wds-token-table">
+  <colgroup>
+    <col width="120px" />
+    <col width="100%" />
+    <col width="120px" />
+    <col width="100%" />
+  </colgroup>
+  <thead>{color.headings}</thead>
+  <tbody>
+    {[
+      color.rows.core.red.fg.default,
+      color.rows.core.red.bg.bold.default,
+      color.rows.core.red.bg.muted.default,
+      color.rows.core.red.bg.subtle.default,
+      color.rows.core.red.border.default,
+    ]}
+  </tbody>
+</table>
+
+#### Orange
+
+<table className="wds-token-table">
+  <colgroup>
+    <col width="120px" />
+    <col width="100%" />
+    <col width="120px" />
+    <col width="100%" />
+  </colgroup>
+  <thead>{color.headings}</thead>
+  <tbody>
+    {[
+      color.rows.core.orange.fg.default,
+      color.rows.core.orange.bg.bold.default,
+      color.rows.core.orange.bg.muted.default,
+      color.rows.core.orange.bg.subtle.default,
+      color.rows.core.orange.border.default,
+    ]}
+  </tbody>
+</table>
+
+#### Yellow
+
+<table className="wds-token-table">
+  <colgroup>
+    <col width="120px" />
+    <col width="100%" />
+    <col width="120px" />
+    <col width="100%" />
+  </colgroup>
+  <thead>{color.headings}</thead>
+  <tbody>
+    {[
+      color.rows.core.yellow.fg.default,
+      color.rows.core.yellow.bg.bold.default,
+      color.rows.core.yellow.bg.muted.default,
+      color.rows.core.yellow.bg.subtle.default,
+      color.rows.core.yellow.border.default,
+    ]}
+  </tbody>
+</table>
+
+#### Green
+
+<table className="wds-token-table">
+  <colgroup>
+    <col width="120px" />
+    <col width="100%" />
+    <col width="120px" />
+    <col width="100%" />
+  </colgroup>
+  <thead>{color.headings}</thead>
+  <tbody>
+    {[
+      color.rows.core.green.fg.default,
+      color.rows.core.green.bg.bold.default,
+      color.rows.core.green.bg.muted.default,
+      color.rows.core.green.bg.subtle.default,
+      color.rows.core.green.border.default,
+    ]}
+  </tbody>
+</table>
+
+#### Teal
+
+<table className="wds-token-table">
+  <colgroup>
+    <col width="120px" />
+    <col width="100%" />
+    <col width="120px" />
+    <col width="100%" />
+  </colgroup>
+  <thead>{color.headings}</thead>
+  <tbody>
+    {[
+      color.rows.core.teal.fg.default,
+      color.rows.core.teal.bg.bold.default,
+      color.rows.core.teal.bg.muted.default,
+      color.rows.core.teal.bg.subtle.default,
+      color.rows.core.teal.border.default,
+    ]}
+  </tbody>
+</table>
+
+#### Cyan
+
+<table className="wds-token-table">
+  <colgroup>
+    <col width="120px" />
+    <col width="100%" />
+    <col width="120px" />
+    <col width="100%" />
+  </colgroup>
+  <thead>{color.headings}</thead>
+  <tbody>
+    {[
+      color.rows.core.cyan.fg.default,
+      color.rows.core.cyan.bg.bold.default,
+      color.rows.core.cyan.bg.muted.default,
+      color.rows.core.cyan.bg.subtle.default,
+      color.rows.core.cyan.border.default,
+    ]}
+  </tbody>
+</table>
+
+#### Blue
+
+<table className="wds-token-table">
+  <colgroup>
+    <col width="120px" />
+    <col width="100%" />
+    <col width="120px" />
+    <col width="100%" />
+  </colgroup>
+  <thead>{color.headings}</thead>
+  <tbody>
+    {[
+      color.rows.core.blue.fg.default,
+      color.rows.core.blue.bg.bold.default,
+      color.rows.core.blue.bg.muted.default,
+      color.rows.core.blue.bg.subtle.default,
+      color.rows.core.blue.border.default,
+    ]}
+  </tbody>
+</table>
+
+#### Purple
+
+<table className="wds-token-table">
+  <colgroup>
+    <col width="120px" />
+    <col width="100%" />
+    <col width="120px" />
+    <col width="100%" />
+  </colgroup>
+  <thead>{color.headings}</thead>
+  <tbody>
+    {[
+      color.rows.core.purple.fg.default,
+      color.rows.core.purple.bg.bold.default,
+      color.rows.core.purple.bg.muted.default,
+      color.rows.core.purple.bg.subtle.default,
+      color.rows.core.purple.border.default,
+    ]}
+  </tbody>
+</table>
+
+#### Pink
+
+<table className="wds-token-table">
+  <colgroup>
+    <col width="120px" />
+    <col width="100%" />
+    <col width="120px" />
+    <col width="100%" />
+  </colgroup>
+  <thead>{color.headings}</thead>
+  <tbody>
+    {[
+      color.rows.core.pink.fg.default,
+      color.rows.core.pink.bg.bold.default,
+      color.rows.core.pink.bg.muted.default,
+      color.rows.core.pink.bg.subtle.default,
+      color.rows.core.pink.border.default,
+    ]}
+  </tbody>
+</table>
+
+All `core` foregrounds, backgrounds and borders have state variants, eg:
+
+<table className="wds-token-table">
+  <colgroup>
+    <col width="120px" />
+    <col width="100%" />
+    <col width="120px" />
+    <col width="100%" />
+  </colgroup>
+  <thead>{color.headings}</thead>
+  <tbody>
+    {[
+      color.rows.core.pink.border.hovered,
+      color.rows.core.pink.border.activated,
+    ]}
+  </tbody>
+</table>
+
+### State
+
+<table className="wds-token-table">
+  <colgroup>
+    <col width="120px" />
+    <col width="100%" />
+    <col width="120px" />
+    <col width="100%" />
+  </colgroup>
+  <thead>{color.headings}</thead>
+  <tbody>
+    {[
+      color.rows.state.focus.border,
+      color.rows.state.disabled.fg,
+      color.rows.state.disabled.bg,
+      color.rows.state.disabled.border,
+    ]}
+  </tbody>
+</table>
+
+## Shadow
+
+<table className="wds-token-table">
+  <colgroup>
+    <col width="120px" />
+    <col width="120px" />
+    <col width="100%" />
+    <col width="100%" />
+  </colgroup>
+  <thead>{shadow.headings}</thead>
+  <tbody>{Object.values(shadow.rows)}</tbody>
+</table>

@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net8.0</TargetFrameworks>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <IsPackable>true</IsPackable>
+    <RootNamespace>Willow.SpecFlow</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>Willow.SpecFlow.Xunit</PackageId>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/WillowInc/TwinPlatform</RepositoryUrl>
+    <PackageLicenseExpression></PackageLicenseExpression>
+    <Description>SpecFlow helpers that use xUnit.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="xunit" Version="2.9.0" />
+    <ProjectReference Include="..\Willow.SpecFlow\Willow.SpecFlow.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="TechTalk.SpecFlow" />
+    <Using Include="Xunit" />
+  </ItemGroup>
+
+</Project>

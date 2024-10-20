@@ -1,0 +1,8 @@
+{
+  "extends": "../tsconfig.base",
+  "compilerOptions": {
+    "emitDecoratorMetadata": true,
+    "outDir": "./dist",
+    "jsx": "react-jsx"
+  }
+}

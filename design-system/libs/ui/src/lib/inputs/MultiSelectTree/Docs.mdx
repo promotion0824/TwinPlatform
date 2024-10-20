@@ -1,0 +1,90 @@
+import { Canvas, Meta, Description, Stories } from '@storybook/blocks'
+import { SourceLink } from '../../../storybookUtils'
+import { GroupNames } from '../../utils/constant'
+
+import * as stories from './MultiSelectTree.stories'
+import { MultiSelectTree } from '.'
+
+<Meta of={stories} />
+
+# MultiSelectTree
+
+<Description of={MultiSelectTree} />
+
+<Canvas of={stories.Playground} />
+
+<SourceLink name="MultiSelectTree" groupName={GroupNames.Inputs} />
+
+<Stories includePrimary={false} title="Stories" />
+
+Where
+
+```tsx
+const allItemsNode = {
+  id: 'allCategories',
+  name: 'All Categories',
+}
+```
+
+```tsx
+const treeData = [
+  {
+    id: 'asset',
+    name: 'Asset',
+    children: [
+      {
+        id: 'architecturalAsset',
+        name: 'Architectural Asset',
+      },
+      {
+        id: 'distributionAsset',
+        name: 'Distribution Asset',
+      },
+    ],
+  },
+  {
+    id: 'buildingComponent',
+    name: 'Building Component',
+    children: [
+      {
+        id: 'architecturalBuildingComponent',
+        name: 'Architectural Building Component',
+        children: [
+          {
+            id: 'ceiling',
+            name: 'Ceiling',
+          },
+          {
+            id: 'facade',
+            name: 'Facade',
+          },
+          {
+            id: 'floor',
+            name: 'Floor',
+          },
+          {
+            id: 'wall',
+            name: 'Wall',
+          },
+        ],
+      },
+      {
+        id: 'structuralBuildingComponent',
+        name: 'Structural Building Component',
+      },
+    ],
+  },
+  {
+    id: 'collection',
+    name: 'Collection',
+  },
+  {
+    id: 'component',
+    name: 'Component',
+  },
+  {
+    id: 'space',
+    name: 'Space',
+  },
+]
+```

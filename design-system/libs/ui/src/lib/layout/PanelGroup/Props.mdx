@@ -1,0 +1,39 @@
+import { Description, Meta } from '@storybook/blocks'
+import { ArgTypes } from '../../../docs/_components'
+
+import { Panel, PanelGroup, PanelContent, PanelHeader } from '.'
+import * as stories from './PanelGroup.stories'
+
+<Meta of={stories} />
+
+# Props
+
+## PanelGroup
+
+<Description of={PanelGroup} />
+
+<ArgTypes
+  of={PanelGroup}
+  exclude={[
+    'className',
+    'disablePointerEventsDuringResize',
+    'id',
+    'onLayout',
+    'style',
+    'tagName',
+  ]}
+/>
+
+## Panel
+
+<Description of={Panel} />
+
+<ArgTypes of={Panel} exclude={['id', 'grouped']} />
+
+## PanelContent
+
+Use within `<Panel>`
+
+<Description of={PanelContent} />
+
+<ArgTypes of={PanelContent} />

@@ -1,0 +1,18 @@
+import { Canvas, Meta, Description, Stories } from '@storybook/blocks'
+import { SourceLink } from '../../../storybookUtils'
+import { GroupNames } from '../../utils/constant'
+
+import * as stories from './Flex.stories'
+import { Flex } from '.'
+
+<Meta of={stories} />
+
+# Flex
+
+<Description of={Flex} />
+
+<Canvas of={stories.Playground} />
+
+<SourceLink name="Flex" groupName={GroupNames.Layout} />
+
+<Stories includePrimary={false} title="Stories" />

@@ -1,0 +1,120 @@
+import { Canvas, Meta } from '@storybook/blocks'
+import { DocsWip } from '../_components/DocsWip'
+import { Tip } from '../_components/Tip'
+
+<Meta title="Design System/Color Palette" />
+
+# Color Palette
+
+Our color palette is designed to be robust, flexible and extensible.
+
+<Tip>
+  This documentation page exists to explain the structure and usage of our
+  palette, however the palette itself is not exposed for usage. Colour is
+  applied via [tokens](?path=/docs/theme-theme-tokens--docs), which reference
+  values from the palette. Please see the [Color
+  System](?path=/docs/design-system-color-system--docs) page for information
+  about the structure of our color tokens.
+</Tip>
+
+## Overview
+
+The palette is made up of multiple ramps (objects named after a base hue), each containing multiple steps (color key value pairs named after their perceptual lightness).
+
+<img src="./color-palette-palette.png" alt="color palette" />
+
+### Ramps
+
+There are 10 color ramps that make up the palette.
+
+<img src="./color-palette-colors.png" alt="color palette colors" />
+
+### Steps
+
+Each ramp has 17 steps,
+
+<img src="./color-palette-steps.png" alt="color palette steps" />
+
+## Color ramp usage
+
+Color ramps are intended for different usages:
+
+<img src="./color-palette-color-intent.png" alt="color palette color intent" />
+
+- `gray` - application UI and actions.
+- `purple`, `green`, `orange`, `red` - actions and user feedback.
+- `yellow`, `teal`, `pink`, `cyan` - data visualization and creative use.
+
+## Color step usage
+
+### Neutral backgrounds
+
+Neutral backgrounds are drawn from steps at the bottom of the gray ramp:
+
+<img
+  src="./color-palette-neutral-backgrounds.png"
+  alt="color palette neutral backgrounds"
+/>
+
+- `gray.80` - base background color.
+- `gray.140` - content background color.
+- `gray.180` - accent on base / content.
+
+The rest of the steps are used for state styling.
+
+### Neutral borders
+
+Neutral borders are drawn from steps in the middle of the gray ramp:
+
+<img
+  src="./color-palette-neutral-borders.png"
+  alt="color palette neutral borders"
+/>
+
+- `gray.250` - default borders.
+- `gray.300` - highlighted borders.
+
+### Neutral text
+
+Neutral text colors are drawn from steps at the top of the gray ramp:
+
+<img src="./color-palette-neutral-text.png" alt="color palette neutral text" />
+
+- `gray-900` - highlighted text and icons.
+- `gray-800` - default text and icons.
+- `gray-600` - secondary text and icons.
+- `gray-500` - tertiary text and icons.
+
+### Colored borders
+
+Step `300` is used across all colors for colored borders.
+
+<img
+  src="./color-palette-colored-borders.png"
+  alt="color palette colored borders"
+/>
+
+### Colored backgrounds
+
+Steps `225` and `400` are used across all colors for backgrounds:
+
+<img
+  src="./color-palette-colored-backgrounds.png"
+  alt="color palette colored backgrounds"
+/>
+
+- `400` - high emphasis colored backgrounds.
+- `225` - medium emphasis colored backgrounds.
+
+Subtle colored backgrounds are created by combining the high emphasis step `400` with an opacity. This enables consistent usage across different netural background colors.
+
+<img
+  src="./color-palette-subtle-colored-backgrounds.png"
+  alt="color palette subtle colored backgrounds"
+/>
+
+### Colored text
+
+Step 500 is used across all colors for colored text.
+
+<img src="./color-palette-colored-text.png" alt="color palette colored text" />

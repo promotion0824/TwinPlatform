@@ -1,0 +1,36 @@
+﻿parameters:
+- name: srcProjectDir
+  type: string
+- name: testProjectDir
+  type: string
+- name: sonarQubeProjectName
+  type: string
+
+# Optional
+- name: excludeLibraries
+  type: string
+  default: \"[*]Microsoft.*,[*]System.*\"
+- name: excludePaths
+  type: string
+  default: ""
+- name: preBuildSteps
+  type: stepList
+  default: []
+- name: buildConfiguration
+  type: string
+  default: Release
+
+steps:
+  - template: dotnet-build.yml
+    parameters:
+      buildConfiguration: ${{ parameters.buildConfiguration }}
+      preBuildSteps: ${{ parameters.preBuildSteps }}
+      srcProjectDir: ${{ parameters.srcProjectDir }}
+      testProjectDir: ${{ parameters.testProjectDir }}
+
+  - template: dotnet-test.yml
+    parameters:
+      buildConfiguration: ${{ parameters.buildConfiguration }}
+      srcProjectDir: ${{ parameters.srcProjectDir }}
+      testProjectDir: ${{ parameters.testProjectDir }}
+      excludeLibraries: ${{ parameters.excludeLibraries }}

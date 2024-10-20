@@ -1,0 +1,38 @@
+import { Meta } from '@storybook/blocks'
+import { Tip } from '../_components/Tip'
+
+<Meta title="Theme/Theme Package" />
+
+# Theme package
+
+The `@willowinc/theme` package provides APIs to theme applications and style components.
+
+## Theme provider
+
+`ThemeProvider`, which extends StyledComponents [theme provider](https://styled-components.com/docs/advanced), is used to provide the `theme` object to all descendant components in a tree.
+
+### Usage
+
+We recommend wrapping your application at the root level:
+
+```jsx
+import { ThemeProvider } from '@willowinc/theme'
+
+const appEntry = () => (
+  <ThemeProvider>
+    <App />
+  </ThemeProvider>
+)
+```
+
+## Theme object and design tokens
+
+The `theme` object provided by the the `ThemeProvider` contains our design tokens.
+
+Design tokens are styling variables stored in semantically named key/value pairs. Our tokens provide styles for colors, typography, spacing, shadows and z-index.
+
+Token documentation can be found on the following pages:
+
+- [Global Tokens](?path=/docs/theme-global-tokens--docs)
+- [Base Tokens](?path=/docs/theme-base-tokens--docs)
+- [Theme Tokens](?path=/docs/theme-theme-tokens--docs)

@@ -1,0 +1,22 @@
+import { Canvas, Description, Meta, Stories } from '@storybook/blocks'
+import { SourceLink } from '../../../storybookUtils'
+import { GroupNames } from '../../utils/constant'
+
+import * as stories from './Checkbox.stories'
+import { Checkbox } from './'
+
+<Meta of={stories} />
+
+# Checkbox
+
+<Description of={Checkbox} />
+
+<Canvas of={stories.Playground} />
+
+<SourceLink name="Checkbox" groupName={GroupNames.Inputs} />
+
+<Stories includePrimary={false} title="Variants" />
+
+## Related Components
+
+- For a fieldset containing multiple checkboxes, see the [CheckboxGroup](?path=/docs/components-checkboxgroup--docs) component.

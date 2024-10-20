@@ -1,0 +1,15 @@
+import { Meta } from '@storybook/blocks'
+
+<Meta title="Contributing/Known Issues" />
+
+# Known issues
+
+- Nx will not include optional dependencies in the publishable package.json file if they are not directly used by our UI project.
+  And Nx [does not have support for adding external dependencies](https://github.com/nrwl/nx/discussions/10833). As a
+  workaround [see BUG-77636](https://dev.azure.com/willowdev/Twin%20Platform/_workitems/edit/77636), we have included the optional dependencies
+  as dependencies in the library's package.json (See `libs/ui/package.json`) so these optional dependencies are included as
+  peer dependencies when we build and publish the packages.
+- Locally built packages may generate incorrect type declaration if there were changes to the types due to a bug in
+  [Rollup Plugin](https://github.com/ezolenko/rollup-plugin-typescript2/issues/228). Currently there is no
+  way of disabling the caching. If you have encountered an issue building the packages locally due to this issue,
+  delete the `.node_modules/.cache` and run the build again. For more details, see [BUG-77951](https://dev.azure.com/willowdev/Unified/_workitems/edit/77951).

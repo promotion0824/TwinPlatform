@@ -1,0 +1,22 @@
+import { Canvas, Meta, Description } from '@storybook/blocks'
+import { ArgTypes } from '../../../docs/_components'
+
+import * as stories from './Combobox.stories'
+import { Combobox } from '.'
+import { UseComboboxDiv, ComboboxStoreDiv } from './useCombobox.tsx'
+
+<Meta of={stories} />
+
+# Combobox.useCombobox
+
+<Description of={UseComboboxDiv} />
+
+## Arguments
+
+<ArgTypes excludeStyleProps of={UseComboboxDiv} />
+
+## Combobox Store
+
+The returned store from `useCombobox`.
+
+<ArgTypes excludeStyleProps of={ComboboxStoreDiv} />

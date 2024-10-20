@@ -1,0 +1,120 @@
+import { Meta } from '@storybook/blocks'
+import { ReactComponent as RunTargetSyntax } from './run-target-syntax.svg'
+
+<Meta title="Contributing/Getting Started" />
+
+# Getting Started
+
+- [Installation](#installation)
+- [Introduction to Nx tasks and projects](#introduction-to-nx-tasks-and-projects)
+- [Commands](#commands)
+
+## Installation
+
+To get going, please clone the [TwinPlatform](https://github.com/WillowInc/TwinPlatform) repo:
+
+```bash
+git clone https://github.com/WillowInc/TwinPlatform.git
+cd TwinPlatform/design-system/
+git checkout main
+```
+
+Install all dependencies:
+
+```bash
+npm install
+```
+
+Our project uses the <a href="https://nx.dev/" target="_blank">Nx build system</a>.
+It is recommended to install this globally for convenience:
+
+```bash
+npm install --global nx
+```
+
+If you have not installed `nx` globally, please remember to prefix all nx scripts in these docs with `npx`, eg `npx nx <task>`.
+
+## Introduction to Nx tasks and projects
+
+The below illustration summarises the basic syntax for Nx task scripts:
+
+<RunTargetSyntax />
+
+Target names can be found within `targets` in each `project.json` file, for example <a href="https://github.com/WillowInc/TwinPlatform/blob/main/design-system/libs/ui/project.json" target="_blank">willow-design-system/libs/ui/project.json</a>.
+
+Project names can be found within `projects` in <a href="https://github.com/WillowInc/TwinPlatform/blob/main/design-system/workspace.json" target="_blank">willow-design-system/workspace.json</a>.
+
+Please see the following documentation for more information on Nx tasks:
+
+- <a href="https://nx.dev/core-features/run-tasks" target="_blank">
+    Core Features / Run Tasks
+  </a>
+- <a
+    href="https://nx.dev/react-standalone-tutorial/3-task-running"
+    target="_blank"
+  >
+    React task running tutorial
+  </a>
+
+### Understand your workspace
+
+```
+npx nx graph
+```
+
+This will show you a diagram of the dependencies of your projects.
+
+## Commands
+
+### Start storybook development server
+
+```bash
+npm start
+```
+
+### Start the example react application
+
+```bash
+npx nx serve
+```
+
+### Generate new component with template
+
+- Generate new component in `/ui/src/lib/alpha` by default.
+
+```bash
+npm run generate-component -- ComponentName GroupName
+```
+
+- Add a directory flag to generate new component in another path.
+
+```bash
+npm run generate-component -- ComponentName GroupName --componentDirectory='path/to/componentFolder' --visualTestDirectory='path/to/visualTestFolder'
+```
+
+### Generate changelog
+
+```bash
+# Add a changelog for unreleased version
+npm run changelog
+```
+
+For more details on generating changelog, please refer to [Adding Changelog](/docs/contributing-adding-changelog--docs#add-a-changelog)
+
+### Useful Nx commands
+
+```bash
+# Generate an application.
+# The following example uses @nx/react plugin to generate a react application.
+npx nx g @nx/react:app my-app
+
+# Generate a library.
+# The following example uses @nx/react plugin to generate a react application.
+npx nx g @nx/react:lib my-lib
+
+# Generate a component within a library/application using @nx/react plugin.
+npx nx g @nx/react:component my-component --project=my-app
+
+# Running an app in a dev server. Navigate to http://localhost:4200/.
+npx nx serve my-app
+```

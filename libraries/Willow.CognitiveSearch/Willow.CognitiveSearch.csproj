@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <!-- <IncludeSymbols>true</IncludeSymbols> -->
+    <DebugType>Embedded</DebugType>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>Willow.CognitiveSearch</PackageId>
+    <PackageReadmeFile>readme.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/WillowInc/TwinPlatform</RepositoryUrl>
+    <PackageLicenseExpression></PackageLicenseExpression>
+    <Description>Contains the shared SearchDocumentDto, a SearchService for querying and a base SearchBuilder class for working with Azure Cognitive Search</Description>
+ </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Azure.Search.Documents" Version="11.6.0" />
+    <PackageReference Include="Microsoft.Identity.Web" Version="2.18.2" />
+    <PackageReference Include="Willow.Extensions.Logging" Version="1.2.85" />
+    <PackageReference Include="Willow.HealthChecks" Version="2.2.2734" />
+  </ItemGroup>
+
+  <ItemGroup>
+     <None Include="readme.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+</Project>
