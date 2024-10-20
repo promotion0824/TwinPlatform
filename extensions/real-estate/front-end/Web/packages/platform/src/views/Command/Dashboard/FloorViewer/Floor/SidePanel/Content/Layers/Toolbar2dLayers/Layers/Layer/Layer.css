@@ -1,0 +1,54 @@
+.layer {
+  display: inline-flex;
+  padding-left: 25px;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.visible.layer {
+  background-color: var(--theme-color-neutral-bg-accent-default);
+}
+
+.visibleButton {
+  color: var(--theme-color-neutral-fg-subtle);
+}
+
+.visible .visibleButton {
+  color: var(--theme-color-intent-primary-fg-default);
+}
+
+.visible .visibleButton:focus,
+.visible .visibleButton:hover {
+  color: var(--theme-color-intent-primary-fg-hovered);
+}
+
+.input {
+  background-color: transparent;
+  border-color: transparent;
+  color: inherit;
+  flex: 1;
+  font-family: inherit;
+  font-size: inherit;
+  height: 40px;
+  outline: 0;
+  padding: var(--padding);
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.selected .input {
+  color: var(--white);
+}
+
+.clickable .input:focus,
+.clickable .input:hover {
+  color: var(--white);
+}
+
+.clickable:not(.changeable) .input {
+  cursor: pointer;
+}
+
+.layer.hasVisibilityButton .input {
+  padding-left: var(--padding-small);
+}

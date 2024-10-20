@@ -1,0 +1,13 @@
+.input {
+  background: 0;
+  border: 0;
+  color: var(--light);
+  font-family: inherit;
+  font-size: inherit;
+  letter-spacing: inherit;
+  line-height: var(--line-height);
+  outline: 0;
+  padding: 0;
+  text-transform: inherit;
+  width: auto;
+}

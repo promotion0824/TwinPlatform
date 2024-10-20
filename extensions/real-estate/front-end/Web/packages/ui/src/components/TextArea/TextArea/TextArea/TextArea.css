@@ -1,0 +1,63 @@
+.textArea {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+  border: 1px solid var(--theme-color-neutral-border-default);
+  border-radius: var(--border-radius);
+  display: inline-flex;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.textArea:focus-within {
+  border-color: var(--border-light);
+  box-shadow: 0 0 2px var(--border-light);
+}
+
+.textArea:hover,
+label:hover + .input {
+  background-color: var(--theme-color-neutral-border-default);
+}
+
+.hasValue {
+  background-color: var(--theme-color-neutral-bg-accent-default);
+}
+
+.textArea.textArea.readOnly {
+  background-color: var(--disabled-background);
+  border-color: var(--disabled-background);
+  box-shadow: none;
+}
+
+.textArea.textArea.disabled {
+  background-color: var(--disabled-background);
+  border-color: var(--theme-color-neutral-bg-accent-default);
+}
+
+.hasError,
+.hasError:focus-within,
+.hasError:hover,
+label:hover + .hasError {
+  border-color: var(--red);
+}
+
+.textAreaControl {
+  background: 0;
+  border: 0;
+  color: var(--light);
+  font-family: var(--font);
+  font-size: var(--font-medium);
+  font-weight: var(--font-normal);
+  height: 100%;
+  outline: 0;
+  padding: var(--padding);
+  resize: none;
+  width: 100%;
+}
+
+.textAreaControl::placeholder {
+  color: var(--theme-color-neutral-fg-subtle);
+}
+
+.textArea.disabled .textAreaControl,
+.textArea.disabled .textAreaControl::placeholder {
+  color: var(--disabled);
+}

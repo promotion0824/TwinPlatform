@@ -1,0 +1,19 @@
+.progress,
+.dueByColumn {
+  margin-left: auto;
+}
+
+.dueByColumn {
+  text-align: right;
+}
+
+.dueByDate {
+  color: var(--theme-color-neutral-fg-highlight);
+}
+
+.topPartSeparator {
+  background-color: var(--theme-color-neutral-border-default);
+  height: 2px;
+  margin-top: 16px;
+  width: 100%;
+}

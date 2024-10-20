@@ -1,0 +1,35 @@
+.label {
+  align-items: center;
+  background-color: var(--grey);
+  cursor: pointer;
+  display: flex;
+  height: var(--height-medium-button);
+  outline: 0;
+  padding: 0 var(--padding-large);
+  transition: all 0.2s ease;
+  width: var(--width-medium);
+}
+
+.label:hover,
+.label:focus {
+  color: var(--light);
+}
+
+.labelContent {
+  flex: 1;
+  overflow: hidden;
+  padding-right: var(--padding-small);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.input {
+  display: none;
+}
+
+.readOnly .label.label,
+.disabled .label.label {
+  background-color: var(--disabled-background);
+  color: var(--disabled);
+  cursor: default;
+}

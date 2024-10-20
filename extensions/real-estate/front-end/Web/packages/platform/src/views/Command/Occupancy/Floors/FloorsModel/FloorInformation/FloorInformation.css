@@ -1,0 +1,54 @@
+.floorInformation {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+  border: 1px solid var(--theme-color-neutral-border-default);
+  margin: var(--padding);
+  opacity: 0;
+  position: absolute;
+  transform: translate(-100%, 0);
+  transition: all 0.2s ease;
+}
+
+.isVisible {
+  opacity: 1;
+  transform: none;
+}
+
+.container {
+  color: var(--green-light);
+}
+
+.peopleOverLimit .container {
+  color: var(--red);
+}
+
+.left {
+  background-color: var(--green-background);
+  border-radius: 100%;
+  height: 16px;
+  width: 16px;
+}
+
+.down {
+  background-color: var(--red-background);
+  color: var(--red-light);
+  transform: rotate(-45deg);
+}
+
+.up {
+  transform: rotate(45deg);
+}
+
+.none {
+  visibility: hidden;
+}
+
+.time {
+  color: var(--body);
+}
+
+.error {
+  background-color: var(--red);
+  border-radius: 20px;
+  color: var(--white);
+  display: inline-flex;
+}

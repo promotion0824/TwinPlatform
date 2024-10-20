@@ -1,0 +1,14 @@
+.map {
+  flex: 1;
+  height: 100%;
+  max-width: 100%;
+}
+
+.map canvas {
+  outline: 0;
+}
+
+:global a.mapboxgl-ctrl-logo,
+:global .mapboxgl-ctrl-bottom-right {
+  display: none;
+}

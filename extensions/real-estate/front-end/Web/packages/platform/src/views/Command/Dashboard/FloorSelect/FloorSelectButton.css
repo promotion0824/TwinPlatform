@@ -1,0 +1,18 @@
+.floor {
+  border-bottom: 1px solid var(--theme-color-neutral-border-default);
+  display: block;
+  padding: var(--padding-large);
+  width: 100%;
+}
+
+.colorRed {
+  color: var(--red);
+}
+
+.colorOrange {
+  color: var(--orange);
+}
+
+.colorYellow {
+  color: var(--yellow);
+}

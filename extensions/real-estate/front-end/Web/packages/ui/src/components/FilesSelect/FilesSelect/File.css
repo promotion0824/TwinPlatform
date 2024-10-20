@@ -1,0 +1,17 @@
+.file {
+  border: 1px solid var(--theme-color-neutral-border-default);
+  border-top: 0;
+  position: relative;
+}
+
+.delete {
+  padding: var(--padding-small);
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.readOnly {
+  background-color: var(--disabled-background);
+  border-color: var(--disabled-background);
+}

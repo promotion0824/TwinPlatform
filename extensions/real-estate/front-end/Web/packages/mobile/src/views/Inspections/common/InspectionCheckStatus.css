@@ -1,0 +1,21 @@
+.iconContainer {
+  align-items: center;
+  background-color: var(--new-panel-bright);
+  border-radius: 50%;
+  display: inline-flex;
+  height: 26px;
+  justify-content: center;
+  width: 26px;
+}
+
+.iconContainer.checked {
+  background-color: var(--green-background);
+}
+
+.icon {
+  color: var(--new-text);
+}
+
+.icon.checked {
+  color: var(--green);
+}

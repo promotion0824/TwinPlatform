@@ -1,0 +1,20 @@
+.favoriteButton path {
+  fill: var(--theme-color-neutral-border-default);
+  stroke: var(--theme-color-neutral-border-default);
+  transition: all 0.2s ease;
+}
+
+.favoriteButton:hover path {
+  fill: var(--light);
+  stroke: var(--light);
+}
+
+.favoriteButton.selected path {
+  fill: var(--yellow);
+  stroke: var(--yellow);
+}
+
+.favoriteButton.selected:hover path {
+  fill: var(--yellow-light);
+  stroke: var(--yellow-light);
+}

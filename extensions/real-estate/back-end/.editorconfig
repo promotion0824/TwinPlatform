@@ -1,0 +1,4 @@
+[*.cs]
+
+# XML comments are optional, so do not warn when missing else actual errors can be missed in the console
+dotnet_diagnostic.CS1591.severity = none

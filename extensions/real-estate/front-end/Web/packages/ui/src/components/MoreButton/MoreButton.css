@@ -1,0 +1,40 @@
+.more {
+  background-color: transparent;
+  border: 0;
+  height: 38px;
+  justify-content: center;
+  width: 38px;
+}
+
+.icon.icon.icon {
+  margin-right: 0;
+}
+
+.content {
+  max-height: 320px;
+  max-width: 800px;
+  overflow: auto;
+}
+
+.tooltip::before {
+  border: 9px solid transparent !important;
+  border-bottom-color: #303030;
+  bottom: 100%;
+  content: '';
+  display: block;
+  height: 0;
+  position: absolute;
+  right: 10px;
+  width: 0;
+}
+
+.tooltip::after {
+  border: 8px solid transparent !important;
+  border-color: solid solid #1c1c1c;
+  border-bottom-color: #1c1c1c;
+  bottom: 99%;
+  content: '';
+  height: 0;
+  position: absolute;
+  right: 11px;
+}

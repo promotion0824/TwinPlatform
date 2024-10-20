@@ -1,0 +1,50 @@
+.layoutTab {
+  border-left: 1px solid var(--theme-color-neutral-border-default);
+  font-size: var(--font-large);
+  line-height: var(--line-height);
+  padding: var(--padding-large);
+  pointer-events: all;
+  width: 160px;
+}
+
+.layoutTab:last-child {
+  border-right: 1px solid var(--theme-color-neutral-border-default);
+}
+
+.layoutTab::before {
+  background-color: var(--purple);
+  content: '';
+  height: 4px;
+  left: -1px;
+  position: absolute;
+  right: -1px;
+  top: 0;
+  transform: scale(0);
+  transition: all 0.2s ease;
+}
+
+.disabled .content {
+  opacity: 0.4;
+}
+
+.selected {
+  cursor: default;
+}
+
+.selected::before {
+  transform: none;
+}
+
+.selected::after {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+  bottom: -1px;
+  content: '';
+  height: 1px;
+  left: 0;
+  position: absolute;
+  right: 0;
+}
+
+.subHeader {
+  color: var(--theme-color-neutral-fg-subtle);
+}

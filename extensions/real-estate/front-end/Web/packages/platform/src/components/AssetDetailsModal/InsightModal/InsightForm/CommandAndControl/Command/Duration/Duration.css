@@ -1,0 +1,5 @@
+.textLabel {
+  background-color: var(--theme-color-neutral-bg-accent-default);
+  border: 1px solid var(--theme-color-neutral-border-default);
+  border-left: 0;
+}

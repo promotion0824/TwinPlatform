@@ -1,0 +1,4 @@
+.placeholder {
+  color: var(--theme-color-neutral-fg-subtle);
+  padding-top: var(--padding-x-large);
+}

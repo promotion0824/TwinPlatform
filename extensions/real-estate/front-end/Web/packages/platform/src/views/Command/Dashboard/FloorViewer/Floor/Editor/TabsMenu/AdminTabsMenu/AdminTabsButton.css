@@ -1,0 +1,23 @@
+.tabsButton {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+  height: 100%;
+  width: 40px;
+  z-index: var(--z-header);
+}
+
+.selected {
+  background-color: var(--theme-color-neutral-bg-accent-default);
+}
+
+.selected::before {
+  background-color: var(--theme-color-neutral-bg-accent-default);
+  bottom: -1px;
+  content: '';
+  height: 1px;
+  position: absolute;
+  width: 100%;
+}
+
+.visible {
+  visibility: hidden;
+}

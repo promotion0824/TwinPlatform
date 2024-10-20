@@ -1,0 +1,8 @@
+.optGroup {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+  border-bottom: 1px solid var(--theme-color-neutral-border-default);
+  cursor: default;
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sticky);
+}

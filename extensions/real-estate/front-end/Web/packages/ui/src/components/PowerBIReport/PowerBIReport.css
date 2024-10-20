@@ -1,0 +1,4 @@
+.powerBI > iframe {
+  border: 0;
+  display: flex;
+}

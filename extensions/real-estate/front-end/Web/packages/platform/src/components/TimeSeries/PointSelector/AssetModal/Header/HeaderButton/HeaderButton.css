@@ -1,0 +1,19 @@
+.iconContainer {
+  height: 48px;
+  width: 48px;
+}
+
+.headerButton::before {
+  background: var(--purple);
+  bottom: 0;
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: all 0.2s ease;
+  width: 0;
+}
+
+.isSelected::before {
+  width: 3px;
+}

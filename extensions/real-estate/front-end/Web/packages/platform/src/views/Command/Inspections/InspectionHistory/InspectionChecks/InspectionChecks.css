@@ -1,0 +1,4 @@
+.tabs {
+  border: 0;
+  border-top: 1px solid var(--theme-color-neutral-border-default);
+}

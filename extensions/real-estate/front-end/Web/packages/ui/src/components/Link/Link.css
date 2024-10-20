@@ -1,0 +1,21 @@
+.link {
+  cursor: text;
+  display: inline-block;
+  outline: 0;
+  text-decoration: none;
+  vertical-align: top;
+}
+
+.isClickable {
+  cursor: pointer;
+}
+
+.isClickable:focus {
+  text-decoration: underline;
+}
+
+@media (hover: hover) {
+  .isClickable:hover {
+    text-decoration: underline;
+  }
+}

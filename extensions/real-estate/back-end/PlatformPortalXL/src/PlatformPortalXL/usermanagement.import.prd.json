@@ -1,0 +1,170 @@
+{
+  "AuthorizationAPI": {
+    "Import": {
+      "Permissions": [
+        {
+          "name": "CanViewUsers",
+          "description": "Can view users"
+        },
+        {
+          "name": "CanEditUsers",
+          "description": "Can create, update and delete customer users"
+        },
+        {
+          "name": "CanViewTwins",
+          "description": "Can View twins"
+        },
+        {
+          "name": "CanEditTwins",
+          "description": "Can edit twins"
+        },
+        {
+          "name": "CanViewApps",
+          "description": "Can view apps"
+        },
+        {
+          "name": "CanEditApps",
+          "description": "Can edit apps"
+        },
+        {
+          "name": "CanInstallConnectors",
+          "description": "Can install connectors"
+        },
+        {
+          "name": "CanViewSearchAndExplore",
+          "description": "Can view search and explore"
+        },
+        {
+          "name": "CanActAsCustomerAdmin",
+          "description": "Can assist customer by acting on their behalf as an admin"
+        },
+        {
+          "name": "CanViewPortfolios",
+          "description": "Can view portfolios"
+        },
+        {
+          "name": "CanManagePortfolios",
+          "description": "Can manage portfolios"
+        },
+        {
+          "name": "CanUseFineGrainedAuth",
+          "description": "Can use fine grained authorization"
+        },
+        {
+          "name": "CanViewDashboards",
+          "description": "Can view dashboards"
+        },
+        {
+          "name": "CanViewReports",
+          "description": "Can view reports"
+        },
+        {
+          "name": "CanViewConnectors",
+          "description": "Can view connectors"
+        }
+      ],
+      "Roles": [
+        {
+          "name": "Willow Support",
+          "permissions": [
+            "CanViewApps",
+            "CanViewConnectors",
+            "CanViewDashboards",
+            "CanViewPortfolios",
+            "CanViewReports",
+            "CanViewSearchAndExplore",
+            "CanViewTwins"
+          ]
+        },
+        {
+          "name": "Willow Support Admin",
+          "permissions": [
+            "CanActAsCustomerAdmin",
+            "CanViewApps",
+            "CanEditApps",
+            "CanViewConnectors",
+            "CanInstallConnectors",
+            "CanViewDashboards",
+            "CanViewPortfolios",
+            "CanManagePortfolios",
+            "CanViewReports",
+            "CanViewSearchAndExplore",
+            "CanViewTwins",
+            "CanEditTwins",
+            "CanViewUsers",
+            "CanEditUsers"
+          ]
+        },
+        {
+          "name": "WillowApp Site Viewer",
+          "permissions": [
+            "CanViewApps",
+            "CanViewConnectors",
+            "CanViewDashboards",
+            "CanViewReports",
+            "CanViewSearchAndExplore",
+            "CanViewTwins"
+          ]
+        },
+        {
+          "name": "WillowApp Site Admin",
+          "permissions": [
+            "CanViewApps",
+            "CanEditApps",
+            "CanViewConnectors",
+            "CanInstallConnectors",
+            "CanViewDashboards",
+            "CanViewReports",
+            "CanViewSearchAndExplore",
+            "CanViewTwins",
+            "CanEditTwins",
+            "CanViewUsers",
+            "CanEditUsers"
+          ]
+        },
+        {
+          "name": "WillowApp Portfolio Viewer",
+          "permissions": [
+            "CanViewApps",
+            "CanViewConnectors",
+            "CanViewDashboards",
+            "CanViewPortfolios",
+            "CanViewReports",
+            "CanViewSearchAndExplore",
+            "CanViewTwins"
+          ]
+        },
+        {
+          "name": "WillowApp Portfolio Admin",
+          "permissions": [
+            "CanViewApps",
+            "CanEditApps",
+            "CanViewConnectors",
+            "CanInstallConnectors",
+            "CanViewDashboards",
+            "CanViewPortfolios",
+            "CanManagePortfolios",
+            "CanViewReports",
+            "CanViewSearchAndExplore",
+            "CanViewTwins",
+            "CanEditTwins",
+            "CanViewUsers",
+            "CanEditUsers"
+          ]
+        },
+        {
+          "name": "WillowApp Customer Admin",
+          "permissions": [
+            "CanActAsCustomerAdmin"
+          ]
+        },
+        {
+          "name": "WillowApp Fine Grained Auth User",
+          "permissions": [
+            "CanUseFineGrainedAuth"
+          ]
+        }
+      ]
+    }
+  }
+}

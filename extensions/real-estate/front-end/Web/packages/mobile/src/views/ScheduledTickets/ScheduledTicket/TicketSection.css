@@ -1,0 +1,19 @@
+.section {
+  padding: 15px 20px;
+}
+
+.icon {
+  align-items: center;
+  color: var(--theme-color-neutral-fg-highlight);
+  display: flex;
+  height: 26px;
+  justify-content: center;
+  margin-right: var(--padding);
+  width: 16px;
+}
+
+.title {
+  color: var(--theme-color-neutral-fg-highlight);
+  font-size: var(--font-xx-large);
+  font-weight: var(--font-bold);
+}

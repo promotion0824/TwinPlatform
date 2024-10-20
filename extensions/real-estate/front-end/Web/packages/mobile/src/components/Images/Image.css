@@ -1,0 +1,25 @@
+.container {
+  margin-top: 8px;
+  min-width: 30px;
+  position: relative;
+}
+
+.image {
+  cursor: pointer;
+  max-width: 150px;
+  padding: 0 var(--padding) var(--padding) 0;
+  transition: var(--transition-slow);
+}
+
+.image:hover {
+  transform: scale(1.05);
+}
+
+.close {
+  background-color: var(--grey);
+  border-radius: 50%;
+  position: absolute;
+  right: -6px;
+  top: -6px;
+  z-index: var(--z-header);
+}

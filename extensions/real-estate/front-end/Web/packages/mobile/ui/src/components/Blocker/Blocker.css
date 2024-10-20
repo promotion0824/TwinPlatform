@@ -1,0 +1,13 @@
+.blocker {
+  inset: 0;
+  outline: 0;
+  z-index: var(--z-blocker);
+}
+
+.fixed {
+  position: fixed;
+}
+
+.absolute {
+  position: absolute;
+}

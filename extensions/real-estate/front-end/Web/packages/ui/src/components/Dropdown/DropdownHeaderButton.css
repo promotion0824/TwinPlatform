@@ -1,0 +1,22 @@
+.chevron {
+  color: var(--text);
+}
+
+.open .icon {
+  color: var(--light);
+}
+
+.readOnly .chevron,
+.disabled .chevron {
+  opacity: 0;
+}
+
+.open .chevron {
+  transform: rotate(-180deg);
+}
+
+.open .chevron,
+.dropdownHeaderButton:hover .chevron,
+.dropdownHeaderButton:focus .chevron {
+  color: var(--light);
+}

@@ -1,0 +1,76 @@
+dtmi:com:willowinc:ArchitecturalAsset;1,Architectural Asset,Éléments Architecturaux
+dtmi:com:willowinc:BarrierAsset;1,Barrier Asset,Menuiseries et Tourniquets
+dtmi:com:willowinc:Door;1,Door,Portes
+dtmi:com:willowinc:Equipment;1,Equipment,Équipements
+dtmi:com:willowinc:ConveyanceEquipment;1,Conveyance Equipment,Équipements de Transport
+dtmi:com:willowinc:Elevator;1,Elevator,Ascenseurs
+dtmi:com:willowinc:ElectricalEquipment;1,Electrical Equipment,Équipements Électriques
+dtmi:com:willowinc:ElectricalDistributionEquipment;1,Electrical Distribution Equipment,Distribution Électrique
+dtmi:com:willowinc:Transformer;1,Transformer,Transformateurs
+dtmi:com:willowinc:ElectricalPanelboard;1,Electrical Panelboard,Tableaux Électriques
+dtmi:com:willowinc:Switchboard;1,Switchboard,Tableaux de Distribution
+dtmi:com:willowinc:ElectricalGenerationStorageEquipment;1,Electrical Generation & Storage Equipment,Production & Stockage d'Électricité
+dtmi:com:willowinc:UPS;1,UPS,Onduleurs
+dtmi:com:willowinc:Generator;1,Generator,Générateurs
+dtmi:com:willowinc:FireProtectionEquipment;1,Fire Protection Equipment,Protection Incendie
+dtmi:com:willowinc:FireAlarmEquipment;1,Fire Alarm Equipment,Alarme Incendie
+dtmi:com:willowinc:FireSuppressionEquipment;1,Fire Suppression Equipment,Extinction Incendie
+dtmi:com:willowinc:SprinklerEquipment;1,Sprinkler Equipment,Sprinklage
+dtmi:com:willowinc:FireSprinklerHead;1,Fire Sprinkler Head, Tête de Sprinkler
+dtmi:com:willowinc:FirePump;1,Fire Pump,Pompes Incendie
+dtmi:com:willowinc:JockeyPump;1,Jockey Pump,Pompes Jockey
+dtmi:com:willowinc:FoodserviceEquipment;1,Foodservice Equipment,Restauration
+dtmi:com:willowinc:CookingEquipment;1,Cooking Equipment,Cuisine
+dtmi:com:willowinc:DishwashingEquipment;1,Dishwashing Equipment,Lave Vaisselle
+dtmi:com:willowinc:FoodDisplayEquipment;1,Food Display Equipment,Présentation des Aliments
+dtmi:com:willowinc:FoodStorageEquipment;1,Food Storage Equipment,Stockage des Aliments
+dtmi:com:willowinc:FoodTransportEquipment;1,Food Transport Equipment,Transport des Aliments
+dtmi:com:willowinc:HVACEquipment;1,HVAC Equipment,CVCD
+dtmi:com:willowinc:Chiller;1,Chiller,Groupes Froids
+dtmi:com:willowinc:CoolingTower;1,Cooling Tower,Aéroréfrigérants
+dtmi:com:willowinc:DuctSilencer;1,Duct Silencer,Pièges à son
+dtmi:com:willowinc:HeatExchanger;1,Heat Exchanger,Échangeurs Thermiques
+dtmi:com:willowinc:AirHandlingUnit;1,Air Handling Unit,Centrales de Traitement d'Air
+dtmi:com:willowinc:HVACFan;1,Fan,Ventilateurs
+dtmi:com:willowinc:ExhaustFan;1,Exhaust Fan,Ventilateurs d'Extraction
+dtmi:com:willowinc:HVACPump;1,HVAC Pump,Pompes (CVC)
+dtmi:com:willowinc:HVACTank;1,HVAC Tank,Réservoirs (CVC)
+dtmi:com:willowinc:TerminalUnit;1,Terminal Unit,Unités Terminales
+dtmi:com:willowinc:FanCoilUnit;1,Fan Coil Unit,Ventilo-convecteurs
+dtmi:com:willowinc:VAVBox;1,VAV Box,Boîtes à Débit Variable
+dtmi:com:willowinc:HVACWaterTreatment;1,Water Treatment (HVAC),Traitement de l'Eau (CVC)
+dtmi:com:willowinc:HVACWaterFiltration;1,Water Filtration (HVAC),Filtration d'Eau (CVC)
+dtmi:com:willowinc:ICTEquipment;1,ICT Equipment,Équipements ICT
+dtmi:com:willowinc:Controller;1,Controller,Contrôleurs
+dtmi:com:willowinc:BACnetController;1,BACnet Controller,Contrôleurs BACnet
+dtmi:com:willowinc:SensorEquipment;1,Sensor Equipment,Instruments de Mesure
+dtmi:com:willowinc:LeakDetectorEquipment;1,Leak Detector,Détecteurs de Fuites
+dtmi:com:willowinc:WeatherStationEquipment;1,Weather Station,Station météorologique
+dtmi:com:willowinc:MaterialHandlingEquipment;1,Material Handling Equipment,Manutention
+dtmi:com:willowinc:TransportEquipment;1,Transport Equipment,Transport
+dtmi:com:willowinc:MeterEquipment;1,Meter Equipment,Comptage
+dtmi:com:willowinc:ElectricalMeter;1,Electrical Meter,Compteurs Électriques
+dtmi:com:willowinc:ThermalMeter;1,Thermal Meter,Compteurs Thermiques
+dtmi:com:willowinc:PlumbingEquipment;1,Plumbing Equipment,Plomberie
+dtmi:com:willowinc:PlumbingTank;1,Plumbing Tank,Réservoirs de Plomberie
+dtmi:com:willowinc:PlumbingExpansionTank;1,Expansion Tank,Réservoirs d'Expansion
+dtmi:com:willowinc:PlumbingPump;1,Plumbing Pump,Pompes de Plomberie
+dtmi:com:willowinc:WaterHeater;1,Water Heater,Chauffes-eau
+dtmi:com:willowinc:TankWaterHeater;1,Tank Water Heater,Chauffes-eau à Réservoir
+dtmi:com:willowinc:ElectricTankWaterHeater;1,Electric Tank Water Heater,Chauffes-eau Électriques à Réservoir
+dtmi:com:willowinc:SecurityEquipment;1,Security Equipment,Sécurité
+dtmi:com:willowinc:AccessControlEquipment;1,Access Control Equipment,Contrôle d'Accès
+dtmi:com:willowinc:AccessReader;1,Access Reader,Lecteurs de Badges
+dtmi:com:willowinc:IntercomEntry;1,Intercom Entry,Interphones d'Entrée
+dtmi:com:willowinc:RequestToExitDevice;1,Request to Exit Device,Bouton de Demande de Sortie
+dtmi:com:willowinc:IntrusionDetectionEquipment;1,Intrusion Detection Equipment,Détecteurs d'Intrusion
+dtmi:com:willowinc:VideoSurveillanceEquipment;1,Video Surveillance Equipment,Vidéosurveillance
+dtmi:com:willowinc:VideoSurveillanceCamera;1,Video Surveillance Camera,Caméras de Vidéosurveillance
+dtmi:com:willowinc:VehicleEquipment;1,Vehicle Equipment,Équipements de Véhicules
+dtmi:com:willowinc:VehicleAccessControlEquipment;1,Vehicle Access Control Equipment,Contrôle d'Accès des Véhicules
+dtmi:com:willowinc:Land;1,Land,Terrains
+dtmi:com:willowinc:Level;1,Level,Niveaux
+dtmi:com:willowinc:Building;1,Building,Immeubles
+dtmi:com:willowinc:Room;1,Room,Pièces
+dtmi:com:willowinc:SubBuilding;1,Sub-Building,Sous-immeubles
+dtmi:com:willowinc:BuildingTower;1,Building Tower,Bâtiments

@@ -1,0 +1,17 @@
+.dropdownButton {
+  background-color: var(--theme-color-neutral-bg-base-default);
+  justify-content: flex-start;
+  margin: 0;
+  min-height: 32px;
+  padding: var(--padding);
+}
+
+.dropdownButton:not(.isDisabled):hover {
+  background-color: var(--new-blue);
+  color: var(--theme-color-neutral-fg-highlight);
+}
+
+.isSelected {
+  background-color: var(--theme-color-neutral-bg-accent-default);
+  color: var(--theme-color-neutral-fg-highlight);
+}

@@ -1,0 +1,19 @@
+.countrySelect.countrySelect.countrySelect.countrySelect.countrySelect.countrySelect.countrySelect {
+  border-color: var(--theme-color-neutral-border-default);
+  border-radius: 0;
+  box-shadow: none;
+  height: 74px;
+  padding-left: 25px;
+}
+
+.countrySelect::before {
+  display: none;
+}
+
+.countrySelect > div > svg {
+  margin-right: 10px;
+}
+
+.countrySelect.countrySelect.countrySelect > svg {
+  margin-right: 30px;
+}

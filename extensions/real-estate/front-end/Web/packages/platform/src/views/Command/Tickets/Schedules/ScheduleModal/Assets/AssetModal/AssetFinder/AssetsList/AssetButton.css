@@ -1,0 +1,8 @@
+.button {
+  display: block;
+  width: 100%;
+}
+
+.selected {
+  background-color: var(--theme-color-neutral-bg-accent-default);
+}

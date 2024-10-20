@@ -1,0 +1,8 @@
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: digitaltwincore-components
+  description: A collection for DigitalTwinCore resources
+spec:
+  targets:
+    - ../src/DigitalTwinCore/backstage.yaml

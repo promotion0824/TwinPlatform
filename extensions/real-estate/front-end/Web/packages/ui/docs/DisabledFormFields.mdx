@@ -1,0 +1,50 @@
+import { Canvas, Story } from '@storybook/blocks'
+import * as InputStories from '../src/components/Input/Input.stories'
+import * as NumberInputStories from '../src/components/NumberInput/NumberInput.stories'
+import * as SelectStories from '../src/components/Select/Select.stories'
+import * as TextAreaStories from '../src/components/TextArea/TextArea.stories'
+import * as FilesSelectNewStories from '../src/components/FilesSelectNew/FilesSelectNew.stories'
+import * as DatePickerStories from '../src/components/DatePicker/DatePicker.stories'
+import * as CheckboxStories from '../src/components/Checkbox/Checkbox.stories'
+
+# Disabled form fields
+
+## Empty
+
+<Canvas style={{ backgroundColor: '#242424' }}>
+  <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+    <Story of={NumberInputStories.DisabledEmpty} />
+    <Story of={TextAreaStories.DisabledEmpty} />
+    <Story of={InputStories.DisabledEmpty} />
+    <Story of={SelectStories.DisabledEmpty} />
+    <Story of={FilesSelectNewStories.DisabledEmpty} />
+    <Story of={DatePickerStories.DisabledEmpty} />
+    <Story of={CheckboxStories.DisabledUnchecked} />
+  </div>
+</Canvas>
+
+### Value
+
+<Canvas style={{ backgroundColor: '#242424' }}>
+  <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+    <Story of={NumberInputStories.DisabledValue} />
+    <Story of={TextAreaStories.DisabledValue} />
+    <Story of={InputStories.DisabledValue} />
+    <Story of={SelectStories.DisabledValue} />
+    <Story of={FilesSelectNewStories.DisabledValue} />
+    <Story of={DatePickerStories.DisabledValue} />
+    <Story of={CheckboxStories.DisabledChecked} />
+  </div>
+</Canvas>
+
+## Placeholder
+
+<Canvas style={{ backgroundColor: '#242424' }}>
+  <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+    <Story of={NumberInputStories.DisabledPlaceholder} />
+    <Story of={TextAreaStories.DisabledPlaceholder} />
+    <Story of={InputStories.DisabledPlaceholder} />
+    <Story of={SelectStories.DisabledPlaceholder} />
+    <Story of={DatePickerStories.DisabledPlaceholder} />
+  </div>
+</Canvas>

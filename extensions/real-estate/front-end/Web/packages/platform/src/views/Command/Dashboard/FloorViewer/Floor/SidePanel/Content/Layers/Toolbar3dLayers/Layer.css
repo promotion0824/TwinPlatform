@@ -1,0 +1,40 @@
+.layer {
+  display: inline-flex;
+  padding-left: 25px;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.layer.insideGroup {
+  padding-left: 45px;
+}
+
+.selected.layer {
+  background-color: var(--theme-color-neutral-bg-accent-default);
+}
+
+.input {
+  background-color: transparent;
+  border-color: transparent;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  height: 40px;
+  outline: 0;
+  padding: 0 var(--padding);
+  width: 100%;
+  cursor: pointer;
+}
+
+.selected .eye {
+  color: var(--theme-color-intent-primary-fg-default);
+}
+
+.selected .eye:focus,
+.selected .eye:hover {
+  color: var(--theme-color-intent-primary-fg-hovered);
+}
+
+.assetSelected {
+  box-shadow: 3px 0 0 0 var(--purple) inset;
+}

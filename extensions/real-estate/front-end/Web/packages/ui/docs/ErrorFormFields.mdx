@@ -1,0 +1,50 @@
+import { Canvas, Story } from '@storybook/blocks'
+import * as InputStories from '../src/components/Input/Input.stories'
+import * as NumberInputStories from '../src/components/NumberInput/NumberInput.stories'
+import * as SelectStories from '../src/components/Select/Select.stories'
+import * as TextAreaStories from '../src/components/TextArea/TextArea.stories'
+import * as FilesSelectNewStories from '../src/components/FilesSelectNew/FilesSelectNew.stories'
+import * as DatePickerStories from '../src/components/DatePicker/DatePicker.stories'
+import * as CheckboxStories from '../src/components/Checkbox/Checkbox.stories'
+
+# Error form fields
+
+## Empty
+
+<Canvas style={{ backgroundColor: '#242424' }}>
+  <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+    <Story of={NumberInputStories.ErrorEmpty} />
+    <Story of={TextAreaStories.ErrorEmpty} />
+    <Story of={InputStories.ErrorEmpty} />
+    <Story of={SelectStories.ErrorEmpty} />
+    <Story of={FilesSelectNewStories.ErrorEmpty} />
+    <Story of={DatePickerStories.ErrorEmpty} />
+    <Story of={CheckboxStories.ErrorUnchecked} />
+  </div>
+</Canvas>
+
+### Value
+
+<Canvas style={{ backgroundColor: '#242424' }}>
+  <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+    <Story of={NumberInputStories.ErrorValue} />
+    <Story of={TextAreaStories.ErrorValue} />
+    <Story of={InputStories.ErrorValue} />
+    <Story of={SelectStories.ErrorValue} />
+    <Story of={FilesSelectNewStories.ErrorValue} />
+    <Story of={DatePickerStories.ErrorEmpty} />
+    <Story of={CheckboxStories.ErrorChecked} />
+  </div>
+</Canvas>
+
+## Placeholder
+
+<Canvas style={{ backgroundColor: '#242424' }}>
+  <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+    <Story of={NumberInputStories.ErrorPlaceholder} />
+    <Story of={TextAreaStories.ErrorPlaceholder} />
+    <Story of={InputStories.ErrorPlaceholder} />
+    <Story of={SelectStories.ErrorPlaceholder} />
+    <Story of={DatePickerStories.ErrorEmpty} />
+  </div>
+</Canvas>

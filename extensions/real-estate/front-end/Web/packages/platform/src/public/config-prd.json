@@ -1,0 +1,28 @@
+{
+  "AzureAdB2C": {
+    "Instance": "https://willowidentity.b2clogin.com",
+    "Domain": "willowidentity.onmicrosoft.com",
+    "ClientId": "52eda7d7-9c42-40fa-993f-1a0e5cdc2b9b",
+    "SignUpSignInPolicyId": "B2C_1A_SeamlessMigration_signuporsignin",
+    "PasswordResetPolicyId": "B2C_1A_SeamlessMigration_PasswordReset"
+  },
+  "auth0Audience-au": "https://willowtwin-web",
+  "auth0Domain-au": "willowtwin-prd.au.auth0.com",
+  "auth0ClientID-au": "ET3WDyFlvgl7cxUTiAdvohHQQTipxYVa",
+  "auth0Audience-us": "https://willowtwin-web",
+  "auth0Domain-us": "willowtwin-prd.auth0.com",
+  "auth0ClientID-us": "8Rl4GSH68RxHQ4fxOE2JpNgMC4dVHNoM",
+  "auth0Audience-eu": "https://willowtwin-web",
+  "auth0Domain-eu": "willowtwin-prd.eu.auth0.com",
+  "auth0ClientID-eu": "YS9jAN1q1m4lz9UGNMOC0XO97Umq4ik9",
+  "segmentApiKey": "rmJIamQ3JZEjaBMoGbG8D8x1o4uqqTfb",
+  "mixpanelToken": "7b3b9b37c05e216292d733286f6287d7",
+  "beamerApiKey": "RaMPSfVi24752",
+  "configCatKey": "6V3YCJB5OEyE7q_AZF0cwg/q7-GhXKzx0W19vl-UO3SCw",
+  "applicationInsights": {
+    "au": "InstrumentationKey=e918103f-6dba-4fe8-8efc-58e844de6825;IngestionEndpoint=https://australiaeast-0.in.applicationinsights.azure.com/;LiveEndpoint=https://australiaeast.livediagnostics.monitor.azure.com/",
+    "us": "InstrumentationKey=e49d3c3d-9e37-4395-a3de-aef6ca1db8be;IngestionEndpoint=https://eastus2-0.in.applicationinsights.azure.com/;LiveEndpoint=https://eastus2.livediagnostics.monitor.azure.com/",
+    "eu": "InstrumentationKey=48eab2eb-2f97-4e01-aa16-a4f4d824fc9f;IngestionEndpoint=https://westeurope-3.in.applicationinsights.azure.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.com/"
+  },
+  "roleName": "real-estate-web"
+}

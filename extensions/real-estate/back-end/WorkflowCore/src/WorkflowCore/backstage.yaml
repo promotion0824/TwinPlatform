@@ -1,0 +1,110 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: workflowcore
+  title: WorkflowCore
+  description: WorkflowCore
+  annotations:
+    sonarqube.org/project-key: 'WorkflowCore'
+    dev.azure.com/project-repo: WillowPlatform/WorkflowCore
+  tags:
+    - realestate
+  links:
+    - url: https://dev.azure.com/willowdev/WillowPlatform/_git/WorkflowCore
+      title: Repo
+      icon: web
+    - url: https://dev.azure.com/willowdev/WillowPlatform/_build?definitionId=147
+      title: Pipeline
+      icon: web
+    - url: https://saas.whitesourcesoftware.com/Wss/WSS.html#!project;id=6703311
+      title: Whitesource
+      icon: web
+    - url: https://willow.atlassian.net/wiki/spaces/MAR/overview
+      title: Wiki
+      icon: web
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/e878a98a-20ec-4516-a59d-f393429fe07c/resourceGroups/t3-wil-prd-plt-aue2-app-rsg/providers/Microsoft.Web/sites/wil-prd-plt-aue2-workflowcore/appServices
+      title: AU App Service
+      icon: web
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/e878a98a-20ec-4516-a59d-f393429fe07c/resourceGroups/t3-wil-prd-plt-eu22-app-rsg/providers/Microsoft.Web/sites/wil-prd-plt-eu22-workflowcore/appServices
+      title: US App Service
+      icon: web
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/e878a98a-20ec-4516-a59d-f393429fe07c/resourceGroups/t3-wil-prd-plt-weu2-app-rsg/providers/Microsoft.Web/sites/wil-prd-plt-weu2-workflowcore/appServices
+      title: EU App Service
+      icon: web
+spec:
+  type: service
+  lifecycle: production
+  owner: pne_realestate
+  system: realestate-system
+  dependsOn: 
+    [
+      'resource:AU-RealEstate-Keyvault',
+      'resource:EU-RealEstate-Keyvault',
+      'resource:US-RealEstate-Keyvault',
+      'resource:au-workflowcore-db',
+      'resource:eu-workflowcore-db',
+      'resource:us-workflowcore-db',
+      'component:directorycore',
+      'component:sitecore'
+    ]
+  providesApis:
+    - WorkflowCore-Api
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: au-workflowcore-db
+  links:
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/e878a98a-20ec-4516-a59d-f393429fe07c/resourceGroups/t3-wil-prd-plt-aue2-app-rsg/providers/Microsoft.Sql/servers/wil-prd-plt-aue2-sql/databases/WorkflowCoreDB/overview
+      title: AU WorkflowCore DB
+      icon: web
+  description: AU WorkflowCore DB
+spec:
+  type: sqldb
+  owner: pne_realestate
+  system: realestate-system
+  dependsOn: ['resource:au-realestate-sql-server']
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: us-workflowcore-db
+  links:
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/e878a98a-20ec-4516-a59d-f393429fe07c/resourceGroups/t3-wil-prd-plt-weu2-app-rsg/providers/Microsoft.Sql/servers/wil-prd-plt-weu2-sql/databases/WorkflowCoreDB/overview
+      title: US WorkflowCore DB
+      icon: web
+  description: US WorkflowCore DB
+spec:
+  type: sqldb
+  owner: pne_realestate
+  system: realestate-system
+  dependsOn: ['resource:us-realestate-sql-server']
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: eu-workflowcore-db
+  links:
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/e878a98a-20ec-4516-a59d-f393429fe07c/resourceGroups/t3-wil-prd-plt-eu22-app-rsg/providers/Microsoft.Sql/servers/wil-prd-plt-eu22-sql/databases/WorkflowCoreDB/overview
+      title: EU WorkflowCore DB
+      icon: web
+  description: EU WorkflowCore DB
+spec:
+  type: sqldb
+  owner: pne_realestate
+  system: realestate-system
+  dependsOn: ['resource:eu-realestate-sql-server']
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: WorkflowCore-Api
+  description: WorkflowCore Api
+spec:
+  type: openapi
+  lifecycle: production
+  owner: pne_realestate
+  system: realestate-system
+  definition:
+    $text: https://wil-dev-plt-aue1-WorkflowCore.azurewebsites.net/swagger/v1/swagger.json
+  dependsOn: ['component:WorkflowCore']

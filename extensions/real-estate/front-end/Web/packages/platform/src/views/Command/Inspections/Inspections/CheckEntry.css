@@ -1,0 +1,19 @@
+.wrapper {
+  border: 1px solid var(--theme-color-neutral-border-default);
+  color: var(--text);
+  display: inline-block;
+}
+
+.item {
+  display: inline-block;
+  padding: 6px;
+}
+
+.active {
+  background-color: var(--grey);
+  color: var(--white);
+}
+
+.item:not(:last-child) {
+  border-right: 1px solid var(--theme-color-neutral-border-default);
+}

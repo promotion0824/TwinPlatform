@@ -1,0 +1,24 @@
+.floatingPanelSection {
+  border: 1px solid var(--theme-color-neutral-border-default);
+}
+
+.isOpen .header {
+  border-bottom: 1px solid var(--theme-color-neutral-border-default);
+}
+
+.headerButton {
+  height: 38px;
+}
+
+.chevron {
+  transform: rotate(-90deg);
+  transition: all 0.2s ease;
+}
+
+.isOpen .chevron {
+  transform: none;
+}
+
+.floatingPanelSection:not(.isOpen) .content {
+  display: none;
+}

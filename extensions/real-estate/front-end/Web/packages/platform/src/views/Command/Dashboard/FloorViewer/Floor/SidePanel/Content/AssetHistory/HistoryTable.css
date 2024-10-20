@@ -1,0 +1,13 @@
+.titleCell {
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.activeText {
+  color: var(--light);
+}
+
+.td:first-child {
+  width: 100px;
+}

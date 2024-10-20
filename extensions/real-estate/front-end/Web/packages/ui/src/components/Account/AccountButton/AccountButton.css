@@ -1,0 +1,18 @@
+.accountButton {
+  background-color: var(--white);
+  color: var(--purple);
+  font-size: 15px;
+  font-weight: var(--font-bold);
+  height: 43px;
+  width: 240px;
+}
+
+.accountButton:not(.disabled):focus,
+.accountButton:not(.disabled):hover {
+  background-color: var(--light);
+  color: var(--purple-light);
+}
+
+.loading.loading > div > svg {
+  color: var(--purple);
+}

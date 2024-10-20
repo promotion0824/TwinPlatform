@@ -1,0 +1,27 @@
+.comment {
+  color: var(--widget-title);
+  line-height: 1.5;
+  margin: var(--padding) 0;
+}
+
+.detail {
+  margin: 0 0 0 var(--padding-large);
+}
+
+.username {
+  color: var(--theme-color-neutral-fg-highlight);
+  font-size: var(--font-extra-large);
+  font-weight: var(--font-medium-weight);
+  padding-right: var(--padding-large);
+}
+
+.date {
+  font-size: var(--font-medium);
+  text-align: left;
+}
+
+.content {
+  font-size: var(--font-h2);
+  margin: var(--padding-large) 0;
+  white-space: pre-line;
+}

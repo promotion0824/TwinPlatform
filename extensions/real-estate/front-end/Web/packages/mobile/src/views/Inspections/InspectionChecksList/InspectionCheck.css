@@ -1,0 +1,43 @@
+.inspectionCheck {
+  border-bottom: 1px solid var(--theme-color-neutral-border-default);
+}
+
+.row {
+  width: 100%;
+}
+
+.header {
+  height: 58px;
+  padding: 0 var(--padding-large);
+  width: 100%;
+}
+
+.row:last-child > * {
+  border-bottom: 0;
+}
+
+.icon {
+  height: 28px;
+  transition: var(--transition-out);
+  width: 28px;
+}
+
+.isOpen .icon {
+  transform: rotate(-180deg);
+}
+
+.overdueText {
+  color: var(--red);
+  text-transform: capitalize;
+}
+
+.completedText {
+  color: var(--green);
+  text-transform: capitalize;
+}
+
+.inputSuffix {
+  margin: auto;
+  padding-right: var(--padding);
+  vertical-align: middle;
+}

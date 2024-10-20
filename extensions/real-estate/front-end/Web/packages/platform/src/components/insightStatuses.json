@@ -1,0 +1,22 @@
+[
+  {
+    "id": "open",
+    "name": "Open",
+    "color": "yellow"
+  },
+  {
+    "id": "inProgress",
+    "name": "In progress",
+    "color": "green"
+  },
+  {
+    "id": "acknowledged",
+    "name": "Acknowledged",
+    "color": "green"
+  },
+  {
+    "id": "closed",
+    "name": "Closed",
+    "color": "green"
+  }
+]

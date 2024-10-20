@@ -1,0 +1,22 @@
+.zone {
+  cursor: pointer;
+}
+
+.zone.selected {
+  fill-opacity: 0.8;
+}
+
+.zone.move {
+  cursor: move;
+}
+
+.point {
+  cursor: pointer;
+  fill: var(--purple);
+}
+
+.point.selected {
+  fill-opacity: 0.9;
+  stroke: var(--purple);
+  stroke-width: 0.5;
+}

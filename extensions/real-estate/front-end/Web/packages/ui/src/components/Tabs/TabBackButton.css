@@ -1,0 +1,5 @@
+.tabBackButton {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+  border-bottom: 0;
+  border-right: 1px solid var(--theme-color-neutral-border-default);
+}

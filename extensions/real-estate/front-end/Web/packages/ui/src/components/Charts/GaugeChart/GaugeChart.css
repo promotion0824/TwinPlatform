@@ -1,0 +1,130 @@
+@keyframes enter {
+  0% {
+    transform: rotate(-180deg);
+  }
+}
+
+:root {
+  --width: 24px;
+  --outer-ring: 2px;
+}
+
+.ctn {
+  margin-top: auto;
+}
+
+.sizeLarge {
+  --width: 32px;
+  --outer-ring: 4px;
+}
+
+.arcValue {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.track {
+  border: var(--width) solid #303030;
+  border-bottom: 0;
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+  inset: 0;
+  position: absolute;
+}
+
+.trackValue {
+  animation: enter 0.5s ease;
+  inset: 0;
+  position: absolute;
+  transform: rotate(-180deg);
+  transform-origin: center bottom;
+  transition: all 0.5s ease;
+}
+
+.trackValueBackground {
+  border: var(--width) solid;
+  border-bottom: 0;
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+  inset: 0;
+  position: absolute;
+}
+
+.trackValueBorder {
+  border: var(--outer-ring) solid;
+  border-bottom: 0;
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+  inset: 0 0 -1px;
+  overflow: hidden;
+  position: absolute;
+}
+
+.mask {
+  background: var(--theme-color-neutral-bg-panel-default);
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+  inset: var(--width) var(--width) 0 var(--width);
+  overflow: hidden;
+  position: absolute;
+}
+
+.text {
+  font-weight: var(--font-thin);
+  position: relative;
+  top: var(--width);
+}
+
+.noDataText {
+  bottom: 40px;
+  color: var(--text);
+  position: absolute;
+  z-index: 1;
+}
+
+.leftLabel {
+  color: var(--grey-metric);
+  font-size: var(--font-small);
+  margin: auto 8px 0 0;
+  min-width: 28px;
+  text-align: right;
+}
+
+.rightLabel {
+  color: var(--grey-metric);
+  font-size: var(--font-small);
+  margin: auto 0 0 8px;
+  min-width: 28px;
+}
+
+.colorGreen .trackValueBackground {
+  border-color: #304e31;
+}
+
+.colorGreen .trackValueBorder {
+  border-color: var(--green);
+}
+
+.colorYellow .trackValueBackground {
+  border-color: var(--yellow-background);
+}
+
+.colorYellow .trackValueBorder {
+  border-color: var(--yellow);
+}
+
+.colorOrange .trackValueBackground {
+  border-color: var(--orange-background);
+}
+
+.colorOrange .trackValueBorder {
+  border-color: var(--orange);
+}
+
+.colorRed .trackValueBackground {
+  border-color: var(--red-background);
+}
+
+.colorRed .trackValueBorder {
+  border-color: var(--red);
+}

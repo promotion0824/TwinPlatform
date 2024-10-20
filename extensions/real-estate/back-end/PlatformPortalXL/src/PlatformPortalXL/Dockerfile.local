@@ -1,0 +1,50 @@
+﻿FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
+WORKDIR /app
+ENV ASPNETCORE_URLS http://*:5008
+EXPOSE 5008
+ADD https://aka.ms/InstallAzureCLIDeb /tmp
+RUN bash /tmp/InstallAzureCLIDeb && rm /tmp/InstallAzureCLIDeb
+RUN adduser -u 1000 --disabled-password --gecos "" appuser && chown -R appuser /app
+
+
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+## https://github.com/dotnet/dotnet-docker/blob/main/documentation/scenarios/nuget-credentials.md
+RUN curl -L https://raw.githubusercontent.com/Microsoft/artifacts-credprovider/master/helpers/installcredprovider.sh  | sh
+
+WORKDIR /build
+COPY ["Directory.Build.props", "/build"]
+COPY ["nuget.config", "/build"]
+COPY ["PlatformPortalXL.sln", "/build"]
+COPY ["src/PlatformPortalXL/PlatformPortalXL.csproj", "/build/src/PlatformPortalXL/"]
+COPY ["src/KPI/KPI.Repository/KPI.Repository.csproj", "/build/src/KPI/KPI.Repository/"]
+COPY ["src/KPI/KPI.Service/KPI.Service.csproj", "/build/src/KPI/KPI.Service/"]
+COPY ["src/Platform.Users/Willow.Platform.Users.csproj", "/build/src/Platform.Users/"]
+COPY ["src/Willow.Data.Rest/Willow.Data.Rest.csproj", "/build/src/Willow.Data.Rest/"]
+COPY ["src/Willow.Management/Willow.Management.csproj", "/build/src/Willow.Management/"]
+COPY ["src/Willow.Platform.Models/Willow.Platform.Models.csproj", "/build/src/Willow.Platform.Models/"]
+COPY ["src/Willow.Platform.Localization/Willow.Platform.Localization.csproj", "/build/src/Willow.Platform.Localization/"]
+COPY ["src/Willow.Workflow/Willow.Workflow.csproj", "/build/src/Willow.Workflow/"]
+COPY ["src/PlatformPortalXL/packages.lock.json", "/build/src/PlatformPortalXL/"]
+COPY ["src/KPI/KPI.Repository/packages.lock.json", "/build/src/KPI/KPI.Repository/"]
+COPY ["src/KPI/KPI.Service/packages.lock.json", "/build/src/KPI/KPI.Service/"]
+COPY ["src/Platform.Users/packages.lock.json", "/build/src/Platform.Users/"]
+COPY ["src/Willow.Data.Rest/packages.lock.json", "/build/src/Willow.Data.Rest/"]
+COPY ["src/Willow.Management/packages.lock.json", "/build/src/Willow.Management/"]
+COPY ["src/Willow.Platform.Models/packages.lock.json", "/build/src/Willow.Platform.Models/"]
+COPY ["src/Willow.Platform.Localization/packages.lock.json", "/build/src/Willow.Platform.Localization/"]
+COPY ["src/Willow.Workflow/packages.lock.json", "/build/src/Willow.Workflow/"]
+
+ARG FEED_ACCESSTOKEN
+ENV VSS_NUGET_EXTERNAL_FEED_ENDPOINTS="{\"endpointCredentials\": [{\"endpoint\":\"https://pkgs.dev.azure.com/willowdev/WillowLib/_packaging/WillowLib/nuget/v3/index.json\", \"username\":\"docker\", \"password\":\"${FEED_ACCESSTOKEN}\"}]}"
+
+RUN dotnet restore src/PlatformPortalXL
+COPY . .
+RUN dotnet build src/PlatformPortalXL -c Release -o /app/build
+
+FROM build AS publish
+RUN dotnet publish src/PlatformPortalXL -c Release -o /app/publish
+FROM base AS final
+WORKDIR /app
+COPY --chown=1000:1000 --from=publish /app/publish .
+USER appuser
+ENTRYPOINT ["dotnet", "PlatformPortalXL.dll"]

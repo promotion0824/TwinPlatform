@@ -1,0 +1,64 @@
+.textArea {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+  border: 1px solid var(--theme-color-neutral-border-default);
+  border-radius: var(--border-radius);
+  cursor: text;
+  display: flex;
+  overflow: hidden;
+}
+
+.disabled {
+  background-color: var(--theme-color-state-disabled-bg);
+  border-color: var(--theme-color-state-disabled-border);
+  color: var(--theme-color-state-disabled-fg);
+  cursor: default;
+}
+
+.vertical {
+  flex-flow: column;
+}
+
+.hasValue:not(:focus-within),
+.readOnly {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+}
+
+.hasError {
+  border-color: var(--red);
+}
+
+.label {
+  color: var(--grey);
+  overflow: hidden;
+  padding: var(--padding-small);
+  padding-bottom: 0;
+  padding-top: 4px;
+  text-overflow: ellipsis;
+}
+
+.horizontal .label {
+  white-space: nowrap;
+  width: 90px;
+}
+
+.control {
+  background: 0;
+  border: 0;
+  color: var(--theme-color-neutral-fg-highlight);
+  flex: 1;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  outline: 0;
+  padding: var(--padding);
+  resize: none;
+}
+
+.horizontal .control {
+  margin-top: -1px;
+}
+
+.textArea:not(.disabled, .readOnly):hover .label,
+.textArea:not(.disabled, .readOnly):focus-within .label {
+  color: var(--light);
+}

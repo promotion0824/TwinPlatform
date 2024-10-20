@@ -1,0 +1,12 @@
+.label {
+  position: absolute;
+  top: 0;
+  transform: translate(calc(-100% - var(--padding)), -50%);
+}
+
+.yLabel {
+  position: absolute;
+  top: 50%;
+  transform: rotate(-90deg) translate(-50%, -100%) translate(0, -76px);
+  transform-origin: top left;
+}

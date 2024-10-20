@@ -1,0 +1,25 @@
+{
+  "AzureAdB2C": {
+    "Instance": "https://willowdevb2c.b2clogin.com",
+    "Domain": "willowdevb2c.onmicrosoft.com",
+    "ClientId": "24368ed6-d050-4852-9f79-ef3838e6e8e5",
+    "SignUpSignInPolicyId": "B2C_1A_SeamlessMigration_signuporsignin",
+    "PasswordResetPolicyId": "B2C_1A_SeamlessMigration_PasswordReset"
+  },
+  "auth0Audience-au": "https://willowtwin-web-dev",
+  "auth0Domain-au": "willowtwin-dev.au.auth0.com",
+  "auth0ClientID-au": "3xzwXNhdJBrL1ML4S732g9EIeK44QIQr",
+  "auth0Audience-us": "https://willowtwin-web-dev",
+  "auth0Domain-us": "willowtwin-dev.auth0.com",
+  "auth0ClientID-us": "WkuR2TGQOH13bOcRbSrpGlF3ZgcksLiB",
+  "segmentApiKey": "mhLeBzixVQ67p5I5xYOSqI6XmRLpGtju",
+  "beamerApiKey": "FQzrNUtD24912",
+  "configCatKey": "6V3YCJB5OEyE7q_AZF0cwg/u5YOiy_2-UKCiO28RZ9faQ",
+  "applicationInsights": {
+    "au": "InstrumentationKey=86db14f7-a3ff-410c-bf2c-61c275b34e0f;IngestionEndpoint=https://australiaeast-0.in.applicationinsights.azure.com/;LiveEndpoint=https://australiaeast.livediagnostics.monitor.azure.com/",
+    "us": "InstrumentationKey=0fc02f2a-4c25-4b3d-9231-26bb4725c853;IngestionEndpoint=https://eastus2-0.in.applicationinsights.azure.com/;LiveEndpoint=https://eastus2.livediagnostics.monitor.azure.com/",
+    "eu": "InstrumentationKey=86db14f7-a3ff-410c-bf2c-61c275b34e0f;IngestionEndpoint=https://australiaeast-0.in.applicationinsights.azure.com/;LiveEndpoint=https://australiaeast.livediagnostics.monitor.azure.com/"
+  },
+  "roleName": "real-estate-web"
+
+}

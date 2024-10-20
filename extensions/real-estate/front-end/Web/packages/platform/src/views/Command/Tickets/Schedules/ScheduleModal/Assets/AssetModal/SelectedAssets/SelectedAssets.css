@@ -1,0 +1,8 @@
+.selectedAssets {
+  border-left: 1px solid var(--theme-color-neutral-border-default);
+}
+
+.asset {
+  background-color: var(--theme-color-neutral-bg-accent-default);
+  border: 1px solid var(--theme-color-neutral-border-default);
+}

@@ -1,0 +1,6 @@
+{
+    "sonarlint.connectedMode.project": {
+        "connectionId": "https-sq-willowinc-com",
+        "projectKey": "PlatformPortalXL"
+    }
+}

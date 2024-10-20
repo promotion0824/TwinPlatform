@@ -1,0 +1,51 @@
+.tooltip {
+  background-color: var(--tooltip);
+  border: 1px solid var(--theme-color-neutral-border-default);
+  border-radius: var(--border-radius-large);
+  box-shadow: var(--shadow);
+  margin-top: -8px;
+  pointer-events: initial;
+  position: absolute;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.isClickable {
+  cursor: pointer;
+}
+
+.isSelected {
+  background-color: var(--tooltip-dark);
+  border-color: var(--theme-color-neutral-border-default);
+  z-index: var(--z-header);
+}
+
+.tooltip::before,
+.tooltip::after {
+  border-style: solid;
+  bottom: 0;
+  content: '';
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, 100%);
+}
+
+.tooltip::before {
+  border-color: var(--theme-color-neutral-border-default) transparent
+    transparent transparent;
+  border-width: 8px 8px 0;
+}
+
+.tooltip::after {
+  border-color: var(--tooltip) transparent transparent transparent;
+  border-width: 7px 7px 0;
+}
+
+.isSelected::before {
+  border-color: var(--theme-color-neutral-border-default) transparent
+    transparent transparent;
+}
+
+.isSelected::after {
+  border-color: var(--tooltip-dark) transparent transparent transparent;
+}

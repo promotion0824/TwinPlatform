@@ -1,0 +1,152 @@
+.table {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+  overflow: auto;
+}
+
+.tableControl {
+  display: table;
+  display: grid;
+  position: relative;
+}
+
+.head {
+  display: contents;
+}
+
+.body {
+  display: contents;
+}
+
+.row {
+  display: contents;
+}
+
+.headHidden {
+  display: none;
+}
+
+.th,
+.td {
+  align-items: center;
+  background-color: var(--theme-color-neutral-bg-panel-default);
+  border-bottom: 1px solid var(--theme-color-neutral-border-default);
+  display: flex;
+  min-height: 48px;
+  padding: var(--padding-large) var(--padding);
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.th {
+  box-shadow: var(--shadow-bottom-small);
+  padding: 0 var(--padding);
+  position: sticky;
+  top: 0;
+  z-index: var(--z-header);
+}
+
+.clickable {
+  cursor: pointer;
+  user-select: none;
+}
+
+.clickable:hover {
+  color: var(--white);
+}
+
+.td {
+  overflow: hidden;
+  position: relative;
+}
+
+.typeFill {
+  padding: 0 var(--padding);
+}
+
+.th:first-child,
+.td:first-child {
+  padding-left: var(--padding-large);
+}
+
+.th:last-child,
+.td:last-child {
+  padding-right: var(--padding-large);
+}
+
+.typeNone.typeNone {
+  padding: 0;
+}
+
+.alignLeft {
+  justify-content: flex-start;
+}
+
+.alignCenter {
+  justify-content: center;
+}
+
+.alignRight {
+  justify-content: flex-end;
+}
+
+.alignTop {
+  align-items: flex-start;
+}
+
+.alignMiddle {
+  align-items: center;
+}
+
+.alignBottom {
+  align-items: flex-end;
+}
+
+.selected .td {
+  color: var(--light);
+}
+
+.selected .td,
+.clickable:focus .td,
+.clickable:hover .td {
+  background-color: var(--theme-color-neutral-bg-accent-default);
+  cursor: pointer;
+}
+
+.td:first-child::before {
+  background-color: var(--purple);
+  bottom: 0;
+  content: '';
+  left: 0;
+  position: absolute;
+  top: 0;
+  transform: scale(0);
+  transform-origin: left;
+  transition: all 0.2s ease;
+  width: 4px;
+}
+
+.hasColor .td:first-child::before {
+  background-color: var(--row-color);
+  transform: none;
+}
+
+.selected .td:first-child::before {
+  transform: none;
+}
+
+.headCellContent {
+  height: 47px;
+}
+
+.headTypeHeader {
+  border-bottom: 0;
+  justify-content: center;
+  min-height: 30px;
+}
+
+.headTypeHeader .headCellContent {
+  height: 30px;
+  justify-content: flex-end;
+}

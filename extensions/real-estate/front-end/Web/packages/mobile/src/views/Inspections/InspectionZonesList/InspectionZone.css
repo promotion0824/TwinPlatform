@@ -1,0 +1,44 @@
+.zone {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+  border-bottom: 1px solid var(--theme-color-neutral-border-default);
+  min-height: 36px;
+  padding: var(--padding) var(--padding-large);
+}
+
+.link,
+.link:hover,
+.link:visited {
+  color: inherit;
+  text-decoration: none;
+}
+
+.name {
+  color: var(--theme-color-neutral-fg-highlight);
+  font-size: var(--font-large);
+}
+
+.icon {
+  height: 28px;
+  transform: rotate(-90deg);
+  width: 28px;
+}
+
+.info {
+  padding-left: var(--padding);
+}
+
+.text {
+  text-transform: capitalize;
+}
+
+.text.overdue {
+  color: var(--red);
+}
+
+.text.completed {
+  color: var(--green);
+}
+
+.redBar {
+  border-color: var(--red) !important;
+}

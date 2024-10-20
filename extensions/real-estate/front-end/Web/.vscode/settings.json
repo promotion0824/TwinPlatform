@@ -1,0 +1,28 @@
+{
+  "cSpell.words": [
+    "dtmi",
+    "immer",
+    "mapbox",
+    "rollup",
+    "rollups",
+    "scopeless",
+    "snackbars",
+    "typeahead",
+    "uuidv4",
+    "weatherbit",
+    "zustand"
+  ],
+  "cSpell.language": "en, en-GB, en-US",
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[nix]": {
+    "editor.defaultFormatter": "jnoortheen.nix-ide"
+  },
+  "sonarlint.connectedMode.project": {
+    "connectionId": "https-sq-willowinc-com",
+    "projectKey": "WP-PlatformWeb"
+  },
+  "editor.codeActionsOnSave": {
+    "source.sortImports": "explicit"
+  }
+}

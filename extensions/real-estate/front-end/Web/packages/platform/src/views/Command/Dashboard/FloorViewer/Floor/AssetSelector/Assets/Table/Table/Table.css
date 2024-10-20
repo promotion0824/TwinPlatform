@@ -1,0 +1,107 @@
+.table {
+  display: flex;
+  height: 100%;
+  overflow: auto;
+}
+
+.tableComponent {
+  border-spacing: 0;
+  table-layout: fixed;
+  width: 100%;
+}
+
+.row {
+  border-bottom: 1px solid var(--theme-color-neutral-border-default);
+}
+
+.cell {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+  border-bottom: 1px solid var(--theme-color-neutral-border-default);
+  min-height: 48px;
+  overflow: hidden;
+  padding: var(--padding-large);
+  position: relative;
+  text-overflow: ellipsis;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.cell:first-child::before,
+.cell:first-child::after {
+  background-color: var(--purple);
+  bottom: 0;
+  content: '';
+  left: 0;
+  position: absolute;
+  top: 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: all 0.2s ease;
+  width: 4px;
+}
+
+.hasColor .cell:first-child::before {
+  background-color: var(--row-color);
+  transform: none;
+}
+
+.isSelected:not(.selectedTypeBasic, .hasColor) .cell:first-child::after {
+  transform: none;
+}
+
+.headCell {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+  box-shadow: 0 2px 0 rgb(0 0 0 / 20%);
+  font-size: var(--font-tiny);
+  font-weight: var(--font-medium);
+  line-height: var(--line-height);
+  padding: 0;
+  position: sticky;
+  text-align: left;
+  text-transform: uppercase;
+  top: 0;
+  user-select: none;
+  z-index: var(--z-header);
+}
+
+.headCellContent {
+  min-height: 48px;
+  padding: 0 var(--padding-large);
+}
+
+.typeFill {
+  padding: 0 var(--padding-large);
+}
+
+.typeNone {
+  padding: 0;
+}
+
+.typeWide {
+  padding: 0;
+}
+
+.isHidden {
+  visibility: collapse;
+}
+
+.isClickable .cell {
+  cursor: pointer;
+}
+
+.isSelected .cell,
+.isClickable:hover .cell {
+  background: var(--theme-color-neutral-bg-panel-activated);
+}
+
+.isSelected {
+  color: var(--light);
+}
+
+.cellIsClickable {
+  cursor: pointer;
+}
+
+.cellIsClickable:hover {
+  color: var(--light);
+}

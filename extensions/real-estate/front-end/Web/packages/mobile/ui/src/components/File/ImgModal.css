@@ -1,0 +1,17 @@
+.modal {
+  min-height: 200px;
+  min-width: 200px;
+}
+
+.content {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.img {
+  display: block;
+  max-height: calc(100vh - 62px);
+  max-width: calc(100vw - 62px);
+  object-fit: contain;
+}

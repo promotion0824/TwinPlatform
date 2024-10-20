@@ -1,0 +1,8 @@
+.empty {
+  padding: var(--padding-large);
+}
+
+.message {
+  font-size: var(--font-large);
+  padding-left: var(--padding-small);
+}

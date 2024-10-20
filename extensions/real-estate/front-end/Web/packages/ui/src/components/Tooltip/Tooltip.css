@@ -1,0 +1,211 @@
+@keyframes enter-top {
+  0% {
+    opacity: 0.5;
+    transform: translate(0, -20px);
+  }
+}
+
+@keyframes enter-bottom {
+  0% {
+    opacity: 0.5;
+    transform: translate(0, 20px);
+  }
+}
+
+@keyframes enter-left {
+  0% {
+    opacity: 0.5;
+    transform: translate(-20px, 0);
+  }
+}
+
+@keyframes enter-right {
+  0% {
+    opacity: 0.5;
+    transform: translate(20px, 0);
+  }
+}
+
+.tooltip {
+  pointer-events: none;
+  position: fixed;
+}
+
+.top.animate {
+  animation: enter-top 0.2s ease;
+}
+
+.bottom.animate {
+  animation: enter-bottom 0.2s ease;
+}
+
+.left.animate {
+  animation: enter-left 0.2s ease;
+}
+
+.right.animate {
+  animation: enter-right 0.2s ease;
+}
+
+.isTransparent {
+  opacity: 0.85;
+}
+
+.content {
+  background-color: var(--tooltip);
+  border: 1px solid var(--theme-color-neutral-border-default);
+  border-radius: var(--border-radius-large);
+  box-shadow: var(--shadow);
+  padding: var(--padding);
+  position: relative;
+
+  /* property is required to interpret "\n" as line break and display multi-line text */
+  white-space: pre-line;
+}
+
+.content::before,
+.content::after {
+  border-style: solid;
+  position: absolute;
+}
+
+.showPointer .content::before,
+.showPointer .content::after {
+  content: '';
+}
+
+.top .content::before,
+.top .content::after {
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 100%);
+}
+
+.top .content::before {
+  border-color: var(--theme-color-neutral-border-default) transparent
+    transparent transparent;
+  border-width: 8px 8px 0;
+}
+
+.top .content::after {
+  border-color: var(--tooltip) transparent transparent transparent;
+  border-width: 7px 7px 0;
+}
+
+/* .bottom .content {
+  border: 1px solid yellow;
+} */
+
+.bottomRight .content {
+  max-width: 330px;
+  transform: translateX(45%);
+}
+
+.bottomLeft .content {
+  max-width: 330px;
+  transform: translateX(-40%);
+}
+
+.buildingListView .content {
+  right: 2.75rem;
+  top: -0.75rem;
+}
+
+.performanceView .content {
+  right: 0.5rem;
+  top: -0.75rem;
+}
+
+.bottom .content::before,
+.bottom .content::after {
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, -100%);
+}
+
+.bottomRight .content::before,
+.bottomRight .content::after {
+  left: 5%;
+  top: 0;
+  transform: translate(-50%, -100%);
+}
+
+.performanceView .content::before,
+.buildingListView .content::before,
+.bottomLeft .content::before {
+  right: 0%;
+  top: 0;
+  transform: translate(-40%, -100%);
+}
+
+.performanceView .content::after,
+.buildingListView .content::after,
+.bottomLeft .content::after {
+  right: 0%;
+  top: 0;
+  transform: translate(-50%, -100%);
+}
+
+.bottom .content::before {
+  border-color: transparent transparent
+    var(--theme-color-neutral-border-default) transparent;
+  border-width: 0 8px 8px;
+}
+
+.bottom .content::after {
+  border-color: transparent transparent var(--tooltip) transparent;
+  border-width: 0 7px 7px;
+}
+
+.performanceView .content::before,
+.buildingListView .content::before,
+.bottomRight .content::before,
+.bottomLeft .content::before {
+  border-color: transparent transparent
+    var(--theme-color-neutral-border-default) transparent;
+  border-width: 0 8px 8px;
+}
+
+.performanceView .content::after,
+.buildingListView .content::after,
+.bottomRight .content::after,
+.bottomLeft .content::after {
+  border-color: transparent transparent var(--tooltip) transparent;
+  border-width: 0 7px 7px;
+}
+
+.left .content::before,
+.left .content::after {
+  right: 0;
+  top: 50%;
+  transform: translate(100%, -50%);
+}
+
+.left .content::before {
+  border-color: transparent transparent transparent
+    var(--theme-color-neutral-border-default);
+  border-width: 8px 0 8px 8px;
+}
+
+.left .content::after {
+  border-color: transparent transparent transparent var(--tooltip);
+  border-width: 7px 0 7px 7px;
+}
+
+.right .content::before,
+.right .content::after {
+  left: 0;
+  top: 50%;
+  transform: translate(-100%, -50%);
+}
+
+.right .content::before {
+  border-color: transparent var(--theme-color-neutral-border-default)
+    transparent transparent;
+  border-width: 8px 8px 8px 0;
+}
+
+.right .content::after {
+  border-color: transparent var(--tooltip) transparent transparent;
+  border-width: 7px 7px 7px 0;
+}

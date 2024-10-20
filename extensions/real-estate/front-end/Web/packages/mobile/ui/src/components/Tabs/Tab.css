@@ -1,0 +1,43 @@
+.tab {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+  border-bottom: 3px solid var(--transparent);
+  padding: var(--padding) var(--padding-extra-large);
+}
+
+.colorDark {
+  background-color: var(--theme-color-neutral-bg-base-default);
+}
+
+.colorLight {
+  background-color: var(--theme-color-neutral-bg-accent-default);
+}
+
+.isSelected::before {
+  background-color: inherit;
+  bottom: -1px;
+  content: '';
+  height: 1px;
+  left: 0;
+  position: absolute;
+  right: 0;
+}
+
+.typePrimary:last-of-type {
+  border-right: 0;
+}
+
+.typeMobile.isSelected {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+  border-bottom-color: var(--blue-light-hover);
+}
+
+.typeMobile.isSelected::before {
+  display: none;
+}
+
+.buttonText {
+  font-size: var(--font-large);
+  font-weight: var(--font-bold);
+  margin: auto;
+  pointer-events: none;
+}

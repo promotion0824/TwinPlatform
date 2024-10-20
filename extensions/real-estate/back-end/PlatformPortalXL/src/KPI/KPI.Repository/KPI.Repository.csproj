@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+	</PropertyGroup>
+
+  <PropertyGroup>
+    <ProjectGuid>AACA7FF1-BE10-4514-A853-59860C2A8F1A</ProjectGuid>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Snowflake.Data" Version="3.1.0" />
+    <PackageReference Include="Willow.ExceptionHandling" Version="2.2.1646" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\lib\src\Willow.Common\Willow.Common.csproj" />
+  </ItemGroup>
+
+</Project>

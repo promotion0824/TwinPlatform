@@ -1,0 +1,59 @@
+.header {
+  border-bottom: 1px solid var(--theme-color-neutral-border-default);
+  height: 39px;
+}
+
+.header.zoom {
+  background-color: var(--theme-color-neutral-bg-accent-default);
+}
+
+.content {
+  display: flex;
+  height: 100%;
+  justify-content: flex-start;
+  padding-right: 36px;
+  position: relative;
+}
+
+.spacer {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  min-width: 100px;
+  max-width: 100px;
+}
+
+.labelsWrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+  width: 100%;
+}
+
+.label {
+  text-align: left;
+  white-space: nowrap;
+}
+
+.time {
+  position: absolute;
+}
+
+.notch {
+  background-color: var(--theme-color-neutral-border-default);
+  height: 16px;
+  margin-top: 26px;
+  width: 1px;
+}
+
+.lastNotch {
+  background-color: var(--theme-color-neutral-border-default);
+  height: 16px;
+  transform: translate(52px, 0);
+  width: 1px;
+}
+
+.labelsWrapper > :last-child > .label > .time {
+  right: 38px;
+  text-align: right;
+}

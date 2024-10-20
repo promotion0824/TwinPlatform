@@ -1,0 +1,2 @@
+IF NOT EXISTS (SELECT name FROM sysindexes WHERE name = 'IX_WF_Ticket_SiteId_Occurrence_Status')
+    CREATE INDEX [IX_WF_Ticket_SiteId_Occurrence_Status] ON [dbo].[WF_Ticket] ([SiteId], [Occurrence], [Status]) WITH (ONLINE = ON)

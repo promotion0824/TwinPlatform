@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Willow.Common" Version="1.1.6" />
+    <PackageReference Include="Willow.Data" Version="1.0.2" />
+    <PackageReference Include="Willow.Directory.Models" Version="1.0.2" />
+  </ItemGroup>
+
+</Project>

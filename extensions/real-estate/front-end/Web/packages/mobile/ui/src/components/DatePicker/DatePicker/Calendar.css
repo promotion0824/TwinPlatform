@@ -1,0 +1,98 @@
+.days {
+  background-color: var(--theme-color-neutral-bg-accent-default);
+  display: grid;
+  grid-template-columns: 38px 38px 38px 38px 38px 38px 38px;
+  height: 33px;
+  padding: var(--padding) var(--padding-large);
+}
+
+.prev {
+  transform: rotate(90deg);
+}
+
+.prev:disabled {
+  color: var(--theme-color-neutral-bg-accent-default);
+}
+
+.next {
+  transform: rotate(-90deg);
+}
+
+.dates {
+  display: grid;
+  grid-template-columns: 38px 38px 38px 38px 38px 38px 38px;
+  padding: var(--padding-tiny) var(--padding-large);
+}
+
+.date {
+  justify-content: center;
+  transition: none;
+}
+
+.content {
+  border-radius: 100%;
+  height: 38px;
+  overflow: hidden;
+  width: 38px;
+}
+
+.from .content.content.content,
+.date:focus .content.content {
+  background-color: var(--blue);
+  color: var(--theme-color-neutral-fg-highlight);
+}
+
+.date:disabled .content.content {
+  color: var(--theme-color-neutral-bg-accent-default);
+}
+
+@media (hover: hover) {
+  .date:not(:disabled):hover .content {
+    background-color: var(--blue);
+    color: var(--theme-color-neutral-fg-highlight);
+  }
+}
+
+.isBetween:not(.from, .to),
+.date.to .content {
+  background-color: var(--blue-background);
+}
+
+.isBetween:not(.from) .content.content {
+  color: var(--theme-color-neutral-fg-highlight);
+}
+
+.date.from.isBetween:not(.to) {
+  background: linear-gradient(
+    to right,
+    transparent 50%,
+    var(--blue-background) 50%
+  );
+}
+
+.date.to.isBetween:not(.from) {
+  background: linear-gradient(
+    to right,
+    var(--blue-background) 50%,
+    transparent 50%
+  );
+}
+
+.date:not(.isInMonth) .content {
+  color: var(--border-bright);
+}
+
+.footer {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+  border-top: 1px solid var(--theme-color-neutral-border-default);
+  height: 33px;
+}
+
+.helper.helper {
+  height: auto;
+  min-width: 200px;
+}
+
+.helperContent {
+  border-right: 1px solid var(--theme-color-neutral-border-default);
+}

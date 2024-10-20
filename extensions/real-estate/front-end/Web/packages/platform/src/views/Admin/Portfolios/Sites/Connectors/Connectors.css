@@ -1,0 +1,23 @@
+.panel > * {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.connectors {
+  height: 50px;
+  overflow: hidden;
+  width: 450px;
+}
+
+.connectorsPanel {
+  width: 450px;
+}
+
+.addConnectorButton {
+  margin-right: var(--padding-large);
+  margin-top: 15px;
+}
+
+.left {
+  border-left: 1px solid var(--theme-color-neutral-border-default);
+}

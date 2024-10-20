@@ -1,0 +1,18 @@
+:global #root {
+  height: 100%;
+}
+
+:global #root canvas {
+  outline: 0;
+}
+
+:global #toolbar-explodeTool,
+:global #toolbar-layers-tool,
+:global #toolbar-modelStructureTool,
+:global #toolbar-propertiesTool {
+  display: none !important;
+}
+
+:global .forge-spinner img {
+  display: none;
+}

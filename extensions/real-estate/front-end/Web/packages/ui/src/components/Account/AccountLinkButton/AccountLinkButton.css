@@ -1,0 +1,5 @@
+.accountLinkButton {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+  border: 1px solid var(--theme-color-neutral-border-default);
+  padding: var(--padding-small) var(--padding);
+}

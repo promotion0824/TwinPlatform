@@ -1,0 +1,17 @@
+.expandButton {
+  width: 100%;
+}
+
+.expandIconContainer {
+  height: 48px;
+  width: 48px;
+}
+
+.expandIcon {
+  transform: rotate(90deg);
+  transition: all 0.2s ease;
+}
+
+.isOpen .expandIcon {
+  transform: rotate(-90deg);
+}

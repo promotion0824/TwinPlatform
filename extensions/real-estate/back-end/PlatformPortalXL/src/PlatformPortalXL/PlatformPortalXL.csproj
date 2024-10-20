@@ -1,0 +1,107 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <ProjectGuid>B0E766C9-3563-453B-99CD-81F9591E4766</ProjectGuid>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <TargetFramework>net8.0</TargetFramework>
+    <UserSecretsId>87eb8778-9fdd-4aa6-8d00-e6e77d62d13d</UserSecretsId>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <NoWarn>1701;1702;CS1591</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources/**/*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Database\Scripts\*.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Infrastructure\Services\**" />
+    <Content Remove="Infrastructure\Services\**" />
+    <EmbeddedResource Remove="Infrastructure\Services\**" />
+    <None Remove="Infrastructure\Services\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="HttpResponseMessageExtensions.cs" />
+    <Compile Remove="Infrastructure\ErrorResponse.cs" />
+    <Compile Remove="Infrastructure\Exceptions\ApiException.cs" />
+    <Compile Remove="Infrastructure\Exceptions\BadRequestException.cs" />
+    <Compile Remove="Infrastructure\Exceptions\DataAccessException.cs" />
+    <Compile Remove="Infrastructure\Exceptions\DependencyServiceFailureException.cs" />
+    <Compile Remove="Infrastructure\Exceptions\GlobalExceptionFilter.cs" />
+    <Compile Remove="Infrastructure\Exceptions\ResourceNotFoundException.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Authorization.TwinPlatform.Common" Version="2.2.2676" />
+    <PackageReference Include="Autodesk.Forge" Version="1.9.9" />
+    <PackageReference Include="Azure.Identity" Version="1.12.0" />
+    <PackageReference Include="Azure.Search.Documents" Version="11.5.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.AzureAppServicesIntegration" Version="8.0.6" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.1.0" />
+    <PackageReference Include="Microsoft.Azure.Search.Service" Version="10.1.0" />
+    <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="8.0.1" />
+    <PackageReference Include="AspNetCore.HealthChecks.Uris" Version="8.0.1" />
+    <PackageReference Include="dbup" Version="5.0.40" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="8.0.6" />
+    <PackageReference Include="Microsoft.IdentityModel.Clients.ActiveDirectory" Version="5.3.0" />
+    <PackageReference Include="Microsoft.PowerBI.Api" Version="4.20.0" />
+    <PackageReference Include="RestSharp" Version="108.0.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.6.2" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.DataProtection.AzureKeyVault" Version="3.1.24" />
+    <PackageReference Include="Microsoft.AspNetCore.DataProtection.AzureStorage" Version="3.1.24" />
+    <PackageReference Include="SixLabors.ImageSharp" Version="3.1.4" />
+    <PackageReference Include="JsonPatch.Net" Version="3.1.1" />
+    <PackageReference Include="System.Interactive.Async" Version="6.0.1" />
+    <PackageReference Include="System.Linq.Async" Version="6.0.1" />
+  </ItemGroup>
+
+  <!-- Specify version for some packages, because the auto-reference version has vulnerability issues -->
+  <ItemGroup>
+    <PackageReference Include="System.Net.Http" Version="4.3.4" />
+    <PackageReference Include="System.Text.Encodings.Web" Version="8.0.0" />
+    <PackageReference Include="TimeZoneNames" Version="6.0.0" />
+    <PackageReference Include="Willow.Batch" Version="2.2.2667" />
+    <PackageReference Include="Willow.Copilot.ProxyAPI" Version="2.2.2403" />
+    <PackageReference Include="Willow.ExceptionHandling" Version="2.2.1646" />
+    <PackageReference Include="Willow.Expressions" Version="2.2.2600" />
+    <PackageReference Include="Willow.Notifications" Version="2.2.2627" />
+    <PackageReference Include="Willow.Expressions" Version="2.2.2600" />
+    <PackageReference Include="Willow.Telemetry.Web" Version="2.2.2734" />
+    <PackageReference Include="Willow.HealthChecks" Version="2.2.2734" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\lib\src\Willow.Api.Authorization\Willow.Api.Authorization.csproj" />
+    <ProjectReference Include="..\..\..\..\lib\src\WIllow.Api.AzureStorage\Willow.Api.AzureStorage.csproj" />
+    <ProjectReference Include="..\..\..\..\lib\src\Willow.Api.Binding\Willow.Api.Binding.csproj" />
+    <ProjectReference Include="..\..\..\..\lib\src\Willow.Api.DataValidation\Willow.Api.DataValidation.csproj" />
+    <ProjectReference Include="..\..\..\..\lib\src\Willow.Azure.Storage\Willow.Azure.Storage.csproj" />
+    <ProjectReference Include="..\..\..\..\lib\src\Willow.Data.Rest\Willow.Data.Rest.csproj" />
+    <ProjectReference Include="..\..\..\..\lib\src\Willow.Logging\Willow.Logging.csproj" />
+    <ProjectReference Include="..\..\..\..\lib\src\Willow.Proxy\Willow.Proxy.csproj" />
+    <ProjectReference Include="..\..\..\..\lib\src\Willow.ServiceBus\Willow.ServiceBus.csproj" />
+    <ProjectReference Include="..\KPI\KPI.Repository\KPI.Repository.csproj" />
+    <ProjectReference Include="..\KPI\KPI.Service\KPI.Service.csproj" />
+    <ProjectReference Include="..\Platform.Users\Willow.Platform.Users.csproj" />
+    <ProjectReference Include="..\Willow.Management\Willow.Management.csproj" />
+    <ProjectReference Include="..\Willow.MessageDispatch\Willow.MessageDispatch.csproj" />
+    <ProjectReference Include="..\Willow.Platform.Localization\Willow.Platform.Localization.csproj" />
+    <ProjectReference Include="..\Willow.Platform.Models\Willow.Platform.Models.csproj" />
+    <ProjectReference Include="..\Willow.Platform.Statistics\Willow.Platform.Statistics.csproj" />
+    <ProjectReference Include="..\Willow.TimedDispatch\Willow.TimedDispatch.csproj" />
+    <ProjectReference Include="..\Willow.Workflow\Willow.Workflow.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,100 @@
+/* stylelint-disable font-family-name-quotes */
+@font-face {
+  font-family: 'Poppins';
+  font-weight: 200;
+  src: url('./public/Poppins-Thin.ttf');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-weight: 300;
+  src: url('./public/Poppins-ExtraLight.ttf');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-weight: 400;
+  src: url('./public/Poppins-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-weight: 500;
+  src: url('./public/Poppins-Medium.ttf');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-weight: 600;
+  src: url('./public/Poppins-SemiBold.ttf');
+}
+
+@font-face {
+  font-family: 'Poppins';
+  font-weight: 700;
+  src: url('./public/Poppins-Bold.ttf');
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html,
+body {
+  height: 100%;
+  -webkit-tap-highlight-color: transparent;
+  ‑webkit‑text‑size‑adjust: 100%;
+}
+
+:global #app {
+  height: 100%;
+}
+
+body {
+  background-color: var(--new-dark);
+  color: var(--new-text);
+  font-family: var(--font);
+  font-size: var(--font-medium);
+  font-weight: var(--font-normal);
+  letter-spacing: 0.15px;
+  margin: 0 auto;
+}
+
+h2 {
+  font-size: var(--font-h2);
+  font-weight: var(--font-thin);
+  margin: 0;
+}
+
+h3 {
+  font-size: var(--font-h3);
+  font-weight: var(--font-bold);
+  margin: 0;
+}
+
+h4 {
+  font-size: var(--font-h4);
+  font-weight: var(--font-bold);
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+hr {
+  background-color: var(--new-border);
+  border: 0;
+  height: 1px;
+  margin: 0;
+}
+
+:global .zEWidget-launcher {
+  display: none;
+}

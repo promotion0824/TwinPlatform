@@ -1,0 +1,8 @@
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: workflowcore-components
+  description: A collection for WorflowCore resources
+spec:
+  targets:
+    - ../src/WorkflowCore/backstage.yaml

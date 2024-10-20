@@ -1,0 +1,109 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: assetcore
+  title: AssetCore
+  description: Non ADT for storing fetching category/asset information
+  annotations:
+    sonarqube.org/project-key: 'AssetCore'
+    dev.azure.com/project-repo: WillowPlatform/AssetCore
+  tags:
+    - realestate
+  links:
+    - url: https://dev.azure.com/willowdev/WillowPlatform/_git/AssetCore
+      title: Repo
+      icon: web
+    - url: https://dev.azure.com/willowdev/WillowPlatform/_build?definitionId=166
+      title: Pipeline
+      icon: web
+    - url: https://saas.whitesourcesoftware.com/Wss/WSS.html#!project;id=6706618
+      title: Whitesource
+      icon: web
+    - url: https://willow.atlassian.net/wiki/spaces/MAR/overview
+      title: Wiki
+      icon: web
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/e878a98a-20ec-4516-a59d-f393429fe07c/resourceGroups/t3-wil-prd-plt-aue2-app-rsg/providers/Microsoft.Web/sites/wil-prd-plt-aue2-assetcore/appServices
+      title: AU App Service
+      icon: web
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/e878a98a-20ec-4516-a59d-f393429fe07c/resourceGroups/t3-wil-prd-plt-eu22-app-rsg/providers/Microsoft.Web/sites/wil-prd-plt-eu22-assetcore/appServices
+      title: US App Service
+      icon: web
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/e878a98a-20ec-4516-a59d-f393429fe07c/resourceGroups/t3-wil-prd-plt-weu2-app-rsg/providers/Microsoft.Web/sites/wil-prd-plt-weu2-assetcore/appServices
+      title: EU App Service
+      icon: web
+spec:
+  type: service
+  lifecycle: production
+  owner: pne_realestate
+  system: realestate-system
+  dependsOn: 
+    [
+      'resource:AU-RealEstate-keyvault',
+      'resource:EU-RealEstate-keyvault',
+      'resource:US-RealEstate-keyvault',
+      'resource:wilbldprdaueapp.twinengine.blobcontainer',
+      'resource:au-assetcore-db',
+      'resource:eu-assetcore-db',
+      'resource:us-assetcore-db'
+    ]
+  providesApis:
+    - AssetCore-Api
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: au-assetcore-db
+  links:
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/e878a98a-20ec-4516-a59d-f393429fe07c/resourceGroups/t3-wil-prd-plt-aue2-app-rsg/providers/Microsoft.Sql/servers/wil-prd-plt-aue2-sql/databases/AssetCoreDB/overview
+      title: AU AssetCore DB
+      icon: web
+  description: AU AssetCore DB
+spec:
+  type: sqldb
+  owner: pne_realestate
+  system: realestate-system
+  dependsOn: ['resource:au-realestate-sql-server']
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: us-assetcore-db
+  links:
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/e878a98a-20ec-4516-a59d-f393429fe07c/resourceGroups/t3-wil-prd-plt-eu22-app-rsg/providers/Microsoft.Sql/servers/wil-prd-plt-eu22-sql/databases/AssetCoreDB/overview
+      title: US AssetCore DB
+      icon: web
+  description: US AssetCore DB
+spec:
+  type: sqldb
+  owner: pne_realestate
+  system: realestate-system
+  dependsOn: ['resource:us-realestate-sql-server']
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: eu-assetcore-db
+  links:
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/e878a98a-20ec-4516-a59d-f393429fe07c/resourceGroups/t3-wil-prd-plt-weu2-app-rsg/providers/Microsoft.Sql/servers/wil-prd-plt-weu2-sql/databases/AssetCoreDB/overview
+      title: EU AssetCore DB
+      icon: web
+  description: EU AssetCore DB
+spec:
+  type: sqldb
+  owner: pne_realestate
+  system: realestate-system
+  dependsOn: ['resource:eu-realestate-sql-server']
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: AssetCore-Api
+  description: Asset Core Api
+spec:
+  type: openapi
+  lifecycle: production
+  owner: pne_realestate
+  system: realestate-system
+  definition:
+    $text: https://wil-dev-plt-aue1-assetcore.azurewebsites.net/swagger/v1/swagger.json
+  dependsOn: ['component:assetcore']

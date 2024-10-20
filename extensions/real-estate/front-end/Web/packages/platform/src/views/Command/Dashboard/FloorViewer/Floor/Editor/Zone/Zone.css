@@ -1,0 +1,7 @@
+.zone {
+  fill: var(--purple);
+  fill-opacity: 0.5;
+  stroke: var(--red);
+  stroke-dasharray: 8;
+  stroke-width: var(--line-height);
+}

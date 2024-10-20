@@ -1,0 +1,11 @@
+.exportButton {
+  border-left: 1px solid var(--theme-color-neutral-border-default);
+  height: var(--height-medium);
+  pointer-events: all;
+}
+
+.icon {
+  height: var(--height-small);
+  margin: var(--padding-small) 0 0 var(--padding);
+  width: var(--height-small);
+}

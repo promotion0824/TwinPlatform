@@ -1,0 +1,7 @@
+.text {
+  border: 1px solid var(--theme-color-neutral-border-default);
+  overflow: hidden;
+  padding: var(--padding);
+  text-overflow: hidden;
+  white-space: break-word;
+}

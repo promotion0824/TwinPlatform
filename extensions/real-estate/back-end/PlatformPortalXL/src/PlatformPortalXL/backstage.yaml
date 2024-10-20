@@ -1,0 +1,186 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: platformportalxl
+  title: PlatformPortalXL
+  description: PlatformPortalXL
+  annotations:
+    sonarqube.org/project-key: 'PlatformPortalXL'
+    dev.azure.com/project-repo: WillowPlatform/PlatformPortalXL
+  tags:
+    - realestate
+  links:
+    - url: https://dev.azure.com/willowdev/WillowPlatform/_git/PlatformPortalXL
+      title: Repo
+      icon: web
+    - url: https://dev.azure.com/willowdev/WillowPlatform/_apps/hub/ms.vss-build-web.ci-designer-hub?pipelineId=156&branch=master
+      title: Pipeline
+      icon: web
+    - url: https://saas.whitesourcesoftware.com/Wss/WSS.html#!project;id=6685157
+      title: Whitesource
+      icon: web
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/e878a98a-20ec-4516-a59d-f393429fe07c/resourceGroups/t3-wil-prd-plt-aue2-app-rsg/providers/Microsoft.Web/sites/wil-prd-plt-aue2-portalxl/appServices
+      title: AU AppService
+      icon: web
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/e878a98a-20ec-4516-a59d-f393429fe07c/resourceGroups/t3-wil-prd-plt-eu22-app-rsg/providers/Microsoft.Web/sites/wil-prd-plt-eu22-portalxl/appServices
+      title: EU AppService
+      icon: web
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/e878a98a-20ec-4516-a59d-f393429fe07c/resourceGroups/t3-wil-prd-plt-weu2-app-rsg/providers/Microsoft.Web/sites/wil-prd-plt-weu2-portalxl/appServices
+      title: US AppService
+      icon: web
+    - url: https://willow.atlassian.net/wiki/spaces/MAR/overview
+      title: Wiki
+      icon: web    
+spec:
+  type: service
+  lifecycle: production
+  owner: pne_realestate
+  system: realestate-system
+  dependsOn: 
+    [
+      'resource:AU-RealEstate-keyvault',
+      'resource:EU-RealEstate-keyvault',
+      'resource:US-RealEstate-keyvault',
+      'resource:RealEstate-Dataprotection-Keyvault',
+      'resource:wilbldprdaueapp.twinengine.blobcontainer',
+      'resource:wilprdpltaue2sto.realestate.blobcontainer',
+      'resource:wilprdpltweu2sto.realestate.blobcontainer',
+      'resource:wilprdplteu22contentsto.realestate.blobcontainer',
+      'component:assetcore',
+      'component:connectorcore',
+      'component:digitaltwincore',
+      'component:directorycore',
+      'component:livedatacore',
+      'component:sitecore',
+      'component:workflowcore',
+      'component:marketplacecore',
+      'component:insightcore'
+    ]
+  providesApis:
+    - PlatformPortalXL-api
+  consumesApis:
+    - AssetCore-Api
+    - ConnectorCore-Api
+    - DigitalTwinCore-Api
+    - DirectoryCore-Api
+    - LiveDataCore-Api
+    - SiteCore-Api
+    - WorkflowCore-Api
+    - MarketplaceCore-Api
+    - InsightCore-Api
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: PlatformPortalXL-api
+  description: Platform Portal XL API
+spec:
+  type: openapi
+  lifecycle: production
+  owner: pne_realestate
+  system: realestate-system
+  definition:
+    $text: https://wil-uat-plt-aue1-portalxl.azurewebsites.net/swagger/v2/swagger.json
+  dependsOn: ['component:platformportalxl']
+  apiVersion: backstage.io/v1alpha1
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: RealEstate-Dataprotection-Keyvault
+  links:
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/e878a98a-20ec-4516-a59d-f393429fe07c/resourceGroups/t2-wil-prd-lda-shr-aue2-mgt-rsg/providers/Microsoft.KeyVault/vaults/wil-prd-lda-shr-aue2-kvl/overview
+      title: Dataprotection-Keyvault
+      icon: web
+  description: Keyvault
+spec:
+  type: keyvault
+  owner: pne_realestate
+  system: realestate-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: wilprdpltaue2sto.realestate.blobcontainer
+  links:
+    - url: https://portal.azure.com/#blade/Microsoft_Azure_Storage/ContainerMenuBlade/overview/storageAccountId/%2Fsubscriptions%2Fe878a98a-20ec-4516-a59d-f393429fe07c%2FresourceGroups%2Ft3-wil-prd-plt-aue2-app-rsg%2Fproviders%2FMicrosoft.Storage%2FstorageAccounts%2Fwilprdpltaue2sto/path/realestate
+      title: AU Prd Content Storage Container
+      icon: web
+  description: AU Prd Content Storage Container
+spec:
+  type: blob
+  owner: pne_realestate
+  system: realestate-system
+  dependsOn: ['resource:wilbldprdaueapp.storageaccount']
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: wilprdpltweu2sto.realestate.blobcontainer
+  links:
+    - url: https://portal.azure.com/#view/Microsoft_Azure_Storage/ContainerMenuBlade/~/overview/storageAccountId/%2Fsubscriptions%2Fe878a98a-20ec-4516-a59d-f393429fe07c%2FresourceGroups%2Ft3-wil-prd-plt-weu2-app-rsg%2Fproviders%2FMicrosoft.Storage%2FstorageAccounts%2Fwilprdpltweu2sto/path/realestate
+      title: EU Prd Content Storage Container
+      icon: web
+  description: EU Prd Content Storage Container
+spec:
+  type: blob
+  owner: pne_realestate
+  system: realestate-system
+  dependsOn: ['resource:wilprdpltweu2sto.storageaccount']
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: wilprdplteu22contentsto.realestate.blobcontainer
+  links:
+    - url: https://portal.azure.com/#view/Microsoft_Azure_Storage/ContainerMenuBlade/~/overview/storageAccountId/%2Fsubscriptions%2Fe878a98a-20ec-4516-a59d-f393429fe07c%2FresourceGroups%2Ft3-wil-prd-plt-eu22-app-rsg%2Fproviders%2FMicrosoft.Storage%2FstorageAccounts%2Fwilprdplteu22contentsto/path/realestate
+      title: US Prd Content Storage Container
+      icon: web
+  description: US Prd Content Storage Container
+spec:
+  type: blob
+  owner: pne_realestate
+  system: realestate-system
+  dependsOn: ['resource:wilprdplteu22contentsto.storageaccount']
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: wilprdpltaue2sto.storageaccount
+  links:
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/e878a98a-20ec-4516-a59d-f393429fe07c/resourceGroups/t3-wil-prd-plt-aue2-app-rsg/providers/Microsoft.Storage/storageAccounts/wilprdpltaue2sto/overview
+      title: PRD Content Storage Account
+      icon: web
+  description: PRD Content Storage Account
+spec:
+  type: storageAccount
+  owner: pne_realestate
+  system: realestate-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: wilprdpltweu2sto.storageaccount
+  links:
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/e878a98a-20ec-4516-a59d-f393429fe07c/resourceGroups/t3-wil-prd-plt-weu2-app-rsg/providers/Microsoft.Storage/storageAccounts/wilprdpltweu2sto/overview
+      title: EU PRD Content Storage Account
+      icon: web
+  description: EU PRD Content Storage Account
+spec:
+  type: storageAccount
+  owner: pne_realestate
+  system: realestate-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: wilprdplteu22contentsto.storageaccount
+  links:
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/e878a98a-20ec-4516-a59d-f393429fe07c/resourceGroups/t3-wil-prd-plt-eu22-app-rsg/providers/Microsoft.Storage/storageAccounts/wilprdplteu22contentsto/overview
+      title: US PRD Content Storage Account
+      icon: web
+  description: US PRD Content Storage Account
+spec:
+  type: storageAccount
+  owner: pne_realestate
+  system: realestate-system

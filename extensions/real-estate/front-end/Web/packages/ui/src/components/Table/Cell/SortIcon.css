@@ -1,0 +1,32 @@
+.chevron {
+  position: relative;
+}
+
+@keyframes enter-ascending {
+  0% {
+    opacity: 0;
+    transform: rotate(-180deg) translate(0, -8px);
+  }
+}
+
+@keyframes enter-descending {
+  0% {
+    opacity: 0;
+    transform: translate(0, -8px);
+  }
+}
+
+.ascending .chevron {
+  animation: enter-ascending 0.2s ease;
+  top: 1px;
+  transform: rotate(-180deg);
+}
+
+.descending .chevron {
+  animation: enter-descending 0.2s ease;
+  top: -1px;
+}
+
+.hidden {
+  display: none;
+}

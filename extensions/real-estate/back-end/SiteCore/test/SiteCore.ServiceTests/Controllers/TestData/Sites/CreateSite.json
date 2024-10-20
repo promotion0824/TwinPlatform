@@ -1,0 +1,30 @@
+{
+  "name": "RS Site 04",
+  "code": "RS-SITE-04",
+  "type": "Office",
+  "status": "Design",
+  "area": "1000",
+  "address": "25",
+  "suburb": "New Suburb",
+  "state": "South Australia",
+  "country": "Australia",
+  "latitude": -34.994,
+  "longitude": 138.557,
+  "timeZoneId": "Cen. Australia Standard Time",
+  "floorCodes": [
+    "B",
+    "L",
+    "T"
+  ],
+  "features": {
+    "is2DViewerDisabled": false,
+    "is3DAutoOffsetEnabled": false,
+    "isInsightsDisabled": false,
+    "isInspectionEnabled": false,
+    "isOccupancyEnabled": false,
+    "isPreventativeMaintenanceEnabled": false,
+    "isTicketingDisabled": false,
+    "isReportsEnabled": true,
+    "isArcGisEnabled": true
+  }
+}

@@ -1,0 +1,52 @@
+.tooltip {
+  min-width: 50px;
+}
+
+.header {
+  border-radius: inherit;
+}
+
+.colorRed.tooltip:not(.selected)::after,
+.colorRed.tooltip:not(.hasPoints)::after {
+  border-color: var(--red) transparent transparent transparent;
+}
+
+.colorRed .header {
+  background-color: var(--red);
+}
+
+.colorOrange.tooltip:not(.selected)::after,
+.colorOrange.tooltip:not(.hasPoints)::after {
+  border-color: var(--orange) transparent transparent transparent;
+}
+
+.colorOrange .header {
+  background-color: var(--orange);
+}
+
+.colorYellow.tooltip:not(.selected)::after,
+.colorYellow.tooltip:not(.hasPoints)::after {
+  border-color: var(--yellow-dark) transparent transparent transparent;
+}
+
+.colorYellow .header {
+  background-color: var(--yellow-dark);
+}
+
+.isMouseOver {
+  z-index: var(--z-tooltip);
+}
+
+.selected.hasPoints .header {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.content {
+  display: none;
+  overflow: hidden;
+}
+
+.selected.hasPoints .content {
+  display: block;
+}

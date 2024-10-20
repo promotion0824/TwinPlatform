@@ -1,0 +1,11 @@
+.time {
+  white-space: nowrap;
+}
+
+.color {
+  color: var(--new-text-dark);
+}
+
+.timer {
+  text-transform: lowercase;
+}

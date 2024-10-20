@@ -1,0 +1,26 @@
+.ticketContent {
+  padding: var(--padding-large) var(--padding-extra-large);
+}
+
+.footer {
+  align-items: center;
+  display: flex;
+  height: 70px;
+  padding: 0 var(--padding-extra-large);
+}
+
+.button {
+  flex: 1;
+}
+
+.textarea textarea {
+  padding: 12px;
+}
+
+.headerOption.headerOption.headerOption {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+  border-bottom: 1px solid var(--theme-color-neutral-border-default);
+  border-top: 1px solid var(--theme-color-neutral-border-default);
+  color: var(--text);
+  text-transform: uppercase;
+}

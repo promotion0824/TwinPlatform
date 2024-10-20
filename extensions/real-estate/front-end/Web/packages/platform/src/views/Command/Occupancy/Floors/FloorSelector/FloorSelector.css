@@ -1,0 +1,11 @@
+.floorSelector {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+  border: 1px solid var(--theme-color-neutral-border-default);
+  min-height: 100%;
+  min-width: 41px;
+}
+
+.backButton {
+  border: 1px solid var(--theme-color-neutral-border-default);
+  width: auto;
+}

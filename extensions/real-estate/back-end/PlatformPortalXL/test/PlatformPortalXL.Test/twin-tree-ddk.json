@@ -1,0 +1,123 @@
+[
+  {
+    "twin": {
+      "id": "WIL-EU-Region",
+      "name": "Europe Region",
+      "metadata": {
+        "modelId": "dtmi:com:willowinc:Region;1"
+      }
+    },
+    "children": [
+      {
+        "twin": {
+          "siteId": "2bada6d2-ccd7-43dd-a42a-c8ab0873df64",
+          "id": "WIL-220FA",
+          "name": "220 Francis Avenue",
+          "metadata": {
+            "modelId": "dtmi:com:willowinc:Building;1"
+          }
+        },
+        "children": []
+      },
+      {
+        "twin": {
+          "id": "WIL-CanaryWharf",
+          "name": "Canary Wharf",
+          "metadata": {
+            "modelId": "dtmi:com:willowinc:Land;1"
+          }
+        },
+        "children": [
+          {
+            "twin": {
+              "siteId": "e3ea6775-50e5-4d19-afec-b103d08658a3",
+              "id": "WIL-101RS",
+              "name": "101 Ridley Square",
+              "metadata": {
+                "modelId": "dtmi:com:willowinc:Building;1"
+              }
+            },
+            "children": []
+          },
+          {
+            "twin": {
+              "siteId": "45ac7d4b-fd70-4f7c-a220-e944112159cc",
+              "id": "WIL-57CM",
+              "name": "57 CJ Marina",
+              "metadata": {
+                "modelId": "dtmi:com:willowinc:Building;1"
+              }
+            },
+            "children": []
+          },
+          {
+            "twin": {
+              "siteId": "f46f061b-2070-4971-849e-93df84aaaf2e",
+              "id": "Wil-CanaryWharf-Substructure",
+              "name": "Canary Wharf Underground Parking",
+              "metadata": {
+                "modelId": "dtmi:com:willowinc:Substructure;1"
+              }
+            },
+            "children": []
+          },
+          {
+            "twin": {
+              "siteId": "a598746e-66e4-497c-a04a-6a928178377a",
+              "id": "WIL-CanaryWharf-JubileePark",
+              "name": "Jubilee Park",
+              "metadata": {
+                "modelId": "dtmi:com:willowinc:OutdoorArea;1"
+              }
+            },
+            "children": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "twin": {
+      "id": "WIL-US-Region",
+      "name": "US Region",
+      "metadata": {
+        "modelId": "dtmi:com:willowinc:Region;1"
+      }
+    },
+    "children": [
+      {
+        "twin": {
+          "id": "WIL-104BDFD-Land",
+          "name": "104 Bedford Campus",
+          "metadata": {
+            "modelId": "dtmi:com:willowinc:Land;1"
+          }
+        },
+        "children": [
+          {
+            "twin": {
+              "siteId": "a226929d-6e27-480f-b8dd-40ffbc47024c",
+              "id": "WIL-104BDFD",
+              "name": "104 Bedford Square",
+              "metadata": {
+                "modelId": "dtmi:com:willowinc:Building;1"
+              }
+            },
+            "children": []
+          }
+        ]
+      },
+      {
+        "twin": {
+          "siteId": "bbb0dd63-656e-46e7-b523-1af465d24aa9",
+          "id": "WIL-Retail-007",
+          "name": "Retail Store #7",
+          "metadata": {
+            "modelId": "dtmi:com:willowinc:Building;1"
+          }
+        },
+        "children": []
+      }
+    ]
+  }
+]

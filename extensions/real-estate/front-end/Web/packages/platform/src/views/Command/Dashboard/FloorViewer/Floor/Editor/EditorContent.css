@@ -1,0 +1,60 @@
+.editorContent {
+  position: relative;
+  touch-action: none;
+}
+
+.content {
+  background: var(--theme-color-neutral-bg-accent-default);
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.view .content {
+  cursor: move;
+}
+
+.svg {
+  transform-origin: top left;
+}
+
+.create .svg {
+  cursor: crosshair;
+}
+
+.image {
+  opacity: 0;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.visible.image {
+  opacity: 1;
+}
+
+.tooltips {
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+}
+
+.range {
+  box-shadow: var(--shadow);
+  z-index: var(--z-header);
+}
+
+.blocker {
+  cursor: move;
+}
+
+.rangeContainer {
+  bottom: var(--padding);
+  left: 0;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+}
+
+.rangeContainer > * {
+  pointer-events: all;
+}

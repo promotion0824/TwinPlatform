@@ -1,0 +1,75 @@
+@keyframes loader {
+  0% {
+    width: 0;
+  }
+
+  20% {
+    width: 10%;
+  }
+
+  25% {
+    width: 24%;
+  }
+
+  43% {
+    width: 41%;
+  }
+
+  56% {
+    width: 50%;
+  }
+
+  66% {
+    width: 52%;
+  }
+
+  71% {
+    width: 60%;
+  }
+
+  75% {
+    width: 76%;
+  }
+
+  94% {
+    width: 86%;
+  }
+
+  100% {
+    width: 100%;
+  }
+}
+
+.container {
+  background-color: var(--green-background);
+  border-radius: var(--border-radius);
+  height: 5px;
+  width: 100%;
+}
+
+.filler {
+  animation: loader 8s ease infinite;
+  background-color: var(--green);
+  border-radius: var(--border-radius);
+  height: 100%;
+  padding-top: var(--padding);
+  text-align: right;
+  width: 0;
+}
+
+.label {
+  color: var(--green);
+  padding-left: var(--padding-large);
+}
+
+.outerContainer {
+  background-color: var(--green-background);
+  margin-left: var(--padding);
+  margin-right: var(--padding);
+  margin-top: var(--padding);
+  padding-top: var(--padding);
+}
+
+.labelContainer {
+  margin-bottom: var(--padding);
+}

@@ -1,0 +1,8 @@
+.header {
+  margin-bottom: var(--padding-tiny);
+}
+
+.meta {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+  padding: 12px var(--padding-large);
+}

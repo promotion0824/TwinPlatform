@@ -1,0 +1,17 @@
+.details {
+  height: auto;
+  overflow: hidden;
+}
+
+.error {
+  height: auto;
+}
+
+.text {
+  word-break: break-word;
+}
+
+.headerText {
+  flex-shrink: initial;
+  word-break: break-word;
+}

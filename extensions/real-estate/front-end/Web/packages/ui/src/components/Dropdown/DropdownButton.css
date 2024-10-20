@@ -1,0 +1,6 @@
+.dropdownButton {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+  height: var(--height-medium);
+  padding: 0 var(--padding);
+  width: 100%;
+}

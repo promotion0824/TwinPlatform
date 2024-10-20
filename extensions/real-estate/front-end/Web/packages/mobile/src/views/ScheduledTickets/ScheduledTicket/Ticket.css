@@ -1,0 +1,7 @@
+.mainContent {
+  background-color: var(--theme-color-neutral-bg-base-default);
+}
+
+.isOpenTicket {
+  opacity: 0.6;
+}

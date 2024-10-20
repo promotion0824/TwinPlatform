@@ -1,0 +1,40 @@
+.labelControl {
+  align-self: flex-start;
+  display: inline-block;
+  padding-bottom: var(--padding);
+  transition: all 0.2s ease;
+}
+
+.required .labelControl::after {
+  color: var(--red);
+  content: ' *';
+}
+
+.disabled .labelControl {
+  color: var(--theme-color-neutral-fg-subtle);
+}
+
+.hasError .labelControl,
+.hasError.labelControl {
+  color: var(--red);
+}
+
+.hasFocus:not(.readOnly) .labelControl {
+  color: var(--white);
+}
+
+.hasError:not(.readOnly) .labelControl {
+  color: var(--red-light);
+}
+
+.label:focus-within:not(.readOnly) .labelControl {
+  color: var(--white);
+}
+
+.hasError:focus-within:not(.readOnly) .labelControl {
+  color: var(--red-light);
+}
+
+.hiddenLabel {
+  display: none;
+}

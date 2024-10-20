@@ -1,0 +1,65 @@
+.chevron {
+  transition: all 0.2s ease;
+}
+
+.isOpen .chevron {
+  color: var(--light);
+  transform: rotate(-180deg);
+}
+
+.table {
+  border-spacing: 0;
+  width: 100%;
+}
+
+.table th,
+.table td {
+  height: 48px;
+  min-width: 150px;
+  padding: var(--padding) var(--padding-large);
+}
+
+.table td {
+  background-color: var(--panel-bright);
+}
+
+.table td:first-child {
+  padding-left: 48px;
+}
+
+.table tr:not(:last-child) td {
+  border-bottom: 1px solid var(--theme-color-neutral-border-default);
+}
+
+.checkRow {
+  cursor: pointer;
+}
+
+.sortOrderCell {
+  text-align: center;
+}
+
+.buttonDisabled {
+  pointer-events: none;
+}
+
+.disabledTooltip {
+  display: inline-block;
+}
+
+.inspectionInfo {
+  padding-left: 0;
+}
+
+.inspectionInfo > * {
+  margin-right: 4px;
+}
+
+.inspectionsMainCell {
+  padding: 0;
+}
+
+.numChecks {
+  color: var(--text);
+  margin-right: 5px;
+}

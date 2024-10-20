@@ -1,0 +1,10 @@
+.dropdownButton {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+  justify-content: flex-start;
+  padding: 11px var(--padding);
+  width: 100%;
+}
+
+.isSelected {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+}

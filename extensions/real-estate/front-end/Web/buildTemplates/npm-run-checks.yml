@@ -1,0 +1,12 @@
+steps:
+- script: npm run format:check
+  displayName: npm run format:check
+  workingDirectory: extensions/real-estate/front-end/Web/
+
+- script: npm run type-check
+  displayName: Type check
+  workingDirectory: extensions/real-estate/front-end/Web/
+
+- script: npm run test
+  displayName: run unit tests
+  workingDirectory: extensions/real-estate/front-end/Web/

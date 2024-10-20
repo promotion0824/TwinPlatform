@@ -1,0 +1,15 @@
+.ticketLabel {
+  padding: var(--padding) 0;
+}
+
+.label {
+  color: var(--new-text-dark);
+  font-size: var(--font-extra-large);
+  text-transform: capitalize;
+}
+
+.content {
+  color: var(--theme-color-neutral-fg-highlight);
+  font-size: var(--font-extra-large);
+  font-weight: var(--font-medium-weight);
+}

@@ -1,0 +1,12 @@
+.auth0Callback {
+  align-items: center;
+  display: flex;
+  flex-flow: column;
+  inset: 0;
+  justify-content: center;
+  position: fixed;
+}
+
+.willow {
+  margin-bottom: var(--padding-large);
+}

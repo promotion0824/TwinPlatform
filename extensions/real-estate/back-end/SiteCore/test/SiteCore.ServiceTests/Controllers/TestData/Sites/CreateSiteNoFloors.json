@@ -1,0 +1,19 @@
+﻿{
+  "name": "RS Site 05",
+  "code": "RS-SITE-05",
+  "type": "Office",
+  "status": "Design",
+  "area": "1000",
+  "address": "25",
+  "suburb": "New Suburb",
+  "state": "South Australia",
+  "country": "Australia",
+  "latitude": -34.994,
+  "longitude": 138.557,
+  "timeZoneId": "Cen. Australia Standard Time",
+  "floorCodes": [
+    "B",
+    "L",
+    "T"
+  ]
+}

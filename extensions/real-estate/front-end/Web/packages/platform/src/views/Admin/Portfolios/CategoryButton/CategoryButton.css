@@ -1,0 +1,5 @@
+.categoryButton {
+  max-width: 200px;
+  padding-right: var(--padding);
+  width: 200px;
+}

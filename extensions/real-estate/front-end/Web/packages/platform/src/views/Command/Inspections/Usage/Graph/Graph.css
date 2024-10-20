@@ -1,0 +1,12 @@
+.graph.graph.graph {
+  display: flex;
+  flex-flow: column;
+  overflow: hidden;
+  padding: 5px 20px 80px 50px;
+}
+
+.content {
+  display: flex;
+  flex: 1;
+  position: relative;
+}

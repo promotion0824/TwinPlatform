@@ -1,0 +1,8 @@
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: insightcore-components
+  description: A collection for InsightCore resources
+spec:
+  targets:
+    - ../src/InsightCore/backstage.yaml

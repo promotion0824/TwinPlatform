@@ -1,0 +1,47 @@
+.tooltip {
+  border-color: var(--theme-color-neutral-border-default);
+  padding: 0;
+}
+
+.tooltip.tooltip::before {
+  border-color: transparent transparent transparent
+    var(--theme-color-neutral-border-default);
+}
+
+.line {
+  border: 1px solid var(--theme-color-neutral-border-default);
+  border-radius: var(--border-radius);
+}
+
+.color {
+  background-color: currentcolor;
+  border-top-left-radius: var(--border-radius);
+  height: 32px;
+  margin-right: 10px;
+  width: 4px;
+}
+
+.header {
+  background-color: var(--theme-color-neutral-border-default);
+  border-bottom: 1px solid var(--theme-color-neutral-border-default);
+  color: var(--light);
+  height: 32px;
+  padding: var(--padding) var(--padding-large);
+  padding-left: 0;
+}
+
+.equipment {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+  border-bottom: 1px solid var(--theme-color-neutral-border-default);
+  flex-grow: 1;
+  text-align: right;
+}
+
+.value {
+  min-width: 60px;
+  padding: var(--padding);
+}
+
+.value:not(:last-child) {
+  border-right: 1px solid var(--theme-color-neutral-border-default);
+}

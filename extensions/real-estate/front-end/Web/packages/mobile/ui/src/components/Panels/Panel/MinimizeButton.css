@@ -1,0 +1,56 @@
+@keyframes enter-vertical {
+  0% {
+    visibility: hidden;
+  }
+
+  50% {
+    transform: translate(0, -100%);
+    visibility: hidden;
+  }
+}
+
+@keyframes enter-horizontal {
+  0% {
+    visibility: hidden;
+  }
+
+  50% {
+    transform: translate(-100%, 0);
+    visibility: hidden;
+  }
+}
+
+.minimizeButton {
+  background-color: var(--purple);
+  border: 1px solid var(--theme-color-neutral-bg-panel-default);
+  box-shadow: var(--shadow);
+  color: var(--theme-color-neutral-fg-highlight);
+  position: absolute;
+  z-index: var(--z-minimize);
+}
+
+.minimizeButton:--enter {
+  background-color: var(--purple-hover);
+}
+
+.vertical {
+  animation: enter-vertical 0.4s ease;
+  border-bottom-left-radius: var(--border-radius-large);
+  border-bottom-right-radius: var(--border-radius-large);
+  border-top: 0;
+  height: 20px;
+  left: 20px;
+  top: 0;
+  width: 30px;
+}
+
+.horizontal {
+  animation: enter-horizontal 0.4s ease;
+  border-bottom-right-radius: var(--border-radius-large);
+  border-left: 0;
+  border-top-right-radius: var(--border-radius-large);
+  height: 30px;
+  left: 0;
+  top: 12px;
+  width: 19px;
+}

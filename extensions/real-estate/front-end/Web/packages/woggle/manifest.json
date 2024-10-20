@@ -1,0 +1,19 @@
+{
+  "name": "Woggle",
+  "version": "1.0",
+  "manifest_version": 3,
+  "description": "Set willow toggles",
+  "action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+  },
+  "icons": {
+   "128": "icon.png"
+  },
+  "permissions": ["tabs"],
+  "host_permissions": ["<all_urls>"],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self';",
+    "sandbox": "sandbox allow-scripts allow-forms allow-popups allow-modals; script-src 'self' https://unpkg.com 'unsafe-inline' 'unsafe-eval' https://unpkg.com; child-src 'self';"
+  }
+}

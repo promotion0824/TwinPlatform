@@ -1,0 +1,34 @@
+.submenuButton {
+  border-radius: 0;
+  height: 32px;
+  max-width: 144px;
+  width: 144px;
+}
+
+.purpleBackground {
+  background-color: var(--purple) !important;
+  color: var(--light) !important;
+}
+
+.grayBackground {
+  background-color: var(--disabled) !important;
+  color: var(--lighter) !important;
+}
+
+.grayBackground:hover {
+  color: var(--light) !important;
+}
+
+.submenuButton:first-child {
+  border-bottom-left-radius: var(--border-radius);
+  border-top-left-radius: var(--border-radius);
+}
+
+.submenuButton:last-child {
+  border-bottom-right-radius: var(--border-radius);
+  border-top-right-radius: var(--border-radius);
+}
+
+.submenuButton:not(:last-child) {
+  border-right: 2px solid var(--theme-color-neutral-bg-panel-default);
+}

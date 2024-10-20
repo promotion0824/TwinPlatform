@@ -1,0 +1,202 @@
+.mask {
+  background-color: var(--theme-color-neutral-bg-base-default);
+  inset: 0;
+  opacity: 0.6;
+  position: fixed;
+  transition: all 0.1s ease;
+  z-index: var(--z-modal);
+}
+
+.mask.closing,
+.mask.closed {
+  opacity: 0;
+}
+
+.modal {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+  bottom: 0;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-flow: column;
+  position: fixed;
+  right: 0;
+  top: 0;
+  transition: all 0.1s ease-in-out;
+  width: 100%;
+  z-index: var(--z-modal);
+}
+
+.main-menu {
+  z-index: 400;
+}
+
+.sizeTiny {
+  width: 360px;
+}
+
+.sizeSmall {
+  width: 480px;
+}
+
+.sizeMedium {
+  width: 640px;
+}
+
+.sizeLarge {
+  max-width: 960px;
+  min-width: 660px;
+}
+
+.sizeExtraLarge {
+  max-width: 1200px;
+  min-width: 660px;
+}
+
+.sizeFull {
+  background-color: transparent;
+  max-width: 100%;
+  min-width: 100%;
+}
+
+.typeLeft {
+  border-right: 1px solid var(--theme-color-neutral-border-default);
+  left: 0;
+}
+
+.typeCenter {
+  border: 1px solid var(--theme-color-neutral-border-default);
+  bottom: var(--padding-large);
+  max-width: calc(100% - (var(--padding-large) * 2));
+  right: 50%;
+  top: var(--padding-large);
+  transform: translate(50%, 0);
+  width: 100%;
+}
+
+.typeLeft.closing,
+.typeLeft.closed {
+  transform: translate(-100%, 0);
+}
+
+.typeRight {
+  border-left: 1px solid var(--theme-color-neutral-border-default);
+}
+
+.typeRight.closing,
+.typeRight.closed {
+  transform: translate(100%, 0);
+}
+
+.typeCenter.closing,
+.typeCenter.closed {
+  opacity: 0;
+  transform: translate(50%, 0) scale(0.8);
+}
+
+.header {
+  border-bottom: 1px solid var(--theme-color-neutral-border-default);
+  box-shadow: var(--shadow-bottom);
+  min-height: 80px;
+  z-index: var(--z-header);
+}
+
+.formHeader {
+  min-height: 80px;
+  z-index: var(--z-header);
+}
+
+.typeLeft .close,
+.typeRight .close {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+  border-radius: 100%;
+  position: absolute;
+  top: 20px;
+}
+
+.typeRight .close {
+  left: -59px;
+}
+
+.typeLeft .close {
+  right: -59px;
+}
+
+.typeCenter .close {
+  height: 60px;
+  width: 60px;
+}
+
+.modal:not(.hasCloseButton) .close {
+  display: none;
+}
+
+.content {
+  height: 100%;
+  overflow: auto;
+}
+
+.noOverflow {
+  overflow: hidden !important;
+}
+
+@media (width <= 649px) {
+  .sizeMedium.typeLeft .close,
+  .sizeMedium.typeRight .close {
+    border-radius: initial;
+    height: 59px;
+    left: 0;
+    padding: 0;
+    position: relative;
+    right: 0;
+    top: 0;
+    width: 60px;
+  }
+}
+
+@media (width <= 1020px) {
+  .sizeLarge.typeLeft .close,
+  .sizeLarge.typeRight .close {
+    border-radius: initial;
+    height: 59px;
+    left: 0;
+    padding: 0;
+    position: relative;
+    right: 0;
+    top: 0;
+    width: 60px;
+  }
+}
+
+@media (width <= 1260px) {
+  .sizeExtraLarge.typeLeft .close,
+  .sizeExtraLarge.typeRight .close {
+    border-radius: initial;
+    height: 59px;
+    left: 0;
+    padding: 0;
+    position: relative;
+    right: 0;
+    top: 0;
+    width: 60px;
+  }
+}
+
+@media (width <= 1020px) {
+  .buttonsWrapper {
+    flex-direction: row-reverse;
+  }
+}
+
+.typeLeft .prevButton,
+.typeRight .prevButton {
+  top: 96px;
+}
+
+.typeLeft .nextButton,
+.typeRight .nextButton {
+  top: 154px;
+}
+
+.modalSubmitButtonContainer {
+  padding: var(--padding-extra-large);
+}

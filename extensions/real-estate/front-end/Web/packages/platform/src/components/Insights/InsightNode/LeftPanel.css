@@ -1,0 +1,52 @@
+.actionContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+@container insightActionsPanelContainer (min-width: 521px) {
+  .actionContainer {
+    flex-direction: row;
+  }
+  .badge {
+    padding-left: 64px;
+  }
+}
+
+.ticketLink {
+  display: block;
+}
+
+.smallMarginLeft {
+  margin-left: 8px;
+}
+
+.flex {
+  flex-direction: column;
+}
+
+@container insightActivitiesContainer (min-width: 725px) {
+  .flex {
+    flex-direction: row;
+  }
+
+  .ticketLink {
+    display: flex;
+  }
+
+  .smallMarginLeft {
+    margin-left: 0;
+  }
+}
+
+.occurrence {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+@container insightOccurrencesContainer (min-width: 620px) {
+  .occurrence {
+    flex-direction: row;
+  }
+}

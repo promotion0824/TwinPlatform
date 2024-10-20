@@ -1,0 +1,7 @@
+.tab {
+  background-color: var(--theme-color-neutral-bg-accent-default);
+}
+
+.tab::before {
+  background-color: var(--theme-color-neutral-bg-accent-default);
+}

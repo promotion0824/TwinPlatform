@@ -1,0 +1,19 @@
+.fileButton {
+  display: inline-block;
+  outline: 0;
+  vertical-align: top;
+}
+
+.file {
+  display: none;
+}
+
+.readOnly.readOnly {
+  background-color: var(--disabled-background);
+  border-color: var(--disabled-background);
+}
+
+.disabled.disabled {
+  background-color: var(--disabled-background);
+  border-color: var(--theme-color-neutral-bg-accent-default);
+}

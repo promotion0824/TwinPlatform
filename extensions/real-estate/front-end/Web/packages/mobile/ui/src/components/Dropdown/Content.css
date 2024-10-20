@@ -1,0 +1,36 @@
+@keyframes enter-top {
+  0% {
+    transform: translate(0, 100%);
+  }
+}
+
+@keyframes enter-bottom {
+  0% {
+    transform: translate(0, -100%);
+  }
+}
+
+.container {
+  outline: 0;
+  overflow: hidden;
+  pointer-events: none;
+  position: fixed;
+  white-space: nowrap;
+  z-index: var(--z-dropdown);
+}
+
+.content {
+  background-color: var(--theme-color-neutral-bg-base-default);
+  border: 1px solid var(--new-border-light);
+  display: flex;
+  flex-flow: column;
+  pointer-events: initial;
+}
+
+.positionTop .content {
+  animation: enter-top 0.2s ease;
+}
+
+.positionBottom .content {
+  animation: enter-bottom 0.2s ease;
+}

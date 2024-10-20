@@ -1,0 +1,117 @@
+{
+  "parser": "babel-eslint",
+  "extends": ["airbnb", "prettier"],
+  "plugins": ["babel", "jest", "react-hooks"],
+  "env": {
+    "browser": true,
+    "jest/globals": true
+  },
+  "settings": {
+    "import/resolver": {
+      "babel-module": {
+        "alias": {
+          "@willow/ui": "./packages/ui/src",
+          "@willow/campus": "./packages/campus/src",
+          "@willow/common": "./packages/common/src",
+          "@willow/mobile-ui": "./packages/mobile/ui/src"
+        },
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
+  },
+  "overrides": [
+    {
+      "files": ["*.{ts,tsx}"],
+      "parser": "@typescript-eslint/parser",
+      "extends": [
+        "airbnb",
+        "prettier",
+        "plugin:@typescript-eslint/recommended"
+      ],
+      "rules": {
+        // Disabled the base "no-shadow" rule and enabled the typescript-eslint "no-shadow" rule
+        // as the base rule is reporting false positive for enum and module augmentation. As of V4.0.0,
+        // the typescript-eslint rule has better support for this rule.
+        // See release note: https://github.com/typescript-eslint/typescript-eslint/releases/tag/v4.0.0
+        "no-shadow": "off",
+        "@typescript-eslint/no-shadow": ["error"],
+        "multiline-comment-style": ["error", "separate-lines"]
+      }
+    },
+    {
+      // Rules to be applied to all eslint parsers used
+      "files": "",
+      "rules": {
+        "babel/no-unused-expressions": "error",
+        "import/extensions": "off",
+        "import/named": "off",
+        "complexity": ["error", 13],
+        "max-len": ["error", 250],
+        "no-else-return": "off",
+        "no-plusplus": [
+          "error",
+          {
+            "allowForLoopAfterthoughts": true
+          }
+        ],
+        "no-nested-ternary": "off",
+        "no-prototype-builtins": "off",
+        "no-unused-expressions": "off",
+        "no-use-before-define": "off",
+        "prefer-arrow-callback": "off",
+        "react/jsx-filename-extension": "off",
+        "react/jsx-one-expression-per-line": "off",
+        "react/jsx-props-no-spreading": "off",
+        "react/jsx-uses-react": "off",
+        "react/no-unescaped-entities": "off",
+        "react/require-default-props": "off",
+        "react/prop-types": "off",
+        "react/react-in-jsx-scope": "off",
+        "react-hooks/exhaustive-deps": "error",
+        "@typescript-eslint/no-non-null-assertion": "warn",
+        "react-hooks/rules-of-hooks": "warn",
+
+        "import/no-extraneous-dependencies": [
+          "error",
+          {
+            "devDependencies": [
+              // Disable "'<module>' should be listed in the project's dependencies,
+              // "not devDependencies" errors in dev scripts. TODO we should move this
+              // to a `scripts` directory and glob against that.
+              "runSingleTenantInstance.js"
+            ]
+          }
+        ],
+
+        // Copied from airbnb config except for..of loop is allowed
+        "no-restricted-syntax": [
+          "error",
+          {
+            "selector": "ForInStatement",
+            "message": "for..in loops iterate over the entire prototype chain, which is virtually never what you want. Use Object.{keys,values,entries}, and iterate over the resulting array."
+          },
+          {
+            "selector": "LabeledStatement",
+            "message": "Labels are a form of GOTO; using them makes code confusing and hard to maintain and understand."
+          },
+          {
+            "selector": "WithStatement",
+            "message": "`with` is disallowed in strict mode because it makes code impossible to predict and optimize."
+          }
+        ],
+
+        "yoda": [
+          "error",
+          "never",
+          {
+            "exceptRange": true
+          }
+        ],
+        "no-param-reassign": [
+          "error",
+          { "props": true, "ignorePropertyModificationsFor": ["state"] }
+        ]
+      }
+    }
+  ]
+}

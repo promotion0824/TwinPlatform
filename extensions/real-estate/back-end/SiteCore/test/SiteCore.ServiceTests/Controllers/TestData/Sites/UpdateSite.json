@@ -1,0 +1,19 @@
+{
+  "name": "RS Site 04 - update",
+  "code": "RS-SITE-04",
+  "type": "Retail",
+  "status": "Construction",
+  "area": "1500",
+  "address": "26",
+  "suburb": "New Suburb1",
+  "state": "Perth",
+  "country": "Australia",
+  "latitude": -34.994,
+  "longitude": 138.557,
+  "constructionYear":  1980,
+  "timeZoneId": "Cen. Australia Standard Time",
+  "siteContactName": "RS-name",
+  "siteContactEmail": "rs@email.com",
+  "siteContactTitle": "Manager",
+  "siteContactPhone": "0444444456"
+}

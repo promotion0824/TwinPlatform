@@ -1,0 +1,11 @@
+.headerButton {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+  border: 1px solid var(--theme-color-neutral-border-default);
+  height: var(--height-medium);
+  padding: 0 var(--padding);
+}
+
+.active {
+  background-color: var(--disabled);
+  color: var(--light);
+}

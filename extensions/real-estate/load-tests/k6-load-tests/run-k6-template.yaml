@@ -1,0 +1,63 @@
+parameters:
+  - name: BaseUrl
+    type: string
+  - name: B2cClientId
+    type: string
+  - name: B2cScope
+    type: string
+  - name: ServiceConnection
+    type: string  
+  - name: LogAnalyticsWorkspace
+    type: string
+    default: nonprodplatformshared-aue-log
+  - name: LogAnalyticsWorkspaceResourceGroup
+    type: string
+    default: nonprod-platformshared
+  - name: ScriptsDirectory
+    type: string
+  - name: Scenario
+    type: string
+  - name: ScenarioDuration
+    type: string
+    default: 30s
+  - name: UsersFile
+    type: string
+    default: load-test-users.json
+  - name: DefaultUserName
+    type: string
+  - name: DefaultUserPassword
+    type: string
+
+
+steps:
+
+  - task: DownloadSecureFile@1
+    displayName: '[DownloadSecureFile] Get Users file for tests'
+    name: testUsersFile
+    inputs:
+      secureFile: ${{ parameters.UsersFile }}
+
+  - task: k6.k6-load-test.custom-build-release-task.k6-load-test@0
+    displayName: '[k6] Run tests'
+    inputs:
+      filename: '${{ parameters.ScriptsDirectory }}dist/${{ parameters.Scenario }}.js'
+      args: '--env API_BASEURL=${{ parameters.BaseUrl }} --env USER_DEFAULT_NAME=${{ parameters.DefaultUserName }} --env USER_DEFAULT_PASSWORD=${{ parameters.DefaultUserPassword }} --env USER_FILE=$(testUsersFile.secureFilePath) --env DURATION=${{ parameters.ScenarioDuration }} --env CLIENT_ID=${{ parameters.B2cClientId }} --env SCOPE=${{ parameters.B2cScope }} --out csv=test_result.csv '
+
+  - task: PublishTestResults@2
+    displayName: 'Publish Test Results **/loadtest-result.xml'
+    condition: succeededOrFailed()
+    inputs:
+      testResultsFiles: '**/loadtest-result.xml'
+      
+  - task: AzureCLI@2
+    condition: succeededOrFailed()
+    inputs:
+      azureSubscription: ${{ parameters.ServiceConnection }}
+      addSpnToEnvironment: true
+      scriptType: 'pscore'
+      scriptLocation: 'inlineScript'
+      inlineScript: |
+        $customerId = az monitor log-analytics workspace show  -g ${{ parameters.logAnalyticsWorkspaceResourceGroup }} -n ${{ parameters.logAnalyticsWorkspace }} --query "customerId" -o tsv
+        $keys = az monitor log-analytics workspace get-shared-keys -g ${{ parameters.logAnalyticsWorkspaceResourceGroup }} -n ${{ parameters.logAnalyticsWorkspace }} | ConvertFrom-Json
+        ${{ parameters.ScriptsDirectory }}BuildScripts/Upload-Results.ps1 -customerId $customerId -sharedKey $keys.primarySharedKey -filePath .\test_result.csv -buildNumber $(Build.BuildNumber)
+    displayName: '[ps][K6] Upload run to log analytics'

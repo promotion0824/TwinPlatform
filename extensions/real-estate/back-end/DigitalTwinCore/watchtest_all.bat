@@ -1,0 +1,1 @@
+dotnet watch --project .\test\DigitalTwinCore.Test\DigitalTwinCore.Test.csproj test /p:CollectCoverage=true /p:CoverletOutputFormat=lcov /p:Exclude=\"[*]DigitalTwinCore.Program,[*]Microsoft.*,[*]System.*,[*]Willow.Infrastructure.*,[xunit*]*\" /p:CoverletOutput=.\lcov.info

@@ -1,0 +1,22 @@
+[
+  { "CanBeDeleted": true, "Is3D": true, "ModuleGroup": "Base", "Name": "Mechanical", "Prefix": "MEC", "SortOrder": 0 },
+  { "CanBeDeleted": true, "Is3D": false, "ModuleGroup": "Base", "Name": "Mechanical", "Prefix": "MEC", "SortOrder": 0 },
+  { "CanBeDeleted": true, "Is3D": true, "ModuleGroup": "Base", "Name": "Electrical", "Prefix": "ELEC", "SortOrder": 1 },
+  { "CanBeDeleted": true, "Is3D": false, "ModuleGroup": "Base", "Name": "Electrical", "Prefix": "ELEC", "SortOrder": 1 },
+  { "CanBeDeleted": true, "Is3D": true, "ModuleGroup": "Base", "Name": "Plumbing", "Prefix": "PLU", "SortOrder": 2 },
+  { "CanBeDeleted": true, "Is3D": false, "ModuleGroup": "Base", "Name": "Plumbing", "Prefix": "PLU", "SortOrder": 2 },
+  { "CanBeDeleted": true, "Is3D": true, "ModuleGroup": "Base", "Name": "Fire Protection", "Prefix": "FP", "SortOrder": 3 },
+  { "CanBeDeleted": true, "Is3D": false, "ModuleGroup": "Base", "Name": "Fire Protection", "Prefix": "FP", "SortOrder": 3 },
+  { "CanBeDeleted": true, "Is3D": true, "ModuleGroup": "Base", "Name": "Building Automation", "Prefix": "BA", "SortOrder": 4 },
+  { "CanBeDeleted": true, "Is3D": false, "ModuleGroup": "Base", "Name": "Building Automation", "Prefix": "BA", "SortOrder": 4 },
+  { "CanBeDeleted": true, "Is3D": true, "ModuleGroup": "Base", "Name": "Architecture", "Prefix": "ARC-INT", "SortOrder": 5 },
+  { "CanBeDeleted": true, "Is3D": false, "ModuleGroup": "Base", "Name": "Architecture", "Prefix": "ARC-INT", "SortOrder": 5 },
+  { "CanBeDeleted": true, "Is3D": true, "ModuleGroup": "Base", "Name": "Architecture Exterior", "Prefix": "ARC-EXT", "SortOrder": 6 },
+  { "CanBeDeleted": true, "Is3D": false, "ModuleGroup": "Base", "Name": "Architecture Exterior", "Prefix": "ARC-EXT", "SortOrder": 6 },
+  { "CanBeDeleted": true, "Is3D": true, "ModuleGroup": "Base", "Name": "Structure", "Prefix": "ST", "SortOrder": 7 },
+  { "CanBeDeleted": true, "Is3D": false, "ModuleGroup": "Base", "Name": "Structure", "Prefix": "ST", "SortOrder": 7 },
+  { "CanBeDeleted": true, "Is3D": true, "ModuleGroup": "Base", "Name": "IT/Security", "Prefix": "IT", "SortOrder": 8 },
+  { "CanBeDeleted": true, "Is3D": false, "ModuleGroup": "Base", "Name": "IT/Security", "Prefix": "IT", "SortOrder": 8 },
+  { "CanBeDeleted": true, "Is3D": true, "ModuleGroup": "Base", "Name": "Vertical Transport", "Prefix": "VT", "SortOrder": 9 },
+  { "CanBeDeleted": true, "Is3D": false, "ModuleGroup": "Base", "Name": "Vertical Transport", "Prefix": "VT", "SortOrder": 9 }
+]

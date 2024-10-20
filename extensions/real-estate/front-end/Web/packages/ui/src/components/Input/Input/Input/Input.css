@@ -1,0 +1,121 @@
+.input {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+  border-radius: var(--border-radius);
+  display: inline-flex;
+  height: var(--height-medium);
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.borderTop {
+  border-top: 1px solid var(--theme-color-neutral-border-default);
+}
+
+.borderLeft {
+  border-left: 1px solid var(--theme-color-neutral-border-default);
+}
+
+.borderBottom {
+  border-bottom: 1px solid var(--theme-color-neutral-border-default);
+}
+
+.borderRight {
+  border-right: 1px solid var(--theme-color-neutral-border-default);
+}
+
+.input:focus-within {
+  border-color: var(--border-light);
+  box-shadow: 0 0 2px var(--border-light);
+}
+
+.input:hover,
+label:hover + .input {
+  background-color: var(--theme-color-neutral-border-default);
+}
+
+.hasValue {
+  background-color: var(--theme-color-neutral-bg-accent-default);
+}
+
+.input.input.readOnly {
+  background-color: var(--disabled-background);
+  border-color: var(--disabled-background);
+  box-shadow: none;
+}
+
+.input.input.disabled {
+  background-color: var(--disabled-background);
+  border-color: var(--theme-color-neutral-bg-accent-default);
+}
+
+.hasError,
+.hasError:focus-within,
+.hasError:hover,
+label:hover + .hasError {
+  border-color: var(--red);
+}
+
+.icon {
+  align-self: center;
+  color: var(--theme-color-neutral-fg-subtle);
+  margin-left: var(--padding);
+  pointer-events: none;
+  position: absolute;
+}
+
+.inputControl {
+  background: 0;
+  border: 0;
+  color: var(--light);
+  font-family: var(--font);
+  font-size: var(--font-medium);
+  font-weight: var(--font-normal);
+  height: 100%;
+  outline: 0;
+  padding: 0 var(--padding);
+  width: 100%;
+}
+
+.inputControl::placeholder {
+  color: var(--theme-color-neutral-fg-subtle);
+}
+
+.input:hover .inputControl::placeholder,
+label:hover + .input .inputControl::placeholder {
+  color: var(--border-light);
+}
+
+.input.readOnly:hover .inputControl::placeholder,
+label:hover + .input.readOnly .inputControl::placeholder {
+  color: var(--theme-color-neutral-fg-subtle);
+}
+
+.inputControl:-webkit-autofill {
+  box-shadow: 0 0 0 50px var(--theme-color-neutral-bg-panel-default) inset;
+  caret-color: var(--light);
+  -webkit-text-fill-color: var(--light);
+}
+
+.hasIcon .inputControl {
+  padding-left: 34px;
+}
+
+.input.disabled .inputControl,
+.input.input.input.disabled .inputControl::placeholder {
+  color: var(--disabled);
+}
+
+.heightMedium {
+  height: var(--height-medium);
+}
+
+.heightLarge.heightLarge {
+  border-color: var(--theme-color-neutral-border-default);
+  border-radius: 0;
+  box-shadow: none;
+  height: var(--height-large);
+}
+
+.widthTiny {
+  width: var(--width-tiny);
+}

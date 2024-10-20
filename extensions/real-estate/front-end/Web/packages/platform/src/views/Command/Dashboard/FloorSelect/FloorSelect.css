@@ -1,0 +1,32 @@
+.floorSelect {
+  border-right: 1px solid var(--theme-color-neutral-border-default);
+  height: 100%;
+  min-width: 101px;
+  padding: 0 var(--padding-large);
+}
+
+.content {
+  flex: 1;
+  padding-right: var(--padding);
+}
+
+.placeholder .content {
+  color: var(--theme-color-neutral-fg-subtle);
+  font-size: var(--font-medium);
+}
+
+.chevron {
+  flex-shrink: 0;
+}
+
+.colorRed .content {
+  color: var(--red);
+}
+
+.colorOrange .content {
+  color: var(--orange);
+}
+
+.colorYellow .content {
+  color: var(--yellow);
+}

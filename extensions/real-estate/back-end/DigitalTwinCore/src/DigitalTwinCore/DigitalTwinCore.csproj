@@ -1,0 +1,80 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <UserSecretsId>f59c5a41-8403-46fb-92f8-7db5795df8d1</UserSecretsId>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Database\Scripts\*.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Database\Scripts\004_DT_SiteSettings_AdxDatabase.sql" />
+    <None Remove="Database\Scripts\005_GeometryViewer.sql" />
+    <None Remove="Database\Scripts\006_Create_Data_Quality_Schema.sql" />
+    <None Remove="Database\Scripts\008_Remove_Data_Quality_Schema.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Abodit.Graph" Version="3.22.20.4" />
+    <PackageReference Include="Azure.DigitalTwins.Core" Version="1.4.0" />
+    <PackageReference Include="Azure.Storage.Blobs" Version="12.20.0" />
+    <PackageReference Include="Diacritics" Version="3.3.29" />
+    <PackageReference Include="DTDLParser" Version="1.0.52" />
+    <PackageReference Include="Microsoft.ApplicationInsights.SnapshotCollector" Version="1.4.6" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.6" />
+    <PackageReference Include="Microsoft.AspNetCore.AzureAppServicesIntegration" Version="8.0.6" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.6" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.1.0" />
+    <PackageReference Include="Microsoft.Azure.Kusto.Ingest" Version="12.0.1" />
+    <PackageReference Include="Microsoft.Azure.Kusto.Language" Version="11.6.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.0-preview.4.24267.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.0-preview.4.24267.1" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="9.0.0-preview.4.24266.19" />
+    <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="8.0.1" />
+    <PackageReference Include="AspNetCore.HealthChecks.Uris" Version="8.0.1" />
+    <PackageReference Include="dbup" Version="5.0.40" />
+    <PackageReference Include="Microsoft.Identity.Client" Version="4.61.3" />
+    <PackageReference Include="Polly" Version="8.2.1" />
+    <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="8.0.6" />
+    <PackageReference Include="Polly.Contrib.WaitAndRetry" Version="1.1.1" />
+    <PackageReference Include="Polly.Core" Version="8.4.0" />
+    <PackageReference Include="Polly.Extensions" Version="8.4.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.5.0" />
+    <PackageReference Include="System.Collections.Concurrent" Version="4.3.0" />
+    <PackageReference Include="System.Linq.Async" Version="6.0.1" />
+    <PackageReference Include="System.Net.Http.Json" Version="8.0.0" />
+    <PackageReference Include="JsonPatch.Net" Version="2.1.0" />
+  </ItemGroup>
+
+  <!-- Specify version for some packages, because the auto-reference version has vulnerability issues -->
+  <ItemGroup>
+    <PackageReference Include="System.Net.Http" Version="4.3.4" />
+    <PackageReference Include="System.Text.RegularExpressions" Version="4.3.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.2.7" />
+    <PackageReference Include="Willow.Common" Version="1.1.6" />
+    <PackageReference Include="Willow.Telemetry.Web" Version="2.2.2734" />
+    <PackageReference Include="Willow.HealthChecks" Version="2.2.2734" />
+    <PackageReference Include="WindowsAzure.Storage" Version="9.3.3" />
+    <PackageReference Include="Willow.Api.AzureStorage" Version="1.0.9" />
+    <ProjectReference Include="../../../../lib/src/Willow.Api.Binding/Willow.Api.Binding.csproj" />
+    <PackageReference Include="Willow.Azure.Storage" Version="1.0.11" />
+    <PackageReference Include="Willow.Logging" Version="1.0.5" />
+    <PackageReference Include="Willow.Api.Client" Version="1.0.11" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Services\Background\" />
+    <Folder Include="Services\Interfaces\" />
+  </ItemGroup>
+
+</Project>

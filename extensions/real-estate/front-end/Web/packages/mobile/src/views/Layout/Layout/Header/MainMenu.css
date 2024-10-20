@@ -1,0 +1,28 @@
+.willow {
+  background: transparent;
+}
+
+.button {
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.button:focus .willow {
+  fill: var(--new-blue);
+}
+
+@media (hover: hover) {
+  .button:hover .willow {
+    fill: var(--new-blue);
+  }
+}
+
+@media (--mobile) {
+  .modal {
+    width: 100%;
+  }
+}
+
+.menuTitle {
+  text-transform: initial;
+}

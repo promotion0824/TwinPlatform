@@ -1,0 +1,166 @@
+.pill {
+  align-items: center;
+  background-color: var(--grey);
+  border: 1px solid var(--grey);
+  border-radius: var(--border-radius);
+  display: inline-flex;
+  font-size: var(--font-tiny);
+  justify-content: center;
+  min-width: 33px;
+  padding: var(--padding-small);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.noPadding {
+  padding: 0;
+}
+
+.isSelected {
+  background-color: var(--theme-color-neutral-border-default);
+  border-color: var(--theme-color-neutral-border-default);
+  color: var(--white);
+}
+
+.isClickable.isHovering,
+.isClickable.isSelected:focus {
+  color: var(--light);
+}
+
+@media (hover: hover) {
+  .isClickable.isSelected:hover {
+    color: var(--light);
+  }
+}
+
+.colorSelectedText {
+  color: var(--light-new);
+}
+
+.colorGreen {
+  background-color: var(--green-background);
+  border-color: var(--green-background);
+  color: var(--green);
+}
+
+.isSelected.colorGreen {
+  background-color: var(--green);
+  border-color: var(--green);
+  color: var(--white);
+}
+
+.isClickable.isHovering.colorGreen,
+.isClickable.colorGreen:focus {
+  color: var(--green-light);
+}
+
+.isClickable.isSelected.isHovering.colorGreen,
+.isClickable.isSelected.colorGreen:focus {
+  color: var(--light);
+}
+
+@media (hover: hover) {
+  .isClickable.colorGreen:hover {
+    color: var(--green-light);
+  }
+
+  .isClickable.isSelected.colorGreen:hover {
+    color: var(--light);
+  }
+}
+
+.colorRed {
+  background-color: var(--red-background);
+  border-color: var(--red-background);
+  color: var(--red);
+}
+
+.isSelected.colorRed {
+  background-color: var(--red);
+  border-color: var(--red);
+  color: var(--white);
+}
+
+.isClickable.isHovering.colorRed,
+.isClickable.colorRed:focus {
+  color: var(--red-light);
+}
+
+.isClickable.isSelected.isHovering.colorRed,
+.isClickable.isSelected.colorRed:focus {
+  color: var(--light);
+}
+
+@media (hover: hover) {
+  .isClickable.colorRed:hover {
+    color: var(--red-light);
+  }
+
+  .isClickable.isSelected.colorRed:hover {
+    color: var(--light);
+  }
+}
+
+.colorOrange {
+  background-color: var(--orange-background);
+  border-color: var(--orange-background);
+  color: var(--orange);
+}
+
+.isSelected.colorOrange {
+  background-color: var(--orange);
+  border-color: var(--orange);
+  color: var(--white);
+}
+
+.isClickable.isHovering.colorOrange,
+.isClickable.colorOrange:focus {
+  color: var(--orange-light);
+}
+
+.isClickable.isSelected.isHovering.colorOrange,
+.isClickable.isSelected.colorOrange:focus {
+  color: var(--light);
+}
+
+@media (hover: hover) {
+  .isClickable.colorOrange:hover {
+    color: var(--orange-light);
+  }
+
+  .isClickable.isSelected.colorOrange:hover {
+    color: var(--light);
+  }
+}
+
+.colorYellow {
+  background-color: var(--yellow-background);
+  border-color: var(--yellow-background);
+  color: var(--yellow);
+}
+
+.isSelected.colorYellow {
+  background-color: var(--yellow);
+  border-color: var(--yellow);
+  color: var(--grey-dark);
+}
+
+.isClickable.isHovering.colorYellow,
+.isClickable.colorYellow:focus {
+  color: var(--yellow-light);
+}
+
+.isClickable.isSelected.isHovering.colorYellow,
+.isClickable.isSelected.colorYellow:focus {
+  color: var(--grey-light);
+}
+
+@media (hover: hover) {
+  .isClickable.colorYellow:hover {
+    color: var(--yellow-light);
+  }
+
+  .isClickable.isSelected.colorYellow:hover {
+    color: var(--grey-light);
+  }
+}

@@ -1,0 +1,55 @@
+.textArea {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+  border: 1px solid var(--theme-color-neutral-border-default);
+  display: flex;
+  transition: all 0.2s ease;
+}
+
+.isDisabled {
+  background-color: var(--theme-color-state-disabled-bg);
+  border-color: var(--theme-color-state-disabled-border);
+  color: var(--theme-color-state-disabled-fg);
+}
+
+.hasValue {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+}
+
+.textArea:not(.isDisabled):focus-within {
+  border-color: var(--new-border-light);
+}
+
+@media (hover: hover) {
+  .textArea:not(.isDisabled):hover {
+    border-color: var(--new-border-light);
+  }
+}
+
+.hasError {
+  border-color: var(--red);
+}
+
+.hasError:not(.isDisabled):focus-within {
+  border-color: var(--red-light);
+}
+
+@media (hover: hover) {
+  .hasError:not(.isDisabled):hover {
+    border-color: var(--red-light);
+  }
+}
+
+.textAreaControl {
+  background: 0;
+  border: 0;
+  color: var(--light);
+  flex: 1;
+  font-family: var(--font);
+  font-size: var(--font-medium);
+  font-weight: var(--font-normal);
+  letter-spacing: 0.15px;
+  outline: 0;
+  padding: var(--padding);
+  resize: none;
+  width: 100%;
+}

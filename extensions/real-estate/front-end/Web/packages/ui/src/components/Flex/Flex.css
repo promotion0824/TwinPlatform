@@ -1,0 +1,280 @@
+.flex {
+  display: flex;
+}
+
+.flex > * {
+  flex-shrink: 0;
+}
+
+.displayInline {
+  display: inline-flex;
+}
+
+.positionFixed {
+  inset: 0;
+  position: fixed;
+}
+
+.positionAbsolute {
+  inset: 0;
+  position: absolute;
+}
+
+.positionRelative {
+  position: relative;
+}
+
+.vertical {
+  flex-flow: column;
+}
+
+.horizontal {
+  flex-flow: row;
+}
+
+.vertical.fillHeader,
+.vertical.fillContent,
+.vertical.fillEqual,
+.vertical.fillWrap {
+  height: 100%;
+}
+
+.fillHeader > :nth-child(1),
+.fillContent > :nth-child(2) {
+  flex: 1;
+}
+
+.fillEqual > * {
+  flex: 1;
+}
+
+.fillWrap {
+  flex-wrap: wrap;
+}
+
+.fillHeader > :nth-child(1),
+.fillContent > :nth-child(2),
+.fillEqual > *,
+.fillWrap > * {
+  overflow: auto;
+}
+
+.fillHeader.fillHidden > :nth-child(1),
+.fillContent.fillHidden > :nth-child(2),
+.fillEqual.fillHidden > *,
+.fillWrap.fillHidden > * {
+  overflow: hidden;
+}
+
+.fillHeader.fillInitial > :nth-child(1),
+.fillContent.fillInitial > :nth-child(2),
+.fillEqual.fillInitial > *,
+.fillWrap.fillInitial > * {
+  overflow: initial;
+}
+
+.horizontal.alignLeft {
+  justify-content: flex-start;
+}
+
+.horizontal.alignCenter {
+  justify-content: center;
+}
+
+.horizontal.alignRight {
+  justify-content: flex-end;
+}
+
+.horizontal.alignTop {
+  align-items: flex-start;
+}
+
+.horizontal.alignMiddle {
+  align-items: center;
+}
+
+.horizontal.alignBottom {
+  align-items: flex-end;
+}
+
+.vertical.alignLeft {
+  align-items: flex-start;
+}
+
+.vertical.alignCenter {
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.vertical.alignCenterSelf {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.vertical.alignRight {
+  align-items: flex-end;
+}
+
+.vertical.alignTop {
+  justify-content: flex-start;
+}
+
+.vertical.alignMiddle {
+  justify-content: center;
+  margin-bottom: auto;
+  margin-top: auto;
+}
+
+.vertical.alignBottom {
+  justify-content: flex-end;
+}
+
+.fillWrap.sizeTiny {
+  margin: -2px;
+}
+
+.fillWrap.sizeTiny > * {
+  margin: var(--padding-tiny);
+}
+
+.fillWrap.sizeSmall {
+  margin: -4px;
+}
+
+.fillWrap.sizeSmall > * {
+  margin: var(--padding-small);
+}
+
+.fillWrap.sizeMedium {
+  margin: -8px;
+}
+
+.fillWrap.sizeMedium > * {
+  margin: var(--padding);
+}
+
+.fillWrap.sizeLarge {
+  margin: -16px;
+}
+
+.fillWrap.sizeLarge > * {
+  margin: var(--padding-large);
+}
+
+.fillWrap.sizeExtraLarge {
+  margin: -25px;
+}
+
+.fillWrap.sizeExtraLarge > * {
+  margin: var(--padding-extra-large);
+}
+
+.vertical.sizeTiny > *:not(:first-child) {
+  margin-top: var(--padding-tiny);
+}
+
+.vertical.sizeSmall > *:not(:first-child) {
+  margin-top: var(--padding-small);
+}
+
+.vertical.sizeSmall.marginTop > *:not(:first-child) {
+  margin-top: 0;
+}
+
+.vertical.sizeMedium > *:not(:first-child) {
+  margin-top: var(--padding);
+}
+
+.vertical.sizeLarge > *:not(:first-child) {
+  margin-top: var(--padding-large);
+}
+
+.vertical.sizeExtraLarge > *:not(:first-child) {
+  margin-top: var(--padding-extra-large);
+}
+
+.horizontal.sizeTiny > *:not(:first-child) {
+  margin-left: var(--padding-tiny);
+}
+
+.horizontal.sizeSmall > *:not(:first-child) {
+  margin-left: var(--padding-small);
+}
+
+.horizontal.sizeMedium > *:not(:first-child) {
+  margin-left: var(--padding);
+}
+
+.horizontal.sizeLarge > *:not(:first-child) {
+  margin-left: var(--padding-large);
+}
+
+.horizontal.sizeExtraLarge > *:not(:first-child) {
+  margin-left: var(--padding-extra-large);
+}
+
+.widthPage {
+  margin: 0 auto;
+  max-width: 800px;
+  width: 100%;
+}
+
+.widthPageLarge {
+  margin: 0 auto;
+  max-width: 1160px;
+  width: 100%;
+}
+
+.widthMinContent {
+  min-width: min-content;
+}
+
+.width100Percent {
+  width: 100%;
+}
+
+.heightMedium {
+  height: 39px;
+}
+
+.heightLarge {
+  height: var(--height-large);
+}
+
+.height100Percent {
+  height: 100%;
+}
+
+.heightSpecial {
+  max-height: 144px;
+  overflow: hidden scroll !important;
+}
+
+.horizontal.border > *:not(:first-child) {
+  border-left: 1px solid var(--theme-color-neutral-border-default);
+}
+
+.vertical.border > *:not(:first-child) {
+  border-top: 1px solid var(--theme-color-neutral-border-default);
+}
+
+.overflowAuto.overflowAuto.overflowAuto {
+  overflow: auto;
+}
+
+.overflowHidden.overflowHidden.overflowHidden {
+  overflow: hidden;
+}
+
+.overflowInitial.overflowInitial.overflowInitial {
+  overflow: initial;
+}
+
+.whiteSpaceNormal {
+  white-space: normal;
+}
+
+.whiteSpaceNoWrap {
+  white-space: nowrap;
+}

@@ -1,0 +1,50 @@
+import { Canvas, Story } from '@storybook/blocks'
+import * as InputStories from '../src/components/Input/Input.stories'
+import * as NumberInputStories from '../src/components/NumberInput/NumberInput.stories'
+import * as SelectStories from '../src/components/Select/Select.stories'
+import * as TextAreaStories from '../src/components/TextArea/TextArea.stories'
+import * as FilesSelectNewStories from '../src/components/FilesSelectNew/FilesSelectNew.stories'
+import * as DatePickerStories from '../src/components/DatePicker/DatePicker.stories'
+import * as CheckboxStories from '../src/components/Checkbox/Checkbox.stories'
+
+# Readonly form fields
+
+## Empty
+
+<Canvas style={{ backgroundColor: '#242424' }}>
+  <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+    <Story of={NumberInputStories.ReadonlyEmpty} />
+    <Story of={TextAreaStories.ReadonlyEmpty} />
+    <Story of={InputStories.ReadonlyEmpty} />
+    <Story of={SelectStories.ReadonlyEmpty} />
+    <Story of={FilesSelectNewStories.ReadonlyEmpty} />
+    <Story of={DatePickerStories.ReadonlyEmpty} />
+    <Story of={CheckboxStories.ReadonlyUnchecked} />
+  </div>
+</Canvas>
+
+### Value
+
+<Canvas style={{ backgroundColor: '#242424' }}>
+  <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+    <Story of={NumberInputStories.ReadonlyValue} />
+    <Story of={TextAreaStories.ReadonlyValue} />
+    <Story of={InputStories.ReadonlyValue} />
+    <Story of={SelectStories.ReadonlyValue} />
+    <Story of={FilesSelectNewStories.ReadonlyValue} />
+    <Story of={DatePickerStories.ReadonlyValue} />
+    <Story of={CheckboxStories.ReadonlyChecked} />
+  </div>
+</Canvas>
+
+## Placeholder
+
+<Canvas style={{ backgroundColor: '#242424' }}>
+  <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+    <Story of={NumberInputStories.ReadonlyPlaceholder} />
+    <Story of={TextAreaStories.ReadonlyPlaceholder} />
+    <Story of={InputStories.ReadonlyPlaceholder} />
+    <Story of={SelectStories.ReadonlyPlaceholder} />
+    <Story of={DatePickerStories.ReadonlyPlaceholder} />
+  </div>
+</Canvas>

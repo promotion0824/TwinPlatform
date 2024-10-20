@@ -1,0 +1,39 @@
+.resizer {
+  align-items: center;
+  color: var(--light);
+  display: flex;
+  flex: 0 0 var(--padding);
+  flex-shrink: 0;
+  justify-content: center;
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.resizer:hover {
+  color: var(--theme-color-neutral-fg-highlight);
+}
+
+.vertical.resizer {
+  cursor: row-resize;
+}
+
+.horizontal.resizer {
+  cursor: col-resize;
+}
+
+.icon {
+  margin-top: 1px;
+}
+
+.horizontal .icon {
+  margin-right: 1px;
+  transform: rotate(90deg);
+}
+
+.notResizable.resizer {
+  cursor: initial;
+}
+
+.notResizable .icon {
+  display: none;
+}

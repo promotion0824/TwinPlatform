@@ -1,0 +1,25 @@
+{
+  "AzureAdB2C": {
+    "Instance": "https://willowidentity.b2clogin.com",
+    "Domain": "willowidentity.onmicrosoft.com",
+    "ClientId": "52eda7d7-9c42-40fa-993f-1a0e5cdc2b9b",
+    "SignUpSignInPolicyId": "B2C_1A_SeamlessMigration_signuporsignin",
+    "PasswordResetPolicyId": "B2C_1A_SeamlessMigration_PasswordReset",
+    "RedirectPath": "/mobile-web/account/authcallback",
+    "PostLogoutRedirectPath": "/mobile-web/account/login",
+    "SilentRenewCallbackPath": "/mobile-web/account/silentrenewcallback"
+  },
+  "auth0Audience-au": "https://willowtwin-web",
+  "auth0Domain-au": "willowtwin-prd.au.auth0.com",
+  "auth0ClientID-au": "0DpYtjNTzTWvTk7tn8MXa2pArrDc1eZk",
+  "auth0Audience-us": "https://willowtwin-web",
+  "auth0Domain-us": "willowtwin-prd.auth0.com",
+  "auth0ClientID-us": "uhY0nmw0pW5pRU0aEpys7JWRetnG05kk",
+  "auth0Audience-eu": "https://willowtwin-web",
+  "auth0Domain-eu": "willowtwin-prd.eu.auth0.com",
+  "auth0ClientID-eu": "t2bhNexgoqj8WhFyHjhrVJREQNSmRCSL",
+  "segmentApiKey": "oizZjxfRxdmoBUr5QnAOTE8dURbvfu5O",
+  "mixpanelToken": "7b3b9b37c05e216292d733286f6287d7",
+  "configCatKey": "6V3YCJB5OEyE7q_AZF0cwg/q7-GhXKzx0W19vl-UO3SCw",
+  "beamerApiKey": "omLAsnHx24880"
+}

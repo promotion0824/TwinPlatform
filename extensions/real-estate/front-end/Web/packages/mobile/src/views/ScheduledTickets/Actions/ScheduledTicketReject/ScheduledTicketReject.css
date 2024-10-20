@@ -1,0 +1,23 @@
+.main {
+  background-color: var(--theme-color-neutral-bg-base-default);
+}
+
+.ticketContent {
+  padding: var(--padding-large) var(--padding-extra-large);
+}
+
+.footer {
+  align-items: center;
+  display: flex;
+  height: 70px;
+  padding: 0 var(--padding-extra-large);
+}
+
+.button {
+  flex: 1;
+}
+
+.textarea textarea {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+  padding: 12px;
+}

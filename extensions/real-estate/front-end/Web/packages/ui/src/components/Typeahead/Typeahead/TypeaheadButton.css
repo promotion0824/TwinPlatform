@@ -1,0 +1,18 @@
+.typeaheadButton {
+  height: var(--height-medium);
+  padding: 0 var(--padding);
+  width: 100%;
+}
+
+.typeHeader.typeHeader {
+  background-color: var(--theme-color-neutral-bg-accent-default);
+  border-bottom: 1px solid var(--theme-color-neutral-border-default);
+  color: var(--text);
+  position: sticky;
+  top: 0;
+  z-index: var(--z-header);
+}
+
+.typeHeader:not(:first-child) {
+  border-top: 1px solid var(--theme-color-neutral-border-default);
+}

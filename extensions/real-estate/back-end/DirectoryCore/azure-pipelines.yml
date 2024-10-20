@@ -1,0 +1,114 @@
+trigger:
+  branches:
+    include:
+      - main
+      - releases/real-estate/*
+  paths:
+    include:
+      - extensions/real-estate/back-end/DirectoryCore/*
+
+pr:
+  branches:
+    include:
+      - main
+      - releases/real-estate/*
+  paths:
+    include:
+      - extensions/real-estate/back-end/DirectoryCore/*
+
+parameters:
+- name: acr_push_prd
+  displayName: Push to ACR (PRD)
+  type: boolean
+  default: false
+- name: acr_push_dev
+  displayName: Push to ACR (DEV)
+  type: boolean
+  default: false
+
+variables:
+  - name: buildConfiguration
+    value: Release
+  - name: majorVersion # This is used to determine keyvault prefix within PrefixKeyVaultSecretManager
+    value: 1
+  - name: projectPath
+    value: extensions/real-estate/back-end/DirectoryCore
+  - name: srcRoot
+    value: $(Build.SourcesDirectory)/$(projectPath)
+  - name: srcProjectDir
+    value: $(projectPath)/src/DirectoryCore
+  - name: testProjectDir
+    value: $(projectPath)/test/DirectoryCore.Test
+  - group: EphemeralEnvironments
+
+resources:
+  repositories:
+    - repository: infrastructure
+      type: github
+      name: Willowinc/AzurePlatform
+      endpoint: github.com_willow-github-svc-Twin Platform
+
+stages:
+- stage: Build
+  jobs:
+  - job: BuildArtifactsJob
+    pool:
+      vmImage: 'Ubuntu-latest'
+
+    steps:
+    - template: ../../../../libraries/scripts/semantic-build-numbers-template.yml
+      parameters:
+        majorVersion: $(majorVersion)
+
+    - task: UseDotNet@2
+      displayName: Use .NET 7.0.x
+      inputs:
+        packageType: 'sdk'
+        version: 7.0.x
+
+    - template: ../../../../libraries/scripts/dotnet-build-test-publish.yml
+      parameters:
+        srcProjectDir: $(srcProjectDir)
+        testProjectDir: $(testProjectDir)
+        zipAfterPublish: true
+        restoreGithubNugetPackages: true
+        
+    - template: ../../../../libraries/scripts/docker-push-template.yml
+      parameters:
+        imageName: directorycore
+        productName: willowplatform
+        dockerfile: $(srcRoot)/src/DirectoryCore/Dockerfile
+        dockerContext: $(Build.ArtifactStagingDirectory)/
+        branchTags: true
+        alwaysPush: true
+
+    - ${{if parameters.acr_push_dev }}:
+      - template: ../../../../libraries/scripts/docker-push-template.yml
+        parameters:
+          imageName: directorycore
+          productName: willowplatform
+          dockerfile: $(srcRoot)/src/DirectoryCore/Dockerfile
+          dockerContext: $(Build.ArtifactStagingDirectory)/
+          branchTags: true
+          alwaysPush: true
+          containerRegistry: acr-crwildevshared01-Twin Platform
+
+    - ${{if parameters.acr_push_prd }}:
+      - template: ../../../../libraries/scripts/docker-push-template.yml
+        parameters:
+          imageName: directorycore
+          productName: willowplatform
+          dockerfile: $(srcRoot)/src/DirectoryCore/Dockerfile
+          dockerContext: $(Build.ArtifactStagingDirectory)/
+          branchTags: true
+          alwaysPush: true
+          containerRegistry: acr-crwilprdshared01-Twin Platform
+
+    - task: PublishBuildArtifacts@1
+
+- template: EphemeralEnvironments/ephemeral-pr.yaml@infrastructure
+  parameters:
+    dependsOn: Build
+    resourceServiceConnection: 'az-platform-dev-Twin Platform'
+    acrSubscriptionServiceConnection: 'az-k8s-internal-Twin Platform'
+    templateRepository: infrastructure

@@ -1,0 +1,41 @@
+.img {
+  align-items: center;
+  border: 1px solid var(--theme-color-neutral-border-default);
+  border-radius: var(--border-radius);
+  justify-content: center;
+  position: relative;
+}
+
+.img:not(.showImage):focus,
+.img:not(.showImage):hover {
+  color: inherit;
+  cursor: inherit;
+}
+
+.sizeSmall {
+  height: 50px;
+  width: 50px;
+}
+
+.sizeMedium {
+  height: 100px;
+  width: 100px;
+}
+
+.imgTag {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  left: 0;
+  object-fit: contain;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  visibility: hidden;
+  width: 100%;
+}
+
+.showImage .imgTag {
+  visibility: visible;
+}

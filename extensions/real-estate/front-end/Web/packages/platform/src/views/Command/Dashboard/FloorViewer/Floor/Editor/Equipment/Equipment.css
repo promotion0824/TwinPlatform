@@ -1,0 +1,141 @@
+.equipment {
+  fill: var(--tooltip);
+}
+
+.isClickable {
+  cursor: pointer;
+}
+
+.isSelected {
+  fill: var(--tooltip-dark);
+  stroke: var(--tooltip-dark);
+  stroke-width: 0.5;
+}
+
+.colorRed {
+  fill: var(--red);
+}
+
+.colorRed.isSelected {
+  fill: var(--red-dark);
+  stroke: var(--red-dark);
+}
+
+.colorOrange {
+  fill: var(--orange);
+}
+
+.colorOrange.isSelected {
+  fill: var(--orange-dark);
+  stroke: var(--orange-dark);
+}
+
+.colorYellow {
+  fill: var(--yellow);
+}
+
+.colorYellow.isSelected {
+  fill: var(--yellow-dark);
+  stroke: var(--yellow-dark);
+}
+
+.tooltip {
+  background-color: transparent;
+}
+
+.header {
+  background-color: var(--tooltip);
+  border-radius: inherit;
+  height: 30px;
+}
+
+.tooltip.isSelected .header {
+  background-color: var(--tooltip-dark);
+}
+
+.tooltip.showDetails .header {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.tooltip.colorRed .header {
+  background-color: var(--red);
+  color: var(--white);
+}
+
+.tooltip.colorOrange .header {
+  background-color: var(--orange);
+  color: var(--white);
+}
+
+.tooltip.colorYellow .header {
+  background-color: var(--yellow);
+  color: var(--white);
+}
+
+.colorRed.isSelected .header {
+  background-color: var(--red-dark);
+}
+
+.colorRed:not(.showDetails)::before,
+.colorRed:not(.showDetails)::after {
+  border-color: var(--red) transparent transparent transparent;
+}
+
+.colorRed.isSelected:not(.showDetails)::before,
+.colorRed.isSelected:not(.showDetails)::after {
+  border-color: var(--red-dark) transparent transparent transparent;
+}
+
+.colorOrange.isSelected .header {
+  background-color: var(--orange-dark);
+}
+
+.colorOrange:not(.showDetails)::before,
+.colorOrange:not(.showDetails)::after {
+  border-color: var(--orange) transparent transparent transparent;
+}
+
+.colorOrange.isSelected:not(.showDetails)::before,
+.colorOrange.isSelected:not(.showDetails)::after {
+  border-color: var(--orange-dark) transparent transparent transparent;
+}
+
+.colorYellow.isSelected .header {
+  background-color: var(--yellow-dark);
+}
+
+.colorYellow:not(.showDetails)::before,
+.colorYellow:not(.showDetails)::after {
+  border-color: var(--yellow) transparent transparent transparent;
+}
+
+.colorYellow.isSelected:not(.showDetails)::before,
+.colorYellow.isSelected:not(.showDetails)::after {
+  border-color: var(--yellow-dark) transparent transparent transparent;
+}
+
+.content {
+  background-color: var(--tooltip);
+  border-bottom-left-radius: inherit;
+  border-bottom-right-radius: inherit;
+  border-top: 1px solid var(--theme-color-neutral-border-default);
+}
+
+.tooltip.isSelected .content {
+  background-color: var(--tooltip-dark);
+}
+
+.tooltip.colorRed .content,
+.tooltip.colorOrange .content,
+.tooltip.colorYellow .content {
+  border-color: transparent;
+}
+
+.isContentSelected {
+  border-color: var(--theme-color-neutral-border-default);
+}
+
+.select {
+  min-width: 200px;
+}

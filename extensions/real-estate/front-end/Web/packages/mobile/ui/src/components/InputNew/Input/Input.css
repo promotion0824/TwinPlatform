@@ -1,0 +1,7 @@
+.content {
+  max-height: 305px;
+  max-width: 768px;
+  min-height: 38px;
+  overflow: auto;
+  overflow-x: hidden;
+}

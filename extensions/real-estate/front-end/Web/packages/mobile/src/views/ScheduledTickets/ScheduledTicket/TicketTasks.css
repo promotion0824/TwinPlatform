@@ -1,0 +1,70 @@
+.taskName {
+  color: var(--theme-color-neutral-fg-highlight);
+  flex: 1;
+  font-size: var(--font-large);
+}
+
+.ticketConfirm {
+  cursor: pointer;
+  padding: var(--padding-large);
+}
+
+.iconContainer {
+  align-items: center;
+  background-color: var(--new-text-dark);
+  border-radius: 50%;
+  display: inline-flex;
+  height: 26px;
+  justify-content: center;
+  width: 26px;
+}
+
+.iconContainer.checked {
+  background-color: var(--new-blue);
+}
+
+.icon {
+  color: var(--new-text);
+}
+
+.icon.checked {
+  color: var(--theme-color-neutral-fg-highlight);
+}
+
+.disabled {
+  cursor: default;
+  pointer-events: none;
+}
+
+.numberValueFlxMobile {
+  margin-left: 55px;
+}
+
+.numberValueFlxMobile > span {
+  padding-bottom: var(--padding-extra-large);
+}
+
+.numberValueFlxMobile > span > label {
+  padding-bottom: var(--padding-small);
+}
+
+.inputSuffix {
+  margin: auto;
+  padding-right: var(--padding);
+  vertical-align: middle;
+}
+
+.errorTxt {
+  color: #fc2d3b !important;
+  margin-left: 55px;
+}
+
+.error {
+  border: 1px solid #fc2d3b !important;
+}
+
+.individualTask {
+  border-bottom: 1px solid var(--theme-color-neutral-border-default) !important;
+  cursor: pointer;
+  padding-bottom: var(--padding);
+}

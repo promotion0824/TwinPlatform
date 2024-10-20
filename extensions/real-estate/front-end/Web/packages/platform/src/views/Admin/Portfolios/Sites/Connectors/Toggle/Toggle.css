@@ -1,0 +1,77 @@
+.switch {
+  display: inline-block;
+  height: 25px;
+  position: relative;
+  width: 85px;
+}
+
+.switch input {
+  display: none;
+}
+
+.slider {
+  background-color: var(--grey-dark);
+  cursor: pointer;
+  inset: 0;
+  position: absolute;
+  transition: 0.4s;
+}
+
+.slider::before {
+  background-color: gray;
+  bottom: 6px;
+  content: '';
+  height: 14px;
+  left: 4px;
+  position: absolute;
+  transition: 0.4s;
+  width: 14px;
+}
+
+.slider.isChecked::before {
+  background-color: white;
+}
+
+.checkbox.isChecked + .slider {
+  background-color: var(--purple);
+}
+
+.checkbox.isChecked + .slider::before {
+  transform: translateX(62px);
+}
+
+.on {
+  color: var(--white);
+  display: none;
+  left: 40%;
+}
+
+.off {
+  color: var(--text);
+  left: 55%;
+}
+
+.on,
+.off {
+  font-weight: 500;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.checkbox.isChecked + .slider .on {
+  display: block;
+}
+
+.checkbox.isChecked + .slider .off {
+  display: none;
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round::before {
+  border-radius: 50%;
+}

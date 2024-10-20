@@ -1,0 +1,29 @@
+.headerRoot {
+  position: absolute;
+  top: 0;
+}
+
+.header {
+  align-items: center;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.tab {
+  flex: 1;
+}
+
+.hasFilter {
+  padding-left: 26px;
+}
+
+.siteWrap {
+  flex: 1;
+  max-width: 100%;
+  text-align: center;
+}
+
+.filter {
+  width: 40px;
+}

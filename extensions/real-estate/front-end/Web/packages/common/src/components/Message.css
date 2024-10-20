@@ -1,0 +1,45 @@
+/*
+ * Note: this is copied from extensions/real-estate/front-end/Web/packages/mobile/src/views/Account/ZeroPermission.css
+ *
+ * These are styles for messages that appear instead of the entire app
+ * (eg. "your URL has moved here")
+ */
+.permissions {
+  align-items: center;
+  display: flex;
+  flex-flow: column;
+  inset: 0;
+  justify-content: center;
+  position: fixed;
+}
+
+.willow {
+  margin-bottom: var(--padding-large);
+}
+
+.background {
+  animation: enter 5s ease;
+  background: url('./background_02.jpg');
+  background-position: center;
+  background-size: cover;
+  inset: 0;
+  position: fixed;
+  transform: scale(1.05);
+}
+
+.message {
+  border: 1px solid red;
+}
+
+.support {
+  color: var(--red);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.rectangle {
+  background-color: rgb(0 0 0 / 60%);
+  border-radius: var(--border-radius);
+  max-width: 400px;
+  padding: var(--padding-extra-large);
+}

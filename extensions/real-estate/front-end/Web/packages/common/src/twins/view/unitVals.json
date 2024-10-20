@@ -1,0 +1,1040 @@
+{
+  "AccelerationUnit": [
+    {
+      "name": "centimetrePerSecondSquared",
+      "displayName": "cm/s²"
+    },
+    {
+      "name": "metrePerSecondSquared",
+      "displayName": "m/s²"
+    },
+    {
+      "name": "gForce",
+      "displayName": "G"
+    }
+  ],
+  "AngleUnit": [
+    {
+      "name": "degreeOfArc",
+      "displayName": "°"
+    },
+    {
+      "name": "minuteOfArc",
+      "displayName": "'"
+    },
+    {
+      "name": "secondOfArc",
+      "displayName": "\""
+    },
+    {
+      "name": "radian",
+      "displayName": "rad"
+    },
+    {
+      "name": "turn",
+      "displayName": "rev"
+    }
+  ],
+  "AngularAccelerationUnit": [
+    {
+      "name": "radianPerSecondSquared",
+      "displayName": "rad/s²"
+    }
+  ],
+  "AngularVelocityUnit": [
+    {
+      "name": "degreePerSecond",
+      "displayName": "°/s"
+    },
+    {
+      "name": "radianPerSecond",
+      "displayName": "rad/s"
+    },
+    {
+      "name": "revolutionPerMinute",
+      "displayName": "rpm"
+    },
+    {
+      "name": "revolutionPerSecond",
+      "displayName": "rps"
+    }
+  ],
+  "ApparentEnergyUnit": [
+    {
+      "name": "voltAmpereHour",
+      "displayName": "VAh"
+    },
+    {
+      "name": "kilovoltAmpereHour",
+      "displayName": "kVAh"
+    },
+    {
+      "name": "megavoltAmpereHour",
+      "displayName": "MVAh"
+    },
+    {
+      "name": "gigavoltAmpereHour",
+      "displayName": "GVAh"
+    }
+  ],
+  "ApparentPowerUnit": [
+    {
+      "name": "millivoltAmpere",
+      "displayName": "mVA"
+    },
+    {
+      "name": "voltAmpere",
+      "displayName": "VA"
+    },
+    {
+      "name": "kilovoltAmpere",
+      "displayName": "kVA"
+    },
+    {
+      "name": "megavoltAmpere",
+      "displayName": "MVA"
+    },
+    {
+      "name": "gigavoltAmpere",
+      "displayName": "GVA"
+    }
+  ],
+  "AreaUnit": [
+    {
+      "name": "squareMillimetre",
+      "displayName": "mm²"
+    },
+    {
+      "name": "squareCentimetre",
+      "displayName": "cm²"
+    },
+    {
+      "name": "squareMetre",
+      "displayName": "m²"
+    },
+    {
+      "name": "squareKilometre",
+      "displayName": "km²"
+    },
+    {
+      "name": "squareInch",
+      "displayName": "in²"
+    },
+    {
+      "name": "squareFoot",
+      "displayName": "ft²"
+    },
+    {
+      "name": "acre",
+      "displayName": "ac"
+    },
+    {
+      "name": "hectare",
+      "displayName": "ha"
+    }
+  ],
+  "CapacitanceUnit": [
+    {
+      "name": "picofarad",
+      "displayName": "pF"
+    },
+    {
+      "name": "nanofarad",
+      "displayName": "nF"
+    },
+    {
+      "name": "microfarad",
+      "displayName": "µF"
+    },
+    {
+      "name": "millifarad",
+      "displayName": "mF"
+    },
+    {
+      "name": "farad",
+      "displayName": "F"
+    }
+  ],
+  "Unitless": [
+    {
+      "name": "partsPerMillion",
+      "displayName": "ppm"
+    },
+    {
+      "name": "partsPerBillion",
+      "displayName": "ppb"
+    },
+    {
+      "name": "partsPerTrillion",
+      "displayName": "ppt"
+    },
+    {
+      "name": "partsPerQuadrillion",
+      "displayName": "ppq"
+    },
+    {
+      "name": "percent",
+      "displayName": "%"
+    },
+    {
+      "name": "unity",
+      "displayName": "(unitless)"
+    }
+  ],
+  "CurrentUnit": [
+    {
+      "name": "microampere",
+      "displayName": "µA"
+    },
+    {
+      "name": "milliampere",
+      "displayName": "mA"
+    },
+    {
+      "name": "ampere",
+      "displayName": "A"
+    },
+    {
+      "name": "kiloampere",
+      "displayName": "kA"
+    }
+  ],
+  "DataRateUnit": [
+    {
+      "name": "bitPerSecond",
+      "displayName": "bps"
+    },
+    {
+      "name": "bytePerSecond",
+      "displayName": "Bps"
+    },
+    {
+      "name": "kibibitPerSecond",
+      "displayName": "Kibps"
+    },
+    {
+      "name": "kibibytePerSecond",
+      "displayName": "KiBps"
+    },
+    {
+      "name": "mebibitPerSecond",
+      "displayName": "Mibps"
+    },
+    {
+      "name": "mebibytePerSecond",
+      "displayName": "MiBps"
+    },
+    {
+      "name": "gibibitPerSecond",
+      "displayName": "Gibps"
+    },
+    {
+      "name": "gibibytePerSecond",
+      "displayName": "GiBps"
+    },
+    {
+      "name": "tebibitPerSecond",
+      "displayName": "Tibps"
+    },
+    {
+      "name": "tebibytePerSecond",
+      "displayName": "TiBps"
+    },
+    {
+      "name": "exbibitPerSecond",
+      "displayName": "Eibps"
+    },
+    {
+      "name": "exbibytePerSecond",
+      "displayName": "EiBps"
+    },
+    {
+      "name": "zebibitPerSecond",
+      "displayName": "Zibps"
+    },
+    {
+      "name": "zebibytePerSecond",
+      "displayName": "ZiBps"
+    },
+    {
+      "name": "yobibitPerSecond",
+      "displayName": "Yibps"
+    },
+    {
+      "name": "yobibytePerSecond",
+      "displayName": "YiBps"
+    }
+  ],
+  "DataSizeUnit": [
+    {
+      "name": "bit",
+      "displayName": "b"
+    },
+    {
+      "name": "byte",
+      "displayName": "B"
+    },
+    {
+      "name": "kibibit",
+      "displayName": "Kib"
+    },
+    {
+      "name": "kibibyte",
+      "displayName": "KiB"
+    },
+    {
+      "name": "mebibit",
+      "displayName": "Mib"
+    },
+    {
+      "name": "mebibyte",
+      "displayName": "MiB"
+    },
+    {
+      "name": "gibibit",
+      "displayName": "Gib"
+    },
+    {
+      "name": "gibibyte",
+      "displayName": "GiB"
+    },
+    {
+      "name": "tebibit",
+      "displayName": "Tib"
+    },
+    {
+      "name": "tebibyte",
+      "displayName": "TiB"
+    },
+    {
+      "name": "exbibit",
+      "displayName": "Eib"
+    },
+    {
+      "name": "exbibyte",
+      "displayName": "EiB"
+    },
+    {
+      "name": "zebibit",
+      "displayName": "Zib"
+    },
+    {
+      "name": "zebibyte",
+      "displayName": "ZiB"
+    },
+    {
+      "name": "yobibit",
+      "displayName": "Yib"
+    },
+    {
+      "name": "yobibyte",
+      "displayName": "YiB"
+    }
+  ],
+  "DensityUnit": [
+    {
+      "name": "microgramPerCubicMetre",
+      "displayName": "µg/m³"
+    },
+    {
+      "name": "milligramPerCubicMetre",
+      "displayName": "mg/m³"
+    },
+    {
+      "name": "gramPerCubicMetre",
+      "displayName": "g/m³"
+    },
+    {
+      "name": "kilogramPerCubicMetre",
+      "displayName": "kg/m³"
+    }
+  ],
+  "LengthUnit": [
+    {
+      "name": "nanometre",
+      "displayName": "nm"
+    },
+    {
+      "name": "micrometre",
+      "displayName": "µm"
+    },
+    {
+      "name": "millimetre",
+      "displayName": "mm"
+    },
+    {
+      "name": "centimetre",
+      "displayName": "cm"
+    },
+    {
+      "name": "metre",
+      "displayName": "m"
+    },
+    {
+      "name": "kilometre",
+      "displayName": "km"
+    },
+    {
+      "name": "inch",
+      "displayName": "in"
+    },
+    {
+      "name": "foot",
+      "displayName": "ft"
+    },
+    {
+      "name": "mile",
+      "displayName": "mi"
+    },
+    {
+      "name": "nauticalMile",
+      "displayName": "nmi"
+    },
+    {
+      "name": "astronomicalUnit",
+      "displayName": "au"
+    }
+  ],
+  "ChargeUnit": [
+    {
+      "name": "milliampereHour",
+      "displayName": "mAh"
+    },
+    {
+      "name": "ampereHour",
+      "displayName": "Ah"
+    },
+    {
+      "name": "coulomb",
+      "displayName": "C"
+    }
+  ],
+  "EnergyUnit": [
+    {
+      "name": "britishThermalUnit",
+      "displayName": "BTU"
+    },
+    {
+      "name": "kiloBritishThermalUnit",
+      "displayName": "kBTU"
+    },
+    {
+      "name": "milliwattHour",
+      "displayName": "mWh"
+    },
+    {
+      "name": "wattHour",
+      "displayName": "Wh"
+    },
+    {
+      "name": "kilowattHour",
+      "displayName": "kWh"
+    },
+    {
+      "name": "megawattHour",
+      "displayName": "MWh"
+    },
+    {
+      "name": "gigawattHour",
+      "displayName": "GWh"
+    },
+    {
+      "name": "terawattHour",
+      "displayName": "TWh"
+    },
+    {
+      "name": "joule",
+      "displayName": "J"
+    },
+    {
+      "name": "kilojoule",
+      "displayName": "kJ"
+    },
+    {
+      "name": "megajoule",
+      "displayName": "MJ"
+    },
+    {
+      "name": "gigajoule",
+      "displayName": "GJ"
+    },
+    {
+      "name": "electronvolt",
+      "displayName": "eV"
+    },
+    {
+      "name": "megaelectronvolt",
+      "displayName": "MeV"
+    }
+  ],
+  "PowerUnit": [
+    {
+      "name": "britishThermalUnitPerHour",
+      "displayName": "BTU/h"
+    },
+    {
+      "name": "kiloBritishThermalUnitPerHour",
+      "displayName": "MBH"
+    },
+    {
+      "name": "tonOfRefrigeration",
+      "displayName": "tons"
+    },
+    {
+      "name": "horsepower",
+      "displayName": "HP"
+    },
+    {
+      "name": "microwatt",
+      "displayName": "µW"
+    },
+    {
+      "name": "milliwatt",
+      "displayName": "mW"
+    },
+    {
+      "name": "watt",
+      "displayName": "W"
+    },
+    {
+      "name": "kilowatt",
+      "displayName": "kW"
+    },
+    {
+      "name": "megawatt",
+      "displayName": "MW"
+    },
+    {
+      "name": "gigawatt",
+      "displayName": "GW"
+    },
+    {
+      "name": "kilowattHourPerYear",
+      "displayName": "kWh/yr"
+    },
+    {
+      "name": "joulePerSecond",
+      "displayName": "J/s"
+    },
+    {
+      "name": "kilojoulePerSecond",
+      "displayName": "kJ/s"
+    },
+    {
+      "name": "joulePerHour",
+      "displayName": "J/h"
+    },
+    {
+      "name": "kilojoulePerHour",
+      "displayName": "kJ/h"
+    },
+    {
+      "name": "megajoulePerHour",
+      "displayName": "MJ/h"
+    },
+    {
+      "name": "gigajoulePerHour",
+      "displayName": "GJ/h"
+    }
+  ],
+  "ForceUnit": [
+    {
+      "name": "ounce",
+      "displayName": "oz"
+    },
+    {
+      "name": "pound",
+      "displayName": "lbf"
+    },
+    {
+      "name": "ton",
+      "displayName": "tf"
+    },
+    {
+      "name": "newton",
+      "displayName": "N"
+    }
+  ],
+  "FrequencyUnit": [
+    {
+      "name": "millihertz",
+      "displayName": "mHz"
+    },
+    {
+      "name": "hertz",
+      "displayName": "Hz"
+    },
+    {
+      "name": "kilohertz",
+      "displayName": "kHz"
+    },
+    {
+      "name": "megahertz",
+      "displayName": "MHz"
+    },
+    {
+      "name": "gigahertz",
+      "displayName": "GHz"
+    }
+  ],
+  "IlluminanceUnit": [
+    {
+      "name": "footcandle",
+      "displayName": "fc"
+    },
+    {
+      "name": "lux",
+      "displayName": "lx"
+    }
+  ],
+  "InductanceUnit": [
+    {
+      "name": "microhenry",
+      "displayName": "µH"
+    },
+    {
+      "name": "millihenry",
+      "displayName": "mH"
+    },
+    {
+      "name": "henry",
+      "displayName": "H"
+    }
+  ],
+  "IonizingRadiationDoseUnit": [
+    {
+      "name": "microgray",
+      "displayName": "µGy"
+    },
+    {
+      "name": "milligray",
+      "displayName": "mGy"
+    },
+    {
+      "name": "gray",
+      "displayName": "Gy"
+    },
+    {
+      "name": "microsievert",
+      "displayName": "µSv"
+    },
+    {
+      "name": "millisievert",
+      "displayName": "mSv"
+    },
+    {
+      "name": "sievert",
+      "displayName": "Sv"
+    }
+  ],
+  "IrradianceUnit": [
+    {
+      "name": "wattPerSquareMetre",
+      "displayName": "W/m²"
+    }
+  ],
+  "LuminanceUnit": [
+    {
+      "name": "candelaPerSquareMetre",
+      "displayName": "cd/m²"
+    }
+  ],
+  "LuminousFluxUnit": [
+    {
+      "name": "lumen",
+      "displayName": "lm"
+    }
+  ],
+  "LuminousIntensityUnit": [
+    {
+      "name": "candela",
+      "displayName": "cd"
+    }
+  ],
+  "MagneticFluxUnit": [
+    {
+      "name": "maxwell",
+      "displayName": "Mx"
+    },
+    {
+      "name": "weber",
+      "displayName": "Wb"
+    }
+  ],
+  "MagneticInductionUnit": [
+    {
+      "name": "gauss",
+      "displayName": "Gs"
+    },
+    {
+      "name": "tesla",
+      "displayName": "T"
+    }
+  ],
+  "MassUnit": [
+    {
+      "name": "microgram",
+      "displayName": "µg"
+    },
+    {
+      "name": "milligram",
+      "displayName": "mg"
+    },
+    {
+      "name": "gram",
+      "displayName": "g"
+    },
+    {
+      "name": "kilogram",
+      "displayName": "kg"
+    },
+    {
+      "name": "massPound",
+      "displayName": "lb"
+    },
+    {
+      "name": "tonne",
+      "displayName": "t"
+    },
+    {
+      "name": "slug",
+      "displayName": "slug"
+    }
+  ],
+  "MassFlowRateUnit": [
+    {
+      "name": "gramPerHour",
+      "displayName": "g/h"
+    },
+    {
+      "name": "kilogramPerHour",
+      "displayName": "kg/h"
+    },
+    {
+      "name": "gramPerSecond",
+      "displayName": "g/s"
+    },
+    {
+      "name": "kilogramPerSecond",
+      "displayName": "kg/s"
+    },
+    {
+      "name": "massPoundPerHour",
+      "displayName": "lb/h"
+    }
+  ],
+  "PressureUnit": [
+    {
+      "name": "millibar",
+      "displayName": "mbar"
+    },
+    {
+      "name": "bar",
+      "displayName": "bar"
+    },
+    {
+      "name": "pascal",
+      "displayName": "Pa"
+    },
+    {
+      "name": "decapascal",
+      "displayName": "daPa"
+    },
+    {
+      "name": "hectopascal",
+      "displayName": "hPa"
+    },
+    {
+      "name": "kilopascal",
+      "displayName": "kPa"
+    },
+    {
+      "name": "millimetresOfMercury",
+      "displayName": "mmHg"
+    },
+    {
+      "name": "inchesOfMercury",
+      "displayName": "inHg"
+    },
+    {
+      "name": "inchesOfWater",
+      "displayName": "inH₂O"
+    },
+    {
+      "name": "poundPerSquareInch",
+      "displayName": "psi"
+    }
+  ],
+  "RadioactivityUnit": [
+    {
+      "name": "becquerel",
+      "displayName": "Bq"
+    },
+    {
+      "name": "kilobecquerel",
+      "displayName": "kBq"
+    },
+    {
+      "name": "megabecquerel",
+      "displayName": "MBq"
+    },
+    {
+      "name": "gigabecquerel",
+      "displayName": "GBq"
+    }
+  ],
+  "ReactiveEnergyUnit": [
+    {
+      "name": "voltAmpereReactiveHour",
+      "displayName": "VARh"
+    },
+    {
+      "name": "kilovoltAmpereReactiveHour",
+      "displayName": "kVARh"
+    },
+    {
+      "name": "megavoltAmpereReactiveHour",
+      "displayName": "MVARh"
+    },
+    {
+      "name": "gigavoltAmpereReactiveHour",
+      "displayName": "GVARh"
+    }
+  ],
+  "ReactivePowerUnit": [
+    {
+      "name": "millivoltAmpereReactive",
+      "displayName": "mVAR"
+    },
+    {
+      "name": "voltAmpereReactive",
+      "displayName": "VAR"
+    },
+    {
+      "name": "kilovoltAmpereReactive",
+      "displayName": "kVAR"
+    },
+    {
+      "name": "megavoltAmpereReactive",
+      "displayName": "MVAR"
+    },
+    {
+      "name": "gigavoltAmpereReactive",
+      "displayName": "GVAR"
+    }
+  ],
+  "ResistanceUnit": [
+    {
+      "name": "milliohm",
+      "displayName": "mΩ"
+    },
+    {
+      "name": "ohm",
+      "displayName": "Ω"
+    },
+    {
+      "name": "kiloohm",
+      "displayName": "kΩ"
+    },
+    {
+      "name": "megaohm",
+      "displayName": "MΩ"
+    }
+  ],
+  "SoundPressureUnit": [
+    {
+      "name": "decibel",
+      "displayName": "dB"
+    },
+    {
+      "name": "bel",
+      "displayName": "B"
+    }
+  ],
+  "TemperatureUnit": [
+    {
+      "name": "degreeFahrenheit",
+      "displayName": "°F"
+    },
+    {
+      "name": "degreeCelsius",
+      "displayName": "°C"
+    },
+    {
+      "name": "kelvin",
+      "displayName": "K"
+    }
+  ],
+  "TimeUnit": [
+    {
+      "name": "nanosecond",
+      "displayName": "ns"
+    },
+    {
+      "name": "microsecond",
+      "displayName": "µs"
+    },
+    {
+      "name": "millisecond",
+      "displayName": "ms"
+    },
+    {
+      "name": "second",
+      "displayName": "s"
+    },
+    {
+      "name": "minute",
+      "displayName": "min"
+    },
+    {
+      "name": "hour",
+      "displayName": "h"
+    },
+    {
+      "name": "day",
+      "displayName": "d"
+    },
+    {
+      "name": "year",
+      "displayName": "yr"
+    }
+  ],
+  "TorqueUnit": [
+    {
+      "name": "newtonMetre",
+      "displayName": "N⋅m"
+    }
+  ],
+  "VelocityUnit": [
+    {
+      "name": "centimetrePerSecond",
+      "displayName": "cm/s"
+    },
+    {
+      "name": "metrePerSecond",
+      "displayName": "m/s"
+    },
+    {
+      "name": "metrePerHour",
+      "displayName": "m/h"
+    },
+    {
+      "name": "kilometrePerSecond",
+      "displayName": "km/s"
+    },
+    {
+      "name": "kilometrePerHour",
+      "displayName": "km/h"
+    },
+    {
+      "name": "milePerSecond",
+      "displayName": "mps"
+    },
+    {
+      "name": "milePerHour",
+      "displayName": "mph"
+    },
+    {
+      "name": "knot",
+      "displayName": "kn"
+    }
+  ],
+  "VoltageUnit": [
+    {
+      "name": "microvolt",
+      "displayName": "µV"
+    },
+    {
+      "name": "millivolt",
+      "displayName": "mV"
+    },
+    {
+      "name": "volt",
+      "displayName": "V"
+    },
+    {
+      "name": "kilovolt",
+      "displayName": "kV"
+    },
+    {
+      "name": "megavolt",
+      "displayName": "MV"
+    }
+  ],
+  "VolumeUnit": [
+    {
+      "name": "cubicCentimetre",
+      "displayName": "cm³"
+    },
+    {
+      "name": "cubicMetre",
+      "displayName": "m³"
+    },
+    {
+      "name": "millilitre",
+      "displayName": "mL"
+    },
+    {
+      "name": "litre",
+      "displayName": "L"
+    },
+    {
+      "name": "cubicInch",
+      "displayName": "in³"
+    },
+    {
+      "name": "cubicFoot",
+      "displayName": "ft³"
+    },
+    {
+      "name": "fluidOunce",
+      "displayName": "fl oz"
+    },
+    {
+      "name": "gallon",
+      "displayName": "gal"
+    }
+  ],
+  "VolumeFlowRateUnit": [
+    {
+      "name": "cubicMetrePerSecond",
+      "displayName": "m³/s"
+    },
+    {
+      "name": "cubicMetrePerMinute",
+      "displayName": "m³/min"
+    },
+    {
+      "name": "cubicMetrePerHour",
+      "displayName": "m³/h"
+    },
+    {
+      "name": "millilitrePerSecond",
+      "displayName": "mL/s"
+    },
+    {
+      "name": "millilitrePerHour",
+      "displayName": "mL/h"
+    },
+    {
+      "name": "litrePerSecond",
+      "displayName": "L/s"
+    },
+    {
+      "name": "litrePerHour",
+      "displayName": "L/h"
+    },
+    {
+      "name": "cubicFootPerMinute",
+      "displayName": "CFM"
+    },
+    {
+      "name": "gallonPerMinute",
+      "displayName": "gpm"
+    },
+    {
+      "name": "gallonPerHour",
+      "displayName": "gph"
+    }
+  ]
+}

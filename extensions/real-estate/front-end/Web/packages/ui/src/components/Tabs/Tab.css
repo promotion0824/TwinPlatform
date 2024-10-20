@@ -1,0 +1,30 @@
+.tab {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+  border-right: 1px solid var(--theme-color-neutral-border-default);
+  height: 38px;
+  max-width: 600px;
+  padding: var(--padding) var(--padding-large);
+}
+
+.selected {
+  cursor: default;
+}
+
+.selected::before {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+  bottom: -1px;
+  content: '';
+  height: 1px;
+  left: 0;
+  position: absolute;
+  right: 0;
+  z-index: var(--z-header);
+}
+
+.modal {
+  border: none;
+}
+
+.modal.selected {
+  border-bottom: 3px solid var(--purple);
+}

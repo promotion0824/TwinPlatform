@@ -1,0 +1,33 @@
+.button {
+  font-size: 11px;
+  height: 38px;
+  padding-left: 20px;
+  text-transform: uppercase;
+  width: 100%;
+}
+
+.chevron {
+  align-items: center;
+  display: flex;
+  padding-left: var(--padding);
+  padding-right: var(--padding);
+}
+
+.chevronIcon {
+  transition: all 0.2s ease;
+}
+
+.group:not(.isOpen) .chevronIcon {
+  transform: rotate(-90deg);
+}
+
+.header {
+  display: flex;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.group:not(.isOpen) .content {
+  display: none;
+}

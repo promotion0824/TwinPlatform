@@ -1,0 +1,59 @@
+.ticketConfirm {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+  position: relative;
+  width: 100%;
+}
+
+.ticketConfirm::after {
+  background: url('../../public/images/ticket-confirm.png') 0 0 / cover
+    no-repeat;
+  content: '';
+  display: block;
+  inset: 0;
+  opacity: 0.1;
+  position: absolute;
+}
+
+.container {
+  padding: 0 36px;
+  position: relative;
+  text-align: center;
+  width: 100%;
+  z-index: var(--z-header);
+}
+
+.iconContainer {
+  align-items: center;
+  background-color: var(--green);
+  border: solid 6px #1d5933;
+  border-radius: 50%;
+  display: inline-flex;
+  height: 64px;
+  justify-content: center;
+  width: 64px;
+}
+
+.icon {
+  color: var(--theme-color-neutral-fg-highlight);
+  height: 32px;
+  width: 32px;
+}
+
+.title {
+  color: var(--white-hover);
+  font-size: 24px;
+  font-weight: var(--font-normal);
+  margin: var(--padding) 0;
+}
+
+.subTitle {
+  color: var(--theme-color-neutral-fg-highlight);
+  font-size: var(--font-large);
+  font-weight: 300;
+  line-height: 1.5;
+  margin-bottom: var(--padding);
+}
+
+.link {
+  font-size: var(--font-large);
+}

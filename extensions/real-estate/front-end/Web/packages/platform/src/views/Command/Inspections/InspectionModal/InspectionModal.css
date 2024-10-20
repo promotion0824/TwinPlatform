@@ -1,0 +1,13 @@
+.table {
+  border: 1px solid var(--theme-color-neutral-border-default);
+  border-bottom: 0;
+  overflow: visible !important;
+}
+
+.frequencyLabel {
+  margin-top: 18px;
+}
+
+.checksFieldset {
+  overflow: visible !important;
+}

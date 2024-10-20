@@ -1,0 +1,4 @@
+.permissionSelect:not(.isVisible) .select {
+  opacity: 0;
+  visibility: hidden;
+}

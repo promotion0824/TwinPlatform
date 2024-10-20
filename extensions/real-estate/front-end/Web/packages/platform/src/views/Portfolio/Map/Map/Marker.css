@@ -1,0 +1,112 @@
+.marker {
+  align-items: center;
+  background-color: #33ca3622;
+  border-radius: 100%;
+  color: var(--white);
+  cursor: pointer;
+  display: flex;
+  height: 50px;
+  justify-content: center;
+  transition: all 0.2s ease;
+  width: 50px;
+}
+
+@keyframes enter-green {
+  0% {
+    background-color: #33ca3622;
+  }
+}
+
+.selected {
+  animation: enter-green 0.5s ease;
+  background-color: #33ca36cc;
+}
+
+@keyframes pulse {
+  99% {
+    opacity: 0;
+    transform: scale(2);
+  }
+
+  100% {
+    visibility: hidden;
+  }
+}
+
+.selected::before {
+  animation: pulse 0.8s ease;
+  animation-fill-mode: forwards;
+  background-color: #33ca3655;
+  border-radius: 100%;
+  content: '';
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+
+.hasError {
+  background-color: #fc2d3b22;
+}
+
+@keyframes enter-red {
+  0% {
+    background-color: #fc2d3b22;
+  }
+}
+
+.hasError.selected {
+  animation: enter-red 0.5s ease;
+  background-color: #fc2d3bcc;
+}
+
+.hasError.selected::before {
+  background-color: #fc2d3b55;
+}
+
+:global .mapboxgl-popup {
+  font-family: var(--font);
+  font-size: var(--font-medium);
+  font-weight: var(--font-normal);
+  line-height: var(--line-height);
+  max-width: 600px !important;
+  min-width: 400px;
+}
+
+:global .mapboxgl-popup-content {
+  background-color: var(--tooltip);
+  color: var(--white);
+  padding: 0;
+  text-align: center;
+}
+
+:global .mapboxgl-popup-anchor-top :global .mapboxgl-popup-tip {
+  border-bottom-color: var(--tooltip);
+}
+
+:global .mapboxgl-popup-anchor-bottom :global .mapboxgl-popup-tip {
+  border-top-color: var(--tooltip);
+}
+
+:global .mapboxgl-popup-anchor-left :global .mapboxgl-popup-tip {
+  border-right-color: var(--tooltip);
+}
+
+:global .mapboxgl-popup-anchor-right :global .mapboxgl-popup-tip {
+  border-left-color: var(--tooltip);
+}
+
+:global .mapboxgl-popup-anchor-top-right :global .mapboxgl-popup-tip {
+  border-bottom-color: var(--tooltip);
+}
+
+:global .mapboxgl-popup-anchor-top-left :global .mapboxgl-popup-tip {
+  border-bottom-color: var(--tooltip);
+}
+
+:global .mapboxgl-popup-anchor-bottom-left :global .mapboxgl-popup-tip {
+  border-top-color: var(--tooltip);
+}
+
+:global .mapboxgl-popup-anchor-bottom-right :global .mapboxgl-popup-tip {
+  border-top-color: var(--tooltip);
+}

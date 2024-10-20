@@ -1,0 +1,27 @@
+.tile {
+  border-radius: var(--border-radius-large);
+  font-size: var(--font-extra-large);
+  height: 40px;
+  transition: all 0.2s ease;
+  width: 40px;
+}
+
+.button:focus .tile {
+  background-color: var(--new-blue);
+  color: var(--theme-color-neutral-fg-highlight);
+}
+
+@media (hover: hover) {
+  .button:hover .tile {
+    background-color: var(--new-blue);
+    color: var(--theme-color-neutral-fg-highlight);
+  }
+}
+
+.wrapper {
+  pointer-events: none;
+}
+
+.icon {
+  transform: rotate(-90deg);
+}

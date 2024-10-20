@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <ProjectGuid>78ECBDE5-2E32-43F2-A823-342C07A5A96E</ProjectGuid>
+	<TargetFramework>net8.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="8.0.6" />
+    <PackageReference Include="Willow.HealthChecks" Version="2.2.2734" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\lib\src\Willow.Calendar\Willow.Calendar.csproj" />
+    <ProjectReference Include="..\..\..\..\lib\src\Willow.DataValidation\Willow.DataValidation.csproj" />
+    <ProjectReference Include="..\Platform.Users\Willow.Platform.Users.csproj" />
+    <ProjectReference Include="..\Willow.Platform.Models\Willow.Platform.Models.csproj" />
+  </ItemGroup>
+
+</Project>

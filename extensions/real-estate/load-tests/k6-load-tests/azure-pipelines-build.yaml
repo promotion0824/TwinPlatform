@@ -1,0 +1,56 @@
+trigger:
+  branches:
+    include:
+        - main
+  paths:
+    include:
+        - extensions/real-estate/load-tests/k6-load-tests/*
+
+variables:
+  YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
+  WORKING_DIRECTORY: extensions/real-estate/load-tests/k6-load-tests
+
+stages:
+- stage: Build
+  jobs:
+  - job: Build
+    steps:
+    - task: Cache@2
+      inputs:
+        key: '"yarn" | "$(Agent.OS)" | "/$(WORKING_DIRECTORY)/yarn.lock"'
+        restoreKeys: |
+          yarn | "$(Agent.OS)"
+          yarn
+        path: $(YARN_CACHE_FOLDER)
+      displayName: Cache Yarn packages
+
+    - task: Bash@3
+      displayName: '[Yarn] Install dependencies'
+      inputs:
+        targetType: 'inline'
+        script: 'yarn --frozen-lockfile'
+        workingDirectory: $(WORKING_DIRECTORY)
+
+    - task: Bash@3
+      displayName: '[Yarn] Transpile and bundle test script'  
+      inputs:
+        targetType: 'inline'
+        script: |
+          yarn webpack
+        workingDirectory: $(WORKING_DIRECTORY)
+
+    - task: CopyFiles@2
+      displayName: 'Copy Build scripts'
+      inputs:
+        contents: '$(System.DefaultWorkingDirectory)/$(WORKING_DIRECTORY)/BuildScripts/**'
+        targetFolder: '$(Build.ArtifactStagingDirectory)'
+
+    - task: CopyFiles@2
+      displayName: 'Copy Build tests'
+      inputs:
+        contents: '$(System.DefaultWorkingDirectory)/$(WORKING_DIRECTORY)/dist/**'
+        targetFolder: '$(Build.ArtifactStagingDirectory)'
+
+    - publish: '$(Build.ArtifactStagingDirectory)'
+      artifact: 'drop.Scripts'
+      displayName: '[AzDo] Publish Scripts artifact'

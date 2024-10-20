@@ -1,0 +1,1 @@
+dotnet watch --project .\test\AssetCore.Test\AssetCore.Test.csproj test --filter Category!=UseSqlServer /p:CollectCoverage=true /p:CoverletOutputFormat=lcov /p:Exclude=\"[*]AssetCore.Program,[*]Microsoft.*,[*]System.*,[*]Willow.Infrastructure.*,[*]AssetCore.Database.*,[xunit*]*\" /p:CoverletOutput=.\lcov.info

@@ -1,0 +1,10 @@
+@keyframes enter {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+}
+
+.layout {
+  animation: enter 0.5s ease;
+}

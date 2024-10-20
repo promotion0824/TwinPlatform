@@ -1,0 +1,9 @@
+.asset {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+  border: 1px solid var(--theme-color-neutral-border-default);
+  min-height: var(--height-large);
+}
+
+.selected {
+  background-color: var(--theme-color-neutral-bg-accent-default);
+}

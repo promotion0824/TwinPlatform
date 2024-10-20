@@ -1,0 +1,1 @@
+http://wil-cmp-dev-agw-aue-platformgateway.australiaeast.cloudapp.azure.com/public/willow.png

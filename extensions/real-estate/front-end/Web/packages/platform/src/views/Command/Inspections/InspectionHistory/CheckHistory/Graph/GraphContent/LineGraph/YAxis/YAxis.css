@@ -1,0 +1,20 @@
+.label {
+  font-size: var(--font-small);
+  left: 0;
+  position: absolute;
+  transform: translate(calc(-100% - 8px), -50%);
+}
+
+.equipment {
+  left: 0;
+  position: absolute;
+  top: 50%;
+  transform: translate(calc(-50% - 90px), -50%) rotate(-90deg);
+}
+
+.yLabel {
+  left: 0;
+  position: absolute;
+  top: 50%;
+  transform: translate(calc(-50% - 80px), -50%) rotate(-90deg);
+}

@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <ProjectGuid>3AAEF7AE-9B53-4221-8521-1F726AA56B45</ProjectGuid>
+	<TargetFramework>net8.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Willow.ExceptionHandling" Version="2.2.1646" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\lib\src\Willow.DataValidation\Willow.DataValidation.csproj" />
+    <ProjectReference Include="..\..\..\..\lib\src\Willow.Directory.Models\Willow.Directory.Models.csproj" />
+    <ProjectReference Include="..\Platform.Users\Willow.Platform.Users.csproj" />
+    <ProjectReference Include="..\Willow.Platform.Models\Willow.Platform.Models.csproj" />
+  </ItemGroup>
+
+</Project>

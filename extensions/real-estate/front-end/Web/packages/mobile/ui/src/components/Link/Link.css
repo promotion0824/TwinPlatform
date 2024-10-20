@@ -1,0 +1,20 @@
+.link {
+  color: var(--new-link);
+  cursor: text;
+  outline: 0;
+  text-decoration: none;
+}
+
+.isClickable {
+  cursor: pointer;
+}
+
+.isClickable:focus {
+  color: var(--new-link-hover);
+}
+
+@media (hover: hover) {
+  .isClickable:hover {
+    color: var(--new-link-hover);
+  }
+}

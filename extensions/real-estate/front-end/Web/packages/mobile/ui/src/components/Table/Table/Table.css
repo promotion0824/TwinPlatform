@@ -1,0 +1,126 @@
+.table {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+  display: flex;
+  height: 100%;
+  overflow: auto;
+}
+
+.tableControl {
+  border-spacing: 0;
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.clickable:hover,
+.selected {
+  color: var(--theme-color-neutral-fg-default);
+}
+
+.head {
+  display: table-header-group;
+}
+
+.body {
+  display: table-row-group;
+}
+
+.row {
+  color: var(--theme-color-neutral-fg-highlight);
+  display: table-row;
+}
+
+.row:focus,
+.isSelected {
+  color: var(--theme-color-neutral-fg-default);
+  text-decoration: none;
+}
+
+@media (hover: hover) {
+  .row:hover {
+    text-decoration: none;
+  }
+}
+
+.cell {
+  border-bottom: 1px solid var(--theme-color-neutral-border-default);
+  display: table-cell;
+  overflow: hidden;
+  padding: 16px var(--padding);
+  position: relative;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cell:first-child {
+  padding-left: var(--padding-large);
+}
+
+.cell:last-child {
+  padding-left: var(--padding-large);
+}
+
+.head .cell {
+  background-color: var(--theme-color-neutral-bg-accent-default);
+  border-color: var(--theme-color-neutral-border-default);
+  font-size: var(--font-extra-small);
+  letter-spacing: 0.5px;
+  line-height: 1.3;
+  position: sticky;
+  text-transform: uppercase;
+  top: 0;
+  z-index: var(--z-header);
+}
+
+.selected .cell {
+  background-color: var(--theme-color-neutral-bg-accent-default);
+}
+
+@media (hover: hover) {
+  .clickable:hover .cell {
+    background-color: var(--theme-color-neutral-bg-panel-hovered);
+  }
+}
+
+.cell:first-child::before,
+.cell:first-child::after {
+  background-color: var(--blue);
+  bottom: 0;
+  content: '';
+  left: 0;
+  position: absolute;
+  top: 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: all 0.2s ease;
+  width: 4px;
+}
+
+.hasRowColor .cell:first-child::before {
+  background-color: var(--row-color);
+  transform: none;
+}
+
+.selected:not(.hasRowColor) .cell:first-child::after {
+  transform: none;
+}
+
+.typeFill {
+  padding-bottom: 0;
+  padding-top: 0;
+  vertical-align: middle;
+}
+
+.isClickable {
+  cursor: pointer;
+}
+
+@media (hover: hover) {
+  .isClickable:hover {
+    color: var(--light);
+  }
+}

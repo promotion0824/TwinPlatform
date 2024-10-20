@@ -1,0 +1,104 @@
+trigger: none
+schedules:
+  - cron: '0 11 * * *'
+    displayName: 'Daily Load Test'
+    branches:
+        include:
+            - main
+    always: true
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+- name: BaseUrl
+  value: https://command-uat.willowinc.com/au/api
+- name: workingDirectory
+  value: extensions/real-estate/load-tests/k6-load-tests
+- group: LoadTests
+- name: logAnalyticsWorkspace
+  value: nonprodplatformshared-aue-log
+- name: logAnalyticsWorkspaceResourceGroup
+  value: nonprod-platformshared
+
+resources:
+  pipelines:
+    - pipeline: Scripts-resource
+      project: 'Twin Platform'
+      source: k6-build
+      branch: main
+      trigger: 
+        branches:
+          include:
+          - main
+
+stages:
+- stage: Run
+  jobs:
+  - deployment: K6s_DefaultScenario
+    environment: uat_load_test
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - download: none
+          - download: Scripts-resource
+            artifact: 'drop.Scripts'
+            displayName: '[AzDo] Download drop.Scripts'
+          - template: run-k6-template.yaml
+            parameters:
+              BaseUrl: $(BaseUrl)
+              B2CclientId: $(UatB2cClientId)
+              B2cScope: $(UatB2cScope)
+              ServiceConnection: 'az-k8s-internal-Twin Platform'
+              Scenario: default-scenario-test
+              ScriptsDirectory: $(Pipeline.Workspace)/Scripts-resource/drop.Scripts/$(workingDirectory)/
+              DefaultUserName: $(UserDefaultName)
+              DefaultUserPassword: $(UserDefaultPassword)
+
+  - deployment: K6s_FirstLoad
+    dependsOn: K6s_DefaultScenario
+    condition: succeededOrFailed()
+    environment: uat_load_test
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - download: none
+          - download: Scripts-resource
+            artifact: 'drop.Scripts'
+            displayName: '[AzDo] Download drop.Scripts'
+          - template: run-k6-template.yaml
+            parameters:
+              BaseUrl: $(BaseUrl)
+              B2cClientId: $(UatB2cClientId)
+              B2cScope: $(UatB2cScope)
+              ServiceConnection: 'az-k8s-internal-Twin Platform'
+              ScriptsDirectory: $(Pipeline.Workspace)/Scripts-resource/drop.Scripts/$(workingDirectory)/
+              Scenario: first-load-test
+              ScenarioDuration: 5m
+              DefaultUserName: $(UserDefaultName)
+              DefaultUserPassword: $(UserDefaultPassword)
+
+  - deployment: K6s_PopularPages
+    dependsOn: K6s_FirstLoad
+    condition: succeededOrFailed()
+    environment: uat_load_test
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - download: none
+          - download: Scripts-resource
+            artifact: 'drop.Scripts'
+            displayName: '[AzDo] Download drop.Scripts'
+          - template: run-k6-template.yaml
+            parameters:
+              BaseUrl: $(BaseUrl)
+              B2cClientId: $(UatB2cClientId)
+              B2cScope: $(UatB2cScope)
+              ServiceConnection: 'az-k8s-internal-Twin Platform'
+              ScriptsDirectory: $(Pipeline.Workspace)/Scripts-resource/drop.Scripts/$(workingDirectory)/
+              Scenario: popular-pages-load-test
+              ScenarioDuration: 5m
+              DefaultUserName: $(UserDefaultName)
+              DefaultUserPassword: $(UserDefaultPassword)

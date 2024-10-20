@@ -1,0 +1,18 @@
+.ticketContent {
+  padding: var(--padding-large) var(--padding-extra-large);
+}
+
+.footer {
+  align-items: center;
+  display: flex;
+  height: 70px;
+  padding: 0 var(--padding-extra-large);
+}
+
+.button {
+  flex: 1;
+}
+
+.textarea textarea {
+  padding: 12px;
+}

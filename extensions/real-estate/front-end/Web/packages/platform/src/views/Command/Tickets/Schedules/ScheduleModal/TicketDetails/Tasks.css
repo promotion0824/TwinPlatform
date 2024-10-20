@@ -1,0 +1,57 @@
+.numericValues {
+  width: 88px;
+}
+
+.numValuesFlex {
+  left: 119px;
+  margin-top: 0 !important;
+  position: relative;
+  width: 66%;
+}
+
+.error {
+  border: 1px solid #fc2d3b !important;
+}
+
+.numFieldsCtn {
+  display: flex;
+  flex-direction: column;
+}
+
+.numFieldsFlex {
+  align-items: flex-end;
+  left: 119px;
+  position: relative;
+  width: 72%;
+}
+
+.addTask {
+  margin-top: var(--padding-large) !important;
+}
+
+.minMaxError {
+  color: #fc2d3b !important;
+  font-family: var(--font);
+  font-size: var(--font-small);
+  font-weight: var(--font-normal);
+}
+
+.minMaxErrorAdd {
+  padding: 0 53px 5px;
+  text-align: right;
+}
+
+.minMaxErrorDetails {
+  padding-bottom: 8px;
+}
+
+.disabledTaskType {
+  background-color: var(--theme-color-neutral-bg-accent-default) !important;
+  border: 1px solid var(--theme-color-neutral-border-default) !important;
+  color: var(--light) !important;
+  width: 110px;
+}
+
+.inputRightSpacing {
+  margin-right: 8px;
+}

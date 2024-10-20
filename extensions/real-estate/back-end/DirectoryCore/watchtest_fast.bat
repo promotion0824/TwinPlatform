@@ -1,0 +1,1 @@
+dotnet watch --project .\test\DirectoryCore.Test\DirectoryCore.Test.csproj test --filter Category!=UseSqlServer /p:CollectCoverage=true /p:CoverletOutputFormat=lcov /p:Exclude=\"[*]DirectoryCore.Program,[*]Microsoft.*,[*]System.*,[*]Willow.Infrastructure.*,[*]DirectoryCore.Database.*,[xunit*]*\" /p:CoverletOutput=.\lcov.info

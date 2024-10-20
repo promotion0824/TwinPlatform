@@ -1,0 +1,1 @@
+dotnet watch --project .\test\InsightCore.Test\InsightCore.Test.csproj test --filter Category!=UseSqlServer /p:CollectCoverage=true /p:CoverletOutputFormat=lcov /p:Exclude=\"[*]InsightCore.Program,[*]Microsoft.*,[*]System.*,[*]Willow.Infrastructure.*,[*]InsightCore.Database.*,[xunit*]*\" /p:CoverletOutput=.\lcov.info

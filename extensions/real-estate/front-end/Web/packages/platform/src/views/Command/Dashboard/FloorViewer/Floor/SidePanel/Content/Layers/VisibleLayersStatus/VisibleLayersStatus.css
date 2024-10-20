@@ -1,0 +1,11 @@
+.wrapper {
+  padding-left: 8px;
+}
+
+.dot {
+  background-color: var(--theme-color-intent-primary-fg-default);
+  border-radius: 50%;
+  height: 6px;
+  margin-right: 4px;
+  width: 6px;
+}

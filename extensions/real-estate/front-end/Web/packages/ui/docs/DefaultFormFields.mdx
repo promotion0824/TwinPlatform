@@ -1,0 +1,50 @@
+import { Canvas, Story } from '@storybook/blocks'
+import * as InputStories from '../src/components/Input/Input.stories'
+import * as NumberInputStories from '../src/components/NumberInput/NumberInput.stories'
+import * as SelectStories from '../src/components/Select/Select.stories'
+import * as TextAreaStories from '../src/components/TextArea/TextArea.stories'
+import * as FilesSelectNewStories from '../src/components/FilesSelectNew/FilesSelectNew.stories'
+import * as DatePickerStories from '../src/components/DatePicker/DatePicker.stories'
+import * as CheckboxStories from '../src/components/Checkbox/Checkbox.stories'
+
+# Default form fields
+
+## Empty
+
+<Canvas style={{ backgroundColor: '#242424' }}>
+  <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+    <Story of={NumberInputStories.Empty} />
+    <Story of={TextAreaStories.Empty} />
+    <Story of={InputStories.Empty} />
+    <Story of={SelectStories.Empty} />
+    <Story of={DatePickerStories.Empty} />
+    <Story of={FilesSelectNewStories.Empty} />
+    <Story of={CheckboxStories.Unchecked} />
+  </div>
+</Canvas>
+
+### Value
+
+<Canvas style={{ backgroundColor: '#242424' }}>
+  <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+    <Story of={NumberInputStories.Value} />
+    <Story of={TextAreaStories.Value} />
+    <Story of={InputStories.Value} />
+    <Story of={SelectStories.Value} />
+    <Story of={DatePickerStories.Value} />
+    <Story of={FilesSelectNewStories.Value} />
+    <Story of={CheckboxStories.Checked} />
+  </div>
+</Canvas>
+
+## Placeholder
+
+<Canvas style={{ backgroundColor: '#242424' }}>
+  <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+    <Story of={NumberInputStories.Placeholder} />
+    <Story of={TextAreaStories.Placeholder} />
+    <Story of={InputStories.Placeholder} />
+    <Story of={SelectStories.Placeholder} />
+    <Story of={DatePickerStories.Placeholder} />
+  </div>
+</Canvas>

@@ -1,0 +1,18 @@
+<svg id="Icons_ic_settings_ethernet" data-name="Icons/ic_settings_ethernet" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="15.997" height="9.33" viewBox="0 0 15.997 9.33">
+  <defs>
+    <clipPath id="clip-path">
+      <path id="Mask" d="M12.127,9.33h0l-1.1-.915,3.113-3.75L11.025.916,12.127,0,16,4.665l-3.87,4.665Zm-8.256,0h0L0,4.665,3.871,0l1.1.916L1.86,4.665l3.112,3.75-1.1.915Zm7.706-3.949H10.146V3.949h1.431V5.38Zm-2.862,0H7.283V3.949H8.714V5.38Zm-2.862,0H4.422V3.949H5.853V5.38Z" transform="translate(0 0)" fill="none" stroke="none"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <rect id="Color" width="35.773" height="35.773" fill="#50d166" stroke="none"/>
+    </clipPath>
+  </defs>
+  <g id="Group_147" data-name="Group 147" transform="translate(-0.82 -5.48)">
+    <path id="Mask-2" data-name="Mask" d="M12.127,9.33h0l-1.1-.915,3.113-3.75L11.025.916,12.127,0,16,4.665l-3.87,4.665Zm-8.256,0h0L0,4.665,3.871,0l1.1.916L1.86,4.665l3.112,3.75-1.1.915Zm7.706-3.949H10.146V3.949h1.431V5.38Zm-2.862,0H7.283V3.949H8.714V5.38Zm-2.862,0H4.422V3.949H5.853V5.38Z" transform="translate(0.82 5.48)" fill="none" stroke="none"/>
+    <g id="Mask_Group_147" data-name="Mask Group 147" transform="translate(0.82 5.48)" clip-path="url(#clip-path)">
+      <g id="_Color" data-name="🎨 Color" transform="translate(-9.888 -13.222)">
+        <rect id="Color-2" data-name="Color" width="35.773" height="35.773" fill="#50d166" stroke="none"/>
+      </g>
+    </g>
+  </g>
+</svg>

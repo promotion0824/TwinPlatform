@@ -1,0 +1,37 @@
+.accountInput.accountInput {
+  border-color: var(--theme-color-neutral-border-default);
+  border-radius: 0;
+  box-shadow: none;
+  height: 72px;
+}
+
+.accountInput::before {
+  display: none;
+}
+
+.accountInput::after {
+  background-color: var(--theme-color-neutral-border-default);
+  bottom: 0;
+  content: '';
+  left: 55px;
+  margin: var(--padding-large) 0;
+  position: absolute;
+  top: 0;
+  width: 1px;
+}
+
+.icon {
+  height: 18px;
+  margin-left: 24px;
+  width: 18px;
+}
+
+.input.input {
+  padding-left: 72px;
+}
+
+.input:-webkit-autofill {
+  box-shadow: 0 0 0 50px var(--theme-color-neutral-bg-accent-default) inset;
+  caret-color: var(--light);
+  -webkit-text-fill-color: var(--light);
+}

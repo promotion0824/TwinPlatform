@@ -1,0 +1,16 @@
+.point {
+  color: var(--text);
+  padding: var(--padding);
+}
+
+.isSelected {
+  color: var(--light);
+}
+
+.point:not(:hover) .icon {
+  color: var(--theme-color-neutral-fg-subtle);
+}
+
+.point:not(.isVisible) {
+  display: none;
+}

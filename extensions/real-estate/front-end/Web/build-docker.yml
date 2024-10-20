@@ -1,0 +1,55 @@
+parameters:
+  - name: containerRegistry
+    type: string
+    default: "acr-nonprod-platformshared-Twin Platform"
+  - name: repository
+    type: string
+  - name: dockerfilePath
+    type: string
+  - name: buildContext
+    type: string
+  - name: requiresFeedAccessToken
+    type: boolean
+    default: true
+steps:
+- ${{ if eq(parameters.requiresFeedAccessToken, true) }}:
+  - task: NuGetAuthenticate@0
+    displayName: '[Nuget] Authenticate for docker build'
+
+- script: |
+    branch=$(Build.SourceBranch)
+    prBranch=$(System.PullRequest.SourceBranch)
+    branchTag=${branch//[\/]/_}
+    prBranchTag=${prBranch//[\/]/_}
+    echo "Tag will be $branchtag Pr Branch Tag will be $prBranchTag"
+    echo "##vso[task.setvariable variable=branchTag;]$branchTag"
+    echo "##vso[task.setvariable variable=prBranchTag;]$prBranchTag"
+  displayName: "[Bash] Make Docker Tag From Branch name"
+
+- task: Docker@2
+  displayName: '[Docker] Building Docker image'
+  inputs:
+    containerRegistry: ${{ parameters.containerRegistry }}
+    repository: ${{ parameters.repository }}
+    command: 'build'
+    Dockerfile: ${{ parameters.dockerfilePath }}
+    buildContext: ${{ parameters.buildContext }}
+    tags: |
+      $(Build.BuildNumber)
+      $(branchTag)
+      $(prBranchTag)
+    ${{ if eq(parameters.requiresFeedAccessToken, true) }}:
+      arguments: '--build-arg FEED_ACCESSTOKEN=$(VSS_NUGET_ACCESSTOKEN) --build-arg Version=$(Build.BuildNumber)'
+    ${{ if eq(parameters.requiresFeedAccessToken, false) }}:
+      arguments: '--build-arg Version=$(Build.BuildNumber)'
+
+- task: Docker@2
+  displayName: '[Docker] Pushing Docker image to registry'
+  inputs:
+    containerRegistry: ${{ parameters.containerRegistry }}
+    repository: ${{ parameters.repository }}
+    command: 'push'
+    tags: |
+      $(Build.BuildNumber)
+      $(branchTag)
+      $(prBranchTag)

@@ -1,0 +1,407 @@
+﻿{
+  "@id": "dtmi:com:willowinc:Asset;1",
+  "@type": "Interface",
+  "displayName": "Asset",
+  "contents": [
+    {
+      "@type": "Relationship",
+      "name": "isPartOf",
+      "target": "dtmi:com:willowinc:Asset;1"
+    },
+    {
+      "@type": "Relationship",
+      "name": "isPartOfSystem",
+      "target": "dtmi:com:willowinc:System;1"
+    },
+    {
+      "@type": "Relationship",
+      "name": "locatatedIn",
+      "target": "dtmi:com:willowinc:Room;1"
+    },
+    {
+      "@type": "Relationship",
+      "name": "isFedBy",
+      "properties": [
+        {
+          "@type": "Property",
+          "name": "substance",
+          "displayName": "Substance",
+          "writable": true,
+          "schema": "dtmi:com:willowinc:AssetIsFedBySubstances;1"
+        }
+      ]
+    },
+    {
+      "@type": "Relationship",
+      "name": "servicedBy",
+      "comment": "Company or Department in a Company"
+    },
+    {
+      "@type": "Relationship",
+      "name": "manufacturedBy",
+      "target": "dtmi:com:willowinc:Company;1"
+    },
+    {
+      "@type": "Relationship",
+      "name": "installedBy",
+      "target": "dtmi:com:willowinc:Company;1"
+    },
+    {
+      "@type": "Relationship",
+      "name": "commissionedBy",
+      "target": "dtmi:com:willowinc:Company;1"
+    },
+    {
+      "@type": "Property",
+      "name": "name",
+      "displayName": "Name",
+      "writable": true,
+      "schema": "string"
+    },
+    {
+      "@type": "Property",
+      "name": "forgeViewerID",
+      "displayName": "Forge Viewer ID",
+      "writable": true,
+      "schema": "string"
+    },
+    {
+      "@type": "Property",
+      "name": "uniqueID",
+      "displayName": "Globally Unique ID",
+      "writable": true,
+      "schema": "string"
+    },
+    {
+      "@type": "Property",
+      "name": "externalID",
+      "displayName": "External ID",
+      "writable": true,
+      "schema": "string"
+    },
+    {
+      "@type": "Property",
+      "name": "siteID",
+      "displayName": "Site ID",
+      "writable": true,
+      "schema": "string"
+    },
+    {
+      "@type": "Property",
+      "name": "modelNumber",
+      "displayName": "Model Number",
+      "writable": true,
+      "schema": "string"
+    },
+    {
+      "@type": "Property",
+      "name": "serialNumber",
+      "displayName": "Serial Number",
+      "writable": true,
+      "schema": "string"
+    },
+    {
+      "@type": "Property",
+      "name": "physicalTagNumber",
+      "displayName": "Physical Tag Number",
+      "writable": true,
+      "schema": "string"
+    },
+    {
+      "@type": "Property",
+      "name": "installationDate",
+      "displayName": "Installation Date",
+      "writable": true,
+      "schema": "date"
+    },
+    {
+      "@type": "Property",
+      "name": "commissionDate",
+      "displayName": "Commission Date",
+      "writable": true,
+      "schema": "date"
+    },
+    {
+      "@type": "Property",
+      "name": "turnoverDate",
+      "displayName": "Turnover Date",
+      "writable": true,
+      "schema": "date"
+    },
+    {
+      "@type": "Property",
+      "name": "IPAddress",
+      "displayName": "IP Address",
+      "writable": true,
+      "schema": "string"
+    },
+    {
+      "@type": "Property",
+      "name": "Software",
+      "displayName": "Software",
+      "writable": true,
+      "schema": "string"
+    },
+    {
+      "@type": "Property",
+      "name": "maintenanceInterval",
+      "displayName": "Maintenance Interval",
+      "writable": true,
+      "schema": "duration"
+    },
+    {
+      "@type": "Property",
+      "name": "maintenanceResponsibility",
+      "displayName": "Maintenance Responsibilitly",
+      "writable": true,
+      "schema": "string"
+    },
+    {
+      "@type": "Property",
+      "name": "maintenanceContractor",
+      "displayName": "Maintenance Contractor",
+      "writable": true,
+      "schema": "string"
+    },
+    {
+      "@type": "Property",
+      "name": "initialCost",
+      "displayName": "Initial Cost",
+      "writable": true,
+      "schema": "string"
+    },
+    {
+      "@type": "Property",
+      "name": "expectedReplacementCost",
+      "displayName": "Expected Replacement Cost",
+      "writable": true,
+      "schema": "string"
+    },
+    {
+      "@type": "Property",
+      "name": "expectedLife",
+      "displayName": "Expected Life",
+      "writable": true,
+      "schema": "duration"
+    },
+    {
+      "@type": "Property",
+      "name": "expectedEndOfLife",
+      "displayName": "Expected End-of-Life",
+      "writable": true,
+      "schema": "date"
+    },
+    {
+      "@type": "Property",
+      "name": "comments",
+      "displayName": "Comments",
+      "writable": true,
+      "schema": "string"
+    },
+    {
+      "@type": "Property",
+      "name": "tags",
+      "schema": {
+        "@type": "Map",
+        "mapKey": {
+          "name": "tagName",
+          "schema": "string"
+        },
+        "mapValue": {
+          "name": "tagValue",
+          "schema": "boolean"
+        }
+      }
+    }
+  ],
+  "schemas": [
+    {
+      "@id": "dtmi:com:willowinc:AssetIsFedBySubstances;1",
+      "@type": "Enum",
+      "valueSchema": "string",
+      "enumValues": [
+        {
+          "name": "ACElec",
+          "displayName": "ACElec",
+          "enumValue": "ACElec"
+        },
+        {
+          "name": "DCElec",
+          "displayName": "DCElec",
+          "enumValue": "DCElec"
+        },
+        {
+          "name": "DriveElec",
+          "displayName": "DriveElec",
+          "enumValue": "DriveElec"
+        },
+        {
+          "name": "Air",
+          "displayName": "Air",
+          "enumValue": "Air"
+        },
+        {
+          "name": "OutsideAir",
+          "displayName": "OutsideAir",
+          "enumValue": "OutsideAir"
+        },
+        {
+          "name": "ReturnAir",
+          "displayName": "ReturnAir",
+          "enumValue": "ReturnAir"
+        },
+        {
+          "name": "SupplyAir",
+          "displayName": "SupplyAir",
+          "enumValue": "SupplyAir"
+        },
+        {
+          "name": "ExhaustAir",
+          "displayName": "ExhaustAir",
+          "enumValue": "ExhaustAir"
+        },
+        {
+          "name": "GreaseExhaustAir",
+          "displayName": "GreaseExhaustAir",
+          "enumValue": "GreaseExhaustAir"
+        },
+        {
+          "name": "TransferAir",
+          "displayName": "TransferAir",
+          "enumValue": "TransferAir"
+        },
+        {
+          "name": "NaturalGas",
+          "displayName": "NaturalGas",
+          "enumValue": "NaturalGas"
+        },
+        {
+          "name": "Propane",
+          "displayName": "Propane",
+          "enumValue": "Propane"
+        },
+        {
+          "name": "Steam",
+          "displayName": "Steam",
+          "enumValue": "Steam"
+        },
+        {
+          "name": "FuelOil",
+          "displayName": "FuelOil",
+          "enumValue": "FuelOil"
+        },
+        {
+          "name": "Gasoline",
+          "displayName": "Gasoline",
+          "enumValue": "Gasoline"
+        },
+        {
+          "name": "Diesel",
+          "displayName": "Diesel",
+          "enumValue": "Diesel"
+        },
+        {
+          "name": "Condensate",
+          "displayName": "Condensate",
+          "enumValue": "Condensate"
+        },
+        {
+          "name": "Water",
+          "displayName": "Water",
+          "enumValue": "Water"
+        },
+        {
+          "name": "BlowdownWater",
+          "displayName": "BlowdownWater",
+          "enumValue": "BlowdownWater"
+        },
+        {
+          "name": "ChilledWater",
+          "displayName": "ChilledWater",
+          "enumValue": "ChilledWater"
+        },
+        {
+          "name": "CondenserWater",
+          "displayName": "CondenserWater",
+          "enumValue": "CondenserWater"
+        },
+        {
+          "name": "HotWater",
+          "displayName": "HotWater",
+          "enumValue": "HotWater"
+        },
+        {
+          "name": "MakeupWater",
+          "displayName": "MakeupWater",
+          "enumValue": "MakeupWater"
+        },
+        {
+          "name": "Refrig",
+          "displayName": "Refrigerant",
+          "enumValue": "Refrig"
+        },
+        {
+          "name": "ColdDomesticWater",
+          "displayName": "ColdDomesticColdWater",
+          "enumValue": "ColdDomesticWater"
+        },
+        {
+          "name": "HotDomesticWater",
+          "displayName": "HotDomesticColdWater",
+          "enumValue": "HotDomesticWater"
+        },
+        {
+          "name": "RecircHotDomesticWater",
+          "displayName": "RecircHotDomesticColdWater",
+          "enumValue": "RecircHotDomesticWater"
+        },
+        {
+          "name": "NonPotableDomesticWater",
+          "displayName": "NonPotableDomesticWater",
+          "enumValue": "NonPotableDomesticWater"
+        },
+        {
+          "name": "IrrigationWater",
+          "displayName": "IrrigationWater",
+          "enumValue": "IrrigationWater"
+        },
+        {
+          "name": "StormDrainage",
+          "displayName": "StormDrainage",
+          "enumValue": "StormDrainage"
+        },
+        {
+          "name": "WasteVentDrainage",
+          "displayName": "WasteVentDrainage",
+          "enumValue": "WasteVentDrainage"
+        },
+        {
+          "name": "SprinklerWater",
+          "displayName": "SprinklerWater",
+          "enumValue": "SprinklerWater"
+        },
+        {
+          "name": "Ethernet",
+          "displayName": "Ethernet",
+          "enumValue": "Ethernet"
+        },
+        {
+          "name": "Light",
+          "displayName": "Light",
+          "enumValue": "Light"
+        },
+        {
+          "name": "People",
+          "displayName": "People",
+          "enumValue": "People"
+        },
+        {
+          "name": "Freight",
+          "displayName": "Freight",
+          "enumValue": "Freight"
+        }
+      ]
+    }
+  ],
+  "@context": "dtmi:dtdl:context;2"
+}

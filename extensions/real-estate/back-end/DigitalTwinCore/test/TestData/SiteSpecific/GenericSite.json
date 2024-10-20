@@ -1,0 +1,34 @@
+﻿[
+  {
+    "@id": "dtmi:com:willowinc:{siteCode}:AirHandlingUnit;1",
+    "@type": "Interface",
+    "displayName": "Air Handling Unit ({siteCode})",
+    "extends": [ "dtmi:com:willowinc:AirHandlingUnit;1" ],
+    "contents": [ ],
+    "@context": "dtmi:dtdl:context;2"
+  },
+  {
+    "@id": "dtmi:com:willowinc:{siteCode}:Setpoint;1",
+    "@type": "Interface",
+    "displayName": "Setpoint ({siteCode})",
+    "extends": [ "dtmi:com:willowinc:Setpoint;1" ],
+    "contents": [],
+    "@context": "dtmi:dtdl:context;2"
+  },
+  {
+    "@id": "dtmi:com:willowinc:{siteCode}:Warranty;1",
+    "@type": "Interface",
+    "displayName": "Warranty ({siteCode})",
+    "extends": [ "dtmi:com:willowinc:Document;1" ],
+    "contents": [ ],
+    "@context": "dtmi:dtdl:context;2"
+  },
+  {
+    "@id": "dtmi:com:willowinc:{siteCode}:Controller;1",
+    "@type": "Interface",
+    "displayName": "Controller ({siteCode})",
+    "extends": [ "dtmi:com:willowinc:Controller;1" ],
+    "contents": [ ],
+    "@context": "dtmi:dtdl:context;2"
+  }
+]

@@ -1,0 +1,9 @@
+.graph {
+  position: relative;
+  user-select: none;
+}
+
+.content {
+  overflow: auto;
+  padding: var(--padding) 30px var(--padding) 100px;
+}

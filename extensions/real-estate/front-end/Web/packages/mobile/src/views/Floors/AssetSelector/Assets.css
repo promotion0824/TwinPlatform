@@ -1,0 +1,17 @@
+.draggable {
+  cursor: grab;
+}
+
+.draggable:active {
+  cursor: grabbing;
+}
+
+.row:not(.draggable) .drag {
+  visibility: hidden;
+}
+
+.pill {
+  background: var(--theme-color-neutral-bg-accent-default);
+  border: none;
+  text-transform: none;
+}

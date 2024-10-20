@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <LangVersion>latest</LangVersion>
+    <TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Willow.Common\Willow.Common.csproj" />
+    <ProjectReference Include="..\Willow.Logging\Willow.Logging.csproj" />
+  </ItemGroup>
+
+</Project>

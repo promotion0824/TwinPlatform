@@ -1,0 +1,31 @@
+.option {
+  display: flex;
+  height: var(--height-medium);
+  padding: var(--padding);
+  width: 100%;
+}
+
+.content {
+  flex: 1;
+}
+
+.cross {
+  color: var(--text);
+}
+
+.option:focus .cross,
+.option:hover .cross {
+  color: #d9d9d9;
+}
+
+.typeHeader.typeHeader {
+  background-color: var(--theme-color-neutral-bg-accent-default);
+  border-bottom: 1px solid var(--theme-color-neutral-border-default);
+  border-top: 1px solid var(--theme-color-neutral-border-default);
+  color: var(--light);
+  font-size: var(--font-small);
+  position: sticky;
+  text-transform: uppercase;
+  top: 0;
+  z-index: var(--z-header);
+}

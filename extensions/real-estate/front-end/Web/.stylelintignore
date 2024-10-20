@@ -1,0 +1,7 @@
+*
+!*/
+!*.css
+dist
+node_modules
+# this file is very problematic, just ignore it
+packages/ui/src/components/Viewer3D/assets/forge-viewer.css 

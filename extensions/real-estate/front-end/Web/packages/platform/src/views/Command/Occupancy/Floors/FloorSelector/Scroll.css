@@ -1,0 +1,14 @@
+.content::-webkit-scrollbar {
+  width: 0;
+}
+
+.up {
+  height: auto;
+  transform: rotate(180deg);
+  width: auto;
+}
+
+.down {
+  height: auto;
+  width: auto;
+}

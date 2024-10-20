@@ -1,0 +1,11 @@
+.draggable {
+  cursor: grab;
+}
+
+.draggable:active {
+  cursor: grabbing;
+}
+
+.row:not(.draggable) .drag {
+  visibility: hidden;
+}

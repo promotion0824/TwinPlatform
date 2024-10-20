@@ -1,0 +1,18 @@
+.buttons {
+  z-index: var(--z-header);
+}
+
+.button {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+  display: none;
+  text-align: center;
+  width: 40px;
+}
+
+.visible {
+  display: block;
+}
+
+.tools {
+  min-width: 80px;
+}

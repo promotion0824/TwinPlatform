@@ -1,0 +1,43 @@
+.treeViewItem {
+  position: relative;
+}
+
+.treeViewItem::before {
+  background: var(--blue);
+  bottom: 0;
+  content: '';
+  left: 0;
+  position: absolute;
+  top: 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: all 0.2s ease;
+  width: 4px;
+}
+
+.chevronButton {
+  height: 28px;
+  width: auto;
+}
+
+.isLeaf .chevronButton {
+  visibility: hidden;
+}
+
+.chevron {
+  transform: rotate(-90deg);
+  transition: all 0.2s ease;
+  width: 24px;
+}
+
+.isOpen .chevron {
+  transform: none;
+}
+
+.isLeaf.isSelected::before {
+  transform: none;
+}
+
+.treeViewItem:not(.isSelected) .icon {
+  fill: none;
+}

@@ -1,0 +1,94 @@
+.icon {
+  color: inherit;
+  fill: currentcolor;
+  flex-shrink: 0;
+  stroke: none;
+  transition: all 0.2s ease;
+}
+
+.sizeTiny {
+  height: 16px;
+  width: 16px;
+}
+
+.sizeSmall {
+  height: 20px;
+  width: 20px;
+}
+
+.sizeMedium {
+  height: 24px;
+  width: 24px;
+}
+
+.colorGreen {
+  color: var(--green);
+}
+
+.colorGreenDark {
+  color: var(--green-dark-new);
+}
+
+.colorYellow {
+  color: var(--yellow);
+}
+
+.colorYellowDark {
+  color: var(--yellow-dark-new);
+}
+
+.colorOrange {
+  color: var(--orange);
+}
+
+.colorOrangeDark {
+  color: var(--orange-dark-new);
+}
+
+.colorRed {
+  color: var(--red);
+}
+
+.colorRedDark {
+  color: var(--red-dark-new);
+}
+
+/**
+ * These styles are copied from Icon.css from the old Icon component,
+ * to make the "progress" icon spin.
+ */
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+
+  50% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -35px;
+  }
+
+  100% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -124px;
+  }
+}
+
+.progress {
+  animation: rotate 1.4s linear infinite;
+  stroke: currentcolor;
+}
+
+.progress circle {
+  animation: dash 1.4s ease-in-out infinite;
+  stroke: currentcolor;
+  stroke-dasharray: 1, 200;
+  stroke-linecap: round;
+  stroke-miterlimit: 10;
+}

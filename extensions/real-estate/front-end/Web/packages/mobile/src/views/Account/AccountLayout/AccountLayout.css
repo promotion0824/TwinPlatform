@@ -1,0 +1,123 @@
+@keyframes enter {
+  0% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+}
+
+.background {
+  animation: enter 5s ease;
+  background-position: center;
+  background-size: cover;
+  inset: 0;
+  position: fixed;
+  transform: scale(1.05);
+}
+
+.accountLayout {
+  min-width: 900px;
+  padding: 180px;
+  position: relative;
+}
+
+.title {
+  font-size: var(--font-h2);
+  font-weight: var(--font-thin);
+  margin-bottom: 90px;
+}
+
+.content {
+  max-width: 518px;
+}
+
+.text {
+  color: var(--theme-color-neutral-fg-highlight);
+  font-size: var(--font-extra-large);
+}
+
+.input {
+  height: 75px;
+  padding: 0 var(--padding-extra-large);
+  width: 518px;
+}
+
+.input::before {
+  background-color: var(--theme-color-neutral-border-default);
+  bottom: 0;
+  content: '';
+  margin: 25px 0 25px 31px;
+  position: absolute;
+  top: 0;
+  width: 2px;
+}
+
+.select {
+  height: 75px;
+  padding: 0 var(--padding-extra-large);
+}
+
+.icon {
+  margin-left: 0;
+  margin-right: 28px;
+}
+
+.submitButton {
+  width: 260px;
+}
+
+.link {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+  border: 1px solid var(--theme-color-neutral-border-default);
+  border-radius: var(--border-radius);
+  color: var(--light);
+  padding: var(--padding-small) var(--padding);
+}
+
+.message {
+  align-items: center;
+  background-color: var(--theme-color-neutral-bg-panel-default);
+  border-radius: var(--border-radius);
+  color: var(--green);
+  display: flex;
+}
+
+.willow {
+  margin-bottom: var(--padding-large);
+}
+
+.logoutContent {
+  align-items: center;
+  color: var(--theme-color-neutral-fg-highlight);
+  display: flex;
+  font-size: var(--font-large);
+  padding: var(--padding-large);
+}
+
+.logoutLoader {
+  display: inline-flex;
+  padding: 0 0 0 var(--padding);
+}
+
+@media (--mobile) {
+  .accountLayout {
+    min-width: auto;
+    padding: 20px;
+  }
+
+  .content {
+    max-width: initial;
+  }
+
+  .input {
+    width: auto;
+  }
+
+  .submitButton {
+    margin-bottom: var(--padding);
+    width: 100%;
+  }
+
+  .title {
+    margin-bottom: 50px;
+  }
+}

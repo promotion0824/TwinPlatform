@@ -1,0 +1,17 @@
+.hasValue {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+}
+
+.hasValue .text {
+  color: var(--light);
+}
+
+.hasPlaceholder .text {
+  color: var(--new-text-dark);
+}
+
+.content {
+  max-height: 305px;
+  overflow: auto;
+  overflow-x: hidden;
+}

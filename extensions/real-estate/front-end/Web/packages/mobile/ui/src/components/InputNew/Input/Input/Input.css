@@ -1,0 +1,117 @@
+.input {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+  border: 1px solid var(--theme-color-neutral-border-default);
+  display: inline-flex;
+  height: 38px;
+  position: relative;
+  transition: all 0.2s ease;
+  vertical-align: top;
+}
+
+.isDisabled {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+  border-color: transparent;
+}
+
+.hasValue {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+}
+
+.input:not(.isDisabled):focus-within {
+  border-color: var(--new-border-light);
+}
+
+.typeSearch.typeSearch.typeSearch.typeSearch {
+  background-color: transparent;
+  border-color: transparent;
+}
+
+@media (hover: hover) {
+  .input:not(.isDisabled):hover {
+    border-color: var(--new-border-light);
+  }
+}
+
+.icon {
+  align-self: center;
+  margin-left: var(--padding);
+  pointer-events: none;
+  position: absolute;
+}
+
+.isDisabled .icon {
+  color: var(--theme-color-neutral-bg-accent-default);
+}
+
+.input:not(.isDisabled):focus-within .icon {
+  color: var(--theme-color-neutral-fg-highlight);
+}
+
+.okIcon:not(.isDisabled):focus-within .icon {
+  color: var(--green-light);
+}
+
+@media (hover: hover) {
+  .input:not(.isDisabled):hover .icon {
+    color: var(--theme-color-neutral-fg-highlight);
+  }
+
+  .okIcon:not(.isDisabled):hover .icon {
+    color: var(--green-light);
+  }
+}
+
+.widthSmall {
+  width: 60px;
+}
+
+.inputControl {
+  background: 0;
+  border: 0;
+  color: var(--light);
+  font-family: var(--font);
+  font-size: var(--font-medium);
+  font-weight: var(--font-normal);
+  height: 100%;
+  letter-spacing: 0.15px;
+  outline: 0;
+  padding: 0 var(--padding);
+  width: 100%;
+}
+
+.hasError {
+  border-color: var(--red);
+}
+
+.hasError:not(.isDisabled):focus-within {
+  border-color: var(--red-light);
+}
+
+@media (hover: hover) {
+  .hasError:not(.isDisabled):hover {
+    border-color: var(--red-light);
+  }
+}
+
+.inputControl::placeholder {
+  color: var(--theme-color-neutral-bg-panel-default);
+}
+
+.inputControl::-ms-clear {
+  display: none;
+}
+
+.inputControl::-webkit-inner-spin-button,
+.inputControl::-webkit-outer-spin-button {
+  appearance: none;
+}
+
+.inputControl:-webkit-autofill {
+  box-shadow: 0 0 0 50px var(--theme-color-neutral-bg-panel-default) inset;
+  caret-color: var(--theme-color-neutral-fg-highlight);
+  -webkit-text-fill-color: var(--theme-color-neutral-fg-highlight);
+}
+
+.hasIcon .inputControl {
+  padding-left: 32px;
+}

@@ -1,0 +1,10 @@
+.xAxis {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+  border-bottom: 1px solid var(--theme-color-neutral-border-default);
+  flex: 0 !important;
+  height: 36px;
+  min-height: 36px;
+  padding: var(--padding-small);
+  white-space: nowrap;
+  z-index: var(--z-header);
+}

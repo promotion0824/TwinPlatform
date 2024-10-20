@@ -1,0 +1,28 @@
+.layoutTabs {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  left: 0;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.content {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+  display: flex;
+  flex-shrink: 0;
+}
+
+@media (--header) {
+  .layoutTabs {
+    display: none;
+  }
+}
+
+@media (--header-large) {
+  .typeOffCenter {
+    left: 20%;
+  }
+}

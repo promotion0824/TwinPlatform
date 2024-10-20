@@ -1,0 +1,1 @@
+dotnet watch --project .\test\MobileXL.Test\MobileXL.Test.csproj test --filter Category!=UseSqlServer /p:CollectCoverage=true /p:CoverletOutputFormat=lcov /p:Exclude=\"[*]MobileXL.Program,[*]Microsoft.*,[*]System.*,[*]Willow.Infrastructure.*,[*]MobileXL.Database.*,[xunit*]*\" /p:CoverletOutput=.\lcov.info

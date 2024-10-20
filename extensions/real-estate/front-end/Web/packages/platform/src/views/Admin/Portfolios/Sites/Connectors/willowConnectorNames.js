@@ -1,0 +1,17 @@
+export default [
+  'DefaultBACnetConnector',
+  'DefaultModbusConnector',
+  'DefaultOpcDaConnector',
+  'DefaultOpcUaConnector',
+  'DefaultStreamAnalyticsConnector',
+  'DefaultChipkinBACnetConnector',
+  'DefaultSchneiderConnector',
+  'DefaultVergeSenseConnector',
+  'DefaultMachEnergyConnector',
+  'DefaultMarketplaceConnector',
+  'DefaultCCureConnector',
+  'DefaultPointGrabConnector',
+  'DefaultIntegritiConnector',
+  'DefaultDeltaVConnector',
+  'DefaultSiemensConnector',
+]

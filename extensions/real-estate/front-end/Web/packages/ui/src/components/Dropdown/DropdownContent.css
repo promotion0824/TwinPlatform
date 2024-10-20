@@ -1,0 +1,40 @@
+@keyframes enter-content {
+  0% {
+    overflow: hidden;
+  }
+
+  100% {
+    overflow: hidden;
+  }
+}
+
+@keyframes enter-top {
+  0% {
+    transform: translate(0, 100%);
+  }
+}
+
+@keyframes enter-bottom {
+  0% {
+    transform: translate(0, -100%);
+  }
+}
+
+.dropdownContent {
+  animation: enter-content 0.15s ease;
+  position: fixed;
+  z-index: var(--z-dropdown);
+}
+
+.content {
+  animation: enter-bottom 0.15s ease;
+  background-color: var(--theme-color-neutral-bg-panel-default);
+  border: 1px solid var(--theme-color-neutral-border-default);
+  box-shadow: var(--shadow-bottom);
+  display: flex;
+  flex-flow: column;
+}
+
+.top .content {
+  animation: enter-top 0.15s ease;
+}

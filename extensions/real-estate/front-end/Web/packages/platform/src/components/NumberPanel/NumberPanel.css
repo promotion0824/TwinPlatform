@@ -1,0 +1,25 @@
+.numberPanel {
+  height: 100%;
+  min-height: 240px;
+  text-align: center;
+}
+
+.colorGreen .icon {
+  color: var(--green-dark);
+}
+
+.colorGreen .value {
+  color: var(--green-light);
+}
+
+.colorRed .icon {
+  color: var(--red-dark);
+}
+
+.colorRed .value {
+  color: var(--red-light);
+}
+
+.sizeSmall {
+  min-height: 140px;
+}

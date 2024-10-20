@@ -1,0 +1,17 @@
+.headerRoot {
+  position: absolute;
+  top: 0;
+}
+
+.header {
+  align-items: center;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.siteWrap {
+  flex: 1;
+  max-width: 100%;
+  text-align: center;
+}

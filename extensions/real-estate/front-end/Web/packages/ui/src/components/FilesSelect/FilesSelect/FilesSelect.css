@@ -1,0 +1,49 @@
+.fileButton {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+  border: 1px solid var(--theme-color-neutral-border-default);
+  border-radius: var(--border-radius);
+  height: var(--height-medium);
+  overflow: hidden;
+  padding: var(--padding);
+  transition: all 0.2s ease;
+}
+
+.hasValue {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+}
+
+.hasError .fileButton {
+  border-color: var(--red);
+}
+
+.isDisabled .fileButton {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+  border-color: transparent;
+}
+
+.icon {
+  color: var(--theme-color-neutral-fg-subtle);
+}
+
+.filesSelect:not(.isDisabled) .fileButton:focus {
+  color: var(--light);
+  cursor: pointer;
+}
+
+.filesSelect:not(.isDisabled) .fileButton:hover {
+  background-color: var(--theme-color-neutral-border-default);
+  color: var(--light);
+  cursor: pointer;
+}
+
+.hasError:not(.isDisabled) .fileButton:focus {
+  border-color: var(--red);
+}
+
+.hasError:not(.isDisabled) .fileButton:hover {
+  border-color: var(--red);
+}
+
+.buttonContent {
+  height: 100%;
+}

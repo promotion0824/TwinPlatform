@@ -1,0 +1,111 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: digitaltwincore
+  title: DigitalTwinCore
+  description: ADT, assets, categories, points, devices, documents, models, relationships and twin queries
+  annotations:
+    sonarqube.org/project-key: 'DigitalTwinCore'
+    dev.azure.com/project-repo: WillowPlatform/DigitalTwinCore
+  tags:
+    - realestate
+  links:
+    - url: https://dev.azure.com/willowdev/WillowPlatform/_git/DigitalTwinCore
+      title: Repo
+      icon: web
+    - url: https://dev.azure.com/willowdev/WillowPlatform/_build?definitionId=304
+      title: Pipeline
+      icon: web
+    - url: https://saas.whitesourcesoftware.com/Wss/WSS.html#!project;id=6698373
+      title: Whitesource
+      icon: web
+    - url: https://willow.atlassian.net/wiki/spaces/MAR/overview
+      title: Wiki
+      icon: web
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/e878a98a-20ec-4516-a59d-f393429fe07c/resourceGroups/t3-wil-prd-plt-aue2-app2-rsg/providers/Microsoft.Web/sites/wil-prd-plt-aue2-digitaltwincore/appServices
+      title: AU App Service
+      icon: web
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/e878a98a-20ec-4516-a59d-f393429fe07c/resourceGroups/t3-wil-prd-plt-eu22-app-rsg/providers/Microsoft.Web/sites/wil-prd-plt-eu22-digitaltwincore/appServices
+      title: US App Service
+      icon: web
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/e878a98a-20ec-4516-a59d-f393429fe07c/resourceGroups/t3-wil-prd-plt-weu2-app-rsg/providers/Microsoft.Web/sites/wil-prd-plt-weu2-digitaltwincore/appServices
+      title: EU App Service
+      icon: web
+    
+spec:
+  type: service
+  lifecycle: production
+  owner: pne_realestate
+  system: realestate-system
+  dependsOn: 
+    [
+      'resource:AU-RealEstate-Keyvault',
+      'resource:EU-RealEstate-Keyvault',
+      'resource:US-RealEstate-Keyvault',
+      'resource:wilbldprdaueapp.twinengine.blobcontainer',
+      'resource:au-digitaltwincore-db',
+      'resource:eu-digitaltwincore-db',
+      'resource:us-digitaltwincore-db',
+      'component:directorycore'
+    ]
+  providesApis:
+    - DigitalTwinCore-Api
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: au-digitaltwincore-db
+  links:
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/e878a98a-20ec-4516-a59d-f393429fe07c/resourceGroups/t3-wil-prd-plt-aue2-app-rsg/providers/Microsoft.Sql/servers/wil-prd-plt-aue2-sql/databases/DigitalTwinDB/overview
+      title: AU DigitalTwinCore DB
+      icon: web
+  description: AU DigitalTwinCore DB
+spec:
+  type: sqldb
+  owner: pne_realestate
+  system: realestate-system
+  dependsOn: ['resource:au-realestate-sql-server']
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: us-digitaltwincore-db
+  links:
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/e878a98a-20ec-4516-a59d-f393429fe07c/resourceGroups/t3-wil-prd-plt-eu22-app-rsg/providers/Microsoft.Sql/servers/wil-prd-plt-eu22-sql/databases/DigitalTwinDB/overview
+      title: US DigitalTwinCore DB
+      icon: web
+  description: US DigitalTwinCore DB
+spec:
+  type: sqldb
+  owner: pne_realestate
+  system: realestate-system
+  dependsOn: ['resource:us-realestate-sql-server']
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: eu-digitaltwincore-db
+  links:
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/e878a98a-20ec-4516-a59d-f393429fe07c/resourceGroups/t3-wil-prd-plt-weu2-app-rsg/providers/Microsoft.Sql/servers/wil-prd-plt-weu2-sql/databases/DigitalTwinDB/overview
+      title: EU DigitalTwinCore DB
+      icon: web
+  description: EU DigitalTwinCore DB
+spec:
+  type: sqldb
+  owner: pne_realestate
+  system: realestate-system
+  dependsOn: ['resource:eu-realestate-sql-server']
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: DigitalTwinCore-Api
+  description: DigitalTwinCore Api
+spec:
+  type: openapi
+  lifecycle: production
+  owner: pne_realestate
+  system: realestate-system
+  definition:
+    $text: https://wil-dev-plt-aue1-digitaltwincore.azurewebsites.net/swagger/v1/swagger.json
+  dependsOn: ['component:digitaltwincore']

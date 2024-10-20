@@ -1,0 +1,40 @@
+.header {
+  margin-bottom: var(--padding-tiny);
+}
+
+.meta {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+  padding: 12px var(--padding-large);
+}
+
+.main {
+  height: 3px;
+}
+
+.priority0 {
+  background-color: var(--priority0);
+}
+
+.priority1 {
+  background-color: var(--priority1);
+}
+
+.priority2 {
+  background-color: var(--priority2);
+}
+
+.priority3 {
+  background-color: var(--priority3);
+}
+
+.priority4 {
+  background-color: var(--priority4);
+}
+
+.priority5 {
+  background-color: var(--priority5);
+}
+
+.priority6 {
+  background-color: var(--priority6);
+}

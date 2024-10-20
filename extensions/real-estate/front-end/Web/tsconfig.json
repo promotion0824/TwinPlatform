@@ -1,0 +1,48 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "noImplicitAny": false,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "sourceMap": true,
+    "jsx": "react-jsx",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "allowJs": true,
+    "lib": ["es2019", "dom"],
+    "baseUrl": ".",
+    "forceConsistentCasingInFileNames": true,
+    "strictNullChecks": true,
+    "paths": {
+      "@willow/ui": ["./packages/ui/src/index.ts"],
+      "@willow/ui/*": ["./packages/ui/src/*"],
+      "@willow/campus": ["./packages/campus/src/index.js"],
+      "@willow/campus/*": ["./packages/campus/src/*"],
+      "@willow/common": ["./packages/common/src/index.ts"],
+      "@willow/common/*": ["./packages/common/src/*"],
+      "@willow/mobile-ui": ["./packages/mobile/ui/src/index.js"],
+      "@willow/mobile-ui/*": ["./packages/mobile/ui/src/*"]
+    },
+    "target": "ES6",
+    "skipLibCheck": true,
+    "plugins": [{ "name": "typescript-plugin-css-modules" }],
+
+    // We don't actually do anything with this outDir, but having it here
+    // prevents us from getting a million "cannot write file ... because it
+    // would overwrite input file" diagnostics from the language server.
+    "outDir": "dist"
+  },
+  "include": ["packages/**/*", "globals.d.ts"],
+
+  "exclude": [
+    // So the dev server won't refuse to build just because there's an issue in the
+    // typings in Storybook files.
+    "**/*.stories.tsx",
+    "**/*.mdx",
+
+    // To stop the language server crashing on opening multiple files if you have
+    // run `npm build`.
+    "packages/platform/dist",
+    "packages/mobile/dist"
+  ]
+}

@@ -1,0 +1,24 @@
+.willow {
+  align-items: center;
+  background-color: var(--theme-color-neutral-bg-panel-default);
+  display: inline-flex;
+  padding: 0 var(--padding-small);
+}
+
+.willow > svg > g > g > * {
+  fill: var(--willow-light);
+  transition: all 2s ease;
+}
+
+.willow:--enter > svg > g > g > * {
+  fill: var(--willow);
+}
+
+.willow.purple:--enter > svg > g > g > * {
+  fill: var(--purple);
+}
+
+.logo {
+  height: 26px;
+  width: 26px;
+}

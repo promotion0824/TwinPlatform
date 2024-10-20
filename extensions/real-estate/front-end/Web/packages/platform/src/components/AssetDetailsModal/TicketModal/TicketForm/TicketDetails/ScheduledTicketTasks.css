@@ -1,0 +1,46 @@
+.numericValues {
+  width: 88px;
+}
+
+.numFieldsFlex {
+  margin-left: auto;
+  position: relative;
+  right: 36px;
+}
+
+.error {
+  border: 1px solid var(--red-light) !important;
+}
+
+.numberValue {
+  position: relative;
+  right: 10px;
+}
+
+.unitValue {
+  color: var(--theme-color-neutral-fg-subtle);
+  position: absolute;
+  right: 20px;
+  top: 8px;
+  vertical-align: middle;
+}
+
+.taskName {
+  line-height: 2rem !important;
+  margin-right: var(--padding);
+}
+
+.addTaskFlx {
+  margin-top: var(--padding-large) !important;
+}
+
+.errorTxt {
+  color: var(--red-light);
+  margin-left: auto;
+}
+
+.minMaxError {
+  color: #fc2d3b !important;
+  margin-right: 35px;
+  text-align: right;
+}

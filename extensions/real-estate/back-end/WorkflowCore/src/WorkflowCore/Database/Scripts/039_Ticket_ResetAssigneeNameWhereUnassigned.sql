@@ -1,0 +1,1 @@
+UPDATE WF_Ticket SET AssigneeName = NULL WHERE AssigneeName = 'Unassigned'

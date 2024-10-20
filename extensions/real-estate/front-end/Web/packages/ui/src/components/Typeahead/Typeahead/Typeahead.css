@@ -1,0 +1,12 @@
+.open {
+  border-color: var(--border-light);
+  box-shadow: 0 0 2px var(--border-light);
+}
+
+.selected.selected .icon {
+  color: var(--green);
+}
+
+.selected:hover .icon {
+  color: var(--green-light);
+}

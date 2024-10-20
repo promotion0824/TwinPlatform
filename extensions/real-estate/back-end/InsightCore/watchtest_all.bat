@@ -1,0 +1,1 @@
+dotnet watch --project .\test\InsightCore.Test\InsightCore.Test.csproj test /p:CollectCoverage=true /p:CoverletOutputFormat=lcov /p:Exclude=\"[*]InsightCore.Program,[*]Microsoft.*,[*]System.*,[*]Willow.Infrastructure.*,[xunit*]*\" /p:CoverletOutput=.\lcov.info

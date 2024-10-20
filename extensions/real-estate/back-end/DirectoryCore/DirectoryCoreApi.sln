@@ -1,0 +1,65 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31919.166
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DirectoryCore", "src\DirectoryCore\DirectoryCore.csproj", "{3C7A0F73-F9B0-4D1C-9EBF-572B26AE4EF1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DirectoryCore.Test", "test\DirectoryCore.Test\DirectoryCore.Test.csproj", "{B25B5943-3548-485D-9915-9B5C80C9B1BB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{96596661-A775-48EA-8888-6D41E7ECAA85}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		azure-pipelines-analysis.yml = azure-pipelines-analysis.yml
+		azure-pipelines.yml = azure-pipelines.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{3B2EB2F3-5175-4663-AC0B-278F45F55070}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Willow.DirectoryCore.UnitTests", "test\Willow.DirectoryCore.UnitTests\Willow.DirectoryCore.UnitTests.csproj", "{C623F631-4A53-45BF-9177-5E3A76105C41}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "libs", "libs", "{395DF6F6-D127-4554-8FB1-E5BBA1935D0E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Willow.Common", "..\..\lib\src\Willow.Common\Willow.Common.csproj", "{A5B7947D-7325-48B1-9BD3-508B180AB908}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Willow.ServiceBus", "..\..\lib\src\Willow.ServiceBus\Willow.ServiceBus.csproj", "{32BA3643-F20B-4BDB-83B4-F731DFB69D59}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3C7A0F73-F9B0-4D1C-9EBF-572B26AE4EF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C7A0F73-F9B0-4D1C-9EBF-572B26AE4EF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C7A0F73-F9B0-4D1C-9EBF-572B26AE4EF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C7A0F73-F9B0-4D1C-9EBF-572B26AE4EF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B25B5943-3548-485D-9915-9B5C80C9B1BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B25B5943-3548-485D-9915-9B5C80C9B1BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B25B5943-3548-485D-9915-9B5C80C9B1BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B25B5943-3548-485D-9915-9B5C80C9B1BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C623F631-4A53-45BF-9177-5E3A76105C41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C623F631-4A53-45BF-9177-5E3A76105C41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C623F631-4A53-45BF-9177-5E3A76105C41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C623F631-4A53-45BF-9177-5E3A76105C41}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5B7947D-7325-48B1-9BD3-508B180AB908}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5B7947D-7325-48B1-9BD3-508B180AB908}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5B7947D-7325-48B1-9BD3-508B180AB908}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5B7947D-7325-48B1-9BD3-508B180AB908}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32BA3643-F20B-4BDB-83B4-F731DFB69D59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32BA3643-F20B-4BDB-83B4-F731DFB69D59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32BA3643-F20B-4BDB-83B4-F731DFB69D59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32BA3643-F20B-4BDB-83B4-F731DFB69D59}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C623F631-4A53-45BF-9177-5E3A76105C41} = {3B2EB2F3-5175-4663-AC0B-278F45F55070}
+		{A5B7947D-7325-48B1-9BD3-508B180AB908} = {395DF6F6-D127-4554-8FB1-E5BBA1935D0E}
+		{32BA3643-F20B-4BDB-83B4-F731DFB69D59} = {395DF6F6-D127-4554-8FB1-E5BBA1935D0E}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {08B982C4-76A9-4A92-A23A-9491859F325C}
+	EndGlobalSection
+EndGlobal

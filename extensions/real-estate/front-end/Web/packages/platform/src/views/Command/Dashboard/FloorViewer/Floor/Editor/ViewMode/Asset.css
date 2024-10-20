@@ -1,0 +1,6 @@
+.asset {
+  cursor: pointer;
+  fill: var(--tooltip-dark);
+  stroke: var(--tooltip-dark);
+  stroke-width: 0.5;
+}

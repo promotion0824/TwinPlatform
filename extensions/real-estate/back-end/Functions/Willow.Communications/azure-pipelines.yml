@@ -1,0 +1,109 @@
+trigger:
+  branches:
+    include:
+      - main
+      - releases/*
+  paths:
+    include:
+      - extensions/real-estate/back-end/Functions/Willow.Communications/*
+
+pr:
+  branches:
+    include:
+      - main
+      - releases/*
+  paths:
+    include:
+      - extensions/real-estate/back-end/Functions/Willow.Communications/*
+
+variables:
+  - name: buildConfiguration
+    value: 'Release'
+  - name: appName
+    value: 'Communications'
+
+resources:
+  repositories:
+    - repository: templates
+      type: git
+      name: WillowPlatform/PipelineTemplates
+
+jobs:
+  - job: build_publish
+    pool:
+      vmImage: 'windows-latest'
+
+    steps:
+      ###### 1 ######
+      - checkout: self
+        path: s # default path
+
+      ###### 3 ######
+      # - task: UseDotNet@2
+      #   displayName: Use .NET 8.0
+      #   inputs:
+      #     packageType: 'sdk'
+      #     version: '8.0.x'
+
+      ###### 4 ######
+
+
+      - powershell: |
+          dotnet nuget remove source WillowLib --configfile $(Build.SourcesDirectory)/extensions/real-estate/back-end/Functions/Willow.Communications/Nuget.config
+          dotnet nuget remove source WillowGithub --configfile $(Build.SourcesDirectory)/extensions/real-estate/back-end/Functions/Willow.Communications/Nuget.config
+          dotnet nuget add source https://nuget.pkg.github.com/willowinc/index.json --name WillowGithub --username ado --password $env:MY_MAPPED_ENV_VAR --store-password-in-clear-text --configfile $(Build.SourcesDirectory)/extensions/real-estate/back-end/Functions/Willow.Communications/Nuget.config
+          dotnet restore $(Build.SourcesDirectory)/extensions/real-estate/back-end/Functions/Willow.Communications/Willow.Communications.sln --configfile $(Build.SourcesDirectory)/extensions/real-estate/back-end/Functions/Willow.Communications/Nuget.config
+          cat $(Build.SourcesDirectory)/extensions/real-estate/back-end/Functions/Willow.Communications/Nuget.config
+        displayName: 'Add NuGet source'
+        env:
+          MY_MAPPED_ENV_VAR: $(GITHUBPACKAGETOKEN)
+
+      # - task: DotNetCoreCLI@2
+      #   displayName: Restore NuGet packages
+      #   inputs:
+      #     command: restore
+      #     projects: '**/*.csproj'
+      #     feedsToUse: 'select'
+      #     vstsFeed: 'ab527366-4484-4cbd-8d43-482ca0abe038/e92c6645-e9e5-4f25-a3a7-acb25f701255'
+      #     noCache: true
+      #     includeNuGetOrg: true
+      #     verbosityRestore: '-'
+
+      ###### 5 #####
+      - script: dotnet build $(Build.SourcesDirectory)/extensions/real-estate/back-end/Functions/Willow.Communications/Willow.Communications.sln --configuration $(buildConfiguration)
+        displayName: 'dotnet build $(buildConfiguration)'
+
+      ###### 6 #####
+      - task: DotNetCoreCLI@2
+        displayName: 'Run Unit Tests'
+        inputs:
+          command: test
+          projects: '$(Build.SourcesDirectory)/extensions/real-estate/back-end/Functions/Willow.Communications/**/*UnitTests.csproj'
+          arguments: '--verbosity n --collect "Code coverage"'
+          testRunTitle: 'Run Platform test(s)'
+
+      ###### 7 #####
+      - task: PublishTestResults@2
+        inputs:
+          testRunner: VSTest
+          testResultsFiles: '**/*.trx'
+
+      ###### 8 #####
+      - task: PublishCodeCoverageResults@1
+        displayName: 'Publish code coverage'
+        inputs:
+          codeCoverageTool: Cobertura
+          summaryFileLocation: '$(Build.SourcesDirectory)/CodeCoverage/Cobertura.xml'
+          reportDirectory: '$(Build.SourcesDirectory)/CodeCoverage'
+
+      ###### 9 #####
+      - task: DotNetCoreCLI@2
+        inputs:
+          command: publish
+          publishWebProjects: False
+          projects: '**/Willow.$(appName).Function/Willow.$(appName).Function.csproj'
+          arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+          zipAfterPublish: True
+
+      ###### 10 #####
+      - task: PublishBuildArtifacts@1

@@ -1,0 +1,1 @@
+Update [dbo].[WF_Inspections] SET [Frequency] = [FrequencyInHours]

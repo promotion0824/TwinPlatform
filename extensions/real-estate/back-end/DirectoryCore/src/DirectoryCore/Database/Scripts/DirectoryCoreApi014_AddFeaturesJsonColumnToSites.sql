@@ -1,0 +1,4 @@
+ALTER TABLE [dbo].[Sites]
+ADD [FeaturesJson] NVARCHAR(1000) NOT NULL DEFAULT ''
+
+GO

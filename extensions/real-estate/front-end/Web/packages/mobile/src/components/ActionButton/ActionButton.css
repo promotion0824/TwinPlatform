@@ -1,0 +1,58 @@
+.actionButton::after {
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid var(--theme-color-neutral-fg-highlight);
+  content: '';
+  margin-top: -3px;
+  position: absolute;
+  right: var(--padding-extra-large);
+  top: 50%;
+}
+
+.overlay {
+  background: rgb(53 53 53 / 65%);
+  inset: 0;
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+  position: fixed;
+  transition: var(--transition-slow-out);
+}
+
+.overlayContent {
+  align-items: center;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  left: 0;
+  padding: 0 20px 30px;
+  position: absolute;
+  right: 0;
+  transform: translateY(100%);
+  transition: var(--transition-slow-out);
+}
+
+.overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.overlay.open .overlayContent {
+  transform: translateY(0);
+}
+
+.overlayButton {
+  margin: 6px 0;
+  max-width: 420px;
+  outline: none;
+  width: 100%;
+}
+
+.overlayClose {
+  border-radius: 50%;
+  height: 48px !important;
+  margin-top: 6px;
+  outline: 0;
+  width: 48px;
+}

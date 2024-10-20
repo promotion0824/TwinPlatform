@@ -1,0 +1,8 @@
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: sitecore-components
+  description: A collection for SiteCore resources
+spec:
+  targets:
+    - ../src/SiteCore/backstage.yaml

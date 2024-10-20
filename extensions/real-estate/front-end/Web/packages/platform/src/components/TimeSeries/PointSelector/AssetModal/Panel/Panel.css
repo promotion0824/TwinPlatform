@@ -1,0 +1,13 @@
+.panel {
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.shrinkable {
+  flex-shrink: 1;
+}
+
+.content {
+  height: 100%;
+  margin-left: var(--padding-small);
+}

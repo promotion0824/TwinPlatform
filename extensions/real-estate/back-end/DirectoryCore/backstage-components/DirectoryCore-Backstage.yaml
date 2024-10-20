@@ -1,0 +1,8 @@
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: directorycore-components
+  description: A collection for DirectoryCore resources
+spec:
+  targets:
+    - ../src/DirectoryCore/backstage.yaml

@@ -1,0 +1,13 @@
+.git
+node_modules
+kubernetes
+azure-pipelines.yaml
+azure-pipelines-analysis.yaml
+setup-environments.yaml
+**/web.config
+backstage.yaml
+coverage
+deployment/Dockerfile
+auth0/*
+src/*
+webpack.config.js

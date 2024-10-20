@@ -1,0 +1,1 @@
+dotnet watch --project ./test/SiteCore.Test/SiteCore.Test.csproj test --filter Category!=UseSqlServer /p:CollectCoverage=true /p:CoverletOutputFormat=lcov /p:Exclude=\"[*]SiteCore.Program,[*]Microsoft.*,[*]System.*,[*]Willow.Infrastructure.*,[*]SiteCore.Database.*,[xunit*]*\" /p:CoverletOutput=./lcov.info

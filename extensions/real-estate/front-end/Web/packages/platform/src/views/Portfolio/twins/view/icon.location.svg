@@ -1,0 +1,12 @@
+<svg id="icon.location" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <g id="icon.location-2" data-name="icon.location" transform="translate(0 24) rotate(-90)">
+    <rect id="canvas" width="24" height="24" fill="none"/>
+    <g id="fill" transform="translate(20 5.333) rotate(90)">
+      <path id="Path_11343" data-name="Path 11343" d="M1.333,2A.669.669,0,0,1,2,1.333H3.333V0H2A2,2,0,0,0,0,2V3.333H1.333Z" fill="#7e7e7e"/>
+      <path id="Path_11344" data-name="Path 11344" d="M1.333,1.333V0H0V1.333a2,2,0,0,0,2,2H3.333V2H2A.669.669,0,0,1,1.333,1.333Z" transform="translate(0 11.333)" fill="#7e7e7e"/>
+      <path id="Path_11345" data-name="Path 11345" d="M1.333,0H0V1.333H1.333A.669.669,0,0,1,2,2V3.333H3.333V2A2,2,0,0,0,1.333,0Z" transform="translate(11.333)" fill="#7e7e7e"/>
+      <path id="Path_11346" data-name="Path 11346" d="M2,1.333A.669.669,0,0,1,1.333,2H0V3.333H1.333a2,2,0,0,0,2-2V0H2Z" transform="translate(11.333 11.333)" fill="#7e7e7e"/>
+      <path id="Path_11347" data-name="Path 11347" d="M9.333,7.08V3.253A1.319,1.319,0,0,0,8.667,2.1L5.333.18A1.325,1.325,0,0,0,4,.18L.667,2.093A1.338,1.338,0,0,0,0,3.253V7.08A1.319,1.319,0,0,0,.667,8.233L4,10.153a1.325,1.325,0,0,0,1.333,0l3.333-1.92A1.319,1.319,0,0,0,9.333,7.08ZM4,8.613,1.333,7.08V3.993L4,5.547Zm.667-4.22-2.64-1.54,2.64-1.52,2.64,1.52ZM8,7.08,5.333,8.613V5.547L8,3.993Z" transform="translate(2.667 2.167)" fill="#7e7e7e"/>
+    </g>
+  </g>
+</svg>

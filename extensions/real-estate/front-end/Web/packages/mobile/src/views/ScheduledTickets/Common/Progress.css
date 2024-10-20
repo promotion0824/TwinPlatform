@@ -1,0 +1,12 @@
+.svg {
+  height: 26px;
+  width: 26px;
+}
+
+.svg > path:first-child {
+  stroke: var(--theme-color-neutral-bg-panel-default);
+}
+
+.svg > path:last-child {
+  stroke: var(--green);
+}

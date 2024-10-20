@@ -1,0 +1,4 @@
+.modalHeader {
+  border-bottom: 1px solid var(--theme-color-neutral-border-default);
+  margin: 0 var(--padding-extra-large);
+}

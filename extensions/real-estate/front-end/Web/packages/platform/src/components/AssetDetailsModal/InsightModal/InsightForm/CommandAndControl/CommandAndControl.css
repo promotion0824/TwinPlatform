@@ -1,0 +1,4 @@
+.fieldset {
+  background-color: var(--red-background);
+  z-index: var(--z-header);
+}

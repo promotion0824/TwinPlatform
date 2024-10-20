@@ -1,0 +1,26 @@
+.svg {
+  border-left: 1px solid transparent;
+  border-right: 1px solid transparent;
+  flex: 1;
+  height: 34px;
+  transform: scale(1, -1);
+  width: 100%;
+}
+
+@keyframes enter {
+  0% {
+    left: 0;
+  }
+
+  100% {
+    left: 100%;
+  }
+}
+
+.animatingCover {
+  animation: enter 0.3s ease;
+  background: var(--theme-color-neutral-bg-panel-default);
+  height: 34px;
+  position: absolute;
+  right: 0;
+}

@@ -1,0 +1,14 @@
+.floorInformation {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+  border: 1px solid var(--theme-color-neutral-border-default);
+  margin: var(--padding);
+  opacity: 0;
+  position: absolute;
+  transform: translate(-100%, 0);
+  transition: all 0.2s ease;
+}
+
+.isVisible {
+  opacity: 1;
+  transform: none;
+}

@@ -1,0 +1,68 @@
+.datePicker {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+  border: 1px solid var(--theme-color-neutral-border-default);
+  font-size: var(--font-small);
+  font-weight: var(--font-weight-500);
+  height: var(--height-medium);
+  padding: 0 var(--padding);
+  position: relative;
+}
+
+.dateRange {
+  min-width: 200px;
+}
+
+.dateTimeRange {
+  min-width: 312px;
+}
+
+.datePicker:not(.readOnly, .disabled):focus-within,
+.open:not(.readOnly, .disabled) {
+  border-color: var(--border-light);
+  box-shadow: 0 0 2px var(--border-light);
+}
+
+.datePicker:not(.readOnly, .disabled):hover {
+  background-color: var(--theme-color-neutral-border-default);
+}
+
+.hasValue {
+  background-color: var(--theme-color-neutral-bg-accent-default);
+}
+
+.hasValue .text {
+  color: var(--light);
+}
+
+.hasError,
+.hasError:not(.readOnly, .disabled):focus-within,
+.hasError:not(.readOnly, .disabled):hover {
+  border-color: var(--red);
+}
+
+.datePicker.datePicker.readOnly {
+  background-color: var(--disabled-background);
+  border-color: var(--disabled-background);
+  box-shadow: none;
+}
+
+.datePicker.datePicker.disabled {
+  background-color: var(--disabled-background);
+  border-color: var(--theme-color-neutral-bg-accent-default);
+}
+
+.disabled .text {
+  color: var(--disabled);
+}
+
+.hasPlaceholder .text {
+  color: var(--theme-color-neutral-fg-subtle);
+}
+
+.icon.icon {
+  color: var(--theme-color-neutral-fg-subtle);
+}
+
+.heightLarge {
+  height: var(--height-large);
+}

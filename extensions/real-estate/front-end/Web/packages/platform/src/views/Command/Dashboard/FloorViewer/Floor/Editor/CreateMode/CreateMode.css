@@ -1,0 +1,12 @@
+.mouse {
+  fill: var(--purple);
+}
+
+.circle {
+  fill: var(--purple);
+}
+
+.path {
+  fill: transparent;
+  stroke: var(--purple);
+}

@@ -1,0 +1,93 @@
+trigger:
+  branches:
+    include:
+      - main
+      - releases/real-estate/*
+  paths:
+    include:
+      - extensions/real-estate/lib/*
+
+pr:
+  branches:
+    include:
+      - main
+      - releases/real-estate/*
+  paths:
+    include:
+      - extensions/real-estate/lib/*
+
+variables:
+  - name: buildConfiguration
+    value: Release
+  - name: projectPath
+    value: extensions/real-estate/lib
+  - name: srcRoot
+    value: $(Build.SourcesDirectory)/$(projectPath)
+
+stages:
+- stage: Build
+  jobs:
+  - job: BuildAndTest
+    pool:
+      vmImage: 'windows-latest'
+
+    steps:
+    - template: ../../../libraries/scripts/sonarqube-prepare.yml
+      parameters:
+        sonarQubeProjectName: WillowLib
+        sonarQubePrefix: TwinPlaftorm
+        testProjectDir: test
+
+    - task: UseDotNet@2
+      displayName: Use .NET 6.x
+      inputs:
+        packageType: 'sdk'
+        version: 6.x
+
+    - task: UseDotNet@2
+      displayName: Use .NET 7.x
+      inputs:
+        packageType: 'sdk'
+        version: 7.x
+        
+    - task: DotNetCoreCLI@2
+      displayName: 'Restore nuget packages'
+      inputs:
+        command: restore
+        projects: $(srcRoot)/**/*.csproj
+    
+    - task: DotNetCoreCLI@2
+      displayName: 'Build Project for $(buildConfiguration)'
+      inputs:
+        command: build
+        workingDirectory: $(srcRoot)
+        arguments: '--no-restore --configuration $(buildConfiguration)'
+
+    - script: |
+        dotnet test --no-build $(srcRoot)/lib.sln --results-directory $(srcRoot)/test-results --logger trx --collect:"XPlat Code Coverage" --configuration $(buildConfiguration)
+      displayName: 'Run unit tests'
+    
+    - script: |
+        dotnet tool install -g dotnet-reportgenerator-globaltool
+        reportgenerator -reports:$(srcRoot)/**/coverage.cobertura.xml -targetdir:$(srcRoot)/CodeCoverage -reporttypes:Cobertura
+      displayName: 'Create code coverage report'
+    
+    - publish: $(srcRoot)/CodeCoverage
+      displayName: '[Debug] Publish cobertura report for debug'
+      artifact: 'opencover_report'
+    
+    - task: PublishTestResults@2
+      displayName: 'Publish test results'
+      condition: succeededOrFailed()
+      inputs:
+        testRunner: VSTest
+        testResultsFiles: '**/*.trx'
+    
+    - task: PublishCodeCoverageResults@1
+      displayName: 'Publish code coverage report'
+      inputs:
+        codeCoverageTool: Cobertura
+        summaryFileLocation: $(Build.SourcesDirectory)/$(srcRoot)/CodeCoverage/Cobertura.xml
+        reportDirectory: $(Build.SourcesDirectory)/$(srcRoot)/CodeCoverage
+
+    - template: ../../../libraries/scripts/sonarqube-analyze.yml

@@ -1,0 +1,18 @@
+{
+  "name": "Willow Mobile",
+  "short_name": "Willow Mobile",
+  "start_url": "..",
+  "display": "standalone",
+  "background_color": "#000",
+  "description": "Command Mobile",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "sizes": "32x32"
+    },
+    {
+      "src": "pwa-icon-large.png",
+      "sizes": "256x256"
+    }
+  ]
+}

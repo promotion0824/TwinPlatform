@@ -1,0 +1,15 @@
+.activeIcon {
+  color: var(--purple);
+}
+
+.icon {
+  border-left: 1px solid var(--theme-color-neutral-border-default);
+}
+
+.icon:hover:not(.disabled) {
+  color: var(--purple-light) !important;
+}
+
+.disabled {
+  color: var(--disabled) !important;
+}

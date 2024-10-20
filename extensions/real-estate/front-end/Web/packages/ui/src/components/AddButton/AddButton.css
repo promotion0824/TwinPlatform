@@ -1,0 +1,19 @@
+.addButton {
+  padding: 0;
+}
+
+.content {
+  padding: var(--padding);
+}
+
+.icon {
+  background-color: var(--purple);
+  color: var(--light);
+  height: 100%;
+  width: 26px;
+}
+
+.addButton:hover .icon,
+.addButton:focus .icon {
+  background-color: var(--purple-light);
+}

@@ -1,0 +1,28 @@
+# Override the root directory .gitignore which currently causes all directories
+# called "packages" to be ignored.
+!packages/*
+
+dist
+node_modules
+debug.log
+
+artifacts
+tools
+
+.DS_Store
+.idea
+
+# Vim swap files
+*~
+
+storybook-static
+./cypress/videos
+./cypress/screenshots
+
+# env config file
+config.json
+
+/.direnv
+/result
+
+pdf.worker.min.js

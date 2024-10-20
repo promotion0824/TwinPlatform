@@ -1,0 +1,30 @@
+.card {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+  border: 1px solid var(--theme-color-neutral-border-default);
+  height: 420px;
+  outline: 0;
+  overflow: hidden;
+  position: relative;
+  width: 285px;
+}
+
+.image {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+  border: 1px solid var(--theme-color-neutral-border-default);
+  cursor: pointer;
+  height: 420px;
+  outline: 0;
+  overflow: hidden;
+  position: relative;
+  width: 285px;
+}
+
+.img {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.input {
+  display: none;
+}

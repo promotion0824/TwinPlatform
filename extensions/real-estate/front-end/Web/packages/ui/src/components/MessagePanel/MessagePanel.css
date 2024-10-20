@@ -1,0 +1,23 @@
+.panel {
+  z-index: var(--z-snackbars);
+}
+
+.closeButton {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.title {
+  padding-bottom: 5px;
+}
+
+.rightSection {
+  flex-shrink: 1;
+  padding-left: 15px;
+}
+
+.message {
+  color: var(--text);
+  text-transform: none;
+}

@@ -1,0 +1,189 @@
+.button {
+  align-items: center;
+  background: 0;
+  border: 0;
+  color: var(--theme-color-neutral-fg-default);
+  cursor: pointer;
+  display: inline-flex;
+  font-family: var(--font);
+  font-size: var(--font-medium);
+  font-weight: var(--font-normal);
+  outline: 0;
+  padding: 0;
+  position: relative;
+  text-align: left;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.button:focus,
+.button:hover,
+.selected {
+  text-decoration: none;
+}
+
+.button:not(.isBlockedOrReadOnly):focus,
+.button:not(.isBlockedOrReadOnly):hover,
+.selected {
+  color: var(--light);
+}
+
+.button.readOnly .icon {
+  color: var(--theme-color-neutral-fg-subtle);
+}
+
+.readOnly {
+  cursor: text;
+  user-select: text;
+}
+
+.disabled {
+  cursor: default;
+  user-select: text;
+}
+
+.isColorButton.isBlockedOrReadOnly {
+  cursor: default;
+  user-select: none;
+}
+
+.isColorButton {
+  border-radius: var(--border-radius);
+  justify-content: center;
+  overflow: hidden;
+  padding: 0 var(--padding-large);
+  white-space: nowrap;
+}
+
+.isIconButton {
+  justify-content: center;
+  padding: 0;
+}
+
+.button:not(.isIconButton) > .icon {
+  margin-right: var(--padding);
+}
+
+.loading {
+  background-color: inherit;
+  border-radius: inherit;
+  color: inherit;
+}
+
+.successful {
+  background-color: var(--theme-color-intent-positive-bg-bold-default);
+  border-radius: inherit;
+  color: var(--theme-color-neutral-fg-highlight);
+}
+
+.error {
+  background-color: var(--theme-color-intent-negative-bg-bold-default);
+  border-radius: inherit;
+  color: var(--theme-color-neutral-fg-highlight);
+}
+
+.colorPurple {
+  background-color: var(--theme-color-intent-primary-bg-bold-default);
+  color: var(--theme-color-neutral-fg-highlight);
+}
+
+.colorPurple:not(.isBlockedOrReadOnly):focus,
+.colorPurple:not(.isBlockedOrReadOnly):hover,
+.colorPurple.selected {
+  background-color: var(--theme-color-intent-primary-bg-bold-hovered);
+  color: var(--theme-color-neutral-fg-highlight);
+}
+
+.colorRed {
+  background-color: var(--theme-color-intent-negative-bg-bold-default);
+  color: var(--theme-color-neutral-fg-highlight);
+}
+
+.colorRed:not(.isBlockedOrReadOnly):focus,
+.colorRed:not(.isBlockedOrReadOnly):hover,
+.colorRed.selected {
+  background-color: var(--theme-color-intent-negative-bg-bold-hovered);
+  color: var(--theme-color-neutral-fg-highlight);
+}
+
+.colorGrey {
+  background-color: var(--theme-color-intent-secondary-bg-muted-default);
+}
+
+.colorGreyLight {
+  background-color: var(--theme-color-intent-secondary-bg-bold-default);
+}
+
+.colorTransparent {
+  background-color: var(--transparent);
+  border: 1px solid var(--theme-color-neutral-border-default);
+}
+
+.disabled.disabled {
+  color: var(--theme-color-state-disabled-fg);
+}
+
+.isColorButton.disabled {
+  background-color: var(--theme-color-neutral-fg-subtle);
+  color: var(--theme-color-state-disabled-fg);
+}
+
+.heightTiny {
+  height: var(--height-tiny);
+  padding: 0 12px;
+}
+
+.heightSmall {
+  height: var(--height-small);
+}
+
+.heightMedium {
+  height: var(--height-medium-button);
+}
+
+.heightLarge {
+  height: var(--height-large);
+}
+
+.heightExtraLarge {
+  height: var(--height-extra-large);
+}
+
+.iconButtonHeightTiny {
+  width: var(--height-tiny);
+}
+
+.iconButtonHeightSmall {
+  width: var(--height-small);
+}
+
+.iconButtonHeightMedium {
+  width: var(--height-medium-button);
+}
+
+.iconButtonHeightLarge {
+  width: var(--height-large);
+}
+
+.iconButtonHeightExtraLarge {
+  width: var(--height-extra-large);
+}
+
+.widthSmall {
+  max-width: var(--width-small);
+  width: var(--width-small);
+}
+
+.widthMedium {
+  max-width: var(--width-medium);
+  width: var(--width-medium);
+}
+
+.widthLarge {
+  max-width: var(--width-large);
+  width: var(--width-large);
+}
+
+.width100Percent {
+  width: 100%;
+}

@@ -1,0 +1,20 @@
+.svg {
+  height: var(--height-tiny);
+  width: var(--height-tiny);
+}
+
+.svg > path:first-child {
+  stroke: var(--theme-color-neutral-border-default);
+}
+
+.svg > path:last-child {
+  transition: all 0.3s ease;
+}
+
+.colorGreen .svg > path:last-child {
+  stroke: var(--green);
+}
+
+.colorRed .svg > path:last-child {
+  stroke: var(--red);
+}

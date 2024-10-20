@@ -1,0 +1,32 @@
+@keyframes enter-left {
+  0% {
+    transform: translate(-20px, 0);
+  }
+}
+
+@keyframes enter-right {
+  0% {
+    transform: translate(20px, 0);
+  }
+}
+
+.tooltip {
+  background-color: var(--tooltip);
+  border: 1px solid var(--theme-color-neutral-border-default);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  pointer-events: none;
+  position: absolute;
+  white-space: nowrap;
+  z-index: var(--z-tooltip);
+}
+
+.positionLeft {
+  animation: enter-left 0.2s ease;
+  margin-left: -8px;
+}
+
+.positionRight {
+  animation: enter-right 0.2s ease;
+  margin-left: 8px;
+}

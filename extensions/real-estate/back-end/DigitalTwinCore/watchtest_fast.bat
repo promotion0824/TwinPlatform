@@ -1,0 +1,1 @@
+dotnet watch --project .\test\DigitalTwinCore.Test\DigitalTwinCore.Test.csproj test --filter Category!=UseSqlServer /p:CollectCoverage=true /p:CoverletOutputFormat=lcov /p:Exclude=\"[*]DigitalTwinCore.Program,[*]Microsoft.*,[*]System.*,[*]Willow.Infrastructure.*,[*]DigitalTwinCore.Database.*,[xunit*]*\" /p:CoverletOutput=.\lcov.info

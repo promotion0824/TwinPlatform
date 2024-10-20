@@ -1,0 +1,7 @@
+IF NOT EXISTS(SELECT 1 FROM INFORMATION_SCHEMA.COLUMNS 
+              WHERE TABLE_NAME = N'Insights' AND COLUMN_NAME = N'IsDeleted')
+BEGIN
+    ALTER TABLE Insights
+    ADD IsDeleted [bit] NOT NULL Default (0)
+END
+

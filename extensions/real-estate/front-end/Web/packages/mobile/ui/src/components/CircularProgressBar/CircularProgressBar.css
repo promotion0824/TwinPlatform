@@ -1,0 +1,69 @@
+.root {
+  background-color: var(--theme-color-neutral-bg-accent-default);
+  border-radius: 50%;
+  float: left;
+  font-size: 40px;
+  height: 1em;
+  position: relative;
+  width: 1em;
+}
+
+.root > span {
+  color: var(--new-text);
+  display: block;
+  font-size: var(--font-large);
+  left: 0;
+  line-height: 40px;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  transition-property: var(--transition-out);
+  white-space: nowrap;
+  width: 100%;
+  z-index: 1;
+}
+
+.root::after {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+  border-radius: 50%;
+  content: ' ';
+  display: block;
+  height: 0.84em;
+  left: 0.08em;
+  position: absolute;
+  top: 0.08em;
+  transition-property: var(--transition-in);
+  width: 0.84em;
+}
+
+.root .slice {
+  clip: rect(0, 1em, 1em, 0.5em);
+  height: 1em;
+  position: absolute;
+  width: 1em;
+}
+
+.root .slice.overhalf {
+  clip: rect(auto, auto, auto, auto);
+}
+
+.root .bar,
+.root .fill {
+  border: 0.08em solid var(--green);
+  border-radius: 50%;
+  clip: rect(0, 0.5em, 1em, 0);
+  height: 0.84em;
+  position: absolute;
+  transform: rotate(0deg);
+  width: 0.84em;
+}
+
+.root .fill.fillOverhalf {
+  transform: rotate(180deg);
+}
+
+.root *,
+.root *::before,
+.root *::after {
+  box-sizing: content-box;
+}

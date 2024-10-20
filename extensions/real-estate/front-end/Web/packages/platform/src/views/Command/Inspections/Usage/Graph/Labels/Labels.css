@@ -1,0 +1,15 @@
+.xLabel {
+  bottom: 0;
+  position: absolute;
+  transform: translate(0, calc(100% + 5px)) rotate(60deg);
+  transform-origin: left;
+  white-space: nowrap;
+}
+
+.yLabel {
+  left: 0;
+  position: absolute;
+  top: 0;
+  transform: translate(calc(-100% - 10px), -50%);
+  white-space: nowrap;
+}

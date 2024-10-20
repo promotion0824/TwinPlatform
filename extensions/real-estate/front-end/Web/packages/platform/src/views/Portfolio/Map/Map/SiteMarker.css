@@ -1,0 +1,194 @@
+.siteMarker {
+  position: relative;
+}
+
+.header {
+  border-radius: var(--border-radius);
+  left: 50%;
+  padding: var(--padding-small) var(--padding);
+  padding-top: 5px;
+  position: absolute;
+  top: -32px;
+  transform: translate(-50%, 0);
+}
+
+.header::before {
+  border-color: var(--theme-color-neutral-border-default) transparent
+    transparent transparent;
+  border-style: solid;
+  border-width: 6px 7px 0;
+  bottom: -6px;
+  content: '';
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, 0);
+}
+
+.header::after {
+  border-color: var(--theme-color-neutral-bg-panel-default) transparent
+    transparent transparent;
+  border-style: solid;
+  border-width: 5px 6px 0;
+  bottom: -5px;
+  content: '';
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, 0);
+}
+
+@keyframes enter-bottom {
+  0% {
+    opacity: 0;
+    transform: translate(0, -20px);
+  }
+}
+
+@keyframes enter-top {
+  0% {
+    opacity: 0;
+    transform: translate(0, 20px);
+  }
+}
+
+@keyframes enter-left {
+  0% {
+    opacity: 0;
+    transform: translate(20px, 0);
+  }
+}
+
+@keyframes enter-right {
+  0% {
+    opacity: 0;
+    transform: translate(-20px, 0);
+  }
+}
+
+@keyframes enter-top-left {
+  0% {
+    opacity: 0;
+    transform: translate(20px, 20px);
+  }
+}
+
+@keyframes enter-top-right {
+  0% {
+    opacity: 0;
+    transform: translate(-20px, 20px);
+  }
+}
+
+@keyframes enter-bottom-left {
+  0% {
+    opacity: 0;
+    transform: translate(20px, -20px);
+  }
+}
+
+@keyframes enter-bottom-right {
+  0% {
+    opacity: 0;
+    transform: translate(-20px, -20px);
+  }
+}
+
+.popup.popup {
+  font-family: var(--font);
+  font-size: var(--font-medium);
+  font-weight: var(--font-normal);
+  line-height: var(--line-height);
+  max-width: 228px !important;
+  min-width: 228px;
+  z-index: var(--z-tooltip);
+}
+
+.popup :global(.mapboxgl-popup-content) {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+  border: 1px solid var(--theme-color-neutral-border-default);
+  color: var(--text);
+  min-width: fit-content;
+  padding: 0;
+  text-align: left;
+  width: 100%;
+}
+
+.popup:global(.mapboxgl-popup-anchor-top) > * {
+  animation: enter-top 0.2s ease;
+}
+
+.popup:global(.mapboxgl-popup-anchor-bottom) > * {
+  animation: enter-bottom 0.2s ease;
+}
+
+.popup:global(.mapboxgl-popup-anchor-left) > * {
+  animation: enter-left 0.2s ease;
+}
+
+.popup:global(.mapboxgl-popup-anchor-right) > * {
+  animation: enter-right 0.2s ease;
+}
+
+.popup:global(.mapboxgl-popup-anchor-top-left) > * {
+  animation: enter-top-left 0.2s ease;
+}
+
+.popup:global(.mapboxgl-popup-anchor-top-right) > * {
+  animation: enter-top-right 0.2s ease;
+}
+
+.popup:global(.mapboxgl-popup-anchor-bottom-left) > * {
+  animation: enter-bottom-left 0.2s ease;
+}
+
+.popup:global(.mapboxgl-popup-anchor-bottom-right) > * {
+  animation: enter-bottom-right 0.2s ease;
+}
+
+.popup:global(.mapboxgl-popup-anchor-top) :global(.mapboxgl-popup-tip) {
+  border-bottom-color: var(--theme-color-neutral-bg-panel-default);
+  transform: translateY(1px);
+}
+
+.popup:global(.mapboxgl-popup-anchor-bottom) :global(.mapboxgl-popup-tip) {
+  border-top-color: var(--theme-color-neutral-bg-panel-default);
+  transform: translateY(-1px);
+}
+
+.popup:global(.mapboxgl-popup-anchor-left) :global(.mapboxgl-popup-tip) {
+  border-right-color: var(--theme-color-neutral-bg-panel-default);
+  transform: translateX(1px);
+}
+
+.popup:global(.mapboxgl-popup-anchor-right) :global(.mapboxgl-popup-tip) {
+  border-left-color: var(--theme-color-neutral-bg-panel-default);
+  transform: translateX(-1px);
+}
+
+.popup:global(.mapboxgl-popup-anchor-top-right) :global(.mapboxgl-popup-tip) {
+  border-bottom-color: var(--theme-color-neutral-bg-panel-default);
+}
+
+.popup:global(.mapboxgl-popup-anchor-top-left) :global(.mapboxgl-popup-tip) {
+  border-bottom-color: var(--theme-color-neutral-bg-panel-default);
+}
+
+.popup:global(.mapboxgl-popup-anchor-bottom-left) :global(.mapboxgl-popup-tip) {
+  border-top-color: var(--theme-color-neutral-bg-panel-default);
+}
+
+.popup:global(.mapboxgl-popup-anchor-bottom-right)
+  :global(.mapboxgl-popup-tip) {
+  border-top-color: var(--theme-color-neutral-bg-panel-default);
+}
+
+.popup :global(.mapboxgl-popup-close-button) {
+  color: var(--lighter);
+  font-size: var(--font-extra-extra-large);
+  height: 24px;
+  padding: 0;
+  width: 24px;
+}
+
+.popup :global(.mapboxgl-popup-close-button):focus-visible {
+  outline: none !important;
+}

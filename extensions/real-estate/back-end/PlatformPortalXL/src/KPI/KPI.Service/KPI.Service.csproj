@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+	</PropertyGroup>
+  <PropertyGroup>
+    <ProjectGuid>F1D81849-F29C-4230-B082-FDDA2409205A</ProjectGuid>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\KPI.Repository\KPI.Repository.csproj" />
+  </ItemGroup>
+
+</Project>

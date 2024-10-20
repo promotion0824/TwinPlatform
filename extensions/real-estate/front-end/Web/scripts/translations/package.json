@@ -1,0 +1,26 @@
+{
+  "name": "content_package",
+  "version": "1.0.0",
+  "description": "This repository is the source of truth for all email and push notification templates. Templates should be created/edited here. They will be published to an Azure Storage account for use by the Communications Service.",
+  "main": "script.js",
+  "dependencies": {
+    "csv-parse": "^5.3.1",
+    "i18n-iso-countries": "^7.2.0",
+    "lodash": "^4.17.21",
+    "xlsx": "^0.18.0"
+  },
+  "devDependencies": {
+    "prettier": "^2.5.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "scrap": "node scrap.js && prettier --write \"./**/{en,fr,key}.json\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://dev.azure.com/willowdev/WillowPlatform/_git/Content"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

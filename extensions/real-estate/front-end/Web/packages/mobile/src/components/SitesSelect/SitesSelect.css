@@ -1,0 +1,13 @@
+.sitesSelect {
+  border: 0;
+  font-size: var(--font-xx-large);
+  font-weight: var(--font-medium-weight);
+}
+
+.siteSelectLabel {
+  width: initial;
+}
+
+.sitesIcon {
+  color: var(--theme-color-neutral-fg-highlight);
+}

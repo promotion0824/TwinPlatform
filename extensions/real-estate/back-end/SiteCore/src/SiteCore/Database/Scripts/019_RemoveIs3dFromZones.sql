@@ -1,0 +1,2 @@
+ALTER TABLE [dbo].[Zones] DROP COLUMN [Is3D]
+GO

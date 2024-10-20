@@ -1,0 +1,7 @@
+.cellSortIcon {
+  transition: all 0.2s ease;
+}
+
+.asc {
+  transform: rotate(-180deg);
+}

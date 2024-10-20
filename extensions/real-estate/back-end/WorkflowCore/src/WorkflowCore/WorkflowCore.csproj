@@ -1,0 +1,75 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+	 <DebugType>embedded</DebugType>
+
+
+	  <!-- Optional: Publish the repository URL in the built .nupkg (in the NuSpec <Repository> element) -->
+	  <PublishRepositoryUrl>true</PublishRepositoryUrl>
+
+	  <!-- Optional: Embed source files that are not tracked by the source control manager in the PDB -->
+	  <EmbedUntrackedSources>true</EmbedUntrackedSources>
+
+	  <!-- Optional: Build symbol package (.snupkg) to distribute the PDB containing Source Link -->
+	  <IncludeSymbols>true</IncludeSymbols>
+	  <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Azure.Identity" Version="1.12.0" />
+		<PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
+		<PackageReference Include="LazyCache.AspNetCore" Version="2.4.0" />
+		<PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.2" />
+		<PackageReference Include="Microsoft.Extensions.Azure" Version="1.7.3" />
+		<PackageReference Include="Microsoft.Extensions.Http.Polly" Version="8.0.6" />
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
+	</ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Database\Scripts\*.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Database\Scripts\*.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="dbup-sqlserver" Version="5.0.40" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.6" />
+    <PackageReference Include="Microsoft.AspNetCore.AzureAppServicesIntegration" Version="8.0.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.0-preview.4.24267.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.0-preview.4.24267.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.0-preview.4.24267.1" />
+    <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="8.0.1" />
+    <PackageReference Include="AspNetCore.HealthChecks.Uris" Version="8.0.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.0-preview.4.24266.19" />
+    <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="8.0.6" />
+    <PackageReference Include="Quartz.Extensions.Hosting" Version="3.11.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.5.0" />
+    <PackageReference Include="System.Text.RegularExpressions" Version="4.3.1" />
+    <PackageReference Include="Willow.ExceptionHandling" Version="2.2.1646" />
+    <PackageReference Include="Willow.Notifications" Version="2.2.2627" />
+    <PackageReference Include="Willow.ServiceBus" Version="2.2.1630" />
+    <PackageReference Include="Willow.Telemetry.Web" Version="2.2.2734" />
+    <PackageReference Include="Willow.HealthChecks" Version="2.2.2734" />
+  </ItemGroup>
+
+  <!-- Specify version for some packages, because the auto-reference version has vulnerability issues -->
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\lib\src\Willow.Api.Client\Willow.Api.Client.csproj" />
+    <ProjectReference Include="..\..\..\..\lib\src\Willow.Calendar\Willow.Calendar.csproj" />
+    <ProjectReference Include="..\..\..\..\lib\src\Willow.Common\Willow.Common.csproj" />
+    <ProjectReference Include="..\..\..\..\lib\src\Willow.Data.Rest\Willow.Data.Rest.csproj" />
+    <ProjectReference Include="..\..\..\..\lib\src\Willow.Data\Willow.Data.csproj" />
+    <ProjectReference Include="..\..\..\..\lib\src\Willow.Directory.Models\Willow.Directory.Models.csproj" />
+    <ProjectReference Include="..\..\Willow.Scheduler\Willow.Scheduler.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Infrastructure\HealthCheck\" />
+  </ItemGroup>
+
+</Project>

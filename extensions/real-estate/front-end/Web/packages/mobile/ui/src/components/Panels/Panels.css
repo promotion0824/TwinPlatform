@@ -1,0 +1,94 @@
+.panels {
+  display: flex;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.vertical {
+  flex-flow: column;
+}
+
+.panel {
+  flex: 1;
+  height: 100%;
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.isDragging .panel {
+  transition: none;
+}
+
+.panelContent {
+  height: 100%;
+  padding: var(--padding);
+}
+
+.panelContent .panelContent {
+  padding: 0;
+}
+
+.vertical > .panel:first-child > .panelContent {
+  padding-bottom: 0;
+}
+
+.vertical > .panel:last-child > .panelContent {
+  padding-top: 0;
+}
+
+.vertical > .panel.hasHorizontalPanels > .panelContent {
+  padding-left: 0;
+}
+
+.horizontal > .panel.hasVerticalPanels > .panelContent {
+  padding-bottom: 0;
+  padding-top: 0;
+}
+
+.horizontal > .panel:not(:only-child):last-child > .panelContent {
+  padding-left: 0;
+}
+
+.horizontal > .panel:not(:only-child):first-child > .panelContent {
+  padding-right: 0;
+}
+
+.horizontal
+  > .panel:not(:only-child, :first-child, :last-child)
+  > .panelContent {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.vertical > .panel:not(:only-child, :first-child, :last-child) > .panelContent {
+  padding-bottom: 0;
+  padding-top: 0;
+}
+
+.horizontal
+  > .panel
+  > .panelContent
+  > .vertical
+  > .panel:first-child
+  > .panelContent {
+  padding-top: var(--padding);
+}
+
+.horizontal
+  > .panel
+  > .panelContent
+  > .vertical
+  > .panel:last-child
+  > .panelContent {
+  padding-bottom: var(--padding);
+}
+
+.vertical
+  > .panel
+  > .panelContent
+  > .horizontal
+  > .panel:last-child
+  > .panelContent {
+  padding-right: var(--padding);
+}

@@ -1,0 +1,10 @@
+parameters:
+  - name: packageName
+    type: string
+
+variables:
+  - name: CURRENT_PATH
+    value: extensions/real-estate/front-end/Web/packages/${{ parameters.packageName }}
+  - name: npm_config_cache
+    value: $(Pipeline.Workspace)/.npm
+  - group: NpmRegistry

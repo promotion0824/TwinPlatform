@@ -1,0 +1,192 @@
+[
+  {
+    "checked": true,
+    "color": "aqua",
+    "text": "Nam at quam vel odio tincidunt auctor."
+  },
+  {
+    "checked": false,
+    "color": "black",
+    "text": "Cras ac urna nec lorem vulputate mattis."
+  },
+  {
+    "checked": false,
+    "color": "blue",
+    "text": "Donec ut nisi egestas, malesuada lacus sed, dictum felis."
+  },
+  {
+    "checked": false,
+    "color": "fuchsia",
+    "text": "Proin id est sed tellus malesuada sagittis."
+  },
+  {
+    "checked": true,
+    "color": "gray",
+    "text": "Praesent bibendum eros id turpis dapibus sollicitudin."
+  },
+  {
+    "checked": false,
+    "color": "green",
+    "text": "Quisque quis augue maximus, malesuada nisi et, interdum elit."
+  },
+  {
+    "checked": true,
+    "color": "lime",
+    "text": "Donec et dolor sed turpis consectetur vestibulum."
+  },
+  {
+    "checked": true,
+    "color": "maroon",
+    "text": "Cras ultrices lacus a turpis pellentesque, vel bibendum diam eleifend."
+  },
+  {
+    "checked": false,
+    "color": "navy",
+    "text": "Nam dictum risus nec bibendum ullamcorper."
+  },
+  {
+    "checked": true,
+    "color": "olive",
+    "text": "Fusce id felis a ex eleifend efficitur."
+  },
+  {
+    "checked": false,
+    "color": "purple",
+    "text": "Duis vitae dolor in est vehicula cursus id vitae dui."
+  },
+  {
+    "checked": true,
+    "color": "red",
+    "text": "Proin in velit ut mi dapibus consequat."
+  },
+  {
+    "checked": false,
+    "color": "silver",
+    "text": "Proin euismod turpis sit amet fermentum viverra."
+  },
+  {
+    "checked": false,
+    "color": "teal",
+    "text": "Quisque id nibh et lacus placerat rutrum sit amet at nulla."
+  },
+  {
+    "checked": true,
+    "color": "white",
+    "text": "Morbi lacinia tellus facilisis massa mollis, vitae lobortis enim pharetra."
+  },
+  {
+    "checked": true,
+    "color": "yellow",
+    "text": "Vestibulum sodales diam ut porta mattis."
+  },
+  {
+    "checked": false,
+    "color": "aqua",
+    "text": "Integer tempor purus sed lectus varius, vitae tristique sapien auctor."
+  },
+  {
+    "checked": false,
+    "color": "black",
+    "text": "Pellentesque id justo in libero vehicula hendrerit non et dui."
+  },
+  {
+    "checked": true,
+    "color": "blue",
+    "text": "Proin ut elit id urna fringilla pellentesque."
+  },
+  {
+    "checked": true,
+    "color": "fuchsia",
+    "text": "Nam sed elit condimentum, vestibulum est ut, elementum erat."
+  },
+  {
+    "checked": false,
+    "color": "gray",
+    "text": "Mauris maximus turpis ut tellus consectetur pellentesque."
+  },
+  {
+    "checked": false,
+    "color": "green",
+    "text": "Proin vitae dolor in tortor dapibus luctus quis eget leo."
+  },
+  {
+    "checked": false,
+    "color": "lime",
+    "text": "Vestibulum in leo in massa rutrum bibendum eu non lorem."
+  },
+  {
+    "checked": true,
+    "color": "maroon",
+    "text": "Aliquam consectetur velit vel est imperdiet, nec pellentesque ex iaculis."
+  },
+  {
+    "checked": true,
+    "color": "navy",
+    "text": "Praesent efficitur dui vitae ipsum vehicula congue."
+  },
+  {
+    "checked": true,
+    "color": "olive",
+    "text": "In a velit quis metus sollicitudin sollicitudin."
+  },
+  {
+    "checked": true,
+    "color": "purple",
+    "text": "Maecenas suscipit dui sit amet elit dictum, vitae feugiat tellus porttitor."
+  },
+  {
+    "checked": true,
+    "color": "red",
+    "text": "Phasellus mattis ex sit amet ultricies ullamcorper."
+  },
+  {
+    "checked": true,
+    "color": "silver",
+    "text": "Cras volutpat nunc vel tellus venenatis auctor."
+  },
+  {
+    "checked": true,
+    "color": "teal",
+    "text": "Quisque fringilla sapien at turpis pharetra sagittis."
+  },
+  {
+    "checked": false,
+    "color": "white",
+    "text": "Pellentesque auctor velit at neque hendrerit iaculis."
+  },
+  {
+    "checked": false,
+    "color": "yellow",
+    "text": "Etiam eget tellus quis est egestas cursus."
+  },
+  {
+    "checked": true,
+    "color": "aqua",
+    "text": "Integer accumsan nibh nec nisl vestibulum commodo."
+  },
+  {
+    "checked": true,
+    "color": "black",
+    "text": "Duis lacinia lorem vel tempus pellentesque."
+  },
+  {
+    "checked": false,
+    "color": "blue",
+    "text": "Suspendisse tincidunt mi ac dui euismod, a hendrerit orci venenatis."
+  },
+  {
+    "checked": false,
+    "color": "fuchsia",
+    "text": "Fusce ac arcu id quam dignissim euismod eget ac erat."
+  },
+  {
+    "checked": true,
+    "color": "gray",
+    "text": "Cras ac orci a erat porttitor sollicitudin."
+  },
+  {
+    "checked": true,
+    "color": "green",
+    "text": "Cras rutrum eros quis tortor auctor, vel tincidunt eros consequat."
+  }
+]

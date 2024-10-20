@@ -1,0 +1,67 @@
+.icon {
+  color: inherit;
+  fill: currentcolor;
+  flex-shrink: 0;
+  stroke: currentcolor;
+}
+
+.blue {
+  color: var(--new-blue);
+}
+
+.red {
+  color: var(--new-red);
+}
+
+.white {
+  color: var(--theme-color-neutral-fg-highlight);
+}
+
+.sizeSmall {
+  height: 16px;
+  width: 16px;
+}
+
+.sizeMedium {
+  height: 20px;
+  width: 20px;
+}
+
+.sizeLarge {
+  height: 28px;
+  width: 28px;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+
+  50% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -35px;
+  }
+
+  100% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -124px;
+  }
+}
+
+.progress {
+  animation: rotate 1.4s linear infinite;
+}
+
+.progress circle {
+  animation: dash 1.4s ease-in-out infinite;
+  stroke-dasharray: 1, 200;
+  stroke-linecap: round;
+  stroke-miterlimit: 10;
+}

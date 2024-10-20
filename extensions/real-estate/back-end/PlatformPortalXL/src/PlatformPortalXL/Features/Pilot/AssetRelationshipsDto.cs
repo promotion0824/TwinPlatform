@@ -1,0 +1,10 @@
+﻿using System.Collections.Generic;
+
+namespace PlatformPortalXL.Features.Pilot
+{
+    public class AssetRelationshipsDto
+    {
+        public List<AssetRelationshipDto> Relationships { get; set; }
+        public List<AssetIncomingRelationshipDto> IncomingRelationships { get; set; }
+    }
+}

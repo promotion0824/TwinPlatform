@@ -1,0 +1,92 @@
+.avatar {
+  border-radius: 50%;
+  color: var(--theme-color-neutral-fg-highlight);
+  display: inline-block;
+  font-size: var(--font-medium);
+  font-weight: var(--weight-light);
+  height: 26px;
+  line-height: 26px;
+  text-align: center;
+  text-transform: uppercase;
+  width: 26px;
+}
+
+.avatar :hover {
+  opacity: 0.75;
+}
+
+.hasImage {
+  background-color: transparent;
+  box-shadow: 0 0 0 2px var(--border-light);
+}
+
+.hasImage:hover {
+  box-shadow: 0 0 0 2px var(--primary);
+  cursor: pointer;
+  opacity: 1;
+  transition: box-shadow 0.25s ease-in-out;
+}
+
+.small {
+  height: 16px;
+  line-height: 16px;
+  width: 16px;
+}
+
+.large {
+  font-size: var(--font-large);
+  height: 40px;
+  line-height: 40px;
+  width: 40px;
+}
+
+.extraLarge {
+  font-size: var(--font-extra-x-large);
+  height: 64px;
+  line-height: 64px;
+  width: 64px;
+}
+
+.purple {
+  background-color: var(--purple);
+}
+
+.grey {
+  background-color: var(--grey);
+}
+
+.blue {
+  background-color: var(--blue);
+}
+
+.green {
+  background-color: var(--green);
+}
+
+.primary {
+  background-color: var(--primary);
+}
+
+.priority1 {
+  background-color: var(--priority1);
+}
+
+.priority2 {
+  background-color: var(--priority2);
+}
+
+.priority3 {
+  background-color: var(--priority3);
+}
+
+.priority4 {
+  background-color: var(--priority4);
+}
+
+.priority5 {
+  background-color: var(--priority5);
+}
+
+.priority6 {
+  background-color: var(--priority6);
+}

@@ -1,0 +1,8 @@
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: assetcore-components
+  description: A collection for AssetCore resources
+spec:
+  targets:
+    - ../src/AssetCore/backstage.yaml

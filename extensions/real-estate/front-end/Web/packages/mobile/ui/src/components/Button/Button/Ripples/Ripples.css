@@ -1,0 +1,45 @@
+.ripples {
+  border-radius: inherit;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+  transition: all 0.3s ease;
+
+  /* without this z-index the ripple overflows outside the button sometimes */
+  z-index: 0;
+}
+
+@keyframes enter {
+  0% {
+    opacity: 0.2;
+    transform: scale(0);
+  }
+
+  100% {
+    opacity: 0.2;
+  }
+}
+
+.ripple {
+  position: absolute;
+  transition: all 0.4s ease-in-out;
+}
+
+.child {
+  animation: enter 0.4s ease-in forwards;
+  background-color: currentcolor;
+  border-radius: 100%;
+  display: block;
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+
+.center .child {
+  animation: enter 0.3s ease-out forwards;
+}
+
+.leaving {
+  opacity: 0;
+}

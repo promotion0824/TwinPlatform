@@ -1,0 +1,90 @@
+:root {
+  --checkbox-height: 20px;
+  --checkbox-width: 45px;
+  --checkbox-radius: 20px;
+  --handle-diameter: 18px;
+  --handle-off-offset: calc(
+    (var(--checkbox-height) - var(--handle-diameter)) / 2
+  );
+  --handle-on-offset: calc(var(--checkbox-width) - var(--checkbox-height));
+}
+
+.root {
+  border-radius: var(--checkbox-radius);
+  display: inline-block;
+  position: relative;
+  text-align: left;
+  touch-action: none;
+  transition: opacity 0.25s;
+  user-select: none;
+  width: 100%;
+}
+
+.rootDisabled {
+  opacity: 0.5;
+}
+
+.background {
+  border-radius: var(--checkbox-radius);
+  cursor: pointer;
+  height: var(--checkbox-height);
+  position: relative;
+  transition: background 0.25s;
+  width: var(--checkbox-width);
+}
+
+.backgroundDisabled {
+  cursor: default;
+}
+
+.backgroundOnState {
+  background: var(--new-blue);
+}
+
+.backgroundOffState {
+  background: var(--grey);
+}
+
+.handle {
+  background: var(--theme-color-neutral-fg-highlight);
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  display: inline-block;
+  height: var(--handle-diameter);
+  outline: 0;
+  position: absolute;
+  top: var(--handle-off-offset);
+  transition: background-color 0.25s, transform 0.25s, box-shadow 0.15s;
+  width: var(--handle-diameter);
+}
+
+.handleActive {
+  box-shadow: 0 0 2px 3px var(--new-blue-hover);
+}
+
+.handleDisabled {
+  cursor: default;
+}
+
+.handleOnState {
+  transform: translateX(var(--handle-on-offset));
+}
+
+.handleOffState {
+  transform: translateX(var(--handle-off-offset));
+}
+
+.label {
+  display: flex;
+  width: 100%;
+}
+
+.wrapper {
+  display: inline-block;
+  margin-left: auto;
+}
+
+.input {
+  display: none;
+}

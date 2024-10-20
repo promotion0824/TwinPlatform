@@ -1,0 +1,119 @@
+.input {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+  border: 1px solid var(--theme-color-neutral-border-default);
+  border-radius: var(--border-radius);
+  cursor: text;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+}
+
+.disabled {
+  cursor: default;
+  opacity: 0.75;
+}
+
+.vertical {
+  flex-flow: column;
+}
+
+.hasValue:not(:focus-within),
+.readOnly {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+}
+
+.hasError {
+  border-color: var(--red);
+}
+
+.dark.dark {
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.label,
+.suffix {
+  color: var(--grey);
+  flex-shrink: 0;
+  overflow: hidden;
+  padding: var(--padding-small);
+  padding-bottom: 0;
+  padding-top: 4px;
+  text-overflow: ellipsis;
+}
+
+.suffix {
+  padding-left: 0;
+}
+
+.horizontal .label {
+  white-space: nowrap;
+  width: 90px;
+}
+
+.inputControl {
+  align-self: center;
+  background: 0;
+  border: 0;
+  color: var(--theme-color-neutral-fg-highlight);
+  flex: 1;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  height: 24px;
+  outline: 0;
+  padding: var(--padding-small);
+  text-transform: inherit;
+}
+
+@keyframes autofill {
+  to {
+    background: transparent;
+  }
+}
+
+.inputControl::placeholder {
+  color: var(--grey-light);
+}
+
+.inputControl::-ms-clear {
+  display: none;
+}
+
+.inputControl::-webkit-inner-spin-button,
+.inputControl::-webkit-outer-spin-button {
+  appearance: none;
+}
+
+.inputControl:-webkit-autofill {
+  animation: autofill;
+  animation-fill-mode: both;
+  caret-color: var(--theme-color-neutral-fg-highlight);
+  -webkit-text-fill-color: var(--light);
+}
+
+.right .inputControl {
+  text-align: right;
+}
+
+.icon {
+  align-self: center;
+  color: var(--light);
+  margin-left: var(--padding-small);
+}
+
+.input:hover .icon,
+.input:focus-within .icon {
+  color: var(--theme-color-neutral-fg-highlight);
+}
+
+.input.disabled:hover .icon {
+  color: var(--light);
+}
+
+.input:not(.disabled, .readOnly):hover .label,
+.input:not(.disabled, .readOnly):hover .suffix,
+.input:not(.disabled, .readOnly):focus-within .label,
+.input:not(.disabled, .readOnly):focus-within .suffix {
+  color: var(--light);
+}

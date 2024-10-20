@@ -1,0 +1,13 @@
+.textLabel {
+  background-color: var(--disabled-background);
+  border: 1px solid transparent;
+  color: var(--light);
+  min-height: var(--height-medium);
+  padding: 7px var(--padding) 0;
+}
+
+.typeTextArea {
+  height: 114px;
+  overflow: auto;
+  white-space: pre-wrap;
+}

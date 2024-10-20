@@ -1,0 +1,14 @@
+.timeSeries {
+  min-height: 250px;
+  position: relative;
+}
+
+.content {
+  border-top: 1px solid var(--theme-color-neutral-border-default);
+}
+
+.right {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+}

@@ -1,0 +1,13 @@
+IF NOT EXISTS(SELECT 1 FROM INFORMATION_SCHEMA.COLUMNS 
+              WHERE TABLE_NAME = N'NotificationTriggerTwins' AND COLUMN_NAME = N'TwinName')
+BEGIN
+    ALTER TABLE NotificationTriggerTwins
+    ADD TwinName NVARCHAR(MAX) NULL
+END
+
+IF EXISTS(SELECT 1 FROM INFORMATION_SCHEMA.COLUMNS 
+              WHERE TABLE_NAME = N'NotificationTriggers' AND COLUMN_NAME = N'TwinName')
+BEGIN
+    ALTER TABLE NotificationTriggers
+    DROP COLUMN TwinName
+END

@@ -1,0 +1,47 @@
+.container {
+  overflow: auto;
+}
+
+.newLevel {
+  border-radius: var(--border-radius);
+}
+
+.hr {
+  background-color: var(--theme-color-neutral-border-default);
+  width: 100%;
+}
+
+.panel {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+}
+
+.floorName {
+  width: 200px;
+}
+
+.filesSelectButton {
+  background-color: var(--theme-color-neutral-bg-accent-default);
+  border: 1px solid transparent;
+  border-radius: var(--border-radius-large);
+  height: 150px;
+  padding: 0;
+  transition: all 0.2s ease;
+  width: 200px;
+}
+
+.filesSelectButtonContent {
+  height: 100%;
+}
+
+.filesSelectContent {
+  margin-top: var(--padding-large);
+}
+
+.icon {
+  height: 60px;
+  width: 60px;
+}
+
+.upload {
+  width: 200px;
+}

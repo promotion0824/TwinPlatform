@@ -1,0 +1,2 @@
+IF NOT EXISTS (SELECT name FROM sysindexes WHERE name = 'IX_WF_Ticket_SiteId_AssigneeId')
+    CREATE INDEX [IX_WF_Ticket_SiteId_AssigneeId] ON [dbo].[WF_Ticket] ([SiteId], [AssigneeName]) INCLUDE ([AssigneeId], [AssigneeType], [DueDate], [Priority], [Status]) WITH (ONLINE = ON)

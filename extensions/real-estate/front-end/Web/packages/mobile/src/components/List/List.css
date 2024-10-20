@@ -1,0 +1,47 @@
+.list {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  list-style: none;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+}
+
+.list > li {
+  list-style: none;
+}
+
+.list:not(.horizontal) > li {
+  width: 100%;
+}
+
+.list.horizontal {
+  align-items: flex-start;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.list.horizontal.stretch {
+  align-items: stretch;
+}
+
+.list.horizontal.cols2 > li {
+  flex: 0 0 50%;
+}
+
+.list.horizontal.cols3 > li {
+  flex: 0 0 33%;
+}
+
+.list.horizontal.cols4 > li {
+  flex: 0 0 25%;
+}
+
+@media (--mobile) {
+  .list.responsive.horizontal.cols2 > li,
+  .list.responsive.horizontal.cols3 > li,
+  .list.responsive.horizontal.cols4 > li {
+    flex: 1 1 100%;
+  }
+}

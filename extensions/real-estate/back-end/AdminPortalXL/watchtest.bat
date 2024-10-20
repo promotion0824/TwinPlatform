@@ -1,0 +1,1 @@
+dotnet watch --project .\test\AdminPortalXL.Test\AdminPortalXL.Test.csproj test --filter Category!=UseSqlServer /p:CollectCoverage=true /p:CoverletOutputFormat=lcov /p:Exclude=\"[*]AdminPortalXL.Program,[*]Microsoft.*,[*]System.*,[*]Willow.Infrastructure.*,[*]AdminPortalXL.Database.*,[xunit*]*\" /p:CoverletOutput=.\lcov.info

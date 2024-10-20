@@ -1,0 +1,30 @@
+.graph {
+  display: flex;
+}
+
+.lineGraph {
+  flex: 1;
+}
+
+.graphContent {
+  display: flex;
+  flex: 1;
+  padding-left: 100px;
+  padding-right: 36px;
+}
+
+.container {
+  display: flex;
+  flex: 1;
+  position: relative;
+}
+
+.lineGraph .container {
+  padding: var(--padding) 0;
+}
+
+.content {
+  display: flex;
+  flex: 1;
+  position: relative;
+}

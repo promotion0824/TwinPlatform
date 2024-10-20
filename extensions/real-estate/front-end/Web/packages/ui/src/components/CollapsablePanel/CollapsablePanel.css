@@ -1,0 +1,78 @@
+.collapsablePanel {
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.open {
+  max-width: 324px;
+  transition: all 0.3s ease;
+}
+
+.widthSmall {
+  max-width: 235px;
+}
+
+.closed {
+  max-width: 39px;
+  transition: all 0.3s ease;
+}
+
+.tabs > * {
+  transition: all 0.2s ease;
+}
+
+.positionLeft .tabs > :first-child {
+  margin-left: 38px;
+}
+
+.positionRight .tabs > :first-child {
+  margin-right: 38px;
+}
+
+.closed .tabs > * {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.toggle {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+  border-bottom: 1px solid var(--theme-color-neutral-border-default);
+  height: 39px;
+  position: absolute;
+  top: 1px;
+  width: 38px;
+  z-index: var(--z-header);
+}
+
+.toggleClosed > svg {
+  transform: rotate(180deg);
+}
+
+.positionLeft .toggle {
+  border-right: 1px solid var(--theme-color-neutral-border-default);
+  left: 1px;
+}
+
+.positionRight .toggle {
+  border-left: 1px solid var(--theme-color-neutral-border-default);
+  right: 1px;
+}
+
+.noBorder .tabs {
+  border: none;
+}
+
+.noBorder .toggle {
+  top: 0;
+}
+
+.noScroll > * > ::-webkit-scrollbar {
+  display: none;
+}
+
+.isHidden {
+  display: none;
+}

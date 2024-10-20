@@ -1,0 +1,25 @@
+.sortOrderCell {
+  text-align: center;
+}
+
+.buttonDisabled {
+  pointer-events: none;
+}
+
+.disabledTooltip {
+  display: inline-block;
+}
+
+.chevron {
+  transform: rotate(-90deg);
+  transition: all 0.2s ease;
+}
+
+.isOpen .chevron {
+  color: var(--light);
+  transform: rotate(0deg);
+}
+
+.cell::before {
+  background-color: var(--blue) !important;
+}

@@ -1,0 +1,1 @@
+﻿ALTER TABLE [dbo].[ModuleTypes] ALTER COLUMN [ModuleGroup] nvarchar(100) NULL

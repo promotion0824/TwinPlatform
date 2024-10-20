@@ -1,0 +1,13 @@
+<svg id="icon.open.twin" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_18733" data-name="Rectangle 18733" width="14" height="14" fill="none"/>
+    </clipPath>
+  </defs>
+  <rect id="canvas" width="24" height="24" fill="none"/>
+  <g id="Group_20928" data-name="Group 20928" transform="translate(5 5.002)">
+    <g id="Group_20927" data-name="Group 20927" clip-path="url(#clip-path)">
+      <path id="Path_11418" data-name="Path 11418" d="M14,7v5.439A1.554,1.554,0,0,1,12.45,14H1.552A1.555,1.555,0,0,1,0,12.444V1.556A1.549,1.549,0,0,1,1.545,0h10.9A1.551,1.551,0,0,1,14,1.549V7ZM12.448,1.556H1.552V12.441h10.9ZM9.2,10.3,4.5,5.6V8.387H2.946V2.944H8.388V4.5H5.6l4.7,4.7Z" transform="translate(0)" fill="#7e7e7e"/>
+    </g>
+  </g>
+</svg>

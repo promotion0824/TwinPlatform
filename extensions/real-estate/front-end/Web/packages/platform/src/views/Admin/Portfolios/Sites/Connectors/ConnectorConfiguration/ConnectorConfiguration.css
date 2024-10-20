@@ -1,0 +1,36 @@
+.expandablePanel {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+  overflow: auto;
+  pointer-events: all;
+  width: 100%;
+}
+
+.isOpen.expandablePanel {
+  background-color: var(--panel-bright);
+  height: 100%;
+}
+
+.header {
+  border-bottom: 1px solid var(--theme-color-neutral-border-default);
+}
+
+.header:hover {
+  background-color: var(--panel-bright);
+}
+
+.isOpen .header {
+  background-color: var(--panel-bright);
+  color: var(--light);
+}
+
+.chevron {
+  transition: all 0.2s ease;
+}
+
+.isOpen .chevron {
+  transform: rotate(-180deg);
+}
+
+.connectorId {
+  user-select: text;
+}

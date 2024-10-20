@@ -1,0 +1,40 @@
+.container {
+  align-items: center;
+  background-color: var(--theme-color-neutral-bg-panel-default);
+  border: solid 1px var(--theme-color-neutral-border-default);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: var(--padding);
+  min-height: 120px;
+  padding: var(--padding-large);
+}
+
+.container:hover {
+  background-color: var(--theme-color-neutral-bg-panel-hovered);
+}
+
+.error {
+  border: dotted 2px var(--red);
+}
+
+.errorText {
+  color: var(--red);
+  margin-top: var(--padding);
+}
+
+.icon {
+  color: var(--new-text-dark);
+  margin: auto 3px;
+}
+
+.text {
+  color: var(--new-text-dark);
+  font-size: var(--font-medium);
+  margin-top: var(--padding);
+}
+
+.file {
+  display: none;
+}

@@ -1,0 +1,30 @@
+.label {
+  display: inline-flex;
+  flex-flow: column;
+  vertical-align: top;
+}
+
+.labelControl {
+  align-self: flex-start;
+  font-family: var(--font);
+  font-size: var(--font-h3);
+  letter-spacing: 0.5px;
+  margin-bottom: var(--padding-small);
+  transition: all 0.2s ease;
+}
+
+.hasError .labelControl {
+  color: var(--red);
+}
+
+.label:not(.readOnly):focus-within .labelControl {
+  color: var(--light);
+}
+
+.hasError:not(.readOnly):focus-within .labelControl {
+  color: var(--red-light);
+}
+
+.required {
+  color: var(--red);
+}

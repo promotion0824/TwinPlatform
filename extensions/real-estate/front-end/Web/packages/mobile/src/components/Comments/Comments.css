@@ -1,0 +1,26 @@
+.comments {
+  font-size: var(--font-h2);
+  margin: var(--padding-large) 0 var(--padding-large);
+}
+
+.button {
+  outline: none;
+}
+
+.closed {
+  align-items: flex-start;
+  text-transform: uppercase;
+}
+
+.errorLabel {
+  width: 100%;
+}
+
+.errorLabel label {
+  color: var(--red);
+}
+
+.actionBar {
+  margin-bottom: var(--padding-extra-large);
+  margin-top: var(--padding-large);
+}

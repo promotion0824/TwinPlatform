@@ -1,0 +1,7 @@
+.scrollbarSize {
+  height: 99px;
+  overflow: scroll;
+  position: absolute;
+  top: -99999px;
+  width: 99px;
+}

@@ -1,0 +1,1 @@
+﻿UPDATE ModuleTypes SET IsDefault = 1 WHERE Name LIKE 'Archit%'

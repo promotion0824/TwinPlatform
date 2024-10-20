@@ -1,0 +1,10 @@
+@keyframes dash {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.path {
+  animation: dash 0.3s ease forwards;
+  stroke-width: 1.3;
+}

@@ -1,0 +1,13 @@
+.text {
+  transition: all 0.1s ease;
+}
+
+.subCategory .text {
+  color: var(--theme-color-neutral-fg-subtle);
+}
+
+.selected .text,
+.subCategory:focus .text,
+.subCategory:hover .text {
+  color: inherit;
+}

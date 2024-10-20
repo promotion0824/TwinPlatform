@@ -1,0 +1,58 @@
+.transitionGroup {
+  white-space: nowrap;
+}
+
+.transitionGroup.isAnimating {
+  overflow: hidden;
+}
+
+.page {
+  box-sizing: border-box;
+  display: inline-block;
+  height: 100%;
+  overflow: visible;
+  vertical-align: top;
+  white-space: normal;
+  width: 100%;
+}
+
+:global .page-exit,
+:global .page-exit:empty {
+  display: none;
+}
+
+.transitionGroup.slideEffect :global .page-exit {
+  display: inline-block;
+}
+
+.transitionGroup.slideEffect :global .page-enter-active,
+.transitionGroup.slideEffect :global .page-exit-active {
+  transition: transform var(--transition-duration)
+    cubic-bezier(0.35, 0, 0.25, 1);
+}
+
+.transitionGroup.slideLeft :global .page-enter {
+  transform: translateX(100%);
+}
+
+.transitionGroup.slideLeft :global .page-exit {
+  transform: translateX(-100%);
+}
+
+.transitionGroup.slideLeft :global .page-enter.page-enter-active {
+  transform: translateX(0%);
+}
+
+.transitionGroup.slideLeft :global .page-exit.page-exit-active {
+  transform: translateX(-200%);
+}
+
+.transitionGroup.slideRight :global .page-enter,
+.transitionGroup.slideRight :global .page-exit {
+  transform: translateX(-100%);
+}
+
+.transitionGroup.slideRight :global .page-enter.page-enter-active,
+.transitionGroup.slideRight :global .page-exit.page-exit-active {
+  transform: translateX(0%);
+}

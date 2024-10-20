@@ -1,0 +1,13 @@
+.snackbar.exited,
+.snackbar.exiting {
+  max-height: 0;
+  opacity: 0;
+  transform: scale(0.5);
+  transform-origin: center -200px;
+}
+
+.pill.exited,
+.pill.exiting {
+  opacity: 0;
+  transform: scale(0.5);
+}

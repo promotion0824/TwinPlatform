@@ -1,0 +1,4 @@
+.point {
+  border-top: 1px solid var(--theme-color-neutral-border-default);
+  min-width: 200px;
+}

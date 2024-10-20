@@ -1,0 +1,155 @@
+.siteIcon {
+  position: relative;
+}
+
+.content {
+  background-color: var(--white-background);
+  border-radius: 100%;
+  color: var(--white);
+}
+
+.svg {
+  fill: transparent;
+  position: absolute;
+  stroke: currentcolor;
+  stroke-dasharray: 100;
+  stroke-width: 3;
+  transform: rotate(-90deg);
+}
+
+.isLoading {
+  cursor: progress;
+}
+
+/* single site track */
+
+/* the whole track minus the actual value */
+.track {
+  stroke: var(--green-background);
+}
+
+.greenTrack {
+  stroke: var(--green-background);
+}
+
+.yellowTrack {
+  stroke: var(--yellow-background);
+}
+
+.redTrack {
+  stroke: var(--red-background);
+}
+
+/* loading state */
+.darkTrack {
+  stroke: var(--dark-background);
+}
+
+/* group sites */
+.trackPrimary {
+  opacity: 0.5;
+  stroke: var(--primary0);
+}
+
+.value {
+  transition: stroke-dashoffset 1s ease;
+}
+
+@keyframes loading {
+  0% {
+    stroke-dashoffset: 70;
+    transform: rotate(0deg);
+    transform-origin: center;
+  }
+
+  100% {
+    stroke-dashoffset: 70;
+    transform: rotate(360deg);
+    transform-origin: center;
+  }
+}
+
+.animated {
+  animation: loading 2s ease forwards infinite;
+}
+
+.sizeMedium .content {
+  height: 38px;
+  width: 38px;
+}
+
+.text {
+  color: var(--theme-color-neutral-bg-base-default);
+  background-color: var(--theme-color-intent-primary-fg-default);
+  font-size: var(--font-h1);
+}
+
+.sizeLarge,
+.sizeMedium {
+  cursor: pointer;
+  height: 48px;
+  width: 48px;
+}
+
+.sizeLarge .content {
+  height: 48px;
+  width: 48px;
+}
+
+.sizeLarge .text {
+  margin-top: 1px;
+}
+
+/* dashoffset track the dynamic portion */
+.colorGreen,
+.colorGreen .content {
+  /* color: var(--green); */
+  color: var(--green-graph);
+}
+
+.colorYellow,
+.colorYellow .content {
+  /* color: var(--yellow); */
+  color: var(--yellow-graph);
+}
+
+.colorOrange,
+.colorOrange .content {
+  color: var(--orange);
+}
+
+.colorPrimary,
+.colorPrimary .content {
+  color: var(--primary5);
+}
+
+.colorRed,
+.colorRed .content {
+  /* color: var(--red); */
+  color: var(--red-graph);
+}
+
+.colorDark,
+.colorDark .content {
+  color: var(--theme-color-neutral-fg-subtle);
+}
+
+.colorGreen .content {
+  background-color: var(--green-background);
+}
+
+.colorYellow .content {
+  background-color: var(--yellow-background);
+}
+
+.colorOrange .content {
+  background-color: var(--orange-background);
+}
+
+.colorPrimary .content {
+  background-color: var(--theme-color-intent-primary-fg-default);
+}
+
+.colorRed .content {
+  background-color: var(--red-background);
+}

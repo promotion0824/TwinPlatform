@@ -1,0 +1,6 @@
+.validations {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+  border: 1px solid var(--theme-color-neutral-border-default);
+  margin: 0 var(--padding-large);
+  padding: var(--padding-large);
+}

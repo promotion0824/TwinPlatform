@@ -1,0 +1,4 @@
+.layoutHeaderPanel {
+  border-bottom: 1px solid var(--theme-color-neutral-border-default);
+  min-height: 58px;
+}

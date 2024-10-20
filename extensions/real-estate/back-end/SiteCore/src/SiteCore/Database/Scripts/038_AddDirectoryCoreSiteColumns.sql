@@ -1,0 +1,32 @@
+IF NOT EXISTS (SELECT
+    *
+  FROM
+    INFORMATION_SCHEMA.COLUMNS
+  WHERE
+    TABLE_NAME = 'Sites' AND COLUMN_NAME = 'FeaturesJson')
+BEGIN
+  ALTER TABLE Sites
+  ADD [FeaturesJson] [nvarchar](max) NULL
+END;
+
+IF NOT EXISTS (SELECT
+    *
+  FROM
+    INFORMATION_SCHEMA.COLUMNS
+  WHERE
+    TABLE_NAME = 'Sites' AND COLUMN_NAME = 'WebMapId')
+BEGIN
+  ALTER TABLE Sites
+  ADD [WebMapId] [nvarchar](40) NULL
+END;
+
+IF NOT EXISTS (SELECT
+    *
+  FROM
+    INFORMATION_SCHEMA.COLUMNS
+  WHERE
+    TABLE_NAME = 'Sites' AND COLUMN_NAME = 'ArcGisLayersJson')
+BEGIN
+  ALTER TABLE Sites
+  ADD [ArcGisLayersJson] [nvarchar](max) NULL
+END;

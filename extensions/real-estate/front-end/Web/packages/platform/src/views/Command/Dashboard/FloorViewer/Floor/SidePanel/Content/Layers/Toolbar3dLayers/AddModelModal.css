@@ -1,0 +1,29 @@
+.filesSelectButton {
+  height: 150px;
+  transition: all 0.2s ease;
+  width: 200px;
+}
+
+.filesSelectButtonContent {
+  height: 100%;
+}
+
+.filesSelectContent {
+  padding-top: var(--padding-large);
+}
+
+.filesSelectContent > *:first-child {
+  border-top: 1px solid var(--theme-color-neutral-border-default);
+}
+
+.icon {
+  height: 60px;
+  width: 60px;
+}
+
+.progress {
+  background: var(--green);
+  height: 2px;
+  transition: all 0.2s ease;
+  width: 0;
+}

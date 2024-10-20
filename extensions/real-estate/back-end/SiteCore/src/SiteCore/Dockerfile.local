@@ -1,0 +1,33 @@
+﻿FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
+WORKDIR /app
+ENV ASPNETCORE_URLS http://*:5008
+EXPOSE 5008
+ADD https://aka.ms/InstallAzureCLIDeb /tmp
+RUN bash /tmp/InstallAzureCLIDeb && rm /tmp/InstallAzureCLIDeb
+
+RUN adduser -u 1000 --disabled-password --gecos "" appuser && chown -R appuser /app
+
+
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+## https://github.com/dotnet/dotnet-docker/blob/main/documentation/scenarios/nuget-credentials.md
+RUN curl -L https://raw.githubusercontent.com/Microsoft/artifacts-credprovider/master/helpers/installcredprovider.sh  | sh
+
+WORKDIR /build
+COPY ["nuget.config", "/build"]
+COPY ["SiteCore.sln", "/build"]
+COPY ["src/SiteCore/SiteCore.csproj", "/build/src/SiteCore/"]
+
+ARG FEED_ACCESSTOKEN
+ENV VSS_NUGET_EXTERNAL_FEED_ENDPOINTS="{\"endpointCredentials\": [{\"endpoint\":\"https://pkgs.dev.azure.com/willowdev/WillowLib/_packaging/WillowLib/nuget/v3/index.json\", \"username\":\"docker\", \"password\":\"${FEED_ACCESSTOKEN}\"}]}"
+
+RUN dotnet restore src/SiteCore
+COPY . .
+RUN dotnet build src/SiteCore -c Release -o /app/build
+
+FROM build AS publish
+RUN dotnet publish src/SiteCore -c Release -o /app/publish
+FROM base AS final
+WORKDIR /app
+COPY --chown=1000:1000 --from=publish /app/publish .
+USER appuser
+ENTRYPOINT ["dotnet", "SiteCore.dll"]

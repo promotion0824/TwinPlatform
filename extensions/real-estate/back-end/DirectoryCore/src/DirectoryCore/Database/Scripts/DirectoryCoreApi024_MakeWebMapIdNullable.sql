@@ -1,0 +1,3 @@
+﻿ALTER TABLE [dbo].[Sites]
+  ALTER COLUMN WebMapId NVARCHAR(40) NULL
+GO

@@ -1,0 +1,7 @@
+.requestInput {
+  margin-right: var(--padding);
+}
+
+.addScanBtn {
+  margin-top: var(--padding-large);
+}

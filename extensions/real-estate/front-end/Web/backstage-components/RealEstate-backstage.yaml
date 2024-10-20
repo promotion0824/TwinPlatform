@@ -1,0 +1,10 @@
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: realestate-components
+  description: A collection for realestate resources
+spec:
+  targets:
+    - ./realestate-domain.yaml
+    - ./realestate-system.yaml
+    - ../packages/platform/backstage.yaml

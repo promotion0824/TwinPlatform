@@ -1,0 +1,11 @@
+<svg id="chip.document.s.dwg" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <g id="noun_PDF_File_1255611" data-name="noun_PDF File_1255611" transform="translate(0)">
+    <g id="Group_18588" data-name="Group 18588">
+      <g id="Group_18587" data-name="Group 18587">
+        <path id="Path_11048" data-name="Path 11048" d="M28.723,1.446V7.034a.618.618,0,0,0,.61.625h5.448V30.944H13.219V1.446ZM36,7.013c0-.007,0-.014,0-.021a.635.635,0,0,0-.01-.079h0a.642.642,0,0,0-.021-.078l-.007-.019a.657.657,0,0,0-.03-.07l0,0a.629.629,0,0,0-.042-.068l-.012-.017a.63.63,0,0,0-.052-.062h0L29.763.378h0A.616.616,0,0,0,29.7.324L29.685.311a.607.607,0,0,0-.067-.043l0,0a.605.605,0,0,0-.068-.031L29.527.228a.6.6,0,0,0-.076-.021h0A.6.6,0,0,0,29.373.2H12.61A.618.618,0,0,0,12,.82V31.57a.618.618,0,0,0,.61.625H35.39A.618.618,0,0,0,36,31.57V7.034c0-.007,0-.014,0-.021Z" transform="translate(-12 -0.195)" fill="#383838"/>
+      </g>
+    </g>
+  </g>
+  <rect id="Rectangle_18290" data-name="Rectangle 18290" width="25" height="12" rx="1" transform="translate(7 13)" fill="#383838"/>
+  <text id="DWG" transform="translate(7.999 12.999)" fill="#ffd653" font-size="9" font-family="Poppins-Bold, Poppins" font-weight="700"><tspan x="0" y="9">DWG</tspan></text>
+</svg>

@@ -1,0 +1,19 @@
+.label {
+  display: inline-flex;
+  flex-flow: column;
+  vertical-align: top;
+  width: 100%;
+}
+
+.labelControl {
+  align-self: flex-start;
+  font-family: var(--font);
+  font-size: var(--font-h3);
+  letter-spacing: 0.5px;
+  margin-bottom: var(--padding-small);
+  transition: all 0.2s ease;
+}
+
+.label:not(.readOnly):focus-within .labelControl {
+  color: var(--theme-color-neutral-fg-highlight);
+}

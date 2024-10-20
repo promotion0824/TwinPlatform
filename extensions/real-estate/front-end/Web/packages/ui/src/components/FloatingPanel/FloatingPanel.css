@@ -1,0 +1,43 @@
+.floatingPanel {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+  max-height: 100%;
+  overflow: auto;
+  pointer-events: all;
+}
+
+.floatingPanelContent {
+  overflow: hidden;
+}
+
+.header {
+  border: 1px solid var(--theme-color-neutral-border-default);
+  height: var(--height-medium);
+  padding: 0 var(--padding);
+  width: 100%;
+}
+
+.isOpen .header {
+  color: var(--light);
+}
+
+.chevron {
+  transition: all 0.2s ease;
+}
+
+.isOpen .chevron {
+  transform: rotate(-180deg);
+}
+
+.content {
+  background: var(--theme-color-neutral-bg-panel-default);
+  border: 1px solid var(--theme-color-neutral-border-default);
+  border-top: 0;
+  display: none;
+  padding: var(--padding);
+  position: absolute;
+  z-index: var(--z-dropdown);
+}
+
+.isOpen .content {
+  display: initial;
+}

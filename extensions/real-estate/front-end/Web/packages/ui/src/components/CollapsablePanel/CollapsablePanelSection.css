@@ -1,0 +1,32 @@
+.panelSection {
+  border-bottom: 1px solid var(--theme-color-neutral-border-default);
+  margin-top: 0 !important;
+}
+
+.header {
+  height: var(--height-xxlarge);
+}
+
+.isOpen .header {
+  border-bottom: 1px solid var(--theme-color-neutral-border-default);
+  box-shadow: var(--shadow-bottom);
+}
+
+.icon {
+  transform: rotate(-90deg);
+  transition: all 0.2s ease;
+}
+
+.content {
+  display: flex;
+  flex: 1;
+}
+
+.isOpen .icon {
+  color: var(--white);
+  transform: rotate(0);
+}
+
+.hiddenContent {
+  display: none;
+}

@@ -1,0 +1,125 @@
+.heightTiny {
+  height: var(--height-tiny);
+}
+
+.width100Percent {
+  width: 100% !important;
+}
+
+.widthSmall {
+  max-width: var(--width-small) !important;
+}
+
+.paddingLarge {
+  padding-left: var(--padding-large);
+}
+
+.checkbox {
+  align-items: center;
+  display: inline-flex;
+  flex-flow: row;
+  width: fit-content;
+}
+
+.boxContainer {
+  align-items: center;
+  display: flex;
+  flex-shrink: 0;
+  height: 32px;
+  justify-content: center;
+  width: 32px;
+}
+
+.boxContainerAbsolute {
+  display: flex;
+  height: 100%;
+  left: 138px;
+  position: absolute;
+  width: 100%;
+
+  /* can be dynamic but wont be on same vertical due to scrollbar space */
+}
+
+.box {
+  background-color: var(--theme-color-neutral-border-default);
+  border: 1px solid var(--theme-color-neutral-border-default);
+  border-radius: var(--border-radius);
+  height: 16px;
+  transition: all 0.2s ease;
+  width: 16px;
+}
+
+.boxNoBackground {
+  height: 24px;
+  width: 24px;
+}
+
+.selected .box {
+  background-color: var(--border-light);
+  border-color: var(--border-light);
+}
+
+.checkbox:not(.readOnly):hover .box,
+.checkbox:not(.readOnly):focus .box {
+  border-color: var(--border-light);
+}
+
+.selected:not(.readOnly):hover .box,
+.selected:not(.readOnly):focus .box {
+  background-color: var(--light);
+  border-color: var(--light);
+}
+
+.icon {
+  color: var(--theme-color-neutral-bg-panel-default);
+  opacity: 0;
+  transition: all 0.2s ease;
+}
+
+.purpleIcon {
+  color: #8779e2 !important;
+  opacity: 0;
+  stroke: none;
+  transition: all 0.2s ease;
+}
+
+.grayIcon {
+  opacity: 0.25;
+  stroke: none;
+  transition: all 0s ease !important;
+}
+
+.checkbox:not(.readOnly):hover .grayIcon,
+.grayIcon:hover {
+  opacity: 1;
+  transition: all 0.2s ease;
+}
+
+.selected .icon,
+.selected .purpleIcon {
+  opacity: 1;
+}
+
+.content {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.content.fontLight {
+  color: var(--lighter);
+}
+
+.content.fontLight:hover {
+  color: var(--light);
+}
+
+.selected .content,
+.selected .content.fontLight {
+  color: var(--light);
+}
+
+.fontSmall {
+  /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
+  font: normal normal var(--font-small) / 17px Poppins;
+}

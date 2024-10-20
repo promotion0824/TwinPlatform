@@ -1,0 +1,105 @@
+@keyframes enter-bottom {
+  0% {
+    opacity: 0;
+    transform: translate(0, -20px);
+  }
+}
+
+@keyframes enter-top {
+  0% {
+    opacity: 0;
+    transform: translate(0, 20px);
+  }
+}
+
+@keyframes enter-left {
+  0% {
+    opacity: 0;
+    transform: translate(20px, 0);
+  }
+}
+
+@keyframes enter-right {
+  0% {
+    opacity: 0;
+    transform: translate(-20px, 0);
+  }
+}
+
+@keyframes enter-top-left {
+  0% {
+    opacity: 0;
+    transform: translate(20px, 20px);
+  }
+}
+
+@keyframes enter-top-right {
+  0% {
+    opacity: 0;
+    transform: translate(-20px, 20px);
+  }
+}
+
+@keyframes enter-bottom-left {
+  0% {
+    opacity: 0;
+    transform: translate(20px, -20px);
+  }
+}
+
+@keyframes enter-bottom-right {
+  0% {
+    opacity: 0;
+    transform: translate(-20px, -20px);
+  }
+}
+
+.popup.popup {
+  font-family: var(--font);
+  font-size: var(--font-medium);
+  font-weight: var(--font-normal);
+  line-height: var(--line-height);
+  max-width: 228px !important;
+  min-width: 228px;
+  z-index: var(--z-tooltip);
+}
+
+.popup :global(.mapboxgl-popup-content) {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+  color: var(--text);
+  padding: 0;
+  text-align: left;
+}
+
+.popup:global(.mapboxgl-popup-anchor-top) :global(.mapboxgl-popup-tip) {
+  border-bottom-color: var(--theme-color-neutral-bg-panel-default);
+}
+
+.popup:global(.mapboxgl-popup-anchor-bottom) :global(.mapboxgl-popup-tip) {
+  border-top-color: var(--theme-color-neutral-bg-panel-default);
+}
+
+.popup:global(.mapboxgl-popup-anchor-left) :global(.mapboxgl-popup-tip) {
+  border-right-color: var(--theme-color-neutral-bg-panel-default);
+}
+
+.popup:global(.mapboxgl-popup-anchor-right) :global(.mapboxgl-popup-tip) {
+  border-left-color: var(--theme-color-neutral-bg-panel-default);
+}
+
+.popup:global(.mapboxgl-popup-anchor-top-right) :global(.mapboxgl-popup-tip) {
+  border-bottom-color: var(--theme-color-neutral-bg-panel-default);
+}
+
+.popup:global(.mapboxgl-popup-anchor-top-left) :global(.mapboxgl-popup-tip) {
+  border-bottom-color: var(--theme-color-neutral-bg-panel-default);
+}
+
+.popup:global(.mapboxgl-popup-anchor-bottom-left) :global(.mapboxgl-popup-tip) {
+  border-top-color: var(--theme-color-neutral-bg-panel-default);
+}
+
+.popup:global(.mapboxgl-popup-anchor-bottom-right)
+  :global(.mapboxgl-popup-tip) {
+  border-top-color: var(--theme-color-neutral-bg-panel-default);
+}

@@ -1,0 +1,28 @@
+# Benchmark Results
+BenchmarkDotNet.Artifacts/
+
+# StyleCop
+StyleCopReport.xml
+
+# Files built by Visual Studio
+*.iobj
+*.ipdb
+# Visual Studio 2017 auto generated files
+Generated\ Files/
+
+# Visual Studio Trace Files
+*.e2e
+
+# AxoCover is a Code Coverage Tool
+.axoCover/*
+!.axoCover/settings.json
+
+# SQL Server files
+*.ndf
+
+# Node.js Tools for Visual Studio
+node_modules/
+
+lcov.info
+
+*unversioned*

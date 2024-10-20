@@ -1,0 +1,15 @@
+.colorNormal {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+}
+
+.colorDark {
+  background-color: var(--theme-color-neutral-bg-base-default);
+}
+
+.colorLight {
+  background-color: var(--theme-color-neutral-bg-accent-default);
+}
+
+.colorBright {
+  background-color: var(--new-panel-bright);
+}

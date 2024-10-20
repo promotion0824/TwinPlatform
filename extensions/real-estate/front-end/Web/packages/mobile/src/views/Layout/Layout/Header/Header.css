@@ -1,0 +1,49 @@
+.header {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+  overflow: hidden;
+}
+
+.headerTop {
+  height: 50px;
+  position: relative;
+}
+
+.headerContent {
+  align-items: center;
+  display: flex;
+  height: inherit;
+  justify-content: center;
+  position: relative;
+}
+
+.backButton {
+  text-align: center;
+  width: 54px;
+}
+
+.back {
+  height: 40px;
+  width: 40px;
+}
+
+.icon {
+  color: var(--theme-color-neutral-fg-highlight);
+  height: 16px;
+  width: 16px;
+}
+
+.title {
+  color: var(--theme-color-neutral-fg-highlight);
+  font-size: var(--font-xx-large);
+  font-weight: var(--font-bold);
+}
+
+.dropdown {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+  border: none;
+}
+
+.menuIcon {
+  height: 28px;
+  width: 28px;
+}

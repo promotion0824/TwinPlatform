@@ -1,0 +1,84 @@
+.select {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+  border-radius: var(--border-radius);
+  height: var(--height-medium);
+  padding: 0 var(--padding);
+  position: relative;
+}
+
+.borderTop {
+  border-top: 1px solid var(--theme-color-neutral-border-default);
+}
+
+.borderLeft {
+  border-left: 1px solid var(--theme-color-neutral-border-default);
+}
+
+.borderBottom {
+  border-bottom: 1px solid var(--theme-color-neutral-border-default);
+}
+
+.borderRight {
+  border-right: 1px solid var(--theme-color-neutral-border-default);
+}
+
+.pillSelect {
+  padding-left: var(--padding-tiny);
+}
+
+.select:not(.readOnly, .disabled):focus-within,
+.open:not(.readOnly, .disabled) {
+  border-color: var(--border-light);
+  box-shadow: 0 0 2px var(--border-light);
+}
+
+.select:not(.readOnly, .disabled):hover {
+  background-color: var(--theme-color-neutral-border-default);
+}
+
+.heightLarge.heightLarge.heightLarge.heightLarge {
+  border-color: var(--theme-color-neutral-border-default);
+  border-radius: 0;
+  box-shadow: none;
+  height: var(--height-large);
+}
+
+.hasValue {
+  background-color: var(--theme-color-neutral-bg-accent-default);
+}
+
+.hasError,
+.hasError:not(.readOnly, .disabled):focus-within,
+.hasError:not(.readOnly, .disabled):hover {
+  border-color: var(--red);
+}
+
+.select.readOnly {
+  background-color: var(--disabled-background);
+  border-color: var(--disabled-background);
+  box-shadow: none;
+}
+
+.select.disabled {
+  background-color: var(--disabled-background);
+  border-color: var(--theme-color-neutral-bg-accent-default);
+}
+
+.content {
+  max-height: 400px;
+  max-width: 800px;
+  min-height: var(--height-medium);
+  overflow: auto;
+}
+
+.select:not(.disabled) .headerContent {
+  color: var(--light);
+}
+
+.hasPlaceholder.hasPlaceholder .headerContent {
+  color: var(--theme-color-neutral-fg-subtle);
+}
+
+.disabled.hasPlaceholder .headerContent {
+  color: var(--theme-color-neutral-border-default);
+}

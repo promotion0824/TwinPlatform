@@ -1,0 +1,10 @@
+.floorsModel {
+  background-color: var(--theme-color-neutral-bg-panel-default);
+  border: 1px solid var(--theme-color-neutral-border-default);
+  overflow: hidden;
+  position: relative;
+}
+
+.floorsModel canvas {
+  outline: 0;
+}

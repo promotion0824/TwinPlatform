@@ -1,0 +1,6 @@
+loadtest-result.xml
+test_result.json
+test_result.csv
+node_modules
+yarn-error.log
+dist

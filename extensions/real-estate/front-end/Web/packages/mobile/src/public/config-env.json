@@ -1,0 +1,34 @@
+{
+  "AzureAdB2C": {
+    "Instance": "${AZUREADB2C_INSTANCE}",
+    "Domain": "${AZUREADB2C_DOMAIN}",
+    "ClientId": "${AZUREADB2C_CLIENTID}",
+    "SignUpSignInPolicyId": "${AZUREADB2C_SIGNUPSIGNINPOLICYID}",
+    "PasswordResetPolicyId": "${AZUREADB2C_PASSWORDRESETPOLICYID}",
+    "RedirectPath": "/mobile-web/account/authcallback",
+    "PostLogoutRedirectPath": "/mobile-web/account/login",
+    "SilentRenewCallbackPath": "/mobile-web/account/silentrenewcallback"
+  },
+  "auth0Audience-au": "${AUTH0_AUDIENCE_AU}",
+  "auth0Domain-au": "${AUTH0_DOMAIN_AU}",
+  "auth0ClientID-au": "${AUTH0_CLIENTID_AU}",
+  "auth0Audience-us": "${AUTH0_AUDIENCE_US}",
+  "auth0Domain-us": "${AUTH0_DOMAIN_US}",
+  "auth0ClientID-us": "${AUTH0_CLIENTID_US}",
+  "auth0Audience-eu": "${AUTH0_AUDIENCE_EU}",
+  "auth0Domain-eu": "${AUTH0_DOMAIN_EU}",
+  "auth0ClientID-eu": "${AUTH0_CLIENTID_EU}",
+  "segmentApiKey": "${SEGMENT_APIKEY}",
+  "mixpanelToken": "${MIXPANEL_TOKEN}",
+  "beamerApiKey": "${BEAMER_APIKEY}",
+  "configCatKey": "${CONFIGCAT_KEY}",
+  "applicationInsights": {
+    "au": "${APPLICATIONINSIGHTS_CONNECTION_STRING}",
+    "us": "${APPLICATIONINSIGHTS_CONNECTION_STRING}",
+    "eu": "${APPLICATIONINSIGHTS_CONNECTION_STRING}"
+  },
+  "isSingleTenant": "${IS_SINGLE_TENANT}",
+  "hasMobilePwa": "${HAS_MOBILE_PWA}",
+  "roleName": "real-estate-mobile"
+}
+

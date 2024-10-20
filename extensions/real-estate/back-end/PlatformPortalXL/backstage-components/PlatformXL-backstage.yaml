@@ -1,0 +1,121 @@
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: platformxl-components
+  description: A collection for platformxl resources
+spec:
+  targets:
+    - ../src/PlatformPortalXL/backstage.yaml
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: wilbldprdaueapp.twinengine.blobcontainer
+  links:
+    - url: https://portal.azure.com/#blade/Microsoft_Azure_Storage/ContainerMenuBlade/overview/storageAccountId/%2Fsubscriptions%2Fbdd7479b-ce38-47cf-b22f-285337c1e951%2FresourceGroups%2Fwil-bld-prd-rsg-app-aue%2Fproviders%2FMicrosoft.Storage%2FstorageAccounts%2Fwilbldprdaueapp/path/twinengine/etag/%220x8D70F3EC5AF60EB%22/defaultEncryptionScope/%24account-encryption-key/denyEncryptionScopeOverride//defaultId//publicAccessVal/None
+      title: Prd Blob Storage Container
+      icon: web
+  description: Prd Blob Storage Container
+spec:
+  type: blob
+  owner: pne_realestate
+  system: realestate-system
+  dependsOn: ['resource:wilbldprdaueapp.storageaccount']
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: wilbldprdaueapp.storageaccount
+  links:
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/bdd7479b-ce38-47cf-b22f-285337c1e951/resourceGroups/wil-bld-prd-rsg-app-aue/providers/Microsoft.Storage/storageAccounts/wilbldprdaueapp/overview
+      title: PRD Blob Storage Account
+      icon: web
+  description: PRD Blob Storage Account
+spec:
+  type: storageAccount
+  owner: pne_realestate
+  system: realestate-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: AU-RealEstate-keyvault
+  links:
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/e878a98a-20ec-4516-a59d-f393429fe07c/resourceGroups/t3-wil-prd-plt-aue2-app-rsg/providers/Microsoft.KeyVault/vaults/wil-prd-plt-aue2-kvl/overview
+      title: AU KeyVault
+      icon: web
+  description: AU Keyvault
+spec:
+  type: keyvault
+  owner: pne_realestate
+  system: realestate-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: EU-RealEstate-keyvault
+  links:
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/e878a98a-20ec-4516-a59d-f393429fe07c/resourceGroups/t3-wil-prd-plt-weu2-app-rsg/providers/Microsoft.KeyVault/vaults/wil-prd-plt-weu2-kvl/overview
+      title: EU KeyVault
+      icon: web
+  description: EU Keyvault
+spec:
+  type: keyvault
+  owner: pne_realestate
+  system: realestate-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: US-RealEstate-keyvault
+  links:
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/e878a98a-20ec-4516-a59d-f393429fe07c/resourceGroups/t3-wil-prd-plt-eu22-app-rsg/providers/Microsoft.KeyVault/vaults/wil-prd-plt-eu22-kvl/overview
+      title: US KeyVault
+      icon: web
+  description: US Keyvault
+spec:
+  type: keyvault
+  owner: pne_realestate
+  system: realestate-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: au-realestate-sql-server
+  links:
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/e878a98a-20ec-4516-a59d-f393429fe07c/resourceGroups/t3-wil-prd-plt-aue2-app-rsg/providers/Microsoft.Sql/servers/wil-prd-plt-aue2-sql/overview
+      title: AU RealEstate SQL Server
+      icon: web
+  description: AU RealEstate SQL Server
+spec:
+  type: sqlserver
+  owner: pne_realestate
+  system: realestate-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: eu-realestate-sql-server
+  links:
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/e878a98a-20ec-4516-a59d-f393429fe07c/resourceGroups/t3-wil-prd-plt-weu2-app-rsg/providers/Microsoft.Sql/servers/wil-prd-plt-weu2-sql/overview
+      title: EU RealEstate SQL Server
+      icon: web
+  description: EU RealEstate SQL Server
+spec:
+  type: sqlserver
+  owner: pne_realestate
+  system: realestate-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: us-realestate-sql-server
+  links:
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/e878a98a-20ec-4516-a59d-f393429fe07c/resourceGroups/t3-wil-prd-plt-eu22-app-rsg/providers/Microsoft.Sql/servers/wil-prd-plt-eu22-sql/overview
+      title: US RealEstate SQL Server
+      icon: web
+  description: US RealEstate SQL Server
+spec:
+  type: sqlserver
+  owner: pne_realestate
+  system: realestate-system

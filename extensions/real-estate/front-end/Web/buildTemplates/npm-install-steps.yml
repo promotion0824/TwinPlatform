@@ -1,0 +1,29 @@
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '16.x'
+  displayName: 'Install Node.js'
+
+# npm authenticate (for task runners) v0
+- task: npmAuthenticate@0
+  inputs:
+    workingFile: extensions/real-estate/front-end/Web/.npmrc
+    customEndpoint: npm.pkg.github.com
+  displayName: Set up auth for npm registry
+
+# Save the npm cache, using the content of package-lock.json as a
+# cache key. This means we will only need to download npm packages
+# from the internet when package-lock.json changes, saving about a
+# minute. Even on a cache hit, `npm ci` still takes some time,
+# though, so there are more opportunities for improvement here.
+- task: Cache@2
+  inputs:
+    key: 'npm | "$(Agent.OS)" | extensions/real-estate/front-end/Web/package-lock.json'
+    restoreKeys: |
+      npm | "$(Agent.OS)"
+    path: $(npm_config_cache)
+  displayName: Cache npm
+
+- script: npm ci
+  displayName: npm ci
+  workingDirectory: extensions/real-estate/front-end/Web/

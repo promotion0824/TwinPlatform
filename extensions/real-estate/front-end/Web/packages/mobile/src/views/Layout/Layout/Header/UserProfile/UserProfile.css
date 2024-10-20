@@ -1,0 +1,15 @@
+.dropdown {
+  background-color: transparent;
+  border: 0;
+  color: var(--theme-color-neutral-fg-highlight);
+  height: 100%;
+  max-width: 300px;
+}
+
+.content {
+  min-width: 200px;
+}
+
+.notificationsWrapper {
+  padding: var(--padding);
+}

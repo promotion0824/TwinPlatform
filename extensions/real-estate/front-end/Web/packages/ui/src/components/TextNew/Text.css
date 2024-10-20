@@ -1,0 +1,29 @@
+.text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.typeLabel {
+  font-family: var(--font);
+  font-size: var(--font-small);
+  font-weight: var(--font-normal);
+}
+
+.typeGroup {
+  font-family: var(--font);
+  font-size: var(--font-tiny);
+  font-weight: var(--font-bold);
+  text-transform: uppercase;
+}
+
+.colorDark {
+  color: var(--theme-color-neutral-fg-subtle);
+}
+
+.textTransformUppercase {
+  text-transform: uppercase;
+}
+
+.whiteSpaceNowrap {
+  white-space: nowrap;
+}

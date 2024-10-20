@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <ProjectGuid>3C6E537D-C8CC-43B4-A0AB-86B6414D30A6</ProjectGuid>
+	<TargetFramework>net8.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Willow.ExceptionHandling" Version="2.2.1646" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\lib\src\Willow.Api.Client\Willow.Api.Client.csproj" />
+    <ProjectReference Include="..\..\..\..\lib\src\Willow.Data\Willow.Data.csproj" />
+  </ItemGroup>
+
+</Project>
