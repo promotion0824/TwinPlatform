@@ -1,0 +1,54 @@
+name: Edge Metrics Processor App - CI
+
+on:
+  push:
+    branches:
+      - main
+      - "release/**"
+    paths:
+      - 'applications/ConnectorManagement/EdgeMetricsProcessor/**'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'applications/ConnectorManagement/EdgeMetricsProcessor/**'
+  workflow_dispatch:
+    inputs:
+      pushToDevAcr:
+        type: boolean
+        description: Push Docker image to Dev ACR
+        default: true
+      pushToPrdAcr:
+        type: boolean
+        description: Promote Docker image to Single Tenant Prod ACR
+        default: false
+env:
+  projectPath: applications/ConnectorManagement/EdgeMetricsProcessor
+  srcProjectDir: Willow.EdgeMetricsProcessor
+  imageName: edge-metrics-processor
+  productName: iot-services
+
+jobs:
+  build_and_push_docker_image:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: WillowInc/TwinPlatform/.github/actions/docker/build_push_gitversioning@main
+        name: Build and Push Docker Image
+        with:
+          botToken: ${{ secrets.SVC_BOT_TOKEN }}
+          clientId: ${{ vars.CLIENT_ID }}
+          clientSecret: ${{ secrets.CLIENT_SECRET }}
+          containerAppName: edge-metrics-processor
+          directoryBuildPropsPath: .config/common.props
+          dockerfile: ${{ env.projectPath }}/src/${{ env.srcProjectDir }}/Dockerfile
+          dockerContext: ${{ github.workspace }}
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          imageName: ${{ env.productName }}/${{ env.imageName }}
+          infraProjectPath: Applications/IoTServices.LiveData
+          nonProdAcrClientId: ${{ vars.NONPROD_ACR_CLIENT_ID }}
+          nonProdAcrClientSecret: ${{ secrets.NONPROD_ACR_CLIENT_SECRET }}
+          prodAcrClientId: ${{ vars.PROD_ACR_CLIENT_ID }}
+          prodAcrClientSecret: ${{ secrets.PROD_ACR_CLIENT_SECRET }}
+          productName: ${{ env.productName }}
+          tenantId: ${{ vars.TENANT_ID_WILLOWINC }}
+

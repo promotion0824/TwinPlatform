@@ -1,0 +1,30 @@
+# Only run manually
+trigger: none
+pr: none
+
+# az role assignment create --assignee "{assignee}" \
+# --role "{roleNameOrId}" \
+# --scope "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{providerName}/{resourceType}/{resourceSubType}/{resourceName}"
+
+stages:
+  - stage: Fix_permissions
+
+    jobs:
+      - job: Fix_permissions_2
+        displayName: "Set miscellaneous permissions"
+        steps:
+          - checkout: none
+
+          - task: AzureCLI@2
+            displayName: "Amna wants wil-uat-plt-aue1-mobilexl to have access to wiluatldashraue1sto"
+            inputs:
+              azureSubscription: "az-products-shared-environments-Twin Platform"
+              addSpnToEnvironment: true
+              scriptType: "bash"
+              scriptLocation: "inlineScript"
+              # wil-uat-plt-aue1-mobilexl       0381976b-3fdd-40ed-9ef5-c7febe609e11
+              # Storage Blob Data Contributor   ba92f5b4-2d11-453d-a403-e96b0029c9fe
+              inlineScript: |
+                az role assignment create --assignee "0381976b-3fdd-40ed-9ef5-c7febe609e11" \
+                  --role "ba92f5b4-2d11-453d-a403-e96b0029c9fe" \
+                  --scope "/subscriptions/f4edc7ff-4396-47be-bf14-90892e463848/resourceGroups/t2-wil-uat-lda-shr-aue1-mgt-rsg/providers/Microsoft.Storage/storageAccounts/wiluatldashraue1sto"

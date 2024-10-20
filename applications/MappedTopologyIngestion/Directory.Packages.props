@@ -1,0 +1,9 @@
+<Project>
+    <ItemGroup>
+        <PackageReference Include="StyleCop.Analyzers" PrivateAssets="All" IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive" Version="1.2.0-beta.556" />
+        <PackageVersion Include="StyleCop.Analyzers" Version="1.2.0-beta.556" />
+    </ItemGroup>
+    <PropertyGroup>
+        <ManagePackageVersionsCentrally>false</ManagePackageVersionsCentrally>
+    </PropertyGroup>
+</Project>

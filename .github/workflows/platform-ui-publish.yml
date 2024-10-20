@@ -1,0 +1,188 @@
+# Currently the publish will be triggered by merge version bump into main.
+# Because we will only bump the versions when we think it's time to publish.
+# It could bind to other trigger in the future, for example on release branch,
+# once we have such process.
+name: Platform UI release
+on:
+  push:
+    branches: ["main"]
+    paths:
+      # triggers by package.json change of each sub package
+      - design-system/libs/**/package.json
+      # triggers by CHANGELOG change of each sub package
+      - design-system/libs/**/CHANGELOG.md
+
+concurrency:
+  # Only the last publish job will be run if there is multiple scheduled
+  group: Platform UI - ${{ github.workflow }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-publish:
+    defaults:
+      run:
+        # default directory for job
+        working-directory: design-system
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      # write permission is required for publish packages
+      packages: write
+    outputs:
+      new_version: ${{ env.new_version }}
+      publish_succeed: ${{ env.publish_succeed }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Get new version to publish
+        run: echo "new_version=$(node -p -e "require('./libs/ui/package.json').version")" >> $GITHUB_ENV
+
+      - name: Setup .npmrc file
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.*
+          registry-url: "https://npm.pkg.github.com"
+          always-auth: true
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN  }}
+
+      - name: Get last published version
+        run: echo "last_published_version=$(npm view @willowinc/ui version)" >> $GITHUB_ENV
+
+      - name: Check if version changed
+        run: |
+          ([[ ${{ env.new_version }} != ${{ env.last_published_version }} ]] && echo 'to_publish=true' || echo 'to_publish=false') >> $GITHUB_ENV
+
+      # It's preferred to have retry actions when publish failed, but none is
+      # verified in the GitHub Marketplace at the moment, and not allowed to
+      # be used in our company workflow. Considering copy the code of
+      # https://github.com/nick-fields/retry
+      # if retry is desired in the future.
+      - name: Build and publish
+        if: ${{ env.to_publish == 'true'}}
+        run: |
+          npm ci
+          # Check if the new package can be successfully consumed by WillowTwin app
+          npm run custom-install 
+
+          npx nx run-many --target=build --projects=tag:ci:build --parallel=false 
+          npx nx build-storybook ui
+          npx nx build-playroom ui
+
+          npm run publish-packages
+
+          echo "publish_succeed=true" >> $GITHUB_ENV
+
+      - name: Upload Storybook build as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: storybook
+          path: ./design-system/dist/storybook/ui
+
+      - name: Upload Playroom build as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: playroom
+          path: ./design-system/dist/playroom
+
+  # we could change it to only deploy a newer storybook for major/minor release in the future
+  download-storybook-in-StorybookReleases:
+    runs-on: ubuntu-latest
+    needs: build-and-publish
+    # only run when package publish succeed
+    if: ${{ needs.build-and-publish.outputs.publish_succeed == 'true'}}
+    env:
+      new_version: ${{ needs.build-and-publish.outputs.new_version }}
+    steps:
+      - run: echo "Start to download storybook build for ${{env.new_version}}"
+
+      - name: Checkout StorybookReleases
+        uses: actions/checkout@v4
+        with:
+          repository: WillowInc/StorybookReleases
+          token: ${{ secrets.PAT_FOR_STORYBOOK_RELEASE_BOT }}
+          persist-credentials: true
+
+      - name: Download Storybook artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: storybook
+          path: ./sites/${{env.new_version}}
+
+      - name: Download Playroom artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: playroom
+          path: ./sites/playroom
+
+      - name: Update latest version path in index.html
+        run: |
+          cd sites
+
+          # get last version
+          start='<meta http-equiv="refresh" content="0; url=./'
+          end='" />'
+          pattern="${start}\([^${end}]*\)${end}"
+          version=$(sed -n "s#${pattern}#\1#p" index.html)
+
+          # trim spaces
+          trimmed_version=${version##*[[:space:]]}
+
+          # save trimmed_version to env variable
+          echo "last_index_html_version=$trimmed_version"  >> $GITHUB_ENV
+
+      # env variable set and get must be in separate steps,
+      # otherwise it cannot read the value
+      - name: Check if last_index_html_version is set
+        run: |
+          if [ -z "${{ env.last_index_html_version }}" ]; then
+            echo "Error: No matched previous version found, can't proceed for string replacement."
+            exit 1           
+          fi
+
+      - name: Update latest version path in index.html
+        run: |
+          cd sites
+          ls -la
+
+          # replace last_index_html_version string to new_version
+          sed -i 's/${{ env.last_index_html_version }}/${{env.new_version}}/g' index.html
+
+          # check if index.html updated 
+          if [[ -n $(git status -s index.html) ]]; then
+            echo "index.html updated successfully"
+          else
+            echo "Error: index.html not updated"
+            exit 1
+          fi
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+          git add .
+          git commit -m "[Bot]:Publish version $new_version for storybook"
+          git push
+
+  notify-release:
+    defaults:
+      run:
+        working-directory: design-system
+    runs-on: ubuntu-latest
+    # Only run after package publish succeed and storybook released
+    needs: [build-and-publish, download-storybook-in-StorybookReleases]
+    if: ${{ needs.build-and-publish.outputs.publish_succeed == 'true'}}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Send out release notification
+        # Find the commit message of the version bump as it contains changelog summary and read it as an array
+        # Execute the release notify script with the webhook_uri and commit_message
+        run: |
+          readarray -d "" -t commit_message <<< "$(git log -1 --no-merges --pretty=%b --grep='Platform UI Release')"
+          node tools/scripts/notify-release.js --webhook_uri=${{ secrets.PLATFORM_UI_RELEASES_WEBHOOK_URI }} --commit_message="${commit_message}"

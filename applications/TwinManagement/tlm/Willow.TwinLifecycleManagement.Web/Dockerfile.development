@@ -1,0 +1,47 @@
+﻿FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
+WORKDIR /app
+EXPOSE 8080
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+# Install Node.js
+RUN curl -fsSL https://deb.nodesource.com/setup_14.x | bash - \
+    && apt-get install -y \
+        nodejs \
+    && rm -rf /var/lib/apt/lists/*
+WORKDIR /src
+
+COPY "extensions/tlm/Willow.TwinLifecycleManagement.Web/Willow.TwinLifecycleManagement.Web.csproj" "extensions/tlm/Willow.TwinLifecycleManagement.Web/"
+
+RUN dotnet restore "extensions/tlm/Willow.TwinLifecycleManagement.Web/Willow.TwinLifecycleManagement.Web.csproj"
+
+#COPY . .
+COPY "libraries/Willow.Api/Willow.Api.Authentication/" "libraries/Willow.Api/Willow.Api.Authentication/"
+COPY "libraries/Willow.Api/Willow.Api.Binding/" "libraries/Willow.Api/Willow.Api.Binding/"
+COPY "libraries/Willow.Exceptions/Willow.Exceptions" "libraries/Willow.Exceptions/Willow.Exceptions"
+COPY "libraries/Willow.Model/Willow.Model" "libraries/Willow.Model/Willow.Model"
+COPY "libraries/Willow.Mediator/Willow.Mediator" "libraries/Willow.Mediator/Willow.Mediator"
+COPY "libraries/Willow.Api/Willow.Api.Authorization/" "libraries/Willow.Api/Willow.Api.Authorization/"
+COPY "libraries/Willow.Api/Willow.Api.Common/" "libraries/Willow.Api/Willow.Api.Common/"
+COPY "libraries/Willow.Api/Willow.Api.Client.Sdk/" "libraries/Willow.Api/Willow.Api.Client.Sdk/"
+COPY "extensions/tlm/Willow.TwinLifecycleManagement.Web/" "extensions/tlm/Willow.TwinLifecycleManagement.Web/"
+
+FROM build AS publish
+RUN dotnet publish "extensions/tlm/Willow.TwinLifecycleManagement.Web/Willow.TwinLifecycleManagement.Web.csproj" -c Release -o /app/publish
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+RUN chown -R 1000:1000 /app
+USER 1000
+
+ENV ASPNETCORE_URLS http://*:3000
+ENV TLM_AZUREAPPLICATION__BASEURL /
+ENV TLM_AZUREAPPLICATION__BASEAPI /
+ENV TLM_TWINSAPI__BASEURL https://fd-twin-willow-nonprod-shared.azurefd.net/app/aue/akvelon-testdev/adt-api/
+ENV TLM_AZUREAPPLICATION__REDIRECT http://localhost:3000/
+ENV TLM_AZUREADB2C__CLIENTID adec3eed-af83-42fb-a1fb-bba4e4c0c661
+ENV TLM_AZUREAPPLICATION__AUTHORITY https://willowdevb2c.b2clogin.com/willowdevb2c.onmicrosoft.com/B2C_1A_HRD_SIGNUPORSIGNIN
+ENV TLM_knownAuthorities "['willowidentity.b2clogin.com','willowdevb2c.b2clogin.com','willowinc.com']"
+ENV TLM_AZUREAPPLICATION__KNOWNAUTHORITIES "['willowidentity.b2clogin.com','willowdevb2c.b2clogin.com','willowinc.com']"
+ENV TLM_AZUREAPPLICATION__B2CSCOPES "['https://willowdevb2c.onmicrosoft.com/adec3eed-af83-42fb-a1fb-bba4e4c0c661/APIs.Invoke']"
+ENV TLM_APPLICATIONINSIGHTS__INSTRUMENTATIONKEY 9569cd5a-dbdd-49c5-808f-8f98d51c5539
+
+ENTRYPOINT [ "dotnet", "Willow.TwinLifecycleManagement.Web.dll" ]

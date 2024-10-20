@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32319.34
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Willow.IoTService.Deployment.Common", "Willow.IoTService.Deployment.Common\Willow.IoTService.Deployment.Common.csproj", "{72E4BD71-3DD6-4204-B932-E3A18C151A90}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Willow.IoTService.Deployment.DataAccess.DependencyInjection", "Willow.IoTService.Deployment.DataAccess.DependencyInjection\Willow.IoTService.Deployment.DataAccess.DependencyInjection.csproj", "{F32D8640-9112-40FF-994E-19018D088766}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Willow.IoTService.Deployment.DataAccess", "Willow.IoTService.Deployment.DataAccess\Willow.IoTService.Deployment.DataAccess.csproj", "{FFAE01FA-9F48-4CC2-8566-144422DCBE66}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Willow.IoTService.Deployment.ManifestStorage", "Willow.IoTService.Deployment.ManifestStorage\Willow.IoTService.Deployment.ManifestStorage.csproj", "{8B60F274-DAD3-4240-9786-6E17DE2D53E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Willow.IoTService.Deployment.ManifestStorage.Hosting", "Willow.IoTService.Deployment.ManifestStorage.Hosting\Willow.IoTService.Deployment.ManifestStorage.Hosting.csproj", "{8CEEBFBD-825E-4CDD-A200-673FA9AAA3C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Willow.IoTService.Deployment.DataAccess.IntegrationTests", "Willow.IoTService.Deployment.DataAccess.IntegrationTests\Willow.IoTService.Deployment.DataAccess.IntegrationTests.csproj", "{F6781A37-09D7-4836-BF4D-22640557600D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{72E4BD71-3DD6-4204-B932-E3A18C151A90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72E4BD71-3DD6-4204-B932-E3A18C151A90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72E4BD71-3DD6-4204-B932-E3A18C151A90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72E4BD71-3DD6-4204-B932-E3A18C151A90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F32D8640-9112-40FF-994E-19018D088766}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F32D8640-9112-40FF-994E-19018D088766}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F32D8640-9112-40FF-994E-19018D088766}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F32D8640-9112-40FF-994E-19018D088766}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFAE01FA-9F48-4CC2-8566-144422DCBE66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFAE01FA-9F48-4CC2-8566-144422DCBE66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFAE01FA-9F48-4CC2-8566-144422DCBE66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFAE01FA-9F48-4CC2-8566-144422DCBE66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B60F274-DAD3-4240-9786-6E17DE2D53E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B60F274-DAD3-4240-9786-6E17DE2D53E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B60F274-DAD3-4240-9786-6E17DE2D53E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B60F274-DAD3-4240-9786-6E17DE2D53E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CEEBFBD-825E-4CDD-A200-673FA9AAA3C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CEEBFBD-825E-4CDD-A200-673FA9AAA3C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CEEBFBD-825E-4CDD-A200-673FA9AAA3C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CEEBFBD-825E-4CDD-A200-673FA9AAA3C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6781A37-09D7-4836-BF4D-22640557600D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6781A37-09D7-4836-BF4D-22640557600D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6781A37-09D7-4836-BF4D-22640557600D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6781A37-09D7-4836-BF4D-22640557600D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3ABC9601-68E7-42BE-90E2-F6FC722BBE9A}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,16 @@
+{
+  "$dtId": "Twin1",
+  "$etag": "W/\"8e6d3e89-1166-4a1d-9a99-8accd8fef43f\"",
+  "$metadata": {
+    "$model": "dtmi:com:example:Sample;1",
+    "Humidity": {
+      "lastUpdateTime": "2021-11-30T18:47:53.7648958Z"
+    },
+    "Temperature": {
+      "lastUpdateTime": "2021-11-30T18:47:53.7648958Z"
+    }
+  },
+  "name": "some name",
+  "temp": 35,
+  "comfortIndex": 10
+}

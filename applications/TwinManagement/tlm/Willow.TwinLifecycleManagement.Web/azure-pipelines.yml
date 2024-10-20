@@ -1,0 +1,184 @@
+trigger:
+  branches:
+    include:
+      - main
+  paths:
+    include:
+      - extensions/tlm/*
+
+pr:
+  branches:
+    include:
+      - main
+  paths:
+    include:
+      - extensions/tlm/*
+
+parameters:
+  - name: mustPromoteImage
+    type: boolean
+    default: false
+    displayName: Promote Docker image to ACRs
+
+variables:
+  major: 0
+  minor: 14
+  semantic: $(major).$(minor)
+  patch: $[counter(variables['minor'], 0)]
+  versionFull: $(semantic).$(patch)
+  buildConfiguration: Release
+  srcProjectDir: 'extensions/tlm'
+  mainProject: Willow.TwinLifecycleManagement.Web
+  webProject: ClientApp
+  testUnitProject: Willow.TwinLifecycleManagement.Web.UnitTests
+  testApiProject: Willow.TwinLifecycleManagement.Web.APITests
+  imageName: willow-twinlifecyclemanagement-web
+  excludeLibraries: \"[*]Microsoft.*,[*]System.*,[*]Willow.Api.*,[*]Willow.Email.*,[*]Willow.Authentication.*,[*]Willow.KeyVaultSecretsProvider.*,[*]Willow.Logging.*,[*]Willow.DataAccess.*,[]Willow.Directory.Api.Infrastructure.FileIO.*\"
+  sonarQubeProjectName: 'TwinLifecycleManagement'
+
+stages:
+- stage: Build
+  displayName: "Build"
+
+  pool:
+    vmImage: 'ubuntu-latest'
+
+  jobs:
+    - job: BuildVersion
+      displayName: 'Update build number'
+      steps:
+        - task: Bash@3
+          displayName: 'Set Build Number'
+          inputs:
+            targetType: 'inline'
+            script: |
+              buildid=$(Build.BuildId)
+              echo "##vso[build.updatebuildnumber]$(versionFull)"
+
+    - job: CheckCodeStyle
+      displayName: "Check code style"
+      condition: ne(variables['Build.SourceBranch'], 'refs/heads/main')
+      dependsOn: BuildVersion
+      steps:
+        - checkout: self
+          persistCredentials: true
+        - template: azure-code-style.yml
+          parameters:
+            backendProjectDirectory: $(srcProjectDir)/$(testUnitProject)
+            frontendProjectDirectory: $(srcProjectDir)/$(mainProject)/$(webProject)
+
+    - job: BuildApplication
+      displayName: 'Build TLM'
+      dependsOn: BuildVersion
+      steps:
+        - template: ../../../libraries/scripts/dotnet-build-net7-2.yml
+          parameters:
+            buildConfiguration: $(buildConfiguration)
+            srcProjectDir: $(srcProjectDir)/$(mainProject)
+            testProjectDir: $(srcProjectDir)/$(testUnitProject)
+        - template: ../../../libraries/scripts/dotnet-publish.yml
+          parameters:
+            buildConfiguration: $(buildConfiguration)
+            srcProjectDir: $(srcProjectDir)/$(mainProject)
+
+    - job: UnitTests
+      displayName: "Run unit tests"
+      dependsOn: BuildApplication
+      continueOnError: true
+      steps:
+        - task: DotNetCoreCLI@2
+          displayName: 'Dotnet test'
+          inputs:
+            command: 'test'
+            arguments: '--configuration $(buildConfiguration) --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=cobertura'
+            publishTestResults: true
+            projects: '$(srcProjectDir)/$(testUnitProject)'
+
+        - task: PublishCodeCoverageResults@1
+          displayName: 'Publish code coverage report'
+          inputs:
+            codeCoverageTool: 'Cobertura'
+            summaryFileLocation: '$(srcProjectDir)/$(testUnitProject)/CodeCoverage/Cobertura.xml'
+
+
+    - job: ApiTests
+      displayName: "Run API tests"
+      continueOnError: true
+      steps:
+        - task: DotNetCoreCLI@2
+          displayName: 'Run tests'
+          inputs:
+            command: 'test'
+            arguments: '--configuration $(buildConfiguration) --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=cobertura'
+            publishTestResults: true
+            projects: '$(srcProjectDir)/$(testApiProject)'
+
+        - task: PublishCodeCoverageResults@1
+          displayName: 'Publish code coverage report'
+          inputs:
+            codeCoverageTool: 'Cobertura'
+            summaryFileLocation: '$(srcProjectDir)/$(testApiProject)/CodeCoverage/Cobertura.xml'
+
+    - job: PublishManifestFiles
+      displayName: "Publish manifests"
+      steps:
+        - template: azure-export-manifest.yml
+          parameters:
+            environment: 'prod'
+            source: extensions/tlm/Willow.TwinLifecycleManagement.Web/willow-twin-lifecycle-management-web.json
+            target: extensions/tlm/Willow.TwinLifecycleManagement.Web/prod-willow-twin-lifecycle-management-web.json
+            tenantId: 540c8929-ab7e-478f-b401-cbd037da66bd
+            authority: https://willowidentity.b2clogin.com/willowidentity.onmicrosoft.com/B2C_1A_HRD_SIGNUPORSIGNIN
+            issuerUrl: https://willowidentity.b2clogin.com
+            frontendAppId: 585fe6d3-a1ac-4a62-a28b-3270b91cd884
+            backendAppId: 22a127cc-81b6-439d-8682-b5555feab278
+            backendAppClientSecret: $(prod_backendAppClientSecret)
+            apiScopeUrl: https://willowidentity.onmicrosoft.com
+            backendAppApiScopeName: call.all
+            authorizationAPITokenAudience: api://0d9f112e-0b1e-4609-9fa7-e78066b0993a
+            tlmVersion: $(versionFull)
+        - publish: extensions/tlm/Willow.TwinLifecycleManagement.Web/prod-willow-twin-lifecycle-management-web.json
+          artifact: willow-twin-lifecycle-management-web-prod-$(Build.BuildNumber).json
+        - template: azure-export-manifest.yml
+          parameters:
+            environment: 'non-prod'
+            source: extensions/tlm/Willow.TwinLifecycleManagement.Web/willow-twin-lifecycle-management-web.json
+            target: extensions/tlm/Willow.TwinLifecycleManagement.Web/non-prod-willow-twin-lifecycle-management-web.json
+            tenantId: a80618f8-f5e9-43bf-a98f-107dd8f54aa9
+            authority: https://willowdevb2c.b2clogin.com/willowdevb2c.onmicrosoft.com/B2C_1A_HRD_SIGNUPORSIGNIN
+            issuerUrl: https://willowdevb2c.b2clogin.com
+            frontendAppId: 531b4367-2153-4122-b4c3-e69291d4cdaf
+            backendAppId: 1d94dc8e-e007-4322-b6cc-08a380c0cc47
+            backendAppClientSecret: $(nonprod_backendAppClientSecret)
+            apiScopeUrl: https://willowdevb2c.onmicrosoft.com
+            backendAppApiScopeName: api.call.all
+            authorizationAPITokenAudience: api://8c74e778-9a35-473b-bbf0-4b0e9cc6000e
+            tlmVersion: $(versionFull)
+        - publish: extensions/tlm/Willow.TwinLifecycleManagement.Web/non-prod-willow-twin-lifecycle-management-web.json
+          artifact: willow-twin-lifecycle-management-web-non-prod-$(Build.BuildNumber).json
+
+- ${{ if eq(parameters['mustPromoteImage'], 'true') }}:
+  - stage: PromoteToNonProd
+    displayName: "Promote to non-prod ACR"
+    dependsOn: Build
+
+    pool:
+      vmImage: 'ubuntu-latest'
+
+    jobs:
+      - job: BuildPromoteImage
+        displayName: "Build & promote image"
+        steps:
+          - template: ../../../libraries/scripts/docker-template-2.yml
+            parameters:
+              imageName: $(imageName)
+              dockerfile: $(srcProjectDir)/Willow.TwinLifecycleManagement.Web/Dockerfile
+              dockerContext: .
+              pushToSingleTenantDev: true
+              srcProjectDir: $(srcProjectDir)/$(mainProject)
+              testProjectDir: $(srcProjectDir)/$(testUnitProject)
+
+  - template: ../../../libraries/scripts/image-promotion-template.yml
+    parameters:
+      imageName: $(imageName)
+      dependsOn: PromoteToNonProd

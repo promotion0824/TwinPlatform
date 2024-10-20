@@ -1,0 +1,47 @@
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS base
+WORKDIR /app
+
+# TO TEST LOCALLY ON DOCKER THIS SEEMS TO BE THE ONLY WAY
+# REMOVE THIS FOR PRODUCTION
+
+ADD https://aka.ms/InstallAzureCLIDeb /tmp
+RUN bash /tmp/InstallAzureCLIDeb
+
+# Creates a non-root user with an explicit UID and adds permission to access the /app folder
+# For more info, please refer to https://aka.ms/vscode-docker-dotnet-configure-containers
+#RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /app
+#USER appuser
+
+#RUN apt-get install -y libsecret-1-0
+
+# AND NOW A SEPARATE BUILD LAYER
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+
+# Try to cache the nugets
+WORKDIR /src
+COPY ["RulesEngine.Processor/RulesEngine.Processor.csproj", "RulesEngine.Processor/"]
+COPY ["RulesEngine.Config/RulesEngine.Config.csproj", "RulesEngine.Config/"]
+COPY ["WillowRules/WillowRules.csproj", "WillowRules/"]
+RUN dotnet restore "RulesEngine.Processor/RulesEngine.Processor.csproj"
+
+# Copy over all the other files
+COPY ["RulesEngine.Processor/", "RulesEngine.Processor/"]
+COPY ["RulesEngine.Config/", "RulesEngine.Config/"]
+COPY ["WillowRules/", "WillowRules/"]
+
+# Props file sits above and affects all projects
+COPY ["Directory.Build.props", "Directory.Build.props"]
+
+# Now build the processor project
+WORKDIR "/src/RulesEngine.Processor"
+RUN dotnet build "RulesEngine.Processor.csproj" -c Release -o /app/build
+
+# And publish it into a fresh image
+FROM build AS publish
+WORKDIR "/src/RulesEngine.Processor"
+RUN dotnet publish "RulesEngine.Processor.csproj" -c Release -o /app/publish
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "RulesEngine.Processor.dll"]

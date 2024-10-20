@@ -1,0 +1,9 @@
+<Project>
+    <Import Condition="$(MSBuildProjectExtension) != '.esproj'" Project="$(MSBuildThisFileDirectory)\..\..\..\.config\common.props"/>
+
+    <!-- We're not ready for this -->
+    <!--<PropertyGroup Condition="'$(BuildingInsideVisualStudio)' != 'true'">
+      <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+      <MSBuildTreatWarningsAsErrors>true</MSBuildTreatWarningsAsErrors>
+    </PropertyGroup>-->
+</Project>

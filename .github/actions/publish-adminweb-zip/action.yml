@@ -1,0 +1,31 @@
+name: Publish a adminweb zip file
+
+# For multi-tenant adminweb we create a slightly different zip file
+# for each environment.
+
+inputs:
+  environment:
+    description: dev, uat, or prd
+    required: true
+runs:
+  using: composite
+  steps:
+  - name: 'copy config.json for ${{inputs.environment}}'
+    shell: bash
+    run: |
+      cp -f ./dist/public/config-${{inputs.environment}}.json ./dist/public/config.json
+    working-directory: extensions/real-estate/front-end/Web/packages/admin
+
+  - name: Create zip file
+    shell: bash
+    run: |
+      cd dist
+      zip -r ../adminweb-${{ inputs.environment }}.zip .
+    working-directory: extensions/real-estate/front-end/Web/packages/admin
+
+  - name: Upload artifact
+    uses: actions/upload-artifact@v3
+    with:
+      name: adminweb-${{ inputs.environment }}
+      path: extensions/real-estate/front-end/Web/packages/admin/adminweb-${{ inputs.environment }}.zip
+      retention-days: 1

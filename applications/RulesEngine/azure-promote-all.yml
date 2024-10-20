@@ -1,0 +1,52 @@
+parameters:
+- name: buildNumber
+  type: string
+
+stages:
+- stage: Push_to_ACR_Prod
+  displayName: "Push to Prod ACR"
+  jobs:
+    # Not currently in use - used only for Azure Container Instances
+    # - job: Copy_react_image_to_production_repository
+    #   displayName: 'Copy react image to production repository'
+    #   pool:
+    #     vmImage: 'ubuntu-latest'
+    #   steps:
+    #   - checkout: none
+    #   - template: azure-promote.yml
+    #     parameters:
+    #       imageName: 'rules-engine/react'
+    #       buildNumber: '$(Build.BuildNumber)'
+
+    - job: Copy_web_image_to_production_repository
+      displayName: 'Copy web image to production repository'
+      pool:
+        vmImage: 'ubuntu-latest'
+      steps:
+      - checkout: none
+      - template: azure-promote.yml
+        parameters:
+          imageName: 'rules-engine/web'
+          buildNumber: '$(Build.BuildNumber)'
+
+    - job: Copy_processor_image_to_production_repository
+      displayName: 'Copy processor image to production repository'
+      pool:
+        vmImage: 'ubuntu-latest'
+      steps:
+      - checkout: none
+      - template: azure-promote.yml
+        parameters:
+          imageName: 'rules-engine/processor'
+          buildNumber: '$(Build.BuildNumber)'
+
+    #- job: Copy_init_image_to_production_repository
+    #  displayName: 'Copy init image to production repository'
+    #  pool:
+    #    vmImage: 'ubuntu-latest'
+    #  steps:
+    #  - checkout: none
+    #  - template: azure-promote.yml
+    #    parameters:
+    #      imageName: 'rules-engine/init'
+    #      buildNumber: '$(Build.BuildNumber)'

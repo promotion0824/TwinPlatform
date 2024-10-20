@@ -1,0 +1,34 @@
+name: "Nuget Willow.Units"
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      # remove next one after development phase
+      - feature/rules/units-of-measure
+    paths:
+      - libraries/Willow.Units/**
+  pull_request:
+    paths:
+      - libraries/Willow.Units/**
+
+env:
+  buildConfiguration: Release
+  srcProjectDir: "libraries/Willow.Units/src"
+  testProjectDir: "libraries/Willow.Units/test"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Nuget Build and Push action
+        uses: WillowInc/.github/.github/actions/nuget-build-push@main
+        with:
+          buildConfiguration: ${{ env.buildConfiguration}}
+          srcProjectDir: ${{ env.srcProjectDir}}
+          srcTestProjectDir: ${{ env.testProjectDir}}
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          pushPackages: ${{ github.event_name == 'push' }}
+          directoryBuildPropPath: ${{ github.workspace }}/.config/common.props

@@ -1,0 +1,184 @@
+﻿{
+  "content": [
+    {
+      "twin": {
+        "$dtId": "BPY-1MW-BD-07-A",
+        "$etag": "W/\"5c96fc13-82be-480e-afdf-d8986612c2da\"",
+        "$metadata": {
+          "$model": "dtmi:com:willowinc:Busway;1",
+          "name": {
+            "lastUpdateTime": "2022-08-02T14:33:34.5751845+00:00"
+          },
+          "geometryViewerID": {
+            "lastUpdateTime": "2022-08-02T14:33:34.5751845+00:00"
+          },
+          "geometrySpatialReference": {
+            "lastUpdateTime": "2022-08-02T14:33:34.5751845+00:00"
+          },
+          "uniqueID": {
+            "lastUpdateTime": "2022-08-02T14:33:34.5751845+00:00"
+          },
+          "externalID": {
+            "lastUpdateTime": "2022-08-02T14:33:34.5751845+00:00"
+          },
+          "siteID": {
+            "lastUpdateTime": "2022-08-02T14:33:34.5751845+00:00"
+          }
+        },
+        "name": "Bus Duct BD-07-A",
+        "geometryViewerID": "61920f83-26a7-4bd9-baa0-2580b94943d8",
+        "geometrySpatialReference": "Electrical",
+        "uniqueID": "00600000-0000-0000-0000-000000916962",
+        "externalID": "BD-07-A",
+        "siteID": "4e5fc229-ffd9-462a-882b-16b4a63b2a8a",
+        "mainBus": {
+          "$metadata": {}
+        }
+      }
+    },
+    {
+      "twin": {
+        "$dtId": "BPY-1MW-BD-10-A",
+        "$etag": "W/\"19eea9fb-73ee-4dd8-ab3f-0d8af3a3f812\"",
+        "$metadata": {
+          "$model": "dtmi:com:willowinc:Busway;1",
+          "name": {
+            "lastUpdateTime": "2022-08-02T14:41:23.9396487+00:00"
+          },
+          "geometryViewerID": {
+            "lastUpdateTime": "2022-08-02T14:41:23.9396487+00:00"
+          },
+          "geometrySpatialReference": {
+            "lastUpdateTime": "2022-08-02T14:41:23.9396487+00:00"
+          },
+          "uniqueID": {
+            "lastUpdateTime": "2022-08-02T14:41:23.9396487+00:00"
+          },
+          "externalID": {
+            "lastUpdateTime": "2022-08-02T14:41:23.9396487+00:00"
+          },
+          "siteID": {
+            "lastUpdateTime": "2022-08-02T14:41:23.9396487+00:00"
+          }
+        },
+        "name": "Bus Duct BD-10-A",
+        "geometryViewerID": "70733eb2-a031-4648-9822-6b240da78c06",
+        "geometrySpatialReference": "Electrical",
+        "uniqueID": "00600000-0000-0000-0000-000000916965",
+        "externalID": "BD-10-A",
+        "siteID": "4e5fc229-ffd9-462a-882b-16b4a63b2a8a",
+        "mainBus": {
+          "$metadata": {}
+        }
+      }
+    },
+    {
+      "twin": {
+        "$dtId": "BPY-1MW-BD-10-B",
+        "$etag": "W/\"e4520390-6509-44f5-86ba-e8260f084a2b\"",
+        "$metadata": {
+          "$model": "dtmi:com:willowinc:Busway;1",
+          "name": {
+            "lastUpdateTime": "2022-08-02T14:21:04.237364+00:00"
+          },
+          "geometryViewerID": {
+            "lastUpdateTime": "2022-08-02T14:21:04.237364+00:00"
+          },
+          "geometrySpatialReference": {
+            "lastUpdateTime": "2022-08-02T14:21:04.237364+00:00"
+          },
+          "uniqueID": {
+            "lastUpdateTime": "2022-08-02T14:21:04.237364+00:00"
+          },
+          "externalID": {
+            "lastUpdateTime": "2022-08-02T14:21:04.237364+00:00"
+          },
+          "siteID": {
+            "lastUpdateTime": "2022-08-02T14:21:04.237364+00:00"
+          }
+        },
+        "name": "Bus Duct BD-10-B",
+        "geometryViewerID": "70733eb2-a031-4648-9822-6b240da78c07",
+        "geometrySpatialReference": "Electrical",
+        "uniqueID": "00600000-0000-0000-0000-000000917027",
+        "externalID": "BD-10-B",
+        "siteID": "4e5fc229-ffd9-462a-882b-16b4a63b2a8a",
+        "mainBus": {
+          "$metadata": {}
+        }
+      }
+    },
+    {
+      "twin": {
+        "$dtId": "BPY-1MW-BD-13-B",
+        "$etag": "W/\"c3213b05-0a83-4ae1-b896-2de051cd06e2\"",
+        "$metadata": {
+          "$model": "dtmi:com:willowinc:Busway;1",
+          "name": {
+            "lastUpdateTime": "2022-08-02T14:39:36.6382359+00:00"
+          },
+          "geometryViewerID": {
+            "lastUpdateTime": "2022-08-02T14:39:36.6382359+00:00"
+          },
+          "geometrySpatialReference": {
+            "lastUpdateTime": "2022-08-02T14:39:36.6382359+00:00"
+          },
+          "uniqueID": {
+            "lastUpdateTime": "2022-08-02T14:39:36.6382359+00:00"
+          },
+          "externalID": {
+            "lastUpdateTime": "2022-08-02T14:39:36.6382359+00:00"
+          },
+          "siteID": {
+            "lastUpdateTime": "2022-08-02T14:39:36.6382359+00:00"
+          }
+        },
+        "name": "Bus Duct BD-13-B",
+        "geometryViewerID": "f90d58eb-26f3-4b9c-a07a-5e875cd817c8",
+        "geometrySpatialReference": "Electrical",
+        "uniqueID": "00600000-0000-0000-0000-000000917030",
+        "externalID": "BD-13-B",
+        "siteID": "4e5fc229-ffd9-462a-882b-16b4a63b2a8a",
+        "mainBus": {
+          "$metadata": {}
+        }
+      }
+    },
+    {
+      "twin": {
+        "$dtId": "BPY-1MW-BD-23-B",
+        "$etag": "W/\"994769f7-0748-48a7-b7b1-7d7c34889889\"",
+        "$metadata": {
+          "$model": "dtmi:com:willowinc:Busway;1",
+          "name": {
+            "lastUpdateTime": "2022-08-02T14:27:32.6328288+00:00"
+          },
+          "geometryViewerID": {
+            "lastUpdateTime": "2022-08-02T14:27:32.6328288+00:00"
+          },
+          "geometrySpatialReference": {
+            "lastUpdateTime": "2022-08-02T14:27:32.6328288+00:00"
+          },
+          "uniqueID": {
+            "lastUpdateTime": "2022-08-02T14:27:32.6328288+00:00"
+          },
+          "externalID": {
+            "lastUpdateTime": "2022-08-02T14:27:32.6328288+00:00"
+          },
+          "siteID": {
+            "lastUpdateTime": "2022-08-02T14:27:32.6328288+00:00"
+          }
+        },
+        "name": "Bus Duct BD-23-B",
+        "geometryViewerID": "f90d58eb-26f3-4b9c-a07a-5e875cd8164c",
+        "geometrySpatialReference": "Electrical",
+        "uniqueID": "00600000-0000-0000-0000-000000917040",
+        "externalID": "BD-23-B",
+        "siteID": "4e5fc229-ffd9-462a-882b-16b4a63b2a8a",
+        "mainBus": {
+          "$metadata": {}
+        }
+      }
+    }
+  ]
+}

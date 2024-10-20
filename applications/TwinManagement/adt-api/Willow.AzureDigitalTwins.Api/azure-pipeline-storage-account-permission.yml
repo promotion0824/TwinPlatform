@@ -1,0 +1,53 @@
+# Only run manually
+trigger: none
+pr: none
+
+parameters:
+  - name: assignee
+    displayName: Identity Principal Object Id
+    type: string
+  - name: roleNameOrId
+    displayName: Role Name/Id for Assignment
+    type: string
+  - name: subscriptionId
+    displayName: Target Subscription Id
+    type: string
+  - name: resourceGroupName
+    displayName: Target Resource Group Name
+    type: string
+  - name: providerName
+    displayName: Target Provider Name
+    type: string
+    values:
+    - Microsoft.Storage       
+  - name: storageAccountName
+    displayName: Target Storage Account Name
+    type: string     
+       
+#az role assignment create \
+#    --role "Storage Blob Data Contributor" \
+#    --assignee <email> \
+#    --scope "/subscriptions/<subscription>/resourceGroups/<resource-group>/providers/Microsoft.Storage/storageAccounts/<storage-account>/blobServices/default/containers/<container>"
+
+stages:
+- stage: Custom_Permission
+
+  jobs:
+    - job: Assign_Permission_To_Identity
+      displayName: 'Assign Permission'
+      steps:
+        
+      - checkout: none
+        
+      - task: AzureCLI@2
+        displayName: 'Assign ADT API Identity Access Permission to external document Storage Account'
+        inputs:
+          azureSubscription: "az-products-shared-Twin Platform"
+          addSpnToEnvironment: true
+          scriptType: "bash"
+          scriptLocation: "inlineScript"
+          inlineScript: |
+            az role assignment create \
+              --role ${{parameters.roleNameOrId}} \
+              --assignee ${{parameters.assignee}} \
+              --scope "/subscriptions/${{parameters.subscriptionId}}/resourceGroups/${{parameters.resourceGroupName}}/providers/${{parameters.providerName}}/storageAccounts/${{parameters.storageAccountName}}"

@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <UserSecretsId>2295691c-c480-47c4-837c-143517fab582</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Authorization.TwinPlatform.Common" Version="2.2.2676" />
+    <PackageReference Include="Azure.DigitalTwins.Core" Version="1.4.0" />
+    <PackageReference Include="LazyCache" Version="2.4.0" />
+    <PackageReference Include="LazyCache.AspNetCore" Version="2.4.0" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="8.0.2" />
+    <PackageReference Include="Microsoft.OpenApi.Readers" Version="1.6.19" />
+    <PackageReference Include="Microsoft.OpenApi" Version="1.6.18" />
+    <PackageReference Include="Swashbuckle.AspNetCore.ReDoc" Version="6.7.3" />
+    <PackageReference Include="willow.api.authentication" Version="2.2.2561" />
+    <PackageReference Include="Willow.AzureDigitalTwins.SDK" Version="2.2.2842" />
+    <PackageReference Include="Yarp.ReverseProxy" Version="2.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.6" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+    <PackageReference Include="Willow.Hosting" Version="2.2.2734" />
+    <PackageReference Include="Willow.Expressions" Version="2.2.2600" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="Willow.PublicApi.Tests" />
+    <InternalsVisibleTo Include="DynamicProxyGenAssembly2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="..\..\.dockerignore">
+      <Link>.dockerignore</Link>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Yarp.ReverseProxy.Swagger\Yarp.ReverseProxy.Swagger.csproj" />
+  </ItemGroup>
+
+</Project>

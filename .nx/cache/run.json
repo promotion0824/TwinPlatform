@@ -1,0 +1,21 @@
+{
+  "run": {
+    "command": "nx storybook ui",
+    "startTime": "2024-08-26T05:57:49.827Z",
+    "endTime": "2024-08-27T16:01:39.136Z",
+    "inner": false
+  },
+  "tasks": [
+    {
+      "taskId": "ui:storybook",
+      "target": "storybook",
+      "projectName": "ui",
+      "hash": "8561614213860419030",
+      "startTime": "2024-08-26T05:57:49.840Z",
+      "endTime": "2024-08-27T16:01:38.985Z",
+      "params": "",
+      "cacheStatus": "cache-miss",
+      "status": 1
+    }
+  ]
+}

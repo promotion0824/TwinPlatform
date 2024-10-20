@@ -1,0 +1,90 @@
+[
+  {
+    "Id": "f5791535-369d-4054-ba6c-1d5f30634778",
+    "Name": "DefaultMarketplaceConnector",
+    "ConnectorConfigurationSchemaId": "701a5962-5c7c-4d85-ba59-f5a843f36a84",
+    "DeviceMetadataSchemaId": "62bf7d1b-b932-4e79-ba1d-c242a230ba3c",
+    "PointMetadataSchemaId": "0d6b389d-2a56-4fff-8921-e71bfb022d8f",
+    "ScanConfigurationSchemaId": "d103a025-9270-4ba2-9e74-ec8f19379d40"
+  },
+  {
+    "Id": "028d6fcd-df1a-4f6d-bde1-4617a7f7a96b",
+    "Name": "DefaultModbusConnector",
+    "ConnectorConfigurationSchemaId": "21e52a57-1dcf-4c13-a0f8-c65b2f2b99d2",
+    "DeviceMetadataSchemaId": "d4952c64-73c5-4e67-893f-b5227c73fe2b",
+    "PointMetadataSchemaId": "3d0dfd33-2954-42ab-b8a4-2faddd185c22",
+    "ScanConfigurationSchemaId": null
+  },
+  {
+    "Id": "9ef2ae5c-2536-42f9-9e5e-4b9313eeeca8",
+    "Name": "DefaultChipkinBACnetConnector",
+    "ConnectorConfigurationSchemaId": "8e3de645-3c5c-443f-afd8-27e90f64c9a7",
+    "DeviceMetadataSchemaId": "0d5608fa-e06f-4beb-ac13-8a5f83fc3a5a",
+    "PointMetadataSchemaId": "86cb421a-bd47-4d09-b78e-3ed88976d9b9",
+    "ScanConfigurationSchemaId": "7c2807f4-8868-4327-a960-4805edd775e9"
+  },
+  {
+    "Id": "c9e2914a-2440-4af4-99fb-5235a1ef994b",
+    "Name": "DefaultPointGrabConnector",
+    "ConnectorConfigurationSchemaId": "d95c7d29-639c-4593-b5de-bc4af13ab650",
+    "DeviceMetadataSchemaId": "c5d57621-eaa6-4151-b956-900ff514c4ef",
+    "PointMetadataSchemaId": "3299f0db-865d-4737-9f1e-4879586b5f1e",
+    "ScanConfigurationSchemaId": null
+  },
+  {
+    "Id": "e9fff2de-414f-48fb-bd0c-64133e4bc757",
+    "Name": "DefaultSiemensConnector(deprecated)",
+    "ConnectorConfigurationSchemaId": "e73e8e7a-bd79-4813-acff-51c8e51500a3",
+    "DeviceMetadataSchemaId": "0f086c54-6e01-4962-87e6-9769af7ad83a",
+    "PointMetadataSchemaId": "4f0e0d97-3ddf-49db-b114-b55bfb077fa4",
+    "ScanConfigurationSchemaId": null
+  },
+  {
+    "Id": "8fd6be9c-1e67-4196-82f0-6dc6b48f1503",
+    "Name": "DefaultBACnetConnector",
+    "ConnectorConfigurationSchemaId": "38cf1f48-0b28-4790-bae7-d43c948fce7a",
+    "DeviceMetadataSchemaId": "0d5608fa-e06f-4beb-ac13-8a5f83fc3a5a",
+    "PointMetadataSchemaId": "86cb421a-bd47-4d09-b78e-3ed88976d9b9",
+    "ScanConfigurationSchemaId": null
+  },
+  {
+    "Id": "0f4d657a-a908-4f69-b214-79c0ff5b1e95",
+    "Name": "DefaultOpcUaConnector",
+    "ConnectorConfigurationSchemaId": "41cfe979-4b56-40f4-8aab-0292d2f96bb2",
+    "DeviceMetadataSchemaId": "6fa46e15-af91-4564-adfd-ed90869377aa",
+    "PointMetadataSchemaId": "203c392f-bb84-456c-aca9-2ab7af7f6595",
+    "ScanConfigurationSchemaId": null
+  },
+  {
+    "Id": "2112fc9c-f72f-4f5f-a342-9e4a499c452e",
+    "Name": "DefaultOpcDaConnector",
+    "ConnectorConfigurationSchemaId": "8e5f3305-4bf9-4b14-b510-30713fc8a10b",
+    "DeviceMetadataSchemaId": "cc26f6ce-25f9-426f-8617-ef98eac0ba03",
+    "PointMetadataSchemaId": "b6270aa7-294c-411c-94c8-ff2cd1c8268f",
+    "ScanConfigurationSchemaId": null
+  },
+  {
+    "Id": "6527155b-909f-4c2b-b7eb-b619b7164814",
+    "Name": "DefaultVergeSenseConnector",
+    "ConnectorConfigurationSchemaId": "30b72f42-e586-4ce1-a5f0-6f5c4a6d79e6",
+    "DeviceMetadataSchemaId": "5ec236a7-ddd7-468b-9bd9-a7ff0b6929c7",
+    "PointMetadataSchemaId": "e51b3861-4d11-4cef-9db6-d0189030178a",
+    "ScanConfigurationSchemaId": null
+  },
+  {
+    "Id": "d9d36f2d-7f5b-4c70-8b9d-e87e6b071f6e",
+    "Name": "DefaultStreamAnalyticsConnector",
+    "ConnectorConfigurationSchemaId": "5435c70d-4706-4a06-90d8-7198c215aeb9",
+    "DeviceMetadataSchemaId": "429549f2-ebbe-44a0-b4ce-5cfe070c1258",
+    "PointMetadataSchemaId": "82928b99-10f6-4ad7-ba20-6e20a21291af",
+    "ScanConfigurationSchemaId": null
+  },
+  {
+    "Id": "872c0d45-40d9-4b74-8a59-fa4b9f657337",
+    "Name": "DefaultSiemensConnector",
+    "ConnectorConfigurationSchemaId": "e73e8e7a-bd79-4813-acff-51c8e51500a3",
+    "DeviceMetadataSchemaId": "0f086c54-6e01-4962-87e6-9769af7ad83a",
+    "PointMetadataSchemaId": "4f0e0d97-3ddf-49db-b114-b55bfb077fa4",
+    "ScanConfigurationSchemaId": null
+  }
+]

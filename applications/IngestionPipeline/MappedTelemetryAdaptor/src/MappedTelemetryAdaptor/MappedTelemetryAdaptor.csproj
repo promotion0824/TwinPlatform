@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <UserSecretsId>dotnet-MappedTelemetryAdaptor-a67d2582-9c4f-4335-9668-ece36830326c</UserSecretsId>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+        <AssemblyName>Willow.MappedTelemetryAdaptor</AssemblyName>
+        <RootNamespace>Willow.MappedTelemetryAdaptor</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Azure.Messaging.EventHubs.Processor" Version="5.11.3" />
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
+        <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.20.1" />
+        <PackageReference Include="Polly" Version="8.4.0" />
+        <PackageReference Include="Polly.Contrib.WaitAndRetry" Version="1.1.1" />
+        <PackageReference Include="Willow.Adx" Version="2.2.1849" />
+        <PackageReference Include="Willow.Hosting" Version="2.2.2734" />
+        <PackageReference Include="Willow.LiveData.Pipeline" Version="2.2.2734" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Include="..\..\..\..\..\.github\workflows\iot-services-mapped-telemetry-adaptor-build-action.yml">
+            <Link>iot-services-mapped-telemetry-adaptor-build-action.yml</Link>
+        </Content>
+    </ItemGroup>
+</Project>

@@ -1,0 +1,14 @@
+
+# For local docker run, get secrets from local system env vars and rest from .env file
+# TODO: appinsights connstr should be coming from env, but not reading properly
+docker run --rm -it -p 8080:8080 --env-file docker.env `
+    -e AZURE_OPENAI_API_KEY `
+    -e VECTOR_STORE_APIKEY `
+    -e LANGCHAIN_API_KEY `
+    copilot:latest
+
+docker build --pull --rm -f "CopilotPythonHost\Dockerfile" -t copilot:latest "CopilotPythonHost" 
+
+docker exec -it running_image /bin/bash
+
+docker images | findstr copilot

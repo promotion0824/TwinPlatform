@@ -1,0 +1,33 @@
+name: Update Nuget Credentials
+description: Updates thwe WillowNuget source in a nuget.config file with the necessary credentails
+
+inputs:
+  nugetFilePath:
+    description: Path to the nuget file to update
+    required: true
+  sourceUrl:
+    description: The package source url
+    required: true
+  sourceName:
+    description: The name of the source in the config file
+    required: true
+  patToken:
+    description: PAT Token
+    required: true
+
+runs:
+  using: composite
+  steps:
+
+    # For docker builds to access nuget packages in Azure DevOps we need to update the nuget.config file
+    # to add authentication through a personal access token with package:read permissions
+  - name: Update Nuget Config
+    shell: bash
+    env:
+      source: ${{ inputs.sourceUrl }}
+      config: ${{ inputs.nugetFilePath }}
+      patToken: ${{ inputs.patToken }}
+      name: ${{ inputs.sourceName }}
+    run: |
+      dotnet nuget remove source ${{ env.name }} --configfile ${{ env.config }}
+      dotnet nuget add source ${{ env.source }} --name ${{ env.name }} --username pat --password ${{ env.patToken }} --store-password-in-clear-text --configfile ${{ env.config }}

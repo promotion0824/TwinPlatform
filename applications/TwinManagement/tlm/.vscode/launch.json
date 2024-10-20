@@ -1,0 +1,27 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Willow.TwinLifecycleManagement.Web",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build-TLM",
+      "program": "${workspaceFolder}/Willow.TwinLifecycleManagement.Web/bin/Debug/net8.0/Willow.TwinLifecycleManagement.Web.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/Willow.TwinLifecycleManagement.Web",
+      "stopAtEntry": false,
+      "console": "integratedTerminal",
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+      },
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "sourceFileMap": {
+        "/Views": "${workspaceFolder}/Views"
+      },
+      "requireExactSource": true
+    }
+  ]
+}

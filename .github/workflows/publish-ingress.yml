@@ -1,0 +1,81 @@
+name: Publish Ingress
+
+run-name: Build and Publish the image
+
+on:
+  push:
+    branches:
+      - main
+      - releases/real-estate/*
+    paths:
+      - extensions/real-estate/infrastructure/ingress/**
+      - .github/workflows/publish-ingress.yml
+  pull_request:
+    branches:
+      - main
+      - releases/real-estate/*
+    paths:
+      - extensions/real-estate/infrastructure/ingress/**
+      - .github/workflows/publish-ingress.yml
+
+env:
+  projectPath: "extensions/real-estate/infrastructure/ingress"
+  majorVersion: 1
+  imageName: ingress
+  productName: willowplatform
+  devAcr: "crwildevshared01.azurecr.io"
+  prodAcr: "crwilprdshared01.azurecr.io"
+
+jobs:
+  Docker_Build_Push:
+    name: Build image and push image to ACR
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Build Number
+        uses: ./.github/actions/semantic_build_numbers
+        with:
+          majorVersion: ${{ env.majorVersion }}
+
+      # Commenting out step as the sandbox acr was deleted by AppSec automation. If this is still needed
+      # please contact Doug Hopper
+      # - name: Build and push the Docker image Sandbox
+      #  uses: ./.github/actions/docker/push
+      #  with:
+      #    imageName: ${{ env.imageName }}
+      #    productName: ${{ env.productName }}
+      #    dockerfile: ${{ env.projectPath }}/Dockerfile
+      #    dockerContext: ${{ env.projectPath }}
+      #    alwaysPush: true
+      #    dockerRegistry: ${{ vars.SANDBOX_ACR_HOSTNAME }}
+      #    dockerUsername: ${{ vars.SANDBOX_ACR_USERNAME }}
+      #    dockerPassword: ${{ secrets.SANDBOX_ACR_PASSWORD }}
+      #    version: ${{ env.BuildId }}
+
+      - name: Build and push the Docker image Dev
+        uses: ./.github/actions/docker/push
+        with:
+          imageName: ${{ env.imageName }}
+          productName: ${{ env.productName }}
+          dockerfile: ${{ env.projectPath }}/Dockerfile
+          dockerContext: ${{ env.projectPath }}
+          alwaysPush: true
+          dockerRegistry: ${{ env.devAcr }}
+          dockerUsername: ${{ vars.CLIENT_ID }}
+          dockerPassword: ${{ secrets.CLIENT_SECRET }}
+          version: ${{ env.BuildId }}
+
+      - name: Build and push the Docker image Prd
+        uses: ./.github/actions/docker/push
+        with:
+          imageName: ${{ env.imageName }}
+          productName: ${{ env.productName }}
+          dockerfile: ${{ env.projectPath }}/Dockerfile
+          dockerContext: ${{ env.projectPath }}
+          alwaysPush: true
+          dockerRegistry: ${{ env.prodAcr }}
+          dockerUsername: ${{ vars.PROD_ACR_CLIENT_ID }}
+          dockerPassword: ${{ secrets.PROD_ACR_CLIENT_SECRET }}
+          version: ${{ env.BuildId }}

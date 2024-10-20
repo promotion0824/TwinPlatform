@@ -1,0 +1,1 @@
+INSERT INTO [dbo].[PointType] ([Id],[Name]) VALUES (5, 'Sum')

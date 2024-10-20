@@ -1,0 +1,198 @@
+name: Docker Build and Push with GitVersioning
+description: Build docker image and push to ACR using GitVersion versioning
+
+inputs:
+  botToken:
+    description: Bot Token for the SVC bot
+    required: true
+  containerAppName:
+    description: Name of the ACA container app
+    required: false
+  clientId:
+    description: Client ID of service principal with access to the acr
+    required: true
+  clientSecret:
+    description: Client Secret of service principal with access to the acr
+    required:
+      true
+  dockerfile:
+    description: Dockerfile
+    required: true
+  dockerContext:
+    description: Docker context path
+    default: '.'
+  gitHubToken:
+    description: GitHub PAT
+    required: true
+  imageName:
+    description: Image Name
+    required: true
+  infraProjectPath:
+    description: Path to the application directory in IAD repo
+    required: false
+  majorVersion:
+    description: Major version
+    required: false
+    default: 1
+  nonProdAcrClientId:
+    description: Non-Prod ACR Client ID
+    required: true
+  nonProdAcrClientSecret:
+    description: Non-Prod ACR Client Secret
+    required: true
+  prodAcrClientId:
+    description: Non-Prod ACR Client ID
+    required: true
+  prodAcrClientSecret:
+    description: Non-Prod ACR Client Secret
+    required: true
+  productName:
+    description: Product Name
+    required: true
+  tenantId:
+    description: Tenant ID of service principal with access to the acr service
+    required: true
+  directoryBuildPropsPath:
+    description: Path to the Directory.Build.props file
+    required: false
+    default: './Directory.Build.props'
+
+runs:
+  using: composite
+  steps:
+    - uses: actions/checkout@v4
+      name: Checkout
+      with:
+        fetch-depth: 0
+
+    - name: Run Gitversions
+      id: gitversion
+      uses: WillowInc/.github/.github/actions/generate-versions@main
+      with:
+        GITHUB_TOKEN: ${{ env.githubToken }}
+
+    - name: Set Version using Directory.build.props
+      uses: WillowInc/.github/.github/actions/azure-set-version@main
+      with:
+        Version: ${{ steps.gitversion.outputs.semVer  }}
+        AssemblyVersion: ${{ steps.gitversion.outputs.assemblySemVer  }}
+        AssemblyFileVersion: ${{ steps.gitversion.outputs.majorMinorPatch  }}
+        AssemblyInformationalVersion: ${{ steps.gitversion.outputs.informationalVersion  }}
+        DirectoryBuildPropPath: ${{ inputs.directoryBuildPropsPath }}
+
+    - name: Add Authenticated Github Nuget Source
+      shell: bash
+      run: |
+        dotnet nuget remove source WillowGithub
+        dotnet nuget add source "https://nuget.pkg.github.com/WillowInc/index.json" --name WillowGithub --username gh --password ${{ inputs.gitHubToken }} --store-password-in-clear-text --configfile ./NuGet.Config
+
+    - name: Evaluate Push
+      id: evaluate-push
+      shell: pwsh
+      run: |
+        # only don't push to ACRs if manually triggered and pushToDevAcr is false
+        # if not manually triggered then always push to ACRs
+        $tagArray = [System.Collections.ArrayList]@()
+
+        $pushToDevAcr = 'true'
+        If ( '${{ github.event_name }}' -eq 'workflow_dispatch') { $pushToDevAcr = '${{ github.event.inputs.pushToDevAcr }}' }
+        write-output "pushToDevAcr=$pushToDevAcr" >> $Env:GITHUB_STEP_SUMMARY
+        write-output "pushToDevAcr=$pushToDevAcr" >> $Env:GITHUB_OUTPUT
+
+        # only push to prd acr when build from release branch
+        $pushToPrdAcr = 'false'
+        If ('${{ github.ref }}' -like 'refs/heads/release/*') {
+          $pushToPrdAcr = 'true'
+        }
+
+        If ('${{ github.event_name }}' -eq 'workflow_dispatch') {
+          $pushToPrdAcr = '${{ github.event.inputs.pushToPrdAcr }}'
+        }
+
+        write-output "pushToPrdAcr=$pushToPrdAcr" >> $Env:GITHUB_STEP_SUMMARY
+        write-output "pushToPrdAcr=$pushToPrdAcr" >> $Env:GITHUB_OUTPUT
+
+        # Add tags to the tagArray for push to dev/nonprod
+        If ($pushToDevAcr -eq 'true') {
+          $tagArray.Add("crwildevshared01.azurecr.io/${{ inputs.imageName }}:${{ env.GitVersion_SemVer }}")
+          $tagArray.Add("nonprodplatformsharedcr.azurecr.io/${{ inputs.imageName }}:${{ env.GitVersion_SemVer }}")
+          $tagArray.Add("nonprodplatformsharedcr.azurecr.io/${{ inputs.imageName }}:latest")
+        }
+
+        # Add tags to tagArry for push to prd/prod
+        If ($pushToPrdAcr -eq 'true') {
+          $tagArray.Add("crwilprdshared01.azurecr.io/${{ inputs.imageName }}:${{ env.GitVersion_SemVer }}")
+          $tagArray.Add("prodplatformsharedcr.azurecr.io/${{ inputs.imageName }}:${{ env.GitVersion_SemVer }}")
+          $tagArray.Add("prodplatformsharedcr.azurecr.io/${{ inputs.imageName }}:latest")
+        }
+
+        write-output "tagArray=$($tagArray -join ',')" >> $Env:GITHUB_STEP_SUMMARY
+        write-output "tagArray=$($tagArray -join ',')" >> $Env:GITHUB_OUTPUT
+
+    - name: Login to Single Tenant Dev ACR
+      if: ${{ steps.evaluate-push.outputs.pushToDevAcr == 'true' }}
+      uses: docker/login-action@v2
+      with:
+        registry: crwildevshared01.azurecr.io
+        username: ${{ inputs.nonProdAcrClientId }}
+        password: ${{ inputs.nonProdAcrClientSecret }}
+
+    - name: Login to Single Tenant Prod ACR
+      if: ${{ steps.evaluate-push.outputs.pushToPrdAcr == 'true' }}
+      uses: docker/login-action@v2
+      with:
+        registry: crwilprdshared01.azurecr.io
+        username: ${{ inputs.prodAcrClientId }}
+        password: ${{ inputs.prodAcrClientSecret }}
+
+    - name: Login to NonProd ACR
+      if: ${{ steps.evaluate-push.outputs.pushToDevAcr == 'true' }}
+      uses: docker/login-action@v2
+      with:
+        registry: nonprodplatformsharedcr.azurecr.io
+        username: ${{ inputs.clientId }}
+        password: ${{ inputs.clientSecret }}
+
+    - name: Login to Prod ACR
+      if: ${{ steps.evaluate-push.outputs.pushToPrdAcr == 'true' }}
+      uses: docker/login-action@v2
+      with:
+        registry: prodplatformsharedcr.azurecr.io
+        username: ${{ inputs.clientId }}
+        password: ${{ inputs.clientSecret }}
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+
+    - name: Docker Build
+      uses: docker/build-push-action@v5
+      with:
+        context: ${{ inputs.dockerContext }}
+        build-args: |
+          VERSION=${{ env.GitVersion_SemVer }}
+          NUGET_AUTH_TOKEN=${{ inputs.gitHubToken }}
+          NPM_AUTH_TOKEN=${{ inputs.gitHubToken }}
+        file: ${{ inputs.dockerfile }}
+        push: true
+        tags: ${{ steps.evaluate-push.outputs.tagArray }}
+
+    - name: Bump image version (Dev)
+      uses: WillowInc/.github/.github/actions/bump-version@main
+      if: ${{ steps.evaluate-push.outputs.pushToDevAcr == 'true' && (contains(github.ref, 'refs/heads/main') || contains(github.ref, 'refs/heads/release/')) }}
+      with:
+        team-name: ${{ inputs.productName }}
+        project-path: ${{ inputs.infraProjectPath }}
+        image: ${{ inputs.imageName }}:${{ env.GitVersion_SemVer }}
+        bot-token: ${{ inputs.botToken }}
+        container-name: ${{ inputs.containerAppName }}
+
+    - name: Bump image version (Prd)
+      uses: WillowInc/.github/.github/actions/bump-version@main
+      if: ${{ steps.evaluate-push.outputs.pushToPrdAcr == 'true' && (contains(github.ref, 'refs/heads/main') || contains(github.ref, 'refs/heads/release/')) }}
+      with:
+        team-name: ${{ inputs.productName }}
+        project-path: ${{ inputs.infraProjectPath }}
+        image: ${{ inputs.imageName }}:${{ env.GitVersion_SemVer }}
+        appsettings: "appsettings.prd.json"
+        bot-token: ${{ inputs.botToken }}
+        container-name: ${{ inputs.containerAppName }}

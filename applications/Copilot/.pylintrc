@@ -1,0 +1,10 @@
+
+
+# example: https://github.com/pylint-dev/pylint/blob/main/examples/pylintrc
+
+[MESSAGES CONTROL]
+disable = using-constant-test,
+    fixme,
+    pointless-string-statement,
+    broad-exception-raised,
+    trailing-whitespace,

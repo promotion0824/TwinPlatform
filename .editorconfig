@@ -1,0 +1,81 @@
+root=true
+
+[*]
+end_of_line=lf
+charset=utf-8
+trim_trailing_whitespace=true
+insert_final_newline = true
+
+[*.cs]
+indent_style=space
+indent_size=4
+tab_width=4
+
+[*.{js,ts,tsx,json}]
+indent_style=space
+indent_size=2
+
+dotnet_sort_system_directives_first = true
+
+# Forward the 'cancellationtoken' parameter or pass in 'CancellationToken.None' explicitly to indicate intentionally not propagating the token
+dotnet_diagnostic.CA2016.severity = error
+
+# Use the LoggerMessage delegates
+dotnet_diagnostic.CA1848.severity = silent
+
+# LiteralsShouldBeSpelledCorrectly
+dotnet_diagnostic.CA2204.severity = error
+
+# Named placeholders in the logging message template should not be comprised of only numeric characters
+dotnet_diagnostic.CA2253.severity = error
+
+# Dont use( $"Log: {thing}") in logs. Use ("Log: {thing}", thing) instead
+dotnet_diagnostic.CA2254.severity = error
+
+# Missing XML comment for publicly visible type or member
+dotnet_diagnostic.CS1591.severity = none
+
+# IDE0005: Using directive is unnecessary.
+dotnet_diagnostic.IDE0005.severity = error
+
+# 'using' statement can be simplified
+dotnet_diagnostic.IDE0063.severity = none
+
+# 'new' expression can be simplified
+dotnet_diagnostic.IDE0090.severity = none
+
+# InvalidSettingsFile - The stylecop.json settings file could not be loaded due to a deserialization error.
+dotnet_diagnostic.SA0002.severity = error
+
+# PrefixLocalCallsWithThis - A call to an instance member of the local class or a base class is not prefixed with 'this.', within a C# code file.
+dotnet_diagnostic.SA1101.severity = none
+
+# SplitParametersMustStartOnLineAfterDeclaration - The parameters to a C# method or indexer call or declaration span across multiple lines, but the first parameter does not start on the line after the opening bracket.
+dotnet_diagnostic.SA1116.severity = none
+
+# ElementsMustBeOrderedByAccess - 'public' members should come before 'private' members
+dotnet_diagnostic.SA1202.severity = none
+
+# ConstantsMustAppearBeforeFields - A constant field is placed beneath a non-constant field.
+dotnet_diagnostic.SA1203.severity = none
+
+# StaticElementsMustAppearBeforeInstanceElements - A static element is positioned beneath an instance element of the same type.
+dotnet_diagnostic.SA1204.severity = none
+
+# ReadonlyElementsMustAppearBeforeNonReadonlyElements - A readonly field is positioned beneath a non-readonly field.
+dotnet_diagnostic.SA1214.severity = none
+
+# FileMayOnlyContainASingleType - A C# code file contains more than one unique type.
+dotnet_diagnostic.SA1402.severity = none
+
+# StatementMustNotBeOnSingleLine - A C# statement containing opening and closing braces is written completely on a single line.
+dotnet_diagnostic.SA1501.severity = none
+
+# ElementMustNotBeOnSingleLine - A C# element containing opening and closing braces is written completely on a single line.
+dotnet_diagnostic.SA1502.severity = none
+
+# Elements should be documented
+dotnet_diagnostic.SA1600.severity = none
+
+# The file header is missing or not located at the top of the file
+dotnet_diagnostic.SA1633.severity = none

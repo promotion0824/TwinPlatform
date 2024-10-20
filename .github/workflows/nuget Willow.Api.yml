@@ -1,0 +1,42 @@
+name: "Nuget Willow.Api"
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - libraries/Willow.Api/Willow.Api.Authentication/**
+      - libraries/Willow.Api/Willow.Api.Authorization/**
+      - libraries/Willow.Api/Willow.Api.Binding/**
+      - libraries/Willow.Api/Willow.Api.Client.Sdk/**
+      - libraries/Willow.Api/Willow.Api.Common/**
+      - libraries/Willow.Api/Willow.Api.Logging/**
+      - libraries/Willow.Api/Willow.Api.Swagger/**
+  pull_request:
+    paths:
+      - libraries/Willow.Api/Willow.Api.Authentication/**
+      - libraries/Willow.Api/Willow.Api.Authorization/**
+      - libraries/Willow.Api/Willow.Api.Binding/**
+      - libraries/Willow.Api/Willow.Api.Client.Sdk/**
+      - libraries/Willow.Api/Willow.Api.Common/**
+      - libraries/Willow.Api/Willow.Api.Logging/**
+      - libraries/Willow.Api/Willow.Api.Swagger/**
+
+env:
+  buildConfiguration: Release
+  srcProjectDir: "libraries/Willow.Api"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Nuget Build and Push action
+        uses: WillowInc/.github/.github/actions/nuget-build-push@main
+        with:
+          buildConfiguration: ${{ env.buildConfiguration}}
+          srcProjectDir: ${{ env.srcProjectDir}}
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          pushPackages: ${{ github.event_name == 'push' }}
+          directoryBuildPropPath: ${{ github.workspace }}/.config/common.props

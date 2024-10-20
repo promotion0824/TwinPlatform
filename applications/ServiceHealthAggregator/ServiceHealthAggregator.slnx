@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Build.targets" />
+    <File Path="README.md" />
+  </Folder>
+  <Folder Name="/.github/">
+    <File Path="..\..\.github\workflows\service-health-aggregator.yml" />
+  </Folder>
+  <Project Path="src\ServiceHealthAggregator\ServiceHealthAggregator.csproj" />
+  <Project Path="src\SnowflakeHealth\SnowflakeHealth.csproj" Type="Classic C#" />
+</Solution>

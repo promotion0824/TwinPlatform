@@ -1,0 +1,293 @@
+name: "Connector Reliability Monitor"
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - applications/ConnectorManagement/ConnectorReliabilityMonitor/**
+      - .github/workflows/connector-reliability-monitor.yml
+
+  pull_request:
+    branches:
+      - main
+    paths:
+      - applications/ConnectorManagement/ConnectorReliabilityMonitor/**
+      - .github/workflows/connector-reliability-monitor.yml
+
+  workflow_dispatch:
+    inputs:
+      pushToDevAcr:
+        type: boolean
+        description: Push to single tenant dev acr
+        default: true
+      pushToPrdAcr:
+        type: boolean
+        description: Push to single tenant prd acr
+        default: false
+
+env:
+  buildConfiguration: Release
+  mainProject: ConnectorReliabilityMonitor
+  imageName: connector-reliability-monitor
+  productName: iot-services
+  majorVersion: 1
+  projectPath: applications/ConnectorManagement/ConnectorReliabilityMonitor
+  srcProjectDir: src/ConnectorReliabilityMonitor
+  testProjectDir: test/ConnectorReliabilityMonitor.Tests
+  infraProjectPath: Applications/IoTServices.LiveData
+  containerName: connector-reliability-monitor
+
+jobs:
+  calculate_git_version:
+    uses: ./.github/workflows/calculate-git-version.yml
+
+  build_application:
+    name: Build, Test and Publish
+    runs-on: ubuntu-latest
+    needs:
+      - calculate_git_version
+    env:
+      DirectoryBuildPropPath: .config/common.props
+      fullSemVer: ${{ needs.calculate_git_version.outputs.fullSemVer }}
+      assemblySemVer: ${{ needs.calculate_git_version.outputs.assemblySemVer }}
+      informationalVersion: ${{ needs.calculate_git_version.outputs.informationalVersion}}
+      nuGetVersion: ${{ needs.calculate_git_version.outputs.nuGetVersion}}
+      majorMinorPatch: ${{ needs.calculate_git_version.outputs.majorMinorPatch }}
+
+    steps:
+      - name: "Checkout Repository"
+        uses: actions/checkout@v4
+
+      - name: Stamp Build Version
+        uses: ./.github/actions/stamp-build-version
+        with:
+          directoryBuildPropPath: ${{ env.DirectoryBuildPropPath }}
+          assemblySemVer: ${{ env.assemblySemVer }}
+          majorMinorPatch: ${{ env.majorMinorPatch }}
+          informationalVersion: ${{ env.informationalVersion }}
+          nuGetVersion: ${{ env.nuGetVersion }}
+          fullSemVer: ${{ env.fullSemVer }}
+
+      - name: Update Nuget Config Credentials
+        uses: WillowInc/TwinPlatform/.github/actions/update-nuget-credentials@main
+        with:
+          sourceUrl: https://nuget.pkg.github.com/willowinc/index.json
+          sourceName: WillowGithub
+          nugetFilePath: NuGet.Config
+          patToken: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set SDK version
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.x'
+
+      - name: Restore src nuget packages
+        run: |
+          dotnet restore ${{ env.projectPath }}/${{ env.srcProjectDir }}
+
+      - name: Restore test nuget packages
+        run: |
+          dotnet restore ${{ env.projectPath }}/${{ env.testProjectDir }}
+
+      - name: Build src Project
+        run: |
+          dotnet build ${{ env.projectPath }}/${{ env.srcProjectDir }} --no-restore -c ${{ env.buildConfiguration }}
+
+      - name: Build test Project
+        run: |
+          dotnet build ${{ env.projectPath }}/${{ env.testProjectDir }} --no-restore -c ${{ env.buildConfiguration }}
+
+      - name: DotNet Test
+        shell: bash
+        run: |
+          dotnet test ${{ env.projectPath }}/${{ env.testProjectDir }} --logger "trx;LogFileName=TestResults.trx" /p:CollectCoverage=true /p:CoverletOutputFormat=opencover --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=cobertura,opencover
+
+      - name: Generate Test Reports
+        shell: bash
+        run: |
+          dotnet tool install -g dotnet-reportgenerator-globaltool
+          reportgenerator -reports:**/coverage.opencover.xml -targetdir:CodeCoverage -reporttypes:Cobertura -classfilters:'"-Willow.*'
+
+      - name: Publish Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        if: always()
+        with:
+          trx_files: "**/*.trx"
+
+      - name: Code Coverage Report
+        uses: irongut/CodeCoverageSummary@v1.3.0
+        with:
+          filename: CodeCoverage/Cobertura.xml
+          badge: true
+          fail_below_min: true
+          format: markdown
+          hide_branch_rate: false
+          hide_complexity: false
+          indicators: true
+          output: both
+          thresholds: '0 50'
+
+      - name: Code Coverage Output
+        shell: bash
+        run: |
+          echo '### Coverage thresholds 0 50 :dragon_face:' >> $GITHUB_STEP_SUMMARY
+          cat code-coverage-results.md >> $GITHUB_STEP_SUMMARY
+
+      - name: Add Coverage PR Comment
+        uses: marocchino/sticky-pull-request-comment@v2
+        if: github.event_name == 'pull_request'
+        with:
+          header: ${{ env.testProjectDir }}-coverage
+          path: code-coverage-results.md
+
+      - name: NET Publish Web
+        working-directory: ${{ env.projectPath }}/${{ env.srcProjectDir }}
+        run: |
+          dotnet publish ${{ env.mainProject }}.csproj -c ${{ env.buildConfiguration }} -o ./dotnet-webapp --no-restore --no-build
+
+      - name: Upload NET Publish Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: dotnetfiles
+          path: ${{ env.projectPath }}/${{ env.srcProjectDir }}/dotnet-webapp
+          retention-days: 1
+
+
+  build_push_docker:
+    name: Build docker image
+    runs-on: ubuntu-latest
+    if: ${{ !github.event.pull_request }}
+    needs:
+      - calculate_git_version
+      - build_application
+    env:
+      semVer: ${{ needs.calculate_git_version.outputs.semVer }}
+      escapedBranchName: ${{ needs.calculate_git_version.outputs.escapedBranchName }}
+      versionSourceSha: ${{ needs.calculate_git_version.outputs.versionSourceSha }}
+    steps:
+      - name: "Checkout Repository"
+        uses: actions/checkout@v4
+
+      - name: Download dotnetfiles artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: dotnetfiles
+          path: ${{ env.projectPath }}/${{ env.srcProjectDir }}/bin/Release/net8.0/publish
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Docker Build
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ${{ env.projectPath }}/${{ env.srcProjectDir }}/Dockerfile
+          load: true
+          tags: |
+            crwildevshared01.azurecr.io/${{ env.imageName }}:${{ env.semVer }}
+            crwilprdshared01.azurecr.io/${{ env.imageName }}:${{ env.semVer }}
+            branch-${{ env.escapedBranchName }}
+            ${{ env.versionSourceSha }}
+
+      - name: Evaluate Push
+        id: evaluate-push
+        shell: pwsh
+        run: |
+          # only don't push to ACRs if manually triggered and pushToDevAcr is false
+          # if not manually triggered then always push to ACRs
+          $tagArray = [System.Collections.ArrayList]@()
+
+          $pushToDevAcr = 'true'
+          If ( '${{ github.event_name }}' -eq 'workflow_dispatch') { $pushToDevAcr = '${{ github.event.inputs.pushToDevAcr }}' }
+          write-output "pushToDevAcr=$pushToDevAcr" >> $Env:GITHUB_STEP_SUMMARY
+          write-output "pushToDevAcr=$pushToDevAcr" >> $Env:GITHUB_OUTPUT
+
+          # only push to prd acr when build from release branch
+          $pushToPrdAcr = 'false'
+          If ('${{ github.ref }}' -like 'refs/heads/release/*') {
+            $pushToPrdAcr = 'true'
+          }
+
+          If ('${{ github.event_name }}' -eq 'workflow_dispatch') {
+            $pushToPrdAcr = '${{ github.event.inputs.pushToPrdAcr }}'
+          }
+
+          write-output "pushToPrdAcr=$pushToPrdAcr" >> $Env:GITHUB_STEP_SUMMARY
+          write-output "pushToPrdAcr=$pushToPrdAcr" >> $Env:GITHUB_OUTPUT
+
+          # Add tags to the tagArray for push to dev/nonprod
+          If ($pushToDevAcr -eq 'true') {
+            $tagArray.Add("crwildevshared01.azurecr.io/${{ env.imageName }}:${{ env.semVer }}")
+          }
+
+          # Add tags to tagArry for push to prd/prod
+          If ($pushToPrdAcr -eq 'true') {
+            $tagArray.Add("crwilprdshared01.azurecr.io/${{ env.imageName }}:${{ env.semVer }}")
+          }
+
+          write-output "tagArray=$($tagArray -join ',')" >> $Env:GITHUB_STEP_SUMMARY
+          write-output "tagArray=$($tagArray -join ',')" >> $Env:GITHUB_OUTPUT
+
+      - name: Login to Single Tenant Dev ACR
+        if: ${{ steps.evaluate-push.outputs.pushToDevAcr == 'true' }}
+        uses: docker/login-action@v2
+        with:
+          registry: crwildevshared01.azurecr.io
+          username: ${{ vars.NONPROD_ACR_CLIENT_ID }}
+          password: ${{ secrets.NONPROD_ACR_CLIENT_SECRET }}
+
+      - name: Login to Single Tenant Prod ACR
+        if: ${{ steps.evaluate-push.outputs.pushToPrdAcr == 'true' }}
+        uses: docker/login-action@v2
+        with:
+          registry: crwilprdshared01.azurecr.io
+          username: ${{ vars.PROD_ACR_CLIENT_ID }}
+          password: ${{ secrets.PROD_ACR_CLIENT_SECRET }}
+
+      - name: Push to Single Tenant Dev
+        if: ${{ steps.evaluate-push.outputs.pushToDevAcr == 'true' }}
+        run: |
+          for i in $(echo ${{ steps.evaluate-push.outputs.tagArray }} | sed "s/,/ /g")
+          do
+              docker push $i
+          done
+      - name: Push to Single Tenant Prod
+        if: ${{ steps.evaluate-push.outputs.pushToPrdAcr == 'true' }}
+        run: |
+          for i in $(echo ${{ steps.evaluate-push.outputs.tagArray }} | sed "s/,/ /g")
+          do
+              docker push $i
+          done
+
+      - name: Bump image version (Dev)
+        uses: WillowInc/.github/.github/actions/bump-version@main
+        if: ${{ steps.evaluate-push.outputs.pushToDevAcr == 'true' && (contains(github.ref, 'refs/heads/main') || contains(github.ref, 'refs/heads/release/')) }}
+        with:
+          team-name: ${{ env.productName }}
+          project-path: ${{ env.infraProjectPath }}
+          image: ${{ env.imageName }}:${{ env.semVer }}
+          bot-token: ${{ secrets.SVC_BOT_TOKEN }}
+          container-name: ${{ env.containerName }}
+
+      - name: Bump image version (Ephemeral)
+        uses: WillowInc/.github/.github/actions/bump-version@main
+        if: ${{ steps.evaluate-push.outputs.pushToDevAcr == 'true' && (!contains(github.ref, 'refs/heads/main') || !contains(github.ref, 'refs/heads/release/'))}}
+        with:
+          team-name: ${{ env.productName }}
+          project-path: ${{ env.infraProjectPath }}
+          appsettings: "appsettings.dev-eus-00-wil-in1.json"
+          image: ${{ env.imageName }}:${{ env.semVer }}
+          bot-token: ${{ secrets.SVC_BOT_TOKEN }}
+          container-name: ${{ env.containerName }}
+
+      - name: Bump image version (Prd)
+        uses: WillowInc/.github/.github/actions/bump-version@main
+        if: ${{ steps.evaluate-push.outputs.pushToPrdAcr == 'true' && (contains(github.ref, 'refs/heads/main') || contains(github.ref, 'refs/heads/release/')) }}
+        with:
+          team-name: ${{ env.productName }}
+          project-path: ${{ env.infraProjectPath }}
+          image: ${{ env.imageName }}:${{ env.semVer }}
+          appsettings: "appsettings.prd.json"
+          bot-token: ${{ secrets.SVC_BOT_TOKEN }}
+          container-name: ${{ env.containerName }}

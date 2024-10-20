@@ -1,0 +1,44 @@
+name: Deploy to Azure App Services
+
+inputs:
+  appName:
+    description: Application service name e.g. wil-dev-adm-aue1-adminportalxl
+    required: true
+  artifactName:
+    description: Uploaded artifact name
+    required: true
+  artifactFile:
+    description: Uploaded artifact file name
+    required: true
+  clientId:
+    description: Client ID of service principal with access to the app service
+    required: true
+  tenantId:
+    description: Tenant ID of service principal with access to the app service
+    required: true
+  subscriptionId:
+    description: Subscription ID of service principal with access to the app service
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Download Artifact
+      uses: actions/download-artifact@v3
+      with:
+        name: ${{ inputs.artifactName }}
+        path: ${{ github.workspace }}/download
+    - name: Extract Files
+      run: Expand-Archive -Path ${{ github.workspace }}/download/${{ inputs.artifactFile }} -DestinationPath ${{ github.workspace }}/release
+      shell: pwsh
+    - name: Log into Azure
+      uses: azure/login@v1
+      with:
+        client-id: ${{ inputs.clientId }}
+        tenant-id: ${{ inputs.tenantId }}
+        subscription-id: ${{ inputs.subscriptionId }}
+    - name: Deploy to App Service
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: ${{ inputs.appName }}
+        package: '${{ github.workspace }}/release'

@@ -1,0 +1,54 @@
+name: "Platform - NotificationCore - Build"
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - extensions/real-estate/back-end/NotificationCore/**
+  pull_request:
+    branches:
+      - main
+    paths:
+      - extensions/real-estate/back-end/NotificationCore/**
+      - .github/workflows/platform_notificationcore_build.yml
+  workflow_dispatch:
+    inputs:
+      push_dev_acr:
+        description: "Push to dev ACR"
+        type: boolean
+        required: false
+        default: false
+      push_prd_acr:
+        description: "Push to prod ACR"
+        type: boolean
+        required: false
+        default: false
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
+jobs:
+  build_test_docker_push:
+    uses: WillowInc/.github/.github/workflows/Reusable-Build-Test-Docker-Push.yml@main
+    with:
+      path: "extensions/real-estate/back-end/NotificationCore/src/NotificationCore"
+      restore_path: "extensions/real-estate/back-end/NotificationCore"
+      test_path: "extensions/real-estate/back-end/NotificationCore/test/NotificationCore.Test"
+      build_configuration: "Release"
+      directoryBuildPropsPath: .config/common.props
+      coverage_thresholds: '0 50'
+      nugetConfigLocation: NuGet.Config
+      containerAppName: "NotificationCore"
+      dockerfile: "extensions/real-estate/back-end/NotificationCore/src/NotificationCore/Dockerfile"
+      dockerContext: "extensions/real-estate/back-end/NotificationCore/src/NotificationCore"
+      imageName: "willowplatform/notificationcore"
+      infraProjectPath: "Applications/WillowTwin"
+      productName: "willowplatform"
+      clientId: "empty"
+      pushDevAcr: "${{inputs.push_dev_acr}}"
+      pushPrdAcr: "${{inputs.push_prd_acr}}"
+    secrets:
+      githubToken: ${{ secrets.GITHUB_TOKEN }}
+      botToken: ${{ secrets.SVC_BOT_TOKEN }}

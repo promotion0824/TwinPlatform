@@ -1,0 +1,81 @@
+parameters:
+  - name: imageName
+    type: string
+  - name: buildNumber
+    type: string
+
+steps:
+  - task: AzureCLI@2
+    displayName: Promote image to production with build version tag
+    inputs:
+      azureSubscription: "az-products-shared-Twin Platform"
+      addSpnToEnvironment: true
+      scriptType: "bash"
+      scriptLocation: "inlineScript"
+      inlineScript: |
+        az acr import \
+          --name 'prodplatformsharedcr' \
+          --source '${{ parameters.imageName }}' \
+          --image '${{ parameters.imageName }}:${{ parameters.buildNumber }}' \
+          --registry /subscriptions/178b67d7-b6fd-46db-b4a3-b57f8a6b045f/resourceGroups/nonprod-platformshared/providers/Microsoft.ContainerRegistry/registries/nonprodplatformsharedcr
+
+  # - task: AzureCLI@2
+  #   displayName: Promote image to Sandbox with build version tag
+  #   inputs:
+  #     azureSubscription: "az-sandbox-shared-Twin Platform"  # An Azure Resource Manager service connection (not a subscription name)
+  #     addSpnToEnvironment: true
+  #     scriptType: "bash"
+  #     scriptLocation: "inlineScript"
+  #     inlineScript: |
+  #       az acr import \
+  #         --name 'crwilsbxshared01' \
+  #         --source '${{ parameters.imageName }}' \
+  #         --image '${{ parameters.imageName }}:${{ parameters.buildNumber }}' \
+  #         --registry /subscriptions/249312a0-4c83-4d73-b164-18c5e72bf219/resourceGroups/rg-sbx/providers/Microsoft.ContainerRegistry/registries/crwilsbxshared01
+
+
+  #not working. the service connection is invalid
+  #- task: AzureCLI@2
+  #  displayName: Promote image to Single Tenant DEV with build version tag
+  #  inputs:
+  #    azureSubscription: "acr-dev-shared-Twin Platform"  # An Azure Resource Manager service connection (not a subscription name)
+  #    addSpnToEnvironment: true
+  #    scriptType: "bash"
+  #    scriptLocation: "inlineScript"
+  #    inlineScript: |
+  #      az acr import \
+  #        --name 'crwildevshared01' \
+  #        --source '${{ parameters.imageName }}' \
+  #        --image '${{ parameters.imageName }}:${{ parameters.buildNumber }}' \
+  #        --registry /subscriptions/178b67d7-b6fd-46db-b4a3-b57f8a6b045f/resourceGroups/nonprod-platformshared/providers/Microsoft.ContainerRegistry/registries/nonprodplatformsharedcr
+
+  #this is now done by the Rules Engine github workflow
+  #- task: AzureCLI@2
+  #  displayName: Promote image to Single Tenant PRD with build version tag
+  #  inputs:
+  #    azureSubscription: "az-prd-shared-Twin Platform"  # An Azure Resource Manager service connection (not a subscription name)
+  #    addSpnToEnvironment: true
+  #    scriptType: "bash"
+  #    scriptLocation: "inlineScript"
+  #    inlineScript: |
+  #      az acr import \
+  #        --name 'crwilprdshared01' \
+  #        --source '${{ parameters.imageName }}' \
+  #        --image '${{ parameters.imageName }}:${{ parameters.buildNumber }}' \
+  #        --registry /subscriptions/178b67d7-b6fd-46db-b4a3-b57f8a6b045f/resourceGroups/nonprod-platformshared/providers/Microsoft.ContainerRegistry/registries/nonprodplatformsharedcr
+
+  # Not needed, we don't need a latest tag for production
+  # - task: AzureCLI@2
+  #   displayName: Promote image to production as latest
+  #   inputs:
+  #     azureSubscription: 'az-products-shared-Twin Platform'
+  #     addSpnToEnvironment: true
+  #     scriptType: 'bash'
+  #     scriptLocation: 'inlineScript'
+  #     inlineScript: |
+  #       az acr import `
+  #         --name 'prodplatformsharedcr' `
+  #         --source '${{ parameters.imageName }}' `
+  #         --image '${{ parameters.imageName }}:latest' `
+  #         --registry /subscriptions/178b67d7-b6fd-46db-b4a3-b57f8a6b045f/resourceGroups/nonprod-platformshared/providers/Microsoft.ContainerRegistry/registries/nonprodplatformsharedcr `
+  #         --force

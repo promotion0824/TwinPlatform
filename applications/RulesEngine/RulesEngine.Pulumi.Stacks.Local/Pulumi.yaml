@@ -1,0 +1,3 @@
+name: RulesEngine.Pulumi.Stacks.Local
+runtime: dotnet
+description: Willow Platform Rule Engine Local Development

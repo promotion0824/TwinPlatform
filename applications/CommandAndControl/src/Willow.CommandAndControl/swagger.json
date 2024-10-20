@@ -1,0 +1,1922 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "ActiveControl API",
+    "description": "ActiveControl API",
+    "version": "0.0"
+  },
+  "paths": {
+    "/api/activity-logs": {
+      "post": {
+        "tags": [
+          "Activity Logs"
+        ],
+        "summary": "Get activity logs",
+        "description": "Get activity logs",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ActivityLogsRequestDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActivityLogsResponseDtoBatchDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/activity-logs/export/{format}": {
+      "post": {
+        "tags": [
+          "Activity Logs"
+        ],
+        "summary": "Export activity logs",
+        "description": "Export activity logs",
+        "operationId": "export-activity-logs",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "path",
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "default": "csv"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DownloadActivityLogsRequestDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/config": {
+      "get": {
+        "tags": [
+          "Config"
+        ],
+        "summary": "Get the application configuration",
+        "description": "Get the application configuration",
+        "operationId": "get-config",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/contact-us": {
+      "post": {
+        "tags": [
+          "Contact"
+        ],
+        "summary": "Contact us",
+        "description": "Contact us",
+        "operationId": "contact-us",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostContactUsDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/requested-commands/conflicts": {
+      "post": {
+        "tags": [
+          "Requested Commands"
+        ],
+        "summary": "Get all conflicting requested commands",
+        "description": "Get all conflicting requested commands",
+        "operationId": "get-requested-commands",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetConflictingCommandsRequestDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConflictingCommandsResponseDtoBatchDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/requested-commands/conflicts/{connectorId}/{twinId}": {
+      "post": {
+        "tags": [
+          "Requested Commands"
+        ],
+        "summary": "Get conflicting requested commands by Twin ID",
+        "description": "Get conflicting requested commands by Twin ID",
+        "operationId": "get-requested-commands-by-twinid",
+        "parameters": [
+          {
+            "name": "connectorId",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "twinId",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConflictingCommandsResponseDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/requested-commands/{id}": {
+      "get": {
+        "tags": [
+          "Requested Commands"
+        ],
+        "summary": "Get a requested command by ID",
+        "description": "Get a requested command by ID",
+        "operationId": "get-requested-command-by-id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RequestedCommandResponseDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/requested-commands/present-values": {
+      "post": {
+        "tags": [
+          "Requested Commands"
+        ],
+        "summary": "Get present values for requested commands by externalIds ",
+        "description": "Get present values for requested commands by externalIds",
+        "operationId": "get-requested-commands-present-values",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetConflictingCommandPresentValuesRequestDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetConflictingCommandPresentValuesResponseDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/requested-commands/status": {
+      "post": {
+        "tags": [
+          "Requested Commands"
+        ],
+        "summary": "Update the status of a single requested command",
+        "description": "Update the status of a single requested command",
+        "operationId": "update-requested-command-status",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateRequestedCommandStatusDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/requested-commands/statuses": {
+      "post": {
+        "tags": [
+          "Requested Commands"
+        ],
+        "summary": "Update the status of many requested commands",
+        "description": "Update the status of many requested commands",
+        "operationId": "update-requested-commands-status",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateRequestedCommandsStatusDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/requested-commands": {
+      "post": {
+        "tags": [
+          "Requested Commands"
+        ],
+        "summary": "Create a requested command",
+        "description": "Create a requested command",
+        "operationId": "create-requested-commands",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostRequestedCommandsDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    },
+    "/api/requested-commands/count": {
+      "post": {
+        "tags": [
+          "Requested Commands"
+        ],
+        "summary": "Get a count of all conflicting requested commands",
+        "description": "Get a count of all conflicting requested commands",
+        "operationId": "get-requested-commands-count",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetRequestedCommandsCountDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/resolved-commands": {
+      "post": {
+        "tags": [
+          "Resolved Commands"
+        ],
+        "summary": "Get all resolved commands",
+        "description": "Get all resolved commands",
+        "operationId": "get-resolved-commands",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetResolvedCommandsDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResolvedCommandResponseDtoBatchDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/resolved-commands/{id}": {
+      "get": {
+        "tags": [
+          "Resolved Commands"
+        ],
+        "summary": "Get a resolved command by ID",
+        "description": "Get a resolved command by ID",
+        "operationId": "get-resolved-command-by-id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResolvedCommandResponseDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/api/resolved-commands/{id}/status": {
+      "post": {
+        "tags": [
+          "Resolved Commands"
+        ],
+        "summary": "Update the status of a resolved command",
+        "description": "Update the status of a resolved command",
+        "operationId": "update-resolved-command-status",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateResolvedCommandStatusDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateResolvedCommandStatusResponseDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/sites": {
+      "get": {
+        "tags": [
+          "Sites"
+        ],
+        "summary": "Get all sites",
+        "description": "Get all sites",
+        "operationId": "get-all-sites",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SiteDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/statistics": {
+      "post": {
+        "tags": [
+          "Statistics"
+        ],
+        "summary": "Get statistics",
+        "description": "Get statistics",
+        "operationId": "get-statistics",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetStatisticsRequestDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetStatisticsResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/user/permissions": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Get user's permissions",
+        "description": "Get user's permissions",
+        "operationId": "get-user-permissions",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserPermissionsResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ActivityLogsRequestDto": {
+        "type": "object",
+        "properties": {
+          "sortSpecifications": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SortSpecificationDto"
+            },
+            "nullable": true
+          },
+          "filterSpecifications": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FilterSpecificationDto"
+            },
+            "nullable": true
+          },
+          "page": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Get Activity Log Feeds Request DTO."
+      },
+      "ActivityLogsResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Gets or sets the Id of the activity log entry.",
+            "format": "uuid"
+          },
+          "requestedCommandId": {
+            "type": "string",
+            "description": "Gets or sets the Id of the resolved command.",
+            "format": "uuid"
+          },
+          "resolvedCommandId": {
+            "type": "string",
+            "description": "Gets or sets the Id of the resolved command.",
+            "format": "uuid",
+            "nullable": true
+          },
+          "commandName": {
+            "type": "string",
+            "description": "Gets or sets the requested command's name.",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "description": "Gets or sets the date when the activity was logged.",
+            "format": "date-time"
+          },
+          "type": {
+            "$ref": "#/components/schemas/ActivityType"
+          },
+          "value": {
+            "type": "number",
+            "description": "Gets or sets the set value of the command.",
+            "format": "double",
+            "nullable": true
+          },
+          "unit": {
+            "type": "string",
+            "description": "Gets or sets the unit of the value.",
+            "nullable": true
+          },
+          "startTime": {
+            "type": "string",
+            "description": "Gets or sets the requested command's start time.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "endTime": {
+            "type": "string",
+            "description": "Gets or sets the requested command's end time.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "siteId": {
+            "type": "string",
+            "description": "Gets or sets the site ID.",
+            "nullable": true
+          },
+          "ruleId": {
+            "type": "string",
+            "description": "Gets or sets the rule ID.",
+            "nullable": true
+          },
+          "twinId": {
+            "type": "string",
+            "description": "Gets or sets the twin ID.",
+            "nullable": true
+          },
+          "externalId": {
+            "type": "string",
+            "description": "Gets or sets the external ID.",
+            "nullable": true
+          },
+          "connectorId": {
+            "type": "string",
+            "description": "Gets or sets the connector ID.",
+            "nullable": true
+          },
+          "location": {
+            "type": "string",
+            "description": "Gets or sets the location of the twin.",
+            "nullable": true
+          },
+          "isCapabilityOf": {
+            "type": "string",
+            "description": "Gets or sets the asset that hosts the capability.",
+            "nullable": true
+          },
+          "isHostedBy": {
+            "type": "string",
+            "description": "Gets or sets the asset that hosts the twin.",
+            "nullable": true
+          },
+          "updatedBy": {
+            "$ref": "#/components/schemas/User"
+          },
+          "extraInfo": {
+            "type": "string",
+            "description": "Gets or sets any extra information logged as part of the activity.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Get Activity Log Feeds."
+      },
+      "ActivityLogsResponseDtoBatchDto": {
+        "type": "object",
+        "properties": {
+          "total": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ActivityLogsResponseDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ActivityType": {
+        "enum": [
+          "Received",
+          "Approved",
+          "Retracted",
+          "Executed",
+          "Failed",
+          "Cancelled",
+          "Suspended",
+          "MessageSent",
+          "MessageReceivedSuccess",
+          "MessageReceivedFailed",
+          "Completed",
+          "Retried"
+        ],
+        "type": "string",
+        "description": "Type of user command."
+      },
+      "CommandTrendsDto": {
+        "type": "object",
+        "properties": {
+          "categories": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Gets or sets the categories for the chart.",
+            "nullable": true
+          },
+          "dataset": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/CommandsTrendDataSetDto"
+            },
+            "description": "Gets or sets the data sets for the chart.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Command Trends DTO."
+      },
+      "CommandsCountStatisticsDto": {
+        "type": "object",
+        "properties": {
+          "totalRequestedCommands": {
+            "type": "integer",
+            "description": "Gets the total number of requested commands received.",
+            "format": "int32"
+          },
+          "totalApprovedCommands": {
+            "type": "integer",
+            "description": "Gets the total number of approved commands.",
+            "format": "int32"
+          },
+          "totalExecutedCommands": {
+            "type": "integer",
+            "description": "Gets the total number of resolved commands that have been executed.",
+            "format": "int32"
+          },
+          "totalCancelledCommands": {
+            "type": "integer",
+            "description": "Gets the total number of resolved commands that have been cancelled.",
+            "format": "int32"
+          },
+          "totalSuspendedCommands": {
+            "type": "integer",
+            "description": "Gets the total number of currently suspended commands.",
+            "format": "int32"
+          },
+          "totalFailedCommands": {
+            "type": "integer",
+            "description": "Gets ttotal number of failed commands.",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Statistics counts for commands."
+      },
+      "CommandsTrendDataSetDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Gets or sets the name of the data set.",
+            "nullable": true
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "description": "Gets or sets the list of data.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Command Trend Data Set."
+      },
+      "ConflictingCommandsResponseDto": {
+        "type": "object",
+        "properties": {
+          "twinId": {
+            "type": "string",
+            "description": "Gets or sets the Twin ID or Sensor ID.",
+            "nullable": true
+          },
+          "externalId": {
+            "type": "string",
+            "description": "Gets or sets the External ID.",
+            "nullable": true
+          },
+          "presentValue": {
+            "type": "number",
+            "description": "Gets or sets the present value of Twin.",
+            "format": "double",
+            "nullable": true
+          },
+          "siteId": {
+            "type": "string",
+            "description": "Gets or sets the site ID.",
+            "nullable": true
+          },
+          "connectorId": {
+            "type": "string",
+            "description": "Gets or sets the connector ID.",
+            "nullable": true
+          },
+          "location": {
+            "type": "string",
+            "description": "Gets or sets the location name.",
+            "nullable": true
+          },
+          "isHostedBy": {
+            "type": "string",
+            "description": "Gets or sets the asset that hosts the twin.",
+            "nullable": true
+          },
+          "isCapabilityOf": {
+            "type": "string",
+            "description": "Gets or sets the asset which has this capability.",
+            "nullable": true
+          },
+          "unit": {
+            "type": "string",
+            "description": "Gets or sets the unit of the twin's value.",
+            "nullable": true
+          },
+          "locations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LocationTwin"
+            },
+            "description": "Gets or sets the location hierarchy of the twin.",
+            "nullable": true
+          },
+          "key": {
+            "type": "string",
+            "description": "Gets a deterministic key of the conflicting command.",
+            "nullable": true,
+            "readOnly": true
+          },
+          "receivedDate": {
+            "type": "string",
+            "description": "Gets the date of the earliest received command.",
+            "format": "date-time"
+          },
+          "commands": {
+            "type": "integer",
+            "description": "Gets the number of commands.",
+            "format": "int32"
+          },
+          "approvedCommands": {
+            "type": "integer",
+            "description": "Gets the number of approved commands.",
+            "format": "int32"
+          },
+          "requests": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RequestedCommandResponseDto"
+            },
+            "description": "Gets or sets the ist of Requested Commands.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Conflicting Commands Response Dto."
+      },
+      "ConflictingCommandsResponseDtoBatchDto": {
+        "type": "object",
+        "properties": {
+          "total": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ConflictingCommandsResponseDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DownloadActivityLogsRequestDto": {
+        "type": "object",
+        "properties": {
+          "sortSpecifications": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SortSpecificationDto"
+            },
+            "description": "Gets the specifications on how to sort the batch.",
+            "nullable": true
+          },
+          "filterSpecifications": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FilterSpecificationDto"
+            },
+            "description": "Gets the specifications on how to filter the batch.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Request to download activity logs."
+      },
+      "FilterSpecificationDto": {
+        "required": [
+          "field",
+          "operator"
+        ],
+        "type": "object",
+        "properties": {
+          "field": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "operator": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "logicalOperator": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetConflictingCommandPresentValuesRequestDto": {
+        "type": "object",
+        "properties": {
+          "externalIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Gets or sets external Ids.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Get Conflicting Commands."
+      },
+      "GetConflictingCommandPresentValuesResponseDto": {
+        "type": "object",
+        "properties": {
+          "presentValues": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "number",
+              "format": "double"
+            },
+            "description": "Gets or Sets PresentValues.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Conflicting Commands Response Dto."
+      },
+      "GetConflictingCommandsRequestDto": {
+        "type": "object",
+        "properties": {
+          "sortSpecifications": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SortSpecificationDto"
+            },
+            "nullable": true
+          },
+          "filterSpecifications": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FilterSpecificationDto"
+            },
+            "nullable": true
+          },
+          "page": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Get Conflicting Commands."
+      },
+      "GetRequestedCommandsCountDto": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "$ref": "#/components/schemas/RequestedCommandStatus"
+          },
+          "filterSpecifications": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FilterSpecificationDto"
+            },
+            "description": "Gets the filter specifications.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Get count of Requested Commands."
+      },
+      "GetResolvedCommandsDto": {
+        "type": "object",
+        "properties": {
+          "sortSpecifications": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SortSpecificationDto"
+            },
+            "nullable": true
+          },
+          "filterSpecifications": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FilterSpecificationDto"
+            },
+            "nullable": true
+          },
+          "page": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Get Resolved Commands."
+      },
+      "GetStatisticsRequestDto": {
+        "type": "object",
+        "properties": {
+          "siteId": {
+            "type": "string",
+            "description": "Gets or sets the site ID for search.",
+            "nullable": true
+          },
+          "startDate": {
+            "type": "string",
+            "description": "Gets or sets the start date for the search.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "endDate": {
+            "type": "string",
+            "description": "Gets or sets the end date for the search.",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Get Statistics Request DTO."
+      },
+      "GetStatisticsResponseDto": {
+        "type": "object",
+        "properties": {
+          "commandsCount": {
+            "$ref": "#/components/schemas/CommandsCountStatisticsDto"
+          },
+          "recentActivities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ActivityLogsResponseDto"
+            },
+            "description": "Gets or sets the list of most Recent Activities.",
+            "nullable": true
+          },
+          "commandTrends": {
+            "$ref": "#/components/schemas/CommandTrendsDto"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Statistics for commands."
+      },
+      "LocationTwin": {
+        "type": "object",
+        "properties": {
+          "TwinId": {
+            "type": "string",
+            "description": "Gets the twin ID.",
+            "nullable": true
+          },
+          "LocationModelId": {
+            "type": "string",
+            "description": "Gets the location model ID.",
+            "nullable": true
+          },
+          "LocationTwinId": {
+            "type": "string",
+            "description": "Gets the location twin ID.",
+            "nullable": true
+          },
+          "order": {
+            "type": "integer",
+            "description": "Gets the location order.",
+            "format": "int32"
+          },
+          "model": {
+            "type": "string",
+            "description": "Gets the last part of the model name.",
+            "nullable": true,
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents a location twin."
+      },
+      "PostContactUsDto": {
+        "type": "object",
+        "properties": {
+          "requestersName": {
+            "type": "string",
+            "description": "Gets the requester's name.",
+            "nullable": true
+          },
+          "requestersEmail": {
+            "type": "string",
+            "description": "Gets the requester's email.",
+            "nullable": true
+          },
+          "comment": {
+            "type": "string",
+            "description": "Gets the comment.",
+            "nullable": true
+          },
+          "url": {
+            "type": "string",
+            "description": "Gets the URL of the page the user was on.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Contact us."
+      },
+      "PostRequestedCommandsDto": {
+        "type": "object",
+        "properties": {
+          "commands": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RequestedCommandDto"
+            },
+            "description": "List of commands.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Creates new command."
+      },
+      "ProblemDetails": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": { }
+      },
+      "RelationshipDto": {
+        "type": "object",
+        "properties": {
+          "twinId": {
+            "type": "string",
+            "description": "The ID of the twin at the other end of the relationship.",
+            "nullable": true
+          },
+          "twinName": {
+            "type": "string",
+            "description": "The name of the twin at the other end of the relationship.",
+            "nullable": true
+          },
+          "modelId": {
+            "type": "string",
+            "description": "The ID of the model at the other end of the relationship.",
+            "nullable": true
+          },
+          "relationshipType": {
+            "type": "string",
+            "description": "The type of the relationship.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Represents a relationship twin."
+      },
+      "RequestedCommandDto": {
+        "type": "object",
+        "properties": {
+          "connectorId": {
+            "type": "string",
+            "description": "Connector Id.",
+            "nullable": true
+          },
+          "commandName": {
+            "type": "string",
+            "description": "Name of Command.",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "description": "Type of Command.",
+            "nullable": true
+          },
+          "twinId": {
+            "type": "string",
+            "description": "Twin Id.",
+            "nullable": true
+          },
+          "externalId": {
+            "type": "string",
+            "description": "External Id from Mapped.",
+            "nullable": true
+          },
+          "ruleId": {
+            "type": "string",
+            "description": "RulesEngine Rule Id with which the command was generated.",
+            "nullable": true
+          },
+          "value": {
+            "type": "number",
+            "description": "Value.",
+            "format": "double"
+          },
+          "unit": {
+            "type": "string",
+            "description": "Unit of given value.",
+            "nullable": true
+          },
+          "startTime": {
+            "type": "string",
+            "description": "Desired time to apply given value.",
+            "format": "date-time"
+          },
+          "endTime": {
+            "type": "string",
+            "description": "Desired end time.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "relationships": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RelationshipDto"
+            },
+            "description": "This twin's relationships and ancestors.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Post command detail."
+      },
+      "RequestedCommandResponseDto": {
+        "type": "object",
+        "properties": {
+          "twinId": {
+            "type": "string",
+            "description": "Gets or sets the Twin ID or Sensor ID.",
+            "nullable": true
+          },
+          "externalId": {
+            "type": "string",
+            "description": "Gets or sets the External ID.",
+            "nullable": true
+          },
+          "presentValue": {
+            "type": "number",
+            "description": "Gets or sets the present value of Twin.",
+            "format": "double",
+            "nullable": true
+          },
+          "siteId": {
+            "type": "string",
+            "description": "Gets or sets the site ID.",
+            "nullable": true
+          },
+          "location": {
+            "type": "string",
+            "description": "Gets or sets the location name.",
+            "nullable": true
+          },
+          "isHostedBy": {
+            "type": "string",
+            "description": "Gets or sets the asset that hosts the twin.",
+            "nullable": true
+          },
+          "isCapabilityOf": {
+            "type": "string",
+            "description": "Gets or sets the asset which has this capability.",
+            "nullable": true
+          },
+          "unit": {
+            "type": "string",
+            "description": "Gets or sets the unit of the twin's value.",
+            "nullable": true
+          },
+          "locations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LocationTwin"
+            },
+            "description": "Gets or sets the location hierarchy of the twin.",
+            "nullable": true
+          },
+          "id": {
+            "type": "string",
+            "description": "Gets the ID.",
+            "format": "uuid"
+          },
+          "status": {
+            "type": "string",
+            "description": "Gets or sets the requested command can be Pending when entered, approved to be resolved, and rejected.",
+            "nullable": true
+          },
+          "ruleId": {
+            "type": "string",
+            "description": "Gets a uniquely identifiable ID of the Rules Engine rule.",
+            "nullable": true
+          },
+          "commandName": {
+            "type": "string",
+            "description": "Gets the command name.",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "description": "Gets the command type.",
+            "nullable": true
+          },
+          "connectorId": {
+            "type": "string",
+            "description": "Gets the Connector ID.",
+            "nullable": true
+          },
+          "value": {
+            "type": "number",
+            "description": "Gets the value for the command.",
+            "format": "double"
+          },
+          "startTime": {
+            "type": "string",
+            "description": "Gets the time from which the value should be applied. This may correspond to an actual start time for an executed command but it might not if conflict resolution decides otherwise.",
+            "format": "date-time"
+          },
+          "endTime": {
+            "type": "string",
+            "description": "Gets the command end time.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "createdDate": {
+            "type": "string",
+            "description": "Gets the command created date.",
+            "format": "date-time"
+          },
+          "receivedDate": {
+            "type": "string",
+            "description": "Gets the received date of the command.",
+            "format": "date-time"
+          },
+          "statusUpdatedBy": {
+            "$ref": "#/components/schemas/User"
+          },
+          "lastUpdated": {
+            "type": "string",
+            "description": "Gets the command last updated date.",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Response Dto for Requested Commands."
+      },
+      "RequestedCommandStatus": {
+        "enum": [
+          "Pending",
+          "Approved",
+          "Rejected"
+        ],
+        "type": "string",
+        "description": "Requested Command Status."
+      },
+      "ResolvedCommandAction": {
+        "enum": [
+          "Cancel",
+          "Execute",
+          "Suspend",
+          "Unsuspend",
+          "Retry"
+        ],
+        "type": "string",
+        "description": "Actions for resolved commands."
+      },
+      "ResolvedCommandResponseDto": {
+        "type": "object",
+        "properties": {
+          "twinId": {
+            "type": "string",
+            "description": "Gets or sets the Twin ID or Sensor ID.",
+            "nullable": true
+          },
+          "externalId": {
+            "type": "string",
+            "description": "Gets or sets the External ID.",
+            "nullable": true
+          },
+          "presentValue": {
+            "type": "number",
+            "description": "Gets or sets the present value of Twin.",
+            "format": "double",
+            "nullable": true
+          },
+          "siteId": {
+            "type": "string",
+            "description": "Gets or sets the site ID.",
+            "nullable": true
+          },
+          "location": {
+            "type": "string",
+            "description": "Gets or sets the location name.",
+            "nullable": true
+          },
+          "isHostedBy": {
+            "type": "string",
+            "description": "Gets or sets the asset that hosts the twin.",
+            "nullable": true
+          },
+          "isCapabilityOf": {
+            "type": "string",
+            "description": "Gets or sets the asset which has this capability.",
+            "nullable": true
+          },
+          "unit": {
+            "type": "string",
+            "description": "Gets or sets the unit of the twin's value.",
+            "nullable": true
+          },
+          "locations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LocationTwin"
+            },
+            "description": "Gets or sets the location hierarchy of the twin.",
+            "nullable": true
+          },
+          "id": {
+            "type": "string",
+            "description": "Gets the ID.",
+            "format": "uuid"
+          },
+          "commandName": {
+            "type": "string",
+            "description": "Gets or sets the command name.",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "description": "Gets or sets the command type.",
+            "nullable": true
+          },
+          "ruleId": {
+            "type": "string",
+            "description": "Gets a uniquely identifiable ID of RulesEngine rule.",
+            "nullable": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/ResolvedCommandStatus"
+          },
+          "connectorId": {
+            "type": "string",
+            "description": "Gets the connector ID.",
+            "nullable": true
+          },
+          "value": {
+            "type": "number",
+            "description": "Gets the value for the command.",
+            "format": "double"
+          },
+          "startTime": {
+            "type": "string",
+            "description": "Gets the actual time from which the value should be applied.",
+            "format": "date-time"
+          },
+          "endTime": {
+            "type": "string",
+            "description": "Gets the time until other values cannot be applied.",
+            "format": "date-time",
+            "nullable": true
+          },
+          "comment": {
+            "type": "string",
+            "description": "Gets or sets the comment provided during the last status update.",
+            "nullable": true
+          },
+          "createdDate": {
+            "type": "string",
+            "description": "Gets the command created date.",
+            "format": "date-time"
+          },
+          "statusUpdatedBy": {
+            "$ref": "#/components/schemas/User"
+          },
+          "lastUpdated": {
+            "type": "string",
+            "description": "Gets the command last updated date.",
+            "format": "date-time"
+          },
+          "requestId": {
+            "type": "string",
+            "description": "Gets the requested command ID.",
+            "format": "uuid"
+          },
+          "actions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Gets or sets the list of allowed actions.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Response Dto for Resolved Commands."
+      },
+      "ResolvedCommandResponseDtoBatchDto": {
+        "type": "object",
+        "properties": {
+          "total": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResolvedCommandResponseDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ResolvedCommandStatus": {
+        "enum": [
+          "Scheduled",
+          "Suspended",
+          "Failed",
+          "Executing",
+          "Cancelled",
+          "Executed",
+          "Approved"
+        ],
+        "type": "string",
+        "description": "Resolved Command Status."
+      },
+      "SiteDto": {
+        "type": "object",
+        "properties": {
+          "siteId": {
+            "type": "string",
+            "description": "Gets or sets the site ID.",
+            "nullable": true
+          },
+          "siteName": {
+            "type": "string",
+            "description": "Gets or sets the site name or address of the site.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Site Information."
+      },
+      "SortSpecificationDto": {
+        "type": "object",
+        "properties": {
+          "field": {
+            "type": "string",
+            "nullable": true
+          },
+          "sort": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateRequestedCommandStatusDto": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "type": "string",
+            "description": "Requested Command can only be Approve or Reject.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Update RequestedCommand Status as Approved or Rejected."
+      },
+      "UpdateRequestedCommandsStatusDto": {
+        "type": "object",
+        "properties": {
+          "approveIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The ids of the approved commands.",
+            "nullable": true
+          },
+          "rejectIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The ids of the rejected commands.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Update RequestedCommand Status as Approved or Rejected."
+      },
+      "UpdateResolvedCommandStatusDto": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "$ref": "#/components/schemas/ResolvedCommandAction"
+          },
+          "comment": {
+            "type": "string",
+            "description": "Gets any comment provided with the status update.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Update ResolvedCommand Status."
+      },
+      "UpdateResolvedCommandStatusResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Id of Resolved Command.",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Approved Command Response."
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Gets or sets the full name.",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "description": "Gets or sets the email address.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Application User."
+      },
+      "UserPermissionsResponseDto": {
+        "type": "object",
+        "properties": {
+          "permissions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Gets or sets the list of user's permissions.",
+            "nullable": true
+          },
+          "isAdminUser": {
+            "type": "boolean",
+            "description": "Gets or sets a value indicating whether the user has admin privileges."
+          }
+        },
+        "additionalProperties": false,
+        "description": "User Management Authorization Response ."
+      }
+    }
+  }
+}

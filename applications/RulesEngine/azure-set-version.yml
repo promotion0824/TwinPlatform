@@ -1,0 +1,24 @@
+# azure-set-version
+
+parameters:
+  - name: majorVersion
+    type: number
+    default: 0
+  - name: path
+    type: string
+    default: core/RulesEngine/Directory.Build.props
+
+steps:
+- task: Bash@3
+  displayName: 'Stamp Directory.Build.props with version and copyright'
+  inputs:
+    targetType: 'inline'
+    script: |
+      buildnumber=$(Build.BuildNumber)
+      year=2023
+      sed -i -E "s|(<Version>)([0-9]+\.[0-9]+\.[0-9]+)(<\/Version>)|\1${buildnumber}\3|" ${{ parameters.path }}
+      sed -i -E "s|(<AssemblyVersion>)([0-9]+\.[0-9]+\.[0-9]+)(<\/AssemblyVersion>)|\1${buildnumber}\3|" ${{ parameters.path }}
+      sed -i -E "s|(<AssemblyFileVersion>)([0-9]+\.[0-9]+\.[0-9]+)(<\/AssemblyFileVersion>)|\1${buildnumber}\3|" ${{ parameters.path }}
+      sed -i -E "s|(<Copyright>)(.*)(<\/Copyright>)|\1${year}\3|" ${{ parameters.path }}
+      echo Updated version numbers in Directory.Build.props ${buildnumber}
+      cat ${{ parameters.path }}

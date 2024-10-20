@@ -1,0 +1,2500 @@
+﻿{
+    "content": [
+        {
+            "twin": {
+                "$dtId": "BPY-1MW-EM-DP-08-ME-AC-10-1-ElecPhase1ActivePowerSensor",
+                "$etag": "W/\"8144b802-7896-4f5e-8b04-ca968ab45ed0\"",
+                "$metadata": {
+                    "$model": "dtmi:com:willowinc:ActiveElectricalPowerSensor;1",
+                    "name": {
+                        "lastUpdateTime": "2022-08-02T14:30:13.1815734+00:00"
+                    },
+                    "uniqueID": {
+                        "lastUpdateTime": "2022-08-02T14:30:13.1815734+00:00"
+                    },
+                    "externalID": {
+                        "lastUpdateTime": "2022-08-02T14:30:13.1815734+00:00"
+                    },
+                    "siteID": {
+                        "lastUpdateTime": "2022-08-02T14:30:13.1815734+00:00"
+                    },
+                    "trendID": {
+                        "lastUpdateTime": "2022-08-02T14:30:13.1815734+00:00"
+                    },
+                    "connectorID": {
+                        "lastUpdateTime": "2022-08-02T14:30:13.1815734+00:00"
+                    },
+                    "description": {
+                        "lastUpdateTime": "2022-08-02T14:30:13.1815734+00:00"
+                    },
+                    "unit": {
+                        "lastUpdateTime": "2022-08-02T14:30:13.1815734+00:00"
+                    },
+                    "type": {
+                        "lastUpdateTime": "2022-08-02T14:30:13.1815734+00:00"
+                    },
+                    "tags": {
+                        "lastUpdateTime": "2022-08-02T14:30:13.1815734+00:00"
+                    },
+                    "trendInterval": {
+                        "lastUpdateTime": "2022-08-02T14:30:13.1815734+00:00"
+                    },
+                    "enabled": {
+                        "lastUpdateTime": "2022-08-02T14:30:13.1815734+00:00"
+                    }
+                },
+                "name": "AC-10-1 elec phase 1 active power sensor",
+                "uniqueID": "577de697-04d1-4a35-a088-ef08962bb7db",
+                "externalID": "ns---1---s---mbtcpmaster--167--6--kw1",
+                "siteID": "4e5fc229-ffd9-462a-882b-16b4a63b2a8a",
+                "trendID": "543e591f-1e55-4646-b3de-628a96dc329f",
+                "connectorID": "37db1d34-8a78-4bd1-a63b-614c2f565a8a",
+                "description": "elec phase 1 active power sensor",
+                "unit": "kW",
+                "type": "analog",
+                "tags": {
+                    "sensor": true,
+                    "elec": true,
+                    "power": true
+                },
+                "trendInterval": 900,
+                "enabled": true,
+                "communication": {
+                    "$metadata": {
+                        "protocol": {
+                            "lastUpdateTime": "2022-08-02T14:30:13.1815734Z"
+                        },
+                        "OPCUA": {
+                            "lastUpdateTime": "2022-08-02T14:30:13.1815734Z"
+                        }
+                    },
+                    "protocol": "OPC UA",
+                    "OPCUA": {
+                        "nodeID": "ns=1;s=mbtcpmaster--167--6--kw1"
+                    }
+                },
+                "categorizationProperties": {
+                    "$metadata": {}
+                }
+            }
+        },
+        {
+            "twin": {
+                "$dtId": "BPY-1MW-EM-DP-08-ME-AC-10-1-ElecPhase2ActivePowerSensor",
+                "$etag": "W/\"ffbc4411-3fd1-42bf-b75b-49555f201e4e\"",
+                "$metadata": {
+                    "$model": "dtmi:com:willowinc:ActiveElectricalPowerSensor;1",
+                    "name": {
+                        "lastUpdateTime": "2022-08-02T14:36:30.0874779+00:00"
+                    },
+                    "uniqueID": {
+                        "lastUpdateTime": "2022-08-02T14:36:30.0874779+00:00"
+                    },
+                    "externalID": {
+                        "lastUpdateTime": "2022-08-02T14:36:30.0874779+00:00"
+                    },
+                    "siteID": {
+                        "lastUpdateTime": "2022-08-02T14:36:30.0874779+00:00"
+                    },
+                    "trendID": {
+                        "lastUpdateTime": "2022-08-02T14:36:30.0874779+00:00"
+                    },
+                    "connectorID": {
+                        "lastUpdateTime": "2022-08-02T14:36:30.0874779+00:00"
+                    },
+                    "description": {
+                        "lastUpdateTime": "2022-08-02T14:36:30.0874779+00:00"
+                    },
+                    "unit": {
+                        "lastUpdateTime": "2022-08-02T14:36:30.0874779+00:00"
+                    },
+                    "type": {
+                        "lastUpdateTime": "2022-08-02T14:36:30.0874779+00:00"
+                    },
+                    "tags": {
+                        "lastUpdateTime": "2022-08-02T14:36:30.0874779+00:00"
+                    },
+                    "trendInterval": {
+                        "lastUpdateTime": "2022-08-02T14:36:30.0874779+00:00"
+                    },
+                    "enabled": {
+                        "lastUpdateTime": "2022-08-02T14:36:30.0874779+00:00"
+                    }
+                },
+                "name": "AC-10-1 elec phase 2 active power sensor",
+                "uniqueID": "5ecd66f6-6f16-4b47-8ba0-050fda1d2745",
+                "externalID": "ns---1---s---mbtcpmaster--167--6--kw2",
+                "siteID": "4e5fc229-ffd9-462a-882b-16b4a63b2a8a",
+                "trendID": "d4c69dc1-e5f8-4192-9248-ba4c98fac4b3",
+                "connectorID": "37db1d34-8a78-4bd1-a63b-614c2f565a8a",
+                "description": "elec phase 2 active power sensor",
+                "unit": "kW",
+                "type": "analog",
+                "tags": {
+                    "sensor": true,
+                    "elec": true,
+                    "power": true
+                },
+                "trendInterval": 900,
+                "enabled": true,
+                "communication": {
+                    "$metadata": {
+                        "protocol": {
+                            "lastUpdateTime": "2022-08-02T14:36:30.0874779Z"
+                        },
+                        "OPCUA": {
+                            "lastUpdateTime": "2022-08-02T14:36:30.0874779Z"
+                        }
+                    },
+                    "protocol": "OPC UA",
+                    "OPCUA": {
+                        "nodeID": "ns=1;s=mbtcpmaster--167--6--kw2"
+                    }
+                },
+                "categorizationProperties": {
+                    "$metadata": {}
+                }
+            }
+        },
+        {
+            "twin": {
+                "$dtId": "BPY-1MW-EM-DP-08-ME-AC-10-1-ElecPhase3ActivePowerSensor",
+                "$etag": "W/\"4f3a3132-0ada-407e-9812-708bcb88266b\"",
+                "$metadata": {
+                    "$model": "dtmi:com:willowinc:ActiveElectricalPowerSensor;1",
+                    "name": {
+                        "lastUpdateTime": "2022-08-02T14:17:24.331253+00:00"
+                    },
+                    "uniqueID": {
+                        "lastUpdateTime": "2022-08-02T14:17:24.331253+00:00"
+                    },
+                    "externalID": {
+                        "lastUpdateTime": "2022-08-02T14:17:24.331253+00:00"
+                    },
+                    "siteID": {
+                        "lastUpdateTime": "2022-08-02T14:17:24.331253+00:00"
+                    },
+                    "trendID": {
+                        "lastUpdateTime": "2022-08-02T14:17:24.331253+00:00"
+                    },
+                    "connectorID": {
+                        "lastUpdateTime": "2022-08-02T14:17:24.331253+00:00"
+                    },
+                    "description": {
+                        "lastUpdateTime": "2022-08-02T14:17:24.331253+00:00"
+                    },
+                    "unit": {
+                        "lastUpdateTime": "2022-08-02T14:17:24.331253+00:00"
+                    },
+                    "type": {
+                        "lastUpdateTime": "2022-08-02T14:17:24.331253+00:00"
+                    },
+                    "tags": {
+                        "lastUpdateTime": "2022-08-02T14:17:24.331253+00:00"
+                    },
+                    "trendInterval": {
+                        "lastUpdateTime": "2022-08-02T14:17:24.331253+00:00"
+                    },
+                    "enabled": {
+                        "lastUpdateTime": "2022-08-02T14:17:24.331253+00:00"
+                    }
+                },
+                "name": "AC-10-1 elec phase 3 active power sensor",
+                "uniqueID": "e944f67d-1126-4a18-84f7-9408f08bdbb1",
+                "externalID": "ns---1---s---mbtcpmaster--167--6--kw3",
+                "siteID": "4e5fc229-ffd9-462a-882b-16b4a63b2a8a",
+                "trendID": "1d4df782-85d4-4baf-ad08-9c838513b0fa",
+                "connectorID": "37db1d34-8a78-4bd1-a63b-614c2f565a8a",
+                "description": "elec phase 3 active power sensor",
+                "unit": "kW",
+                "type": "analog",
+                "tags": {
+                    "sensor": true,
+                    "elec": true,
+                    "power": true
+                },
+                "trendInterval": 900,
+                "enabled": true,
+                "communication": {
+                    "$metadata": {
+                        "protocol": {
+                            "lastUpdateTime": "2022-08-02T14:17:24.3312530Z"
+                        },
+                        "OPCUA": {
+                            "lastUpdateTime": "2022-08-02T14:17:24.3312530Z"
+                        }
+                    },
+                    "protocol": "OPC UA",
+                    "OPCUA": {
+                        "nodeID": "ns=1;s=mbtcpmaster--167--6--kw3"
+                    }
+                },
+                "categorizationProperties": {
+                    "$metadata": {}
+                }
+            }
+        },
+        {
+            "twin": {
+                "$dtId": "BPY-1MW-EM-DP-08-ME-AC-10-1-ElecTotalActivePowerSensor",
+                "$etag": "W/\"dae2b605-5ca0-4744-bbf2-d84ac7f4fb1f\"",
+                "$metadata": {
+                    "$model": "dtmi:com:willowinc:ActiveElectricalPowerSensor;1",
+                    "name": {
+                        "lastUpdateTime": "2022-08-02T14:32:11.5187623+00:00"
+                    },
+                    "uniqueID": {
+                        "lastUpdateTime": "2022-08-02T14:32:11.5187623+00:00"
+                    },
+                    "externalID": {
+                        "lastUpdateTime": "2022-08-02T14:32:11.5187623+00:00"
+                    },
+                    "siteID": {
+                        "lastUpdateTime": "2022-08-02T14:32:11.5187623+00:00"
+                    },
+                    "trendID": {
+                        "lastUpdateTime": "2022-08-02T14:32:11.5187623+00:00"
+                    },
+                    "connectorID": {
+                        "lastUpdateTime": "2022-08-02T14:32:11.5187623+00:00"
+                    },
+                    "description": {
+                        "lastUpdateTime": "2022-08-02T14:32:11.5187623+00:00"
+                    },
+                    "unit": {
+                        "lastUpdateTime": "2022-08-02T14:32:11.5187623+00:00"
+                    },
+                    "type": {
+                        "lastUpdateTime": "2022-08-02T14:32:11.5187623+00:00"
+                    },
+                    "tags": {
+                        "lastUpdateTime": "2022-08-02T14:32:11.5187623+00:00"
+                    },
+                    "trendInterval": {
+                        "lastUpdateTime": "2022-08-02T14:32:11.5187623+00:00"
+                    },
+                    "enabled": {
+                        "lastUpdateTime": "2022-08-02T14:32:11.5187623+00:00"
+                    }
+                },
+                "name": "AC-10-1 elec total active power sensor",
+                "uniqueID": "ee58e027-e42c-43e6-8b16-43451c52a9d0",
+                "externalID": "ns---1---s---mbtcpmaster--167--6--kwtotal",
+                "siteID": "4e5fc229-ffd9-462a-882b-16b4a63b2a8a",
+                "trendID": "6b8ee363-7ea6-4450-b22b-a5c90383e7ee",
+                "connectorID": "37db1d34-8a78-4bd1-a63b-614c2f565a8a",
+                "description": "elec total active power sensor",
+                "unit": "kW",
+                "type": "analog",
+                "tags": {
+                    "sensor": true,
+                    "elec": true,
+                    "power": true
+                },
+                "trendInterval": 900,
+                "enabled": true,
+                "communication": {
+                    "$metadata": {
+                        "protocol": {
+                            "lastUpdateTime": "2022-08-02T14:32:11.5187623Z"
+                        },
+                        "OPCUA": {
+                            "lastUpdateTime": "2022-08-02T14:32:11.5187623Z"
+                        }
+                    },
+                    "protocol": "OPC UA",
+                    "OPCUA": {
+                        "nodeID": "ns=1;s=mbtcpmaster--167--6--kwtotal"
+                    }
+                },
+                "categorizationProperties": {
+                    "$metadata": {}
+                }
+            }
+        },
+        {
+            "twin": {
+                "$dtId": "BPY-1MW-EM-DP-13-ME-AC-11-1-ElecPhase1ActivePowerSensor",
+                "$etag": "W/\"38b46892-72f5-4f91-8b89-f8714bda61cd\"",
+                "$metadata": {
+                    "$model": "dtmi:com:willowinc:ActiveElectricalPowerSensor;1",
+                    "name": {
+                        "lastUpdateTime": "2022-08-02T14:28:06.1431333+00:00"
+                    },
+                    "uniqueID": {
+                        "lastUpdateTime": "2022-08-02T14:28:06.1431333+00:00"
+                    },
+                    "externalID": {
+                        "lastUpdateTime": "2022-08-02T14:28:06.1431333+00:00"
+                    },
+                    "siteID": {
+                        "lastUpdateTime": "2022-08-02T14:28:06.1431333+00:00"
+                    },
+                    "trendID": {
+                        "lastUpdateTime": "2022-08-02T14:28:06.1431333+00:00"
+                    },
+                    "connectorID": {
+                        "lastUpdateTime": "2022-08-02T14:28:06.1431333+00:00"
+                    },
+                    "description": {
+                        "lastUpdateTime": "2022-08-02T14:28:06.1431333+00:00"
+                    },
+                    "unit": {
+                        "lastUpdateTime": "2022-08-02T14:28:06.1431333+00:00"
+                    },
+                    "type": {
+                        "lastUpdateTime": "2022-08-02T14:28:06.1431333+00:00"
+                    },
+                    "tags": {
+                        "lastUpdateTime": "2022-08-02T14:28:06.1431333+00:00"
+                    },
+                    "trendInterval": {
+                        "lastUpdateTime": "2022-08-02T14:28:06.1431333+00:00"
+                    },
+                    "enabled": {
+                        "lastUpdateTime": "2022-08-02T14:28:06.1431333+00:00"
+                    }
+                },
+                "name": "AC-11-1 elec phase 1 active power sensor",
+                "uniqueID": "05452336-a5c1-49de-9544-460c3db03967",
+                "externalID": "ns---1---s---mbtcpmaster--139--2--kw1",
+                "siteID": "4e5fc229-ffd9-462a-882b-16b4a63b2a8a",
+                "trendID": "87328322-75a4-4f4b-8fd1-a0dbfe83c850",
+                "connectorID": "37db1d34-8a78-4bd1-a63b-614c2f565a8a",
+                "description": "elec phase 1 active power sensor",
+                "unit": "kW",
+                "type": "analog",
+                "tags": {
+                    "sensor": true,
+                    "elec": true,
+                    "power": true
+                },
+                "trendInterval": 900,
+                "enabled": true,
+                "communication": {
+                    "$metadata": {
+                        "protocol": {
+                            "lastUpdateTime": "2022-08-02T14:28:06.1431333Z"
+                        },
+                        "OPCUA": {
+                            "lastUpdateTime": "2022-08-02T14:28:06.1431333Z"
+                        }
+                    },
+                    "protocol": "OPC UA",
+                    "OPCUA": {
+                        "nodeID": "ns=1;s=mbtcpmaster--139--2--kw1"
+                    }
+                },
+                "categorizationProperties": {
+                    "$metadata": {}
+                }
+            }
+        },
+        {
+            "twin": {
+                "$dtId": "BPY-1MW-EM-DP-13-ME-AC-11-1-ElecPhase2ActivePowerSensor",
+                "$etag": "W/\"c928ceb4-0dbf-4b1a-ac88-bcb6ded0431a\"",
+                "$metadata": {
+                    "$model": "dtmi:com:willowinc:ActiveElectricalPowerSensor;1",
+                    "name": {
+                        "lastUpdateTime": "2022-08-02T14:24:30.4154284+00:00"
+                    },
+                    "uniqueID": {
+                        "lastUpdateTime": "2022-08-02T14:24:30.4154284+00:00"
+                    },
+                    "externalID": {
+                        "lastUpdateTime": "2022-08-02T14:24:30.4154284+00:00"
+                    },
+                    "siteID": {
+                        "lastUpdateTime": "2022-08-02T14:24:30.4154284+00:00"
+                    },
+                    "trendID": {
+                        "lastUpdateTime": "2022-08-02T14:24:30.4154284+00:00"
+                    },
+                    "connectorID": {
+                        "lastUpdateTime": "2022-08-02T14:24:30.4154284+00:00"
+                    },
+                    "description": {
+                        "lastUpdateTime": "2022-08-02T14:24:30.4154284+00:00"
+                    },
+                    "unit": {
+                        "lastUpdateTime": "2022-08-02T14:24:30.4154284+00:00"
+                    },
+                    "type": {
+                        "lastUpdateTime": "2022-08-02T14:24:30.4154284+00:00"
+                    },
+                    "tags": {
+                        "lastUpdateTime": "2022-08-02T14:24:30.4154284+00:00"
+                    },
+                    "trendInterval": {
+                        "lastUpdateTime": "2022-08-02T14:24:30.4154284+00:00"
+                    },
+                    "enabled": {
+                        "lastUpdateTime": "2022-08-02T14:24:30.4154284+00:00"
+                    }
+                },
+                "name": "AC-11-1 elec phase 2 active power sensor",
+                "uniqueID": "12e358af-0f3a-459a-afb7-9fbe4cdda6ad",
+                "externalID": "ns---1---s---mbtcpmaster--139--2--kw2",
+                "siteID": "4e5fc229-ffd9-462a-882b-16b4a63b2a8a",
+                "trendID": "3d60dffa-c2e0-420c-b86e-89f6ebc44e28",
+                "connectorID": "37db1d34-8a78-4bd1-a63b-614c2f565a8a",
+                "description": "elec phase 2 active power sensor",
+                "unit": "kW",
+                "type": "analog",
+                "tags": {
+                    "sensor": true,
+                    "elec": true,
+                    "power": true
+                },
+                "trendInterval": 900,
+                "enabled": true,
+                "communication": {
+                    "$metadata": {
+                        "protocol": {
+                            "lastUpdateTime": "2022-08-02T14:24:30.4154284Z"
+                        },
+                        "OPCUA": {
+                            "lastUpdateTime": "2022-08-02T14:24:30.4154284Z"
+                        }
+                    },
+                    "protocol": "OPC UA",
+                    "OPCUA": {
+                        "nodeID": "ns=1;s=mbtcpmaster--139--2--kw2"
+                    }
+                },
+                "categorizationProperties": {
+                    "$metadata": {}
+                }
+            }
+        },
+        {
+            "twin": {
+                "$dtId": "BPY-1MW-EM-DP-13-ME-AC-11-1-ElecPhase3ActivePowerSensor",
+                "$etag": "W/\"5cd080b5-e398-45d7-a1ec-63dd9d32047e\"",
+                "$metadata": {
+                    "$model": "dtmi:com:willowinc:ActiveElectricalPowerSensor;1",
+                    "name": {
+                        "lastUpdateTime": "2022-08-02T14:41:02.4582279+00:00"
+                    },
+                    "uniqueID": {
+                        "lastUpdateTime": "2022-08-02T14:41:02.4582279+00:00"
+                    },
+                    "externalID": {
+                        "lastUpdateTime": "2022-08-02T14:41:02.4582279+00:00"
+                    },
+                    "siteID": {
+                        "lastUpdateTime": "2022-08-02T14:41:02.4582279+00:00"
+                    },
+                    "trendID": {
+                        "lastUpdateTime": "2022-08-02T14:41:02.4582279+00:00"
+                    },
+                    "connectorID": {
+                        "lastUpdateTime": "2022-08-02T14:41:02.4582279+00:00"
+                    },
+                    "description": {
+                        "lastUpdateTime": "2022-08-02T14:41:02.4582279+00:00"
+                    },
+                    "unit": {
+                        "lastUpdateTime": "2022-08-02T14:41:02.4582279+00:00"
+                    },
+                    "type": {
+                        "lastUpdateTime": "2022-08-02T14:41:02.4582279+00:00"
+                    },
+                    "tags": {
+                        "lastUpdateTime": "2022-08-02T14:41:02.4582279+00:00"
+                    },
+                    "trendInterval": {
+                        "lastUpdateTime": "2022-08-02T14:41:02.4582279+00:00"
+                    },
+                    "enabled": {
+                        "lastUpdateTime": "2022-08-02T14:41:02.4582279+00:00"
+                    }
+                },
+                "name": "AC-11-1 elec phase 3 active power sensor",
+                "uniqueID": "e458ad68-8bee-41b5-b14a-8a55aa45b9de",
+                "externalID": "ns---1---s---mbtcpmaster--139--2--kw3",
+                "siteID": "4e5fc229-ffd9-462a-882b-16b4a63b2a8a",
+                "trendID": "99a2c38b-e9a5-428d-b5f1-13a9aa2bd96c",
+                "connectorID": "37db1d34-8a78-4bd1-a63b-614c2f565a8a",
+                "description": "elec phase 3 active power sensor",
+                "unit": "kW",
+                "type": "analog",
+                "tags": {
+                    "sensor": true,
+                    "elec": true,
+                    "power": true
+                },
+                "trendInterval": 900,
+                "enabled": true,
+                "communication": {
+                    "$metadata": {
+                        "protocol": {
+                            "lastUpdateTime": "2022-08-02T14:41:02.4582279Z"
+                        },
+                        "OPCUA": {
+                            "lastUpdateTime": "2022-08-02T14:41:02.4582279Z"
+                        }
+                    },
+                    "protocol": "OPC UA",
+                    "OPCUA": {
+                        "nodeID": "ns=1;s=mbtcpmaster--139--2--kw3"
+                    }
+                },
+                "categorizationProperties": {
+                    "$metadata": {}
+                }
+            }
+        },
+        {
+            "twin": {
+                "$dtId": "BPY-1MW-EM-DP-13-ME-AC-11-1-ElecTotalActivePowerSensor",
+                "$etag": "W/\"f6af9ce0-8d54-4001-9815-40f52c196caa\"",
+                "$metadata": {
+                    "$model": "dtmi:com:willowinc:ActiveElectricalPowerSensor;1",
+                    "name": {
+                        "lastUpdateTime": "2022-08-02T14:20:26.2405668+00:00"
+                    },
+                    "uniqueID": {
+                        "lastUpdateTime": "2022-08-02T14:20:26.2405668+00:00"
+                    },
+                    "externalID": {
+                        "lastUpdateTime": "2022-08-02T14:20:26.2405668+00:00"
+                    },
+                    "siteID": {
+                        "lastUpdateTime": "2022-08-02T14:20:26.2405668+00:00"
+                    },
+                    "trendID": {
+                        "lastUpdateTime": "2022-08-02T14:20:26.2405668+00:00"
+                    },
+                    "connectorID": {
+                        "lastUpdateTime": "2022-08-02T14:20:26.2405668+00:00"
+                    },
+                    "description": {
+                        "lastUpdateTime": "2022-08-02T14:20:26.2405668+00:00"
+                    },
+                    "unit": {
+                        "lastUpdateTime": "2022-08-02T14:20:26.2405668+00:00"
+                    },
+                    "type": {
+                        "lastUpdateTime": "2022-08-02T14:20:26.2405668+00:00"
+                    },
+                    "tags": {
+                        "lastUpdateTime": "2022-08-02T14:20:26.2405668+00:00"
+                    },
+                    "trendInterval": {
+                        "lastUpdateTime": "2022-08-02T14:20:26.2405668+00:00"
+                    },
+                    "enabled": {
+                        "lastUpdateTime": "2022-08-02T14:20:26.2405668+00:00"
+                    }
+                },
+                "name": "AC-11-1 elec total active power sensor",
+                "uniqueID": "8a6f0f73-ebc7-41f7-85b6-ef6c073a486b",
+                "externalID": "ns---1---s---mbtcpmaster--139--2--kwtotal",
+                "siteID": "4e5fc229-ffd9-462a-882b-16b4a63b2a8a",
+                "trendID": "faac8f79-2ef4-4a27-aa01-918653d5d733",
+                "connectorID": "37db1d34-8a78-4bd1-a63b-614c2f565a8a",
+                "description": "elec total active power sensor",
+                "unit": "kW",
+                "type": "analog",
+                "tags": {
+                    "sensor": true,
+                    "elec": true,
+                    "power": true
+                },
+                "trendInterval": 900,
+                "enabled": true,
+                "communication": {
+                    "$metadata": {
+                        "protocol": {
+                            "lastUpdateTime": "2022-08-02T14:20:26.2405668Z"
+                        },
+                        "OPCUA": {
+                            "lastUpdateTime": "2022-08-02T14:20:26.2405668Z"
+                        }
+                    },
+                    "protocol": "OPC UA",
+                    "OPCUA": {
+                        "nodeID": "ns=1;s=mbtcpmaster--139--2--kwtotal"
+                    }
+                },
+                "categorizationProperties": {
+                    "$metadata": {}
+                }
+            }
+        },
+        {
+            "twin": {
+                "$dtId": "BPY-1MW-EM-DP-13-ME-AC-12-1-ElecPhase1ActivePowerSensor",
+                "$etag": "W/\"a87bb19c-bc20-49dd-a5ad-27854ae96c44\"",
+                "$metadata": {
+                    "$model": "dtmi:com:willowinc:ActiveElectricalPowerSensor;1",
+                    "name": {
+                        "lastUpdateTime": "2022-08-02T14:32:22.0882713+00:00"
+                    },
+                    "uniqueID": {
+                        "lastUpdateTime": "2022-08-02T14:32:22.0882713+00:00"
+                    },
+                    "externalID": {
+                        "lastUpdateTime": "2022-08-02T14:32:22.0882713+00:00"
+                    },
+                    "siteID": {
+                        "lastUpdateTime": "2022-08-02T14:32:22.0882713+00:00"
+                    },
+                    "trendID": {
+                        "lastUpdateTime": "2022-08-02T14:32:22.0882713+00:00"
+                    },
+                    "connectorID": {
+                        "lastUpdateTime": "2022-08-02T14:32:22.0882713+00:00"
+                    },
+                    "description": {
+                        "lastUpdateTime": "2022-08-02T14:32:22.0882713+00:00"
+                    },
+                    "unit": {
+                        "lastUpdateTime": "2022-08-02T14:32:22.0882713+00:00"
+                    },
+                    "type": {
+                        "lastUpdateTime": "2022-08-02T14:32:22.0882713+00:00"
+                    },
+                    "tags": {
+                        "lastUpdateTime": "2022-08-02T14:32:22.0882713+00:00"
+                    },
+                    "trendInterval": {
+                        "lastUpdateTime": "2022-08-02T14:32:22.0882713+00:00"
+                    },
+                    "enabled": {
+                        "lastUpdateTime": "2022-08-02T14:32:22.0882713+00:00"
+                    }
+                },
+                "name": "AC-12-1 elec phase 1 active power sensor",
+                "uniqueID": "5761c47f-b2ef-4e6e-bff0-d695c517afbe",
+                "externalID": "ns---1---s---mbtcpmaster--139--3--kw1",
+                "siteID": "4e5fc229-ffd9-462a-882b-16b4a63b2a8a",
+                "trendID": "1c9475a8-8b2e-4620-b84f-64ada3197a34",
+                "connectorID": "37db1d34-8a78-4bd1-a63b-614c2f565a8a",
+                "description": "elec phase 1 active power sensor",
+                "unit": "kW",
+                "type": "analog",
+                "tags": {
+                    "sensor": true,
+                    "elec": true,
+                    "power": true
+                },
+                "trendInterval": 900,
+                "enabled": true,
+                "communication": {
+                    "$metadata": {
+                        "protocol": {
+                            "lastUpdateTime": "2022-08-02T14:32:22.0882713Z"
+                        },
+                        "OPCUA": {
+                            "lastUpdateTime": "2022-08-02T14:32:22.0882713Z"
+                        }
+                    },
+                    "protocol": "OPC UA",
+                    "OPCUA": {
+                        "nodeID": "ns=1;s=mbtcpmaster--139--3--kw1"
+                    }
+                },
+                "categorizationProperties": {
+                    "$metadata": {}
+                }
+            }
+        },
+        {
+            "twin": {
+                "$dtId": "BPY-1MW-EM-DP-13-ME-AC-12-1-ElecPhase2ActivePowerSensor",
+                "$etag": "W/\"543bd517-074b-4390-bc54-cc25069ed0a7\"",
+                "$metadata": {
+                    "$model": "dtmi:com:willowinc:ActiveElectricalPowerSensor;1",
+                    "name": {
+                        "lastUpdateTime": "2022-08-02T14:19:39.6683981+00:00"
+                    },
+                    "uniqueID": {
+                        "lastUpdateTime": "2022-08-02T14:19:39.6683981+00:00"
+                    },
+                    "externalID": {
+                        "lastUpdateTime": "2022-08-02T14:19:39.6683981+00:00"
+                    },
+                    "siteID": {
+                        "lastUpdateTime": "2022-08-02T14:19:39.6683981+00:00"
+                    },
+                    "trendID": {
+                        "lastUpdateTime": "2022-08-02T14:19:39.6683981+00:00"
+                    },
+                    "connectorID": {
+                        "lastUpdateTime": "2022-08-02T14:19:39.6683981+00:00"
+                    },
+                    "description": {
+                        "lastUpdateTime": "2022-08-02T14:19:39.6683981+00:00"
+                    },
+                    "unit": {
+                        "lastUpdateTime": "2022-08-02T14:19:39.6683981+00:00"
+                    },
+                    "type": {
+                        "lastUpdateTime": "2022-08-02T14:19:39.6683981+00:00"
+                    },
+                    "tags": {
+                        "lastUpdateTime": "2022-08-02T14:19:39.6683981+00:00"
+                    },
+                    "trendInterval": {
+                        "lastUpdateTime": "2022-08-02T14:19:39.6683981+00:00"
+                    },
+                    "enabled": {
+                        "lastUpdateTime": "2022-08-02T14:19:39.6683981+00:00"
+                    }
+                },
+                "name": "AC-12-1 elec phase 2 active power sensor",
+                "uniqueID": "186ccc77-8920-4f93-b4d8-723780a66daf",
+                "externalID": "ns---1---s---mbtcpmaster--139--3--kw2",
+                "siteID": "4e5fc229-ffd9-462a-882b-16b4a63b2a8a",
+                "trendID": "cd68498f-29e3-47d9-b1f7-a8d95a923de0",
+                "connectorID": "37db1d34-8a78-4bd1-a63b-614c2f565a8a",
+                "description": "elec phase 2 active power sensor",
+                "unit": "kW",
+                "type": "analog",
+                "tags": {
+                    "sensor": true,
+                    "elec": true,
+                    "power": true
+                },
+                "trendInterval": 900,
+                "enabled": true,
+                "communication": {
+                    "$metadata": {
+                        "protocol": {
+                            "lastUpdateTime": "2022-08-02T14:19:39.6683981Z"
+                        },
+                        "OPCUA": {
+                            "lastUpdateTime": "2022-08-02T14:19:39.6683981Z"
+                        }
+                    },
+                    "protocol": "OPC UA",
+                    "OPCUA": {
+                        "nodeID": "ns=1;s=mbtcpmaster--139--3--kw2"
+                    }
+                },
+                "categorizationProperties": {
+                    "$metadata": {}
+                }
+            }
+        },
+        {
+            "twin": {
+                "$dtId": "BPY-1MW-EM-DP-13-ME-AC-12-1-ElecPhase3ActivePowerSensor",
+                "$etag": "W/\"33dca46a-bdc5-475c-befd-5387d0972816\"",
+                "$metadata": {
+                    "$model": "dtmi:com:willowinc:ActiveElectricalPowerSensor;1",
+                    "name": {
+                        "lastUpdateTime": "2022-08-02T14:22:33.9274344+00:00"
+                    },
+                    "uniqueID": {
+                        "lastUpdateTime": "2022-08-02T14:22:33.9274344+00:00"
+                    },
+                    "externalID": {
+                        "lastUpdateTime": "2022-08-02T14:22:33.9274344+00:00"
+                    },
+                    "siteID": {
+                        "lastUpdateTime": "2022-08-02T14:22:33.9274344+00:00"
+                    },
+                    "trendID": {
+                        "lastUpdateTime": "2022-08-02T14:22:33.9274344+00:00"
+                    },
+                    "connectorID": {
+                        "lastUpdateTime": "2022-08-02T14:22:33.9274344+00:00"
+                    },
+                    "description": {
+                        "lastUpdateTime": "2022-08-02T14:22:33.9274344+00:00"
+                    },
+                    "unit": {
+                        "lastUpdateTime": "2022-08-02T14:22:33.9274344+00:00"
+                    },
+                    "type": {
+                        "lastUpdateTime": "2022-08-02T14:22:33.9274344+00:00"
+                    },
+                    "tags": {
+                        "lastUpdateTime": "2022-08-02T14:22:33.9274344+00:00"
+                    },
+                    "trendInterval": {
+                        "lastUpdateTime": "2022-08-02T14:22:33.9274344+00:00"
+                    },
+                    "enabled": {
+                        "lastUpdateTime": "2022-08-02T14:22:33.9274344+00:00"
+                    }
+                },
+                "name": "AC-12-1 elec phase 3 active power sensor",
+                "uniqueID": "8ed5fdec-a7ab-4c5b-a27c-79412c357ee7",
+                "externalID": "ns---1---s---mbtcpmaster--139--3--kw3",
+                "siteID": "4e5fc229-ffd9-462a-882b-16b4a63b2a8a",
+                "trendID": "7d761dfa-b776-45e5-9e94-029987c6f6b6",
+                "connectorID": "37db1d34-8a78-4bd1-a63b-614c2f565a8a",
+                "description": "elec phase 3 active power sensor",
+                "unit": "kW",
+                "type": "analog",
+                "tags": {
+                    "sensor": true,
+                    "elec": true,
+                    "power": true
+                },
+                "trendInterval": 900,
+                "enabled": true,
+                "communication": {
+                    "$metadata": {
+                        "protocol": {
+                            "lastUpdateTime": "2022-08-02T14:22:33.9274344Z"
+                        },
+                        "OPCUA": {
+                            "lastUpdateTime": "2022-08-02T14:22:33.9274344Z"
+                        }
+                    },
+                    "protocol": "OPC UA",
+                    "OPCUA": {
+                        "nodeID": "ns=1;s=mbtcpmaster--139--3--kw3"
+                    }
+                },
+                "categorizationProperties": {
+                    "$metadata": {}
+                }
+            }
+        },
+        {
+            "twin": {
+                "$dtId": "BPY-1MW-EM-DP-13-ME-AC-12-1-ElecTotalActivePowerSensor",
+                "$etag": "W/\"e61a098e-fbe3-497d-a81a-d1fb5933cc7a\"",
+                "$metadata": {
+                    "$model": "dtmi:com:willowinc:ActiveElectricalPowerSensor;1",
+                    "name": {
+                        "lastUpdateTime": "2022-08-02T14:17:59.1968253+00:00"
+                    },
+                    "uniqueID": {
+                        "lastUpdateTime": "2022-08-02T14:17:59.1968253+00:00"
+                    },
+                    "externalID": {
+                        "lastUpdateTime": "2022-08-02T14:17:59.1968253+00:00"
+                    },
+                    "siteID": {
+                        "lastUpdateTime": "2022-08-02T14:17:59.1968253+00:00"
+                    },
+                    "trendID": {
+                        "lastUpdateTime": "2022-08-02T14:17:59.1968253+00:00"
+                    },
+                    "connectorID": {
+                        "lastUpdateTime": "2022-08-02T14:17:59.1968253+00:00"
+                    },
+                    "description": {
+                        "lastUpdateTime": "2022-08-02T14:17:59.1968253+00:00"
+                    },
+                    "unit": {
+                        "lastUpdateTime": "2022-08-02T14:17:59.1968253+00:00"
+                    },
+                    "type": {
+                        "lastUpdateTime": "2022-08-02T14:17:59.1968253+00:00"
+                    },
+                    "tags": {
+                        "lastUpdateTime": "2022-08-02T14:17:59.1968253+00:00"
+                    },
+                    "trendInterval": {
+                        "lastUpdateTime": "2022-08-02T14:17:59.1968253+00:00"
+                    },
+                    "enabled": {
+                        "lastUpdateTime": "2022-08-02T14:17:59.1968253+00:00"
+                    }
+                },
+                "name": "AC-12-1 elec total active power sensor",
+                "uniqueID": "b99a1b1f-53cd-4ce5-b663-fb89b7125701",
+                "externalID": "ns---1---s---mbtcpmaster--139--3--kwtotal",
+                "siteID": "4e5fc229-ffd9-462a-882b-16b4a63b2a8a",
+                "trendID": "6ae6305f-fa28-4124-9ea1-eb2b574627b5",
+                "connectorID": "37db1d34-8a78-4bd1-a63b-614c2f565a8a",
+                "description": "elec total active power sensor",
+                "unit": "kW",
+                "type": "analog",
+                "tags": {
+                    "sensor": true,
+                    "elec": true,
+                    "power": true
+                },
+                "trendInterval": 900,
+                "enabled": true,
+                "communication": {
+                    "$metadata": {
+                        "protocol": {
+                            "lastUpdateTime": "2022-08-02T14:17:59.1968253Z"
+                        },
+                        "OPCUA": {
+                            "lastUpdateTime": "2022-08-02T14:17:59.1968253Z"
+                        }
+                    },
+                    "protocol": "OPC UA",
+                    "OPCUA": {
+                        "nodeID": "ns=1;s=mbtcpmaster--139--3--kwtotal"
+                    }
+                },
+                "categorizationProperties": {
+                    "$metadata": {}
+                }
+            }
+        },
+        {
+            "twin": {
+                "$dtId": "BPY-1MW-EM-DP-13-ME-AC-13-1-ElecPhase1ActivePowerSensor",
+                "$etag": "W/\"e1debf7a-1abd-43d6-8c8d-9c95ed7123bd\"",
+                "$metadata": {
+                    "$model": "dtmi:com:willowinc:ActiveElectricalPowerSensor;1",
+                    "name": {
+                        "lastUpdateTime": "2022-08-02T14:36:50.1132653+00:00"
+                    },
+                    "uniqueID": {
+                        "lastUpdateTime": "2022-08-02T14:36:50.1132653+00:00"
+                    },
+                    "externalID": {
+                        "lastUpdateTime": "2022-08-02T14:36:50.1132653+00:00"
+                    },
+                    "siteID": {
+                        "lastUpdateTime": "2022-08-02T14:36:50.1132653+00:00"
+                    },
+                    "trendID": {
+                        "lastUpdateTime": "2022-08-02T14:36:50.1132653+00:00"
+                    },
+                    "connectorID": {
+                        "lastUpdateTime": "2022-08-02T14:36:50.1132653+00:00"
+                    },
+                    "description": {
+                        "lastUpdateTime": "2022-08-02T14:36:50.1132653+00:00"
+                    },
+                    "unit": {
+                        "lastUpdateTime": "2022-08-02T14:36:50.1132653+00:00"
+                    },
+                    "type": {
+                        "lastUpdateTime": "2022-08-02T14:36:50.1132653+00:00"
+                    },
+                    "tags": {
+                        "lastUpdateTime": "2022-08-02T14:36:50.1132653+00:00"
+                    },
+                    "trendInterval": {
+                        "lastUpdateTime": "2022-08-02T14:36:50.1132653+00:00"
+                    },
+                    "enabled": {
+                        "lastUpdateTime": "2022-08-02T14:36:50.1132653+00:00"
+                    }
+                },
+                "name": "AC-13-1 elec phase 1 active power sensor",
+                "uniqueID": "0d79cdeb-3cc4-4aa1-a41b-c6c3b02a0487",
+                "externalID": "ns---1---s---mbtcpmaster--139--4--kw1",
+                "siteID": "4e5fc229-ffd9-462a-882b-16b4a63b2a8a",
+                "trendID": "6740efc8-ffe2-4f87-8c45-d71a9f9bb418",
+                "connectorID": "37db1d34-8a78-4bd1-a63b-614c2f565a8a",
+                "description": "elec phase 1 active power sensor",
+                "unit": "kW",
+                "type": "analog",
+                "tags": {
+                    "sensor": true,
+                    "elec": true,
+                    "power": true
+                },
+                "trendInterval": 900,
+                "enabled": true,
+                "communication": {
+                    "$metadata": {
+                        "protocol": {
+                            "lastUpdateTime": "2022-08-02T14:36:50.1132653Z"
+                        },
+                        "OPCUA": {
+                            "lastUpdateTime": "2022-08-02T14:36:50.1132653Z"
+                        }
+                    },
+                    "protocol": "OPC UA",
+                    "OPCUA": {
+                        "nodeID": "ns=1;s=mbtcpmaster--139--4--kw1"
+                    }
+                },
+                "categorizationProperties": {
+                    "$metadata": {}
+                }
+            }
+        },
+        {
+            "twin": {
+                "$dtId": "BPY-1MW-EM-DP-13-ME-AC-13-1-ElecPhase2ActivePowerSensor",
+                "$etag": "W/\"47b8324f-77f7-4ab9-bf50-31978e254ef9\"",
+                "$metadata": {
+                    "$model": "dtmi:com:willowinc:ActiveElectricalPowerSensor;1",
+                    "name": {
+                        "lastUpdateTime": "2022-08-02T14:20:28.2343622+00:00"
+                    },
+                    "uniqueID": {
+                        "lastUpdateTime": "2022-08-02T14:20:28.2343622+00:00"
+                    },
+                    "externalID": {
+                        "lastUpdateTime": "2022-08-02T14:20:28.2343622+00:00"
+                    },
+                    "siteID": {
+                        "lastUpdateTime": "2022-08-02T14:20:28.2343622+00:00"
+                    },
+                    "trendID": {
+                        "lastUpdateTime": "2022-08-02T14:20:28.2343622+00:00"
+                    },
+                    "connectorID": {
+                        "lastUpdateTime": "2022-08-02T14:20:28.2343622+00:00"
+                    },
+                    "description": {
+                        "lastUpdateTime": "2022-08-02T14:20:28.2343622+00:00"
+                    },
+                    "unit": {
+                        "lastUpdateTime": "2022-08-02T14:20:28.2343622+00:00"
+                    },
+                    "type": {
+                        "lastUpdateTime": "2022-08-02T14:20:28.2343622+00:00"
+                    },
+                    "tags": {
+                        "lastUpdateTime": "2022-08-02T14:20:28.2343622+00:00"
+                    },
+                    "trendInterval": {
+                        "lastUpdateTime": "2022-08-02T14:20:28.2343622+00:00"
+                    },
+                    "enabled": {
+                        "lastUpdateTime": "2022-08-02T14:20:28.2343622+00:00"
+                    }
+                },
+                "name": "AC-13-1 elec phase 2 active power sensor",
+                "uniqueID": "f6eea0f5-196b-4855-b9b3-76300273ab8c",
+                "externalID": "ns---1---s---mbtcpmaster--139--4--kw2",
+                "siteID": "4e5fc229-ffd9-462a-882b-16b4a63b2a8a",
+                "trendID": "39cbdbe2-3792-4a39-ab2b-278e91318d4f",
+                "connectorID": "37db1d34-8a78-4bd1-a63b-614c2f565a8a",
+                "description": "elec phase 2 active power sensor",
+                "unit": "kW",
+                "type": "analog",
+                "tags": {
+                    "sensor": true,
+                    "elec": true,
+                    "power": true
+                },
+                "trendInterval": 900,
+                "enabled": true,
+                "communication": {
+                    "$metadata": {
+                        "protocol": {
+                            "lastUpdateTime": "2022-08-02T14:20:28.2343622Z"
+                        },
+                        "OPCUA": {
+                            "lastUpdateTime": "2022-08-02T14:20:28.2343622Z"
+                        }
+                    },
+                    "protocol": "OPC UA",
+                    "OPCUA": {
+                        "nodeID": "ns=1;s=mbtcpmaster--139--4--kw2"
+                    }
+                },
+                "categorizationProperties": {
+                    "$metadata": {}
+                }
+            }
+        },
+        {
+            "twin": {
+                "$dtId": "BPY-1MW-EM-DP-13-ME-AC-13-1-ElecPhase3ActivePowerSensor",
+                "$etag": "W/\"74183ca4-21b6-4c7c-840e-d74c66d61f95\"",
+                "$metadata": {
+                    "$model": "dtmi:com:willowinc:ActiveElectricalPowerSensor;1",
+                    "name": {
+                        "lastUpdateTime": "2022-08-02T14:39:25.7974132+00:00"
+                    },
+                    "uniqueID": {
+                        "lastUpdateTime": "2022-08-02T14:39:25.7974132+00:00"
+                    },
+                    "externalID": {
+                        "lastUpdateTime": "2022-08-02T14:39:25.7974132+00:00"
+                    },
+                    "siteID": {
+                        "lastUpdateTime": "2022-08-02T14:39:25.7974132+00:00"
+                    },
+                    "trendID": {
+                        "lastUpdateTime": "2022-08-02T14:39:25.7974132+00:00"
+                    },
+                    "connectorID": {
+                        "lastUpdateTime": "2022-08-02T14:39:25.7974132+00:00"
+                    },
+                    "description": {
+                        "lastUpdateTime": "2022-08-02T14:39:25.7974132+00:00"
+                    },
+                    "unit": {
+                        "lastUpdateTime": "2022-08-02T14:39:25.7974132+00:00"
+                    },
+                    "type": {
+                        "lastUpdateTime": "2022-08-02T14:39:25.7974132+00:00"
+                    },
+                    "tags": {
+                        "lastUpdateTime": "2022-08-02T14:39:25.7974132+00:00"
+                    },
+                    "trendInterval": {
+                        "lastUpdateTime": "2022-08-02T14:39:25.7974132+00:00"
+                    },
+                    "enabled": {
+                        "lastUpdateTime": "2022-08-02T14:39:25.7974132+00:00"
+                    }
+                },
+                "name": "AC-13-1 elec phase 3 active power sensor",
+                "uniqueID": "2beb17c0-e766-45b4-af16-cec3608d4ff1",
+                "externalID": "ns---1---s---mbtcpmaster--139--4--kw3",
+                "siteID": "4e5fc229-ffd9-462a-882b-16b4a63b2a8a",
+                "trendID": "be897f28-d92f-43a8-8459-3ce7baeb48ab",
+                "connectorID": "37db1d34-8a78-4bd1-a63b-614c2f565a8a",
+                "description": "elec phase 3 active power sensor",
+                "unit": "kW",
+                "type": "analog",
+                "tags": {
+                    "sensor": true,
+                    "elec": true,
+                    "power": true
+                },
+                "trendInterval": 900,
+                "enabled": true,
+                "communication": {
+                    "$metadata": {
+                        "protocol": {
+                            "lastUpdateTime": "2022-08-02T14:39:25.7974132Z"
+                        },
+                        "OPCUA": {
+                            "lastUpdateTime": "2022-08-02T14:39:25.7974132Z"
+                        }
+                    },
+                    "protocol": "OPC UA",
+                    "OPCUA": {
+                        "nodeID": "ns=1;s=mbtcpmaster--139--4--kw3"
+                    }
+                },
+                "categorizationProperties": {
+                    "$metadata": {}
+                }
+            }
+        },
+        {
+            "twin": {
+                "$dtId": "BPY-1MW-EM-DP-13-ME-AC-13-1-ElecTotalActivePowerSensor",
+                "$etag": "W/\"1578f7bb-9fc0-44f4-937a-f3fa1e2236e5\"",
+                "$metadata": {
+                    "$model": "dtmi:com:willowinc:ActiveElectricalPowerSensor;1",
+                    "name": {
+                        "lastUpdateTime": "2022-08-02T14:44:17.5911745+00:00"
+                    },
+                    "uniqueID": {
+                        "lastUpdateTime": "2022-08-02T14:44:17.5911745+00:00"
+                    },
+                    "externalID": {
+                        "lastUpdateTime": "2022-08-02T14:44:17.5911745+00:00"
+                    },
+                    "siteID": {
+                        "lastUpdateTime": "2022-08-02T14:44:17.5911745+00:00"
+                    },
+                    "trendID": {
+                        "lastUpdateTime": "2022-08-02T14:44:17.5911745+00:00"
+                    },
+                    "connectorID": {
+                        "lastUpdateTime": "2022-08-02T14:44:17.5911745+00:00"
+                    },
+                    "description": {
+                        "lastUpdateTime": "2022-08-02T14:44:17.5911745+00:00"
+                    },
+                    "unit": {
+                        "lastUpdateTime": "2022-08-02T14:44:17.5911745+00:00"
+                    },
+                    "type": {
+                        "lastUpdateTime": "2022-08-02T14:44:17.5911745+00:00"
+                    },
+                    "tags": {
+                        "lastUpdateTime": "2022-08-02T14:44:17.5911745+00:00"
+                    },
+                    "trendInterval": {
+                        "lastUpdateTime": "2022-08-02T14:44:17.5911745+00:00"
+                    },
+                    "enabled": {
+                        "lastUpdateTime": "2022-08-02T14:44:17.5911745+00:00"
+                    }
+                },
+                "name": "AC-13-1 elec total active power sensor",
+                "uniqueID": "893c3479-e593-476f-9a70-2b9d057b3fc0",
+                "externalID": "ns---1---s---mbtcpmaster--139--4--kwtotal",
+                "siteID": "4e5fc229-ffd9-462a-882b-16b4a63b2a8a",
+                "trendID": "27ba99db-f201-4685-969b-6ea1f1f0a920",
+                "connectorID": "37db1d34-8a78-4bd1-a63b-614c2f565a8a",
+                "description": "elec total active power sensor",
+                "unit": "kW",
+                "type": "analog",
+                "tags": {
+                    "sensor": true,
+                    "elec": true,
+                    "power": true
+                },
+                "trendInterval": 900,
+                "enabled": true,
+                "communication": {
+                    "$metadata": {
+                        "protocol": {
+                            "lastUpdateTime": "2022-08-02T14:44:17.5911745Z"
+                        },
+                        "OPCUA": {
+                            "lastUpdateTime": "2022-08-02T14:44:17.5911745Z"
+                        }
+                    },
+                    "protocol": "OPC UA",
+                    "OPCUA": {
+                        "nodeID": "ns=1;s=mbtcpmaster--139--4--kwtotal"
+                    }
+                },
+                "categorizationProperties": {
+                    "$metadata": {}
+                }
+            }
+        },
+        {
+            "twin": {
+                "$dtId": "BPY-1MW-EM-DP-13-ME-AC-14-1-ElecPhase1ActivePowerSensor",
+                "$etag": "W/\"2f65a015-e736-4cc1-bbf4-5765cf0554b0\"",
+                "$metadata": {
+                    "$model": "dtmi:com:willowinc:ActiveElectricalPowerSensor;1",
+                    "name": {
+                        "lastUpdateTime": "2022-08-02T14:36:25.3142494+00:00"
+                    },
+                    "uniqueID": {
+                        "lastUpdateTime": "2022-08-02T14:36:25.3142494+00:00"
+                    },
+                    "externalID": {
+                        "lastUpdateTime": "2022-08-02T14:36:25.3142494+00:00"
+                    },
+                    "siteID": {
+                        "lastUpdateTime": "2022-08-02T14:36:25.3142494+00:00"
+                    },
+                    "trendID": {
+                        "lastUpdateTime": "2022-08-02T14:36:25.3142494+00:00"
+                    },
+                    "connectorID": {
+                        "lastUpdateTime": "2022-08-02T14:36:25.3142494+00:00"
+                    },
+                    "description": {
+                        "lastUpdateTime": "2022-08-02T14:36:25.3142494+00:00"
+                    },
+                    "unit": {
+                        "lastUpdateTime": "2022-08-02T14:36:25.3142494+00:00"
+                    },
+                    "type": {
+                        "lastUpdateTime": "2022-08-02T14:36:25.3142494+00:00"
+                    },
+                    "tags": {
+                        "lastUpdateTime": "2022-08-02T14:36:25.3142494+00:00"
+                    },
+                    "trendInterval": {
+                        "lastUpdateTime": "2022-08-02T14:36:25.3142494+00:00"
+                    },
+                    "enabled": {
+                        "lastUpdateTime": "2022-08-02T14:36:25.3142494+00:00"
+                    }
+                },
+                "name": "AC-14-1 elec phase 1 active power sensor",
+                "uniqueID": "3a9b8b1e-efb5-47b4-9192-846877ce736d",
+                "externalID": "ns---1---s---mbtcpmaster--139--5--kw1",
+                "siteID": "4e5fc229-ffd9-462a-882b-16b4a63b2a8a",
+                "trendID": "69fd56c8-972e-41eb-b859-62c936e9ce5c",
+                "connectorID": "37db1d34-8a78-4bd1-a63b-614c2f565a8a",
+                "description": "elec phase 1 active power sensor",
+                "unit": "kW",
+                "type": "analog",
+                "tags": {
+                    "sensor": true,
+                    "elec": true,
+                    "power": true
+                },
+                "trendInterval": 900,
+                "enabled": true,
+                "communication": {
+                    "$metadata": {
+                        "protocol": {
+                            "lastUpdateTime": "2022-08-02T14:36:25.3142494Z"
+                        },
+                        "OPCUA": {
+                            "lastUpdateTime": "2022-08-02T14:36:25.3142494Z"
+                        }
+                    },
+                    "protocol": "OPC UA",
+                    "OPCUA": {
+                        "nodeID": "ns=1;s=mbtcpmaster--139--5--kw1"
+                    }
+                },
+                "categorizationProperties": {
+                    "$metadata": {}
+                }
+            }
+        },
+        {
+            "twin": {
+                "$dtId": "BPY-1MW-EM-DP-13-ME-AC-14-1-ElecPhase2ActivePowerSensor",
+                "$etag": "W/\"16c47d25-5481-4b4b-9465-486c6909c023\"",
+                "$metadata": {
+                    "$model": "dtmi:com:willowinc:ActiveElectricalPowerSensor;1",
+                    "name": {
+                        "lastUpdateTime": "2022-08-02T14:36:29.9601463+00:00"
+                    },
+                    "uniqueID": {
+                        "lastUpdateTime": "2022-08-02T14:36:29.9601463+00:00"
+                    },
+                    "externalID": {
+                        "lastUpdateTime": "2022-08-02T14:36:29.9601463+00:00"
+                    },
+                    "siteID": {
+                        "lastUpdateTime": "2022-08-02T14:36:29.9601463+00:00"
+                    },
+                    "trendID": {
+                        "lastUpdateTime": "2022-08-02T14:36:29.9601463+00:00"
+                    },
+                    "connectorID": {
+                        "lastUpdateTime": "2022-08-02T14:36:29.9601463+00:00"
+                    },
+                    "description": {
+                        "lastUpdateTime": "2022-08-02T14:36:29.9601463+00:00"
+                    },
+                    "unit": {
+                        "lastUpdateTime": "2022-08-02T14:36:29.9601463+00:00"
+                    },
+                    "type": {
+                        "lastUpdateTime": "2022-08-02T14:36:29.9601463+00:00"
+                    },
+                    "tags": {
+                        "lastUpdateTime": "2022-08-02T14:36:29.9601463+00:00"
+                    },
+                    "trendInterval": {
+                        "lastUpdateTime": "2022-08-02T14:36:29.9601463+00:00"
+                    },
+                    "enabled": {
+                        "lastUpdateTime": "2022-08-02T14:36:29.9601463+00:00"
+                    }
+                },
+                "name": "AC-14-1 elec phase 2 active power sensor",
+                "uniqueID": "afc9b827-f3ff-4fa3-a3d8-320a23623245",
+                "externalID": "ns---1---s---mbtcpmaster--139--5--kw2",
+                "siteID": "4e5fc229-ffd9-462a-882b-16b4a63b2a8a",
+                "trendID": "e635306f-fa8c-4a6f-968f-1a1f8800676d",
+                "connectorID": "37db1d34-8a78-4bd1-a63b-614c2f565a8a",
+                "description": "elec phase 2 active power sensor",
+                "unit": "kW",
+                "type": "analog",
+                "tags": {
+                    "sensor": true,
+                    "elec": true,
+                    "power": true
+                },
+                "trendInterval": 900,
+                "enabled": true,
+                "communication": {
+                    "$metadata": {
+                        "protocol": {
+                            "lastUpdateTime": "2022-08-02T14:36:29.9601463Z"
+                        },
+                        "OPCUA": {
+                            "lastUpdateTime": "2022-08-02T14:36:29.9601463Z"
+                        }
+                    },
+                    "protocol": "OPC UA",
+                    "OPCUA": {
+                        "nodeID": "ns=1;s=mbtcpmaster--139--5--kw2"
+                    }
+                },
+                "categorizationProperties": {
+                    "$metadata": {}
+                }
+            }
+        },
+        {
+            "twin": {
+                "$dtId": "BPY-1MW-EM-DP-13-ME-AC-14-1-ElecPhase3ActivePowerSensor",
+                "$etag": "W/\"2d032901-00a8-48a5-93cb-50873bc72fc3\"",
+                "$metadata": {
+                    "$model": "dtmi:com:willowinc:ActiveElectricalPowerSensor;1",
+                    "name": {
+                        "lastUpdateTime": "2022-08-02T14:34:47.5082253+00:00"
+                    },
+                    "uniqueID": {
+                        "lastUpdateTime": "2022-08-02T14:34:47.5082253+00:00"
+                    },
+                    "externalID": {
+                        "lastUpdateTime": "2022-08-02T14:34:47.5082253+00:00"
+                    },
+                    "siteID": {
+                        "lastUpdateTime": "2022-08-02T14:34:47.5082253+00:00"
+                    },
+                    "trendID": {
+                        "lastUpdateTime": "2022-08-02T14:34:47.5082253+00:00"
+                    },
+                    "connectorID": {
+                        "lastUpdateTime": "2022-08-02T14:34:47.5082253+00:00"
+                    },
+                    "description": {
+                        "lastUpdateTime": "2022-08-02T14:34:47.5082253+00:00"
+                    },
+                    "unit": {
+                        "lastUpdateTime": "2022-08-02T14:34:47.5082253+00:00"
+                    },
+                    "type": {
+                        "lastUpdateTime": "2022-08-02T14:34:47.5082253+00:00"
+                    },
+                    "tags": {
+                        "lastUpdateTime": "2022-08-02T14:34:47.5082253+00:00"
+                    },
+                    "trendInterval": {
+                        "lastUpdateTime": "2022-08-02T14:34:47.5082253+00:00"
+                    },
+                    "enabled": {
+                        "lastUpdateTime": "2022-08-02T14:34:47.5082253+00:00"
+                    }
+                },
+                "name": "AC-14-1 elec phase 3 active power sensor",
+                "uniqueID": "83a29d6c-e19b-433d-aab8-c86f027696f1",
+                "externalID": "ns---1---s---mbtcpmaster--139--5--kw3",
+                "siteID": "4e5fc229-ffd9-462a-882b-16b4a63b2a8a",
+                "trendID": "d5aa8057-06a4-416d-94fa-f9aa9cb67ee9",
+                "connectorID": "37db1d34-8a78-4bd1-a63b-614c2f565a8a",
+                "description": "elec phase 3 active power sensor",
+                "unit": "kW",
+                "type": "analog",
+                "tags": {
+                    "sensor": true,
+                    "elec": true,
+                    "power": true
+                },
+                "trendInterval": 900,
+                "enabled": true,
+                "communication": {
+                    "$metadata": {
+                        "protocol": {
+                            "lastUpdateTime": "2022-08-02T14:34:47.5082253Z"
+                        },
+                        "OPCUA": {
+                            "lastUpdateTime": "2022-08-02T14:34:47.5082253Z"
+                        }
+                    },
+                    "protocol": "OPC UA",
+                    "OPCUA": {
+                        "nodeID": "ns=1;s=mbtcpmaster--139--5--kw3"
+                    }
+                },
+                "categorizationProperties": {
+                    "$metadata": {}
+                }
+            }
+        },
+        {
+            "twin": {
+                "$dtId": "BPY-1MW-EM-DP-13-ME-AC-14-1-ElecTotalActivePowerSensor",
+                "$etag": "W/\"a1ba9573-addd-4dda-a14e-58bc5e6fe22c\"",
+                "$metadata": {
+                    "$model": "dtmi:com:willowinc:ActiveElectricalPowerSensor;1",
+                    "name": {
+                        "lastUpdateTime": "2022-08-02T14:20:23.139041+00:00"
+                    },
+                    "uniqueID": {
+                        "lastUpdateTime": "2022-08-02T14:20:23.139041+00:00"
+                    },
+                    "externalID": {
+                        "lastUpdateTime": "2022-08-02T14:20:23.139041+00:00"
+                    },
+                    "siteID": {
+                        "lastUpdateTime": "2022-08-02T14:20:23.139041+00:00"
+                    },
+                    "trendID": {
+                        "lastUpdateTime": "2022-08-02T14:20:23.139041+00:00"
+                    },
+                    "connectorID": {
+                        "lastUpdateTime": "2022-08-02T14:20:23.139041+00:00"
+                    },
+                    "description": {
+                        "lastUpdateTime": "2022-08-02T14:20:23.139041+00:00"
+                    },
+                    "unit": {
+                        "lastUpdateTime": "2022-08-02T14:20:23.139041+00:00"
+                    },
+                    "type": {
+                        "lastUpdateTime": "2022-08-02T14:20:23.139041+00:00"
+                    },
+                    "tags": {
+                        "lastUpdateTime": "2022-08-02T14:20:23.139041+00:00"
+                    },
+                    "trendInterval": {
+                        "lastUpdateTime": "2022-08-02T14:20:23.139041+00:00"
+                    },
+                    "enabled": {
+                        "lastUpdateTime": "2022-08-02T14:20:23.139041+00:00"
+                    }
+                },
+                "name": "AC-14-1 elec total active power sensor",
+                "uniqueID": "b507c341-911a-4117-9be0-f0dfbe0e1568",
+                "externalID": "ns---1---s---mbtcpmaster--139--5--kwtotal",
+                "siteID": "4e5fc229-ffd9-462a-882b-16b4a63b2a8a",
+                "trendID": "4d3163c1-45cf-4190-9b32-1f171411c52e",
+                "connectorID": "37db1d34-8a78-4bd1-a63b-614c2f565a8a",
+                "description": "elec total active power sensor",
+                "unit": "kW",
+                "type": "analog",
+                "tags": {
+                    "sensor": true,
+                    "elec": true,
+                    "power": true
+                },
+                "trendInterval": 900,
+                "enabled": true,
+                "communication": {
+                    "$metadata": {
+                        "protocol": {
+                            "lastUpdateTime": "2022-08-02T14:20:23.1390410Z"
+                        },
+                        "OPCUA": {
+                            "lastUpdateTime": "2022-08-02T14:20:23.1390410Z"
+                        }
+                    },
+                    "protocol": "OPC UA",
+                    "OPCUA": {
+                        "nodeID": "ns=1;s=mbtcpmaster--139--5--kwtotal"
+                    }
+                },
+                "categorizationProperties": {
+                    "$metadata": {}
+                }
+            }
+        },
+        {
+            "twin": {
+                "$dtId": "BPY-1MW-EM-DP-13-ME-AC-15-1-ElecPhase1ActivePowerSensor",
+                "$etag": "W/\"933aff7a-8925-48e3-9b48-9aecc7b9a9dd\"",
+                "$metadata": {
+                    "$model": "dtmi:com:willowinc:ActiveElectricalPowerSensor;1",
+                    "name": {
+                        "lastUpdateTime": "2022-08-02T14:27:34.5277636+00:00"
+                    },
+                    "uniqueID": {
+                        "lastUpdateTime": "2022-08-02T14:27:34.5277636+00:00"
+                    },
+                    "externalID": {
+                        "lastUpdateTime": "2022-08-02T14:27:34.5277636+00:00"
+                    },
+                    "siteID": {
+                        "lastUpdateTime": "2022-08-02T14:27:34.5277636+00:00"
+                    },
+                    "trendID": {
+                        "lastUpdateTime": "2022-08-02T14:27:34.5277636+00:00"
+                    },
+                    "connectorID": {
+                        "lastUpdateTime": "2022-08-02T14:27:34.5277636+00:00"
+                    },
+                    "description": {
+                        "lastUpdateTime": "2022-08-02T14:27:34.5277636+00:00"
+                    },
+                    "unit": {
+                        "lastUpdateTime": "2022-08-02T14:27:34.5277636+00:00"
+                    },
+                    "type": {
+                        "lastUpdateTime": "2022-08-02T14:27:34.5277636+00:00"
+                    },
+                    "tags": {
+                        "lastUpdateTime": "2022-08-02T14:27:34.5277636+00:00"
+                    },
+                    "trendInterval": {
+                        "lastUpdateTime": "2022-08-02T14:27:34.5277636+00:00"
+                    },
+                    "enabled": {
+                        "lastUpdateTime": "2022-08-02T14:27:34.5277636+00:00"
+                    }
+                },
+                "name": "AC-15-1 elec phase 1 active power sensor",
+                "uniqueID": "d0c76210-6d6d-4c88-8f09-034f76560464",
+                "externalID": "ns---1---s---mbtcpmaster--139--6--kw1",
+                "siteID": "4e5fc229-ffd9-462a-882b-16b4a63b2a8a",
+                "trendID": "84d96380-21d5-4242-a7df-f8af1f3b6d50",
+                "connectorID": "37db1d34-8a78-4bd1-a63b-614c2f565a8a",
+                "description": "elec phase 1 active power sensor",
+                "unit": "kW",
+                "type": "analog",
+                "tags": {
+                    "sensor": true,
+                    "elec": true,
+                    "power": true
+                },
+                "trendInterval": 900,
+                "enabled": true,
+                "communication": {
+                    "$metadata": {
+                        "protocol": {
+                            "lastUpdateTime": "2022-08-02T14:27:34.5277636Z"
+                        },
+                        "OPCUA": {
+                            "lastUpdateTime": "2022-08-02T14:27:34.5277636Z"
+                        }
+                    },
+                    "protocol": "OPC UA",
+                    "OPCUA": {
+                        "nodeID": "ns=1;s=mbtcpmaster--139--6--kw1"
+                    }
+                },
+                "categorizationProperties": {
+                    "$metadata": {}
+                }
+            }
+        },
+        {
+            "twin": {
+                "$dtId": "BPY-1MW-EM-DP-13-ME-AC-15-1-ElecPhase2ActivePowerSensor",
+                "$etag": "W/\"99cd13ea-8a41-4782-818a-dfc4a1540fdd\"",
+                "$metadata": {
+                    "$model": "dtmi:com:willowinc:ActiveElectricalPowerSensor;1",
+                    "name": {
+                        "lastUpdateTime": "2022-08-02T14:21:01.1871372+00:00"
+                    },
+                    "uniqueID": {
+                        "lastUpdateTime": "2022-08-02T14:21:01.1871372+00:00"
+                    },
+                    "externalID": {
+                        "lastUpdateTime": "2022-08-02T14:21:01.1871372+00:00"
+                    },
+                    "siteID": {
+                        "lastUpdateTime": "2022-08-02T14:21:01.1871372+00:00"
+                    },
+                    "trendID": {
+                        "lastUpdateTime": "2022-08-02T14:21:01.1871372+00:00"
+                    },
+                    "connectorID": {
+                        "lastUpdateTime": "2022-08-02T14:21:01.1871372+00:00"
+                    },
+                    "description": {
+                        "lastUpdateTime": "2022-08-02T14:21:01.1871372+00:00"
+                    },
+                    "unit": {
+                        "lastUpdateTime": "2022-08-02T14:21:01.1871372+00:00"
+                    },
+                    "type": {
+                        "lastUpdateTime": "2022-08-02T14:21:01.1871372+00:00"
+                    },
+                    "tags": {
+                        "lastUpdateTime": "2022-08-02T14:21:01.1871372+00:00"
+                    },
+                    "trendInterval": {
+                        "lastUpdateTime": "2022-08-02T14:21:01.1871372+00:00"
+                    },
+                    "enabled": {
+                        "lastUpdateTime": "2022-08-02T14:21:01.1871372+00:00"
+                    }
+                },
+                "name": "AC-15-1 elec phase 2 active power sensor",
+                "uniqueID": "f152b023-53eb-432c-92ac-af6b7d9b6fe4",
+                "externalID": "ns---1---s---mbtcpmaster--139--6--kw2",
+                "siteID": "4e5fc229-ffd9-462a-882b-16b4a63b2a8a",
+                "trendID": "cd18c705-07e5-4ba1-a6ed-f0a9b12d3344",
+                "connectorID": "37db1d34-8a78-4bd1-a63b-614c2f565a8a",
+                "description": "elec phase 2 active power sensor",
+                "unit": "kW",
+                "type": "analog",
+                "tags": {
+                    "sensor": true,
+                    "elec": true,
+                    "power": true
+                },
+                "trendInterval": 900,
+                "enabled": true,
+                "communication": {
+                    "$metadata": {
+                        "protocol": {
+                            "lastUpdateTime": "2022-08-02T14:21:01.1871372Z"
+                        },
+                        "OPCUA": {
+                            "lastUpdateTime": "2022-08-02T14:21:01.1871372Z"
+                        }
+                    },
+                    "protocol": "OPC UA",
+                    "OPCUA": {
+                        "nodeID": "ns=1;s=mbtcpmaster--139--6--kw2"
+                    }
+                },
+                "categorizationProperties": {
+                    "$metadata": {}
+                }
+            }
+        },
+        {
+            "twin": {
+                "$dtId": "BPY-1MW-EM-DP-13-ME-AC-15-1-ElecPhase3ActivePowerSensor",
+                "$etag": "W/\"3f4aa9b3-f7e4-40c8-b92f-87faae87a14f\"",
+                "$metadata": {
+                    "$model": "dtmi:com:willowinc:ActiveElectricalPowerSensor;1",
+                    "name": {
+                        "lastUpdateTime": "2022-08-02T14:34:27.9513509+00:00"
+                    },
+                    "uniqueID": {
+                        "lastUpdateTime": "2022-08-02T14:34:27.9513509+00:00"
+                    },
+                    "externalID": {
+                        "lastUpdateTime": "2022-08-02T14:34:27.9513509+00:00"
+                    },
+                    "siteID": {
+                        "lastUpdateTime": "2022-08-02T14:34:27.9513509+00:00"
+                    },
+                    "trendID": {
+                        "lastUpdateTime": "2022-08-02T14:34:27.9513509+00:00"
+                    },
+                    "connectorID": {
+                        "lastUpdateTime": "2022-08-02T14:34:27.9513509+00:00"
+                    },
+                    "description": {
+                        "lastUpdateTime": "2022-08-02T14:34:27.9513509+00:00"
+                    },
+                    "unit": {
+                        "lastUpdateTime": "2022-08-02T14:34:27.9513509+00:00"
+                    },
+                    "type": {
+                        "lastUpdateTime": "2022-08-02T14:34:27.9513509+00:00"
+                    },
+                    "tags": {
+                        "lastUpdateTime": "2022-08-02T14:34:27.9513509+00:00"
+                    },
+                    "trendInterval": {
+                        "lastUpdateTime": "2022-08-02T14:34:27.9513509+00:00"
+                    },
+                    "enabled": {
+                        "lastUpdateTime": "2022-08-02T14:34:27.9513509+00:00"
+                    }
+                },
+                "name": "AC-15-1 elec phase 3 active power sensor",
+                "uniqueID": "1dd28949-0360-4266-963b-09b9b51fb894",
+                "externalID": "ns---1---s---mbtcpmaster--139--6--kw3",
+                "siteID": "4e5fc229-ffd9-462a-882b-16b4a63b2a8a",
+                "trendID": "c6300314-fc59-477c-b8b8-b3aac1b66e8d",
+                "connectorID": "37db1d34-8a78-4bd1-a63b-614c2f565a8a",
+                "description": "elec phase 3 active power sensor",
+                "unit": "kW",
+                "type": "analog",
+                "tags": {
+                    "sensor": true,
+                    "elec": true,
+                    "power": true
+                },
+                "trendInterval": 900,
+                "enabled": true,
+                "communication": {
+                    "$metadata": {
+                        "protocol": {
+                            "lastUpdateTime": "2022-08-02T14:34:27.9513509Z"
+                        },
+                        "OPCUA": {
+                            "lastUpdateTime": "2022-08-02T14:34:27.9513509Z"
+                        }
+                    },
+                    "protocol": "OPC UA",
+                    "OPCUA": {
+                        "nodeID": "ns=1;s=mbtcpmaster--139--6--kw3"
+                    }
+                },
+                "categorizationProperties": {
+                    "$metadata": {}
+                }
+            }
+        },
+        {
+            "twin": {
+                "$dtId": "BPY-1MW-EM-DP-13-ME-AC-15-1-ElecTotalActivePowerSensor",
+                "$etag": "W/\"1c416988-f7bd-4a3d-be3a-9ec5c1b5f8f4\"",
+                "$metadata": {
+                    "$model": "dtmi:com:willowinc:ActiveElectricalPowerSensor;1",
+                    "name": {
+                        "lastUpdateTime": "2022-08-02T14:35:55.8255967+00:00"
+                    },
+                    "uniqueID": {
+                        "lastUpdateTime": "2022-08-02T14:35:55.8255967+00:00"
+                    },
+                    "externalID": {
+                        "lastUpdateTime": "2022-08-02T14:35:55.8255967+00:00"
+                    },
+                    "siteID": {
+                        "lastUpdateTime": "2022-08-02T14:35:55.8255967+00:00"
+                    },
+                    "trendID": {
+                        "lastUpdateTime": "2022-08-02T14:35:55.8255967+00:00"
+                    },
+                    "connectorID": {
+                        "lastUpdateTime": "2022-08-02T14:35:55.8255967+00:00"
+                    },
+                    "description": {
+                        "lastUpdateTime": "2022-08-02T14:35:55.8255967+00:00"
+                    },
+                    "unit": {
+                        "lastUpdateTime": "2022-08-02T14:35:55.8255967+00:00"
+                    },
+                    "type": {
+                        "lastUpdateTime": "2022-08-02T14:35:55.8255967+00:00"
+                    },
+                    "tags": {
+                        "lastUpdateTime": "2022-08-02T14:35:55.8255967+00:00"
+                    },
+                    "trendInterval": {
+                        "lastUpdateTime": "2022-08-02T14:35:55.8255967+00:00"
+                    },
+                    "enabled": {
+                        "lastUpdateTime": "2022-08-02T14:35:55.8255967+00:00"
+                    }
+                },
+                "name": "AC-15-1 elec total active power sensor",
+                "uniqueID": "ce4ad663-7aba-4f3c-867b-5146e3c3b7f6",
+                "externalID": "ns---1---s---mbtcpmaster--139--6--kwtotal",
+                "siteID": "4e5fc229-ffd9-462a-882b-16b4a63b2a8a",
+                "trendID": "e4226bc2-3c15-42e0-985c-0ecae0256670",
+                "connectorID": "37db1d34-8a78-4bd1-a63b-614c2f565a8a",
+                "description": "elec total active power sensor",
+                "unit": "kW",
+                "type": "analog",
+                "tags": {
+                    "sensor": true,
+                    "elec": true,
+                    "power": true
+                },
+                "trendInterval": 900,
+                "enabled": true,
+                "communication": {
+                    "$metadata": {
+                        "protocol": {
+                            "lastUpdateTime": "2022-08-02T14:35:55.8255967Z"
+                        },
+                        "OPCUA": {
+                            "lastUpdateTime": "2022-08-02T14:35:55.8255967Z"
+                        }
+                    },
+                    "protocol": "OPC UA",
+                    "OPCUA": {
+                        "nodeID": "ns=1;s=mbtcpmaster--139--6--kwtotal"
+                    }
+                },
+                "categorizationProperties": {
+                    "$metadata": {}
+                }
+            }
+        },
+        {
+            "twin": {
+                "$dtId": "BPY-1MW-EM-DP-18-ME-AC-16-1-ElecPhase1ActivePowerSensor",
+                "$etag": "W/\"bdc5bce5-be04-4dbe-ba0f-5e4a8141a7a0\"",
+                "$metadata": {
+                    "$model": "dtmi:com:willowinc:ActiveElectricalPowerSensor;1",
+                    "name": {
+                        "lastUpdateTime": "2022-08-02T14:31:19.1397452+00:00"
+                    },
+                    "uniqueID": {
+                        "lastUpdateTime": "2022-08-02T14:31:19.1397452+00:00"
+                    },
+                    "externalID": {
+                        "lastUpdateTime": "2022-08-02T14:31:19.1397452+00:00"
+                    },
+                    "siteID": {
+                        "lastUpdateTime": "2022-08-02T14:31:19.1397452+00:00"
+                    },
+                    "trendID": {
+                        "lastUpdateTime": "2022-08-02T14:31:19.1397452+00:00"
+                    },
+                    "connectorID": {
+                        "lastUpdateTime": "2022-08-02T14:31:19.1397452+00:00"
+                    },
+                    "description": {
+                        "lastUpdateTime": "2022-08-02T14:31:19.1397452+00:00"
+                    },
+                    "unit": {
+                        "lastUpdateTime": "2022-08-02T14:31:19.1397452+00:00"
+                    },
+                    "type": {
+                        "lastUpdateTime": "2022-08-02T14:31:19.1397452+00:00"
+                    },
+                    "tags": {
+                        "lastUpdateTime": "2022-08-02T14:31:19.1397452+00:00"
+                    },
+                    "trendInterval": {
+                        "lastUpdateTime": "2022-08-02T14:31:19.1397452+00:00"
+                    },
+                    "enabled": {
+                        "lastUpdateTime": "2022-08-02T14:31:19.1397452+00:00"
+                    }
+                },
+                "name": "AC-16-1 elec phase 1 active power sensor",
+                "uniqueID": "0918fa72-356c-4ad5-9861-24c254e019ff",
+                "externalID": "ns---1---s---mbtcpmaster--144--2--kw1",
+                "siteID": "4e5fc229-ffd9-462a-882b-16b4a63b2a8a",
+                "trendID": "6fbcbf8b-6121-440c-aed6-fdccd8bc3635",
+                "connectorID": "37db1d34-8a78-4bd1-a63b-614c2f565a8a",
+                "description": "elec phase 1 active power sensor",
+                "unit": "kW",
+                "type": "analog",
+                "tags": {
+                    "sensor": true,
+                    "elec": true,
+                    "power": true
+                },
+                "trendInterval": 900,
+                "enabled": true,
+                "communication": {
+                    "$metadata": {
+                        "protocol": {
+                            "lastUpdateTime": "2022-08-02T14:31:19.1397452Z"
+                        },
+                        "OPCUA": {
+                            "lastUpdateTime": "2022-08-02T14:31:19.1397452Z"
+                        }
+                    },
+                    "protocol": "OPC UA",
+                    "OPCUA": {
+                        "nodeID": "ns=1;s=mbtcpmaster--144--2--kw1"
+                    }
+                },
+                "categorizationProperties": {
+                    "$metadata": {}
+                }
+            }
+        },
+        {
+            "twin": {
+                "$dtId": "BPY-1MW-EM-DP-18-ME-AC-16-1-ElecPhase2ActivePowerSensor",
+                "$etag": "W/\"86f299e9-5cda-43b4-998e-ae9194533fe7\"",
+                "$metadata": {
+                    "$model": "dtmi:com:willowinc:ActiveElectricalPowerSensor;1",
+                    "name": {
+                        "lastUpdateTime": "2022-08-02T14:23:04.9258809+00:00"
+                    },
+                    "uniqueID": {
+                        "lastUpdateTime": "2022-08-02T14:23:04.9258809+00:00"
+                    },
+                    "externalID": {
+                        "lastUpdateTime": "2022-08-02T14:23:04.9258809+00:00"
+                    },
+                    "siteID": {
+                        "lastUpdateTime": "2022-08-02T14:23:04.9258809+00:00"
+                    },
+                    "trendID": {
+                        "lastUpdateTime": "2022-08-02T14:23:04.9258809+00:00"
+                    },
+                    "connectorID": {
+                        "lastUpdateTime": "2022-08-02T14:23:04.9258809+00:00"
+                    },
+                    "description": {
+                        "lastUpdateTime": "2022-08-02T14:23:04.9258809+00:00"
+                    },
+                    "unit": {
+                        "lastUpdateTime": "2022-08-02T14:23:04.9258809+00:00"
+                    },
+                    "type": {
+                        "lastUpdateTime": "2022-08-02T14:23:04.9258809+00:00"
+                    },
+                    "tags": {
+                        "lastUpdateTime": "2022-08-02T14:23:04.9258809+00:00"
+                    },
+                    "trendInterval": {
+                        "lastUpdateTime": "2022-08-02T14:23:04.9258809+00:00"
+                    },
+                    "enabled": {
+                        "lastUpdateTime": "2022-08-02T14:23:04.9258809+00:00"
+                    }
+                },
+                "name": "AC-16-1 elec phase 2 active power sensor",
+                "uniqueID": "79e707c3-8d45-49e4-8282-064fd20fac1d",
+                "externalID": "ns---1---s---mbtcpmaster--144--2--kw2",
+                "siteID": "4e5fc229-ffd9-462a-882b-16b4a63b2a8a",
+                "trendID": "9339a603-54f3-4faa-81a9-6de7153194c0",
+                "connectorID": "37db1d34-8a78-4bd1-a63b-614c2f565a8a",
+                "description": "elec phase 2 active power sensor",
+                "unit": "kW",
+                "type": "analog",
+                "tags": {
+                    "sensor": true,
+                    "elec": true,
+                    "power": true
+                },
+                "trendInterval": 900,
+                "enabled": true,
+                "communication": {
+                    "$metadata": {
+                        "protocol": {
+                            "lastUpdateTime": "2022-08-02T14:23:04.9258809Z"
+                        },
+                        "OPCUA": {
+                            "lastUpdateTime": "2022-08-02T14:23:04.9258809Z"
+                        }
+                    },
+                    "protocol": "OPC UA",
+                    "OPCUA": {
+                        "nodeID": "ns=1;s=mbtcpmaster--144--2--kw2"
+                    }
+                },
+                "categorizationProperties": {
+                    "$metadata": {}
+                }
+            }
+        },
+        {
+            "twin": {
+                "$dtId": "BPY-1MW-EM-DP-18-ME-AC-16-1-ElecPhase3ActivePowerSensor",
+                "$etag": "W/\"6b9a486d-40a1-4c58-ae19-936947a82bae\"",
+                "$metadata": {
+                    "$model": "dtmi:com:willowinc:ActiveElectricalPowerSensor;1",
+                    "name": {
+                        "lastUpdateTime": "2022-08-02T14:42:00.9194024+00:00"
+                    },
+                    "uniqueID": {
+                        "lastUpdateTime": "2022-08-02T14:42:00.9194024+00:00"
+                    },
+                    "externalID": {
+                        "lastUpdateTime": "2022-08-02T14:42:00.9194024+00:00"
+                    },
+                    "siteID": {
+                        "lastUpdateTime": "2022-08-02T14:42:00.9194024+00:00"
+                    },
+                    "trendID": {
+                        "lastUpdateTime": "2022-08-02T14:42:00.9194024+00:00"
+                    },
+                    "connectorID": {
+                        "lastUpdateTime": "2022-08-02T14:42:00.9194024+00:00"
+                    },
+                    "description": {
+                        "lastUpdateTime": "2022-08-02T14:42:00.9194024+00:00"
+                    },
+                    "unit": {
+                        "lastUpdateTime": "2022-08-02T14:42:00.9194024+00:00"
+                    },
+                    "type": {
+                        "lastUpdateTime": "2022-08-02T14:42:00.9194024+00:00"
+                    },
+                    "tags": {
+                        "lastUpdateTime": "2022-08-02T14:42:00.9194024+00:00"
+                    },
+                    "trendInterval": {
+                        "lastUpdateTime": "2022-08-02T14:42:00.9194024+00:00"
+                    },
+                    "enabled": {
+                        "lastUpdateTime": "2022-08-02T14:42:00.9194024+00:00"
+                    }
+                },
+                "name": "AC-16-1 elec phase 3 active power sensor",
+                "uniqueID": "29d9e29f-373d-48a3-a2ae-1305aeb7ad74",
+                "externalID": "ns---1---s---mbtcpmaster--144--2--kw3",
+                "siteID": "4e5fc229-ffd9-462a-882b-16b4a63b2a8a",
+                "trendID": "6b929390-da9b-4dce-b586-4930fbbdf01f",
+                "connectorID": "37db1d34-8a78-4bd1-a63b-614c2f565a8a",
+                "description": "elec phase 3 active power sensor",
+                "unit": "kW",
+                "type": "analog",
+                "tags": {
+                    "sensor": true,
+                    "elec": true,
+                    "power": true
+                },
+                "trendInterval": 900,
+                "enabled": true,
+                "communication": {
+                    "$metadata": {
+                        "protocol": {
+                            "lastUpdateTime": "2022-08-02T14:42:00.9194024Z"
+                        },
+                        "OPCUA": {
+                            "lastUpdateTime": "2022-08-02T14:42:00.9194024Z"
+                        }
+                    },
+                    "protocol": "OPC UA",
+                    "OPCUA": {
+                        "nodeID": "ns=1;s=mbtcpmaster--144--2--kw3"
+                    }
+                },
+                "categorizationProperties": {
+                    "$metadata": {}
+                }
+            }
+        },
+        {
+            "twin": {
+                "$dtId": "BPY-1MW-EM-DP-18-ME-AC-16-1-ElecTotalActivePowerSensor",
+                "$etag": "W/\"88d9d4e9-d291-4282-94c2-d4ade8f2a1f1\"",
+                "$metadata": {
+                    "$model": "dtmi:com:willowinc:ActiveElectricalPowerSensor;1",
+                    "name": {
+                        "lastUpdateTime": "2022-08-02T14:40:27.048774+00:00"
+                    },
+                    "uniqueID": {
+                        "lastUpdateTime": "2022-08-02T14:40:27.048774+00:00"
+                    },
+                    "externalID": {
+                        "lastUpdateTime": "2022-08-02T14:40:27.048774+00:00"
+                    },
+                    "siteID": {
+                        "lastUpdateTime": "2022-08-02T14:40:27.048774+00:00"
+                    },
+                    "trendID": {
+                        "lastUpdateTime": "2022-08-02T14:40:27.048774+00:00"
+                    },
+                    "connectorID": {
+                        "lastUpdateTime": "2022-08-02T14:40:27.048774+00:00"
+                    },
+                    "description": {
+                        "lastUpdateTime": "2022-08-02T14:40:27.048774+00:00"
+                    },
+                    "unit": {
+                        "lastUpdateTime": "2022-08-02T14:40:27.048774+00:00"
+                    },
+                    "type": {
+                        "lastUpdateTime": "2022-08-02T14:40:27.048774+00:00"
+                    },
+                    "tags": {
+                        "lastUpdateTime": "2022-08-02T14:40:27.048774+00:00"
+                    },
+                    "trendInterval": {
+                        "lastUpdateTime": "2022-08-02T14:40:27.048774+00:00"
+                    },
+                    "enabled": {
+                        "lastUpdateTime": "2022-08-02T14:40:27.048774+00:00"
+                    }
+                },
+                "name": "AC-16-1 elec total active power sensor",
+                "uniqueID": "56045aaf-aa20-4577-9638-9d0d6029b913",
+                "externalID": "ns---1---s---mbtcpmaster--144--2--kwtotal",
+                "siteID": "4e5fc229-ffd9-462a-882b-16b4a63b2a8a",
+                "trendID": "1f7a65dd-5f77-4b2c-95e6-4d96841dcb55",
+                "connectorID": "37db1d34-8a78-4bd1-a63b-614c2f565a8a",
+                "description": "elec total active power sensor",
+                "unit": "kW",
+                "type": "analog",
+                "tags": {
+                    "sensor": true,
+                    "elec": true,
+                    "power": true
+                },
+                "trendInterval": 900,
+                "enabled": true,
+                "communication": {
+                    "$metadata": {
+                        "protocol": {
+                            "lastUpdateTime": "2022-08-02T14:40:27.0487740Z"
+                        },
+                        "OPCUA": {
+                            "lastUpdateTime": "2022-08-02T14:40:27.0487740Z"
+                        }
+                    },
+                    "protocol": "OPC UA",
+                    "OPCUA": {
+                        "nodeID": "ns=1;s=mbtcpmaster--144--2--kwtotal"
+                    }
+                },
+                "categorizationProperties": {
+                    "$metadata": {}
+                }
+            }
+        },
+        {
+            "twin": {
+                "$dtId": "BPY-1MW-EM-DP-18-ME-AC-17-1-ElecPhase1ActivePowerSensor",
+                "$etag": "W/\"c1c133ad-052c-4d29-9c6c-662e5e510914\"",
+                "$metadata": {
+                    "$model": "dtmi:com:willowinc:ActiveElectricalPowerSensor;1",
+                    "name": {
+                        "lastUpdateTime": "2022-08-02T14:39:40.5673185+00:00"
+                    },
+                    "uniqueID": {
+                        "lastUpdateTime": "2022-08-02T14:39:40.5673185+00:00"
+                    },
+                    "externalID": {
+                        "lastUpdateTime": "2022-08-02T14:39:40.5673185+00:00"
+                    },
+                    "siteID": {
+                        "lastUpdateTime": "2022-08-02T14:39:40.5673185+00:00"
+                    },
+                    "trendID": {
+                        "lastUpdateTime": "2022-08-02T14:39:40.5673185+00:00"
+                    },
+                    "connectorID": {
+                        "lastUpdateTime": "2022-08-02T14:39:40.5673185+00:00"
+                    },
+                    "description": {
+                        "lastUpdateTime": "2022-08-02T14:39:40.5673185+00:00"
+                    },
+                    "unit": {
+                        "lastUpdateTime": "2022-08-02T14:39:40.5673185+00:00"
+                    },
+                    "type": {
+                        "lastUpdateTime": "2022-08-02T14:39:40.5673185+00:00"
+                    },
+                    "tags": {
+                        "lastUpdateTime": "2022-08-02T14:39:40.5673185+00:00"
+                    },
+                    "trendInterval": {
+                        "lastUpdateTime": "2022-08-02T14:39:40.5673185+00:00"
+                    },
+                    "enabled": {
+                        "lastUpdateTime": "2022-08-02T14:39:40.5673185+00:00"
+                    }
+                },
+                "name": "AC-17-1 elec phase 1 active power sensor",
+                "uniqueID": "137619f7-55ab-46ec-83cd-a92f8e106eef",
+                "externalID": "ns---1---s---mbtcpmaster--144--3--kw1",
+                "siteID": "4e5fc229-ffd9-462a-882b-16b4a63b2a8a",
+                "trendID": "22dceffe-cedb-4773-a9fa-39b88d295bf9",
+                "connectorID": "37db1d34-8a78-4bd1-a63b-614c2f565a8a",
+                "description": "elec phase 1 active power sensor",
+                "unit": "kW",
+                "type": "analog",
+                "tags": {
+                    "sensor": true,
+                    "elec": true,
+                    "power": true
+                },
+                "trendInterval": 900,
+                "enabled": true,
+                "communication": {
+                    "$metadata": {
+                        "protocol": {
+                            "lastUpdateTime": "2022-08-02T14:39:40.5673185Z"
+                        },
+                        "OPCUA": {
+                            "lastUpdateTime": "2022-08-02T14:39:40.5673185Z"
+                        }
+                    },
+                    "protocol": "OPC UA",
+                    "OPCUA": {
+                        "nodeID": "ns=1;s=mbtcpmaster--144--3--kw1"
+                    }
+                },
+                "categorizationProperties": {
+                    "$metadata": {}
+                }
+            }
+        },
+        {
+            "twin": {
+                "$dtId": "BPY-1MW-EM-DP-18-ME-AC-17-1-ElecPhase3ActivePowerSensor",
+                "$etag": "W/\"e120e58e-b19e-49be-af86-a6757ad6667a\"",
+                "$metadata": {
+                    "$model": "dtmi:com:willowinc:ActiveElectricalPowerSensor;1",
+                    "name": {
+                        "lastUpdateTime": "2022-08-02T14:27:39.4739102+00:00"
+                    },
+                    "uniqueID": {
+                        "lastUpdateTime": "2022-08-02T14:27:39.4739102+00:00"
+                    },
+                    "externalID": {
+                        "lastUpdateTime": "2022-08-02T14:27:39.4739102+00:00"
+                    },
+                    "siteID": {
+                        "lastUpdateTime": "2022-08-02T14:27:39.4739102+00:00"
+                    },
+                    "trendID": {
+                        "lastUpdateTime": "2022-08-02T14:27:39.4739102+00:00"
+                    },
+                    "connectorID": {
+                        "lastUpdateTime": "2022-08-02T14:27:39.4739102+00:00"
+                    },
+                    "description": {
+                        "lastUpdateTime": "2022-08-02T14:27:39.4739102+00:00"
+                    },
+                    "unit": {
+                        "lastUpdateTime": "2022-08-02T14:27:39.4739102+00:00"
+                    },
+                    "type": {
+                        "lastUpdateTime": "2022-08-02T14:27:39.4739102+00:00"
+                    },
+                    "tags": {
+                        "lastUpdateTime": "2022-08-02T14:27:39.4739102+00:00"
+                    },
+                    "trendInterval": {
+                        "lastUpdateTime": "2022-08-02T14:27:39.4739102+00:00"
+                    },
+                    "enabled": {
+                        "lastUpdateTime": "2022-08-02T14:27:39.4739102+00:00"
+                    }
+                },
+                "name": "AC-17-1 elec phase 3 active power sensor",
+                "uniqueID": "2134ca7d-7e39-49ae-9306-bcd833da01e0",
+                "externalID": "ns---1---s---mbtcpmaster--144--3--kw3",
+                "siteID": "4e5fc229-ffd9-462a-882b-16b4a63b2a8a",
+                "trendID": "698f43e3-f404-461b-9c29-e4909c3ddb6d",
+                "connectorID": "37db1d34-8a78-4bd1-a63b-614c2f565a8a",
+                "description": "elec phase 3 active power sensor",
+                "unit": "kW",
+                "type": "analog",
+                "tags": {
+                    "sensor": true,
+                    "elec": true,
+                    "power": true
+                },
+                "trendInterval": 900,
+                "enabled": true,
+                "communication": {
+                    "$metadata": {
+                        "protocol": {
+                            "lastUpdateTime": "2022-08-02T14:27:39.4739102Z"
+                        },
+                        "OPCUA": {
+                            "lastUpdateTime": "2022-08-02T14:27:39.4739102Z"
+                        }
+                    },
+                    "protocol": "OPC UA",
+                    "OPCUA": {
+                        "nodeID": "ns=1;s=mbtcpmaster--144--3--kw3"
+                    }
+                },
+                "categorizationProperties": {
+                    "$metadata": {}
+                }
+            }
+        },
+        {
+            "twin": {
+                "$dtId": "BPY-1MW-EM-DP-18-ME-AC-17-1-ElecTotalActivePowerSensor",
+                "$etag": "W/\"346341c3-ea65-484a-ab99-68f3084b9402\"",
+                "$metadata": {
+                    "$model": "dtmi:com:willowinc:ActiveElectricalPowerSensor;1",
+                    "name": {
+                        "lastUpdateTime": "2022-08-02T14:34:35.5315675+00:00"
+                    },
+                    "uniqueID": {
+                        "lastUpdateTime": "2022-08-02T14:34:35.5315675+00:00"
+                    },
+                    "externalID": {
+                        "lastUpdateTime": "2022-08-02T14:34:35.5315675+00:00"
+                    },
+                    "siteID": {
+                        "lastUpdateTime": "2022-08-02T14:34:35.5315675+00:00"
+                    },
+                    "trendID": {
+                        "lastUpdateTime": "2022-08-02T14:34:35.5315675+00:00"
+                    },
+                    "connectorID": {
+                        "lastUpdateTime": "2022-08-02T14:34:35.5315675+00:00"
+                    },
+                    "description": {
+                        "lastUpdateTime": "2022-08-02T14:34:35.5315675+00:00"
+                    },
+                    "unit": {
+                        "lastUpdateTime": "2022-08-02T14:34:35.5315675+00:00"
+                    },
+                    "type": {
+                        "lastUpdateTime": "2022-08-02T14:34:35.5315675+00:00"
+                    },
+                    "tags": {
+                        "lastUpdateTime": "2022-08-02T14:34:35.5315675+00:00"
+                    },
+                    "trendInterval": {
+                        "lastUpdateTime": "2022-08-02T14:34:35.5315675+00:00"
+                    },
+                    "enabled": {
+                        "lastUpdateTime": "2022-08-02T14:34:35.5315675+00:00"
+                    }
+                },
+                "name": "AC-17-1 elec total active power sensor",
+                "uniqueID": "66f715c3-fbac-4370-8886-288a97a4d5d4",
+                "externalID": "ns---1---s---mbtcpmaster--144--3--kwtotal",
+                "siteID": "4e5fc229-ffd9-462a-882b-16b4a63b2a8a",
+                "trendID": "167108b4-a635-43be-8d8a-cb72c0823107",
+                "connectorID": "37db1d34-8a78-4bd1-a63b-614c2f565a8a",
+                "description": "elec total active power sensor",
+                "unit": "kW",
+                "type": "analog",
+                "tags": {
+                    "sensor": true,
+                    "elec": true,
+                    "power": true
+                },
+                "trendInterval": 900,
+                "enabled": true,
+                "communication": {
+                    "$metadata": {
+                        "protocol": {
+                            "lastUpdateTime": "2022-08-02T14:34:35.5315675Z"
+                        },
+                        "OPCUA": {
+                            "lastUpdateTime": "2022-08-02T14:34:35.5315675Z"
+                        }
+                    },
+                    "protocol": "OPC UA",
+                    "OPCUA": {
+                        "nodeID": "ns=1;s=mbtcpmaster--144--3--kwtotal"
+                    }
+                },
+                "categorizationProperties": {
+                    "$metadata": {}
+                }
+            }
+        },
+        {
+            "twin": {
+                "$dtId": "BPY-1MW-EM-DP-18-ME-AC-18-1-ElecPhase1ActivePowerSensor",
+                "$etag": "W/\"02b77208-822f-47c1-9c1e-210bab1e1615\"",
+                "$metadata": {
+                    "$model": "dtmi:com:willowinc:ActiveElectricalPowerSensor;1",
+                    "name": {
+                        "lastUpdateTime": "2022-08-02T14:25:58.3243573+00:00"
+                    },
+                    "uniqueID": {
+                        "lastUpdateTime": "2022-08-02T14:25:58.3243573+00:00"
+                    },
+                    "externalID": {
+                        "lastUpdateTime": "2022-08-02T14:25:58.3243573+00:00"
+                    },
+                    "siteID": {
+                        "lastUpdateTime": "2022-08-02T14:25:58.3243573+00:00"
+                    },
+                    "trendID": {
+                        "lastUpdateTime": "2022-08-02T14:25:58.3243573+00:00"
+                    },
+                    "connectorID": {
+                        "lastUpdateTime": "2022-08-02T14:25:58.3243573+00:00"
+                    },
+                    "description": {
+                        "lastUpdateTime": "2022-08-02T14:25:58.3243573+00:00"
+                    },
+                    "unit": {
+                        "lastUpdateTime": "2022-08-02T14:25:58.3243573+00:00"
+                    },
+                    "type": {
+                        "lastUpdateTime": "2022-08-02T14:25:58.3243573+00:00"
+                    },
+                    "tags": {
+                        "lastUpdateTime": "2022-08-02T14:25:58.3243573+00:00"
+                    },
+                    "trendInterval": {
+                        "lastUpdateTime": "2022-08-02T14:25:58.3243573+00:00"
+                    },
+                    "enabled": {
+                        "lastUpdateTime": "2022-08-02T14:25:58.3243573+00:00"
+                    }
+                },
+                "name": "AC-18-1 elec phase 1 active power sensor",
+                "uniqueID": "5b35936d-639d-4f56-99f4-2831d2f69f67",
+                "externalID": "ns---1---s---mbtcpmaster--144--4--kw1",
+                "siteID": "4e5fc229-ffd9-462a-882b-16b4a63b2a8a",
+                "trendID": "627dc946-5d4f-48bf-b949-444b5ca78bbd",
+                "connectorID": "37db1d34-8a78-4bd1-a63b-614c2f565a8a",
+                "description": "elec phase 1 active power sensor",
+                "unit": "kW",
+                "type": "analog",
+                "tags": {
+                    "sensor": true,
+                    "elec": true,
+                    "power": true
+                },
+                "trendInterval": 900,
+                "enabled": true,
+                "communication": {
+                    "$metadata": {
+                        "protocol": {
+                            "lastUpdateTime": "2022-08-02T14:25:58.3243573Z"
+                        },
+                        "OPCUA": {
+                            "lastUpdateTime": "2022-08-02T14:25:58.3243573Z"
+                        }
+                    },
+                    "protocol": "OPC UA",
+                    "OPCUA": {
+                        "nodeID": "ns=1;s=mbtcpmaster--144--4--kw1"
+                    }
+                },
+                "categorizationProperties": {
+                    "$metadata": {}
+                }
+            }
+        }
+    ]
+}

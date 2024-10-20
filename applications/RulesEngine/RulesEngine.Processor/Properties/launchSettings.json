@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "RulesEngine.Processor.Development": {
+        "commandName": "Project",
+        "commandLineArgs": "--environment Development",
+        "environmentVariables": {
+            "DOTNETCORE_ENVIRONMENT": "Development"
+        },
+        //this is to avoid ssl popup when running
+        "applicationUrl": "http://localhost:5051"
+    }
+  }
+}

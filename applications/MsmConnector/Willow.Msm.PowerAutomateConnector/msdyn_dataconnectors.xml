@@ -1,0 +1,13 @@
+<msdyn_dataconnectors>
+     <msdyn_dataconnector msdyn_dataconnectorid="5b350909-260d-4fea-a69f-c8e3ca51a45a">
+       <iscustomizable>1</iscustomizable>
+     <msdyn_name>Willow MSM Connector</msdyn_name>
+     <msdyn_title>Willow MSM Connector</msdyn_title>
+       <msdyn_connectorstatus>700610001</msdyn_connectorstatus>
+       <msdyn_connectortype>700610006</msdyn_connectortype>
+       <msdyn_description>Connects Willow App to Microsoft Sustainability Manager</msdyn_description>
+       <msdyn_supportlinkurl>https://support.willowinc.com/</msdyn_supportlinkurl>
+       <msdyn_logo_text>iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAACxEAAAsRAX9kX5EAAAIeSURBVFhHzdbNS5RRFAbwc2bUMEoxCCnaBOFCCKwWRv0BSdAmI4JoLYkE4aIIShe294N27bUW7qNNZbqx2rjpO0zSNMVNuxZP5/gmjM0zr/eNgdPAb/Mwc+/h3HMvI/bBf4aGkWgYiYaRaBiJhpFoGImGkWgYiYZJDh4S9PQK+m4JBu4JrvYLuroFpTL/fiIa5mo/IhgaE8yvKb5C8cNsmBXz4ZdielZx7iL/bQIa1nTijODZ+6wAL+aTF/HHR/PFfDffzNCEotzA18lBQ6rjuOC1dWXVNtsuohYvzIu+O650rRw0rNLYJJicka3jYQUwXtSyKXh8NKzSc0m2Fq88ohR+fNPzioZGvi5BwyqjU8W6s+2z8dnqOs3XJWi4w55mwZO3iqWKjVJ5MX77rg0kzxINd2hpsyu+rlis2KgIH+4bw3UsaF+LYHb53wvyo75+p44Fle3lnXqZ3Ri2YR6/BH7U5y/XsSB3c0SwXrFRKu/qq01F+2G+LkHDKkc7BAs/s9eZbVyLz8/wg0KPIw2pvttZl/wqs83/5i/6i8VC3XE0pEolwf2H2ZDmdcrnZs28WVWcOluoO46GufzGLNhceLd80H1OnA+vF+LvzqPnis6ThYtxNNzVsU7B4Iji8YxibsUGd0Px9J1iYlJx4YpCrZvsdwlomMz/jO1vFbQeEDTv5d8piIaRaBiJhpFoGImGkWgYiYaRaBiJhkEEvwEDjpnv+RfLJgAAAABJRU5ErkJggg==</msdyn_logo_text>
+       <msdyn_parameterconfiguration></msdyn_parameterconfiguration>
+     </msdyn_dataconnector>
+   </msdyn_dataconnectors>

@@ -1,0 +1,32 @@
+name: "Nuget Willow.CommandAndControlAPI.SDK"
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - libraries/Willow.CommandAndControlAPI.SDK/**
+  pull_request:
+    branches:
+      - main
+    paths:
+      - libraries/Willow.CommandAndControlAPI.SDK/**
+
+env:
+  buildConfiguration: Release
+  srcProjectDir: "libraries/Willow.CommandAndControlAPI.SDK"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Nuget Build and Push action
+        uses: WillowInc/.github/.github/actions/nuget-build-push@main
+        with:
+          buildConfiguration: ${{ env.buildConfiguration}}
+          srcProjectDir: ${{ env.srcProjectDir}}
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          pushPackages: ${{ github.event_name == 'push' }}
+          directoryBuildPropPath: ${{ github.workspace }}/.config/common.props

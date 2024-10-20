@@ -1,0 +1,172 @@
+name: "Connector.Core - Deployment"
+
+on:
+  workflow_dispatch:
+    inputs:
+      buildNumber:
+        type: string
+        description: Build number
+      dev_au:
+        type: boolean
+        description: Deploy to DEV-AUE
+        default: true
+      uat_au:
+        type: boolean
+        description: Deploy to UAT-AUE
+        default: false
+      uat_eu:
+        type: boolean
+        description: Deploy to UAT-EU2
+        default: false
+      prd_au:
+        type: boolean
+        description: Deploy to PRD-AUE
+        default: false
+      prd_eu:
+        type: boolean
+        description: Deploy to PRD-EU2
+        default: false
+      prd_weu:
+        type: boolean
+        description: Deploy to PRD-WEU
+        default: false
+
+env:
+  buildConfiguration: Release
+  majorVersion: 2
+  projectPath: applications/ConnectorManagement/ConnectorCore
+  srcProjectDir: ConnectorCore
+  testProjectDir: test/Connector.Nunit.Tests
+
+jobs:
+  deploy_dev_au:
+    permissions:
+      id-token: write
+      contents: read
+      actions: read
+    name: Deploy to DEV-AUE
+    runs-on: ubuntu-latest
+    if: ${{ github.event.inputs.dev_au == 'true' }}
+    steps:
+      - uses: WillowInc/TwinPlatform/.github/actions/deploy-webapp-zip@main
+        name: Deploy Web App to DEV
+        with:
+          appName: wil-dev-lda-aue1-connectorcore
+          artifactName: Connector.Core
+          artifactFile: Connector.Core.zip
+          buildName: Connector.Core - Build
+          buildNumber: ${{ github.event.inputs.buildNumber }}
+          clientId: ${{ vars.PLATFORM_DEV_CLIENT_ID }}
+          tenantId: ${{ vars.TENANT_ID_WILLOWINC }}
+          subscriptionId: ${{ vars.SUBSCRIPTION_ID_PLATFORM_DEV }}
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+
+  deploy_uat_aue:
+    permissions:
+      id-token: write
+      contents: read
+      actions: read
+    name: Deploy to UAT-AUE
+    runs-on: ubuntu-latest
+    if: ${{ github.event.inputs.uat_au == 'true' }}
+    steps:
+      - uses: WillowInc/TwinPlatform/.github/actions/deploy-webapp-zip@main
+        name: Deploy Web App to AUE UAT
+        with:
+          appName: wil-uat-lda-aue1-connectorcore
+          artifactName: Connector.Core
+          artifactFile: Connector.Core.zip
+          buildName: Connector.Core - Build
+          buildNumber: ${{ github.event.inputs.buildNumber }}
+          clientId: ${{ vars.PLATFORM_UAT_CLIENT_ID }}
+          tenantId: ${{ vars.TENANT_ID_WILLOWINC }}
+          subscriptionId: ${{ vars.SUBSCRIPTION_ID_PLATFORM_UAT }}
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+
+  deploy_uat_eu2:
+    permissions:
+      id-token: write
+      contents: read
+      actions: read
+    name: Deploy to UAT-EU2
+    runs-on: ubuntu-latest
+    if: ${{ github.event.inputs.uat_eu == 'true' }}
+    steps:
+      - uses: WillowInc/TwinPlatform/.github/actions/deploy-webapp-zip@main
+        name: Deploy Web App to EU2 UAT
+        with:
+          appName: wil-uat-lda-eu21-connectorcore
+          artifactName: Connector.Core
+          artifactFile: Connector.Core.zip
+          buildName: Connector.Core - Build
+          buildNumber: ${{ github.event.inputs.buildNumber }}
+          clientId: ${{ vars.PLATFORM_UAT_CLIENT_ID }}
+          tenantId: ${{ vars.TENANT_ID_WILLOWINC }}
+          subscriptionId: ${{ vars.SUBSCRIPTION_ID_PLATFORM_UAT }}
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+
+  deploy_prd_aue:
+    permissions:
+      id-token: write
+      contents: read
+      actions: read
+    name: Deploy to PRD-AUE
+    runs-on: ubuntu-latest
+    if: ${{ github.event.inputs.prd_au == 'true' }}
+    steps:
+      - uses: WillowInc/TwinPlatform/.github/actions/deploy-webapp-zip@main
+        name: Deploy Web App to AUE PRD
+        with:
+          appName: wil-prd-lda-aue2-connectorcore
+          artifactName: Connector.Core
+          artifactFile: Connector.Core.zip
+          buildName: Connector.Core - Build
+          buildNumber: ${{ github.event.inputs.buildNumber }}
+          clientId: ${{ vars.PLATFORM_PRD_CLIENT_ID }}
+          tenantId: ${{ vars.TENANT_ID_WILLOWINC }}
+          subscriptionId: ${{ vars.SUBSCRIPTION_ID_PLATFORM_PRD }}
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+
+  deploy_prd_eu2:
+    permissions:
+      id-token: write
+      contents: read
+      actions: read
+    name: Deploy to PRD-EU2
+    runs-on: ubuntu-latest
+    if: ${{ github.event.inputs.prd_eu == 'true' }}
+    steps:
+      - uses: WillowInc/TwinPlatform/.github/actions/deploy-webapp-zip@main
+        name: Deploy Web App to EU2 PRD
+        with:
+          appName: wil-prd-lda-eu22-connectorcore
+          artifactName: Connector.Core
+          artifactFile: Connector.Core.zip
+          buildName: Connector.Core - Build
+          buildNumber: ${{ github.event.inputs.buildNumber }}
+          clientId: ${{ vars.PLATFORM_PRD_CLIENT_ID }}
+          tenantId: ${{ vars.TENANT_ID_WILLOWINC }}
+          subscriptionId: ${{ vars.SUBSCRIPTION_ID_PLATFORM_PRD }}
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+
+  deploy_prd_weu:
+    permissions:
+      id-token: write
+      contents: read
+      actions: read
+    name: Deploy to PRD-WEU
+    runs-on: ubuntu-latest
+    if: ${{ github.event.inputs.prd_weu == 'true' }}
+    steps:
+      - uses: WillowInc/TwinPlatform/.github/actions/deploy-webapp-zip@main
+        name: Deploy Web App to WEU PRD
+        with:
+          appName: wil-prd-lda-weu2-connectorcore
+          artifactName: Connector.Core
+          artifactFile: Connector.Core.zip
+          buildName: Connector.Core - Build
+          buildNumber: ${{ github.event.inputs.buildNumber }}
+          clientId: ${{ vars.PLATFORM_PRD_CLIENT_ID }}
+          tenantId: ${{ vars.TENANT_ID_WILLOWINC }}
+          subscriptionId: ${{ vars.SUBSCRIPTION_ID_PLATFORM_PRD }}
+          githubToken: ${{ secrets.GITHUB_TOKEN }}

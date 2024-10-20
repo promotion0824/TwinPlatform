@@ -1,0 +1,205 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: connectorcore
+  title: ConnectorCore
+  description: ConnectorCore
+  annotations:
+    dev.azure.com/project-repo: Connectors/connector-core
+
+  tags:
+    - realestate
+  links:
+    - url: https://dev.azure.com/willowdev/Connectors/_git/connector-core
+      title: Repo
+      icon: web
+    - url: https://dev.azure.com/willowdev/Connectors/_build?definitionId=131
+      title: Pipeline
+      icon: web
+    - url: https://saas.whitesourcesoftware.com/Wss/WSS.html#!project;id=1966498
+      title: Whitesource
+      icon: web
+    - url: https://willow.atlassian.net/wiki/spaces/INTEG/pages/313393318/Connector+Core
+      title: Wiki
+      icon: web
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/e878a98a-20ec-4516-a59d-f393429fe07c/resourceGroups/t3-wil-prd-lda-aue2-app-rsg/providers/Microsoft.Web/sites/wil-prd-lda-aue2-connectorcore/appServices
+      title: AU App Service
+      icon: web
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/e878a98a-20ec-4516-a59d-f393429fe07c/resourceGroups/t3-wil-prd-lda-eu22-app-rsg/providers/Microsoft.Web/sites/wil-prd-lda-eu22-connectorcore/appServices
+      title: US App Service
+      icon: web
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/e878a98a-20ec-4516-a59d-f393429fe07c/resourceGroups/t3-wil-prd-lda-weu2-app-rsg/providers/Microsoft.Web/sites/wil-prd-lda-weu2-connectorcore/appServices
+      title: EU App Service
+      icon: web
+spec:
+  type: service
+  lifecycle: production
+  owner: pne_willowtwin_iot
+  system: iotservices-system
+  dependsOn: 
+    [
+      'resource:AU-LiveData-keyvault',
+      'resource:EU-LiveData-keyvault',
+      'resource:US-LiveData-keyvault',
+      'resource:wilprdldaaue2sto.storageaccount',
+      'resource:wilprdldaeu22sto.storageaccount',
+      'resource:wilprdldaweu2sto.storageaccount',      
+      'resource:au-ConnectorCore-db',
+      'resource:eu-ConnectorCore-db',
+      'resource:us-ConnectorCore-db'
+    ]
+  providesApis:
+    - ConnectorCore-Api
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: ConnectorCore-keyvault
+  description: Keyvault
+spec:
+  type: keyvault
+  owner: pne_willowtwin_iot
+  system: iotservices-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: wilprdldaaue2sto.storageaccount
+  links:
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/e878a98a-20ec-4516-a59d-f393429fe07c/resourceGroups/t3-wil-prd-lda-aue2-app-rsg/providers/Microsoft.Storage/storageAccounts/wilprdldaaue2sto/overview
+      title: AU Scanner storage account
+      icon: web
+  description: AU Scanner storage account
+spec:
+  type: storageAccount
+  owner: pne_willowtwin_iot
+  system: iotservices-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: wilprdldaeu22sto.storageaccount
+  links:
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/e878a98a-20ec-4516-a59d-f393429fe07c/resourceGroups/t3-wil-prd-lda-eu22-app-rsg/providers/Microsoft.Storage/storageAccounts/wilprdldaeu22sto/overview
+      title: US Scanner storage account
+      icon: web
+  description: US Scanner storage account
+spec:
+  type: storageAccount
+  owner: pne_willowtwin_iot
+  system: iotservices-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: wilprdldaweu2sto.storageaccount
+  links:
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/e878a98a-20ec-4516-a59d-f393429fe07c/resourceGroups/t3-wil-prd-lda-weu2-app-rsg/providers/Microsoft.Storage/storageAccounts/wilprdldaweu2sto/overview
+      title: EU Scanner storage account
+      icon: web
+  description: EU Scanner storage account
+spec:
+  type: storageAccount
+  owner: pne_willowtwin_iot
+  system: iotservices-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: au-ConnectorCore-db
+  links:
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/e878a98a-20ec-4516-a59d-f393429fe07c/resourceGroups/t3-wil-prd-lda-aue2-app-rsg/providers/Microsoft.Sql/servers/wil-prd-lda-aue2-sql/databases/ConnectorCoreDB/overview
+      title: AU ConnectorCore DB
+      icon: web
+  description: AU ConnectorCore DB
+spec:
+  type: sqldb
+  owner: pne_willowtwin_iot
+  system: iotservices-system
+  dependsOn: ['resource:au-connectorcore-sql-server']
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: au-connectorcore-sql-server
+  links:
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/e878a98a-20ec-4516-a59d-f393429fe07c/resourceGroups/t3-wil-prd-lda-aue2-app-rsg/providers/Microsoft.Sql/servers/wil-prd-lda-aue2-sql/overview
+      title: AU ConnectorCore SQL Server
+      icon: web
+  description: AU ConnectorCore SQL Server
+spec:
+  type: sqlserver
+  owner: pne_willowtwin_iot
+  system: iotservices-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: eu-ConnectorCore-db
+  links:
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/e878a98a-20ec-4516-a59d-f393429fe07c/resourceGroups/t3-wil-prd-lda-weu2-app-rsg/providers/Microsoft.Sql/servers/wil-prd-lda-weu2-sql/databases/ConnectorCoreDB/overview
+      title: EU ConnectorCore DB
+      icon: web
+  description: EU ConnectorCore DB
+spec:
+  type: sqldb
+  owner: pne_willowtwin_iot
+  system: iotservices-system
+  dependsOn: ['resource:eu-connectorcore-sql-server']
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: eu-connectorcore-sql-server
+  links:
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/e878a98a-20ec-4516-a59d-f393429fe07c/resourceGroups/t3-wil-prd-lda-weu2-app-rsg/providers/Microsoft.Sql/servers/wil-prd-lda-weu2-sql/overview
+      title: EU ConnectorCore SQL Server
+      icon: web
+  description: EU ConnectorCore SQL Server
+spec:
+  type: sqlserver
+  owner: pne_willowtwin_iot
+  system: iotservices-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: us-ConnectorCore-db
+  links:
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/e878a98a-20ec-4516-a59d-f393429fe07c/resourceGroups/t3-wil-prd-lda-eu22-app-rsg/providers/Microsoft.Sql/servers/wil-prd-lda-eu22-sql/databases/ConnectorCoreDB/overview
+      title: US ConnectorCore DB
+      icon: web
+  description: US ConnectorCore DB
+spec:
+  type: sqldb
+  owner: pne_willowtwin_iot
+  system: iotservices-system
+  dependsOn: ['resource:us-connectorcore-sql-server']
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: us-connectorcore-sql-server
+  links:
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/e878a98a-20ec-4516-a59d-f393429fe07c/resourceGroups/t3-wil-prd-lda-eu22-app-rsg/providers/Microsoft.Sql/servers/wil-prd-lda-eu22-sql/overview
+      title: US ConnectorCore SQL Server
+      icon: web
+  description: US ConnectorCore SQL Server
+spec:
+  type: sqlserver
+  owner: pne_willowtwin_iot
+  system: iotservices-system  
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: ConnectorCore-Api
+  description: ConnectorCore Api
+spec:
+  type: openapi
+  lifecycle: production
+  owner: pne_willowtwin_iot
+  system: iotservices-system
+  definition:
+    $text: https://wil-dev-lda-aue1-connectorcore.azurewebsites.net/swagger/v1/swagger.json
+  dependsOn: ['component:connectorcore']

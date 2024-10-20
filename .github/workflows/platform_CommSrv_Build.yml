@@ -1,0 +1,56 @@
+name: "Platform - CommSrv - Build"
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - extensions/real-estate/back-end/Functions/Willow.Communications/**
+  pull_request:
+    branches:
+      - main
+      - releases/real-estate/*
+    paths:
+      - extensions/real-estate/back-end/Functions/Willow.Communications/**
+      - .github/workflows/platform_CommSrv_Build.yml
+  workflow_dispatch:
+    inputs:
+      push_dev_acr:
+        description: "Push to dev ACR"
+        type: boolean
+        required: false
+        default: false
+      push_prd_acr:
+        description: "Push to prod ACR"
+        type: boolean
+        required: false
+        default: false
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
+jobs:
+  build_test_docker_push:
+    uses: WillowInc/.github/.github/workflows/Reusable-Build-Test-Docker-Push.yml@main
+    with:
+      path: "extensions/real-estate/back-end/Functions/Willow.Communications/src/Willow.Communications.Function"
+      restore_path: "extensions/real-estate/back-end/Functions/Willow.Communications"
+      test_path: "extensions/real-estate/back-end/Functions/Willow.Communications/test/Willow.Communications.UnitTests"
+      build_configuration: "Release"
+      directoryBuildPropsPath: .config/common.props
+      coverage_thresholds: '0 50'
+      nugetConfigLocation: NuGet.Config
+      containerAppName: "CommSvc"
+      dockerfile: "extensions/real-estate/back-end/Functions/Willow.Communications/src/Willow.Communications.Function/Dockerfile"
+      dockerContext: "extensions/real-estate/back-end/Functions/Willow.Communications/src/Willow.Communications.Function"
+      imageName: "willowplatform/commsvc"
+      infraProjectPath: "Applications/WillowTwin"
+      productName: "willowplatform"
+      clientId: "empty"
+      pushDevAcr: "${{inputs.push_dev_acr}}"
+      pushPrdAcr: "${{inputs.push_prd_acr}}"
+    secrets:
+      githubToken: ${{ secrets.GITHUB_TOKEN }}
+      botToken: ${{ secrets.SVC_BOT_TOKEN }}
+

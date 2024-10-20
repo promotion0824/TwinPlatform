@@ -1,0 +1,37 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: twinplatform-authrz-api
+  title: Authorization API
+  description: Twin Platform Authorization API for general consumption by the App Module industry verticals
+  tags:
+    - security
+    - dotnet
+  links:
+    - url: https://dev.azure.com/willowdev/Twin%20Platform/_git/TwinPlatform?path=/extensions/willowtwin-core/Authorization
+      title: Repo
+      icon: code
+    - url: https://dev.azure.com/willowdev/Twin%20Platform/_build?definitionId=460
+      title: Build Pipeline
+      icon: build
+  annotations:
+    sonarqube.org/project-key: TwinPlatform-AuthorizationApi
+spec:
+  type: service
+  lifecycle: experimental
+  owner: pne_willowtwin_platform
+  system: twinplatform-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: twinplatform-authrz-api
+  description: Authorization API
+spec:
+  type: openapi
+  lifecycle: production
+  owner: pne_willowtwin_platform
+  system: twinplatform-system
+  definition:
+    $text: https://fd-twin-willow-nonprod-shared.azurefd.net/app/aue/authrz-dev/authrz-api/swagger/v1/swagger.json
+  dependsOn: ['component:twinplatform-authrz-api']

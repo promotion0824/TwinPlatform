@@ -1,0 +1,12 @@
+{
+  "requestPath": "wil-dev-lda-cu1-eu21-adt.api.wus2.digitaltwins.azure.net/import/requests/SGrujicic@willowinc.com.Relationships.2022.11.14.15.00.59",
+  "delete": true,
+  "jobId": "SGrujicic@willowinc.com.Relationships.2022.11.14.15.00.59",
+  "details": {},
+  "createTime": "2022-11-14T15:00:59.6492782Z",
+  "lastUpdateTime": "2022-11-14T15:00:59.9487686Z",
+  "userId": "SGrujicic@willowinc.com",
+  "target": [
+    "Relationships"
+  ]
+}

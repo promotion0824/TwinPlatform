@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+    <base href="." id="basehref" />
+    <meta name="description" content="Willow’s Activate Technology creates insights in response to events" />
+
+    <!--
+      manifest.json provides metadata used when your web app is added to the homescreen on Android.
+      See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
+    -->
+    <link rel="manifest" id="manifest" href="/manifest.json">
+    <link rel="icon" id="favicon" type="image/svg+xml" href="/favicon.svg">
+
+    <!-- Generated JS file that sets public URL on the window -->
+    <script type="text/javascript" src="env.js"></script>
+
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Except when the site is hosted on a path, this is not possible, the
+      env.js file contains the actual path not %PUBLIC_URL%.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>Willow Activate</title>
+
+    <meta property="og:title" content="Willow Activate" />
+    <meta property="og:image"
+        content="https://fd-twin-willow-nonprod-shared.azurefd.net/app/aue/msft-test/rules-engine-web/open-graph-image.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:description" content="The Willow Activate Technology is part of the Willow Application" />
+    <meta property="og:url" content="https://willowinc.com" />
+    <meta property='og:image:width' content='1200' />
+    <meta property='og:image:height' content='504' />
+    <meta property="og:type" content="website" />
+
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons&display=block" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+
+    <script type="text/javascript">
+        if (!window.location.host.includes('localhost')) {
+            (function (c, l, a, r, i, t, y) {
+                c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+                t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+                y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+            })(window, document, "clarity", "script", "ksm4toh26r");
+        }
+    </script>
+</head>
+
+<body>
+    <noscript>
+        You need to enable JavaScript to run this app.
+    </noscript>
+    <div id="root"></div>
+    <script type="module" src="src/index.tsx"></script>
+</body>
+
+</html>

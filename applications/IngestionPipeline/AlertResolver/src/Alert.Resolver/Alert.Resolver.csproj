@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+        <UserSecretsId>Alert.Resolver</UserSecretsId>
+        <RootNamespace>Willow.Alert.Resolver</RootNamespace>
+        <AssemblyName>Willow.Alert.Resolver</AssemblyName>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(BuildingInsideVisualStudio)' != 'true'">
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+        <MSBuildTreatWarningsAsErrors>true</MSBuildTreatWarningsAsErrors>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Ardalis.GuardClauses" Version="4.5.0"/>
+        <PackageReference Include="Azure.Extensions.AspNetCore.Configuration.Secrets" Version="1.3.1"/>
+        <PackageReference Include="MassTransit" Version="8.2.2" />
+        <PackageReference Include="MassTransit.Azure.ServiceBus.Core" Version="8.2.1" />
+        <PackageReference Include="Microsoft.Azure.Devices" Version="1.39.1"/>
+        <PackageReference Include="Polly" Version="8.4.0" />
+        <PackageReference Include="Willow.Hosting" Version="2.2.2734" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Willow.IoTService.Monitoring\Willow.IoTService.Monitoring.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Include="..\..\.dockerignore">
+            <Link>.dockerignore</Link>
+        </Content>
+    </ItemGroup>
+
+</Project>

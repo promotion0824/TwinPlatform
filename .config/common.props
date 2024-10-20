@@ -1,0 +1,40 @@
+<Project Condition="$(MSBuildProjectExtension) != '.esproj'">
+  <PropertyGroup>
+    <AssemblyName>$(MSBuildProjectName)</AssemblyName>
+    <CodeAnalysisRuleSet>$(MSBuildThisFileDirectory)\CodeAnalysis.ruleset</CodeAnalysisRuleSet>
+    <Deterministic>true</Deterministic>
+    <RepositoryRootPath>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)\..'))</RepositoryRootPath>
+    <RootNamespace>$(MSBuildProjectName)</RootNamespace>
+    <DebugType>Full</DebugType>
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <AnalysisLevel>latest</AnalysisLevel>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Copyright>2024</Copyright>
+    <Authors>Willow</Authors>
+    <Version>0.0.1</Version>
+    <AssemblyVersion>0.0.1</AssemblyVersion>
+    <AssemblyFileVersion>0.0.1</AssemblyFileVersion>
+    <AssemblyInformationalVersion>0.0.1</AssemblyInformationalVersion>
+   </PropertyGroup>
+
+  <PropertyGroup Condition="'$(BuildingInsideVisualStudio)' != 'true'">
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <MSBuildTreatWarningsAsErrors>false</MSBuildTreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="$(MSBuildProjectName.EndsWith('Tests'))">
+    <NoWarn>$(NoWarn);1591</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="$(MSBuildProjectName.EndsWith('Test'))">
+    <NoWarn>$(NoWarn);1591</NoWarn>
+  </PropertyGroup>
+
+    <ItemGroup>
+    <AdditionalFiles Include="$(MSBuildThisFileDirectory)\rulesets\stylecop.json">
+      <Visible>false</Visible>
+    </AdditionalFiles>
+  </ItemGroup>
+</Project>

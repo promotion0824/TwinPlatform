@@ -1,0 +1,108 @@
+name: "Nuget Willow Core Assemblies"
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - libraries/Willow.AppContext/**
+      - libraries/Willow.HealthChecks/**
+      - libraries/Willow.Hosting/**
+      - libraries/Willow.LiveData.Pipeline/**
+      - libraries/Willow.Telemetry/**
+      - libraries/Willow.Telemetry.Web/**
+  pull_request:
+    paths:
+      - libraries/Willow.AppContext/**
+      - libraries/Willow.HealthChecks/**
+      - libraries/Willow.Hosting/**
+      - libraries/Willow.LiveData.Pipeline/**
+      - libraries/Willow.Telemetry/**
+      - libraries/Willow.Telemetry.Web/**
+
+env:
+  buildConfiguration: Release
+  srcProjectDir: "libraries"
+  srcTestProjectDir: "libraries"
+
+jobs:
+  buildappcontext:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Nuget Build and Push action
+        uses: WillowInc/.github/.github/actions/nuget-build-push@main
+        with:
+          buildConfiguration: ${{ env.buildConfiguration}}
+          srcProjectDir: "libraries/Willow.AppContext"
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          pushPackages: ${{ github.event_name == 'push' }}
+          directoryBuildPropPath: ${{ github.workspace }}/.config/common.props
+
+  buildhealthchecks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Nuget Build and Push action
+        uses: WillowInc/.github/.github/actions/nuget-build-push@main
+        with:
+          buildConfiguration: ${{ env.buildConfiguration}}
+          srcProjectDir: "libraries/Willow.HealthChecks/src"
+          srcTestProjectDir: "libraries/Willow.HealthChecks/test"
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          pushPackages: ${{ github.event_name == 'push' }}
+          directoryBuildPropPath: ${{ github.workspace }}/.config/common.props
+
+  buildhosting:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Nuget Build and Push action
+        uses: WillowInc/.github/.github/actions/nuget-build-push@main
+        with:
+          buildConfiguration: ${{ env.buildConfiguration}}
+          srcProjectDir: "libraries/Willow.Hosting"
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          pushPackages: ${{ github.event_name == 'push' }}
+          directoryBuildPropPath: ${{ github.workspace }}/.config/common.props
+
+  buildlivedata:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Nuget Build and Push action
+        uses: WillowInc/.github/.github/actions/nuget-build-push@main
+        with:
+          buildConfiguration: ${{ env.buildConfiguration}}
+          srcProjectDir: "libraries/Willow.LiveData.Pipeline"
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          pushPackages: ${{ github.event_name == 'push' }}
+          directoryBuildPropPath: ${{ github.workspace }}/.config/common.props
+
+  buildtelemetry:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Nuget Build and Push action
+        uses: WillowInc/.github/.github/actions/nuget-build-push@main
+        with:
+          buildConfiguration: ${{ env.buildConfiguration}}
+          srcProjectDir: "libraries/Willow.Telemetry"
+          srcTestProjectDir: "libraries/Willow.Telemetry.Test"
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          pushPackages: ${{ github.event_name == 'push' }}
+          directoryBuildPropPath: ${{ github.workspace }}/.config/common.props
+
+  buildtelemetryweb:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Nuget Build and Push action
+        uses: WillowInc/.github/.github/actions/nuget-build-push@main
+        with:
+          buildConfiguration: ${{ env.buildConfiguration}}
+          srcProjectDir: "libraries/Willow.Telemetry.Web"
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          pushPackages: ${{ github.event_name == 'push' }}
+          directoryBuildPropPath: ${{ github.workspace }}/.config/common.props

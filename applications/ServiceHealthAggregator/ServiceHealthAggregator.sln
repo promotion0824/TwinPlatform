@@ -1,0 +1,53 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34407.89
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServiceHealthAggregator", "src\ServiceHealthAggregator\ServiceHealthAggregator.csproj", "{0C33F1E3-D2F2-41D7-93A5-55097342E273}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8F7DDF30-2AC1-42C5-AA29-C693367D2E34}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
+		Directory.Build.targets = Directory.Build.targets
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{D1F84BC0-DE07-443B-BC05-F55249B2D070}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\.github\workflows\service-health-aggregator.yml = ..\..\.github\workflows\service-health-aggregator.yml
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SnowflakeHealth", "src\SnowflakeHealth\SnowflakeHealth.csproj", "{D77F01CF-B878-4382-B8B9-E0A5E8B14AE7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnowflakeHealth.Tests", "test\SnowflakeHealth.Tests\SnowflakeHealth.Tests.csproj", "{0DCD909F-D19E-43C6-A569-783E3A1F4FF8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{D7826CFF-C59C-4D81-A3D9-BF0AECB09A31}"
+EndProject
+Global
+	GlobalSection(NestedProjects) = preSolution
+		{0DCD909F-D19E-43C6-A569-783E3A1F4FF8} = {D7826CFF-C59C-4D81-A3D9-BF0AECB09A31}
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0C33F1E3-D2F2-41D7-93A5-55097342E273}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C33F1E3-D2F2-41D7-93A5-55097342E273}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C33F1E3-D2F2-41D7-93A5-55097342E273}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C33F1E3-D2F2-41D7-93A5-55097342E273}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0DCD909F-D19E-43C6-A569-783E3A1F4FF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DCD909F-D19E-43C6-A569-783E3A1F4FF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DCD909F-D19E-43C6-A569-783E3A1F4FF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DCD909F-D19E-43C6-A569-783E3A1F4FF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D77F01CF-B878-4382-B8B9-E0A5E8B14AE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D77F01CF-B878-4382-B8B9-E0A5E8B14AE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D77F01CF-B878-4382-B8B9-E0A5E8B14AE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D77F01CF-B878-4382-B8B9-E0A5E8B14AE7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C1E0CA17-39AD-4825-9E74-6BD139FB7185}
+	EndGlobalSection
+EndGlobal

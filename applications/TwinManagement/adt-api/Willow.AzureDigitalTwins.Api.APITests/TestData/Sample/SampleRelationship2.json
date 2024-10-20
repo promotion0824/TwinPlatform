@@ -1,0 +1,7 @@
+{
+  "$relationshipId": "relationship-02",
+  "$sourceId": "Twin2",
+  "$targetId": "Twin1",
+  "$relationshipName": "controls",
+  "EffectiveDate": "2021-11-30T18:47:53.7648958Z"
+}

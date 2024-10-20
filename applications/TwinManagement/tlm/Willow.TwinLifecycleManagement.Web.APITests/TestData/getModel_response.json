@@ -1,0 +1,37 @@
+[
+  {
+    "id": "dtmi:com:willowinc:PhaseCReactiveElectricalPowerSensor;1",
+    "displayName": { "en": "Phase C Reactive Electrical Power Sensor" },
+    "decommissioned": false,
+    "model": {
+      "id": "dtmi:com:willowinc:PhaseCReactiveElectricalPowerSensor;1",
+      "type": "Interface",
+      "displayName": { "en": "Phase C Reactive Electrical Power Sensor" },
+      "extends": [ "dtmi:com:willowinc:ReactiveElectricalPowerSensor;1" ],
+      "contents": [],
+      "context": [ "dtmi:dtdl:context;2" ]
+    }
+  },
+  {
+    "id": "dtmi:com:willowinc:Workstation;1",
+    "decommissioned": false,
+    "displayName": { "en": "Workstation" },
+    "model": {
+      "id": "dtmi:com:willowinc:Workstation;1",
+      "type": "Interface",
+      "displayName": { "en": "Workstation" },
+      "extends": [ "dtmi:com:willowinc:Furniture;1" ],
+      "contents": [
+        {
+          "type": "Property",
+          "name": "type",
+          "displayName": { "en": "Type" },
+          "writable": true,
+          "schema": "string",
+          "comment": "basic, sit/stand"
+        }
+      ],
+      "context": [ "dtmi:dtdl:context;2" ]
+    }
+  }
+]

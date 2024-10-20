@@ -1,0 +1,105 @@
+# Only run manually
+trigger: none
+pr: none
+
+parameters:
+  - name: runUsingSubscription
+    displayName: Run Using Subscription
+    type: string   
+    values:
+      - az-k8s-internal-environments-Twin Platform
+      - az-k8s-internal-Twin Platform
+      - az-products-shared-Twin Platform
+      - az-products-shared-environments-Twin Platform
+  - name: assignee
+    displayName: Identity Principal Object Id (ADT & ADX)
+    type: string
+
+  - name: runADTBYOTask
+    type: boolean
+    default: true
+    displayName: Run ADT BYO Task
+  - name: adt_roleNameOrId
+    displayName: Role Id for Azure Digital Twins Data Owner (ADT)
+    type: string
+  - name: adt_subscriptionId
+    displayName: Target Subscription Id (ADT)
+    type: string
+  - name: adt_resourceGroupName
+    displayName: Target Resource Group Name (ADT)
+    type: string
+  - name: adt_instanceName
+    displayName: Target Instance Name (ADT)
+    type: string
+
+  - name: runADXBYOTask
+    type: boolean
+    default: true
+    displayName: Run ADX BYO Task
+  - name: adx_resourceGroupName
+    displayName: Target Resource Group Name (ADX)
+    type: string
+  - name: adx_clusterName
+    displayName: Target Cluster Name (ADX)
+    type: string
+  - name: adx_databaseName
+    displayName: Target Database Name (ADX)
+    type: string
+  - name: adx_principalAssignmentName
+    displayName: Name of MI principal (ADX)
+    type: string
+
+variables:
+- name: system.debug
+  value: true
+
+stages:
+  - ${{ if in(variables['Build.Reason'], 'Manual') }}:
+    - stage: Create_Role_Assignmnet
+
+      jobs:
+        - job: Create_Role_Assignment_For_ADT
+          displayName: 'Assign Permission for BYO ADT'
+          condition: eq(${{ parameters.runADTBYOTask }}, true)
+          steps:
+        
+          - checkout: none
+        
+          - task: AzureCLI@2
+            displayName: 'BYO ADT Instance: Assign ADT API Identity Access Permission'
+            inputs:
+              azureSubscription: ${{parameters.runUsingSubscription}}
+              addSpnToEnvironment: true
+              scriptType: "bash"
+              scriptLocation: "inlineScript"
+              inlineScript: |
+                az role assignment create \
+                  --role ${{parameters.adt_roleNameOrId}} \
+                  --assignee ${{parameters.assignee}} \
+                  --scope "/subscriptions/${{parameters.adt_subscriptionId}}/resourceGroups/${{parameters.adt_resourceGroupName}}/providers/Microsoft.DigitalTwins/digitalTwinsInstances/${{parameters.adt_instanceName}}"
+
+        - job: Create_Database_Principal_Assignment_For_ADX
+          displayName: 'Assign Permission for BYO ADX'
+          condition: eq(${{ parameters.runADXBYOTask }}, true)
+          steps:
+        
+          - checkout: none
+        
+          - task: AzureCLI@2
+            displayName: 'BYO ADX Instance: Assign ADT API Identity Access Permission'
+            inputs:
+              azureSubscription: ${{parameters.runUsingSubscription}}
+              addSpnToEnvironment: true
+              scriptType: "bash"
+              scriptLocation: "inlineScript"
+              inlineScript: |
+                az extension add -n kusto
+                az kusto database-principal-assignment create \
+                    --cluster-name ${{parameters.adx_clusterName}} \
+                    --database-name ${{parameters.adx_databaseName}} \
+                    --principal-id ${{parameters.assignee}} \
+                    --principal-type "App" \
+                    --role "Admin" \
+                    --tenant-id "d43166d1-c2a1-4f26-a213-f620dba13ab8" \
+                    --principal-assignment-name ${{parameters.adx_principalAssignmentName}} \
+                    --resource-group ${{parameters.adx_resourceGroupName}}

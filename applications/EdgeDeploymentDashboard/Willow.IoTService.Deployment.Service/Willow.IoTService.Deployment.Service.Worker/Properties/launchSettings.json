@@ -1,0 +1,12 @@
+﻿{
+  "profiles": {
+    "Willow.IoTService.Deployment.Service.Worker": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "applicationUrl": "https://localhost:6000",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

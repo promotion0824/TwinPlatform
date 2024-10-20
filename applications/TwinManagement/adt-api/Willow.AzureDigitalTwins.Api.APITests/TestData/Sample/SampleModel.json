@@ -1,0 +1,39 @@
+  {
+  "@id": "dtmi:com:example:Sample;1",
+  "@type": "Interface",
+  "displayName": "Sample Interface",
+  "contents": [
+    {
+      "@type": "Property",
+      "name": "name",
+      "displayName": "Sample instance name",
+      "schema": "string"
+    },
+    {
+      "@type": "Property",
+      "name": "temp",
+      "displayName": "Sample instance temperature",
+      "schema": "integer"
+    },
+    {
+      "@type": "Property",
+      "name": "comfortIndex",
+      "displayName": "Sample instance comfort index",
+      "schema": "integer"
+    },
+    {
+      "@type": "Relationship",
+      "@id": "dtmi:com:example:Sample:controls_samples;1",
+      "name": "controls",
+      "displayName": "Sample control sample",
+      "properties": [
+        {
+          "@type": "Property",
+          "name": "EffectiveDate",
+          "schema": "string"
+        }
+      ]
+    }
+  ],
+  "@context": "dtmi:dtdl:context;2"
+}

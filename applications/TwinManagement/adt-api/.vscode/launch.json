@@ -1,0 +1,28 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Willow.AzureDigitalTwins.Api",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build-ADT-API",
+      "program": "${workspaceFolder}/Willow.AzureDigitalTwins.Api/bin/Debug/net7.0/Willow.AzureDigitalTwins.Api.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/Willow.AzureDigitalTwins.Api",
+      "stopAtEntry": false,
+      "console": "integratedTerminal",
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "\\bNow listening on:\\s+http://\\S+:([0-9]+)",
+        "uriFormat": "http://localhost:%s/swagger/index.html"
+      },
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "sourceFileMap": {
+        "/Views": "${workspaceFolder}/Views"
+      },
+      "requireExactSource": true
+    }
+  ]
+}

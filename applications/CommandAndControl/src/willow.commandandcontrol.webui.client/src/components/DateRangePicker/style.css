@@ -1,0 +1,20 @@
+.mantine-DatePickerInput-day,
+.mantine-DatePickerInput-weekday,
+.mantine-DatePickerInput-calendarHeaderLevel {
+  font: 400 11px/16px Poppins !important;
+  letter-spacing: 0;
+  text-align: center;
+}
+.mantine-DatePickerInput-calendarHeaderLevel {
+  color: #c6c6c6 !important;
+}
+
+[data-selected] {
+  background-color: #5945d7 !important;
+}
+[data-selected][data-in-range] {
+  background-color: #5945d7 !important;
+}
+[data-in-range] {
+  background-color: rgba(89, 69, 215, 0.2) !important;
+}

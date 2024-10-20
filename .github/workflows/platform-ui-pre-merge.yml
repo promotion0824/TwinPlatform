@@ -1,0 +1,179 @@
+name: Platform UI pre merge hooks
+on:
+  # Triggers the workflow on pull request events is opened, synchronize, or reopened to Platform UI component folder
+  pull_request:
+    branches: ["main", "master", "releases/**"]
+    paths:
+      - design-system/**
+
+env:
+  ROOT_DIRECTORY: design-system
+
+defaults:
+  run:
+    # env variables not working in working-directory
+    working-directory: design-system
+
+# cancel previous runs if a new one is triggered for the same Pull Request
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref }}
+  cancel-in-progress: true
+
+jobs:
+  check-changelog:
+    name: Check for changelog
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check if changelog is required
+        # Get the list of workspaces defined in package.json, and strip away the characters: [ ] ' ,
+        # Check if there are any code changes in the defined workspaces.
+        run: |
+          workspaces=$(node -pe "require('./package.json').workspaces" | sed -e 's/[]\[\,'\'']/''/g')
+          if git diff --name-only --exit-code origin/main -- ${workspaces}; then
+            echo "requires_changelog=false" >> $GITHUB_ENV
+            echo "Changelog not required!"
+          else
+            echo "requires_changelog=true" >> $GITHUB_ENV
+            echo "Changelog is required. Proceed to check for changelog..."
+          fi
+
+      - name: Check for newly added changelog if required
+        if: ${{ env.requires_changelog == 'true' }}
+        run: |
+          if git diff --name-only --diff-filter=A --exit-code origin/main -- '.changeset/*.md'; then
+            echo "Error: No changelog found in .changeset folder. Please add a changelog."
+            exit 1
+          else
+            echo "Changelog found! Proceeding..."
+          fi
+
+  run-functional-test:
+    name: Run Platform UI functional tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Cache node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.*
+          cache: "npm"
+          cache-dependency-path: ${{ env.ROOT_DIRECTORY }}/package-lock.json
+
+      - name: Cache node_modules
+        id: cache-node-modules
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ${{ env.ROOT_DIRECTORY }}/node_modules
+          key: node-modules-${{ runner.os }}-${{ hashFiles(format('{0}/package-lock.json', env.ROOT_DIRECTORY)) }}
+
+      - name: Install packages
+        if: steps.cache-node-modules.outputs.cache-hit != 'true'
+        run: npm ci
+
+      - name: Run other possible checks for all projects
+        # Clear the cache for rollup-plugin-typescript2 (if any) in node_modules first due to #77951.
+        # The UI must be built before any other task is run.
+        run: |
+          rm -rf node_modules/.cache/rollup-plugin-typescript2
+          npx nx run ui:build
+          npx nx run-many --targets=lint,type-check,test,build,build-storybook --all
+
+  visual-regression-tests:
+    name: Run Platform UI Playwright tests
+    # same environment as snapshot update workflow in
+    # platform-ui-visual-regression.yml
+    runs-on: ubuntu-22.04
+    container:
+      image: mcr.microsoft.com/playwright:v1.34.0-jammy
+    strategy:
+      fail-fast: false
+      matrix:
+        shardIndex: [1, 2, 3, 4]
+        shardTotal: [4]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Cache node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.*
+          cache: "npm"
+          cache-dependency-path: ${{ env.ROOT_DIRECTORY }}/package-lock.json
+
+      - name: Cache node_modules
+        id: cache-node-modules
+        uses: actions/cache@v3
+        with:
+          path: ${{ env.ROOT_DIRECTORY }}/node_modules
+          key: node-modules-${{ runner.os }}-${{ hashFiles(format('{0}/package-lock.json', env.ROOT_DIRECTORY)) }}
+
+      - name: Install packages
+        if: steps.cache-node-modules.outputs.cache-hit != 'true'
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install chrome --with-deps
+
+      - name: Run visual regression tests for all projects
+        run: npx nx run-many --targets=e2e --all --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
+
+      - name: Upload visual tests artifacts when test fails
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: blob-report-${{ matrix.shardIndex }}
+          path: ./${{ env.ROOT_DIRECTORY }}/dist/apps/ui-e2e/all-blob-reports
+          retention-days: 1
+
+  merge-failed-visual-reports:
+    # Merge playwright reports if some shards have failed
+    if: failure()
+    needs: visual-regression-tests
+    runs-on: ubuntu-latest
+    env:
+      E2E_ROOT_PATH: design-system/apps/ui-e2e
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: "npm"
+          cache-dependency-path: ${{ env.ROOT_DIRECTORY }}/package-lock.json
+
+      - name: Cache node_modules
+        id: cache-node-modules
+        uses: actions/cache@v3
+        with:
+          path: ${{ env.ROOT_DIRECTORY }}/node_modules
+          key: node-modules-${{ runner.os }}-${{ hashFiles(format('{0}/package-lock.json', env.ROOT_DIRECTORY)) }}
+
+      - name: Install dependencies
+        if: steps.cache-node-modules.outputs.cache-hit != 'true'
+        run: npm ci
+
+      - name: Download blob reports from GitHub Actions Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: ./${{ env.E2E_ROOT_PATH }}/all-blob-reports
+          pattern: blob-report-*
+          merge-multiple: true
+
+      - name: Merge into HTML Report
+        working-directory: ./${{ env.E2E_ROOT_PATH }}
+        run: npx playwright merge-reports --reporter html ./all-blob-reports
+
+      - name: Upload HTML report
+        uses: actions/upload-artifact@v4
+        with:
+          name: ui-e2e-artifacts
+          path: ./${{ env.E2E_ROOT_PATH }}/all-blob-reports
+          retention-days: 14

@@ -1,0 +1,130 @@
+{
+  "schema": "v3.0",
+  "metadata": {
+    "name": "authorization-api",
+    "code": "authrz",
+    "displayName": "Authorization API",
+    "description": "User Management App",
+    "version": "0.0.406",
+    "author": "Willow",
+    "logo": "",
+    "thumbnail": ""
+  },
+  "settings": [
+    {
+      "name": "SerilogMinimumLevel",
+      "label": "Serilog Minimum Level",
+      "description": "Serilog Log Level",
+      "defaultValue": "Information",
+      "type": "String"
+    },
+    {
+      "name": "AuthorizationDatabase",
+      "label": "AuthorizationDb",
+      "description": "Connection string for AuthorizationDb used for RBAC checks",
+      "defaultValue": "%WillowTwin_SqlDatabases_AuthorizationDB_ConnectionString%",
+      "type": "String"
+    },
+    {
+      "name": "AuthorizationApiTimeOutInMilliseconds",
+      "label": "Authorization Api Time Out in Milliseconds",
+      "description": "Time to wait for response before application client calling authorization api timeout",
+      "defaultValue": "20000",
+      "type": "String"
+    },
+    {
+      "name": "AdminEmail",
+      "label": "Permission API Administrator Email Address",
+      "description": "Permission API admin will be granted full access to all apps using Authorization Service",
+      "defaultValue": "nsatler@willowinc.com",
+      "type": "String"
+    }
+  ],
+  "spec": {
+    "infrastructure": {
+      "sqlDatabases": [
+        "AuthorizationDB"
+      ]
+    },
+    "workloads": [
+      {
+        "name": "authrz-api",
+        "image": "authrz-api:0.0.0000",
+        "health": "/health",
+        "route": "authrz-api",
+        "allowPublicAccess": true,
+        "env": {
+          "ConnectionStrings__AuthorizationDb": "%AuthorizationDatabase%",
+          "RunMigrations": "true",
+          "ApplicationInsights__ConnectionString": "%WillowTwin_ApplicationInsightsConnectionString%",
+          "AzureAd__Instance": "pipelineInject_Azure_Ad_Instance",
+          "AzureAd__ClientId": "pipelineInject_Azure_Ad_Client_Id",
+          "AzureAd__TenantId": "pipelineInject_Azure_Ad_Tenant_Id",
+          "AzureAd__Audience": "pipelineInject_Azure_Ad_Audience",
+          "GraphAPIApps__0__ClientId": "pipelineInject_B2C_Permission_API_Client_Id",
+          "GraphAPIApps__0__TenantId": "%WillowTwin_B2C_TenantId%",
+          "GraphAPIApps__0__ClientSecret": "pipelineInject_B2C_Permission_API_Client_Secret",
+          "GraphAPIApps__0__Type": "AzureB2C",
+          "GraphAPIApps__0__CacheExpiration": "0.00:02:00",
+          "GraphAPIApps__1__ClientId": "pipelineInject_Azure_Ad_Client_Id",
+          "GraphAPIApps__1__TenantId": "pipelineInject_Azure_Ad_Tenant_Id",
+          "GraphAPIApps__1__ClientSecret": "pipelineInject_Azure_Ad_Secret",
+          "GraphAPIApps__1__Type": "AzureAD",
+          "GraphAPIApps__1__CacheExpiration": "0.00:02:00",
+          "AzureAd__AllowWebApiToBeAuthorizedByACL": "true",
+          "Admin__Admins__0": "%AdminEmail%",
+          "WillowContext__EnvironmentConfiguration__ShortName": "%WillowTwin_EnvironmentCode%",
+          "WillowContext__RegionConfiguration__ShortName": "unknown",
+          "WillowContext__StampConfiguration__ShortName": "unknown",
+          "WillowContext__CustomerInstanceConfiguration__CustomerInstanceName": "%WillowTwin_CustomerCode%",
+          "WillowContext__CustomerInstanceConfiguration__CustomerSalesId": "unknown"
+        }
+      },
+      {
+        "name": "authrz-web",
+        "image": "authrz-web:0.0.0000",
+        "health": "/health",
+        "route": "authrz-web",
+        "allowPublicAccess": true,
+        "env": {
+          "ApplicationInsights__ConnectionString": "%WillowTwin_ApplicationInsightsConnectionString%",
+          "Serilog__MinimumLevel__Default": "%SerilogMinimumLevel%",
+          "Jwt__Authority": "pipelineInject_Azure_AD_B2C_Authority",
+          "Jwt__Audience": "pipelineInject_Azure_AD_B2C_Backend_Client_Id",
+          "AzureAdB2C__Instance": "%WillowTwin_B2C_Instance%",
+          "AzureAdB2C__Domain": "%WillowTwin_B2C_Domain%",
+          "AzureAdB2C__ClientId": "pipelineInject_Azure_AD_B2C_Backend_Client_Id",
+          "AzureAdB2C__TenantId": "%WillowTwin_B2C_TenantId%",
+          "AzureAdB2C__Authority": "pipelineInject_Azure_AD_B2C_Authority",
+          "SPA__ClientId": "pipelineInject_Azure_AD_B2C_Frontend_Client_Id",
+          "SPA__Authority": "pipelineInject_Azure_AD_B2C_Authority",
+          "SPA__KnownAuthorities__0": "pipelineInject_SPA_Known_Authority",
+          "SPA__BaseName": "%WillowTwin_Environment_BaseUrl%/authrz-web/",
+          "SPA__APIB2CScopes__0": "pipelineInject_SPA_Read_Scope",
+          "SPA__APIB2CScopes__1": "pipelineInject_SPA_Write_Scope",
+          "SPA__TenantId": "%WillowTwin_B2C_TenantId%",
+          "ConnectionStrings__AuthorizationDb": "%AuthorizationDatabase%",
+          "AuthorizationAPI__BaseAddress": "http://authrz-api-svc/",
+          "AuthorizationAPI__TokenAudience": "pipelineInject_Azure_Ad_Audience",
+          "AuthorizationAPI__APITimeoutMilliseconds": "%AuthorizationApiTimeOutInMilliseconds%",
+          "AuthorizationAPI__ExtensionName": "AuthorizationWeb",
+          "GraphAPIApps__0__ClientId": "pipelineInject_B2C_Permission_API_Client_Id",
+          "GraphAPIApps__0__TenantId": "%WillowTwin_B2C_TenantId%",
+          "GraphAPIApps__0__ClientSecret": "pipelineInject_B2C_Permission_API_Client_Secret",
+          "GraphAPIApps__0__Type": "AzureB2C",
+          "GraphAPIApps__0__CacheExpiration": "0.00:02:00",
+          "GraphAPIApps__1__ClientId": "pipelineInject_Azure_Ad_Client_Id",
+          "GraphAPIApps__1__TenantId": "pipelineInject_Azure_Ad_Tenant_Id",
+          "GraphAPIApps__1__ClientSecret": "pipelineInject_Azure_Ad_Secret",
+          "GraphAPIApps__1__Type": "AzureAD",
+          "GraphAPIApps__1__CacheExpiration": "0.00:02:00",
+          "WillowContext__EnvironmentConfiguration__ShortName": "%WillowTwin_EnvironmentCode%",
+          "WillowContext__RegionConfiguration__ShortName": "unknown",
+          "WillowContext__StampConfiguration__ShortName": "unknown",
+          "WillowContext__CustomerInstanceConfiguration__CustomerInstanceName": "%WillowTwin_CustomerCode%",
+          "WillowContext__CustomerInstanceConfiguration__CustomerSalesId": "unknown"
+        }
+      }
+    ]
+  }
+}

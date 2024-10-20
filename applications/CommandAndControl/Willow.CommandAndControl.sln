@@ -1,0 +1,70 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34031.279
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Willow.CommandAndControl", "src\Willow.CommandAndControl\Willow.CommandAndControl.csproj", "{D0CEF023-A6ED-4468-BD36-00D22D8E64AD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Willow.CommandAndControlAPI.SDK", "..\..\libraries\Willow.CommandAndControlAPI.SDK\Willow.CommandAndControlAPI.SDK.csproj", "{01424A87-5B51-4B40-8BAC-7AEF7698B023}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "willow.commandandcontrol.webui.client", "src\willow.commandandcontrol.webui.client\willow.commandandcontrol.webui.client.esproj", "{71B32DAC-766F-4B98-94A6-83654FD4303A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dependencies", "Dependencies", "{A089254D-C4FB-4295-B3E0-F100B9369A85}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{1A3BF1BA-5A0E-44E4-BA5D-05CAD3951896}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\.github\workflows\command-and-control.webui.yml = ..\..\.github\workflows\command-and-control.webui.yml
+		..\..\.github\workflows\nuget Willow.CommandAndControlAPI.SDK.yml = ..\..\.github\workflows\nuget Willow.CommandAndControlAPI.SDK.yml
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Willow.CommandAndControl.Tests", "test\Willow.CommandAndControl.Tests\Willow.CommandAndControl.Tests.csproj", "{EEEE145D-D422-4893-A88F-ED00DF85EC53}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{792C8CA8-B8D0-4696-B4C3-7C73A2AE334A}"
+	ProjectSection(SolutionItems) = preProject
+		docs\ThreatModel.md = docs\ThreatModel.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		NoNSwag|Any CPU = NoNSwag|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D0CEF023-A6ED-4468-BD36-00D22D8E64AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0CEF023-A6ED-4468-BD36-00D22D8E64AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0CEF023-A6ED-4468-BD36-00D22D8E64AD}.NoNSwag|Any CPU.ActiveCfg = NoNSwag|Any CPU
+		{D0CEF023-A6ED-4468-BD36-00D22D8E64AD}.NoNSwag|Any CPU.Build.0 = NoNSwag|Any CPU
+		{D0CEF023-A6ED-4468-BD36-00D22D8E64AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0CEF023-A6ED-4468-BD36-00D22D8E64AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01424A87-5B51-4B40-8BAC-7AEF7698B023}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01424A87-5B51-4B40-8BAC-7AEF7698B023}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01424A87-5B51-4B40-8BAC-7AEF7698B023}.NoNSwag|Any CPU.ActiveCfg = Debug|Any CPU
+		{01424A87-5B51-4B40-8BAC-7AEF7698B023}.NoNSwag|Any CPU.Build.0 = Debug|Any CPU
+		{01424A87-5B51-4B40-8BAC-7AEF7698B023}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01424A87-5B51-4B40-8BAC-7AEF7698B023}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71B32DAC-766F-4B98-94A6-83654FD4303A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71B32DAC-766F-4B98-94A6-83654FD4303A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71B32DAC-766F-4B98-94A6-83654FD4303A}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{71B32DAC-766F-4B98-94A6-83654FD4303A}.NoNSwag|Any CPU.ActiveCfg = Debug|Any CPU
+		{71B32DAC-766F-4B98-94A6-83654FD4303A}.NoNSwag|Any CPU.Build.0 = Debug|Any CPU
+		{71B32DAC-766F-4B98-94A6-83654FD4303A}.NoNSwag|Any CPU.Deploy.0 = Debug|Any CPU
+		{71B32DAC-766F-4B98-94A6-83654FD4303A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71B32DAC-766F-4B98-94A6-83654FD4303A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71B32DAC-766F-4B98-94A6-83654FD4303A}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{EEEE145D-D422-4893-A88F-ED00DF85EC53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEEE145D-D422-4893-A88F-ED00DF85EC53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEEE145D-D422-4893-A88F-ED00DF85EC53}.NoNSwag|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEEE145D-D422-4893-A88F-ED00DF85EC53}.NoNSwag|Any CPU.Build.0 = Debug|Any CPU
+		{EEEE145D-D422-4893-A88F-ED00DF85EC53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEEE145D-D422-4893-A88F-ED00DF85EC53}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{01424A87-5B51-4B40-8BAC-7AEF7698B023} = {A089254D-C4FB-4295-B3E0-F100B9369A85}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E5484A68-5A04-41A5-8283-2DF506C80852}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,35 @@
+﻿parameters:
+  - name: namespace
+    type: string
+  - name: resourceGroup
+    type: string
+  - name: cluster
+    type: string
+  - name: subscriptionEndpoint
+    type: string
+    default: 'az-products-shared-Twin Platform'
+
+steps:
+  - checkout: none
+  - task: Kubernetes@1
+    displayName: 'kubectl rollout restart processor'
+    inputs:
+      connectionType: 'Azure Resource Manager'
+      azureSubscriptionEndpoint: '${{ parameters.subscriptionEndpoint }}'
+      azureResourceGroup: '${{ parameters.resourceGroup }}'
+      kubernetesCluster: '${{ parameters.cluster }}'
+      useClusterAdmin: true
+      namespace: '${{ parameters.namespace }}'
+      command: rollout
+      arguments: 'restart deployment/rules-engine-processor'
+  - task: Kubernetes@1
+    displayName: 'kubectl rollout restart web'
+    inputs:
+      connectionType: 'Azure Resource Manager'
+      azureSubscriptionEndpoint: '${{ parameters.subscriptionEndpoint }}'
+      azureResourceGroup: '${{ parameters.resourceGroup }}'
+      kubernetesCluster: '${{ parameters.cluster }}'
+      useClusterAdmin: true
+      namespace: '${{ parameters.namespace }}'
+      command: rollout
+      arguments: 'restart deployment/rules-engine-web'

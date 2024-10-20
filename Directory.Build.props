@@ -1,0 +1,10 @@
+<Project>
+    <PropertyGroup>
+        <Copyright>2024</Copyright>
+        <Authors>Willow</Authors>
+        <Version>0.0.1</Version>
+        <AssemblyVersion>0.0.1</AssemblyVersion>
+        <AssemblyFileVersion>0.0.1</AssemblyFileVersion>
+        <AssemblyInformationalVersion>0.0.1</AssemblyInformationalVersion>
+    </PropertyGroup>
+</Project>

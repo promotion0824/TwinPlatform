@@ -1,0 +1,70 @@
+﻿trigger:
+  branches:
+    include:
+      - main
+  paths:
+    include:
+      - backstage-components/*
+
+pr:
+  branches:
+    include:
+      - main
+  paths:
+    include:
+      - backstage-components/*
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+
+variables:
+  - name: storageAccount
+    value: internaldevservicessto 
+  - name: container
+    value: apidocs
+  - name: azureSubscription
+    value: az-k8s-internal-Twin Platform
+  - name: azureSubscription
+    value: az-k8s-internal-Twin Platform
+  - name: teamName
+    value: TwinPlatform
+  
+
+parameters:
+  - name: files
+    type: object
+    default:
+      - platform-services/EnvironmentRegistry/asyncapi.yaml
+      - extensions/willowtwin-core/Willow.ExtensionDeployer/asyncapi.yaml
+
+jobs:
+  - job: UploadBackstageFiles
+    steps:
+      - task: AzureCLI@2
+        displayName: Generate SAS Token
+        inputs:
+          azureSubscription: ${{ variables.azureSubscription }}
+          addSpnToEnvironment: true
+          scriptType: 'pscore'
+          scriptLocation: 'inlineScript'
+          inlineScript: |
+            $sasToken=$(az storage container generate-sas --account-name ${{ variables.storageAccount }} --name ${{ variables.container }} --permissions dlrw --as-user --expiry $((Get-date).AddDays(1) | % { "$($_.Year)-$($_.Month)-$($_.Day)" }) --auth-mode login).Trim('"')
+            Write-Host "##vso[task.setvariable variable=sasToken;issecret=true]$sasToken"
+      - ${{ each file in parameters.files }}:
+        - task: AzureCLI@2
+          displayName: Upload ${{ file }}
+          inputs:
+            azureSubscription: ${{ variables.azureSubscription }}
+            addSpnToEnvironment: true
+            scriptType: 'pscore'
+            scriptLocation: 'inlineScript'
+            inlineScript: |
+              $env:AZURE_STORAGE_SAS_TOKEN='$(sasToken)'
+              az storage blob upload `
+                --container-name ${{ variables.container }} `
+                --account-name ${{ variables.storageAccount }} `
+                --content-type text/yaml `
+                --file ${{ file }} `
+                --name ${{ variables.teamName }}/${{ file }} `
+                --overwrite

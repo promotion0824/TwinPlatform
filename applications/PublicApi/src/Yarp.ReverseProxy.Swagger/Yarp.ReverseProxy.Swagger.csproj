@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net8.0</TargetFrameworks>
+    <PackageId>Treyt.Yarp.ReverseProxy.Swagger</PackageId>
+    <Version>3.8.1</Version>
+    <Authors>Andrei Tsaregorodtsev</Authors>
+    <PackageProjectUrl>https://github.com/andreytreyt/yarp-swagger</PackageProjectUrl>
+    <RunAnalyzersDuringBuild>False</RunAnalyzersDuringBuild>
+    <EnableNETAnalyzers>False</EnableNETAnalyzers>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <MSBuildTreatWarningsAsErrors>False</MSBuildTreatWarningsAsErrors>
+    <WarningLevel>0</WarningLevel>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="IdentityModel.AspNetCore" Version="4.3.0" />
+    <PackageReference Include="Microsoft.OpenApi.Readers" Version="1.6.19" />
+    <PackageReference Include="NSwag.AspNetCore" Version="14.1.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.5.0" />
+    <PackageReference Include="Yarp.ReverseProxy" Version="1.1.2" Condition=" '$(TargetFramework)' == 'net5.0' " />
+    <PackageReference Include="Yarp.ReverseProxy" Version="2.1.0" Condition=" '$(TargetFramework)' == 'net6.0' or '$(TargetFramework)' == 'net7.0' or '$(TargetFramework)' == 'net8.0' " />
+  </ItemGroup>
+
+</Project>

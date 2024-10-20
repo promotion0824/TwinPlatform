@@ -1,0 +1,443 @@
+# Only run manually
+trigger: none
+pr: none
+
+# az role assignment create --assignee "{assignee}" \
+# --role "{roleNameOrId}" \
+# --scope "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{providerName}/{resourceType}/{resourceSubType}/{resourceName}"
+
+stages:
+  - stage: Fix_permissions
+
+    jobs:
+      - job: Fix_permissions_2
+        displayName: "Set permissions for Rules Engine to EventHub"
+        steps:
+          - checkout: none
+
+          - task: AzureCLI@2
+            displayName: "MSFT-PROD identity can access wil-prd-lda-msft-eu22-uie eventhub"
+            inputs:
+              azureSubscription: "az-products-shared-Twin Platform"
+              addSpnToEnvironment: true
+              scriptType: "bash"
+              scriptLocation: "inlineScript"
+              # msft-prod  msft-prod-identity-d75af04b         4c3e9db7-d123-4ef4-a988-8cefd60f65ad
+              inlineScript: |
+                az role assignment create --assignee "4c3e9db7-d123-4ef4-a988-8cefd60f65ad" \
+                  --role "2b629674-e913-4c01-ae53-ef4638d8f975" \
+                  --scope "/subscriptions/e878a98a-20ec-4516-a59d-f393429fe07c/resourceGroups/t3-wil-prd-lda-msft-eu22-app-rsg/providers/Microsoft.EventHub/namespaces/wil-prd-lda-msft-eu22-uie"
+
+          - task: AzureCLI@2
+            displayName: "MSFT-TEST identity can access wil-prd-lda-msft-eu22-uie eventhub"
+            inputs:
+              azureSubscription: "az-products-shared-Twin Platform"
+              addSpnToEnvironment: true
+              scriptType: "bash"
+              scriptLocation: "inlineScript"
+              # msft-prod  msft-prod-identity-d75af04b         4c3e9db7-d123-4ef4-a988-8cefd60f65ad
+              inlineScript: |
+                az role assignment create --assignee "d2c52fab-a012-420b-9a22-9abb8de8429d" \
+                  --role "2b629674-e913-4c01-ae53-ef4638d8f975" \
+                  --scope "/subscriptions/f4edc7ff-4396-47be-bf14-90892e463848/resourceGroups/t3-wil-uat-lda-cu1-aue1-app-rsg/providers/Microsoft.EventHub/namespaces/wil-uat-lda-cu1-aue1-uie"
+
+          # Assignees
+          # brookfield-uat brookfield-uat-default-identity-fcc02235 5ad244d9-ed2f-4de1-a9e5-2f04836ac796
+          # investa-uat investa-uat-default-identity-d2b29cdc e751e6f2-6df3-4334-9959-4b42e1c05cbe
+          # msft-test  default-identity-956a392c           d2c52fab-a012-420b-9a22-9abb8de8429d
+          # msft-prod  msft-prod-identity-d75af04b         4c3e9db7-d123-4ef4-a988-8cefd60f65ad
+          # inv-prod   inv-prod-identity-8e17f564          653c7109-4a36-4287-a49a-84af34fe36db
+          # brf-prod   brf-prod-identity-5ce7afd5          12cbc438-ba55-4e22-9588-5096b6e20e95
+          # hpk-prod   hpk-prod-default-identity-195a5c33  6c1fa15d-ac11-415c-9165-65bef0b92735
+          # bp-prod    bp-prod-default-identity-6c99d482   bc7aa10e-b2fe-4b81-a01c-822aca43734c
+          # axa-prod   axa-prod-identity-38e4ed79          81fb5066-75a4-4d81-9244-9df9263fd262
+          # ddk-prod   ddk-prod-default-identity-15a15b3c  0f264aac-7bc1-4506-8cea-d68344e2a0b2
+          # dfw-prod   dfw-prod-identity-e7314976          297977c5-6aac-448a-8509-f257c431d1c0
+          # wmt-prod   wmt-prod-default-identity-47ba9b4a  d279aa74-4a28-4727-8305-25ada8e2db26
+          # wmr-prod   wmr-prod-default-identity-08edc24f  815359ec-b268-4166-a477-09ea6968c234
+          # san-prod   san-prod-default-identity-d82ee249  5e0545b9-375d-4e89-a37a-c15fc6fa2a44
+          # turner-prod   turn-prod-default-identity-1616701c  2c92f4f5-1c7f-48f8-b97d-f7b97347ddbd
+          # jpmc-prod   jpmc-prod-default-identity-cab756a5  268cf08b-aa04-4c08-b427-771562b366e2
+          # durst-prod   durst-prod-default-identity-67311361  c730a638-50f4-4d61-bf9c-94291e60a347
+
+          # ROLE  f526a384-b230-433a-b45c-95f59c4a2dec	BuiltInRole	Azure Event Hubs Data Owner
+          # ROLE  a638d3c7-ab3a-418d-83e6-5f17a39d4fde	BuiltInRole	Azure Event Hubs Data Receiver
+          # ROLE  2b629674-e913-4c01-ae53-ef4638d8f975	BuiltInRole	Azure Event Hubs Data Sender
+          # ROLE  4633458b-17de-408a-b874-0445c86b69e6  Key Vault Secrets User
+
+          - task: AzureCLI@2
+            displayName: "SAN-PROD identity can access wil-prd-lda-snf-weu2-uie eventhub"
+            inputs:
+              azureSubscription: "az-products-shared-Twin Platform"
+              addSpnToEnvironment: true
+              scriptType: "bash"
+              scriptLocation: "inlineScript"
+              inlineScript: |
+                az role assignment create --assignee "5e0545b9-375d-4e89-a37a-c15fc6fa2a44" \
+                  --role "2b629674-e913-4c01-ae53-ef4638d8f975" \
+                  --scope "/subscriptions/e878a98a-20ec-4516-a59d-f393429fe07c/resourceGroups/t3-wil-prd-lda-snf-eu22-app-rsg/providers/Microsoft.EventHub/namespaces/wil-prd-lda-snf-eu22-uie"
+
+          - task: AzureCLI@2
+            displayName: "AXA-PROD identity can access wil-prd-lda-axa-weu2-uie eventhub"
+            inputs:
+              azureSubscription: "az-products-shared-Twin Platform"
+              addSpnToEnvironment: true
+              scriptType: "bash"
+              scriptLocation: "inlineScript"
+              # axa-prod  axa-prod-identity-38e4ed79         81fb5066-75a4-4d81-9244-9df9263fd262
+              inlineScript: |
+                az role assignment create --assignee "81fb5066-75a4-4d81-9244-9df9263fd262" \
+                  --role "2b629674-e913-4c01-ae53-ef4638d8f975" \
+                  --scope "/subscriptions/e878a98a-20ec-4516-a59d-f393429fe07c/resourceGroups/t3-wil-prd-lda-axa-weu2-app-rsg/providers/Microsoft.EventHub/namespaces/wil-prd-lda-axa-weu2-uie"
+
+          - task: AzureCLI@2
+            displayName: "HPK-PROD identity can access wil-prd-lda-axa-weu2-uie eventhub"
+            inputs:
+              azureSubscription: "az-products-shared-Twin Platform"
+              addSpnToEnvironment: true
+              scriptType: "bash"
+              scriptLocation: "inlineScript"
+              # hpk-prod  hpk-prod-default-identity-195a5c33         6c1fa15d-ac11-415c-9165-65bef0b92735
+              inlineScript: |
+                az role assignment create --assignee "6c1fa15d-ac11-415c-9165-65bef0b92735" \
+                  --role "2b629674-e913-4c01-ae53-ef4638d8f975" \
+                  --scope "/subscriptions/e878a98a-20ec-4516-a59d-f393429fe07c/resourceGroups/t3-wil-prd-lda-sofi-eu22-app-rsg/providers/Microsoft.EventHub/namespaces/wil-prd-lda-sofi-eu22-uie"
+
+          - task: AzureCLI@2
+            displayName: "BRF-PROD identity can access wil-prd-lda-brf-eu22-uie eventhub"
+            inputs:
+              azureSubscription: "az-products-shared-Twin Platform"
+              addSpnToEnvironment: true
+              scriptType: "bash"
+              scriptLocation: "inlineScript"
+              # brf-prod  brf-prod-identity-5ce7afd5         12cbc438-ba55-4e22-9588-5096b6e20e95
+              inlineScript: |
+                az role assignment create --assignee "12cbc438-ba55-4e22-9588-5096b6e20e95" \
+                  --role "2b629674-e913-4c01-ae53-ef4638d8f975" \
+                  --scope "/subscriptions/e878a98a-20ec-4516-a59d-f393429fe07c/resourceGroups/t3-wil-prd-lda-brf-eu22-app-rsg/providers/Microsoft.EventHub/namespaces/wil-prd-lda-brf-eu22-uie"
+
+          - task: AzureCLI@2
+            displayName: "DDK-PROD identity can access wil-prd-lda-ddk-aue2-uie eventhub"
+            inputs:
+              azureSubscription: "az-products-shared-Twin Platform"
+              addSpnToEnvironment: true
+              scriptType: "bash"
+              scriptLocation: "inlineScript"
+              # ddk-prod  ddk-prod-default-identity-15a15b3c         0f264aac-7bc1-4506-8cea-d68344e2a0b2
+              inlineScript: |
+                az role assignment create --assignee "0f264aac-7bc1-4506-8cea-d68344e2a0b2" \
+                  --role "2b629674-e913-4c01-ae53-ef4638d8f975" \
+                  --scope "/subscriptions/e878a98a-20ec-4516-a59d-f393429fe07c/resourceGroups/t3-wil-prd-lda-ddk-aue2-app-rsg/providers/Microsoft.EventHub/namespaces/wil-prd-lda-ddk-aue2-uie"
+
+          - task: AzureCLI@2
+            displayName: "DFW-PROD identity can access wil-prd-lda-dfw-eu22-uie eventhub"
+            inputs:
+              azureSubscription: "az-products-shared-Twin Platform"
+              addSpnToEnvironment: true
+              scriptType: "bash"
+              scriptLocation: "inlineScript"
+              inlineScript: |
+                az role assignment create --assignee "297977c5-6aac-448a-8509-f257c431d1c0" \
+                  --role "2b629674-e913-4c01-ae53-ef4638d8f975" \
+                  --scope "/subscriptions/e878a98a-20ec-4516-a59d-f393429fe07c/resourceGroups/t3-wil-prd-lda-dfw-eu22-app-rsg/providers/Microsoft.EventHub/namespaces/wil-prd-lda-dfw-eu22-uie"
+
+          - task: AzureCLI@2
+            displayName: "INV-PROD identity can access wil-prd-lda-inv-aue2-uie eventhub"
+            inputs:
+              azureSubscription: "az-products-shared-Twin Platform"
+              addSpnToEnvironment: true
+              scriptType: "bash"
+              scriptLocation: "inlineScript"
+              inlineScript: |
+                az role assignment create --assignee "653c7109-4a36-4287-a49a-84af34fe36db" \
+                  --role "2b629674-e913-4c01-ae53-ef4638d8f975" \
+                  --scope "/subscriptions/e878a98a-20ec-4516-a59d-f393429fe07c/resourceGroups/t3-wil-prd-lda-inv-aue2-app-rsg/providers/Microsoft.EventHub/namespaces/wil-prd-lda-inv-aue2-uie"
+
+          - task: AzureCLI@2
+            displayName: "WMR-PROD identity can access wil-prd-lda-wmr-eu22-uie eventhub"
+            inputs:
+              azureSubscription: "az-products-shared-Twin Platform"
+              addSpnToEnvironment: true
+              scriptType: "bash"
+              scriptLocation: "inlineScript"
+              inlineScript: |
+                az role assignment create --assignee "815359ec-b268-4166-a477-09ea6968c234" \
+                  --role "2b629674-e913-4c01-ae53-ef4638d8f975" \
+                  --scope "/subscriptions/e878a98a-20ec-4516-a59d-f393429fe07c/resourceGroups/t3-wil-prd-lda-wmr-eu22-app-rsg/providers/Microsoft.EventHub/namespaces/wil-prd-lda-wmr-eu22-uie"
+
+          - task: AzureCLI@2
+            displayName: "BP-PROD identity can access wil-prd-lda-bp-eu22-uie eventhub"
+            inputs:
+              azureSubscription: "az-products-shared-Twin Platform"
+              addSpnToEnvironment: true
+              scriptType: "bash"
+              scriptLocation: "inlineScript"
+              inlineScript: |
+                az role assignment create --assignee "bc7aa10e-b2fe-4b81-a01c-822aca43734c" \
+                  --role "2b629674-e913-4c01-ae53-ef4638d8f975" \
+                  --scope "/subscriptions/e878a98a-20ec-4516-a59d-f393429fe07c/resourceGroups/t3-wil-prd-lda-bp-eu22-app-rsg/providers/Microsoft.EventHub/namespaces/wil-prd-lda-bp-eu22-uie"
+
+      - job: Fix_permissions_On_Search_Service
+        displayName: "Set permissions for Rules Engine to Search Service"
+        steps:
+          - checkout: none
+
+          - task: AzureCLI@2
+            displayName: "INVESTA-UAT identity has Search Service Contributor to srch-twin-investa-uat-sharedbd724ce6"
+            inputs:
+              azureSubscription: "az-k8s-internal-Twin Platform" # Service Connection Name
+              addSpnToEnvironment: true
+              scriptType: "bash"
+              scriptLocation: "inlineScript"
+              # investa-uat           e751e6f2-6df3-4334-9959-4b42e1c05cbe
+              # Search Service Contributor
+              inlineScript: |
+                az role assignment create --assignee "e751e6f2-6df3-4334-9959-4b42e1c05cbe" \
+                  --role "7ca78c08-252a-4471-8644-bb5ff32d4ba0" \
+                  --scope "/subscriptions/7dab7b5a-d968-43a5-a50f-9509244c297b/resourceGroups/rg-twin-investa-uat-default-e5b79c39/providers/Microsoft.Search/searchServices/srch-twin-investa-uat-sharedbd724ce6"
+          - task: AzureCLI@2
+            displayName: "INVESTA-UAT identity has Search Index Data Contributor role to srch-twin-investa-uat-sharedbd724ce6"
+            inputs:
+              azureSubscription: "az-k8s-internal-Twin Platform" # Service Connection Name
+              addSpnToEnvironment: true
+              scriptType: "bash"
+              scriptLocation: "inlineScript"
+              # investa-uat           e751e6f2-6df3-4334-9959-4b42e1c05cbe
+              # Search Index Data Contributor
+              inlineScript: |
+                az role assignment create --assignee "e751e6f2-6df3-4334-9959-4b42e1c05cbe" \
+                  --role "8ebe5a00-799e-43f5-93ac-243d3dce84a7" \
+                  --scope "/subscriptions/7dab7b5a-d968-43a5-a50f-9509244c297b/resourceGroups/rg-twin-investa-uat-default-e5b79c39/providers/Microsoft.Search/searchServices/srch-twin-investa-uat-sharedbd724ce6"
+
+          - task: AzureCLI@2
+            displayName: "SAN-PROD identity is Search Contributor"
+            inputs:
+              azureSubscription: "az-products-shared-Twin Platform"
+              addSpnToEnvironment: true
+              scriptType: "bash"
+              scriptLocation: "inlineScript"
+              inlineScript: |
+                az role assignment create --assignee "5e0545b9-375d-4e89-a37a-c15fc6fa2a44" \
+                  --role "7ca78c08-252a-4471-8644-bb5ff32d4ba0" \
+                  --scope "/subscriptions/5f077d49-cd08-48b4-a26b-59d708d7847b/resourceGroups/rg-twin-san-prod-default-8b97a21d/providers/Microsoft.Search/searchServices/srch-twin-san-prod-shared5949bdd1"
+
+          - task: AzureCLI@2
+            displayName: "SAN-PROD identity is Search Index Data Contributor"
+            inputs:
+              azureSubscription: "az-products-shared-Twin Platform"
+              addSpnToEnvironment: true
+              scriptType: "bash"
+              scriptLocation: "inlineScript"
+              inlineScript: |
+                az role assignment create --assignee "5e0545b9-375d-4e89-a37a-c15fc6fa2a44" \
+                  --role "8ebe5a00-799e-43f5-93ac-243d3dce84a7" \
+                  --scope "/subscriptions/5f077d49-cd08-48b4-a26b-59d708d7847b/resourceGroups/rg-twin-san-prod-default-8b97a21d/providers/Microsoft.Search/searchServices/srch-twin-san-prod-shared5949bdd1"
+
+          - task: AzureCLI@2
+            displayName: "TURNER-PROD identity has Search Service Contributor to srch-twin-turn-prod-sharedbc496d32"
+            inputs:
+              azureSubscription: "az-k8s-internal-Twin Platform" # Service Connection Name
+              addSpnToEnvironment: true
+              scriptType: "bash"
+              scriptLocation: "inlineScript"
+              inlineScript: |
+                az role assignment create --assignee "2c92f4f5-1c7f-48f8-b97d-f7b97347ddbd" \
+                  --role "7ca78c08-252a-4471-8644-bb5ff32d4ba0" \
+                  --scope "/subscriptions/5f077d49-cd08-48b4-a26b-59d708d7847b/resourceGroups/rg-twin-turn-prod-default-a7bccf46/providers/Microsoft.Search/searchServices/srch-twin-turn-prod-sharedbc496d32"
+
+          - task: AzureCLI@2
+            displayName: "JPMC-PROD identity has Search Service Contributor to srch-twin-jpmc-prod-shared226a8cf0"
+            inputs:
+              azureSubscription: "az-k8s-internal-Twin Platform" # Service Connection Name
+              addSpnToEnvironment: true
+              scriptType: "bash"
+              scriptLocation: "inlineScript"
+              inlineScript: |
+                az role assignment create --assignee "268cf08b-aa04-4c08-b427-771562b366e2" \
+                  --role "7ca78c08-252a-4471-8644-bb5ff32d4ba0" \
+                  --scope "/subscriptions/5f077d49-cd08-48b4-a26b-59d708d7847b/resourceGroups/rg-twin-jpmc-prod-default-e06caed9/providers/Microsoft.Search/searchServices/srch-twin-jpmc-prod-shared226a8cf0"
+          
+          - task: AzureCLI@2
+            displayName: "DURST-PROD identity has Search Service Contributor to srch-twin-durst-prod-shared5786505a"
+            inputs:
+              azureSubscription: "az-k8s-internal-Twin Platform" # Service Connection Name
+              addSpnToEnvironment: true
+              scriptType: "bash"
+              scriptLocation: "inlineScript"
+              inlineScript: |
+                az role assignment create --assignee "c730a638-50f4-4d61-bf9c-94291e60a347" \
+                  --role "7ca78c08-252a-4471-8644-bb5ff32d4ba0" \
+                  --scope "/subscriptions/5f077d49-cd08-48b4-a26b-59d708d7847b/resourceGroups/rg-twin-durst-prod-default-3ccd89a9/providers/Microsoft.Search/searchServices/srch-twin-durst-prod-shared5786505a"
+
+      - job: Fix_permissions_On_KeyVault
+        displayName: "Set permissions for Rules Engine to KeyVault"
+        steps:
+          - checkout: none
+
+          - task: AzureCLI@2
+            displayName: "AXA identity can access keyvault"
+            inputs:
+              azureSubscription: "az-products-shared-Twin Platform"
+              addSpnToEnvironment: true
+              scriptType: "bash"
+              scriptLocation: "inlineScript"
+              inlineScript: |
+                az role assignment create --assignee "81fb5066-75a4-4d81-9244-9df9263fd262" \
+                  --role "4633458b-17de-408a-b874-0445c86b69e6" \
+                  --scope "/subscriptions/249312a0-4c83-4d73-b164-18c5e72bf219/resourceGroups/rules-engine-poc/providers/Microsoft.KeyVault/vaults/rules-engine-key-vault"
+
+          - task: AzureCLI@2
+            displayName: "BP identity can access keyvault"
+            inputs:
+              azureSubscription: "az-products-shared-Twin Platform"
+              addSpnToEnvironment: true
+              scriptType: "bash"
+              scriptLocation: "inlineScript"
+              inlineScript: |
+                az role assignment create --assignee "bc7aa10e-b2fe-4b81-a01c-822aca43734c" \
+                  --role "4633458b-17de-408a-b874-0445c86b69e6" \
+                  --scope "/subscriptions/249312a0-4c83-4d73-b164-18c5e72bf219/resourceGroups/rules-engine-poc/providers/Microsoft.KeyVault/vaults/rules-engine-key-vault"
+
+          - task: AzureCLI@2
+            displayName: "BRF-PROD identity can access keyvault"
+            inputs:
+              azureSubscription: "az-products-shared-Twin Platform"
+              addSpnToEnvironment: true
+              scriptType: "bash"
+              scriptLocation: "inlineScript"
+              inlineScript: |
+                az role assignment create --assignee "12cbc438-ba55-4e22-9588-5096b6e20e95" \
+                  --role "4633458b-17de-408a-b874-0445c86b69e6" \
+                  --scope "/subscriptions/249312a0-4c83-4d73-b164-18c5e72bf219/resourceGroups/rules-engine-poc/providers/Microsoft.KeyVault/vaults/rules-engine-key-vault"
+
+          - task: AzureCLI@2
+            displayName: "DDK-PROD identity can access keyvault"
+            inputs:
+              azureSubscription: "az-products-shared-Twin Platform"
+              addSpnToEnvironment: true
+              scriptType: "bash"
+              scriptLocation: "inlineScript"
+              inlineScript: |
+                az role assignment create --assignee "0f264aac-7bc1-4506-8cea-d68344e2a0b2" \
+                  --role "4633458b-17de-408a-b874-0445c86b69e6" \
+                  --scope "/subscriptions/249312a0-4c83-4d73-b164-18c5e72bf219/resourceGroups/rules-engine-poc/providers/Microsoft.KeyVault/vaults/rules-engine-key-vault"
+
+          - task: AzureCLI@2
+            displayName: "DFW-PROD identity can access keyvault"
+            inputs:
+              azureSubscription: "az-products-shared-Twin Platform"
+              addSpnToEnvironment: true
+              scriptType: "bash"
+              scriptLocation: "inlineScript"
+              inlineScript: |
+                az role assignment create --assignee "297977c5-6aac-448a-8509-f257c431d1c0" \
+                  --role "4633458b-17de-408a-b874-0445c86b69e6" \
+                  --scope "/subscriptions/249312a0-4c83-4d73-b164-18c5e72bf219/resourceGroups/rules-engine-poc/providers/Microsoft.KeyVault/vaults/rules-engine-key-vault"
+
+          - task: AzureCLI@2
+            displayName: "HPK-PROD identity can access keyvault"
+            inputs:
+              azureSubscription: "az-products-shared-Twin Platform"
+              addSpnToEnvironment: true
+              scriptType: "bash"
+              scriptLocation: "inlineScript"
+              inlineScript: |
+                az role assignment create --assignee "6c1fa15d-ac11-415c-9165-65bef0b92735" \
+                  --role "4633458b-17de-408a-b874-0445c86b69e6" \
+                  --scope "/subscriptions/249312a0-4c83-4d73-b164-18c5e72bf219/resourceGroups/rules-engine-poc/providers/Microsoft.KeyVault/vaults/rules-engine-key-vault"
+
+          - task: AzureCLI@2
+            displayName: "INV-PROD identity can access keyvault"
+            inputs:
+              azureSubscription: "az-products-shared-Twin Platform"
+              addSpnToEnvironment: true
+              scriptType: "bash"
+              scriptLocation: "inlineScript"
+              inlineScript: |
+                az role assignment create --assignee "653c7109-4a36-4287-a49a-84af34fe36db" \
+                  --role "4633458b-17de-408a-b874-0445c86b69e6" \
+                  --scope "/subscriptions/249312a0-4c83-4d73-b164-18c5e72bf219/resourceGroups/rules-engine-poc/providers/Microsoft.KeyVault/vaults/rules-engine-key-vault"
+
+          - task: AzureCLI@2
+            displayName: "MSFT-PROD identity can access keyvault"
+            inputs:
+              azureSubscription: "az-products-shared-Twin Platform"
+              addSpnToEnvironment: true
+              scriptType: "bash"
+              scriptLocation: "inlineScript"
+              inlineScript: |
+                az role assignment create --assignee "4c3e9db7-d123-4ef4-a988-8cefd60f65ad" \
+                  --role "4633458b-17de-408a-b874-0445c86b69e6" \
+                  --scope "/subscriptions/249312a0-4c83-4d73-b164-18c5e72bf219/resourceGroups/rules-engine-poc/providers/Microsoft.KeyVault/vaults/rules-engine-key-vault"
+
+          - task: AzureCLI@2
+            displayName: "WMT-PROD identity can access keyvault"
+            inputs:
+              azureSubscription: "az-products-shared-Twin Platform"
+              addSpnToEnvironment: true
+              scriptType: "bash"
+              scriptLocation: "inlineScript"
+              inlineScript: |
+                az role assignment create --assignee "d279aa74-4a28-4727-8305-25ada8e2db26" \
+                  --role "4633458b-17de-408a-b874-0445c86b69e6" \
+                  --scope "/subscriptions/249312a0-4c83-4d73-b164-18c5e72bf219/resourceGroups/rules-engine-poc/providers/Microsoft.KeyVault/vaults/rules-engine-key-vault"
+
+          - task: AzureCLI@2
+            displayName: "WMR-PROD identity can access keyvault"
+            inputs:
+              azureSubscription: "az-products-shared-Twin Platform"
+              addSpnToEnvironment: true
+              scriptType: "bash"
+              scriptLocation: "inlineScript"
+              inlineScript: |
+                az role assignment create --assignee "815359ec-b268-4166-a477-09ea6968c234" \
+                  --role "4633458b-17de-408a-b874-0445c86b69e6" \
+                  --scope "/subscriptions/249312a0-4c83-4d73-b164-18c5e72bf219/resourceGroups/rules-engine-poc/providers/Microsoft.KeyVault/vaults/rules-engine-key-vault"
+
+          - task: AzureCLI@2
+            displayName: "BROOKFIELD-UAT identity can access keyvault"
+            inputs:
+              azureSubscription: "az-products-shared-Twin Platform"
+              addSpnToEnvironment: true
+              scriptType: "bash"
+              scriptLocation: "inlineScript"
+              inlineScript: |
+                az role assignment create --assignee "5ad244d9-ed2f-4de1-a9e5-2f04836ac796" \
+                  --role "4633458b-17de-408a-b874-0445c86b69e6" \
+                  --scope "/subscriptions/249312a0-4c83-4d73-b164-18c5e72bf219/resourceGroups/rules-engine-poc/providers/Microsoft.KeyVault/vaults/rules-engine-key-vault"
+
+          - task: AzureCLI@2
+            displayName: "MSFT-TEST identity can access keyvault"
+            inputs:
+              azureSubscription: "az-products-shared-Twin Platform"
+              addSpnToEnvironment: true
+              scriptType: "bash"
+              scriptLocation: "inlineScript"
+              inlineScript: |
+                az role assignment create --assignee "d2c52fab-a012-420b-9a22-9abb8de8429d" \
+                  --role "4633458b-17de-408a-b874-0445c86b69e6" \
+                  --scope "/subscriptions/249312a0-4c83-4d73-b164-18c5e72bf219/resourceGroups/rules-engine-poc/providers/Microsoft.KeyVault/vaults/sbx-rules-engine"
+
+          - task: AzureCLI@2
+            displayName: "SAN-PROD identity can access key vault"
+            inputs:
+              azureSubscription: "az-products-shared-Twin Platform"
+              addSpnToEnvironment: true
+              scriptType: "bash"
+              scriptLocation: "inlineScript"
+              inlineScript: |
+                az role assignment create --assignee "5e0545b9-375d-4e89-a37a-c15fc6fa2a44" \
+                  --role "4633458b-17de-408a-b874-0445c86b69e6" \
+                  --scope "/subscriptions/249312a0-4c83-4d73-b164-18c5e72bf219/resourceGroups/rules-engine-poc/providers/Microsoft.KeyVault/vaults/rules-engine-key-vault"
+
+          - task: AzureCLI@2
+            displayName: "INVESTA-UAT identity can access keyvault"
+            inputs:
+              azureSubscription: "az-products-shared-Twin Platform"
+              addSpnToEnvironment: true
+              scriptType: "bash"
+              scriptLocation: "inlineScript"
+              inlineScript: |
+                az role assignment create --assignee "e751e6f2-6df3-4334-9959-4b42e1c05cbe" \
+                  --role "4633458b-17de-408a-b874-0445c86b69e6" \
+                  --scope "/subscriptions/249312a0-4c83-4d73-b164-18c5e72bf219/resourceGroups/rules-engine-poc/providers/Microsoft.KeyVault/vaults/sbx-rules-engine"

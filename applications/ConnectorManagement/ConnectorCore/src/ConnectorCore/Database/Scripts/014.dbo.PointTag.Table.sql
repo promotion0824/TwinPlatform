@@ -1,0 +1,24 @@
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[PointTag](
+	[PointEntityId] [uniqueidentifier] NOT NULL,
+	[TagId] [uniqueidentifier] NOT NULL,
+ CONSTRAINT [PK_PointTag] PRIMARY KEY CLUSTERED 
+(
+	[PointEntityId] ASC,
+	[TagId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[PointTag]  WITH CHECK ADD  CONSTRAINT [FK_PointTag_Point] FOREIGN KEY([PointEntityId])
+REFERENCES [dbo].[Point] ([EntityId])
+GO
+ALTER TABLE [dbo].[PointTag] CHECK CONSTRAINT [FK_PointTag_Point]
+GO
+ALTER TABLE [dbo].[PointTag]  WITH CHECK ADD  CONSTRAINT [FK_PointTag_Tag] FOREIGN KEY([TagId])
+REFERENCES [dbo].[Tag] ([Id])
+GO
+ALTER TABLE [dbo].[PointTag] CHECK CONSTRAINT [FK_PointTag_Tag]
+GO

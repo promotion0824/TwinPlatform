@@ -1,0 +1,31 @@
+{
+  "AuthorizationAPI": {
+    "Import": {
+      "Permissions": [
+        {
+          "name": "CanReadEdgeDeployments",
+          "description": "Can read permission"
+        },
+        {
+          "name": "CanWriteEdgeDeployments",
+          "description": "Can write permission"
+        }
+      ],
+      "Roles": [
+        {
+          "name": "Willow Non-Prod",
+          "permissions": [
+            "CanReadEdgeDeployments"
+          ]
+        },
+        {
+          "name": "Willow Non-Prod Admin",
+          "permissions": [
+            "CanReadEdgeDeployments",
+            "CanWriteEdgeDeployments"
+          ]
+        }
+      ]
+    }
+  }
+}

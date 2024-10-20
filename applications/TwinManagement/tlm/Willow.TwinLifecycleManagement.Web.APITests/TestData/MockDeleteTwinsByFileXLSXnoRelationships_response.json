@@ -1,0 +1,13 @@
+{
+  "requestPath": "wil-dev-lda-cu1-eu21-adt.api.wus2.digitaltwins.azure.net/import/requests/SGrujicic@willowinc.com.Relationships.2022.09.16.10.56.41",
+  "delete": true,
+  "jobId": "SGrujicic@willowinc.com.Relationships.2022.09.16.10.56.41",
+  "details": {},
+  "createTime": "2022-09-16T10:56:41.0641494Z",
+  "lastUpdateTime": "2022-09-16T10:56:42.7237059Z",
+  "userId": "SGrujicic@willowinc.com",
+  "userData": "DeleteTwinsByFileXLSXnoRelationships",
+  "target": [
+    "Relationships"
+  ]
+}

@@ -1,0 +1,70 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<NoWarn>$(NoWarn);1591</NoWarn>
+		<RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Remove="Filters\**" />
+		<Compile Remove="Models\**" />
+		<Content Remove="Filters\**" />
+		<Content Remove="Models\**" />
+		<EmbeddedResource Remove="Filters\**" />
+		<EmbeddedResource Remove="Models\**" />
+		<None Remove="Filters\**" />
+		<None Remove="Models\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Autofac.Extensions.DependencyInjection" Version="9.0.0" />
+		<PackageReference Include="AutoMapper" Version="13.0.1" />
+		<PackageReference Include="Microsoft.AspNetCore.JsonPatch" Version="8.0.6" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.6">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.Extensions.ApiDescription.Server" Version="8.0.6">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="NSwag.AspNetCore" Version="14.0.7" />
+		<PackageReference Include="Willow.Api.Binding" Version="2.2.2561" />
+		<PackageReference Include="Willow.Api.Common" Version="2.2.2561" />
+		<PackageReference Include="Willow.Copilot.ProxyAPI" Version="2.2.2403" />
+		<PackageReference Include="Willow.ServiceBus" Version="2.2.1630" />
+		<PackageReference Include="Willow.CognitiveSearch" Version="2.2.2742" />
+		<PackageReference Include="Willow.Telemetry.Web" Version="2.2.2734" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Properties\" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<InternalsVisibleTo Include="Willow.AzureDigitalTwins.Api.APITests" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Willow.AzureDigitalTwins.Api.Persistence\Willow.AzureDigitalTwins.Api.Persistence.csproj" />
+	  <ProjectReference Include="..\Willow.DataQuality.Execution\Willow.DataQuality.Execution.csproj" />
+	  <ProjectReference Include="..\Willow.Storage\Willow.Storage.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Update="Schema\RealEstatev2.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	</ItemGroup>
+	<Target Name="NSwag" BeforeTargets="AfterBuild" Condition="'$(Configuration)'=='Debug' and '$(AzureDevOps)'!='True' and '$(Willow_ADT_API_EnableSDKGeneration)'!='False' ">
+		<Exec WorkingDirectory="$(ProjectDir)" Command="dotnet new tool-manifest --force" />
+		<Exec WorkingDirectory="$(ProjectDir)" Command="dotnet tool install NSwag.ConsoleCore --version 14.0.7 --disable-parallel --ignore-failed-sources" />
+		<Exec ContinueOnError="true" WorkingDirectory="$(ProjectDir)" EnvironmentVariables="ASPNETCORE_ENVIRONMENT=Development" Command="dotnet nswag run nswag.json /variables:Configuration=$(Configuration)" />
+		<Exec WorkingDirectory="$(ProjectDir)" Command="dotnet tool uninstall NSwag.ConsoleCore" />
+		<Exec IgnoreExitCode="true" Command="dotnet tool install makeGenericAgain --disable-parallel --ignore-failed-sources" />
+		<Exec WorkingDirectory="$(ProjectDir)" Command="dotnet makeGenericAgain -f ..\\..\\lib\\Willow.AzureDigitalTwins.SDK\\Client\\AdtAPIClient.cs" />
+		<Exec WorkingDirectory="$(ProjectDir)" Command="dotnet tool uninstall makegenericAgain" />
+	</Target>
+</Project>

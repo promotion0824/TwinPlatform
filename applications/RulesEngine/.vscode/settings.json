@@ -1,0 +1,9 @@
+{
+    "WhiteSource Advise.Diff.BaseBranch": "main",
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/bin": true,
+        "**/obj": true
+    },
+    "dotnet.defaultSolution": "ExploreDigitalTwin.sln"
+}

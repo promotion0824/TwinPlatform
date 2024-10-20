@@ -1,0 +1,1904 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Willow.LiveData.Core</name>
+    </assembly>
+    <members>
+        <member name="T:Willow.LiveData.Core.Common.DateTimeIntervalService">
+            <summary>
+            Provides methods for calculating and validating date time intervals.
+            </summary>
+        </member>
+        <member name="T:Willow.LiveData.Core.Common.IAdxContinuationTokenProvider`2">
+            <summary>
+            Represents a provider for generating and parsing continuation tokens used for ADX paging.
+            </summary>
+            <typeparam name="T1">The type of the first item in the continuation token.</typeparam>
+            <typeparam name="T2">The type of the second item in the continuation token.</typeparam>
+        </member>
+        <member name="T:Willow.LiveData.Core.Common.IContinuationTokenProvider`2">
+            <summary>
+            Represents a provider that generates and parses continuation tokens for a given type.
+            </summary>
+            <typeparam name="T">The type of the item.</typeparam>
+            <typeparam name="TOut">The type of the parsed token.</typeparam>
+        </member>
+        <member name="M:Willow.LiveData.Core.Common.IContinuationTokenProvider`2.GetToken(`0)">
+            <summary>
+            Retrieves a continuation token for a given item.
+            </summary>
+            <param name="item">The item for which to retrieve the continuation token.</param>
+            <returns>The continuation token for the item.</returns>
+        </member>
+        <member name="M:Willow.LiveData.Core.Common.IContinuationTokenProvider`2.ParseToken(System.String)">
+            <summary>
+            Parses a continuation token for a given item.
+            </summary>
+            <param name="token">The continuation token to parse.</param>
+            <returns>The parsed token.</returns>
+        </member>
+        <member name="T:Willow.LiveData.Core.Common.IDateTimeIntervalService">
+            <summary>
+            Provides methods for calculating and validating date time intervals.
+            </summary>
+        </member>
+        <member name="M:Willow.LiveData.Core.Common.IDateTimeIntervalService.GetDateTimeInterval(System.DateTime,System.DateTime,System.Nullable{System.TimeSpan})">
+            <summary>
+            Calculates the <see cref="T:Willow.LiveData.Core.Domain.TimeInterval"/> between the specified start and end <see cref="T:System.DateTime"/> values.
+            </summary>
+            <param name="start">The start <see cref="T:System.DateTime"/> value.</param>
+            <param name="end">The end <see cref="T:System.DateTime"/> value.</param>
+            <param name="selected">Optional selected <see cref="T:System.TimeSpan"/> value.</param>
+            <returns>The calculated <see cref="T:Willow.LiveData.Core.Domain.TimeInterval"/>.</returns>
+        </member>
+        <member name="T:Willow.LiveData.Core.Common.ILiveDataService">
+            <summary>
+            Represents a service for retrieving live data.
+            </summary>
+        </member>
+        <member name="M:Willow.LiveData.Core.Common.ILiveDataService.GetLiveDataService(System.Nullable{System.Guid})">
+            <summary>
+            Gets the live data service for a specific client.
+            </summary>
+            <param name="clientId">The unique identifier for the client.</param>
+            <returns>The live data service.</returns>
+        </member>
+        <member name="T:Willow.LiveData.Core.Common.LiveDataService">
+            <summary>
+            Represents a service for retrieving live data.
+            </summary>
+        </member>
+        <member name="M:Willow.LiveData.Core.Common.LiveDataService.#ctor(Microsoft.Extensions.Configuration.IConfiguration,Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.IAdxLiveDataService)">
+            <summary>
+            Represents a service for retrieving live data.
+            </summary>
+        </member>
+        <member name="M:Willow.LiveData.Core.Common.LiveDataService.CheckAdxConfiguration(System.Nullable{System.Guid})">
+            <summary>
+            Checks and retrieves the ADX configuration for a specific client.
+            </summary>
+            <param name="clientId">The unique identifier for the client.</param>
+        </member>
+        <member name="T:Willow.LiveData.Core.Domain.PointStatsData">
+            <summary>
+            Represents statistics data for points.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Domain.PointStatsData.SiteId">
+            <summary>
+            Gets or sets the SiteId.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Domain.PointStatsData.PointsCount">
+            <summary>
+            Gets or sets the Point count.
+            </summary>
+        </member>
+        <member name="T:Willow.LiveData.Core.Domain.PointTimeSeriesRawData">
+            <summary>
+            Represents raw data for a point time series.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Domain.PointTimeSeriesRawData.PointEntityId">
+            <summary>
+            Gets or sets the PointEntityId (TrendId).
+            </summary>
+        </member>
+        <member name="T:Willow.LiveData.Core.Domain.StoredQueryResult">
+            <summary>
+            Represents a stored query result.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Domain.StoredQueryResult.StoredQueryResultId">
+            <summary>
+            Gets or sets the identifier of the stored query result.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Domain.StoredQueryResult.Name">
+            <summary>
+            Gets or sets the name of the stored query result.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Domain.StoredQueryResult.DatabaseName">
+            <summary>
+            Gets or sets the name of the database.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Domain.StoredQueryResult.PrincipalIdentity">
+            <summary>
+            Gets or sets the name of the collection.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Domain.StoredQueryResult.SizeInBytes">
+            <summary>
+            Gets or sets the size in bytes.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Domain.StoredQueryResult.Count">
+            <summary>
+            Gets or sets the count.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Domain.StoredQueryResult.CreatedOn">
+            <summary>
+            Gets or sets the created on date.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Domain.StoredQueryResult.ExpiresOn">
+            <summary>
+            Gets or sets the expires on date.
+            </summary>
+        </member>
+        <member name="T:Willow.LiveData.Core.Domain.TelemetryData">
+            <summary>
+            Represents telemetry data.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Domain.TelemetryData.ConnectorId">
+            <summary>
+            Gets or sets the ConnectorId.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Domain.TelemetryData.TwinId">
+            <summary>
+            Gets or sets the TwinId.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Domain.TelemetryData.ExternalId">
+            <summary>
+            Gets or sets the ExternalId.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Domain.TelemetryData.TrendId">
+            <summary>
+            Gets or sets the TrendId.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Domain.TelemetryData.SourceTimestamp">
+            <summary>
+            Gets or sets the SourceTimestamp.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Domain.TelemetryData.EnqueuedTimestamp">
+            <summary>
+            Gets or sets the EnqueuedTimestamp.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Domain.TelemetryData.ScalarValue">
+            <summary>
+            Gets or sets the Value.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Domain.TelemetryData.Latitude">
+            <summary>
+            Gets or sets the Latitude.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Domain.TelemetryData.Longitude">
+            <summary>
+            Gets or sets the Longitude.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Domain.TelemetryData.Altitude">
+            <summary>
+            Gets or sets the Altitude.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Domain.TelemetryData.Properties">
+            <summary>
+            Gets or sets the Properties bag.
+            </summary>
+        </member>
+        <member name="T:Willow.LiveData.Core.Domain.TelemetryRequestBody">
+            <summary>
+            Represents the telemetry request body.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Domain.TelemetryRequestBody.ConnectorId">
+            <summary>
+            Gets or sets the ConnectorId.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Domain.TelemetryRequestBody.DtIds">
+            <summary>
+            Gets or sets the list of TwinIds.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Domain.TelemetryRequestBody.TrendIds">
+            <summary>
+            Gets or sets the list of trend IDs for telemetry data.
+            </summary>
+        </member>
+        <member name="T:Willow.LiveData.Core.Domain.TimeInterval">
+            <summary>
+            Represents a time interval.
+            </summary>
+        </member>
+        <member name="M:Willow.LiveData.Core.Domain.TimeInterval.#ctor(System.String,System.TimeSpan)">
+            <summary>
+            Represents a time interval.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Domain.TimeInterval.Name">
+            <summary>
+            Gets the name of the time interval.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Domain.TimeInterval.TimeSpan">
+            <summary>
+            Gets the time span of the time interval.
+            </summary>
+        </member>
+        <member name="T:Willow.LiveData.Core.Domain.TimeSeriesAnalogData">
+            <summary>
+            Represents time series analog data.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Domain.TimeSeriesAnalogData.Average">
+            <summary>
+            Gets or sets the average value.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Domain.TimeSeriesAnalogData.Minimum">
+            <summary>
+            Gets or sets the minimum value.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Domain.TimeSeriesAnalogData.Maximum">
+            <summary>
+            Gets or sets the maximum value.
+            </summary>
+        </member>
+        <member name="T:Willow.LiveData.Core.Domain.TimeSeriesBinaryData">
+            <summary>
+            Represents time series binary data.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Domain.TimeSeriesBinaryData.OnCount">
+            <summary>
+            Gets or sets the On count.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Domain.TimeSeriesBinaryData.OffCount">
+            <summary>
+            Gets or sets the Off count.
+            </summary>
+        </member>
+        <member name="T:Willow.LiveData.Core.Domain.TimeSeriesData">
+            <summary>
+            Represents time series data.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Domain.TimeSeriesData.Timestamp">
+            <summary>
+            Gets or sets the timestamp of the time series data.
+            </summary>
+        </member>
+        <member name="M:Willow.LiveData.Core.Domain.TimeSeriesData.Clone">
+            <summary>
+            Creates a new instance of the current TimeSeriesData object with the same property values.
+            </summary>
+            <returns>A new instance of the current TimeSeriesData object.</returns>
+        </member>
+        <member name="T:Willow.LiveData.Core.Domain.TimeSeriesMultiStateData">
+            <summary>
+            Represents time series multistate data.
+            </summary>
+        </member>
+        <member name="T:Willow.LiveData.Core.Domain.TimeSeriesRawData">
+            <summary>
+            Represents time series raw data.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Domain.TimeSeriesRawData.Value">
+            <summary>
+            Gets or sets the Value.
+            </summary>
+        </member>
+        <member name="T:Willow.LiveData.Core.Domain.TimeSeriesSumData">
+            <summary>
+            Represents time series sum data.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Domain.TimeSeriesSumData.Average">
+            <summary>
+            Gets or sets the Sum.
+            </summary>
+        </member>
+        <member name="T:Willow.LiveData.Core.Domain.GetTrendlogsResultItem">
+            <summary>
+            Get trendlogs result item.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Domain.GetTrendlogsResultItem.PointEntityId">
+            <summary>
+            Gets or sets the point entity id.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Domain.GetTrendlogsResultItem.Data">
+            <summary>
+            Gets or sets the data.
+            </summary>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Connectors.ConnectionTypeRule.BaseConnectorType.GetSetState(System.Collections.Generic.IEnumerable{Willow.LiveData.Core.Features.Connectors.Models.ConnectorState},Willow.LiveData.Core.Features.Connectors.Models.ConnectorTelemetryBucket)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Connectors.ConnectionTypeRule.BaseConnectorType.GetStatus(Willow.LiveData.Core.Features.Connectors.Models.ConnectorStats,System.Collections.Generic.IEnumerable{Willow.LiveData.Core.Features.Connectors.Models.ConnectorState},Willow.LiveData.Core.Features.Connectors.Models.ConnectorTelemetryBucket)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Connectors.ConnectionTypeRule.BaseConnectorType.GetStatus(Willow.LiveData.Core.Features.Connectors.Models.ConnectorStats,System.Collections.Generic.IEnumerable{Willow.LiveData.Core.Features.Connectors.Models.ConnectorState},Willow.LiveData.Core.Features.Connectors.Models.ConnectorTelemetryBucket,System.Collections.Generic.IEnumerable{Willow.LiveData.Core.Features.Connectors.Models.HeartbeatTelemetry})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Connectors.ConnectionTypeRule.ConnectorTypeFactory.GetConnector(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Willow.LiveData.Core.Features.Connectors.Controllers.ConnectorsController">
+            <summary>
+            Connector controller for getting connector status, unique trends, and missing trends.
+            </summary>
+            <param name="connectorService">A connector service instance.</param>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Connectors.Controllers.ConnectorsController.#ctor(Willow.LiveData.Core.Features.Connectors.Interfaces.IConnectorService)">
+            <summary>
+            Connector controller for getting connector status, unique trends, and missing trends.
+            </summary>
+            <param name="connectorService">A connector service instance.</param>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Connectors.Controllers.ConnectorsController.GetConnectorStatusAsync(System.Nullable{System.Guid},Willow.LiveData.Core.Features.Connectors.DTOs.ConnectorList,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.String)">
+            <summary>
+            Gets the connector status.
+            </summary>
+            <param name="clientId">The client ID.</param>
+            <param name="connectorList">A list of connector IDs.</param>
+            <param name="start">The start time.</param>
+            <param name="end">The end time.</param>
+            <param name="singleBin">Single bin.</param>
+            <returns>A connector status result.</returns>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Connectors.Controllers.ConnectorsController.GetUniqueTrendsAsync(System.Nullable{System.Guid},Willow.LiveData.Core.Features.Connectors.DTOs.ConnectorList,System.Nullable{System.DateTime},System.Nullable{System.DateTime})">
+            <summary>
+            Gets unique trends.
+            </summary>
+            <param name="clientId">The client ID.</param>
+            <param name="connectorList">A list of connector IDs.</param>
+            <param name="start">The start time.</param>
+            <param name="end">The end time.</param>
+            <returns>A unique trends result.</returns>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Connectors.Controllers.ConnectorsController.GetMissingTrendsAsync(System.Nullable{System.Guid},Willow.LiveData.Core.Features.Connectors.DTOs.ConnectorList,System.Nullable{System.DateTime},System.Nullable{System.DateTime})">
+            <summary>
+            Gets missing trends.
+            </summary>
+            <param name="clientId">The client ID.</param>
+            <param name="connectorList">A list of connector IDs.</param>
+            <param name="start">The start time.</param>
+            <param name="end">The end time.</param>
+            <returns>A missing trends result.</returns>
+        </member>
+        <member name="T:Willow.LiveData.Core.Features.Connectors.DTOs.CapabilityDetail">
+            <summary>
+            Capability Detail.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.Connectors.DTOs.CapabilityDetail.ConnectorId">
+            <summary>
+            Gets or sets the connector identifier.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.Connectors.DTOs.CapabilityDetail.TrendId">
+            <summary>
+            Gets or sets the trend identifier.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.Connectors.DTOs.CapabilityDetail.TwinId">
+            <summary>
+            Gets or sets the twin identifier.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.Connectors.DTOs.CapabilityDetail.ExternalId">
+            <summary>
+            Gets or sets the external identifier.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.Connectors.DTOs.CapabilityDetail.Name">
+            <summary>
+            Gets or sets the name.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.Connectors.DTOs.CapabilityDetail.Model">
+            <summary>
+            Gets or sets the model.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.Connectors.DTOs.CapabilityDetail.IsCapabilityOf">
+            <summary>
+            Gets or sets the ID of the twin that this capability is a capability of.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.Connectors.DTOs.CapabilityDetail.IsHostedBy">
+            <summary>
+            Gets or sets the ID of the twin that hosts this capability.
+            </summary>
+        </member>
+        <member name="T:Willow.LiveData.Core.Features.Connectors.DTOs.ConnectorList">
+            <summary>
+            A list of connector IDs.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.Connectors.DTOs.ConnectorList.ConnectorIds">
+            <summary>
+            Gets or sets a list of connector IDs.
+            </summary>
+        </member>
+        <member name="T:Willow.LiveData.Core.Features.Connectors.DTOs.ConnectorStatsDto">
+            <summary>
+            Connector statistics.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.Connectors.DTOs.ConnectorStatsDto.ConnectorId">
+            <summary>
+            Gets or sets the connector ID.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.Connectors.DTOs.ConnectorStatsDto.CurrentSetState">
+            <summary>
+            Gets or sets the connector set state.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.Connectors.DTOs.ConnectorStatsDto.CurrentStatus">
+            <summary>
+            Gets or sets the connector current status.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.Connectors.DTOs.ConnectorStatsDto.TotalCapabilitiesCount">
+            <summary>
+            Gets or sets the total number of capabilities.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.Connectors.DTOs.ConnectorStatsDto.DisabledCapabilitiesCount">
+            <summary>
+            Gets or sets the number of disabled capabilities.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.Connectors.DTOs.ConnectorStatsDto.HostingDevicesCount">
+            <summary>
+            Gets or sets the number of devices hosting the capabilities.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.Connectors.DTOs.ConnectorStatsDto.TotalTelemetryCount">
+            <summary>
+            Gets the count of telemetry.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.Connectors.DTOs.ConnectorStatsDto.Telemetry">
+            <summary>
+            Gets or sets the telemetry.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.Connectors.DTOs.ConnectorStatsDto.Status">
+            <summary>
+            Gets or sets detailed status information for the connector.
+            </summary>
+        </member>
+        <member name="T:Willow.LiveData.Core.Features.Connectors.DTOs.ConnectorStatusDto">
+            <summary>
+            Connector status.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.Connectors.DTOs.ConnectorStatusDto.TimestampUtc">
+            <summary>
+            Gets or sets the status timestamp.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.Connectors.DTOs.ConnectorStatusDto.SetState">
+            <summary>
+            Gets or sets the connector set state.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.Connectors.DTOs.ConnectorStatusDto.Status">
+            <summary>
+            Gets or sets the connector status.
+            </summary>
+        </member>
+        <member name="T:Willow.LiveData.Core.Features.Connectors.DTOs.ConnectorStatusResult">
+            <summary>
+            Connector status result.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.Connectors.DTOs.ConnectorStatusResult.Data">
+            <summary>
+            Gets or sets the connector stats.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.Connectors.DTOs.ConnectorStatusResult.ErrorList">
+            <summary>
+            Gets or sets a list of errors.
+            </summary>
+        </member>
+        <member name="T:Willow.LiveData.Core.Features.Connectors.DTOs.ConnectorTelemetryBucketDto">
+            <summary>
+            Connector Telemetry Bucket DTO.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.Connectors.DTOs.ConnectorTelemetryBucketDto.Timestamp">
+            <summary>
+            Gets or sets the timestamp.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.Connectors.DTOs.ConnectorTelemetryBucketDto.TotalTelemetryCount">
+            <summary>
+            Gets or sets the total telemetry count.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.Connectors.DTOs.ConnectorTelemetryBucketDto.UniqueCapabilityCount">
+            <summary>
+            Gets or sets the unique capability count.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.Connectors.DTOs.ConnectorTelemetryBucketDto.ExpectedTelemetryCount">
+            <summary>
+            Gets or sets the expected telemetry count.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.Connectors.DTOs.ConnectorTelemetryBucketDto.SetState">
+            <summary>
+            Gets or sets the set state.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.Connectors.DTOs.ConnectorTelemetryBucketDto.Status">
+            <summary>
+            Gets or sets the status.
+            </summary>
+        </member>
+        <member name="T:Willow.LiveData.Core.Features.Connectors.DTOs.ErrorData">
+            <summary>
+            Error data.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.Connectors.DTOs.ErrorData.Message">
+            <summary>
+            Gets or sets the error message.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.Connectors.DTOs.ErrorData.Ids">
+            <summary>
+            Gets or sets the IDs of the operation.
+            </summary>
+        </member>
+        <member name="T:Willow.LiveData.Core.Features.Connectors.DTOs.MissingTrendsDetail">
+            <summary>
+            Missing Trends Detail.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.Connectors.DTOs.MissingTrendsDetail.ConnectorId">
+            <summary>
+            Gets or sets the connector identifier.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.Connectors.DTOs.MissingTrendsDetail.Details">
+            <summary>
+            Gets or sets the list of capability details.
+            </summary>
+        </member>
+        <member name="T:Willow.LiveData.Core.Features.Connectors.DTOs.MissingTrendsResult">
+            <summary>
+            Missing Trends Result.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.Connectors.DTOs.MissingTrendsResult.Data">
+            <summary>
+            Gets or sets the missing trends data.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.Connectors.DTOs.MissingTrendsResult.ErrorList">
+            <summary>
+            Gets or sets the error list.
+            </summary>
+        </member>
+        <member name="T:Willow.LiveData.Core.Features.Connectors.DTOs.UniqueTrends">
+            <summary>
+            Unique Trends.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.Connectors.DTOs.UniqueTrends.ConnectorId">
+            <summary>
+            Gets or sets the connector identifier.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.Connectors.DTOs.UniqueTrends.TotalCapabilities">
+            <summary>
+            Gets or sets the count of total capabilities.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.Connectors.DTOs.UniqueTrends.ActiveCapabilities">
+            <summary>
+            Gets or sets the count of active capabilities.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.Connectors.DTOs.UniqueTrends.InactiveCapabilities">
+            <summary>
+            Gets or sets the count of inactive capabilities.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.Connectors.DTOs.UniqueTrends.TrendingCapabilities">
+            <summary>
+            Gets or sets the count of trending capabilities.
+            </summary>
+        </member>
+        <member name="T:Willow.LiveData.Core.Features.Connectors.DTOs.UniqueTrendsResult">
+            <summary>
+            Unique Trends Result.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.Connectors.DTOs.UniqueTrendsResult.Data">
+            <summary>
+            Gets or sets the unique trends data.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.Connectors.DTOs.UniqueTrendsResult.ErrorList">
+            <summary>
+            Gets or sets the error list.
+            </summary>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Connectors.Helpers.ConnectorStatsResultHelper.UpdateConnectorStatsDto(System.Collections.Generic.IEnumerable{Willow.LiveData.Core.Features.Connectors.Models.ConnectorStats},System.Collections.Generic.IEnumerable{Willow.LiveData.Core.Features.Connectors.Models.ConnectorTelemetryBucket},System.Collections.Generic.IEnumerable{Willow.LiveData.Core.Features.Connectors.Models.ConnectorTelemetryBucket},System.Collections.Generic.IEnumerable{Willow.LiveData.Core.Features.Connectors.Models.ConnectorState})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Connectors.Helpers.ConnectorStatsResultHelper.MapTo(Willow.LiveData.Core.Features.Connectors.Models.ConnectorStats,System.Collections.Generic.IEnumerable{Willow.LiveData.Core.Features.Connectors.Models.ConnectorTelemetryBucket},System.Collections.Generic.IEnumerable{Willow.LiveData.Core.Features.Connectors.Models.ConnectorTelemetryBucket},System.Collections.Generic.IEnumerable{Willow.LiveData.Core.Features.Connectors.Models.ConnectorState})">
+            <inheritdoc/>
+        </member>
+        <member name="T:Willow.LiveData.Core.Features.Connectors.Interfaces.IConnectorService">
+            <summary>
+            Connector Service.
+            </summary>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Connectors.Interfaces.IConnectorService.GetConnectorStatusAsync(System.Nullable{System.Guid},Willow.LiveData.Core.Features.Connectors.DTOs.ConnectorList,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.String)">
+            <summary>
+            Gets the connector status.
+            </summary>
+            <param name="clientId">The client ID.</param>
+            <param name="connectorStatusRequest">A list of connector IDs.</param>
+            <param name="start">The start time.</param>
+            <param name="end">The end time.</param>
+            <param name="singleBin">Single bin.</param>
+            <returns>A connector status result.</returns>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Connectors.Interfaces.IConnectorService.GetUniqueTrendsAsync(System.Nullable{System.Guid},Willow.LiveData.Core.Features.Connectors.DTOs.ConnectorList,System.Nullable{System.DateTime},System.Nullable{System.DateTime})">
+            <summary>
+            Gets unique trends.
+            </summary>
+            <param name="clientId">The client ID.</param>
+            <param name="connectorStatusRequest">A list of connector IDs.</param>
+            <param name="start">The start time.</param>
+            <param name="end">The end time.</param>
+            <returns>A unique trends result.</returns>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Connectors.Interfaces.IConnectorService.GetMissingTrendsAsync(System.Nullable{System.Guid},Willow.LiveData.Core.Features.Connectors.DTOs.ConnectorList,System.Nullable{System.DateTime},System.Nullable{System.DateTime})">
+            <summary>
+            Gets missing trends.
+            </summary>
+            <param name="clientId">The client ID.</param>
+            <param name="connectorStatusRequest">A list of connector IDs.</param>
+            <param name="start">The start time.</param>
+            <param name="end">The end time.</param>
+            <returns>A missing trends result.</returns>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Connectors.Repositories.AdxConnectorRepository.GetTelemetryCountByLastXHoursAsync(System.Nullable{System.Guid},System.Collections.Generic.List{System.Guid},System.DateTime,System.DateTime,System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Connectors.Repositories.AdxConnectorRepository.GetTelemetryAndCapabilityCountByLastXHoursAsync(System.Nullable{System.Guid},System.Collections.Generic.List{System.Guid},System.DateTime,System.DateTime)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Connectors.Repositories.AdxConnectorRepository.GetMissingTrendsForXHoursAsync(System.Nullable{System.Guid},System.Collections.Generic.List{System.Guid},System.DateTime,System.DateTime)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Connectors.Repositories.AdxConnectorRepository.GetConnectorStatusAsync(System.Nullable{System.Guid},System.Collections.Generic.List{System.Guid})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Connectors.Repositories.AdxConnectorRepository.GetConnectorStateOvertimeAsync(System.Nullable{System.Guid},System.Collections.Generic.List{System.Guid},System.DateTime,System.DateTime)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Connectors.Services.ConnectorService.GetConnectorStatusAsync(System.Nullable{System.Guid},Willow.LiveData.Core.Features.Connectors.DTOs.ConnectorList,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Connectors.Services.ConnectorService.GetUniqueTrendsAsync(System.Nullable{System.Guid},Willow.LiveData.Core.Features.Connectors.DTOs.ConnectorList,System.Nullable{System.DateTime},System.Nullable{System.DateTime})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Connectors.Services.ConnectorService.GetMissingTrendsAsync(System.Nullable{System.Guid},Willow.LiveData.Core.Features.Connectors.DTOs.ConnectorList,System.Nullable{System.DateTime},System.Nullable{System.DateTime})">
+            <inheritdoc/>
+        </member>
+        <member name="T:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.AdxCTokenProvider">
+            <summary>
+            Continuation Token provider class for ADX paging.
+            </summary>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.AdxCTokenProvider.GetToken(System.String,System.Int32)">
+            <inheritdoc />
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.AdxCTokenProvider.ParseToken(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.Adx.AdxLiveDataRepository.#ctor(Willow.LiveData.Core.Infrastructure.Database.Adx.IAdxQueryRunner,Willow.LiveData.Core.Common.IContinuationTokenProvider{System.String,System.String})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.Adx.AdxLiveDataRepository"/> class.
+             This service executes KQL queries against ADX table.
+            </summary>
+            <param name="adxQueryRunner">Service that executes the Adx query.</param>
+            <param name="storedQueryResultTokenProvider">Service for stored query token used for paging.</param>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.Adx.AdxLiveDataRepository.GetTimeSeriesDataByExternalIdAsync(System.Guid,System.String,System.Nullable{System.Guid},System.DateTime,System.DateTime,System.String)">
+            <summary>
+            Retrieves time series data for a given external ID.
+            </summary>
+            <param name="connectorId">The ID of the connector.</param>
+            <param name="externalId">The external ID.</param>
+            <param name="clientId">The client ID.</param>
+            <param name="startUtc">The start date and time in UTC.</param>
+            <param name="endUtc">The end date and time in UTC.</param>
+            <param name="interval">The time interval for aggregation.</param>
+            <returns>A collection of <see cref="T:Willow.LiveData.Core.Domain.TimeSeriesData"/> objects.</returns>
+        </member>
+        <member name="T:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.Adx.AdxLiveDataService">
+            <inheritdoc/>
+        </member>
+        <member name="T:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.Adx.AdxStoredQueryResultTokenProvider">
+            <summary>
+            Token Provider for StoredQueryResult for ADX for supporting paging.
+            </summary>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.Adx.AdxStoredQueryResultTokenProvider.GetToken(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.Adx.AdxStoredQueryResultTokenProvider.ParseToken(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.CumulativeDataController">
+            <summary>
+            Controller for cumulative data (used by mining team).
+            </summary>
+            <param name="dataService">Livedata service.</param>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.CumulativeDataController.#ctor(Willow.LiveData.Core.Common.ILiveDataService)">
+            <summary>
+            Controller for cumulative data (used by mining team).
+            </summary>
+            <param name="dataService">Livedata service.</param>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.CumulativeDataController.GetCumulativeTrendAsync(System.Nullable{System.Guid},System.DateTime,System.DateTime,System.String,System.Collections.Generic.List{System.Guid},System.Double)">
+            <summary>
+            Retrieves cumulative data divided by intervals.
+            </summary>
+            <param name="clientId">The client ID.</param>
+            <param name="start">The start date and time of the time series data.</param>
+            <param name="end">The end date and time of the time series data.</param>
+            <param name="intervalStr">The interval.</param>
+            <param name="pointIds">The list of TrendIds for which to retrieve the data. If null, retrieves data for all points.</param>
+            <param name="valueMultiplier">The value multiplier.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.CumulativeDataController.GetCumulativeSumAsync(System.Nullable{System.Guid},System.DateTime,System.DateTime,System.String,System.Collections.Generic.List{System.Guid},System.Double)">
+            <summary>
+            Retrieves accumulation over selected period of time.
+            </summary>
+            <param name="clientId">The client ID.</param>
+            <param name="start">The start date and time of the time series data.</param>
+            <param name="end">The end date and time of the time series data.</param>
+            <param name="intervalStr">The interval.</param>
+            <param name="pointIds">The list of TrendIds for which to retrieve the data. If null, retrieves data for all points.</param>
+            <param name="valueMultiplier">The value multiplier.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous operation.</returns>
+        </member>
+        <member name="T:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.Extensions.ModelExtensions">
+            <summary>
+            Extensions methods for Models.
+            </summary>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.Extensions.ModelExtensions.MapTo(Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.Model.Telemetry)">
+            <summary>
+            Map Model to DTO.
+            </summary>
+            <param name="telemetry">Telemetry.</param>
+            <returns>TelemetryData.</returns>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.Extensions.ModelExtensions.MapTo(System.Collections.Generic.IEnumerable{Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.Model.Telemetry})">
+            <summary>
+            Map Model List to Dto List.
+            </summary>
+            <param name="telemetry">A list of Telemetry.</param>
+            <returns>A list of TelemetryData.</returns>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.Extensions.ModelExtensions.MapToTelemetryRaw(System.Collections.Generic.IEnumerable{Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.Model.Telemetry})">
+            <summary>
+            Map ADX Telemetry to TelemetryRawData.
+            </summary>
+            <param name="telemetry">An enumerable of Telemetry.</param>
+            <returns>A list of TelemetryRawData.</returns>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.Extensions.ModelExtensions.MapTwinId``1(System.Collections.Generic.IEnumerable{Willow.LiveData.Core.Features.Telemetry.DTOs.TelemetryBaseIdData},System.Collections.Generic.List{Willow.LiveData.Core.Features.Telemetry.DTOs.TwinDetails})">
+            <summary>
+            Map TwinId from ExternalId or TrendId.
+            </summary>
+            <typeparam name="T">Derived from Telemetry Base ID Data.</typeparam>
+            <param name="telemetry">An enumerable of Telemetry Base ID Data.</param>
+            <param name="twinsList">A list of Twin Details.</param>
+            <returns>List of telemetry with TwinId populated.</returns>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.Extensions.ModelExtensions.MapToTelemetryRaw(Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.Model.Telemetry)">
+            <summary>
+            Map Model to DTO.
+            </summary>
+            <param name="telemetry">Telemetry.</param>
+            <returns>TelemetryRawData.</returns>
+        </member>
+        <member name="T:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.IAdxLiveDataService">
+            <summary>
+            Represents a service for retrieving live data from ADX.
+            </summary>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.IAdxLiveDataService.GetTimeSeriesDataByTrendIdAsync(System.Nullable{System.Guid},System.DateTime,System.DateTime,System.String,System.Guid,System.Nullable{System.TimeSpan})">
+            <summary>
+            Retrieves time series data for a specific TrendId.
+            </summary>
+            <param name="clientId">The client ID.</param>
+            <param name="start">The start date and time of the time series data.</param>
+            <param name="end">The end date and time of the time series data.</param>
+            <param name="type">The type of time series data.</param>
+            <param name="trendId">The trendId of the point.</param>
+            <param name="selectedInterval">The selected time interval for the time series data.</param>
+            <returns>A collection of time series data for the specified trendId.</returns>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.IAdxLiveDataService.GetTimeSeriesDataByTrendIdAsync(System.Nullable{System.Guid},System.DateTime,System.DateTime,System.String,System.Collections.Generic.IEnumerable{System.Guid},System.Nullable{System.TimeSpan})">
+            <summary>
+            Retrieves time series data for an array of TrendIds.
+            </summary>
+            <param name="clientId">The client ID.</param>
+            <param name="start">The start date and time of the time series data.</param>
+            <param name="end">The end date and time of the time series data.</param>
+            <param name="type">The type of time series data.</param>
+            <param name="trendIds">An array of trendIds.</param>
+            <param name="selectedInterval">The selected time interval for the time series data.</param>
+            <returns>A dictionary with trendIds as keys and a list of time series data as values.</returns>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.IAdxLiveDataService.GetTimeSeriesDataByTrendIdAsync(System.Nullable{System.Guid},System.DateTime,System.DateTime,System.Guid[],System.String[],System.Nullable{System.TimeSpan})">
+            <summary>
+            Retrieves time series data for an array of TrendIds.
+            </summary>
+            <param name="clientId">The client ID.</param>
+            <param name="start">The start date and time of the time series data.</param>
+            <param name="end">The end date and time of the time series data.</param>
+            <param name="trendIds">An array of point entity IDs.</param>
+            <param name="types">An array of point types.</param>
+            <param name="selectedInterval">The selected time interval for the time series data.</param>
+            <returns>A dictionary containing point entity IDs as keys and lists of time series data as values.</returns>
+            <remarks>
+            The returned dictionary maps each point entity ID to a list of time series data for that point.
+            </remarks>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.IAdxLiveDataService.GetTimeSeriesRawDataByTrendIdAsync(System.Nullable{System.Guid},System.Guid,System.DateTime,System.DateTime,System.String,System.Nullable{System.Int32})">
+            <summary>
+            Retrieves raw time series data for a specific TrendId.
+            </summary>
+            <param name="clientId">The client ID.</param>
+            <param name="trendId">The trendId of the point.</param>
+            <param name="start">The start date and time of the time series data.</param>
+            <param name="end">The end date and time of the time series data.</param>
+            <param name="continuationToken">The continuation token for paging through the data.</param>
+            <param name="pageSize">The maximum number of data points to retrieve per page.</param>
+            <returns>The result of retrieving the raw time series data.</returns>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.IAdxLiveDataService.GetTimeSeriesRawDataBySiteIdAsync(System.Nullable{System.Guid},System.Guid,System.DateTime,System.DateTime,System.Collections.Generic.List{System.Guid})">
+            <summary>
+            Retrieves time series raw data for a specific siteId.
+            </summary>
+            <param name="clientId">The client ID.</param>
+            <param name="siteId">The siteId of the point.</param>
+            <param name="start">The start date and time of the time series data.</param>
+            <param name="end">The end date and time of the time series data.</param>
+            <param name="trendIds">A list of trendIds to filter the time series data.</param>
+            <returns>A collection of time series raw data for the specified siteId.</returns>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.IAdxLiveDataService.GetLastTimeSeriesRawDataBySiteIdAsync(System.Nullable{System.Guid},System.Guid,System.Collections.Generic.List{System.Guid})">
+            <summary>
+            Retrieves the last time series raw data for a specific site ID.
+            </summary>
+            <param name="clientId">The client ID.</param>
+            <param name="siteId">The site ID.</param>
+            <param name="trendIds">The list of trend IDs. If not provided, all trend IDs will be considered.</param>
+            <returns>A collection of the last time series raw data for the specified site ID.</returns>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.IAdxLiveDataService.GetPointStatsAsync(System.Nullable{System.Guid},System.DateTime)">
+            <summary>
+            Point stats data for a specific client ID.
+            </summary>
+            <param name="clientId">The client ID.</param>
+            <param name="start">The start date and time of the time series data.</param>
+            <returns>A list of points stats data.</returns>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.IAdxLiveDataService.GetPointsStatsCountByIdsListAsync(System.Nullable{System.Guid},System.DateTime,System.Collections.Generic.IEnumerable{System.Guid})">
+            <summary>
+            Gets the point stats data for a specific client ID and a list of trend IDs.
+            </summary>
+            <param name="clientId">The client ID.</param>
+            <param name="start">The start date and time of the time series data.</param>
+            <param name="trendIds">The trend IDs.</param>
+            <returns>The count of point stats.</returns>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.IAdxLiveDataService.GetHistoricalLastTimeSeriesRawDataAsync(System.Nullable{System.Guid},System.DateTime,System.DateTime,System.Collections.Generic.List{System.Guid})">
+            <summary>
+            Retrieves the historical last time series raw data for the specified TrendIds within a specified time range.
+            </summary>
+            <param name="clientId">The client ID.</param>
+            <param name="start">The start date and time of the time series data.</param>
+            <param name="end">The end date and time of the time series data.</param>
+            <param name="trendIds">The list of TrendIds for which to retrieve the data. If null, retrieves data for all points.</param>
+            <returns>A read-only list of PointTimeSeriesRawData objects containing the historical last time series raw data for the specified point IDs.</returns>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.IAdxLiveDataService.GetAggregatedValuesInsideTimeIntervalsAsync(System.Nullable{System.Guid},System.DateTime,System.DateTime,System.TimeSpan,System.Collections.Generic.List{System.Guid},Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.AggregationType)">
+            <summary>
+            Retrieves the aggregated values for the specified TrendIds within a specified time range.
+            </summary>
+            <param name="clientId">The client ID.</param>
+            <param name="start">The start date and time of the time series data.</param>
+            <param name="end">The end date and time of the time series data.</param>
+            <param name="interval">The interval.</param>
+            <param name="trendIds">The list of TrendIds for which to retrieve the data. If null, retrieves data for all points.</param>
+            <param name="aggregationType">The type of aggregation.</param>
+            <returns>A read-only dictionary containing the aggregated values for the specified TrendIds within the specified time range.</returns>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.IAdxLiveDataService.GetCumulativeTrendAsync(System.Nullable{System.Guid},System.DateTime,System.DateTime,System.TimeSpan,System.Collections.Generic.List{System.Guid},System.Double)">
+            <summary>
+            Retrieves the cumulative time series data for the specified TrendIds within a specified time range.
+            </summary>
+            <param name="clientId">The client ID.</param>
+            <param name="start">The start date and time of the time series data.</param>
+            <param name="end">The end date and time of the time series data.</param>
+            <param name="interval">The interval.</param>
+            <param name="trendIds">The list of TrendIds for which to retrieve the data. If null, retrieves data for all points.</param>
+            <param name="valueMultiplier">The value multiplier.</param>
+            <returns>A read-only collection of CumulativeTimeSeriesDataPoint objects containing the cumulative time series data for the specified TrendIds within the specified time range.</returns>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.IAdxLiveDataService.GetCumulativeSumAsync(System.Nullable{System.Guid},System.DateTime,System.DateTime,System.TimeSpan,System.Collections.Generic.List{System.Guid},System.Double)">
+            <summary>
+            Retrieves the cumulative sum of the time series data for the specified TrendIds within a specified time range.
+            </summary>
+            <param name="clientId">The client ID.</param>
+            <param name="start">The start date and time of the time series data.</param>
+            <param name="end">The end date and time of the time series data.</param>
+            <param name="interval">The interval.</param>
+            <param name="trendIds">The list of TrendIds for which to retrieve the data. If null, retrieves data for all points.</param>
+            <param name="valueMultiplier">The value multiplier.</param>
+            <returns>A read-only collection of TimeSeriesDataPoint objects containing the cumulative sum of the time series data for the specified TrendIds within the specified time range.</returns>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.IAdxLiveDataService.GetTelemetryAsync(System.Nullable{System.Guid},Willow.LiveData.Core.Domain.TelemetryRequestBody,System.DateTime,System.DateTime,System.Int32,System.String)">
+            <summary>
+            Retrieves telemetry data within a specified time range.
+            </summary>
+            <param name="clientId">The client ID.</param>
+            <param name="telemetryPayload">The telemetry payload containing the required parameters.</param>
+            <param name="start">The start date and time of the telemetry data.</param>
+            <param name="end">The end date and time of the telemetry data.</param>
+            <param name="pageSize">The number of telemetry data to retrieve per page.</param>
+            <param name="continuationToken">The token to continue retrieving telemetry data from a previous request.</param>
+            <returns>An <see cref="T:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.GetTelemetryResult"/> object containing the retrieved telemetry data.</returns>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.IAdxLiveDataService.GetTimeSeriesDataByExternalIdAsync(System.Guid,System.String,System.Nullable{System.Guid},System.DateTime,System.DateTime,System.Nullable{System.TimeSpan})">
+            <summary>
+            Retrieves time series data for a specific external ID.
+            </summary>
+            <param name="connectorId">The connector ID.</param>
+            <param name="externalId">The external ID.</param>
+            <param name="clientId">The client ID.</param>
+            <param name="start">The start date and time of the time series data.</param>
+            <param name="end">The end date and time of the time series data.</param>
+            <param name="selectedInterval">The selected time interval for the time series data.</param>
+            <returns>A collection of time series data for the specified external ID.</returns>
+        </member>
+        <member name="T:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.LastTrendLogsController">
+            <summary>
+            Controller for retrieving last trend logs.
+            </summary>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.LastTrendLogsController.#ctor(Willow.LiveData.Core.Common.ILiveDataService)">
+            <summary>
+            Controller for retrieving last trend logs.
+            </summary>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.LastTrendLogsController.GetLastTrendlogs(System.Nullable{System.Guid},System.Guid,System.Collections.Generic.List{System.Guid})">
+            <summary>
+            Retrieves all rows by analogue points for siteId.
+            </summary>
+            <param name="clientId">The client identifier.</param>
+            <param name="siteId">The site identifier.</param>
+            <param name="pointId">The point identifier.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.LastTrendLogsController.GetHistoricalLastTrendlogs(System.Nullable{System.Guid},System.DateTime,System.DateTime,System.Collections.Generic.List{System.Guid})">
+            <summary>
+            Retrieves last trend logs between start and end dates.
+            </summary>
+            <param name="clientId">The client identifier.</param>
+            <param name="start">The start date.</param>
+            <param name="end">The end date.</param>
+            <param name="pointIds">The list of point IDs.</param>
+            <returns>Trend logs for the given points between the start and end date.</returns>
+        </member>
+        <member name="T:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.AggregationType">
+            <summary>
+            The aggregation type.
+            </summary>
+        </member>
+        <member name="F:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.AggregationType.First">
+            <summary>
+            First.
+            </summary>
+        </member>
+        <member name="F:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.AggregationType.Avg">
+            <summary>
+            Average.
+            </summary>
+        </member>
+        <member name="F:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.AggregationType.Sum">
+            <summary>
+            Sum.
+            </summary>
+        </member>
+        <member name="T:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.CumulativeTimeSeriesDataPoint">
+            <summary>
+            Cumulative time series data point.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.CumulativeTimeSeriesDataPoint.IsInterpolated">
+            <summary>
+            Gets or sets a value indicating whether the data point is interpolated.
+            </summary>
+        </member>
+        <member name="T:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.GetTelemetryResult">
+            <summary>
+            Get telemetry result.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.GetTelemetryResult.Data">
+            <summary>
+            Gets or sets the data.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.GetTelemetryResult.ContinuationToken">
+            <summary>
+            Gets or sets the continuation token.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.GetTelemetryResult.ErrorList">
+            <summary>
+            Gets or sets the error list.
+            </summary>
+        </member>
+        <member name="T:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.GetTrendlogResult">
+            <summary>
+            Get Trendlog Result.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.GetTrendlogResult.Data">
+            <summary>
+            Gets or sets the data.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.GetTrendlogResult.ContinuationToken">
+            <summary>
+            Gets or sets the continuation token.
+            </summary>
+        </member>
+        <member name="T:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.TimeSeriesDataPoint">
+            <summary>
+            Time Series Data Point.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.TimeSeriesDataPoint.Value">
+            <summary>
+            Gets or sets the value.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.TimeSeriesDataPoint.PointEntityId">
+            <summary>
+            Gets or sets the point entity identifier.
+            </summary>
+        </member>
+        <member name="T:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.PointLiveDataController">
+            <summary>
+            Gets point live data.
+            </summary>
+            <param name="dataService">An instance of the live data service.</param>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.PointLiveDataController.#ctor(Willow.LiveData.Core.Common.ILiveDataService)">
+            <summary>
+            Gets point live data.
+            </summary>
+            <param name="dataService">An instance of the live data service.</param>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.PointLiveDataController.GetAnalog(System.Nullable{System.Guid},System.DateTime,System.DateTime,System.Guid,System.String)">
+            <summary>
+            Retrieves all rows by analogue point.
+            </summary>
+            <param name="clientId">The client ID.</param>
+            <param name="start">The start date and time.</param>
+            <param name="end">The end date and time.</param>
+            <param name="pointEntityId">The point entity ID.</param>
+            <param name="selectedInterval">The selected interval.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.PointLiveDataController.GetAnalogBulk(System.Nullable{System.Guid},System.DateTime,System.DateTime,System.Guid[],System.String)">
+            <summary>
+            Retrieves all rows by analog point.
+            </summary>
+            <param name="clientId">The client ID.</param>
+            <param name="start">The start date and time.</param>
+            <param name="end">The end date and time.</param>
+            <param name="pointEntityIds">A list of point entity IDs.</param>
+            <param name="selectedInterval">The selected interval.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.PointLiveDataController.Get(System.Nullable{System.Guid},System.DateTime,System.DateTime,System.Guid,System.String)">
+            <summary>
+            Retrieves all rows by binary point.
+            </summary>
+            <param name="clientId">The client ID.</param>
+            <param name="start">The start date and time.</param>
+            <param name="end">The end date and time.</param>
+            <param name="pointEntityId">The point entity ID.</param>
+            <param name="selectedInterval">The selected interval.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.PointLiveDataController.GetBinaryBulk(System.Nullable{System.Guid},System.DateTime,System.DateTime,System.Guid[],System.String)">
+            <summary>
+            Retrieves all rows by binary point.
+            </summary>
+            <param name="clientId">The client ID.</param>
+            <param name="start">The start date and time.</param>
+            <param name="end">The end date and time.</param>
+            <param name="pointEntityIds">A list of point entity IDs.</param>
+            <param name="selectedInterval">The selected interval.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.PointLiveDataController.GetMultiState(System.Nullable{System.Guid},System.DateTime,System.DateTime,System.Guid,System.String)">
+            <summary>
+            Retrieves all rows by mulit-state point.
+            </summary>
+            <param name="clientId">The client ID.</param>
+            <param name="start">The start date and time.</param>
+            <param name="end">The end date and time.</param>
+            <param name="pointEntityId">The point entity ID.</param>
+            <param name="selectedInterval">The selected interval.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.PointLiveDataController.GetMultiStateBulk(System.Nullable{System.Guid},System.DateTime,System.DateTime,System.Guid[],System.String)">
+            <summary>
+            Retrieves all rows by multistate point.
+            </summary>
+            <param name="clientId">The client ID.</param>
+            <param name="start">The start date and time.</param>
+            <param name="end">The end date and time.</param>
+            <param name="pointEntityIds">A list of point entity IDs.</param>
+            <param name="selectedInterval">The selected interval.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.PointLiveDataController.GetSum(System.Nullable{System.Guid},System.DateTime,System.DateTime,System.Guid,System.String)">
+            <summary>
+            Retrieves all rows by binary point.
+            </summary>
+            <param name="clientId">The client ID.</param>
+            <param name="start">The start date and time.</param>
+            <param name="end">The end date and time.</param>
+            <param name="pointEntityId">The point entity ID.</param>
+            <param name="selectedInterval">The selected interval.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.PointLiveDataController.GetSumBulk(System.Nullable{System.Guid},System.DateTime,System.DateTime,System.Guid[],System.String)">
+            <summary>
+            Retrieves all rows by binary point.
+            </summary>
+            <param name="clientId">The client ID.</param>
+            <param name="start">The start date and time.</param>
+            <param name="end">The end date and time.</param>
+            <param name="pointEntityIds">A list of point entity IDs.</param>
+            <param name="selectedInterval">The selected interval.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.PointLiveDataController.GetPointsAggregate(System.Nullable{System.Guid},System.DateTime,System.DateTime,System.Guid[],System.String[],System.String)">
+            <summary>
+            Retrieves all rows by point type.
+            </summary>
+            <param name="clientId">The client ID.</param>
+            <param name="start">The start date and time.</param>
+            <param name="end">The end date and time.</param>
+            <param name="pointEntityIds">A list of point entity IDs.</param>
+            <param name="pointTypes">A list of point types.</param>
+            <param name="selectedInterval">The selected interval.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.PointLiveDataController.GetPointStatsDataByIds(System.Nullable{System.Guid},System.DateTime,System.Collections.Generic.List{System.Guid})">
+            <summary>
+            Retrieves count of points from list that have data since specified timestamp.
+            </summary>
+            <param name="clientId">The client ID.</param>
+            <param name="start">The start date and time.</param>
+            <param name="pointEntityIds">A list of point entity IDs.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.PointLiveDataController.GetPointStatsData(System.Nullable{System.Guid},System.DateTime)">
+            <summary>
+            Retrieves count of points per site that have data since specified timestamp.
+            </summary>
+            <param name="clientId">The client ID.</param>
+            <param name="start">The start date and time.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.PointLiveDataController.GetTrendlog(System.Nullable{System.Guid},System.Guid,System.DateTime,System.DateTime,System.String,System.Nullable{System.Int32})">
+            <summary>
+            Retrieves all rows by analog points for siteId.
+            </summary>
+            <param name="clientId">The client ID.</param>
+            <param name="pointEntityId">The point entity ID.</param>
+            <param name="start">The start date and time.</param>
+            <param name="end">The end date and time.</param>
+            <param name="continuationToken">The paging continuation token.</param>
+            <param name="pageSize">The page size.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.PointLiveDataController.GetTrendlogs(System.Nullable{System.Guid},System.Guid,System.DateTime,System.DateTime,System.Collections.Generic.List{System.Guid})">
+            <summary>
+            Retrieves all rows by analogue points for siteId.
+            </summary>
+            <param name="clientId">The client ID.</param>
+            <param name="siteId">The site ID.</param>
+            <param name="start">The start date and time.</param>
+            <param name="end">The end date and time.</param>
+            <param name="pointId">A list of point entity IDs.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.PointLiveDataController.GetAggregatedPointsInsideIntervalAsync(System.Nullable{System.Guid},System.DateTime,System.DateTime,System.String,System.Collections.Generic.List{System.Guid},System.String)">
+            <summary>
+            Retrieves site time series data inside time intervals with calculated based on aggregationType value.
+            </summary>
+            <param name="clientId">The client ID.</param>
+            <param name="start">The start date and time.</param>
+            <param name="end">The end date and time.</param>
+            <param name="intervalStr">The selected interval.</param>
+            <param name="pointIds">A list of point entity IDs.</param>
+            <param name="aggregationTypeStr">The type of aggregation.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.PointLiveDataController.GetTelemetryAsync(System.Nullable{System.Guid},System.DateTime,System.DateTime,Willow.LiveData.Core.Domain.TelemetryRequestBody,System.Int32,System.String)">
+            <summary>
+            Retrieves connector's raw telemetry data.
+            </summary>
+            <param name="clientId">The client ID.</param>
+            <param name="start">The start date and time.</param>
+            <param name="end">The end date and time.</param>
+            <param name="payload">The telemetry request body.</param>
+            <param name="pagesize">The page size.</param>
+            <param name="continuationToken">The paging continuation token.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous operation.</returns>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.GetLiveData.GetPointLiveData.PointLiveDataController.GetLiveDataByExternalId(System.Guid,System.String,System.Nullable{System.Guid},System.DateTime,System.DateTime,System.String)">
+            <summary>
+            Retrieves all rows by external id.
+            </summary>
+            <param name="connectorId">The connector ID.</param>
+            <param name="externalId">The external ID.</param>
+            <param name="clientId">The client ID.</param>
+            <param name="startUtc">start UTC date.</param>
+            <param name="endUtc">end UTC date.</param>
+            <param name="selectedInterval"> this represents a timespan e.g. `01:00:00`. </param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous operation.</returns>
+        </member>
+        <member name="T:Willow.LiveData.Core.Features.Telemetry.DTOs.TelemetryAnalogResponseData">
+            <summary>
+            Telemetry Analog Response Data.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.Telemetry.DTOs.TelemetryAnalogResponseData.Average">
+            <summary>
+            Gets or sets the average.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.Telemetry.DTOs.TelemetryAnalogResponseData.Minimum">
+            <summary>
+            Gets or sets the minimum.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.Telemetry.DTOs.TelemetryAnalogResponseData.Maximum">
+            <summary>
+            Gets or sets the maximum.
+            </summary>
+        </member>
+        <member name="T:Willow.LiveData.Core.Features.Telemetry.DTOs.TelemetryBaseIdData">
+            <summary>
+            The base class for telemetry data with an ID.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.Telemetry.DTOs.TelemetryBaseIdData.Id">
+            <summary>
+            Gets or sets the Twin ID.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.Telemetry.DTOs.TelemetryBaseIdData.ExternalId">
+            <summary>
+            Gets or sets the external ID.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.Telemetry.DTOs.TelemetryBaseIdData.TrendId">
+            <summary>
+            Gets or sets the trend ID.
+            </summary>
+        </member>
+        <member name="T:Willow.LiveData.Core.Features.Telemetry.DTOs.TelemetryBinaryResponseData">
+            <summary>
+            Telemetry binary response data.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.Telemetry.DTOs.TelemetryBinaryResponseData.OnCount">
+            <summary>
+            Gets or sets the on count.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.Telemetry.DTOs.TelemetryBinaryResponseData.OffCount">
+            <summary>
+            Gets or sets the off count.
+            </summary>
+        </member>
+        <member name="T:Willow.LiveData.Core.Features.Telemetry.DTOs.TelemetryMultiStateResponseData">
+            <summary>
+            Telemetry Multi-state response data.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.Telemetry.DTOs.TelemetryMultiStateResponseData.State">
+            <summary>
+            Gets the state.
+            </summary>
+        </member>
+        <member name="T:Willow.LiveData.Core.Features.Telemetry.DTOs.TelemetryRawData">
+            <summary>
+            Telemetry raw data.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.Telemetry.DTOs.TelemetryRawData.Value">
+            <summary>
+            Gets or sets the value.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.Telemetry.DTOs.TelemetryRawData.Timestamp">
+            <summary>
+            Gets or sets the timestamp.
+            </summary>
+        </member>
+        <member name="T:Willow.LiveData.Core.Features.Telemetry.DTOs.TelemetryRawMultiStateResponseData">
+            <summary>
+            Telemetry raw multi-state response data.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.Telemetry.DTOs.TelemetryRawMultiStateResponseData.State">
+            <summary>
+            Gets the state.
+            </summary>
+        </member>
+        <member name="T:Willow.LiveData.Core.Features.Telemetry.DTOs.TelemetryRawResult">
+            <summary>
+            Represents the raw telemetry result.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.Telemetry.DTOs.TelemetryRawResult.Data">
+            <summary>
+            Gets or sets the data.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.Telemetry.DTOs.TelemetryRawResult.ContinuationToken">
+            <summary>
+            Gets or sets the continuation token.
+            </summary>
+        </member>
+        <member name="T:Willow.LiveData.Core.Features.Telemetry.DTOs.TelemetryRawResultMultiple">
+            <summary>
+            Telemetry raw result multiple.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.Telemetry.DTOs.TelemetryRawResultMultiple.TwinId">
+            <summary>
+            Gets or sets the twin identifier.
+            </summary>
+        </member>
+        <member name="T:Willow.LiveData.Core.Features.Telemetry.DTOs.TelemetrySummaryData">
+            <summary>
+            Telemetry summary data.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.Telemetry.DTOs.TelemetrySummaryData.Timestamp">
+            <summary>
+            Gets or sets the timestamp.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.Telemetry.DTOs.TelemetrySummaryData.IsValueOutOfRange">
+            <summary>
+            Gets or sets a value indicating whether the value is out of range.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.Telemetry.DTOs.TelemetrySummaryData.IsInvalid">
+            <summary>
+            Gets or sets a value indicating whether the value is invalid.
+            </summary>
+        </member>
+        <member name="T:Willow.LiveData.Core.Features.Telemetry.DTOs.TelemetrySumResponseData">
+            <summary>
+            Telemetry sum response data.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.Telemetry.DTOs.TelemetrySumResponseData.Sum">
+            <summary>
+            Gets or sets the sum.
+            </summary>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Telemetry.Helpers.AdxQueryHelper.GetIdsForTwins(System.Collections.Generic.IEnumerable{System.String},System.Nullable{System.Guid})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Telemetry.Helpers.AdxQueryHelper.GetTelemetryValues(System.DateTime,System.DateTime,System.Collections.Generic.IEnumerable{Willow.LiveData.Core.Features.Telemetry.DTOs.TwinDetails})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Telemetry.Helpers.AdxQueryHelper.RemoveDuplicates(Willow.LiveData.Core.Features.Telemetry.Helpers.IAdxQuerySelector)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Telemetry.Helpers.AdxQueryHelper.GetLatestValue(Willow.LiveData.Core.Features.Telemetry.Helpers.IAdxQuerySelector)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Telemetry.Helpers.AdxQueryHelper.SummarizeAnalogValues(Willow.LiveData.Core.Features.Telemetry.Helpers.IAdxQuerySelector,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Telemetry.Helpers.AdxQueryHelper.SummarizeMultiStateValues(Willow.LiveData.Core.Features.Telemetry.Helpers.IAdxQuerySelector,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Telemetry.Helpers.AdxQueryHelper.SummarizeBinaryValues(Willow.LiveData.Core.Features.Telemetry.Helpers.IAdxQuerySelector,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Telemetry.Helpers.AdxQueryHelper.SummarizeSumValues(Willow.LiveData.Core.Features.Telemetry.Helpers.IAdxQuerySelector,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Telemetry.Helpers.AdxQueryBuilder.Select(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Telemetry.Helpers.AdxQueryBuilder.Project(System.String[])">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Telemetry.Helpers.AdxQueryBuilder.Summarize">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Telemetry.Helpers.AdxQueryBuilder.Let(System.String,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Telemetry.Helpers.AdxQueryBuilder.Where">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Telemetry.Helpers.AdxQueryBuilder.OpenGroupParentheses">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Telemetry.Helpers.AdxQueryBuilder.CloseGroupParentheses">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Telemetry.Helpers.AdxQueryBuilder.Comma">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Telemetry.Helpers.AdxQueryBuilder.PropertyEquals(System.String,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Telemetry.Helpers.AdxQueryBuilder.Contains(System.String,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Telemetry.Helpers.AdxQueryBuilder.PropertyIn(System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Telemetry.Helpers.AdxQueryBuilder.PropertyNotIn(System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Telemetry.Helpers.AdxQueryBuilder.IsNotEmpty(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Telemetry.Helpers.AdxQueryBuilder.IsEmpty(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Telemetry.Helpers.AdxQueryBuilder.DateTimeBetween(System.String,System.DateTime,System.DateTime)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Telemetry.Helpers.AdxQueryBuilder.And">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Telemetry.Helpers.AdxQueryBuilder.Or">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Telemetry.Helpers.AdxQueryBuilder.Order(System.String,System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Telemetry.Helpers.AdxQueryBuilder.By(System.String[])">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Telemetry.Helpers.AdxQueryBuilder.Take(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Telemetry.Helpers.AdxQueryBuilder.Average(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Telemetry.Helpers.AdxQueryBuilder.Minimum(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Telemetry.Helpers.AdxQueryBuilder.Maximum(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Telemetry.Helpers.AdxQueryBuilder.State(System.String,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Telemetry.Helpers.AdxQueryBuilder.StateCount(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Telemetry.Helpers.AdxQueryBuilder.OnCount(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Telemetry.Helpers.AdxQueryBuilder.OffCount(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Telemetry.Helpers.AdxQueryBuilder.Sum(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Telemetry.Helpers.AdxQueryBuilder.Bin(System.String,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Telemetry.Helpers.AdxQueryBuilder.AddFields(System.String[])">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Telemetry.Helpers.AdxQueryBuilder.ArgMax(System.String,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Telemetry.Helpers.AdxQueryBuilder.GetQuery">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Telemetry.Repositories.TelemetryRepository.GetTelemetryAnalogDataByTwinIdAsync(System.Nullable{System.Guid},System.DateTime,System.DateTime,System.String,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Telemetry.Repositories.TelemetryRepository.GetTelemetryAnalogDataByTwinIdAsync(System.Nullable{System.Guid},System.DateTime,System.DateTime,System.String,System.Collections.Generic.IReadOnlyCollection{System.String})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Telemetry.Repositories.TelemetryRepository.GetTelemetryMultiStateDataByTwinIdAsync(System.Nullable{System.Guid},System.DateTime,System.DateTime,System.String,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Telemetry.Repositories.TelemetryRepository.GetTelemetryMultiStateDataByTwinIdAsync(System.Nullable{System.Guid},System.DateTime,System.DateTime,System.String,System.Collections.Generic.IReadOnlyCollection{System.String})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Telemetry.Repositories.TelemetryRepository.GetTelemetryBinaryDataByTwinIdAsync(System.Nullable{System.Guid},System.DateTime,System.DateTime,System.String,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Telemetry.Repositories.TelemetryRepository.GetTelemetryBinaryDataByTwinIdAsync(System.Nullable{System.Guid},System.DateTime,System.DateTime,System.String,System.Collections.Generic.IReadOnlyCollection{System.String})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Telemetry.Repositories.TelemetryRepository.GetTelemetrySumDataByTwinIdAsync(System.Nullable{System.Guid},System.DateTime,System.DateTime,System.String,System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Telemetry.Repositories.TelemetryRepository.GetTelemetrySumDataByTwinIdAsync(System.Nullable{System.Guid},System.DateTime,System.DateTime,System.String,System.Collections.Generic.IReadOnlyCollection{System.String})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Telemetry.Repositories.TelemetryRepository.GetTelemetryRawDataBySiteIdAsync(System.Nullable{System.Guid},System.Guid,System.DateTime,System.DateTime,System.Collections.Generic.IEnumerable{System.String})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Telemetry.Repositories.TelemetryRepository.GetLastTelemetryRawDataBySiteIdAsync(System.Nullable{System.Guid},System.Guid,System.Collections.Generic.IEnumerable{System.String})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Telemetry.Repositories.TelemetryRepository.GetTelemetryRawDataAsync(System.Nullable{System.Guid},System.DateTime,System.DateTime,System.Collections.Generic.IEnumerable{System.String})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Telemetry.Repositories.TelemetryRepository.GetLastTelemetryRawDataAsync(System.Nullable{System.Guid},System.Collections.Generic.IEnumerable{System.String})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Features.Telemetry.Repositories.TelemetryRepository.GetTelemetryAsync(System.Nullable{System.Guid},System.DateTime,System.DateTime,System.Int32,System.String,System.Collections.Generic.IEnumerable{System.String},System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Willow.LiveData.Core.Features.TimeSeries.Models.IncomingTelemetry">
+            <summary>
+            Incoming telemetry data.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.TimeSeries.Models.IncomingTelemetry.ConnectorId">
+            <summary>
+            Gets the connector ID.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.TimeSeries.Models.IncomingTelemetry.SourceTimestamp">
+            <summary>
+            Gets the timestamp of when the telemetry was generated.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.TimeSeries.Models.IncomingTelemetry.DtId">
+            <summary>
+            Gets the digital twin ID.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.TimeSeries.Models.IncomingTelemetry.ExternalId">
+            <summary>
+            Gets the external ID of the twin.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.TimeSeries.Models.IncomingTelemetry.ScalarValue">
+            <summary>
+            Gets the value of the telemetry.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.TimeSeries.Models.IncomingTelemetry.Latitude">
+            <summary>
+            Gets the latitude of the device.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.TimeSeries.Models.IncomingTelemetry.Longitude">
+            <summary>
+            Gets the longitude of the device.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.TimeSeries.Models.IncomingTelemetry.Altitude">
+            <summary>
+            Gets the Altitude of the device.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Features.TimeSeries.Models.IncomingTelemetry.Properties">
+            <summary>
+            Gets or sets a dynamic object containing any additional properties.
+            </summary>
+        </member>
+        <member name="M:Willow.LiveData.Core.Infrastructure.Attributes.ConnectorListValidationAttribute.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Infrastructure.Attributes.DateRangeValidationAttribute.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Infrastructure.Attributes.PageSizeValidationAttribute.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Infrastructure.Attributes.TelemetryInputValidationAttribute.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Infrastructure.Azure.KeyVault.PrefixKeyVaultSecretManager.Load(Azure.Security.KeyVault.Secrets.SecretProperties)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Infrastructure.Azure.KeyVault.PrefixKeyVaultSecretManager.GetKey(Azure.Security.KeyVault.Secrets.KeyVaultSecret)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Willow.LiveData.Core.Infrastructure.Configuration.AzureADB2CConfiguration">
+            <summary>
+            Azure Active Directory B2C configuration.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Infrastructure.Configuration.AzureADB2CConfiguration.ClientId">
+            <summary>
+            Gets or sets the client Id.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Infrastructure.Configuration.AzureADB2CConfiguration.Instance">
+            <summary>
+            Gets or sets the Azure Active Directory B2C instance.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Infrastructure.Configuration.AzureADB2CConfiguration.Domain">
+            <summary>
+            Gets or sets the domain of the Azure Active Directory B2C tenant.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Infrastructure.Configuration.AzureADB2CConfiguration.SignUpSignInPolicyId">
+            <summary>
+            Gets or sets the sign up or sign in policy name.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Infrastructure.Configuration.AzureADB2CConfiguration.DefaultPolicy">
+            <summary>
+            Gets the default policy.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.Core.Infrastructure.Configuration.AzureADB2CConfiguration.TenantId">
+            <summary>
+            Gets or sets the Azure Active Directory B2C tenant ID.
+            </summary>
+        </member>
+        <member name="T:Willow.LiveData.Core.Infrastructure.Database.Adx.AdxBaseRepository">
+            <summary>
+            Base repository for LiveDataRepository.
+            </summary>
+        </member>
+        <member name="T:Willow.LiveData.Core.Infrastructure.Database.Adx.AdxQueryRunner">
+            <summary>
+            Query runner for ADX.
+            </summary>
+        </member>
+        <member name="M:Willow.LiveData.Core.Infrastructure.Database.Adx.AdxQueryRunner.QueryAsync(System.Nullable{System.Guid},System.String)">
+            <summary>
+            To run the query against ADX table.
+            </summary>
+            <param name="clientId">Client ID.</param>
+            <param name="kqlQuery">Kusto query.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous operation.</returns>
+            <exception cref="T:System.TimeoutException">Thrown if the query times out.</exception>
+        </member>
+        <member name="M:Willow.LiveData.Core.Infrastructure.Database.Adx.AdxQueryRunner.ControlQueryAsync(System.Nullable{System.Guid},System.String)">
+            <summary>
+            To run admin level queries against ADX database.
+            </summary>
+            <param name="clientId">Client ID.</param>
+            <param name="kqlQuery">Kusto query.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous operation.</returns>
+            <exception cref="T:System.TimeoutException">Thrown if the query times out.</exception>
+        </member>
+        <member name="M:Willow.LiveData.Core.Infrastructure.Database.Adx.AdxQueryRunner.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="T:Willow.LiveData.Core.Infrastructure.Enumerations.ConnectionState">
+            <summary>
+            Connection State.
+            </summary>
+        </member>
+        <member name="F:Willow.LiveData.Core.Infrastructure.Enumerations.ConnectionState.ONLINE">
+            <summary>
+            Online.
+            </summary>
+        </member>
+        <member name="F:Willow.LiveData.Core.Infrastructure.Enumerations.ConnectionState.DISRUPTED">
+            <summary>
+            Disrupted.
+            </summary>
+        </member>
+        <member name="F:Willow.LiveData.Core.Infrastructure.Enumerations.ConnectionState.READY">
+            <summary>
+            Ready.
+            </summary>
+        </member>
+        <member name="F:Willow.LiveData.Core.Infrastructure.Enumerations.ConnectionState.OFFLINE">
+            <summary>
+            Offline.
+            </summary>
+        </member>
+        <member name="F:Willow.LiveData.Core.Infrastructure.Enumerations.ConnectionState.DISABLED">
+            <summary>
+            Disabled.
+            </summary>
+        </member>
+        <member name="F:Willow.LiveData.Core.Infrastructure.Enumerations.ConnectionState.ARCHIVED">
+            <summary>
+            Archived.
+            </summary>
+        </member>
+        <member name="F:Willow.LiveData.Core.Infrastructure.Enumerations.ConnectionState.UNKNOWN">
+            <summary>
+            Unknown.
+            </summary>
+        </member>
+        <member name="T:Willow.LiveData.Core.Infrastructure.Enumerations.ConnectionSetStatus">
+            <summary>
+            Connection Set Status.
+            </summary>
+        </member>
+        <member name="F:Willow.LiveData.Core.Infrastructure.Enumerations.ConnectionSetStatus.ENABLED">
+            <summary>
+            Enabled.
+            </summary>
+        </member>
+        <member name="F:Willow.LiveData.Core.Infrastructure.Enumerations.ConnectionSetStatus.DISABLED">
+            <summary>
+            Disabled.
+            </summary>
+        </member>
+        <member name="F:Willow.LiveData.Core.Infrastructure.Enumerations.ConnectionSetStatus.ARCHIVED">
+            <summary>
+            Archived.
+            </summary>
+        </member>
+        <member name="F:Willow.LiveData.Core.Infrastructure.Enumerations.ConnectionSetStatus.UNKNOWN">
+            <summary>
+            Unknown.
+            </summary>
+        </member>
+        <member name="T:Willow.LiveData.Core.Infrastructure.Enumerations.ConnectionType">
+            <summary>
+            Connection Type.
+            </summary>
+        </member>
+        <member name="F:Willow.LiveData.Core.Infrastructure.Enumerations.ConnectionType.IoTEdge">
+            <summary>
+            IoT Edge.
+            </summary>
+        </member>
+        <member name="F:Willow.LiveData.Core.Infrastructure.Enumerations.ConnectionType.VM">
+            <summary>
+            VM.
+            </summary>
+        </member>
+        <member name="F:Willow.LiveData.Core.Infrastructure.Enumerations.ConnectionType.StreamAnalyticsIoTHub">
+            <summary>
+            Stream Analytics IoT Hub.
+            </summary>
+        </member>
+        <member name="F:Willow.LiveData.Core.Infrastructure.Enumerations.ConnectionType.StreamAnalyticsEventHub">
+            <summary>
+            Stream Analytics Event Hub.
+            </summary>
+        </member>
+        <member name="F:Willow.LiveData.Core.Infrastructure.Enumerations.ConnectionType.PublicAPI">
+            <summary>
+            Public API.
+            </summary>
+        </member>
+        <member name="M:Willow.LiveData.Core.Infrastructure.Filters.DateRangeValidationFilter.InvokeAsync(Microsoft.AspNetCore.Http.EndpointFilterInvocationContext,Microsoft.AspNetCore.Http.EndpointFilterDelegate)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Infrastructure.Filters.PageSizeValidationFilter.InvokeAsync(Microsoft.AspNetCore.Http.EndpointFilterInvocationContext,Microsoft.AspNetCore.Http.EndpointFilterDelegate)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Infrastructure.Filters.RequiredTwinIdValidationFilter.InvokeAsync(Microsoft.AspNetCore.Http.EndpointFilterInvocationContext,Microsoft.AspNetCore.Http.EndpointFilterDelegate)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.LiveData.Core.Infrastructure.HealthCheck.AssemblyVersionHealthCheck.CheckHealthAsync(Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckContext,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Willow.LiveData.Core.Infrastructure.HealthCheck.HealthCheckADX">
+            <summary>
+            Health check for ADX.
+            </summary>
+        </member>
+        <member name="F:Willow.LiveData.Core.Infrastructure.HealthCheck.HealthCheckADX.ConnectionFailed">
+            <summary>
+            Failing calls.
+            </summary>
+        </member>
+        <member name="F:Willow.LiveData.Core.Infrastructure.HealthCheck.HealthCheckADX.RateLimited">
+            <summary>
+            Rate limited.
+            </summary>
+        </member>
+        <member name="T:Willow.Infrastructure.ErrorResponse">
+            <summary>
+            Response object for error messages.
+            </summary>
+        </member>
+        <member name="P:Willow.Infrastructure.ErrorResponse.StatusCode">
+            <summary>
+            Gets or sets the status code.
+            </summary>
+        </member>
+        <member name="P:Willow.Infrastructure.ErrorResponse.Message">
+            <summary>
+            Gets or sets the error message.
+            </summary>
+        </member>
+        <member name="P:Willow.Infrastructure.ErrorResponse.Data">
+            <summary>
+            Gets or sets any data related to the error.
+            </summary>
+        </member>
+        <member name="P:Willow.Infrastructure.ErrorResponse.CallStack">
+            <summary>
+            Gets or sets the call stack.
+            </summary>
+        </member>
+        <member name="M:Willow.Infrastructure.Exceptions.GlobalExceptionFilter.OnException(Microsoft.AspNetCore.Mvc.Filters.ExceptionContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Willow.Infrastructure.Swagger.SecurityRequirementsOperationFilter.Apply(Microsoft.OpenApi.Models.OpenApiOperation,Swashbuckle.AspNetCore.SwaggerGen.OperationFilterContext)">
+            <inheritdoc/>
+        </member>
+    </members>
+</doc>

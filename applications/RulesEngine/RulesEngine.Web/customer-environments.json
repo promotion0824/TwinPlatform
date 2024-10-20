@@ -1,0 +1,81 @@
+﻿{
+  "Customers": {
+    "CurrentCustomer": "wil-prd-lda-brf",
+    "CustomerEnvironments": [
+      {
+        "id": "wil-prd-lda-brf",
+        "name": "Brookfield 1MW",
+        "timezone": "Eastern Standard Time",
+        "SQL": {
+          "CONNECTIONSTRING": "Server=192.168.0.195,1433; Database=wil-prd-lda-brf; User=sa; Password=Willow3163412;TrustServerCertificate=True;",
+          "AZURE": "Server=tcp:rules-engine-poc.database.windows.net,1433;Initial Catalog=wil-prd-lda-brf;Persist Security Info=False;User ID={your_username};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Authentication=\"Active Directory Integrated\";"
+        },
+        "ADT": [
+          {
+            "URI": "https://wil-prd-lda-brf-eu22-adt2.api.eus2.digitaltwins.azure.net"
+          }
+        ]
+      }
+    ],
+    "oldway": [
+      {
+        "ID": "wil-prd-lda-axa",
+        "Name": "AXA",
+        "ADT": "https://wil-prd-lda-axa-weu2-adt.api.weu.digitaltwins.azure.net",
+        "ADX": "",
+        "ADXDatabaseName": "",
+        "Postgres": "",
+        "PostgresDatabase": "",
+        "TimeZone": "Pacific Standard Time",
+        "SQL": "Server=tcp:rules-engine-poc.database.windows.net,1433;Initial Catalog=wil-prd-lda-axa;Persist Security Info=False;User ID={your_username};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Authentication=\"Active Directory Integrated\";"
+      },
+      {
+        "ID": "wil-prd-lda-dfw",
+        "Name": "Dallas Fort Worth Airport",
+        "ADT": "https://wil-prd-lda-dfw-eu22-adt.api.eus2.digitaltwins.azure.net",
+        "ADX": "",
+        "ADXDatabaseName": "",
+        "TimeZone": "Central Standard Time",
+        "SQL": "Server=tcp:rules-engine-poc.database.windows.net,1433;Initial Catalog=wil-prd-lda-dfw;Persist Security Info=False;User ID={your_username};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Authentication=\"Active Directory Integrated\";"
+      },
+      {
+        "ID": "wil-prd-lda-inv",
+        "Name": "Investa",
+        "ADT": "https://wil-prd-lda-inv-aue2-adt.api.aue.digitaltwins.azure.net",
+        "ADX": "",
+        "ADXDatabaseName": "",
+        "TimeZone": "Pacific Standard Time",
+        "SQL": "Server=tcp:rules-engine-poc.database.windows.net,1433;Initial Catalog=wil-prd-lda-inv;Persist Security Info=False;User ID={your_username};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Authentication=\"Active Directory Integrated\";"
+      },
+      {
+        "ID": "wil-prd-lda-met",
+        "Name": "MET?",
+        "ADT": "https://wil-prd-lda-met-aue2-adt.api.aue.digitaltwins.azure.net",
+        "ADX": "",
+        "ADXDatabaseName": "",
+        "TimeZone": "Pacific Standard Time",
+        "SQL": "Server=tcp:rules-engine-poc.database.windows.net,1433;Initial Catalog=wil-prd-lda-met;Persist Security Info=False;User ID={your_username};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Authentication=\"Active Directory Integrated\";"
+      },
+      {
+        "ID": "wil-prd-lda-msft",
+        "Name": "MSFT 121-122...",
+        "ADT": "https://wil-prd-lda-msft-eu22-adt.api.wus2.digitaltwins.azure.net",
+        "ADX": "https://dataexplorer.azure.com/clusters/adxdemouat.australiaeast/wil-prd-lda-msft-livedata",
+        "ADXDatabaseName": "wil-prd-lda-msft-livedata",
+        "Postgres": "Server=wil-dev-lda-msft-eu21-pgs.postgres.database.azure.com;Database={your_database};Port=5432;User Id=willow_admin@wil-dev-lda-msft-eu21-pgs;Password={your_password};Ssl Mode=Require;",
+        "PostgresDatabase": "",
+        "TimeZone": "Pacific Standard Time",
+        "SQL": "Server=tcp:rules-engine-poc.database.windows.net,1433;Initial Catalog=wil-prd-lda-msft;Persist Security Info=False;User ID={your_username};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Authentication=\"Active Directory Integrated\";"
+      },
+      {
+        "ID": "wil-prd-lda-oxf",
+        "Name": "Oxford",
+        "ADT": "https://wil-prd-lda-oxf-eu22-adt.api.eus2.digitaltwins.azure.net",
+        "ADX": "",
+        "ADXDatabaseName": "",
+        "TimeZone": "Pacific Standard Time",
+        "SQL": "Server=tcp:rules-engine-poc.database.windows.net,1433;Initial Catalog=wil-prd-lda-oxf;Persist Security Info=False;User ID={your_username};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Authentication=\"Active Directory Integrated\";"
+      }
+    ]
+  }
+}

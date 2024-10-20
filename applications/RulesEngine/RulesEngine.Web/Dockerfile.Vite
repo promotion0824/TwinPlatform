@@ -1,0 +1,14 @@
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
+EXPOSE 8080
+WORKDIR /app
+
+# assumes NPM BUILD has happened and output is in the ClientApp/dist folder
+COPY ["applications/RulesEngine/RulesEngine.Web/ClientApp/dist", "./ClientApp/dist/"]
+
+# Assume dotnet publish has happened and we are on .NET7 copy into the /app folder
+COPY ["app/publish", "."]
+
+USER 1000
+ENV ASPNETCORE_URLS http://*:5050;http://*:8080
+#ENV ASPNETCORE_ENVIRONMENT Development
+ENTRYPOINT ["dotnet", "RulesEngine.Web.dll"]

@@ -1,0 +1,94 @@
+import { FaAirFreshener, FaCompressAlt, FaFan, FaOilCan, FaQuestionCircle, FaRegObjectGroup } from 'react-icons/fa';
+import { BiBuilding, BiCabinet, BiCylinder, BiWater } from 'react-icons/bi';
+import { IoIosExit } from 'react-icons/io';
+import { FiArrowLeftCircle } from 'react-icons/fi';
+import { BsSlashCircle } from 'react-icons/bs';
+import { IoColorFilterOutline, IoSnowSharp, IoWaterOutline } from 'react-icons/io5';
+import { WiHumidity } from 'react-icons/wi';
+import { GiBoatPropeller, GiCheckboxTree, GiFlowerTwirl, GiHeatHaze, GiPowerGenerator, GiValve, GiWatchtower, GiWaterTank } from 'react-icons/gi';
+import { RiExchangeBoxFill, RiProjectorLine } from 'react-icons/ri';
+import { IconPropsShort } from './IconForModel'
+import { MdOutlineIndeterminateCheckBox } from 'react-icons/md';
+import { SiWire } from 'react-icons/si';
+import { CgSmartHomeHeat } from 'react-icons/cg';
+import { VscGroupByRefType } from 'react-icons/vsc';
+
+const IconForModelGtoH = ({ shortModelId, size }: IconPropsShort): JSX.Element => {
+  switch (shortModelId) {
+    case "GasDetectorEquipment": return (<GiFlowerTwirl size={size} />);
+    case "GasMeter": return (<GiFlowerTwirl size={size} />);
+    case "GasSystem": return (<GiFlowerTwirl size={size} />);
+    case "GasTanklessWaterHeater": return (<MdOutlineIndeterminateCheckBox size={size} />);
+    case "GasTankWaterHeater": return (<BiCylinder size={size} />);
+    case "Generator": return (<GiPowerGenerator size={size} />);
+    case "GreaseInterceptor": return (<FaOilCan size={size} />);
+    case "GreaseTrap": return (<FaOilCan size={size} />);
+    case "HeatExchanger": return (<RiExchangeBoxFill size={size} />);
+    case "HeatTracing": return (<GiHeatHaze size={size} />);
+    case "HeatingActuator": return (<GiHeatHaze size={size} />);
+    case "HeatingDegreeDays": return (<GiHeatHaze size={size} />);
+    case "HeatingLevelActuator": return (<GiHeatHaze size={size} />);
+    case "HeatingLevelSensor": return (<GiHeatHaze size={size} />);
+    case "HeatingDischargeAirFlowSetpoint": return (<FaAirFreshener size={size} />);
+    case "HeatingZoneAirTemperatureSetpoint": return (<GiHeatHaze size={size} />);
+    case "HorizontalFanCoilUnit": return (<IoSnowSharp size={size} />);
+    case "HorizontalFanCoilUnitReheat": return (<CgSmartHomeHeat size={size} />);
+    case "HoseBibb": return (<BiWater size={size} />);
+    case "HotFoodDisplayCase": return (<BiCabinet size={size} />);
+    case "HotWaterDeltaPressureSensor": return (<BiWater size={size} />);
+    case "HotWaterDeltaPressureSetpoint": return (<BiWater size={size} />);
+    case "HotWaterUnitHeater": return (<IoWaterOutline size={size} />);
+    case "HotWaterValvePositionSensor": return (<GiValve size={size} />);
+    case "HotWaterValvePositionActuator": return (<GiValve size={size} />);
+    case "HotWaterFlowSensor": return (<BiWater size={size} />);
+    case "HumiditySensor": return (<WiHumidity size={size} />);
+    case "HumiditySetpoint": return (<WiHumidity size={size} />);
+    case "HVACChilledWaterSystem": return (<BiWater size={size} />);
+    case "HVACCoolingMethod": return (<FaRegObjectGroup size={size} />);
+    case "HVACCoolingTowerGroup": return (<VscGroupByRefType size={size} />);
+    case "HVACCondenserWaterSystem": return (<FaRegObjectGroup size={size} />);
+    case "HVACDamper": return (<BsSlashCircle size={size} />);
+    case "HVACEquipment": return (<FaRegObjectGroup size={size} />);
+    case "HVACEquipmentGroup": return (<FaRegObjectGroup size={size} />);
+    case "HVACExhaustAirSystem": return (<IoIosExit size={size} />);
+    case "HVACFan": return (<FaFan size={size} />);
+    case "HVACGreaseExhaustAirSystem": return (<FaOilCan size={size} />);
+    case "HVACHeatExchangerGroup": return (<VscGroupByRefType size={size} />);
+    case "HVACHeatTracing": return (<SiWire size={size} />);
+    case "HVACHotWaterSystem": return (<FaRegObjectGroup size={size} />);
+    case "HVACManifold": return (<GiCheckboxTree size={size} />);
+    case "HVACMixingBox": return (<FaRegObjectGroup size={size} />);
+    case "HVACOutsideAirSystem": return (<FaRegObjectGroup size={size} />);
+    case "HVACPressureReducingStation": return (<IoWaterOutline size={size} />);
+    case "HVACPump": return (<GiBoatPropeller size={size} />);
+    case "HVACPumpGroup": return (<VscGroupByRefType size={size} />);
+    case "HVACAirSystem": return (<FiArrowLeftCircle size={size} />);
+    case "HVACReturnAirSystem": return (<FiArrowLeftCircle size={size} />);
+    case "HVACSupplyAirSystem": return (<FaRegObjectGroup size={size} />);
+    case "HVACSystem": return (<FaRegObjectGroup size={size} />);
+    case "HVACWaterSystem": return (<FaRegObjectGroup size={size} />);
+    case "HVACConditionedAirSystem": return (<FaRegObjectGroup size={size} />);
+    case "HVACRefrigerantSystem": return (<FaRegObjectGroup size={size} />);
+    case "HVACHumidifcationSystem": return (<FaRegObjectGroup size={size} />);
+    case "HVACTank": return (<GiWaterTank size={size} />);
+    case "HVACBackflowPreventer": return (<GiValve size={size} />);
+    case "HVACCheckValve": return (<GiValve size={size} />);
+    case "HVACValve": return (<GiValve size={size} />);
+    case "HVACGlobeValve": return (<GiValve size={size} />);
+    case "HVACSolenoidValve": return (<GiValve size={size} />);
+    case "HVACPressureReducingValve": return (<GiValve size={size} />);
+    case "HVACBalancingValve": return (<GiValve size={size} />);
+    case "HVACProbeHeater": return (<RiProjectorLine size={size} />);
+    case "HVACShutOffValve": return (<GiValve size={size} />);
+    case "HVACWaterFiltration": return (<IoColorFilterOutline size={size} />);
+    case "HVACZone": return (<BiBuilding size={size} />);
+    case "HydronicAirSeparator": return (<BiWater size={size} />);
+    case "HydronicPump": return (<GiBoatPropeller size={size} />);
+    case "HydronicCirculatingPump": return (<GiBoatPropeller size={size} />);
+    case "HydronicSteamTrap": return (<FaRegObjectGroup size={size} />);
+
+    default: return (<FaQuestionCircle size={size} />);
+  }
+}
+
+export default IconForModelGtoH;

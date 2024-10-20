@@ -1,0 +1,23 @@
+root=true
+
+[*]
+end_of_line=lf
+charset=utf-8
+trim_trailing_whitespace=true
+insert_final_newline = true
+
+[*.cs]
+indent_style=tab
+indent_size=4
+tab_width=4
+
+[*.{js,ts,tsx,json}]
+indent_style=space
+indent_size=2
+
+dotnet_sort_system_directives_first = true
+
+# IDE0005: Using directive is unnecessary.
+dotnet_diagnostic.IDE0005.severity = error
+dotnet_diagnostic.CA1848.severity = silent
+

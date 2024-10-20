@@ -1,0 +1,31 @@
+[   {
+      "Type":0,
+      "EntitiesError":null,
+      "RequestPath":null,
+      "ProcessedEntities":0,
+      "JobId":"Test job id",
+      "Details":{
+         "StartTime":null,
+         "EndTime":null,
+         "Status":0,
+         "StatusMessage":null
+      },
+      "CreateTime":"2022-05-11T14:29:10.5606092Z",
+      "UserEmail":null
+   },
+   {
+      "Type":1,
+      "EntitiesError":null,
+      "RequestPath":null,
+      "ProcessedEntities":0,
+      "JobId":"Test job id",
+      "Details":{
+         "StartTime":null,
+         "EndTime":null,
+         "Status":0,
+         "StatusMessage":null
+      },
+      "CreateTime":"2022-05-11T14:29:10.5620692Z",
+      "UserEmail":null
+   }
+]

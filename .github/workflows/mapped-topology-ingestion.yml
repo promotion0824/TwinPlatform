@@ -1,0 +1,63 @@
+name: "MappedTopologyIngestion"
+
+on:
+  workflow_dispatch:
+    inputs:
+      pushToDevAcr:
+        type: boolean
+        description: Promote Docker image to DEV ACRs
+        default: true
+      pushToPrdAcr:
+        type: boolean
+        description: Promote Docker image to PRD ACRs
+        default: false
+
+  pull_request:
+    branches:
+      - main
+    paths:
+      - applications/MappedTopologyIngestion/**
+
+  push:
+    branches:
+      - main
+      - "releases/**"
+    paths:
+      - applications/MappedTopologyIngestion/**
+
+env:
+  buildConfiguration: Release
+  mainProject: MappedTopologyIngestion
+  imageName: twin/willow-mapped-topology-ingestion-api
+  productName: MappedTopologyIngestion
+  excludeLibraries: \"[*]Microsoft.*,[*]System.*,[*]Willow.Api.*,[*]Willow.Email.*,[*]Willow.Authentication.*,[*]Willow.KeyVaultSecretsProvider.*,[*]Willow.Logging.*,[*]Willow.DataAccess.*,[]Willow.Directory.Api.Infrastructure.FileIO.*\"
+  majorVersion: 0.15
+  projectPath: "applications/MappedTopologyIngestion/Willow.MappedTopologyIngestionApi"
+  srcProjectDir: "."
+  githubToken: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: WillowInc/TwinPlatform/.github/actions/docker/build_push_gitversioning@main
+        name: Build and Push Docker Image
+        with:
+          botToken: ${{ secrets.SVC_BOT_TOKEN }}
+          clientId: ${{ vars.CLIENT_ID }}
+          clientSecret: ${{ secrets.CLIENT_SECRET }}
+          containerAppName: 'mti'
+          dockerfile: ${{ env.projectPath }}/${{ env.srcProjectDir }}/Dockerfile
+          dockerContext: ${{ github.workspace }}
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          imageName: ${{ env.imageName }}
+          infraProjectPath: Applications/MappedTopologyIngestion
+          majorVersion: ${{ env.majorVersion }}
+          nonProdAcrClientId: ${{ vars.NONPROD_ACR_CLIENT_ID }}
+          nonProdAcrClientSecret: ${{ secrets.NONPROD_ACR_CLIENT_SECRET }}
+          prodAcrClientId: ${{ vars.PROD_ACR_CLIENT_ID }}
+          prodAcrClientSecret: ${{ secrets.PROD_ACR_CLIENT_SECRET }}
+          productName: ${{ env.productName }}
+          tenantId: ${{ vars.TENANT_ID_WILLOWINC }}
+          directoryBuildPropsPath: .config/common.props

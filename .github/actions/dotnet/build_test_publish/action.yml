@@ -1,0 +1,88 @@
+name: Dotnet Build Test Publish
+
+inputs:
+  srcProjectDir:
+    description: Path to the project source folder
+    required: true
+  testProjectDir:
+    description: Path to the project test folder
+  excludeLibrariesCoverage:
+    description: Excluded libraries from coverage
+    default: \"[*]Microsoft.*,[*]System.*\"
+  dotnetVersion:
+    description: Dotnet Version
+    default: 7.0.x
+  buildConfiguration:
+    description: Build Configuration
+    default: Release
+  buildVersion:
+    description: Build Version
+    default: 1.0.0.0
+  outputDir:
+    description: Output path
+    required: false
+    default: ${{ github.workspace }}/output/
+  outputZip:
+    description: Output zip file
+    required: false
+    default: output
+  folderToZip:
+    description: Path to include in Zip file
+    required: false
+    default: ${{ github.workspace }}/output/
+  zipAfterPublish:
+    description: Zip artifact after publish
+    default: false
+  codeQLLanguage:
+    description: Compiled language for CodeQL scanning
+    required: false
+    default: csharp
+  disableCodeQL:
+    description: Do not run CodeQL scan
+    required: false
+    default: false
+  nugetSource:
+    description: NuGet source URL
+    default: ''
+  nugetToken:
+    description: NuGet source authentication token
+    default: ''
+
+runs:
+  using: composite
+  steps:
+
+  - uses: ./.github/actions/codeql/initialize
+    if: ${{ inputs.disableCodeQL == 'false' }}
+    with:
+      language: ${{ inputs.codeQLLanguage }}
+
+  - uses: ./.github/actions/dotnet/build
+    with:
+      buildConfiguration: ${{ inputs.buildConfiguration }}
+      srcProjectDir: ${{ inputs.srcProjectDir }}
+      testProjectDir: ${{ inputs.testProjectDir }}
+      buildVersion: ${{ inputs.buildVersion }}
+      dotnetVersion: ${{ inputs.dotnetVersion }}
+      nugetSource: ${{ inputs.nugetSource }}
+      nugetToken: ${{ inputs.nugetToken }}
+
+  - uses: ./.github/actions/dotnet/test
+    with:
+      testProjectDir: ${{ inputs.testProjectDir }}
+      excludeLibraries: ${{ inputs.excludeLibrariesCoverage }}
+      buildConfiguration: ${{ inputs.buildConfiguration }}
+
+  - uses: ./.github/actions/codeql/finalize
+    if: ${{ inputs.disableCodeQL == 'false' }}
+    with:
+      language: ${{ inputs.codeQLLanguage }}
+
+  - uses: ./.github/actions/dotnet/publish
+    with:
+      srcProjectDir: ${{ inputs.srcProjectDir }}
+      outputDir: ${{ inputs.outputDir }}
+      buildConfiguration: ${{ inputs.buildConfiguration }}
+      zipAfterPublish: ${{ inputs.zipAfterPublish }}
+      outputZip: ${{ inputs.outputZip }}
+      folderToZip: ${{ inputs.folderToZip }}

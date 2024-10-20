@@ -1,0 +1,41 @@
+name: Telemetry Streaming App
+
+on:
+  push:
+    branches:
+      - main
+      - release/**
+    paths:
+      - applications/IngestionPipeline/TelemetryStreaming/**
+      - .github/workflows/telemetry-streaming-app.yml
+
+  pull_request:
+    branches:
+      - main
+    paths:
+      - applications/IngestionPipeline/TelemetryStreaming/**
+      - .github/workflows/telemetry-streaming-app.yml
+
+  workflow_dispatch:
+
+jobs:
+  build_test_docker_push:
+    uses: WillowInc/.github/.github/workflows/Reusable-Build-Test-Docker-Push.yml@main
+    with:
+      path: applications/IngestionPipeline/TelemetryStreaming/src/Willow.LiveData.TelemetryStreaming
+      restore_path: applications/IngestionPipeline/TelemetryStreaming
+      test_path: applications/IngestionPipeline/TelemetryStreaming/test/Willow.LiveData.TelemetryStreaming.Tests
+      build_configuration: "Release"
+      directoryBuildPropsPath: .config/common.props
+      coverage_thresholds: '0 50'
+      nugetConfigLocation: NuGet.Config
+      containerAppName: telemetry-streaming
+      dockerfile: applications/IngestionPipeline/TelemetryStreaming/src/Willow.LiveData.TelemetryStreaming/Dockerfile
+      dockerContext: applications/IngestionPipeline/TelemetryStreaming/src/Willow.LiveData.TelemetryStreaming
+      imageName: iot-services/telemetry-streaming-app
+      infraProjectPath: Applications/TelemetryStreaming
+      productName: iot-services
+      clientId: "empty"
+    secrets:
+      githubToken: ${{ secrets.GITHUB_TOKEN }}
+      botToken: ${{ secrets.SVC_BOT_TOKEN }}

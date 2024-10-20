@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34622.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Willow.Msm.Connector", "Willow.Msm.Connector\Willow.Msm.Connector.csproj", "{BF3890BC-8E92-489B-B08C-1CD4A38F7116}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Willow.Msm.Connector.Tests", "Willow.Msm.Connector.Tests\Willow.Msm.Connector.Tests.csproj", "{167FDCDD-6902-4E18-96A0-3F93DE3CBE9F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BF3890BC-8E92-489B-B08C-1CD4A38F7116}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF3890BC-8E92-489B-B08C-1CD4A38F7116}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF3890BC-8E92-489B-B08C-1CD4A38F7116}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF3890BC-8E92-489B-B08C-1CD4A38F7116}.Release|Any CPU.Build.0 = Release|Any CPU
+		{167FDCDD-6902-4E18-96A0-3F93DE3CBE9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{167FDCDD-6902-4E18-96A0-3F93DE3CBE9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{167FDCDD-6902-4E18-96A0-3F93DE3CBE9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{167FDCDD-6902-4E18-96A0-3F93DE3CBE9F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C775A490-1D79-4A61-9B9F-123FD00079F6}
+	EndGlobalSection
+EndGlobal

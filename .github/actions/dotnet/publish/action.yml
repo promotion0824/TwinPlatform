@@ -1,0 +1,36 @@
+name: Dotnet Publish
+
+inputs:
+  srcProjectDir:
+    description: Path to the project source folder
+    required: true
+  outputDir:
+    description: Output path
+    required: false
+    default: ${{ github.workspace }}/output/
+  buildConfiguration:
+    description: Build Configuration
+    required: false
+    default: Release
+  zipAfterPublish:
+    description: Zip artifact after publish
+    required: false
+    default: false
+  folderToZip:
+    description: Path to include in Zip file
+    required: false
+    default: ${{ github.workspace }}/output/
+  outputZip:
+    description: Output zip file
+    required: false
+    default: output.zip
+runs:
+  using: composite
+  steps:
+  - name: Publish
+    run: dotnet publish ${{ inputs.srcProjectDir }}/*.csproj --no-build --no-restore --configuration ${{ inputs.buildConfiguration }} --output ${{ inputs.outputDir }}
+    shell: pwsh
+  - name: Zip output
+    if: ${{ inputs.zipAfterPublish == 'true' }}
+    run: Compress-Archive ${{ inputs.folderToZip }}/* ${{ inputs.outputZip }}
+    shell: pwsh

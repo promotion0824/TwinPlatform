@@ -1,0 +1,1 @@
+dotnet watch --project .\test\Connector.XL.UnitTests\Connector.XL.UnitTests.csproj test --filter Category!=UseSqlServer /p:CollectCoverage=true /p:CoverletOutputFormat=lcov /p:Exclude=\"[*]Connector.XL.Program,[*]Microsoft.*,[*]System.*,[*]Willow.Infrastructure.*,[*]Connector.XL.Database.*,[xunit*]*\" /p:CoverletOutput=.\lcov.info

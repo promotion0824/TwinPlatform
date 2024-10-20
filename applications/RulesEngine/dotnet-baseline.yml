@@ -1,0 +1,188 @@
+# This build pipeline builds Rules Engine, runs benchmark.net tests, stores results as artifacts, 
+# evaluates pass/fail based on a known good state and uploads results to log analytics workspace
+
+schedules:
+  - cron: "0 03 * * *"
+    displayName: 'Benchmarkdotnet Daily Load Test'
+    always: true
+    branches:
+      include:
+      - feature/rulesengine
+
+trigger:
+  branches:
+    include:
+    - feature/rulesengine
+  paths:
+    include:
+      - core/RulesEngine/*
+    
+variables:
+- group: benchmarkdotnet-load-tests
+
+stages:
+- stage: run_dotnet_load_test
+
+  jobs:
+    - job: run_dotnet_load_test
+      pool:
+        vmImage: 'windows-2022'
+        demands:
+        - msbuild
+        - visualstudio
+      steps:
+      - task: UseDotNet@2
+        displayName: 'Use .NET 8 Core SDK'
+        inputs:
+          packageType: 'sdk'
+          version: '8.x'
+          includePreviewVersions: false
+      
+      - task: DotNetCoreCLI@2
+        displayName: 'Build RulesEngine.Benchmarks'
+        inputs:
+          command: build
+          projects: 'core\RulesEngine\RulesEngine.Benchmarks\RulesEngine.Benchmarks.csproj'
+          arguments: '--configuration Release'
+      
+####### Runs benchmark.net load tests and creates json and csv reports ###########
+      - task: CmdLine@2
+        displayName: 'Run Benchmark.net Load Tests'
+        inputs:
+          script: 'dotnet run --project core\RulesEngine\RulesEngine.Benchmarks\RulesEngine.Benchmarks.csproj -c release -e fulljson'
+      
+###### These JSON results can be used as baseline for next run, and stored for 30 days in PIPELINE ##########
+#      - task: PublishBuildArtifacts@1
+#        displayName: 'Publish ParserBenchmarks to PIPELINE'
+#        inputs:
+#          PathtoPublish: 'BenchmarkDotNet.Artifacts\results\RulesEngine.Benchmarks.ParserBenchmarks-report-full.json'
+#          ArtifactName: 'ParserBenchmarks-report-full'
+#          publishLocation: 'Container'
+      
+###### The next 2 steps write the results to BLOB Storage to refresh 'good' results ##########
+#      - task: AzureFileCopy@4
+#        displayName: 'Publish ParserBenchmarks to BLOB Storage'
+#        inputs:
+#          SourcePath: 'BenchmarkDotNet.Artifacts\results\RulesEngine.Benchmarks.ParserBenchmarks-report-full.json'
+#          azureSubscription: 'az-sandbox-shared-Twin Platform'
+#          Destination: 'AzureBlob'
+#          storage: 'dotnetbenchmarks'
+#          ContainerName: 'benchmark-results'
+#          BlobPrefix: 'ParserBenchmarks-report-full.json'
+
+#      - task: AzureFileCopy@4
+#        displayName: 'Publish TemplateBenchmarks to BLOB Storage' #These results can be used as baseline for next run
+#        inputs:
+#          SourcePath: 'BenchmarkDotNet.Artifacts\results\RulesEngine.Benchmarks.TemplateBenchmarks-report-full.json'
+#          azureSubscription: 'az-sandbox-shared-Twin Platform'
+#          Destination: 'AzureBlob'
+#          storage: 'dotnetbenchmarks'
+#          ContainerName: 'benchmark-results'
+#          BlobPrefix: 'TemplateBenchmarks-report-full.json'
+
+###### Now convert both Template and Parser CSV report to JSON for importing into log analytics via log analytics rest api #########
+      - task: PowerShell@2
+        displayName: 'Convert CSV Report to JSON'
+        inputs:
+          filePath: 'core\RulesEngine\RulesEngine.Benchmarks\convert-csv-to-json.ps1'
+            
+##### Next 2 steps publish both JSON files to blob storage for ingestion via logs api ######
+      - task: AzureFileCopy@4
+        displayName: 'Publish TemplateBenchmarks JSON to Blob Storage' 
+        inputs:
+          SourcePath: 'BenchmarkDotNet.Artifacts\results\RulesEngine.Benchmarks.TemplateBenchmarks-report.json'
+          azureSubscription: 'az-sandbox-shared-Twin Platform'
+          Destination: 'AzureBlob'
+          storage: 'dotnetbenchmarks'
+          ContainerName: 'benchmark-results'
+          BlobPrefix: 'RulesEngine.Benchmarks.TemplateBenchmarks-report.json'
+      - task: AzureFileCopy@4
+        displayName: 'Publish ParserBenchmarks JSON to Blob Storage' 
+        inputs:
+          SourcePath: 'BenchmarkDotNet.Artifacts\results\RulesEngine.Benchmarks.ParserBenchmarks-report.json'
+          azureSubscription: 'az-sandbox-shared-Twin Platform'
+          Destination: 'AzureBlob'
+          storage: 'dotnetbenchmarks'
+          ContainerName: 'benchmark-results'
+          BlobPrefix: 'RulesEngine.Benchmarks.ParserBenchmarks-report.json'
+
+###### Now read from blob storage and upload to log analytics api #########
+      - task: PowerShell@2
+        displayName: 'Upload Parser Results to Log Analytics'
+        inputs:
+          filePath: 'core\RulesEngine\RulesEngine.Benchmarks\upload-parser-to-log-analytics.ps1'
+          arguments: '-CustomerId "$(customer-id)" -SharedKey "$(shared-key)" -SasKey "$(sas-token)"'
+      - task: PowerShell@2
+        displayName: 'Upload Template Results to Log Analytics'
+        inputs:
+          filePath: 'core\RulesEngine\RulesEngine.Benchmarks\upload-template-to-log-analytics.ps1'
+          arguments: '-CustomerId "$(customer-id)" -SharedKey "$(shared-key)" -SasKey "$(sas-token)"'
+
+##### Next 2 steps download to a good standard set of results for comparison to ensure consistent performance #####
+      - task: AzureCLI@2
+        displayName: 'Download ParserBenchmarks from Blob Storage'
+        inputs:
+          azureSubscription: 'az-sandbox-shared-Twin Platform'
+          scriptType: 'ps'
+          scriptLocation: 'inlineScript'
+          inlineScript: 'az storage blob download
+          --container-name benchmark-results
+          --file $(Agent.BuildDirectory)\ParserBenchmarks-report-full.json
+          --name ParserBenchmarks-report-full.json
+          --account-key $(blob-key)
+          --account-name dotnetbenchmarks'
+      - task: AzureCLI@2
+        displayName: 'Download TemplateBenchmarks from Blob Storage' #Downloads good standard set of results for comparison to ensure consistent performance
+        inputs:
+          azureSubscription: 'az-sandbox-shared-Twin Platform'
+          scriptType: 'ps'
+          scriptLocation: 'inlineScript'
+          inlineScript: 'az storage blob download
+          --container-name benchmark-results
+          --file $(Agent.BuildDirectory)\TemplateBenchmarks-report-full.json
+          --name TemplateBenchmarks-report-full.json
+          --account-key $(blob-key)
+          --account-name dotnetbenchmarks'
+
+##### Installs .net 6 for results comparer to run ###########
+      - task: UseDotNet@2
+        displayName: 'Use .NET 6 Core SDK'
+        inputs:
+          packageType: 'sdk'
+          version: '6.x'
+          includePreviewVersions: false
+
+##### Evaluates performance stored in BLOB json to this run ###########
+      - task: PowerShell@2
+        displayName: 'Evaluate Pass-Fail'
+        inputs:
+          filePath: 'core\RulesEngine\RulesEngine.Benchmarks\use-results-comparer.ps1'
+
+###### Downloads previous PIPELINE (not from BLOB) artifact results #######
+#      - task: DownloadBuildArtifacts@1
+#        displayName: 'Download Previous Build JSON Report'
+#        inputs:
+#          buildType: 'specific'
+#          project: '96a6b29c-647f-454e-86e1-27ebd1fdfa90' #Refers to Twin Platform
+#          pipeline: '680' #Refers to this pipeline 'run-dotnet-benchmark-tests'
+#          buildVersionToDownload: 'specific'
+#          buildId: '$(baseline-buildid)' #BuildId variable captured from previous pipeline run - view variable by clicking library (left)
+#          downloadType: 'single'
+#          artifactName: 'ParserBenchmarks-report-full'
+#          downloadPath: '$(System.ArtifactsDirectory)'
+
+###### Updates variable $(baseline-buildid) which becomes baseline for next run #####
+#      - task: AzureCLI@2
+#        displayName: 'Update BuildId Variable'
+#        inputs:
+#          azureSubscription: 'az-products-shared-Twin Platform'
+#          scriptType: 'ps'
+#          scriptLocation: 'inlineScript'
+#          inlineScript: 'az pipelines variable-group variable update
+#          --group-id 169
+#          --name baseline-buildid
+#          --value $(Build.BuildId)
+#          --org https://dev.azure.com/willowdev/
+#          --project "Twin Platform"'
+#        env:
+#          AZURE_DEVOPS_EXT_PAT: $(System.AccessToken)

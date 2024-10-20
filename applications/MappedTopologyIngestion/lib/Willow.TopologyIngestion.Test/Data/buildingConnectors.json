@@ -1,0 +1,52 @@
+{
+  "data": {
+    "buildings": [
+      {
+        "connectors": [
+          {
+            "connectorType": {
+              "description": "Import data from your WIllow Twins to Mapped",
+              "direction": "SOURCE",
+              "id": "willow-source",
+              "name": "Willow Import",
+              "taskQueue": null,
+              "version": "1.0"
+            },
+            "baseUrl": null,
+            "configHash": "CONHASHDzbBgSn6pjq1GU6WW4QHb4",
+            "connectorTypeId": "willow-source",
+            "direction": "SOURCE",
+            "id": "CON5xe1TMdfNiXtgxwnY2TA29",
+            "lastUpdatedBy": null,
+            "name": "Willow Import",
+            "state": "ACTIVE",
+            "stateDetails": null,
+            "userId": "USR3SrnmmiUMUiAwLzizAFPziMWRAgCVsJMEQ3RhCwtWv5MeuVr1pcHYaAhqSPJAAJRixxzirm",
+            "workflowId": "connectorRun-willow-source.CON5xe1TMdfNiXtgxwnY2TA29"
+          },
+          {
+            "connectorType": {
+              "description": "Access your building data from on-prem systems",
+              "direction": "SOURCE",
+              "id": "MAPPED_UG",
+              "name": "Mapped Universal Gateway",
+              "taskQueue": null,
+              "version": "1.0"
+            },
+            "baseUrl": null,
+            "configHash": "CONHASH4Koxkq2fzzavGRhdHLhHrr",
+            "connectorTypeId": "MAPPED_UG",
+            "direction": "SOURCE",
+            "id": "CONRdBLQCNvWoKGUA4kRoUMoe",
+            "lastUpdatedBy": null,
+            "name": "Intellicare Infirmary Mapped Universal Gateway",
+            "state": "ACTIVE",
+            "stateDetails": null,
+            "userId": "USRgUBU5xGXMbw4LeH33N18Lndhue8Emr3P3mR6SHs4JB3",
+            "workflowId": null
+          }
+        ]
+      }
+    ]
+  }
+}

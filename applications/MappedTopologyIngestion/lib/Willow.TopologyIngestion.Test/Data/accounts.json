@@ -1,0 +1,66 @@
+{
+  "data": {
+    "accounts": [
+      {
+        "connectedDataSourceId": "CONT6xm5t3ULn8LyapwkKcUZm",
+        "description": null,
+        "exactType": "Utility_Account",
+        "id": "CLSCgCZQfwtG2KmtTfpXNfBrp",
+        "mappingKey": "msrc://CONT6xm5t3ULn8LyapwkKcUZm@capturis/vendor/948/utility_account/2184263987-01-0100",
+        "name": "Utility Account 2184263987-01-0100",
+        "hasProvider": [
+          {
+            "connectedDataSourceId": "CONT6xm5t3ULn8LyapwkKcUZm",
+            "description": null,
+            "exactType": "Organization",
+            "id": "CLSEtBXg5VS9n5A8hgcgHAu4c",
+            "mappingKey": "msrc://CONT6xm5t3ULn8LyapwkKcUZm@capturis/vendor/948",
+            "name": "BLACK HILLS ENERGY",
+            "identities": null
+          }
+        ],
+        "identities": null
+      },
+      {
+        "connectedDataSourceId": "CONT6xm5t3ULn8LyapwkKcUZm",
+        "description": null,
+        "exactType": "Utility_Account",
+        "id": "CLS9pnJRUiuhe4RDooJuRCDXx",
+        "mappingKey": "msrc://CONT6xm5t3ULn8LyapwkKcUZm@capturis/vendor/902/utility_account/15419140486",
+        "name": "Utility Account 15419140486",
+        "hasProvider": [
+          {
+            "connectedDataSourceId": "CONT6xm5t3ULn8LyapwkKcUZm",
+            "description": null,
+            "exactType": "Organization",
+            "id": "CLS9q2DHQ9NbttDodsiX3sckf",
+            "mappingKey": "msrc://CONT6xm5t3ULn8LyapwkKcUZm@capturis/vendor/902",
+            "name": "CITY OF BENTONVILLE",
+            "identities": null
+          }
+        ],
+        "identities": null
+      },
+      {
+        "connectedDataSourceId": "CONT6xm5t3ULn8LyapwkKcUZm",
+        "description": null,
+        "exactType": "Utility_Account",
+        "id": "CLSNEuuAc5war9xhjTiu8hvVo",
+        "mappingKey": "msrc://CONT6xm5t3ULn8LyapwkKcUZm@capturis/vendor/948/utility_account/2136134965",
+        "name": "Utility Account 2136134965",
+        "hasProvider": [
+          {
+            "connectedDataSourceId": "CONT6xm5t3ULn8LyapwkKcUZm",
+            "description": null,
+            "exactType": "Organization",
+            "id": "CLSEtBXg5VS9n5A8hgcgHAu4c",
+            "mappingKey": "msrc://CONT6xm5t3ULn8LyapwkKcUZm@capturis/vendor/948",
+            "name": "BLACK HILLS ENERGY",
+            "identities": null
+          }
+        ],
+        "identities": null
+      }
+    ]
+  }
+}

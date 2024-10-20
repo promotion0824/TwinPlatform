@@ -1,0 +1,172 @@
+parameters:
+  - name: backendProjectDirectory
+    type: string
+  - name: frontendProjectDirectory
+    type: string
+
+steps:
+  - task: PowerShell@2
+    displayName: "Prepare branches"
+    inputs:
+      targetType: "inline"
+      script: |
+        $currentBranchName = '$(Build.SourceBranch)'
+        if ($currentBranchName -match '(?<=refs\/).*') {
+          $currentBranchName = $Matches[0]
+          if ($currentBranchName -match '(?<=heads\/|remotes\/).*') {
+            $currentBranchName = $Matches[0]
+          }
+        }
+
+        Write-Host "$(Build.SourceBranch) -> $currentBranchName"
+
+        git config --global user.email "ado@pipeline.com"
+        git config --global user.name "ADO Pipeline Code Style Check"
+        git config pull.rebase false
+
+        git checkout main
+        git checkout $currentBranchName
+
+        git branch
+
+        git diff --name-only main...$currentBranchName
+
+        Write-Host "##vso[task.setvariable variable=currentBranch;]$currentBranchName"
+
+  # TODO: Fix all code style warning
+  # - task: PowerShell@2
+  #   displayName: "Check backend code"
+  #   inputs:
+  #     workingDirectory: ${{ parameters.backendProjectDirectory }}
+  #     targetType: "inline"
+  #     script: |
+  #       $changedFiles = $(git diff --name-only main...$(currentBranch)) `
+  #         | Select-String '^extensions/tlm/Willow.TwinLifecycleManagement.Web.*\/(.*.cs)$' `
+  #         | ForEach-Object { $_.Matches.Value }
+
+  #       $noIssues = $true
+
+  #       if ($changedFiles) {
+  #         Write-Host ($changedFiles -join "`n")
+
+  #         Write-Host
+  #         Write-Host "Building the project..."
+  #         $(& dotnet clean) | Out-Null
+  #         & dotnet build > buildlog.txt
+
+  #         $saWarnings = (Get-Content .\buildlog.txt | Select-String '.*warning SA\d{4}:.*$').Matches.Value
+
+  #         if ($saWarnings) {
+  #           $noIssues = $false
+
+  #           Write-Warning "Style issues found"
+  #           Write-Host "---------------------------------"
+  #           foreach ($warning in $saWarnings) {
+  #             foreach($file in $changedFiles) {
+  #               if ($warning -match $file) {
+  #                 Write-Host $(($warning | Select-String '(?<=/extensions/tlm/).*(?= \[.*.csproj\])').Matches.Value)
+  #               }
+  #             }
+  #           }
+  #           Write-Host "---------------------------------"
+  #           Write-Host
+  #         }
+  #         else {
+  #           Write-Host "Style OK"
+  #         }
+  #       }
+  #       else
+  #       {
+  #         Write-Host "No CSharp files were changed"
+  #       }
+
+  #       if ($noIssues) {
+  #         Write-Host "##vso[task.complete result=Succeeded;]Done"
+  #       }
+  #       else {
+  #         Write-Host "##vso[task.complete result=SucceededWithIssues;]Style issues found"
+  #       }
+
+  # npm authenticate (for task runners) v0
+  - task: npmAuthenticate@0
+    inputs:
+      workingFile: Willow.TwinLifecycleManagement.Web\ClientApp\.npmrc
+      customEndpoint: npm.pkg.github.com
+    displayName: Set up auth for npm registry
+
+  - task: PowerShell@2
+    displayName: "Check frontend code"
+    inputs:
+      workingDirectory: ${{ parameters.frontendProjectDirectory }}
+      targetType: "inline"
+      script: |
+        $changedFiles = $(git diff --name-only main...$(currentBranch)) `
+          | Select-String '^extensions/tlm/Willow.TwinLifecycleManagement.Web/ClientApp.*\/(.*.js|.*.ts|.*.tsx)$' `
+          | ForEach-Object { $_.Matches.Value }
+
+        $noIssues = $true
+
+        if ($changedFiles) {
+          # Remove auto-generated Clients.ts
+          $changedFiles = $changedFiles | Where-Object { $_ -ne "extensions/tlm/Willow.TwinLifecycleManagement.Web/ClientApp/src/services/Clients.ts" }
+
+          # Prefix files with full paths
+          $root = $(git rev-parse --show-toplevel)
+          $changedFilesFullPaths = $changedFiles | ForEach-Object { Join-Path $root $_ }
+
+          # Convert a single file string to array with one element
+          if (-not($changedFilesFullPaths -is [array])) {
+            $changedFilesFullPaths = @($changedFilesFullPaths)
+          }
+
+          Write-Host ($changedFiles -join "`n")
+
+          Write-Host
+          Write-Host "Installing packages..."
+          & npm install --silent | Out-Null
+
+          $eslintOutput = & npx eslint @changedFilesFullPaths
+
+          if ($eslintOutput) {
+            $noIssues = $false
+
+            Write-Warning "Style issues found"
+            Write-Host "---------------------------------"
+            foreach($line in $eslintOutput) {
+              Write-Host $line
+            }
+            Write-Host "---------------------------------"
+            Write-Host
+          }
+          else {
+            Write-Host "Style OK"
+          }
+
+          $prettierOutput = & npx prettier @changedFilesFullPaths --list-different
+
+          if ($prettierOutput) {
+            $noIssues = $false
+
+            Write-Warning "Formatting issues found"
+            Write-Host "---------------------------------"
+            foreach($line in $prettierOutput) {
+              Write-Host $line
+            }
+            Write-Host "---------------------------------"
+          }
+          else  {
+            Write-Host "Formatting OK"
+          }
+        }
+        else {
+          Write-Host "No JS/TS files were changed"
+        }
+
+        if ($noIssues) {
+          Write-Host "##vso[task.complete result=Succeeded;]Done"
+        }
+        else {
+          Write-Host "##vso[task.complete result=SucceededWithIssues;]Style issues found"
+        }
+
+        exit 0

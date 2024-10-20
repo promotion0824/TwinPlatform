@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomIoTHubRoutingAdapter", "src\CustomIoTHubRoutingAdapter\CustomIoTHubRoutingAdapter.csproj", "{E98D5CCE-B7ED-4721-AD70-2BE1E390EE76}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{BE766211-8BCF-46FD-8BB9-FBA850C09DB5}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\.github\workflows\iot-services-custom-iothub-routing-adapter.yml = ..\..\..\.github\workflows\iot-services-custom-iothub-routing-adapter.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Config", "Config", "{BECB20E9-BE20-4BAB-B399-811FCB64563F}"
+	ProjectSection(SolutionItems) = preProject
+		.dockerignore = .dockerignore
+		Directory.Build.props = Directory.Build.props
+		Directory.Build.targets = Directory.Build.targets
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomIoTHubRoutingAdapter.Tests", "test\CustomIoTHubRoutingAdapter.Tests\CustomIoTHubRoutingAdapter.Tests.csproj", "{BFBDDC1E-39EB-4B91-A968-22E9C464D6E9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E98D5CCE-B7ED-4721-AD70-2BE1E390EE76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E98D5CCE-B7ED-4721-AD70-2BE1E390EE76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E98D5CCE-B7ED-4721-AD70-2BE1E390EE76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E98D5CCE-B7ED-4721-AD70-2BE1E390EE76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFBDDC1E-39EB-4B91-A968-22E9C464D6E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFBDDC1E-39EB-4B91-A968-22E9C464D6E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFBDDC1E-39EB-4B91-A968-22E9C464D6E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFBDDC1E-39EB-4B91-A968-22E9C464D6E9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

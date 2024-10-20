@@ -1,0 +1,41 @@
+name: Telemetry DataQuality App
+
+on:
+  push:
+    branches:
+      - main
+      - release/**
+    paths:
+      - applications/IngestionPipeline/TelemetryDataQuality/**
+      - .github/workflows/telemetry-data-quality-app.yml
+
+  pull_request:
+    branches:
+      - main
+    paths:
+      - applications/IngestionPipeline/TelemetryDataQuality/**
+      - .github/workflows/telemetry-data-quality-app.yml
+
+  workflow_dispatch:
+
+jobs:
+  build_test_docker_push:
+    uses: WillowInc/.github/.github/workflows/Reusable-Build-Test-Docker-Push.yml@main
+    with:
+      path: applications/IngestionPipeline/TelemetryDataQuality/src/Willow.LiveData.TelemetryDataQuality
+      restore_path: applications/IngestionPipeline/TelemetryDataQuality
+      test_path: applications/IngestionPipeline/TelemetryDataQuality/test/Willow.LiveData.TelemetryDataQuality.Tests
+      build_configuration: "Release"
+      directoryBuildPropsPath: .config/common.props
+      coverage_thresholds: '0 50'
+      nugetConfigLocation: NuGet.Config
+      containerAppName: telemetry-data-quality
+      dockerfile: applications/IngestionPipeline/TelemetryDataQuality/src/Willow.LiveData.TelemetryDataQuality/Dockerfile
+      dockerContext: applications/IngestionPipeline/TelemetryDataQuality/src/Willow.LiveData.TelemetryDataQuality
+      imageName: iot-services/telemetry-data-quality-app
+      infraProjectPath: Applications/IoTServices.LiveData
+      productName: iot-services
+      clientId: "empty"
+    secrets:
+      githubToken: ${{ secrets.GITHUB_TOKEN }}
+      botToken: ${{ secrets.SVC_BOT_TOKEN }}

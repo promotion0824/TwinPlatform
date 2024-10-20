@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>Willow.ServiceHealthAggregator.Snowflake</AssemblyName>
+    <RootNamespace>Willow.ServiceHealthAggregator.Snowflake</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Azure.Identity" Version="1.12.0" />
+    <PackageReference Include="Azure.Messaging.EventGrid" Version="4.24.1" />
+    <PackageReference Include="Azure.Messaging.ServiceBus" Version="7.18.1" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0" />
+    <PackageReference Include="Willow.AppContext" Version="2.2.2734" />
+    <PackageReference Include="Willow.Email.SendGrid" Version="2.2.1630" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="Willow.ServiceHealthAggregator.Snowflake.Tests" />
+  </ItemGroup>
+
+</Project>

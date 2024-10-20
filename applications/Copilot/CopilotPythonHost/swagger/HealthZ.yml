@@ -1,0 +1,30 @@
+tags:
+  - Health
+responses:
+    200:
+        description: A HealthCheckStatus object
+        schema:
+            id: HealthResponse
+            properties:
+                Key:
+                    type: string
+                    description: The key of the HealthCheckStatus object
+                Status:
+                    type: number
+                    description: >
+                        The current status of the HealthCheckStatus object
+                        Unhealthy=0, Degraded=1, Healthy=2
+                Description:
+                    type: string
+                    description: The description of the HealthCheckStatus object
+                Version:
+                    type: string
+                    description: The version of the HealthCheckStatus object
+                Entries:
+                    type: object
+                    properties:
+                        azure-search:
+                            $ref: '#/definitions/HealthResponse'
+                        azure-openai:
+                            $ref: '#/definitions/HealthResponse'
+                        

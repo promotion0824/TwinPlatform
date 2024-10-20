@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+        <AssemblyName>Willow.CustomIoTHubRoutingAdapter</AssemblyName>
+        <RootNamespace>Willow.CustomIoTHubRoutingAdapter</RootNamespace>
+        <UserSecretsId>Custom.IoTHub.Routing.Adapter</UserSecretsId>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Willow.Hosting" Version="2.2.2734" />
+      <PackageReference Include="Willow.LiveData.Pipeline" Version="2.2.2734" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Update="appsettings.development.json" CopyToPublishDirectory="Never" />
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,121 @@
+#trigger:
+#  branches:
+#    include:
+#      - main
+#  paths:
+#    include:
+#      - libraries/Willow.AzureDigitalTwins/*
+#      - extensions/adt-api/*
+
+#pr:
+#  branches:
+#    include:
+#      - main
+#  paths:
+#    include:
+#      - libraries/Willow.AzureDigitalTwins/*
+#      - extensions/adt-api/*
+
+parameters:
+  - name: runBuild
+    type: boolean
+    default: false
+    displayName: Builds the image
+  - name: promoteToACR
+    type: boolean
+    default: false
+    displayName: Push image to Prod & Sandbox ACRs
+  - name: publishSwagger
+    type: boolean
+    default: true
+    displayName: Publish Swagger definition to Azure Blob
+
+variables:
+  - name: applicationName
+    value: 'willow-azuredigitaltwins-api'
+
+stages:
+- stage: "Build"
+  jobs:
+  - job: Compile_Test_Analyze_BuildImage
+    displayName: 'Compile, Test, Analyze And Build Image'
+    condition: eq('${{ parameters.runBuild }}', 'true')
+
+    pool:
+      vmImage: 'ubuntu-latest'
+
+    variables:
+      - group: WhiteSourceKeys
+      - name: srcProjectDir
+        value: 'extensions/adt-api/Willow.AzureDigitalTwins.Api'
+      - name: testProjectDir
+        value: 'extensions/adt-api/Willow.AzureDigitalTwins.Api.UnitTests'
+
+    steps:
+
+    - template: ../../../libraries/scripts/semantic-build-numbers-template.yml
+      parameters:
+        majorVersion: 0
+
+    - template: ../../../libraries/scripts/dotnet-build-test-publish-net7.yml
+      parameters:
+        srcProjectDir: $(srcProjectDir)
+        testProjectDir: $(testProjectDir)
+        buildVersion: $(Build.BuildNumber)
+        excludeLibrariesCoverage: \"[*]Microsoft.*,[*]System.*,[*]Willow.Api.*,[*]Willow.ServiceBus.*,[*]Willow.Storage.*\"
+
+    - template: ../../../libraries/scripts/docker-template.yml
+      parameters:
+        imageName: $(applicationName)
+        dockerfile: $(srcProjectDir)/Dockerfile
+        dockerContext: .
+        pushToSingleTenantDev: true
+
+  - job: Generate_Swagger_Publish_To_Azure_Blob
+    displayName: 'Generate Swagger Definition and Publish to Azure Blob'
+    dependsOn: Compile_Test_Analyze_BuildImage
+    condition: eq('${{ parameters.publishSwagger }}', 'true')
+
+    pool:
+      vmImage: 'ubuntu-latest'
+
+    variables:
+      - name: srcProjectDir
+        value: 'extensions/adt-api/Willow.AzureDigitalTwins.Api'
+
+    steps:
+    - script: |
+        cd $(srcProjectDir)
+        dotnet new tool-manifest
+        dotnet tool install NSwag.ConsoleCore
+        dotnet restore
+        dotnet build -p:AzureDevOps=True
+        dotnet nswag run nswag.json /variables:SwaggerOutputLocation=$(Build.ArtifactStagingDirectory)/swagger.json
+      displayName: 'Generating Swagger File'
+
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'SwaggerFile'
+        publishLocation: 'Container'
+
+    - task: AzureCLI@2
+      inputs:
+        azureSubscription: 'az-sandbox-shared-Twin Platform'
+        scriptType: 'pscore'
+        scriptLocation: 'inlineScript'
+        inlineScript: 'az storage blob delete-batch -s swagger --account-name adtapicommonsa --pattern adt-api/*'
+      displayName: "Clean up Azure Blob"
+
+    - task: AzureCLI@2
+      inputs:
+        azureSubscription: 'az-sandbox-shared-Twin Platform'
+        scriptType: 'pscore'
+        scriptLocation: 'inlineScript'
+        inlineScript: 'az storage blob upload --overwrite true -f $(Build.ArtifactStagingDirectory)/swagger.json --name swagger.json --account-name adtapicommonsa --container-name swagger'
+      displayName: "Upload Swagger to Azure Blob"
+
+- ${{ if eq(parameters['promoteToACR'], 'true') }}:
+  - template: ../../../libraries/scripts/image-promotion-template.yml
+    parameters:
+      imageName: ${{ variables.applicationName }}

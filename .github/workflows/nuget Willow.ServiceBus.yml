@@ -1,0 +1,30 @@
+name: "Nuget Willow.ServiceBus"
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - libraries/Willow.Messaging/Willow.ServiceBus/**
+  pull_request:
+    paths:
+      - libraries/Willow.Messaging/Willow.ServiceBus/**
+
+env:
+  buildConfiguration: Release
+  srcProjectDir: "libraries/Willow.Messaging/Willow.ServiceBus"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Nuget Build and Push action
+        uses: WillowInc/.github/.github/actions/nuget-build-push@main
+        with:
+          buildConfiguration: ${{ env.buildConfiguration}}
+          srcProjectDir: ${{ env.srcProjectDir}}
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          pushPackages: ${{ github.event_name == 'push' }}
+          directoryBuildPropPath: ${{ github.workspace }}/.config/common.props

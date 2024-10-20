@@ -1,0 +1,41 @@
+name: Service Health Aggregator
+
+on:
+  push:
+    branches:
+      - main
+      - release/**
+    paths:
+      - applications/ServiceHealthAggregator/**
+      - .github/workflows/service-health-aggregator.yml
+
+  pull_request:
+    branches:
+      - main
+    paths:
+      - applications/ServiceHealthAggregator/**
+      - .github/workflows/service-health-aggregator.yml
+
+  workflow_dispatch:
+
+jobs:
+  build_test_docker_push:
+    uses: WillowInc/.github/.github/workflows/Reusable-Build-Test-Docker-Push.yml@main
+    with:
+      path: "applications/ServiceHealthAggregator/src/ServiceHealthAggregator"
+      restore_path: "applications/ServiceHealthAggregator"
+      test_path: "applications/ServiceHealthAggregator/test/SnowflakeHealth.Tests"
+      build_configuration: "Release"
+      directoryBuildPropsPath: .config/common.props
+      coverage_thresholds: '0 50'
+      nugetConfigLocation: NuGet.Config
+      containerAppName: service-health-aggregator
+      dockerfile: "applications/ServiceHealthAggregator/src/ServiceHealthAggregator/Dockerfile"
+      dockerContext: "applications/ServiceHealthAggregator/src/ServiceHealthAggregator"
+      imageName: "wsup/service-health-aggregator"
+      infraProjectPath: Applications/ServiceHealthAggregator
+      productName: "wsup"
+      clientId: "empty"
+    secrets:
+      githubToken: ${{ secrets.GITHUB_TOKEN }}
+      botToken: ${{ secrets.SVC_BOT_TOKEN }}

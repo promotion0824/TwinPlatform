@@ -1,0 +1,110 @@
+name: Deploy a zip file to Azure Function
+
+inputs:
+  appName:
+    description: Azure function name e.g. wil-uat-plt-aue1-scheduler
+    required: true
+  buildNumber:
+    required: true
+  buildName:
+    # Eg. Function - Communication - Build
+    required: true
+  publicProfile:
+    description: This is the credentials in GitHub secrets that will be used during the deployment. e.g. FUNC_PUBLISH_PROFILE_WIL_DEV_PLT_EU21_SCHEDULER
+    required: true
+  artifactName:
+    description: Uploaded artifact name
+    required: true
+  artifactFile:
+    description: Uploaded artifact file name
+    required: true
+  requireMain:
+    description: Fail if the underlying build was not built from the main branch
+    default: false
+  clientId:
+    description: Client ID of service principal with access to the app service
+    required: true
+  tenantId:
+    description: Tenant ID of service principal with access to the app service
+    required: true
+  subscriptionId:
+    description: Subscription ID of service principal with access to the app service
+    required: true
+  githubToken:
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Log into Azure
+      uses: azure/login@v1
+      with:
+        client-id: ${{ inputs.clientId }}
+        tenant-id: ${{ inputs.tenantId }}
+        subscription-id: ${{ inputs.subscriptionId }}
+
+    - name: Download built artifact
+      shell: bash
+      run: |
+        if [ -z "$BUILD_NUMBER" ]; then
+          echo "Build number not provided - using most recent successful build to main"
+          QUERY='[ .[] | select(.conclusion == "success" and .headBranch == "main") ] | sort_by(.updatedAt) | reverse | .[0]'
+        else
+          echo "Looking up database id"
+          QUERY=".[] | select(.number == $BUILD_NUMBER)"
+        fi
+
+        # Note!: This will fail to look up the database id from the build number
+        # if the build is not in the 200 most recent builds. Should do this a bit differently
+        # (can we look up from build number directly)?
+        export RUN_DATA=$(gh run \
+          --repo WillowInc/TwinPlatform \
+          list \
+          --limit 200 \
+          --workflow "${{ inputs.buildName }}" \
+          --json "conclusion,updatedAt,number,databaseId,headBranch" \
+          |jq "$QUERY"
+        )
+
+        if [ "${{ inputs.requireMain }}" == true ] && [ "$(echo $RUN_DATA | jq '.headBranch' -r)" != main ]; then
+          echo "requireMain was true but the underlying build was not built from the main branch"
+          exit 1
+        fi
+
+        DB_ID=$(echo $RUN_DATA |jq ".databaseId" -r)
+        if [ -z "$BUILD_NUMBER" ]; then
+          BUILD_NUMBER=$(echo $RUN_DATA |jq ".number" -r)
+        fi
+        if [ -z "$BUILD_NUMBER" ]; then
+          echo "failed to find build number"
+          exit 1
+        fi
+        if [ -z "$DB_ID" ]; then
+          echo "failed to find database id"
+          exit 1
+        fi
+
+        echo "Build number: $BUILD_NUMBER"
+        echo "Database ID found: $DB_ID"
+
+
+        mkdir release
+        cd release
+        # Download the artifact using the obtained database ID
+        gh run --repo WillowInc/TwinPlatform download $DB_ID -n ${{ inputs.artifactName }}
+
+        unzip  ${{ inputs.artifactFile }}
+
+        # Remove the zip file so it doesn't get uploaded to the app service
+        rm ${{ inputs.artifactFile }}
+      env:
+        GH_TOKEN: ${{ inputs.githubToken }}
+        BUILD_NUMBER: ${{ inputs.buildNumber }}
+      working-directory: ${{ github.workspace }}
+
+    - name: Deploy to Azure Function App
+      uses: Azure/functions-action@v1
+      with:
+        app-name: ${{ inputs.appName }}
+        publish-profile: ${{ inputs.publicProfile }}
+        package: '${{ github.workspace }}/release'

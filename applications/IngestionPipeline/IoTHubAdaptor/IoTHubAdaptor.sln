@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34511.98
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IoTHubAdaptor", "src\IoTHubAdaptor\IoTHubAdaptor.csproj", "{46171DFF-1DD1-4052-8B83-DA6AD236F700}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{AF5A7F4F-F6BA-4DBC-A59F-3E7924BA94D7}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\.github\workflows\iot-services-iot-hub-telemetry-adaptor-build.yml = ..\..\..\.github\workflows\iot-services-iot-hub-telemetry-adaptor-build.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Config", "Config", "{6CA9F4C2-3540-482F-B8EB-B42015AACA24}"
+	ProjectSection(SolutionItems) = preProject
+		.dockerignore = .dockerignore
+		Directory.Build.props = Directory.Build.props
+		Directory.Build.targets = Directory.Build.targets
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IoTHubAdaptor.Tests", "test\IoTHubAdaptor.Tests\IoTHubAdaptor.Tests.csproj", "{BF7FCD4C-DD1C-4F43-A89A-17BEA72B1AA2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{46171DFF-1DD1-4052-8B83-DA6AD236F700}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46171DFF-1DD1-4052-8B83-DA6AD236F700}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46171DFF-1DD1-4052-8B83-DA6AD236F700}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46171DFF-1DD1-4052-8B83-DA6AD236F700}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF7FCD4C-DD1C-4F43-A89A-17BEA72B1AA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF7FCD4C-DD1C-4F43-A89A-17BEA72B1AA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF7FCD4C-DD1C-4F43-A89A-17BEA72B1AA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF7FCD4C-DD1C-4F43-A89A-17BEA72B1AA2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B98942C4-04A1-4F1D-8A48-D53BDE2ADEE2}
+	EndGlobalSection
+EndGlobal

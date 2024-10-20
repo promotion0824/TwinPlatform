@@ -1,0 +1,54 @@
+name: "Platform - Web - Format & Type check"
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - extensions/real-estate/front-end/Web/**
+  pull_request:
+    branches:
+      - main
+    paths:
+      - extensions/real-estate/front-end/Web/**
+      - .github/workflows/platform_web_check.yml
+  workflow_dispatch:
+    inputs:
+      push_dev_acr:
+        type: boolean
+        default: false
+      push_prd_acr:
+        type: boolean
+        default: false
+
+jobs:
+  build:
+    name: Web - format check and type check
+    runs-on: ubuntu-latest
+    outputs:
+      buildId: ${{ env.BuildId }}
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup node and dependency cache
+        uses: actions/setup-node@v4
+        with:
+          node-version: 16
+          cache: "npm"
+          cache-dependency-path: extensions/real-estate/front-end/Web/package-lock.json
+          registry-url: "https://npm.pkg.github.com"
+          always-auth: true
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN  }}
+
+      - name: npm ci
+        run: npm ci
+        working-directory: extensions/real-estate/front-end/Web/
+
+      - name: npm run format:check
+        run: npm run format:check
+        working-directory: extensions/real-estate/front-end/Web/
+
+      - name: Type check
+        run: npm run type-check
+        working-directory: extensions/real-estate/front-end/Web/

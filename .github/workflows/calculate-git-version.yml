@@ -1,0 +1,117 @@
+name: Calculate git version
+
+on:
+  workflow_call:
+    outputs:
+        minor:
+            value: ${{ jobs.calculate_git_version.outputs.minor }}
+        patch:
+            value: ${{ jobs.calculate_git_version.outputs.patch }}
+        preReleaseTag:
+            value: ${{ jobs.calculate_git_version.outputs.preReleaseTag }}
+        preReleaseTagWithDash:
+            value: ${{ jobs.calculate_git_version.outputs.preReleaseTagWithDash }}
+        preReleaseLabel:
+            value: ${{ jobs.calculate_git_version.outputs.preReleaseLabel }}
+        preReleaseNumber:
+            value: ${{ jobs.calculate_git_version.outputs.preReleaseNumber }}
+        weightedPreReleaseNumber:
+            value: ${{ jobs.calculate_git_version.outputs.weightedPreReleaseNumber }}
+        buildMetaData:
+            value: ${{ jobs.calculate_git_version.outputs.buildMetaData }}
+        buildMetaDataPadded:
+            value: ${{ jobs.calculate_git_version.outputs.buildMetaDataPadded }}
+        fullBuildMetaData:
+            value: ${{ jobs.calculate_git_version.outputs.fullBuildMetaData }}
+        majorMinorPatch:
+            value: ${{ jobs.calculate_git_version.outputs.majorMinorPatch }}
+        semVer:
+            value: ${{ jobs.calculate_git_version.outputs.semVer }}
+        legacySemVer:
+            value: ${{ jobs.calculate_git_version.outputs.legacySemVer }}
+        legacySemVerPadded:
+            value: ${{ jobs.calculate_git_version.outputs.legacySemVerPadded }}
+        assemblySemVer:
+            value: ${{ jobs.calculate_git_version.outputs.assemblySemVer }}
+        assemblySemFileVer:
+            value: ${{ jobs.calculate_git_version.outputs.assemblySemFileVer }}
+        fullSemVer:
+            value: ${{ jobs.calculate_git_version.outputs.fullSemVer }}
+        informationalVersion:
+            value: ${{ jobs.calculate_git_version.outputs.informationalVersion }}
+        branchName:
+            value: ${{ jobs.calculate_git_version.outputs.branchName }}
+        escapedBranchName:
+            value: ${{ jobs.calculate_git_version.outputs.escapedBranchName }}
+        sha:
+            value: ${{ jobs.calculate_git_version.outputs.sha }}
+        shortSha:
+            value: ${{ jobs.calculate_git_version.outputs.shortSha }}
+        nuGetVersionV2:
+            value: ${{ jobs.calculate_git_version.outputs.nuGetVersionV2 }}
+        nuGetVersion:
+            value: ${{ jobs.calculate_git_version.outputs.nuGetVersion }}
+        nuGetPreReleaseTagV2:
+            value: ${{ jobs.calculate_git_version.outputs.nuGetPreReleaseTagV2 }}
+        nuGetPreReleaseTag:
+            value: ${{ jobs.calculate_git_version.outputs.nuGetPreReleaseTag }}
+        versionSourceSha:
+            value: ${{ jobs.calculate_git_version.outputs.versionSourceSha }}
+        commitsSinceVersionSource:
+            value: ${{ jobs.calculate_git_version.outputs.commitsSinceVersionSource }}
+        commitsSinceVersionSourcePadded:
+            value: ${{ jobs.calculate_git_version.outputs.commitsSinceVersionSourcePadded }}
+        uncommittedChanges:
+            value: ${{ jobs.calculate_git_version.outputs.uncommittedChanges }}
+        commitDate:
+            value: ${{ jobs.calculate_git_version.outputs.commitDate }}
+
+jobs:
+    calculate_git_version:
+        runs-on: ubuntu-latest
+        outputs:
+            minor: ${{ steps.gitversion.outputs.minor }}
+            patch: ${{ steps.gitversion.outputs.patch }}
+            preReleaseTag: ${{ steps.gitversion.outputs.preReleaseTag }}
+            preReleaseTagWithDash: ${{ steps.gitversion.outputs.preReleaseTagWithDash }}
+            preReleaseLabel: ${{ steps.gitversion.outputs.preReleaseLabel }}
+            preReleaseNumber: ${{ steps.gitversion.outputs.preReleaseNumber }}
+            weightedPreReleaseNumber: ${{ steps.gitversion.outputs.weightedPreReleaseNumber }}
+            buildMetaData: ${{ steps.gitversion.outputs.buildMetaData }}
+            buildMetaDataPadded: ${{ steps.gitversion.outputs.buildMetaDataPadded }}
+            fullBuildMetaData: ${{ steps.gitversion.outputs.fullBuildMetaData }}
+            majorMinorPatch: ${{ steps.gitversion.outputs.majorMinorPatch }}
+            semVer: ${{ steps.gitversion.outputs.semVer }}
+            legacySemVer: ${{ steps.gitversion.outputs.legacySemVer }}
+            legacySemVerPadded: ${{ steps.gitversion.outputs.legacySemVerPadded }}
+            assemblySemVer: ${{ steps.gitversion.outputs.assemblySemVer }}
+            assemblySemFileVer: ${{ steps.gitversion.outputs.assemblySemFileVer }}
+            fullSemVer: ${{ steps.gitversion.outputs.fullSemVer }}
+            informationalVersion: ${{ steps.gitversion.outputs.informationalVersion }}
+            branchName: ${{ steps.gitversion.outputs.branchName }}
+            escapedBranchName: ${{ steps.gitversion.outputs.escapedBranchName }}
+            sha: ${{ steps.gitversion.outputs.sha }}
+            shortSha: ${{ steps.gitversion.outputs.shortSha }}
+            nuGetVersionV2: ${{ steps.gitversion.outputs.nuGetVersionV2 }}
+            nuGetVersion: ${{ steps.gitversion.outputs.nuGetVersion }}
+            nuGetPreReleaseTagV2: ${{ steps.gitversion.outputs.nuGetPreReleaseTagV2 }}
+            nuGetPreReleaseTag: ${{ steps.gitversion.outputs.nuGetPreReleaseTag }}
+            versionSourceSha: ${{ steps.gitversion.outputs.versionSourceSha }}
+            commitsSinceVersionSource: ${{ steps.gitversion.outputs.commitsSinceVersionSource }}
+            commitsSinceVersionSourcePadded: ${{ steps.gitversion.outputs.commitsSinceVersionSourcePadded }}
+            uncommittedChanges: ${{ steps.gitversion.outputs.uncommittedChanges }}
+            commitDate: ${{ steps.gitversion.outputs.commitDate }}
+        steps:
+          - name: "Checkout Repository"
+            uses: actions/checkout@v4
+            with:
+              fetch-depth: 0
+    
+          - name: Install GitVersion
+            uses: gittools/actions/gitversion/setup@v0
+            with:
+              versionSpec: '5.x'
+    
+          - name: Determine Version
+            id: gitversion
+            uses: gittools/actions/gitversion/execute@v0

@@ -1,0 +1,15 @@
+{
+  "data": {
+    "sites": [
+      {
+        "connectedDataSourceId": "CONPLACEMGMTID",
+        "description": null,
+        "exactType": "Site",
+        "id": "SITEFhJhVrRwyDLAmQ6M3HUBN6",
+        "mappingKey": "msrc://CONPLACEMGMTID@MAPPED_SPACE_DESIGNER/SITEBdAre6Bu7t8DrxMb7Ddj4F",
+        "name": "Cure Corridor",
+        "identities": []
+      }
+    ]
+  }
+}

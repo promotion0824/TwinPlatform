@@ -1,0 +1,219 @@
+# Restarts selected Rules Engine pods
+
+trigger: none
+pr: none
+
+parameters:
+  - name: restart_Msft_Test
+    displayName: MSFT-TEST
+    type: boolean
+    default: false
+  - name: restart_DDK_Prod
+    displayName: DDK_Prod
+    type: boolean
+    default: false
+  - name: restart_BP_Prod
+    displayName: BP_Prod
+    type: boolean
+    default: false
+  - name: restart_HPK_Prod
+    displayName: HPK_Prod
+    type: boolean
+    default: false
+  - name: restart_AXA_Prod
+    displayName: AXA_Prod
+    type: boolean
+    default: false
+  - name: restart_BRF_Prod
+    displayName: BRF_Prod
+    type: boolean
+    default: false
+  - name: restart_INV_Prod
+    displayName: INV_Prod
+    type: boolean
+    default: false
+  - name: restart_DFW_Prod
+    displayName: DFW_Prod
+    type: boolean
+    default: false
+  - name: restart_SANOFI_UAT
+    displayName: SANOFI_UAT
+    type: boolean
+    default: false
+  - name: restart_WMT_Prod
+    displayName: WMT_Prod
+    type: boolean
+    default: false
+  - name: restart_WMR_Prod
+    displayName: WMR_Prod
+    type: boolean
+    default: false
+  - name: restart_DURST_Prod
+    displayName: DURST_Prod
+    type: boolean
+    default: false
+  - name: restart_JPMC_Prod
+    displayName: JPMC_Prod
+    type: boolean
+    default: false
+  - name: restart_TURNER_Prod
+    displayName: TURNER_Prod
+    type: boolean
+    default: false
+
+stages:
+  - ${{ if eq(parameters.restart_Msft_Test, true) }}:
+      - stage: "MSFT_TEST"
+        jobs:
+          - job: Msft_test_Restart
+            steps:
+              - template: azure-restart-pipeline-steps.yml
+                parameters:
+                  namespace: twin-msft-test
+                  resourceGroup: nonprod-platformapps
+                  cluster: nonprod-platformapps-aks
+                  subscriptionEndpoint: az-k8s-internal-Twin Platform
+
+  - ${{ if eq(parameters.restart_SANOFI_UAT, true) }}:
+      - stage: "SANOFI_UAT"
+        jobs:
+          - job: SANOFI_UAT_Restart
+            steps:
+              - template: azure-restart-pipeline-steps.yml
+                parameters:
+                  namespace: twin-sanofi-uat
+                  resourceGroup: nonprod-platformapps
+                  cluster: nonprod-platformapps-aks
+                  subscriptionEndpoint: az-k8s-internal-Twin Platform
+
+  - ${{ if eq(parameters.restart_DDK_Prod, true) }}:
+      - stage: "DDK_Prod"
+        jobs:
+          - job: DDK_Prod_Restart
+            steps:
+              - template: azure-restart-pipeline-steps.yml
+                parameters:
+                  namespace: twin-ddk-prod
+                  resourceGroup: prod-platformapps-aue
+                  cluster: prod-platformapps-aue-aks
+
+  - ${{ if eq(parameters.restart_BP_Prod, true) }}:
+      - stage: "BP_Prod"
+        jobs:
+          - job: BP_Prod_Restart
+            steps:
+              - template: azure-restart-pipeline-steps.yml
+                parameters:
+                  namespace: twin-bp-prod
+                  resourceGroup: prod-platformapps-eu2
+                  cluster: prod-platformapps-eu2-aks
+
+  - ${{ if eq(parameters.restart_HPK_Prod, true) }}:
+      - stage: "HPK_Prod"
+        jobs:
+          - job: HPK_Prod_Restart
+            steps:
+              - template: azure-restart-pipeline-steps.yml
+                parameters:
+                  namespace: twin-hpk-prod
+                  resourceGroup: prod-platformapps-eu2
+                  cluster: prod-platformapps-eu2-aks
+
+  - ${{ if eq(parameters.restart_AXA_Prod, true) }}:
+      - stage: "AXA_Prod"
+        jobs:
+          - job: AXA_Prod_Restart
+            steps:
+              - template: azure-restart-pipeline-steps.yml
+                parameters:
+                  namespace: twin-axa-prod
+                  resourceGroup: prod-platformapps-weu
+                  cluster: prod-platformapps-weu-aks
+
+  - ${{ if eq(parameters.restart_BRF_Prod, true) }}:
+      - stage: "BRF_Prod"
+        jobs:
+          - job: BRF_Prod_Restart
+            steps:
+              - template: azure-restart-pipeline-steps.yml
+                parameters:
+                  namespace: twin-brf-prod
+                  resourceGroup: prod-platformapps-eu2
+                  cluster: prod-platformapps-eu2-aks
+
+  - ${{ if eq(parameters.restart_INV_Prod, true) }}:
+      - stage: "INV_Prod"
+        jobs:
+          - job: INV_Prod_Restart
+            steps:
+              - template: azure-restart-pipeline-steps.yml
+                parameters:
+                  namespace: twin-inv-prod
+                  resourceGroup: prod-platformapps-aue
+                  cluster: prod-platformapps-aue-aks
+
+  - ${{ if eq(parameters.restart_DFW_Prod, true) }}:
+      - stage: "DFW_Prod"
+        jobs:
+          - job: DFW_Prod_Restart
+            steps:
+              - template: azure-restart-pipeline-steps.yml
+                parameters:
+                  namespace: twin-dfw-prod
+                  resourceGroup: prod-platformapps-eu2
+                  cluster: prod-platformapps-eu2-aks
+
+  - ${{ if eq(parameters.restart_WMT_Prod, true) }}:
+      - stage: "WMT_Prod"
+        jobs:
+          - job: WMT_Prod_Restart
+            steps:
+              - template: azure-restart-pipeline-steps.yml
+                parameters:
+                  namespace: twin-wmt-prod
+                  resourceGroup: prod-platformapps-eu2
+                  cluster: prod-platformapps-eu2-aks
+
+  - ${{ if eq(parameters.restart_WMR_Prod, true) }}:
+      - stage: "WMR_Prod"
+        jobs:
+          - job: WMR_Prod_Restart
+            steps:
+              - template: azure-restart-pipeline-steps.yml
+                parameters:
+                  namespace: twin-wmr-prod
+                  resourceGroup: prod-platformapps-eu2
+                  cluster: prod-platformapps-eu2-aks
+
+  - ${{ if eq(parameters.restart_DURST_Prod, true) }}:
+      - stage: "DURST_Prod"
+        jobs:
+          - job: DURST_Prod_Restart
+            steps:
+              - template: azure-restart-pipeline-steps.yml
+                parameters:
+                  namespace: twin-durst-prod
+                  resourceGroup: prod-platformapps-eu2
+                  cluster: prod-platformapps-eu2-aks
+
+  - ${{ if eq(parameters.restart_JPMC_Prod, true) }}:
+      - stage: "JPMC_Prod"
+        jobs:
+          - job: JPMC_Prod_Restart
+            steps:
+              - template: azure-restart-pipeline-steps.yml
+                parameters:
+                  namespace: twin-jpmc-prod
+                  resourceGroup: prod-platformapps-eu2
+                  cluster: prod-platformapps-eu2-aks
+
+  - ${{ if eq(parameters.restart_TURNER_Prod, true) }}:
+      - stage: "TURNER_Prod"
+        jobs:
+          - job: TURNER_Prod_Restart
+            steps:
+              - template: azure-restart-pipeline-steps.yml
+                parameters:
+                  namespace: twin-turn-prod
+                  resourceGroup: prod-platformapps-eu2
+                  cluster: prod-platformapps-eu2-aks

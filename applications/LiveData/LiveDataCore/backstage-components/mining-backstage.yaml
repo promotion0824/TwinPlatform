@@ -1,0 +1,13 @@
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: mining-components
+  title: Mining Components
+  description: A collection of components for the Mining vertical
+spec:
+  targets:
+    - ./mining-domain.yaml
+    - ./mining-system.yaml
+    - ../extensions/mining/backend/MiningApi/backstage.yaml
+    - ../extensions/connectors/PIServerConnector/backstage.yaml
+    - ../extensions/connectors/PIServerIngestionFunc/backstage.yaml

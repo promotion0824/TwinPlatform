@@ -1,0 +1,81 @@
+tags:
+  - Indexing
+description: Find index documents based on index document type and update time
+definitions:
+    FindIndexDocumentsDocument:
+        type: object
+        properties:
+            uri:
+                type: string
+                description: The URI of the target document
+            id:
+                type: string
+                description: The ID of the index document
+            doc_type:
+                type: string
+                description: The type of the index document
+            content:
+                type: string
+                description: The textual content of the index document
+            indexed_time:
+                type: string
+                format: date-time
+                description: The time the index document was last updated
+            document_size: 
+                type: int
+                description: The size of the index document in bytes
+            metadata_json:
+                type: string
+                description: The metadata attched to the index document
+
+parameters:
+  - in: body
+    name: FindIndexDocumentsRequest
+    schema:
+        id: FindIndexDocumentsRequest
+        type: object
+        properties:
+            document_type:
+                type: string
+                description: The optional type of index document (docSummary|docWhole|docChunk)
+            last_updated_time:
+                type: string
+                format: date-time
+                description: The optional ISO time to find documents with update times newer-than
+            index_name:
+                type: string
+                description: The name of the index to use - for debugging and A/B testing (Normally should be omitted)
+            page_size:
+                type: number
+                descrption: The number of records to return for each page
+            page_number:
+                type: number
+                descrption: The 0-based page number to return for results (in page_size chunks)
+            include_metadata:
+                type: boolean
+                description: Whether to include metadata_json
+            include_content:
+                type: boolean
+                description: Whether to include content
+
+
+responses:
+  200:
+    description: List of index documents matching request
+    schema:
+        id: FindIndexDocumentResponse
+        type: object
+        properties:
+            total_count:
+                type: number
+                description: The total number of index documents found
+            index_documents:
+                type: array
+                items:
+                    $ref: '#/definitions/FindIndexDocumentsDocument'
+  400:
+    description: Bad request
+  404:
+    description: No info found in the index for blob_file
+  500:
+    description: Internal server error

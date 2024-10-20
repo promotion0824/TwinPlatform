@@ -1,0 +1,128 @@
+{
+  "data": {
+    "buildings": [
+      {
+        "connectedDataSourceId": "CON5xe1TMdfNiXtgxwnY2TA29",
+        "description": null,
+        "exactType": "Building",
+        "id": "BLDGFw1BBrbH346UFTmTjZGdLE",
+        "mappingKey": "msrc://CON5xe1TMdfNiXtgxwnY2TA29@willow-source/buildings/4n4KF3Bs1obzgToBKcxbFQ",
+        "name": "Intellicare Infirmary",
+        "floors": [
+          {
+            "connectedDataSourceId": "CON5xe1TMdfNiXtgxwnY2TA29",
+            "description": null,
+            "exactType": "Floor",
+            "id": "FLRPXsee48TzQAtGre2yVERmT",
+            "level": 0,
+            "mappingKey": "msrc://CON5xe1TMdfNiXtgxwnY2TA29@willow-source/twin/TW-CC-II-L01",
+            "name": "Floor_1",
+            "identities": [
+              {
+                "__typename": "ExternalIdentity",
+                "id": "IDND5TUj53LEwep697CSXmGyF",
+                "scope": "CONNECTOR",
+                "scopeId": "CON5xe1TMdfNiXtgxwnY2TA29",
+                "value": "TW-CC-II-L01"
+              },
+              {
+                "__typename": "FloorLevelIdentity",
+                "id": "IDNHN4Nz97CxKdGEjkazLa2Yo",
+                "scope": "BUILDING",
+                "scopeId": "BLDGFw1BBrbH346UFTmTjZGdLE",
+                "value": "0"
+              },
+              {
+                "__typename": "ExternalIdentity",
+                "id": "IDNRDVCUpLRF2xn14aD2heqzU",
+                "scope": "ORG",
+                "scopeId": "ORG2x818zbfmUjXuKSgWGaK8X",
+                "value": "urn:willowinc:twin:id:TW-CC-II-L01"
+              }
+            ]
+          },
+          {
+            "connectedDataSourceId": "CON5xe1TMdfNiXtgxwnY2TA29",
+            "description": null,
+            "exactType": "Floor",
+            "id": "FLR733gyQLooALX9GyWXy445L",
+            "level": 1,
+            "mappingKey": "msrc://CON5xe1TMdfNiXtgxwnY2TA29@willow-source/twin/TW-CC-II-L02",
+            "name": "Floor_2",
+            "identities": [
+              {
+                "__typename": "ExternalIdentity",
+                "id": "IDNWLtWN5Y2tA4jhoPfZUsvru",
+                "scope": "ORG",
+                "scopeId": "ORG2x818zbfmUjXuKSgWGaK8X",
+                "value": "urn:willowinc:twin:id:TW-CC-II-L02"
+              },
+              {
+                "__typename": "ExternalIdentity",
+                "id": "IDNTnKMk6J1Ncc4qJQ4PLGWpU",
+                "scope": "CONNECTOR",
+                "scopeId": "CON5xe1TMdfNiXtgxwnY2TA29",
+                "value": "TW-CC-II-L02"
+              },
+              {
+                "__typename": "FloorLevelIdentity",
+                "id": "IDNXXmkgRUcpifPDDjvWw85xq",
+                "scope": "BUILDING",
+                "scopeId": "BLDGFw1BBrbH346UFTmTjZGdLE",
+                "value": "1"
+              }
+            ]
+          },
+          {
+            "connectedDataSourceId": "CON5xe1TMdfNiXtgxwnY2TA29",
+            "description": null,
+            "exactType": "Floor",
+            "id": "FLR5RTgHNf5U1KigZyjBGLoEh",
+            "level": 2,
+            "mappingKey": "msrc://CON5xe1TMdfNiXtgxwnY2TA29@willow-source/twin/TW-CC-II-L03",
+            "name": "Floor_3",
+            "identities": [
+              {
+                "__typename": "ExternalIdentity",
+                "id": "IDNGr6mqr2iKSHB9Ue435gJj7",
+                "scope": "CONNECTOR",
+                "scopeId": "CON5xe1TMdfNiXtgxwnY2TA29",
+                "value": "TW-CC-II-L03"
+              },
+              {
+                "__typename": "ExternalIdentity",
+                "id": "IDN7zWhwMeXzUPCLbinDCd9gi",
+                "scope": "ORG",
+                "scopeId": "ORG2x818zbfmUjXuKSgWGaK8X",
+                "value": "urn:willowinc:twin:id:TW-CC-II-L03"
+              },
+              {
+                "__typename": "FloorLevelIdentity",
+                "id": "IDN8kGebQoBe23EUyFtzrFqcZ",
+                "scope": "BUILDING",
+                "scopeId": "BLDGFw1BBrbH346UFTmTjZGdLE",
+                "value": "2"
+              }
+            ]
+          }
+        ],
+        "identities": [
+          {
+            "__typename": "PostalAddressIdentity",
+            "id": "IDNGkpZH9ZXyChwGvbJwjgvV2",
+            "scope": "ORG",
+            "scopeId": "ORG2x818zbfmUjXuKSgWGaK8X",
+            "value": "12188 County Road G, Woodrow, Colorado 80757, United States"
+          },
+          {
+            "__typename": "ExternalIdentity",
+            "id": "IDNMZ69jsSu92DrF9RX1bsyS7",
+            "scope": "CONNECTOR",
+            "scopeId": "CON5xe1TMdfNiXtgxwnY2TA29",
+            "value": "TW-CC-II"
+          }
+        ]
+      }
+    ]
+  }
+}

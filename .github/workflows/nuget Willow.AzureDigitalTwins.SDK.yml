@@ -1,0 +1,32 @@
+name: "Nuget Willow.AzureDigitalTwins.SDK"
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - applications/TwinManagement/lib/Willow.AzureDigitalTwins.SDK/**
+  pull_request:
+    branches:
+      - main
+    paths:
+      - applications/TwinManagement/lib/Willow.AzureDigitalTwins.SDK/**
+
+env:
+  buildConfiguration: Release
+  srcProjectDir: "applications/TwinManagement/lib/Willow.AzureDigitalTwins.SDK"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Nuget Build and Push action
+        uses: WillowInc/.github/.github/actions/nuget-build-push@main
+        with:
+          buildConfiguration: ${{ env.buildConfiguration}}
+          srcProjectDir: ${{ env.srcProjectDir}}
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          pushPackages: ${{ github.event_name == 'push' }}
+          directoryBuildPropPath: ${{ github.workspace }}/Directory.Build.props

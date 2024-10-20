@@ -1,0 +1,82 @@
+
+tags:
+  - Indexing
+parameters:
+  - in: body
+    name: IndexDocumentRequest
+    schema:
+        id: IndexDocumentRequest
+        type: object
+        required: [blob_file]
+        properties:
+            blob_file:
+                type: string
+                description: The blob file uri to index
+            generate_summaries_mode:
+                type: string
+                description: When to generate document summaries - ifNewer | Off | force (Default = ifNewer)
+            generate_index_mode:
+                type: string
+                description: When to generate document indexes - ifNewer | Off | force (Default = ifNewer)
+            run_in_background:
+                type: boolean
+                description: True to return immediately, False to run syncronously. (Default = True)
+            index_name:
+                type: string
+                description: The name of the index to use - for debugging and A/B testing (Normally should be omitted)
+            include_chunkdocs_for_copilot_disabled_files:
+                type: boolean
+                description: >
+                    Include doc chunks even if metadata indicates file is no copilot-enabled.
+                    wholeDoc and summary documents will always be created if specified.
+            indexing_strategy:
+                type: string
+                description: > 
+                    The optional strategy used to index the document.
+                    'overlap' | 'page-overlap'
+                    Should be omitted except by internal code.
+            chunk_size:
+                type: int
+                description: >
+                    Size of document chunk in characters.
+                    Should be omitted except by internal code.
+            chunk_overlap:
+                type: int
+                description: >
+                    Size of document chunk in characters.
+                    Should be omitted except by internal code.
+            
+
+responses:
+  200:
+    description: Succesful document indexing request
+    schema:
+      id: IndexDocumentResponse
+      type: object
+      properties:
+          status:
+              type: string
+              description: Status (OK) of the indexing request 
+          job_id:
+              type: string
+              description: null when run syncronously
+  202:
+    description: Succesful background document indexing request
+    schema:
+      id: IndexDocumentResponse
+      type: object
+      properties:
+          status:
+              type: string
+              description: Status (OK) of the indexing request (TODO partial response list?)
+          job_id:
+              type: string
+              description: The job id of the background indexing job
+          num_index_chunks_added:
+              type: number
+              description: null when run in background
+
+  400:
+    description: Bad request
+  500:
+    description: Internal server error

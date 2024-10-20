@@ -1,0 +1,15 @@
+﻿{
+  "settings": {
+    "orderingRules": {
+      "usingDirectivesPlacement": "outsideNamespace"
+    },
+    "layoutRules": {
+      "allowDoWhileOnClosingBrace": true,
+      "allowConsecutiveUsings": true
+    },
+    "documentationRules": {
+      "documentInterfaces": false,
+      "documentInternalElements": false
+    }
+  }
+}

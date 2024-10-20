@@ -1,0 +1,8 @@
+apiVersion: backstage.io/v1alpha1
+kind: Domain
+metadata:
+  name: mining
+  title: Mining
+  description: Mining
+spec:
+  owner: pne_mining

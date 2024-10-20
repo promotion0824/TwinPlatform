@@ -1,0 +1,5 @@
+@MappedTopologyIngestionApi_HostAddress = http://localhost:5175
+
+POST {{MappedTopologyIngestionApi_HostAddress}}/Sync/SyncOrganization
+
+###

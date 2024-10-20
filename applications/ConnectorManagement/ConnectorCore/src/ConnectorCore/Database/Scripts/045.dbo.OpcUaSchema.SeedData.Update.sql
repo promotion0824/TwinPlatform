@@ -1,0 +1,1 @@
+UPDATE [dbo].[SchemaColumn] SET [Name] = 'Url' WHERE [Id] = '49D346B4-A294-44DA-A028-C992FBF6E42A'

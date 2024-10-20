@@ -1,0 +1,160 @@
+{
+  "config": {
+    "configFile": "E:\\Workspace\\Willow\\TwinPlatform\\design-system\\apps\\ui-e2e\\playwright.config.ts",
+    "rootDir": "E:/Workspace/Willow/TwinPlatform/design-system/apps/ui-e2e/src/visual-regression",
+    "forbidOnly": true,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "html",
+        {
+          "outputFolder": "../../dist/apps/ui-e2e/playwright-report",
+          "open": "never"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "../../dist/apps/ui-e2e/playwright-report/test-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 15000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "E:/Workspace/Willow/TwinPlatform/design-system/dist/apps/ui-e2e/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {},
+        "id": "Google Chrome",
+        "name": "Google Chrome",
+        "testDir": "E:/Workspace/Willow/TwinPlatform/design-system/apps/ui-e2e/src/visual-regression",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "version": "1.45.0",
+    "workers": 4,
+    "webServer": {
+      "command": "npm start",
+      "url": "http://localhost:4400",
+      "reuseExistingServer": true,
+      "cwd": "E:\\Workspace\\Willow\\TwinPlatform\\design-system"
+    }
+  },
+  "suites": [
+    {
+      "title": "Flex\\Flex.spec.ts",
+      "file": "Flex/Flex.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "align",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "Google Chrome",
+              "projectName": "Google Chrome",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "status": "failed",
+                  "duration": 7796,
+                  "error": {
+                    "message": "Error: \u001b[31mScreenshot comparison failed:\u001b[39m\n\n  Expected an image 1248px by 100px, received 182px by 100px. 107080 pixels (ratio 0.86 of all image pixels) are different.\n\nExpected: \u001b[33mE:\\Workspace\\Willow\\TwinPlatform\\design-system\\apps\\ui-e2e\\src\\visual-regression\\Flex\\Flex.spec.ts-snapshots\\align-1-Google-Chrome.png\u001b[39m\nReceived: \u001b[33mE:\\Workspace\\Willow\\TwinPlatform\\design-system\\dist\\apps\\ui-e2e\\test-results\\Flex-Flex-align-Google-Chrome\\align-1-actual.png\u001b[39m\n    Diff: \u001b[33mE:\\Workspace\\Willow\\TwinPlatform\\design-system\\dist\\apps\\ui-e2e\\test-results\\Flex-Flex-align-Google-Chrome\\align-1-diff.png\u001b[39m\n\nCall log:\n  \u001b[2m- expect.toHaveScreenshot with timeout 5000ms\u001b[22m\n\u001b[2m  -   verifying given screenshot expectation\u001b[22m\n\u001b[2m  - waiting for locator('#storybook-root').getByTestId('story-container')\u001b[22m\n\u001b[2m  -   locator resolved to <div data-testid=\"story-container\" class=\"StoryContainers___StyledDiv-sc-1s1xytk-0 ipyttE\">…</div>\u001b[22m\n\u001b[2m  - taking element screenshot\u001b[22m\n\u001b[2m  -   disabled all CSS animations\u001b[22m\n\u001b[2m  - waiting for fonts to load...\u001b[22m\n\u001b[2m  - fonts loaded\u001b[22m\n\u001b[2m  - attempting scroll into view action\u001b[22m\n\u001b[2m  -   waiting for element to be stable\u001b[22m\n\u001b[2m  - Expected an image 1248px by 100px, received 182px by 100px. 107080 pixels (ratio 0.86 of all image pixels) are different.\u001b[22m\n\u001b[2m  - waiting 100ms before taking screenshot\u001b[22m\n\u001b[2m  - waiting for locator('#storybook-root').getByTestId('story-container')\u001b[22m\n\u001b[2m  -   locator resolved to <div data-testid=\"story-container\" class=\"StoryContainers___StyledDiv-sc-1s1xytk-0 ipyttE\">…</div>\u001b[22m\n\u001b[2m  - taking element screenshot\u001b[22m\n\u001b[2m  -   disabled all CSS animations\u001b[22m\n\u001b[2m  - waiting for fonts to load...\u001b[22m\n\u001b[2m  - fonts loaded\u001b[22m\n\u001b[2m  - attempting scroll into view action\u001b[22m\n\u001b[2m  -   waiting for element to be stable\u001b[22m\n\u001b[2m  - captured a stable screenshot\u001b[22m\n\u001b[2m  - Expected an image 1248px by 100px, received 182px by 100px. 107080 pixels (ratio 0.86 of all image pixels) are different.\u001b[22m\n",
+                    "stack": "Error: \u001b[31mScreenshot comparison failed:\u001b[39m\n\n  Expected an image 1248px by 100px, received 182px by 100px. 107080 pixels (ratio 0.86 of all image pixels) are different.\n\nExpected: \u001b[33mE:\\Workspace\\Willow\\TwinPlatform\\design-system\\apps\\ui-e2e\\src\\visual-regression\\Flex\\Flex.spec.ts-snapshots\\align-1-Google-Chrome.png\u001b[39m\nReceived: \u001b[33mE:\\Workspace\\Willow\\TwinPlatform\\design-system\\dist\\apps\\ui-e2e\\test-results\\Flex-Flex-align-Google-Chrome\\align-1-actual.png\u001b[39m\n    Diff: \u001b[33mE:\\Workspace\\Willow\\TwinPlatform\\design-system\\dist\\apps\\ui-e2e\\test-results\\Flex-Flex-align-Google-Chrome\\align-1-diff.png\u001b[39m\n\nCall log:\n  \u001b[2m- expect.toHaveScreenshot with timeout 5000ms\u001b[22m\n\u001b[2m  -   verifying given screenshot expectation\u001b[22m\n\u001b[2m  - waiting for locator('#storybook-root').getByTestId('story-container')\u001b[22m\n\u001b[2m  -   locator resolved to <div data-testid=\"story-container\" class=\"StoryContainers___StyledDiv-sc-1s1xytk-0 ipyttE\">…</div>\u001b[22m\n\u001b[2m  - taking element screenshot\u001b[22m\n\u001b[2m  -   disabled all CSS animations\u001b[22m\n\u001b[2m  - waiting for fonts to load...\u001b[22m\n\u001b[2m  - fonts loaded\u001b[22m\n\u001b[2m  - attempting scroll into view action\u001b[22m\n\u001b[2m  -   waiting for element to be stable\u001b[22m\n\u001b[2m  - Expected an image 1248px by 100px, received 182px by 100px. 107080 pixels (ratio 0.86 of all image pixels) are different.\u001b[22m\n\u001b[2m  - waiting 100ms before taking screenshot\u001b[22m\n\u001b[2m  - waiting for locator('#storybook-root').getByTestId('story-container')\u001b[22m\n\u001b[2m  -   locator resolved to <div data-testid=\"story-container\" class=\"StoryContainers___StyledDiv-sc-1s1xytk-0 ipyttE\">…</div>\u001b[22m\n\u001b[2m  - taking element screenshot\u001b[22m\n\u001b[2m  -   disabled all CSS animations\u001b[22m\n\u001b[2m  - waiting for fonts to load...\u001b[22m\n\u001b[2m  - fonts loaded\u001b[22m\n\u001b[2m  - attempting scroll into view action\u001b[22m\n\u001b[2m  -   waiting for element to be stable\u001b[22m\n\u001b[2m  - captured a stable screenshot\u001b[22m\n\u001b[2m  - Expected an image 1248px by 100px, received 182px by 100px. 107080 pixels (ratio 0.86 of all image pixels) are different.\u001b[22m\n\n    at E:\\Workspace\\Willow\\TwinPlatform\\design-system\\apps\\ui-e2e\\src\\visual-regression\\Flex\\Flex.spec.ts:29:42",
+                    "location": {
+                      "file": "E:\\Workspace\\Willow\\TwinPlatform\\design-system\\apps\\ui-e2e\\src\\visual-regression\\Flex\\Flex.spec.ts",
+                      "column": 42,
+                      "line": 29
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 27 |\u001b[39m test(\u001b[32m'align'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ storybook }) \u001b[33m=>\u001b[39m {\n \u001b[90m 28 |\u001b[39m   \u001b[36mawait\u001b[39m storybook\u001b[33m.\u001b[39mgoto(componentName\u001b[33m,\u001b[39m groupName\u001b[33m,\u001b[39m \u001b[32m'Align'\u001b[39m)\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 29 |\u001b[39m   \u001b[36mawait\u001b[39m expect(storybook\u001b[33m.\u001b[39mstoryContainer)\u001b[33m.\u001b[39mtoHaveScreenshot()\n \u001b[90m    |\u001b[39m                                          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 30 |\u001b[39m })\n \u001b[90m 31 |\u001b[39m\n \u001b[90m 32 |\u001b[39m test(\u001b[32m'justify'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ storybook }) \u001b[33m=>\u001b[39m {\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "E:\\Workspace\\Willow\\TwinPlatform\\design-system\\apps\\ui-e2e\\src\\visual-regression\\Flex\\Flex.spec.ts",
+                        "column": 42,
+                        "line": 29
+                      },
+                      "message": "Error: \u001b[31mScreenshot comparison failed:\u001b[39m\n\n  Expected an image 1248px by 100px, received 182px by 100px. 107080 pixels (ratio 0.86 of all image pixels) are different.\n\nExpected: \u001b[33mE:\\Workspace\\Willow\\TwinPlatform\\design-system\\apps\\ui-e2e\\src\\visual-regression\\Flex\\Flex.spec.ts-snapshots\\align-1-Google-Chrome.png\u001b[39m\nReceived: \u001b[33mE:\\Workspace\\Willow\\TwinPlatform\\design-system\\dist\\apps\\ui-e2e\\test-results\\Flex-Flex-align-Google-Chrome\\align-1-actual.png\u001b[39m\n    Diff: \u001b[33mE:\\Workspace\\Willow\\TwinPlatform\\design-system\\dist\\apps\\ui-e2e\\test-results\\Flex-Flex-align-Google-Chrome\\align-1-diff.png\u001b[39m\n\nCall log:\n  \u001b[2m- expect.toHaveScreenshot with timeout 5000ms\u001b[22m\n\u001b[2m  -   verifying given screenshot expectation\u001b[22m\n\u001b[2m  - waiting for locator('#storybook-root').getByTestId('story-container')\u001b[22m\n\u001b[2m  -   locator resolved to <div data-testid=\"story-container\" class=\"StoryContainers___StyledDiv-sc-1s1xytk-0 ipyttE\">…</div>\u001b[22m\n\u001b[2m  - taking element screenshot\u001b[22m\n\u001b[2m  -   disabled all CSS animations\u001b[22m\n\u001b[2m  - waiting for fonts to load...\u001b[22m\n\u001b[2m  - fonts loaded\u001b[22m\n\u001b[2m  - attempting scroll into view action\u001b[22m\n\u001b[2m  -   waiting for element to be stable\u001b[22m\n\u001b[2m  - Expected an image 1248px by 100px, received 182px by 100px. 107080 pixels (ratio 0.86 of all image pixels) are different.\u001b[22m\n\u001b[2m  - waiting 100ms before taking screenshot\u001b[22m\n\u001b[2m  - waiting for locator('#storybook-root').getByTestId('story-container')\u001b[22m\n\u001b[2m  -   locator resolved to <div data-testid=\"story-container\" class=\"StoryContainers___StyledDiv-sc-1s1xytk-0 ipyttE\">…</div>\u001b[22m\n\u001b[2m  - taking element screenshot\u001b[22m\n\u001b[2m  -   disabled all CSS animations\u001b[22m\n\u001b[2m  - waiting for fonts to load...\u001b[22m\n\u001b[2m  - fonts loaded\u001b[22m\n\u001b[2m  - attempting scroll into view action\u001b[22m\n\u001b[2m  -   waiting for element to be stable\u001b[22m\n\u001b[2m  - captured a stable screenshot\u001b[22m\n\u001b[2m  - Expected an image 1248px by 100px, received 182px by 100px. 107080 pixels (ratio 0.86 of all image pixels) are different.\u001b[22m\n\n\n\u001b[0m \u001b[90m 27 |\u001b[39m test(\u001b[32m'align'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ storybook }) \u001b[33m=>\u001b[39m {\n \u001b[90m 28 |\u001b[39m   \u001b[36mawait\u001b[39m storybook\u001b[33m.\u001b[39mgoto(componentName\u001b[33m,\u001b[39m groupName\u001b[33m,\u001b[39m \u001b[32m'Align'\u001b[39m)\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 29 |\u001b[39m   \u001b[36mawait\u001b[39m expect(storybook\u001b[33m.\u001b[39mstoryContainer)\u001b[33m.\u001b[39mtoHaveScreenshot()\n \u001b[90m    |\u001b[39m                                          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 30 |\u001b[39m })\n \u001b[90m 31 |\u001b[39m\n \u001b[90m 32 |\u001b[39m test(\u001b[32m'justify'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ storybook }) \u001b[33m=>\u001b[39m {\u001b[0m\n\n\u001b[2m    at E:\\Workspace\\Willow\\TwinPlatform\\design-system\\apps\\ui-e2e\\src\\visual-regression\\Flex\\Flex.spec.ts:29:42\u001b[22m"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2024-08-13T05:58:17.665Z",
+                  "attachments": [
+                    {
+                      "name": "align-1-expected.png",
+                      "contentType": "image/png",
+                      "path": "E:\\Workspace\\Willow\\TwinPlatform\\design-system\\apps\\ui-e2e\\src\\visual-regression\\Flex\\Flex.spec.ts-snapshots\\align-1-Google-Chrome.png"
+                    },
+                    {
+                      "name": "align-1-actual.png",
+                      "contentType": "image/png",
+                      "path": "E:\\Workspace\\Willow\\TwinPlatform\\design-system\\dist\\apps\\ui-e2e\\test-results\\Flex-Flex-align-Google-Chrome\\align-1-actual.png"
+                    },
+                    {
+                      "name": "align-1-diff.png",
+                      "contentType": "image/png",
+                      "path": "E:\\Workspace\\Willow\\TwinPlatform\\design-system\\dist\\apps\\ui-e2e\\test-results\\Flex-Flex-align-Google-Chrome\\align-1-diff.png"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "E:\\Workspace\\Willow\\TwinPlatform\\design-system\\dist\\apps\\ui-e2e\\test-results\\Flex-Flex-align-Google-Chrome\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "E:\\Workspace\\Willow\\TwinPlatform\\design-system\\apps\\ui-e2e\\src\\visual-regression\\Flex\\Flex.spec.ts",
+                    "column": 42,
+                    "line": 29
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "289ba5b732f08854f7c4-2329a958944b5bb38a48",
+          "file": "Flex/Flex.spec.ts",
+          "line": 27,
+          "column": 5
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2024-08-13T05:58:13.834Z",
+    "duration": 12369.904999999984,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

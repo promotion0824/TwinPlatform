@@ -1,0 +1,298 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Willow.LiveData.TelemetryStreaming</name>
+    </assembly>
+    <members>
+        <member name="M:Willow.LiveData.TelemetryStreaming.Infrastructure.MqttClientFactory.CreateOptionsBuilder">
+            <summary>
+            Creates the MQTT connection options.
+            </summary>
+            <returns>MQTT connection options.</returns>
+        </member>
+        <member name="T:Willow.LiveData.TelemetryStreaming.Infrastructure.MqttClientOptionsBuilderExtensions">
+            <summary>
+            Extensions for the <see cref="T:MQTTnet.Client.MqttClientOptionsBuilder"/> class.
+            </summary>
+        </member>
+        <member name="M:Willow.LiveData.TelemetryStreaming.Infrastructure.MqttClientOptionsBuilderExtensions.WithJwtAuth(MQTTnet.Client.MqttClientOptionsBuilder)">
+            <summary>
+            Applies JWT-based authentication to the options.
+            </summary>
+            <param name="builder">The <see cref="T:MQTTnet.Client.MqttClientOptionsBuilder"/> object that this method extends.</param>
+            <returns>The <see cref="T:MQTTnet.Client.MqttClientOptionsBuilder"/> so that calls can be chained.</returns>
+        </member>
+        <member name="M:Willow.LiveData.TelemetryStreaming.Infrastructure.MqttClientOptionsBuilderExtensions.WithClientCertAuth(MQTTnet.Client.MqttClientOptionsBuilder,Azure.Core.TokenCredential,Willow.LiveData.TelemetryStreaming.Models.MqttConfig)">
+            <summary>
+            Applies client certificate-based authentication to the options.
+            </summary>
+            <remarks>
+            The <paramref name="config"/> is used to retrieve the certificate from Key Vault.
+            </remarks>
+            <param name="builder">The <see cref="T:MQTTnet.Client.MqttClientOptionsBuilder"/> object that this method extends.</param>
+            <param name="credential">A token credential to access Key Vault.</param>
+            <param name="config">The configuration to obtain the certificate.</param>
+            <returns>The <see cref="T:MQTTnet.Client.MqttClientOptionsBuilder"/> so that calls can be chained.</returns>
+        </member>
+        <member name="T:Willow.LiveData.TelemetryStreaming.Infrastructure.TokenProvider">
+            <summary>
+            Gets Azure access tokens for Event Grid.
+            </summary>
+        </member>
+        <member name="M:Willow.LiveData.TelemetryStreaming.Infrastructure.TokenProvider.GetToken">
+            <summary>
+            Gets a token synchronously.
+            </summary>
+            <returns>The token as a byte array.</returns>
+        </member>
+        <member name="M:Willow.LiveData.TelemetryStreaming.Infrastructure.TokenProvider.GetTokenAsync">
+            <summary>
+            Gets a token asynchronously.
+            </summary>
+            <returns>The token as a byte array.</returns>
+        </member>
+        <member name="T:Willow.LiveData.TelemetryStreaming.Models.AuthenticationMethod">
+            <summary>
+            Supported MQTT authentication methods.
+            </summary>
+        </member>
+        <member name="F:Willow.LiveData.TelemetryStreaming.Models.AuthenticationMethod.Jwt">
+            <summary>
+            JWT.
+            </summary>
+        </member>
+        <member name="F:Willow.LiveData.TelemetryStreaming.Models.AuthenticationMethod.ClientCertificate">
+            <summary>
+            Client Certificate.
+            </summary>
+        </member>
+        <member name="T:Willow.LiveData.TelemetryStreaming.Models.MqttConfig">
+            <summary>
+            Configuration for MQTT.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.TelemetryStreaming.Models.MqttConfig.Server">
+            <summary>
+            Gets the fully qualified domain name of the MQTT server.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.TelemetryStreaming.Models.MqttConfig.Port">
+            <summary>
+            Gets the port of the MQTT server.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.TelemetryStreaming.Models.MqttConfig.ClientId">
+            <summary>
+            Gets the client ID to use when connecting to the MQTT server.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.TelemetryStreaming.Models.MqttConfig.KeepAlivePeriodMinutes">
+            <summary>
+            Gets the maximum time to keep the TCP connection alive .
+            </summary>
+            <remarks>
+            Default is 20 minutes in expectation of receiving telemetry every 15 minutes.
+            </remarks>
+        </member>
+        <member name="P:Willow.LiveData.TelemetryStreaming.Models.MqttConfig.SessionExpiryIntervalMinutes">
+            <summary>
+            Gets the expiry time for the MQTT session.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.TelemetryStreaming.Models.MqttConfig.AuthenticationMethod">
+            <summary>
+            Gets the authentication method to use when connecting to the MQTT server.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.TelemetryStreaming.Models.MqttConfig.CertificateAuthentication">
+            <summary>
+            Gets the configuration for obtaining a client certificate.
+            </summary>
+            <remarks>
+            Required if <see cref="P:Willow.LiveData.TelemetryStreaming.Models.MqttConfig.AuthenticationMethod"/> is set to <see cref="F:Willow.LiveData.TelemetryStreaming.Models.AuthenticationMethod.ClientCertificate"/>.
+            </remarks>
+        </member>
+        <member name="T:Willow.LiveData.TelemetryStreaming.Models.CertificateAuthenticationConfig">
+            <summary>
+            Configuration for obtaining a client certificate.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.TelemetryStreaming.Models.CertificateAuthenticationConfig.KeyVault">
+            <summary>
+            Gets the URL of the Key Vault instance.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.TelemetryStreaming.Models.CertificateAuthenticationConfig.CertificateName">
+            <summary>
+            Gets the name of the certificate in Key Vault.
+            </summary>
+        </member>
+        <member name="T:Willow.LiveData.TelemetryStreaming.Models.OutputTelemetry">
+            <summary>
+            The format for telemetry sent to the streaming pipeline.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.TelemetryStreaming.Models.OutputTelemetry.SourceTimestamp">
+            <summary>
+            Gets the source timestamp.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.TelemetryStreaming.Models.OutputTelemetry.EnqueuedTimestamp">
+            <summary>
+            Gets the enqueued timestamp.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.TelemetryStreaming.Models.OutputTelemetry.Value">
+            <summary>
+            Gets the value.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.TelemetryStreaming.Models.OutputTelemetry.ExternalId">
+            <summary>
+            Gets the external identifier.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.TelemetryStreaming.Models.OutputTelemetry.ConnectorId">
+            <summary>
+            Gets the connector identifier.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.TelemetryStreaming.Models.OutputTelemetry.Metadata">
+            <summary>
+            Gets any metadata associated with this message.
+            </summary>
+        </member>
+        <member name="M:Willow.LiveData.TelemetryStreaming.Models.OutputTelemetry.ToString">
+            <summary>
+            Returns the current instance as a JSON string.
+            </summary>
+            <returns>A JSON string.</returns>
+        </member>
+        <member name="T:Willow.LiveData.TelemetryStreaming.Models.Subscription">
+            <summary>
+            Represents a subscription to receive streaming telemetry.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.TelemetryStreaming.Models.Subscription.SubscriberId">
+            <summary>
+            Gets the subscriber ID.
+            </summary>
+            <remarks>
+            This forms part of the unique topic space for the subscription.
+            </remarks>
+        </member>
+        <member name="P:Willow.LiveData.TelemetryStreaming.Models.Subscription.ConnectorId">
+            <summary>
+            Gets the connector ID.
+            </summary>
+            <remarks>
+            This forms part of the unique topic space for the subscription.
+            </remarks>
+        </member>
+        <member name="P:Willow.LiveData.TelemetryStreaming.Models.Subscription.ExternalId">
+            <summary>
+            Gets the external ID.
+            </summary>
+            <remarks>
+            This forms part of the unique topic space for the subscription.
+            </remarks>
+        </member>
+        <member name="P:Willow.LiveData.TelemetryStreaming.Models.Subscription.Metadata">
+            <summary>
+            Gets any metadata associated with this subscription.
+            </summary>
+            <remarks>
+            The metadata can be any object, and is passed through as-is.
+            </remarks>
+        </member>
+        <member name="T:Willow.LiveData.TelemetryStreaming.Models.TableConfig">
+            <summary>
+            Configuration for table storage.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.TelemetryStreaming.Models.TableConfig.StorageAccountUri">
+            <summary>
+            Gets the URI of the storage account.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.TelemetryStreaming.Models.TableConfig.StorageTableName">
+            <summary>
+            Gets the name of the storage table.
+            </summary>
+        </member>
+        <member name="P:Willow.LiveData.TelemetryStreaming.Models.TableConfig.CacheExpirationMinutes">
+            <summary>
+            Gets the length of time, in minutes, to cache subscriptions.
+            </summary>
+        </member>
+        <member name="T:Willow.LiveData.TelemetryStreaming.Services.ConfigSubscriptionService">
+            <summary>
+            Gets subscriptions from a JSON file.
+            </summary>
+        </member>
+        <member name="T:Willow.LiveData.TelemetryStreaming.Services.ISubscriptionService">
+            <summary>
+            Implement this interface to provide subscriptions.
+            </summary>
+        </member>
+        <member name="M:Willow.LiveData.TelemetryStreaming.Services.ISubscriptionService.GetSubscriptions(System.String,System.String)">
+            <summary>
+            Gets subscriptions for the given connector and external ID.
+            </summary>
+            <param name="connectorId">The connector ID.</param>
+            <param name="externalId">The external ID.</param>
+            <returns>An array of subscriptions.</returns>
+        </member>
+        <member name="T:Willow.LiveData.TelemetryStreaming.Services.StorageTablesSubscriptionService">
+            <summary>
+            Gets subscriptions from Azure Table Storage.
+            </summary>
+            <param name="tableConfig">The configuration for Azure Storage.</param>
+            <param name="appCache">A cache for storing subscriptions.</param>
+            <param name="tableServiceClient">The client for accessing table storage.</param>
+            <param name="logger">A logger instance.</param>
+        </member>
+        <member name="M:Willow.LiveData.TelemetryStreaming.Services.StorageTablesSubscriptionService.#ctor(Microsoft.Extensions.Options.IOptions{Willow.LiveData.TelemetryStreaming.Models.TableConfig},LazyCache.IAppCache,Azure.Data.Tables.TableServiceClient,Microsoft.Extensions.Logging.ILogger{Willow.LiveData.TelemetryStreaming.Services.StorageTablesSubscriptionService})">
+            <summary>
+            Gets subscriptions from Azure Table Storage.
+            </summary>
+            <param name="tableConfig">The configuration for Azure Storage.</param>
+            <param name="appCache">A cache for storing subscriptions.</param>
+            <param name="tableServiceClient">The client for accessing table storage.</param>
+            <param name="logger">A logger instance.</param>
+        </member>
+        <member name="M:Willow.LiveData.TelemetryStreaming.Services.StorageTablesSubscriptionService.GetSubscriptions(System.String,System.String)">
+            <summary>
+            Gets subscriptions for the given connector and external ID.
+            </summary>
+            <param name="connectorId">The connector ID.</param>
+            <param name="externalId">The external ID.</param>
+            <returns>An array of subscriptions.</returns>
+        </member>
+        <member name="M:Willow.LiveData.TelemetryStreaming.Services.StorageTablesSubscriptionService.GetSubscriptionsFromStorage">
+            <summary>
+            Asynchronously gets all subscriptions from storage.
+            </summary>
+        </member>
+        <member name="T:Willow.LiveData.TelemetryStreaming.TelemetryProcessor">
+            <summary>
+            Processes incoming telemetry and forwards to MQTT.
+            </summary>
+            <remarks>
+            1. Get all subscriptions for the given connector and external ID.
+            2. Transform the telemetry into the streaming format, adding any subscription-specific metadata.
+            3. Publish to the correct MQTT topic for the subscription.
+            </remarks>
+        </member>
+        <member name="M:Willow.LiveData.TelemetryStreaming.TelemetryProcessor.#ctor(Willow.LiveData.TelemetryStreaming.Services.ISubscriptionService,MQTTnet.Extensions.ManagedClient.IManagedMqttClient,Willow.LiveData.TelemetryStreaming.Metrics.IMetricsCollector,Microsoft.Extensions.Logging.ILogger{Willow.LiveData.TelemetryStreaming.TelemetryProcessor})">
+            <summary>
+            Processes incoming telemetry and forwards to MQTT.
+            </summary>
+            <remarks>
+            1. Get all subscriptions for the given connector and external ID.
+            2. Transform the telemetry into the streaming format, adding any subscription-specific metadata.
+            3. Publish to the correct MQTT topic for the subscription.
+            </remarks>
+        </member>
+    </members>
+</doc>

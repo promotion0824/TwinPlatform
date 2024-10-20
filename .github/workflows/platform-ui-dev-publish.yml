@@ -1,0 +1,64 @@
+name: Platform UI publish dev storybook
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - design-system/**
+
+env:
+  ROOT_DIRECTORY: design-system
+
+jobs:
+  build-and-publish:
+    defaults:
+      run:
+        # default directory for job
+        working-directory: ${{ env.ROOT_DIRECTORY }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+
+    concurrency:
+      # Only the last publish job will be run if there is multiple scheduled
+      group: ${{ github.workflow }}
+      cancel-in-progress: true
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Cache node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.*
+          cache: "npm"
+          cache-dependency-path: ${{ env.ROOT_DIRECTORY }}/package-lock.json
+
+      - name: Cache node_modules
+        id: cache-node-modules
+        uses: actions/cache@v3
+        with:
+          path: ${{ env.ROOT_DIRECTORY }}/node_modules
+          key: node-modules-${{ runner.os }}-${{ hashFiles(format('{0}/package-lock.json', env.ROOT_DIRECTORY)) }}
+
+      - name: Install packages
+        if: steps.cache-node-modules.outputs.cache-hit != 'true'
+        run: npm ci
+
+      - name: Build storybook
+        run: npx nx build-storybook ui
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          # Upload storybook static files
+          path: ./${{ env.ROOT_DIRECTORY }}/dist/storybook/ui
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2

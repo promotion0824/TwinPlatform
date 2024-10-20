@@ -1,0 +1,120 @@
+name: "Platform - Web - Build"
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - extensions/real-estate/front-end/Web/**
+  pull_request:
+    branches:
+      - main
+      - releases/real-estate/*
+      - feature/realestate/platform-web-build
+    paths:
+      - extensions/real-estate/front-end/Web/**
+      - .github/workflows/platform_web_build.yml
+  workflow_dispatch:
+    inputs:
+      push_dev_acr:
+        type: boolean
+        default: false
+      push_prd_acr:
+        type: boolean
+        default: false
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
+env:
+  majorVersion: 1
+  productName: willowplatform
+  imageName: web
+
+jobs:
+  build:
+    name: Web Build and Publish
+    runs-on: ubuntu-latest
+    outputs:
+      buildId: ${{ env.BuildId }}
+    steps:
+      - uses: actions/checkout@v4
+        name: Checkout
+
+      - name: Setup Build Number
+        uses: ./.github/actions/semantic_build_numbers
+        with:
+          majorVersion: ${{ env.majorVersion }}
+
+      - name: Setup node and dependency cache
+        uses: actions/setup-node@v4
+        with:
+          node-version: 16
+          cache: "npm"
+          cache-dependency-path: extensions/real-estate/front-end/Web/package-lock.json
+          registry-url: "https://npm.pkg.github.com"
+          always-auth: true
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN  }}
+
+      - name: npm ci
+        run: npm ci
+        working-directory: extensions/real-estate/front-end/Web/
+
+      - name: npm run build-platform
+        run: npm run build-platform
+        working-directory: extensions/real-estate/front-end/Web/
+
+      - uses: ./.github/actions/docker/push
+        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.push_dev_acr == 'true' }}
+        name: Upload docker image (crwildevshared01)
+        with:
+          imageName: ${{ env.imageName }}
+          productName: ${{ env.productName }}
+          dockerfile: ${{ github.workspace }}/extensions/real-estate/front-end/Web/packages/platform/deployment/Dockerfile
+          dockerContext: ${{ github.workspace }}/extensions/real-estate/front-end/Web/packages/platform
+          alwaysPush: true
+          dockerRegistry: crwildevshared01.azurecr.io
+          dockerUsername: ${{ vars.DEV_SHARED_ACR_CLIENT_ID }}
+          dockerPassword: ${{ secrets.DEV_SHARED_ACR_CLIENT_SECRET }}
+          version: ${{ env.BuildId }}
+
+      - uses: ./.github/actions/docker/push
+        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.push_prd_acr == 'true' }}
+        name: Upload docker image (crwilprdshared01)
+        with:
+          imageName: ${{ env.imageName }}
+          productName: ${{ env.productName }}
+          dockerfile: ${{ github.workspace }}/extensions/real-estate/front-end/Web/packages/platform/deployment/Dockerfile
+          dockerContext: ${{ github.workspace }}/extensions/real-estate/front-end/Web/packages/platform
+          alwaysPush: true
+          dockerRegistry: crwilprdshared01.azurecr.io
+          dockerUsername: ${{ vars.PRD_SHARED_ACR_CLIENT_ID }}
+          dockerPassword: ${{ secrets.PRD_SHARED_ACR_CLIENT_SECRET }}
+          version: ${{ env.BuildId }}
+
+      - uses: WillowInc/.github/.github/actions/bump-version@main
+        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.push_dev_acr == 'true' }}
+        name: Bump image version
+        id: bump-version
+        with:
+          team-name: ${{ env.productName }}
+          project-path: Applications/WillowTwin
+          image: "${{ env.productName }}/${{ env.imageName }}:${{ env.BuildId }}"
+          bot-token: ${{ secrets.SVC_BOT_TOKEN }}
+          container-name: "web"
+          property-name: "Web"
+
+      - uses: WillowInc/.github/.github/actions/bump-version@main
+        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.push_prd_acr == 'true' }}
+        name: Bump image version prd
+        id: bump-version-prd
+        with:
+          team-name: ${{ env.productName }}
+          project-path: Applications/WillowTwin
+          image: "${{ env.productName }}/${{ env.imageName }}:${{ env.BuildId }}"
+          appsettings: "appsettings.prd.json"
+          bot-token: ${{ secrets.SVC_BOT_TOKEN }}
+          container-name: "web"
+          property-name: "Web"

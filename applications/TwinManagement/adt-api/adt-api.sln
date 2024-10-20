@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Willow.AzureDigitalTwins.Api", "Willow.AzureDigitalTwins.Api\Willow.AzureDigitalTwins.Api.csproj", "{355DE489-214E-48B8-82DB-9D88F681F270}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Willow.AzureDigitalTwins.Api.APITests", "Willow.AzureDigitalTwins.Api.APITests\Willow.AzureDigitalTwins.Api.APITests.csproj", "{4F749299-090E-40C8-BA33-31C2EE72C3CA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Willow.AzureDigitalTwins.Api.Persistence", "Willow.AzureDigitalTwins.Api.Persistence\Willow.AzureDigitalTwins.Api.Persistence.csproj", "{E1EACFB2-84C5-42DE-873D-DF84B7113DCA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Willow.AzureDigitalTwins.Api.UnitTests", "Willow.AzureDigitalTwins.Api.UnitTests\Willow.AzureDigitalTwins.Api.UnitTests.csproj", "{CC44CE3E-311A-4C56-B9E0-8B5AAEB421FE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{355DE489-214E-48B8-82DB-9D88F681F270}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{355DE489-214E-48B8-82DB-9D88F681F270}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{355DE489-214E-48B8-82DB-9D88F681F270}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{355DE489-214E-48B8-82DB-9D88F681F270}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F749299-090E-40C8-BA33-31C2EE72C3CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F749299-090E-40C8-BA33-31C2EE72C3CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F749299-090E-40C8-BA33-31C2EE72C3CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F749299-090E-40C8-BA33-31C2EE72C3CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E1EACFB2-84C5-42DE-873D-DF84B7113DCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1EACFB2-84C5-42DE-873D-DF84B7113DCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1EACFB2-84C5-42DE-873D-DF84B7113DCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1EACFB2-84C5-42DE-873D-DF84B7113DCA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC44CE3E-311A-4C56-B9E0-8B5AAEB421FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC44CE3E-311A-4C56-B9E0-8B5AAEB421FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC44CE3E-311A-4C56-B9E0-8B5AAEB421FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC44CE3E-311A-4C56-B9E0-8B5AAEB421FE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {48BB82A3-768F-457E-94F3-D45E067B6AF6}
+	EndGlobalSection
+EndGlobal

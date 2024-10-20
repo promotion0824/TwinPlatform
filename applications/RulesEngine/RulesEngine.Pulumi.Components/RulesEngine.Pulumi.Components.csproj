@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Pulumi.Automation" Version="3.28.0" />
+        <PackageReference Include="Pulumi.AzureNative" Version="1.62.0" />
+        <PackageReference Include="Pulumi.Kubernetes" Version="3.22.1" />
+        <PackageReference Include="Pulumi.Random" Version="4.4.2" />
+        <PackageReference Include="Pulumi.Tls" Version="4.1.0" />
+        <PackageReference Include="System.Net.Http" Version="4.3.4" />
+        <PackageReference Include="System.Text.RegularExpressions" Version="4.3.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\infrastructure\Pulumi.Crds\Pulumi.Crds.csproj" />
+    </ItemGroup>
+
+</Project>

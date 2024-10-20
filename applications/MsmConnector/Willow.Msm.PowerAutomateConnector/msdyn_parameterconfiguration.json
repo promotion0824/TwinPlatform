@@ -1,0 +1,59 @@
+{
+    "parameterGroups": [
+        {
+            "label": "Willow Public API Authentication",
+            "fields": [
+                {
+                    "displayLabel": "Client Id",
+                    "type": "text",
+                    "key": "clientId",
+                    "required": true,
+                    "description": "Enter the clientId of the app registration used to connect to Willow Public API."
+                },
+                {
+                    "displayLabel": "Client Secret",
+                    "type": "text",
+                    "key": "clientSecret",
+                    "mask": true,
+                    "required": true
+                }
+            ]
+        },
+        {
+            "label": "Data extraction parameters",
+            "fields": [
+                {
+                    "displayLabel": "MSM Entity Name",
+                    "type": "text",
+                    "key": "entityName"
+                },
+                {
+                    "displayLabel": "Organizational Unit",
+                    "type": "text",
+                    "key": "organizationalUnitId"
+                },
+                {
+                    "displayLabel": "Organization Short Name",
+                    "type": "text",
+                    "key": "organizationShortName"
+                },
+
+                {
+                    "displayLabel": "Data Aggregation Window",
+                    "type": "text",
+                    "key": "aggregationWindow"
+                },
+                {
+                    "displayLabel": "Watermark Date",
+                    "type": "datetime",
+                    "key": "watermarkDate"
+                },
+                {
+                    "displayLabel": "Installation instructions",
+                    "type": "note",
+                    "text": "Contact support@willowinc.com for a Client Id & Client Secret to access Willow Public API."
+                }
+            ]
+         }
+   ]
+}

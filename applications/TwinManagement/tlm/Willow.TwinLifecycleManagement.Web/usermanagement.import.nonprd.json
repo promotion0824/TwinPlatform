@@ -1,0 +1,247 @@
+{
+  "AuthorizationAPI": {
+    "Import": {
+      "Permissions": [
+        {
+          "name": "CanDeleteModels",
+          "description": "Can delete models."
+        },
+        {
+          "name": "CanDeleteTwinsBySiteId",
+          "description": "Can delete twins by site Id."
+        },
+        {
+          "name": "CanDeleteAllTwins",
+          "description": "Can delete all twins."
+        },
+        {
+          "name": "CanDeleteTwins",
+          "description": "Can delete twins."
+        },
+        {
+          "name": "CanDeleteTwinsorRelationshipByFile",
+          "description": "Can delete twins or relationship by file."
+        },
+        {
+          "name": "CanUploadDQRules",
+          "description": "Can upload DQ rules."
+        },
+        {
+          "name": "CanReadDQRules",
+          "description": "Can read DQ rules."
+        },
+        {
+          "name": "CanReadDQValidationJobs",
+          "description": "Can read DQ validation jobs."
+        },
+        {
+          "name": "CanValidateTwins",
+          "description": "Can validate twins"
+        },
+        {
+          "name": "CanReadDQValidationResults",
+          "description": "Can read DQ validation results."
+        },
+        {
+          "name": "CanExportTwins",
+          "description": "Can export twins."
+        },
+        {
+          "name": "CanStartAdxExportJob",
+          "description": "Can start adx export job."
+        },
+        {
+          "name": "CanImportTwins",
+          "description": "Can import twins."
+        },
+        {
+          "name": "CanImportTimeSeries",
+          "description": "Can import time series."
+        },
+        {
+          "name": "CanImportDocuments",
+          "description": "Can import documents."
+        },
+        {
+          "name": "CanReadDocuments",
+          "description": "Can read documents."
+        },
+        {
+          "name": "CanImportModelsFromGit",
+          "description": "Can import models from Git."
+        },
+        {
+          "name": "CanReadJobs",
+          "description": "Can read jobs."
+        },
+        {
+          "name": "CanCancelJobs",
+          "description": "Can cancel jobs."
+        },
+        {
+          "name": "CanDeleteJobs",
+          "description": "Can delete jobs."
+        },
+        {
+          "name": "CanCreateOrUpdateJobs",
+          "description": "Can create or update jobs."
+        },
+        {
+          "name": "CanReadModels",
+          "description": "Can read models."
+        },
+        {
+          "name": "CanReadTwins",
+          "description": "Can read twins."
+        },
+        {
+          "name": "CanReadMappings",
+          "description": "Can read mappings."
+        },
+        {
+          "name": "CanTriggerSyncJobs",
+          "description": "Can trigger sync jobs."
+        },
+        {
+          "name": "CanSearchDocuments",
+          "description": "Can Search Documents."
+        },
+        {
+          "name": "CanChatWithCopilot",
+          "description": "Can chat with copilot."
+        },
+        {
+          "name": "CanSyncToMapped",
+          "description": "Can sync to mapped."
+        }
+      ],
+      "Roles": [
+        {
+          "name": "TLM Admin",
+          "description": "TLM Administrator Role.",
+          "permissions": [
+            "CanReadTwins",
+            "CanReadModels",
+            "CanDeleteJobs",
+            "CanCancelJobs",
+            "CanReadJobs",
+            "CanCreateOrUpdateJobs",
+            "CanImportModelsFromGit",
+            "CanReadDocuments",
+            "CanImportDocuments",
+            "CanImportTwins",
+            "CanStartAdxExportJob",
+            "CanExportTwins",
+            "CanReadDQValidationResults",
+            "CanValidateTwins",
+            "CanReadDQValidationJobs",
+            "CanReadDQRules",
+            "CanUploadDQRules",
+            "CanDeleteTwinsorRelationshipByFile",
+            "CanDeleteTwins",
+            "CanDeleteAllTwins",
+            "CanDeleteTwinsBySiteId",
+            "CanDeleteModels",
+            "CanReadMappings",
+            "CanTriggerSyncJobs",
+            "CanImportTimeSeries",
+            "CanSearchDocuments",
+            "CanSyncToMapped",
+            "CanChatWithCopilot"
+          ]
+        },
+        {
+          "name": "TLM Reader",
+          "description": "TLM Reader Role.",
+          "permissions": [
+            "CanReadTwins",
+            "CanReadModels",
+            "CanReadJobs",
+            "CanReadDocuments",
+            "CanReadDQValidationResults",
+            "CanReadDQValidationJobs",
+            "CanReadMappings",
+            "CanSearchDocuments",
+            "CanChatWithCopilot"
+          ]
+        },
+        {
+          "name": "TLM Writer",
+          "description": "TLM Writer Role.",
+          "permissions": [
+            "CanReadTwins",
+            "CanReadModels",
+            "CanDeleteJobs",
+            "CanCancelJobs",
+            "CanReadJobs",
+            "CanCreateOrUpdateJobs",
+            "CanReadDocuments",
+            "CanImportDocuments",
+            "CanImportTwins",
+            "CanExportTwins",
+            "CanReadDQValidationResults",
+            "CanValidateTwins",
+            "CanReadDQValidationJobs",
+            "CanReadDQRules",
+            "CanDeleteTwinsorRelationshipByFile",
+            "CanDeleteTwins",
+            "CanDeleteTwinsBySiteId",
+            "CanDeleteModels",
+            "CanReadMappings",
+            "CanImportTimeSeries",
+            "CanSearchDocuments",
+            "CanChatWithCopilot",
+            "CanSyncToMapped"
+          ]
+        },
+        {
+          "name": "Willow Non-Prod Admin",
+          "permissions": [
+            "CanReadTwins",
+            "CanReadModels",
+            "CanDeleteJobs",
+            "CanCancelJobs",
+            "CanReadJobs",
+            "CanCreateOrUpdateJobs",
+            "CanImportModelsFromGit",
+            "CanReadDocuments",
+            "CanImportDocuments",
+            "CanImportTwins",
+            "CanStartAdxExportJob",
+            "CanExportTwins",
+            "CanReadDQValidationResults",
+            "CanValidateTwins",
+            "CanReadDQValidationJobs",
+            "CanReadDQRules",
+            "CanUploadDQRules",
+            "CanDeleteTwinsorRelationshipByFile",
+            "CanDeleteTwins",
+            "CanDeleteAllTwins",
+            "CanDeleteTwinsBySiteId",
+            "CanDeleteModels",
+            "CanReadMappings",
+            "CanTriggerSyncJobs",
+            "CanImportTimeSeries",
+            "CanSearchDocuments",
+            "CanSyncToMapped",
+            "CanChatWithCopilot"
+          ]
+        },
+        {
+          "name": "Willow Non-Prod",
+          "permissions": [
+            "CanReadTwins",
+            "CanReadModels",
+            "CanReadJobs",
+            "CanReadDocuments",
+            "CanReadDQValidationResults",
+            "CanReadDQValidationJobs",
+            "CanReadMappings",
+            "CanSearchDocuments",
+            "CanChatWithCopilot"
+          ]
+        }
+      ]
+    }
+  }
+}

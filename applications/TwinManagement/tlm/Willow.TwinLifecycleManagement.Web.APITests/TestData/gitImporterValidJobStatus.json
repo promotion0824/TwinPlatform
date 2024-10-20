@@ -1,0 +1,11 @@
+{
+  "requestPath": "wil-dev-lda-cu1-eu21-adt.api.wus2.digitaltwins.azure.net/import/requests/SGrujicic@willowinc.com.Models.2022.09.02.10.48.42",
+  "jobId": "SGrujicic@willowinc.com.Models.2022.09.02.10.48.42",
+  "details": {},
+  "createTime": "2022-09-02T10:48:42.4364027Z",
+  "lastUpdateTime": "2022-09-02T10:48:49.8935596Z",
+  "userId": "SGrujicic@willowinc.com",
+  "target": [
+    "Models"
+  ]
+}

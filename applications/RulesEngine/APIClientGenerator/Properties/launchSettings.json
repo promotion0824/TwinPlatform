@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "TypeScriptGenerator": {
+      "commandName": "Project",
+      "commandLineArgs": "http://localhost:5050/swagger/v1/swagger.json RulesEngine.Web/ClientApp/src/Rules.ts TypeScript"
+    },
+    "CSharpGenerator": {
+      "commandName": "Project",
+      "commandLineArgs": "PublicApi.json WillowRules/Generated/Command.cs CSharp"
+    }
+  }
+}

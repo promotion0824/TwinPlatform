@@ -1,0 +1,33 @@
+trigger:
+  branches:
+    include:
+      - main
+  paths:
+    include:
+      - core/RulesEngine/*
+
+pr:
+  branches:
+    include:
+      - main
+  paths:
+    include:
+      - core/RulesEngine/*
+
+jobs:
+  - job: Compile_Test_Analyze_BuildImage
+    displayName: 'Compile, Test, Analyze And Build Image'
+
+    pool:
+      vmImage: 'ubuntu-latest'
+
+    steps:
+    - template: ../../../common/scripts/semantic-build-numbers-template.yml
+      parameters:
+        majorVersion: 0
+
+    - template: ../../../common/scripts/docker-template.yml
+      parameters:
+        imageName: 'rule-engine-processor'
+        dockerfile: 'core/RulesEngine/RulesEngine.Processor/Dockerfile'
+        dockerContext: .

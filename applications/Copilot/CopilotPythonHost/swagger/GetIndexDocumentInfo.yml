@@ -1,0 +1,69 @@
+tags:
+  - Indexing
+
+definitions:
+    GetIndexDocumentInfoDocInfo:
+        type: object
+        nullable: true
+        properties:
+            uri:
+                type: string
+                description: The storage location of the file
+            file:
+                type: string
+                description: The name of the file
+            indexed_time:
+                type: string
+                format: date-time
+                description: ISO time string when document was indexed
+            summary:
+                type: string
+                description: LLM-generated summary for document, if any
+            summary_updated_time:
+                type: string
+                format: date-time
+                description: ISO time string when summary was created/updated
+            document_size:
+                type: number
+                description: The size in bytes of the source document
+            num_chunk_docs:
+                type: number
+                description: The number of docChunk index documents
+            copilot_enabled:
+                type: boolean
+                description: True if the document is copilot-enabled and searched by default
+            metadata_json:
+                type: string
+                description: Escaped JSON string containing metadata sync from Document twin
+
+description: Get information from index regarding a list of files
+parameters:
+  - in: body
+    name: GetIndexDocumentInfoRequest
+    schema:
+        id: GetIndexDocumentInfoRequest
+        type: object
+        required: [blob_files]
+        properties:
+            blob_files:
+                type: array
+                items: 
+                  type: string
+                description: The files to retreive information for
+            index_name:
+                type: string
+                description: The name of the index to use - for debugging and A/B testing (Normally should be omitted)
+
+responses:
+  200:
+    description: >
+      Information from index for each file.  If a file is not found in the index, then null will be returned in the array for that file - a NotFound error will not be generated.
+    schema:
+        id: GetIndexDocumentInfoResponse
+        type: array
+        items:
+            $ref: '#/definitions/GetIndexDocumentInfoDocInfo'
+  400:
+    description: Bad request
+  500:
+    description: Internal server error

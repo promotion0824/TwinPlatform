@@ -1,0 +1,159 @@
+name: "Platform - AdminPortalXL - Build"
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - extensions/real-estate/back-end/AdminPortalXL/**
+  pull_request:
+    branches:
+      - main
+      - releases/real-estate/*
+    paths:
+      - extensions/real-estate/back-end/AdminPortalXL/**
+      - .github/workflows/platform_adminportalxl_build.yml
+  workflow_dispatch:
+    inputs:
+      push_dev_acr:
+        description: "Push to dev ACR"
+        type: boolean
+        default: false
+      push_prd_acr:
+        description: "Push to prod ACR"
+        type: boolean
+        default: false
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
+env:
+  buildConfiguration: Release
+  majorVersion: 1
+  projectPath: extensions/real-estate/back-end/AdminPortalXL
+  srcProjectDir: "src/AdminPortalXL"
+  testProjectDir: "test/AdminPortalXL.Test"
+  imageName: adminportalxl
+  productName: willowplatform
+
+jobs:
+  build:
+    name: AdminPortalXL Build, Test, and Publish
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    outputs:
+      DockerImageVersion: ${{ steps.gitversion.outputs.dockerImageVersion }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run Gitversion
+        id: gitversion
+        uses: WillowInc/.github/.github/actions/generate-versions@main
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set Version
+        uses: ./.github/actions/azure-set-version
+        with:
+          BuildNumber: ${{ steps.gitversion.outputs.assemblySemFileVer }}
+          DirectoryBuildPropPath: ${{ env.projectPath }}/${{ env.srcProjectDir }}/Directory.Build.props
+
+      - name: Add Willow Nuget credentials
+        uses: ./.github/actions/add-willow-nuget-credentials
+        with:
+          nugetFilePath: ${{ env.projectPath }}/nuget.config
+          githubPatToken: ${{ secrets.GITHUB_TOKEN }}
+
+      # Explicitly run 'dotnet restore' with the specified nuget.config file to ensure the correct configuration.
+      # Without this step, the implicitly triggered 'dotnet restore' in the next step might use a different nuget.config,
+      # potentially leading to unexpected behavior or dependency resolution issues.
+      - name: Dotnet restore
+        shell: bash
+        run: |
+          dotnet restore --configfile ../../nuget.config
+        working-directory: ${{ env.projectPath }}/${{ env.srcProjectDir }}
+
+      - name: Build, Test and Publish
+        uses: ./.github/actions/dotnet/build_test_publish
+        with:
+          srcProjectDir: ${{ env.projectPath }}/${{ env.srcProjectDir }}
+          testProjectDir: ${{ env.projectPath }}/${{ env.testProjectDir }}
+          outputZip: ${{ github.workspace }}/AdminPortalXL.zip
+          zipAfterPublish: false
+          disableCodeQL: true
+
+      # Manually create a zip file since setting 'zipAfterPublish: false' in the previous action
+      # avoids unexpected permission issues that may occur with the implicitly generated zip file
+      - name: Zip
+        shell: bash
+        run: |
+          cd ${{ github.workspace }}/output
+          zip -r ${{ github.workspace }}/AdminPortalXL.zip *
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: AdminPortalXL
+          path: ${{ github.workspace }}/AdminPortalXL.zip
+          retention-days: 14
+
+  docker:
+    name: Docker Push
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v3
+        with:
+          name: AdminPortalXL
+          path: ${{ github.workspace }}/download
+
+      - name: Extract files
+        run: Expand-Archive -Path ${{ github.workspace }}/download/AdminPortalXL.zip -DestinationPath ${{ github.workspace }}/release
+        shell: pwsh
+
+      - name: Upload docker image
+        uses: ./.github/actions/docker/push
+        with:
+          imageName: ${{ env.imageName }}
+          productName: ${{ env.productName }}
+          dockerfile: ${{ env.projectPath }}/${{ env.srcProjectDir }}/Dockerfile
+          dockerContext: ${{ github.workspace }}/release/
+          alwaysPush: true
+          dockerUsername: ${{ vars.NONPROD_ACR_CLIENT_ID }}
+          dockerPassword: ${{ secrets.NONPROD_ACR_CLIENT_SECRET }}
+          version: ${{ needs.build.outputs.DockerImageVersion}}
+
+      - name: Upload docker image (crwildevshared01)
+        uses: ./.github/actions/docker/push
+        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.push_dev_acr == 'true' }}
+        with:
+          imageName: ${{ env.imageName }}
+          productName: ${{ env.productName }}
+          dockerfile: ${{ env.projectPath }}/${{ env.srcProjectDir }}/Dockerfile
+          dockerContext: ${{ github.workspace }}/release/
+          alwaysPush: true
+          dockerRegistry: crwildevshared01.azurecr.io
+          dockerUsername: ${{ vars.DEV_SHARED_ACR_CLIENT_ID }}
+          dockerPassword: ${{ secrets.DEV_SHARED_ACR_CLIENT_SECRET }}
+          version: ${{ needs.build.outputs.DockerImageVersion}}
+
+      - name: Upload docker image (crwilprdshared01)
+        uses: ./.github/actions/docker/push
+        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.push_prd_acr == 'true' }}
+        with:
+          imageName: ${{ env.imageName }}
+          productName: ${{ env.productName }}
+          dockerfile: ${{ env.projectPath }}/${{ env.srcProjectDir }}/Dockerfile
+          dockerContext: ${{ github.workspace }}/release/
+          alwaysPush: true
+          dockerRegistry: crwilprdshared01.azurecr.io
+          dockerUsername: ${{ vars.PRD_SHARED_ACR_CLIENT_ID }}
+          dockerPassword: ${{ secrets.PRD_SHARED_ACR_CLIENT_SECRET }}
+          version: ${{ needs.build.outputs.DockerImageVersion }}

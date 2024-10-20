@@ -1,0 +1,96 @@
+parameters:
+  - name: environment
+    type: string
+    default: 'prod'
+  - name: source    
+    type: string
+    default: extensions/tlm/Willow.TwinLifecycleManagement.Web/willow-twin-lifecycle-management-web.json
+  - name: target
+    type: string
+    default: extensions/tlm/Willow.TwinLifecycleManagement.Web/output-willow-twin-lifecycle-management-web.json
+  - name: tenantId
+    type: string
+  - name: authority
+    type: string
+  - name: issuerUrl
+    type: string
+  - name: issuerVersion
+    type: string
+    default: "v2.0"
+  - name: frontendAppId
+    type: string
+  - name: backendAppid
+    type: string
+  - name: backendAppClientSecret
+    type: string
+  - name: apiScopeUrl
+    type: string
+  - name: frontendAppApiScopeName
+    type: string
+    default: ".default"
+  - name: backendAppApiScopeName
+    type: string
+    default: ".default"
+  - name: authorizationAPITokenAudience
+    type: string
+  - name: tlmVersion
+    type: string
+
+steps:
+  
+- task: Bash@3
+  displayName: 'Stamp manifest file with version numbers'
+  env:
+   source: ${{ parameters.source }}
+   target: ${{ parameters.target }}
+  inputs:
+    targetType: 'inline'
+    script: |
+      buildnumber=$(Build.BuildNumber)
+
+      echo copying ${source} to ${target}
+      cp ${source} ${target}
+
+      sed -i -E "s|(version\": \")([0-9]+\.[0-9]+\.[0-9]+)(\")|\1${buildnumber}\3|" ${target}
+      sed -i -E "s|(image\":.*:)([0-9]+\.[0-9]+\.[0-9]+)(\")|\1${buildnumber}\3|" ${target}
+
+      echo Updated version numbers in ${target} for ${buildnumber}
+      
+- task: Bash@3
+  displayName: 'Inject env-specific variables'
+  env:
+    environment: ${{ parameters.environment }}
+    target: ${{ parameters.target }}
+    tenantId: ${{ parameters.tenantId }}
+    authority: ${{ parameters.authority }}
+    issuerUrl: ${{ parameters.issuerUrl }}
+    issuerVersion: ${{ parameters.issuerVersion }}
+    frontendAppId: ${{ parameters.frontendAppId }}
+    backendAppId: ${{ parameters.backendAppId }}
+    backendAppClientSecret: ${{ parameters.backendAppClientSecret }}
+    apiScopeUrl: ${{ parameters.apiScopeUrl }}
+    frontendAppApiScopeName: ${{ parameters.frontendAppApiScopeName }}
+    backendAppApiScopeName: ${{ parameters.backendAppApiScopeName }}
+    authorizationAPITokenAudience: ${{ parameters.authorizationAPITokenAudience }}
+    tlmVersion: ${{ parameters.tlmVersion }}
+  inputs:
+    targetType: 'inline'
+    script: |      
+      sed -i "s|pipelineInject_azure_b2c_tenant_id|${tenantId}|" ${target}
+      sed -i "s|pipelineInject_azure_b2c_authority|${authority}|" ${target}
+      sed -i "s|pipelineInject_tlm_frontend_app_id|${frontendAppId}|" ${target}
+      sed -i "s|pipelineInject_tlm_backend_app_id|${backendAppId}|" ${target}
+      sed -i "s|pipelineInject_tlm_backend_app_client_secret|${backendAppClientSecret}|" ${target}
+      sed -i "s|pipelineInject_tlm_version|${tlmVersion}|" ${target}
+      
+      issuer=${issuerUrl}/${tenantId}/${issuerVersion}/
+      sed -i "s|pipelineInject_azure_b2c_issuer|${issuer}|" ${target}  
+      
+      backendAppApiScope=${apiScopeUrl}/${backendAppId}/${backendAppApiScopeName}     
+      sed -i "s|pipelineInject_tlm_backend_app_api_scope|${backendAppApiScope}|" ${target}   
+      
+      frontendAppApiScope=${apiScopeUrl}/${frontendAppId}/${frontendAppApiScopeName}     
+      sed -i "s|pipelineInject_tlm_frontend_app_api_scope|${frontendAppApiScope}|" ${target}
+
+      sed -i "s|pipelineInject_authorization_token_audience|${authorizationAPITokenAudience}|" ${target}     
+      echo Injected ${environment} environment variables

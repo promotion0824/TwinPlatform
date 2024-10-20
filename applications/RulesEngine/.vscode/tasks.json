@@ -1,0 +1,56 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "command": "dotnet",
+            "args": [
+                "build",
+                "${workspaceFolder}",
+                "/property:GenerateFullPaths=true"
+            ],
+            "type": "shell",
+            "group": "build",
+            "presentation": {
+                "reveal": "silent"
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "type": "docker-build",
+            "label": "docker-build: RulesEngineProcessor release",
+            "dependsOn": [
+                "build"
+            ],
+            "dockerBuild": {
+                "tag": "rules-engine-processor:latest",
+                "dockerfile": "${workspaceFolder}/RulesEngine.Processor/Dockerfile",
+                "context": "${workspaceFolder}",
+                "pull": true
+            },
+            "netCore": {
+                "appProject": "${workspaceFolder}/RulesEngine-Processor/RulesEngine-Processor.csproj"
+            }
+        },
+        {
+            "type": "docker-run",
+            "label": "docker-run: RulesEngine.Processor release",
+            "dependsOn": [
+                "docker-build: RulesEngineProcessor release"
+            ],
+            "dockerRun": {},
+            "netCore": {
+                "appProject": "${workspaceFolder}/RulesEngine.Processor/RulesEngine.Processor.csproj"
+            }
+        },
+        {
+            "type": "npm",
+            "script": "build",
+            "path": "RulesEngine.Web/ClientApp/",
+            "group": "build",
+            "problemMatcher": [],
+            "label": "npm: build - RulesEngine.Web/ClientApp",
+            "detail": "react-scripts build"
+        }
+    ]
+}

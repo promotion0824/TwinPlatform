@@ -1,0 +1,37 @@
+name: "MSM Connector"
+
+on:
+  workflow_dispatch:
+
+  pull_request:
+    branches:
+      - main
+    paths:
+      - applications/MsmConnector/**
+
+  push:
+    branches:
+      - main
+      - "releases/**"
+    paths:
+      - applications/MsmConnector/**
+
+jobs:
+  build_test_docker_push:
+    uses: WillowInc/.github/.github/workflows/Reusable-Build-Test-Docker-Push.yml@main
+    with:
+      path: ./applications/MsmConnector/Willow.Msm.Connector
+      restore_path: ./applications/MsmConnector/Willow.Msm.Connector
+      test_path: ./applications/MsmConnector/Willow.Msm.Connector
+      lowCoverageShouldFailBuild: false
+      clientId: ${{ vars.CLIENT_ID }}
+      containerAppName: msm-connector
+      dockerfile: ./applications/MsmConnector/Willow.Msm.Connector/Willow.Msm.Connector/Dockerfile
+      dockerContext: ./applications/MsmConnector/Willow.Msm.Connector
+      imageName: msm-connector
+      infraProjectPath: Applications/MsmConnector
+      productName: twin
+      directoryBuildPropsPath: ./.config/common.props
+    secrets:
+      githubToken: ${{ secrets.GITHUB_TOKEN }}
+      botToken: ${{ secrets.SVC_BOT_TOKEN }}

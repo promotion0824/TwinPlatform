@@ -1,0 +1,24 @@
+name: Azure Set Version
+description: Stamp Directory.Build.props with version and copyright azure-set-version
+
+inputs:
+  BuildNumber:
+    description: BuildNumber
+    required: true
+  DirectoryBuildPropPath:
+    description: File path of the directory build prop
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: stamp
+      shell: bash
+      run: |
+        year=$(date +%Y)
+        sed -i -E "s|(<Version>)([0-9]+\.[0-9]+\.[0-9]+)(<\/Version>)|\1${{ inputs.BuildNumber }}\3|" ${{ inputs.DirectoryBuildPropPath }}
+        sed -i -E "s|(<AssemblyVersion>)([0-9]+\.[0-9]+\.[0-9]+)(<\/AssemblyVersion>)|\1${{ inputs.BuildNumber }}\3|" ${{ inputs.DirectoryBuildPropPath }}
+        sed -i -E "s|(<AssemblyFileVersion>)([0-9]+\.[0-9]+\.[0-9]+)(<\/AssemblyFileVersion>)|\1${{ inputs.BuildNumber }}\3|" ${{ inputs.DirectoryBuildPropPath }}
+        sed -i -E "s|(<Copyright>)(.*)(<\/Copyright>)|\1${year}\3|" ${{ inputs.DirectoryBuildPropPath }}
+        echo Updated version numbers in Directory.Build.props ${{ inputs.BuildNumber }}
+        cat ${{ inputs.DirectoryBuildPropPath }}

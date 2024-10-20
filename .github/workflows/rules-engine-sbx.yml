@@ -1,0 +1,198 @@
+name: Rules-Engine-Sbx
+
+on:
+  workflow_dispatch:
+
+env:
+  NONPROD_ACR_SUBSCRIPTION_ID: 48a16780-c719-4528-a0f2-4e7640a9c850
+  NONPROD_ACR_NAME: crwildevshared01
+  NONPROD_ACR_RESOURCE_GROUP: rg-dev
+
+permissions:
+  contents: read
+  packages: read
+  pages: write
+  id-token: write
+
+# default to using bash shell in any 'run' steps
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  Build_version:
+    runs-on: ubuntu-latest
+    outputs:
+        BuildNumber: ${{ steps.version.outputs.BuildNumber }}
+    steps:
+      - name: Set Version Environment Variables
+        id: version
+        run: |
+          semantic=0.0
+          versionFull=$semantic.${{ github.run_number }}
+          echo "BuildNumber=$versionFull" >> $GITHUB_STEP_SUMMARY
+          echo "BuildNumber=$versionFull" >> $GITHUB_OUTPUT
+
+  Build_Rules_Engine_Processor:
+    name: Build Rules Processor
+    runs-on: ubuntu-latest
+    environment: NonProd
+    needs:
+      - Build_version
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: false
+        ref: ${{ github.ref }}
+
+    - name: Set Version
+      uses: WillowInc/TwinPlatform/.github/actions/azure-set-version@main
+      with:
+        BuildNumber: ${{ needs.Build_version.outputs.BuildNumber }}
+        DirectoryBuildPropPath: applications/RulesEngine/Directory.Build.props
+
+    - name: Update Nuget Config Credentials
+      uses: WillowInc/TwinPlatform/.github/actions/update-nuget-credentials@main
+      with:
+        sourceUrl: https://nuget.pkg.github.com/willowinc/index.json
+        sourceName: WillowGithub
+        nugetFilePath: applications/RulesEngine/nuget.config
+        patToken: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Docker Build
+      uses: WillowInc/TwinPlatform/.github/actions/azure-docker@main
+      with:
+        imageName: rules-engine-sbx/processor
+        dockerfile: applications/RulesEngine/RulesEngine.Processor/Dockerfile
+        dockerContext: .
+        acrName: ${{ env.NONPROD_ACR_NAME }}
+        BuildNumber: ${{ needs.Build_version.outputs.BuildNumber }}
+        client_id: ${{ vars.CLIENT_ID }}
+        tenant_id: ${{ vars.TENANT_ID_WILLOWINC }}
+        subscription_id: ${{ env.NONPROD_ACR_SUBSCRIPTION_ID }}
+        acr_resource_group: ${{ env.NONPROD_ACR_RESOURCE_GROUP }}
+
+  Generate_Rules_Engine_Web_App_Artifacts:
+    name: Generate Rules Web App Artifacts
+    runs-on: ubuntu-latest
+    environment: NonProd
+    needs:
+      - Build_version
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+         fetch-depth: false
+         ref: ${{ github.ref }}
+
+      - name: Set Version
+        uses: WillowInc/TwinPlatform/.github/actions/azure-set-version@main
+        with:
+          BuildNumber: ${{ needs.Build_version.outputs.BuildNumber }}
+          DirectoryBuildPropPath: applications/RulesEngine/Directory.Build.props
+
+      - name: Update Nuget Config Credentials
+        uses: WillowInc/TwinPlatform/.github/actions/update-nuget-credentials@main
+        with:
+          sourceUrl: https://nuget.pkg.github.com/willowinc/index.json
+          sourceName: WillowGithub
+          nugetFilePath: applications/RulesEngine/nuget.config
+          patToken: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set SDK version
+        uses: actions/setup-dotnet@v4
+        with:
+         dotnet-version: '8.x'
+
+      - name: NET Publish Web
+        working-directory: applications/RulesEngine/RulesEngine.Web
+        run: |
+          dotnet publish RulesEngine.Web.csproj -c Release -o ./dotnet-webapp
+
+      - name: Upload NET Publish Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: dotnetfiles
+          path: applications/RulesEngine/RulesEngine.Web/dotnet-webapp
+          retention-days: 1
+
+      - name: Setup .npmrc file
+        uses: actions/setup-node@v3
+        with:
+          node-version: "16.14"
+          registry-url: "https://npm.pkg.github.com"
+          always-auth: true
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN  }}
+
+      - name: NPM Install
+        working-directory: applications/RulesEngine/RulesEngine.Web/ClientApp
+        run: |
+          npm ci
+
+      - name: NPM Build
+        working-directory: applications/RulesEngine/RulesEngine.Web/ClientApp
+        env:
+          NODE_OPTIONS: --max-old-space-size=16384
+        run: |
+          npm run build
+
+      - name: Fix asset paths
+        working-directory: applications/RulesEngine/RulesEngine.Web/ClientApp
+        shell: bash
+        run: |
+          sed -i -E "s|(\"/assets/)|\"assets/|" index.html
+
+      - name: Upload NPM Build Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: webfiles
+          path: applications/RulesEngine/RulesEngine.Web/ClientApp/dist
+          retention-days: 1
+
+      - name: Upload Vite Docker Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: vitedocker
+          path: applications/RulesEngine/RulesEngine.Web/Dockerfile.Vite
+          retention-days: 1
+
+  Build_Rules_Engine_Web_App:
+    name: Build Rules Web App
+    runs-on: ubuntu-latest
+    environment: NonProd
+    needs:
+      - Build_version
+      - Generate_Rules_Engine_Web_App_Artifacts
+    steps:
+      - name: Download webfiles artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: webfiles
+          path: applications/RulesEngine/RulesEngine.Web/ClientApp/dist
+
+      - name: Download dotnetfiles artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: dotnetfiles
+          path: app/publish
+
+      - name: Download vitedocker artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: vitedocker
+          path: applications/RulesEngine/RulesEngine.Web
+
+      - name: Docker Build
+        uses: WillowInc/TwinPlatform/.github/actions/azure-docker@main
+        with:
+          imageName: rules-engine-sbx/web
+          dockerfile: applications/RulesEngine/RulesEngine.Web/Dockerfile.Vite
+          dockerContext: .
+          acrName: ${{ env.NONPROD_ACR_NAME }}
+          BuildNumber: ${{ needs.Build_version.outputs.BuildNumber }}
+          client_id: ${{ vars.CLIENT_ID }}
+          tenant_id: ${{ vars.TENANT_ID_WILLOWINC }}
+          subscription_id: ${{ env.NONPROD_ACR_SUBSCRIPTION_ID }}
+          acr_resource_group: ${{ env.NONPROD_ACR_RESOURCE_GROUP }}

@@ -1,0 +1,8 @@
+encryptionsalt: v1:vOKaLsQnBRk=:v1:8VG2zgC4S1C3Vo9J:rSVHHr7wqElKY/wJahBCK57fCLUsSw==
+config:
+  RulesEngine.Pulumi.Stacks.Resources:adminGroupName: Engineers_Willow
+  RulesEngine.Pulumi.Stacks.Resources:adminGroupSid: c791ea50-fa7e-4842-b285-ad230e1dea9c
+  RulesEngine.Pulumi.Stacks.Resources:customer: testcustomer
+  RulesEngine.Pulumi.Stacks.Resources:environment: local
+  RulesEngine.Pulumi.Stacks.Resources:workSpaceId: /subscriptions/178b67d7-b6fd-46db-b4a3-b57f8a6b045f/resourcegroups/nonprod-platformshared/providers/microsoft.operationalinsights/workspaces/nonprodplatformshared-aue-log
+  azure-native:location: AustraliaEast

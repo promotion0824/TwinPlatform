@@ -1,0 +1,31 @@
+{
+  "twins": [
+    {
+      "id": "AXA-STO-GFR_A_RCB_001",
+      "metadata": {
+        "modelId": "dtmi:com:willowinc:Chiller;1",
+        "propertyMetadata": {}
+      },
+      "contents": {
+        "siteId": "11111",
+        "geometryViewerID": "cc0aa0d1-1448-4897-b916-94abb5b90797",
+        "geometrySpatialReference": "CVCD",
+        "geometryExternalID": "6728114",
+        "description": "Groupe frigorifique",
+        "comments": "Régime d'eau : 8/13 °C",
+        "name": "GFR A-RCB 001 - Confort",
+        "modelNumber": "30XW-P1464A",
+        "nominalCoolingCapacity": 1174.0
+      }
+    }
+  ],
+  "relationships": [
+    {
+      "id": "manufacturedBy_CARRIER_49484e1f-339b-4a47-8d38-c102db326ff6",
+      "targetId": "CARRIER",
+      "sourceId": "AXA-STO-GFR_A_RCB_001",
+      "name": "manufacturedBy",
+      "properties": {}
+    }
+  ]
+}

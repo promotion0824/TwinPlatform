@@ -1,0 +1,39 @@
+name: Azure Promote
+description: Promote an image to Prod and Sandbox Azure Container Registries
+
+inputs:
+  imageName:
+    description: Name of the image to promote
+    required: true
+  buildNumber:
+    description: Build number of the image to promote
+    required: true
+  client_id:
+    description: "Azure service principal client id to use"
+    required: true
+  tenant_id:
+    description: "Azure service principal tenant id"
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Promote Image to Sandbox with build version tag
+      shell: bash
+      run: |
+        az account set --subscription 249312a0-4c83-4d73-b164-18c5e72bf219
+        az acr import \
+          --name 'crwilsbxshared01' \
+          --source '${{ inputs.imageName }}:${{ inputs.buildNumber }}' \
+          --image '${{ inputs.imageName }}:${{ inputs.buildNumber }}' \
+          --registry /subscriptions/48a16780-c719-4528-a0f2-4e7640a9c850/resourceGroups/rg-dev/providers/Microsoft.ContainerRegistry/registries/crwildevshared01
+
+    - name: Promote Image to Production with build version tag
+      shell: bash
+      run: |
+        az account set --subscription fd259995-1de7-4ae8-8431-0d150dcca6f4
+        az acr import \
+          --name 'crwilprdshared01' \
+          --source '${{ inputs.imageName }}:${{ inputs.buildNumber }}' \
+          --image '${{ inputs.imageName }}:${{ inputs.buildNumber }}' \
+          --registry /subscriptions/48a16780-c719-4528-a0f2-4e7640a9c850/resourceGroups/rg-dev/providers/Microsoft.ContainerRegistry/registries/crwildevshared01

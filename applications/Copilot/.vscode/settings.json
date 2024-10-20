@@ -1,0 +1,27 @@
+{
+    "pylint.importStrategy": "fromEnvironment",
+    "python.analysis.inlayHints.callArgumentNames": "off",
+    "python.analysis.inlayHints.functionReturnTypes": true,
+    "python.analysis.autoImportCompletions": true,
+    "python.analysis.diagnosticMode": "workspace",
+    "python.analysis.inlayHints.pytestParameters": true,
+    "python.analysis.inlayHints.variableTypes": false,
+    "python.analysis.typeCheckingMode": "basic",
+    "python.analysis.ignore": [
+    ],
+    "pylint.ignorePatterns": [
+        "*"
+    ],
+    "pylint.args": [
+        "--rcfile=${workspaceFolder}/.pylintrc"
+    ],
+    "mypy-type-checker.importStrategy": "fromEnvironment",
+    "search.exclude": {
+        "**/pyenv-copilot*": true
+    },
+    "python.envFile": "${workspaceFolder}/copilot_python_paths.env",
+    "terminal.integrated.env.windows": {
+        "PYTHONPATH": "${workspaceFolder};${env:PYTHONPATH}",
+        "PATH": "${workspaceFolder};${env:PATH}",
+    }
+}

@@ -1,0 +1,452 @@
+﻿ID,Class,Marker,Name,RuleSyntax,PossibilitySyntax,EnergyRisk,OperationsRisk,Description,PossibleCauses,PossibleSolutions
+1,AirCurtain,"hvac,ac,equip",Failed Fan,{{Fan Commanded On}} = 1 AND {{Fan Proof Off}} = 1,{{Fan Commanded On}} = 1 AND {{Fan Proof Exists}} = 1,2,4,"The unit is commanded on but is not running. ","1. Mechanically failed fan
+2. Fan locked off by controls
+3. Alarm preventing the unit from starting","1. Repair fan
+2. Release any locks/overrides
+3. Clear alarms"
+2,AirCurtain,"hvac,ac,equip",Failed Sensor - Zone Air Temp Cooling Sensor,{{Failed Sensor - Zone Air Cooling Temp}} = 1,{{Zone Air Cooling Temp Exists}} = 1,3,3,"The sensor is reading outside of the expected range. ",1. Sensor out of calibration,1. Recalibrate/replace sensor
+3,AirCurtain,"hvac,ac,equip",Failed Sensor - Zone Air Temp Heating Sensor,{{Failed Sensor - Zone Air Heating Temp}} = 1,{{Zone Air Heating Temp Exists}} = 1,3,3,"The sensor is reading outside of the expected range. ",1. Sensor out of calibration,1. Recalibrate/replace sensor
+4,AirCurtain,"hvac,ac,equip",Failed Sensor - Zone Air Temp Sensor,{{Failed Sensor - Zone Air Temp}} = 1,{{Zone Air Temp Exists}} = 1,3,3,"The sensor is reading outside of the expected range. ",1. Sensor out of calibration,1. Recalibrate/replace sensor
+5,AirCurtain,"hvac,ac,equip",Fan in Hand,{{Fan Commanded Off}} = 1 AND {{Fan Proof On}} = 1,{{Fan Commanded Off}} = 1 AND {{Fan Proof Exists}} = 1,4,4,"The unit is not being commanded on, but is running. ","1. Unit overridden to run
+2. Run sensor reading inaccurately","1. Release override
+2. Recalibrate/replace run sensor"
+6,AirCurtain,"hvac,ac,equip",Off Hours Operation,{{Unoccupied Hours}} = 1 AND {{Equipment Operating}} = 1,{{Unoccupied Hours}} = 1 AND {{Command OR Proof Exist}} = 1,4,4,"The unit is operating when the spaces it serves are not occupied. ","1. Unit manually overridden to run
+2. Scheduling issue","1. Release override
+2. Correct scheduling issue"
+7,AirHandlingUnit,"hvac,ahu,equip",Cooling Without Operating,{{Equipment Not Operating}} = 1 AND {{Mech Cooling On}} = 1,{{Equipment Not Operating}} = 1 AND {{Mech Cooling Exists}} = 1,4,2,"The unit's cooling coil is open when the discharge fan is not operating. ","1. Valve is manually overridden 
+2. Controls issue","1. Release override 
+2. Repair controls issue"
+8,AirHandlingUnit,"hvac,ahu,equip",Deficit Economizer Operation - Controls,{{Equipment Operating}} = 1 AND (({{Full Economizing Capacity}} = 1 AND {{Mixed Air Temp Too Hot}} = 1 AND {{Outside Air Damper At Minimum}} = 1) OR ({{Mixed Economizing Capacity}} = 1 AND {{Mixed Air Temp Above Outside Air Temp}} = 1 AND {{Outside Air Damper Below Maximum}} = 1)),{{Equipment Operating}} = 1 AND ({{Full Economizing Capacity}} = 1 OR {{Mixed Economizing Capacity}} = 1) AND {{Mixed Air Temp Exists}} = 1,4,2,"The unit is not taking full advantage of free cooling due to a controls issue. ","1. Failed sensor 
+2. Uncalibrated sensor 
+3. Controls issue 
+4. Damper is mechanically compromised","1. Replace or recalibrate sensor 
+2. Reprogram controls 
+3. Repair damper"
+9,AirHandlingUnit,"hvac,ahu,equip",Deficit Economizer Operation - Mechanical,{{Equipment Operating}} = 1 AND (({{Full Economizing Capacity}} = 1 AND {{Mixed Air Temp Too Hot}} = 1 AND {{Outside Air Damper At Maximum}} = 1) OR ({{Mixed Economizing Capacity}} = 1 AND {{Mixed Air Temp Above Outside Air Temp}} = 1 AND {{Outside Air Damper At Maximum}} = 1)),{{Equipment Operating}} = 1 AND ({{Full Economizing Capacity}} = 1 OR {{Mixed Economizing Capacity}} = 1) AND {{Mixed Air Temp Exists}} = 1,4,2,"The unit is not taking full advantage of free cooling due to a mechanical issue. ",1. Outside air damper or return air damper is mechanically compromised,1. Repair damper
+10,AirHandlingUnit,"hvac,ahu,equip",Economizer Mixed Air Setpoint Coordination,{{Equipment Operating}} = 1 AND {{Air Temp Setpoint Coordination}} = 1,{{Equipment Operating}} = 1 AND {{Mixed Air Temp SP Exists}} = 1 AND {{Discharge Air Temp SP Exists}} = 1,4,2,The unit's mixed air temperature setpoint is higher than its discharge air temperature setpoint.,"1. Controls ",1. Reprogram controls
+11,AirHandlingUnit,"hvac,ahu,equip",Excess Economizer Operation - Controls,{{Equipment Operating}} = 1 AND (({{Mixed Economizing Capacity}} = 1 AND {{Mixed Air Temp Too Cold}} = 1 AND {{Outside Air Damper Above Minimum}} = 1) OR ({{No Economizing Capacity}} = 1 AND {{Mixed Air Temp Above Return Air Temp}} = 1 AND {{Outside Air Damper Above Minimum}} = 1)),{{Equipment Operating}} = 1 AND ({{No Economizing Capacity}} = 1 OR {{Mixed Economizing Capacity}} = 1) AND {{Mixed Air Temp Exists}} = 1,4,2,"The unit is bringing in too much outside air due to a controls issue. ","1. Controls ",1. Reprogram controls
+12,AirHandlingUnit,"hvac,ahu,equip",Excess Economizer Operation - Mechanical,{{Equipment Operating}} = 1 AND (({{Mixed Economizing Capacity}} = 1 AND {{Mixed Air Temp Too Cold}} = 1 AND {{Outside Air Damper At Minimum}} = 1) OR ({{No Economizing Capacity}} = 1 AND {{Mixed Air Temp Above Return Air Temp}} = 1 AND {{Outside Air Damper At Minimum}} = 1)),{{Equipment Operating}} = 1 AND ({{No Economizing Capacity}} = 1 OR {{Mixed Economizing Capacity}} = 1) AND {{Mixed Air Temp Exists}} = 1,4,2,"The unit is bringing in too much outside air due to a mechanical issue. ",1. Mechanically compromised damper or mismatched controls,1. Repair damper or reprogram controls
+13,AirHandlingUnit,"hvac,ahu,equip",Failed Closed Chilled Water Valve,{{Equipment Operating}} = 1  AND {{Cooling Commanded On}} = 1 AND {{Cooling Proof Off}} = 1,{{Equipment Operating}} = 1 AND {{Cooling Commanded On}} = 1 AND {{Cooling Proof Exists}} = 1,3,4,"The unit is on and its chilled water valve is commanded open, but the valve sensor or temperatures across the valve indicate no cooling is being done. ","1. Mechanically failed valve actuator
+2. Fouled coils 
+3. Water to coil not being cooled enough
+4. Inaccurate valve or temperature sensors","1. Repair/replace valve actuator
+2. Clean coils 
+3. Resolve water cooling issues
+4. Recalibrate/replace sensor(s)"
+14,AirHandlingUnit,"hvac,ahu,equip",Failed Closed Heating Water Valve,{{Equipment Operating}} = 1 AND {{Mech Heating On}} = 1 AND {{Discharge Air Temp Too Hot}} = 1 AND {{Heating Proof On}} = 1,{{Equipment Operating}} = 1 AND {{Mech Heating Exists}} = 1 AND {{Discharge Air Temp Exists}} = 1 AND {{Discharge Air Temp SP Exists}} = 1 AND {{Mixed Air Temp Exists}} = 1,3,4,"The unit is on and its heating water valve is commanded open, but the valve sensor or temperatures across the valve indicate no heating is being done. ","1. Mechanically failed valve actuator
+2. Fouled coils 
+3. Water to coil not being heated enough
+4. Inaccurate valve or temperature sensors","1. Repair/replace valve actuator
+2. Clean coils 
+3. Resolve water heating issues
+4. Recalibrate/replace sensor(s)"
+15,AirHandlingUnit,"hvac,ahu,equip",Failed Closed Outside Air Damper,{{Equipment Operating}} = 1 AND {{Outside Air Damper Above Minimum}} = 1 AND {{Economizing Proof Off}} = 1,{{Equipment Operating}} = 1 AND {{Outside Air Damper Exists}} = 1 AND {{Mixed Air Temp Exists}} = 1 AND {{Outside Air Temp Exists}} = 1 AND {{Return Air Temp Exists}} = 1,3,3,"The unit is on and the outside air damper is commanded open, but the damper sensor or temperature sensors indicate the unit is not bringing in outside air. ","1. Mechanically failed damper actuator
+2. Inaccurate damper or temperature sensors","1. Repair/replace damper actuator
+2. Recalibrate/replace damper and temperature sensors"
+16,AirHandlingUnit,"hvac,ahu,equip",Failed Fan,{{Discharge Fan Commanded On}} = 1 AND {{Discharge Fan Proof Off}} = 1,{{Discharge Fan Commanded On}} = 1 AND {{Discharge Fan Proof Exists}} = 1,2,4,"The unit is commanded on but is not running. ","1. Mechanically failed fan
+2. Fan locked off by controls
+3. Alarm preventing the unit from starting","1. Repair fan
+2. Release any locks/overrides
+3. Clear alarms"
+17,AirHandlingUnit,"hvac,ahu,equip",Failed Open Chilled Water Valve,{{Equipment Operating}} = 1 AND {{Cooling Commanded Off}} = 1 AND {{Cooling Proof On}} = 1,{{Equipment Operating}} = 1 AND {{Cooling Commanded Off}} = 1 AND {{Cooling Proof Exists}} = 1,4,3,"The unit is on and its chilled water valve is commanded closed, but the valve sensor or temperatures across the valve indicate that cooling is being done. ","1. Mechanically failed valve actuator
+2. Inaccurate valve or temperature sensors","1. Repair/replace valve actuator
+2. Recalibrate/replace sensor(s)"
+18,AirHandlingUnit,"hvac,ahu,equip",Failed Open Heating Water Valve,{{Equipment Operating}} = 1 AND {{Mech Heating Off}} = 1 AND ({{Discharge Air Temp Too Hot}} = 1 OR {{Heating Proof On}} = 1),{{Equipment Operating}} = 1 AND {{Mech Heating Exists}} = 1 AND {{Discharge Air Temp Exists}} = 1 AND {{Discharge Air Temp SP Exists}} = 1 AND {{Mixed Air Temp Exists}} = 1,4,3,"The unit is on and its heating water valve is commanded closed, but the valve sensor or temperatures across the valve indicate that heating is being done. ","1. Mechanically failed valve actuator
+2. Inaccurate valve or temperature sensors","1. Repair/replace valve actuator
+2. Recalibrate/replace sensor(s)"
+19,AirHandlingUnit,"hvac,ahu,equip",Failed Open Outside Air Damper,{{Equipment Operating}} = 1 AND {{Outside Air Damper At Minimum}} = 1 AND {{Economizing Proof On}} = 1,{{Equipment Operating}} = 1 AND {{Outside Air Damper Exists}} = 1 AND {{Mixed Air Temp Exists}} = 1 AND {{Outside Air Temp Exists}} = 1 AND {{Return Air Temp Exists}} = 1,4,2,"The unit is on and the outside air damper is commanded closed, but the damper sensor or temperature sensors indicate the unit is bringing in outside air. ","1. Mechanically failed damper actuator
+2. Inaccurate damper or temperature sensors","1. Repair/replace damper actuator
+2. Recalibrate/replace damper and temperature sensors"
+20,AirHandlingUnit,"hvac,ahu,equip",Failed Sensor - Discharge Air Static Pressure,{{Failed Sensor - Discharge Air Pressure}} = 1,{{Discharge Air Pressure Exists}} = 1,2,3,"The sensor is reading outside of the expected range. ",1. Sensor out of calibration,1. Recalibrate/replace sensor
+21,AirHandlingUnit,"hvac,ahu,equip",Failed Sensor - Discharge Air Temperature,{{Failed Sensor - Discharge Air Temp}} = 1,{{Discharge Air Temp Exists}} = 1,3,4,"The sensor is reading outside of the expected range. ",1. Sensor out of calibration,1. Recalibrate/replace sensor
+22,AirHandlingUnit,"hvac,ahu,equip",Failed Sensor - Mixed Air Temperature,{{Failed Sensor - Mixed Air Temp}} = 1,{{Mixed Air Temp Exists}} = 1,4,2,"The sensor is reading outside of the expected range. ",1. Sensor out of calibration,1. Recalibrate/replace sensor
+23,AirHandlingUnit,"hvac,ahu,equip",Failed Sensor - Outside Air Temperature,{{Failed Sensor - Outside Air Temp}} = 1,{{Outside Air Temp Exists}} = 1,4,2,"The sensor is reading outside of the expected range. ",1. Sensor out of calibration,1. Recalibrate/replace sensor
+24,AirHandlingUnit,"hvac,ahu,equip",Failed Sensor - Return Air Temperature,{{Failed Sensor - Return Air Temp}} = 1,{{Return Air Temp Exists}} = 1,3,2,"The sensor is reading outside of the expected range. ",1. Sensor out of calibration,1. Recalibrate/replace sensor
+25,AirHandlingUnit,"hvac,ahu,equip",Failed Sensor - Zone Static Pressure,{{Failed Sensor - Zone Static Pressure}} = 1,{{Zone Air Pressure Exists}} = 1,2,3,"The sensor is reading outside of the expected range. ",1. Sensor out of calibration,1. Recalibrate/replace sensor
+26,AirHandlingUnit,"hvac,ahu,equip",Fan in Hand,{{Discharge Fan Commanded Off}} = 1 AND {{Discharge Fan Proof On}} = 1,{{Discharge Fan Commanded Off}} = 1 AND {{Discharge Fan Proof Exists}} = 1,4,4,"The unit is not being commanded on, but is running. ","1. Unit overridden to run
+2. Run sensor reading inaccurately","1. Release override
+2. Recalibrate/replace run sensor"
+27,AirHandlingUnit,"hvac,ahu,equip",Heating Without Operating,{{Equipment Not Operating}} = 1 AND {{Mech Heating On}} = 1,{{Equipment Not Operating}} = 1 AND {{Mech Heating Exists}} = 1,4,2,"The unit's heating coil is open when the discharge fan is not operating. ","1. Valve is manually overridden 
+2. Controls issue","1. Release override 
+2. Repair controls issue"
+28,AirHandlingUnit,"hvac,ahu,equip",Manual Override - Discharge Fan Speed,{{Equipment Operating}} = 1 AND (({{Under Pressurized Discharge}} = 1 AND {{Discharge Fan Speed Below Maximum}} = 1) OR ({{Over Pressurized Discharge}} = 1 AND {{Discharge Fan Speed Above Minimum}} = 1)),{{Equipment Operating}} = 1 AND {{Discharge Air Pressure Exists}} = 1 AND {{Discharge Air Pressure SP Exists}} = 1 AND {{Discharge Fan Speed Exists}} = 1,4,4,"The unit is operating at low fan speed when the discharge pressure is under setpoint or operating at high fan speed when the discharge pressure is over setpoint. ","1. Discharge fan speed manually overridden
+2. Poor fan speed control","1. Release override
+2. Tune fan speed PID loop"
+29,AirHandlingUnit,"hvac,ahu,equip",Negative Building Static Pressure,{{Negative Zone Air Pressure}} = 1,{{Zone Air Pressure Exists}} = 1,4,4,"The building static pressure is negative. ","1. More air is being exhausted from space than is being introduced to space
+2. Inaccurate building static pressure sensor","1. Check for exhaust or discharge fan overrides
+2. Check for units not controlling to flow/pressure setpoints or controlling to inappropriate setpoints
+3. Recalibrate/replace building static pressure sensor"
+30,AirHandlingUnit,"hvac,ahu,equip",Off Hours Operation,{{Unoccupied Hours}} = 1 AND {{Equipment Operating}} = 1,{{Unoccupied Hours}} = 1 AND {{Discharge Fan Command OR Proof Exists}} = 1,4,4,"The unit is operating when the spaces it serves are not occupied. ","1. Unit manually overridden to run
+2. Scheduling issue","1. Release override
+2. Correct scheduling issue"
+31,AirHandlingUnit,"hvac,ahu,equip",Over Cooling,{{Equipment Operating}} = 1 AND {{Discharge Air Temp Too Cold}} = 1 AND {{Mech Cooling On}} = 1,{{Equipment Operating}} = 1 AND {{Discharge Air Temp Exists}} = 1 AND {{Discharge Air Temp SP Exists}} = 1 AND {{Mech Cooling Exists}} = 1,4,3,"The unit is running and cooling when the discharge air temperature is below setpoint. ","1. Cooling coil valve manually overridden
+2. Poor cooling coil valve control","1. Release override
+2. Tune cooling coil PID loop"
+32,AirHandlingUnit,"hvac,ahu,equip",Over Heating,{{Equipment Operating}} = 1 AND {{Discharge Air Temp Too Hot}} = 1 AND {{Mech Heating On}} = 1,{{Equipment Operating}} = 1 AND {{Discharge Air Temp Exists}} = 1 AND {{Discharge Air Temp SP Exists}} = 1 AND {{Mech Heating Exists}} = 1,4,3,"The unit is running and heating when the discharge air temperature is over setpoint. ","1. Heating coil valve manually overridden
+2. Poor heating coil valve control","1. Release override
+2. Tune heating coil PID loop"
+33,AirHandlingUnit,"hvac,ahu,equip",Over Pressurization,{{Equipment Operating}} = 1 AND {{Over Pressurized Discharge}} = 1 AND {{Discharge Fan Speed Above Minimum}} = 1,{{Equipment Operating}} = 1 AND {{Discharge Air Pressure Exists}} = 1 AND {{Discharge Air Pressure SP Exists}} = 1 AND {{Discharge Fan Speed Exists}} = 1,4,3,"The unit is running above minimum fan speed when the discharge air pressure is higher than setpoint. ","1. Fan speed manually overridden
+2. Poor fan speed control","1. Release override
+2. Tune fan speed PID loop"
+34,AirHandlingUnit,"hvac,ahu,equip",Simultaneous Heating and Cooling,{{Equipment Operating}} = 1  AND {{Mech Cooling On}} = 1 AND {{Mech Heating On}} = 1,{{Equipment Operating}} = 1 AND {{Mech Cooling Exists}} = 1 AND {{Mech Heating Exists}} = 1,4,2,"The unit is mechanically cooling and heating at the same time. ","1. Manually overridden cooling or heating coil
+2. Controls issue","1. Release override(s)
+2. Correct controls issue"
+35,AirHandlingUnit,"hvac,ahu,equip",Under Cooling,{{Equipment Operating}} = 1 AND {{Discharge Air Temp Too Hot}} = 1 AND {{Mech Cooling On}} = 1,{{Equipment Operating}} = 1 AND {{Discharge Air Temp Exists}} = 1 AND {{Discharge Air Temp SP Exists}} = 1 AND {{Mech Cooling Exists}} = 1,3,4,"The unit is running and cooling, but the discharge air temperature is above setpoint. ","1. Cooling coil valve manually overridden
+2. Poor cooling coil valve control
+3. Inaccurate discharge air temperature sensor
+4. Discharge air temperature setpoint too low
+5. Cooling coil fouled
+6. Unit is undersized for load","1. Release override
+2. Tune cooling coil PID loop
+3. Recalibrate/replace discharge air temperature sensor
+4. Adjust discharge air temperature setpoint
+5. Clean cooling coil"
+36,AirHandlingUnit,"hvac,ahu,equip",Under Pressurization,{{Equipment Operating}} = 1 AND {{Under Pressurized Discharge}} = 1 AND {{Discharge Fan Speed Below Maximum}} = 1,{{Equipment Operating}} = 1 AND {{Discharge Air Pressure Exists}} = 1 AND {{Discharge Air Pressure SP Exists}} = 1 AND {{Discharge Fan Speed Exists}} = 1,3,4,"The unit is running below maximum fan speed when the discharge air pressure is lower than setpoint. ","1. Fan speed manually overridden
+2. Poor fan speed control","1. Release override
+2. Tune fan speed PID loop"
+37,Boiler,"hvac,blr,equip",Failed Sensor - Leaving Water Temperature,{{Failed Sensor - Leaving Water Temp}} = 1,{{Leaving Water Temp Exists}} = 1,4,3,"The sensor is reading outside of the expected range. ",1. Sensor out of calibration,1. Recalibrate/replace sensor
+38,Boiler,"hvac,blr,equip",High Leaving Water Temperature,{{Leaving Water Temperature Too Hot}} = 1,{{Leaving Water Temp Exists}} = 1,3,2,"The unit's leaving water temperature is higher than desired. ","1. Unit not controlling to setpoint
+2. Setpoint set too high","1. Investigate unit control issue
+2. Set leaving water temperature setpoint to a lower value"
+39,ChilledWaterPlant,"hvac,chilledWaterPlant,equip",Bypass Valve Failed Closed,{{Bypass Valve Commanded Open}} = 1 AND {{Bypass Valve Proof Closed}} = 1,{{Bypass Valve Commanded Open}} = 1 AND {{Bypass Valve Proof Exists}} = 1 AND {{Bypass Flow Exists}} = 1,3,2,"The bypass valve is commanded open but returning a closed signal and no water is flowing though the bypass line. ","1. Valve actuator is mechanically compromised 
+2. Inaccurate sensor","1. Replace the valve actuator 
+2. Replace sensor 
+3. Recalibrate sensor"
+40,ChilledWaterPlant,"hvac,chilledWaterPlant,equip",Bypass Valve Failed Open,{{Bypass Valve Commanded Closed}} = 1 AND {{Bypass Valve Proof Open}} = 1,{{Bypass Valve Commanded Closed}} = 1 AND {{Bypass Valve Proof Exists}} = 1 AND {{Bypass Flow Exists}} = 1,3,2,"The bypass valve is commanded closed but returning a open signal and water is flowing through the bypass line. ","1. Valve actuator is mechanically compromised 
+2. Inaccurate sensor","1. Replace the valve actuator 
+2. Replace sensor 
+3. Recalibrate sensor"
+41,ChilledWaterPlant,"hvac,chilledWaterPlant,equip",Failed Sensor - Bypass Flow,{{Failed Sensor - Bypass Flow}} = 1,{{Bypass Flow Exists}} = 1,2,2,"The sensor is reading outside of the expected range. ",1. Sensor out of calibration,1. Recalibrate/replace sensor
+42,ChilledWaterPlant,"hvac,chilledWaterPlant,equip",Failed Sensor - Leaving Water Temperature,{{Failed Sensor - Chilled Water Leaving Temp}} = 1,{{Chilled Water Leaving Temp Exists}} = 1,4,2,"The sensor is reading outside of the expected range. ",1. Sensor out of calibration,1. Recalibrate/replace sensor
+43,ChilledWaterPlant,"hvac,chilledWaterPlant,equip",Failed Sensor - Return Water Temperature,{{Failed Sensor - Chilled Water Entering Temp}} = 1,{{Chilled Water Entering Temp Exists}} = 1,4,2,"The sensor is reading outside of the expected range. ",1. Sensor out of calibration,1. Recalibrate/replace sensor
+44,ChilledWaterPlant,"hvac,chilledWaterPlant,equip",High Chilled Water Differential Pressure Setpoint,{{Chilled Water DP SP Too High}} = 1,{{Chilled Water DP Exists}} = 1,4,2,The system chilled water differential pressure setpoint is higher than desired.,1. Control logic,1. Set differential pressure setpoint to a lower value
+45,ChilledWaterPlant,"hvac,chilledWaterPlant,equip",Low Chilled Water System Differential Temperature,{{Equipment Operating}} = 1 AND {{Chilled Water DT Too Low}} = 1,{{Equipment Operating}} = 1 AND {{Chilled Water Entering Temp Exists}} = 1 AND {{Chilled Water Leaving Temp Exists}} = 1,3,2,"The chilled water system is operating, but the chilled water differential temperature is low. ","1. High leaving water temperature
+2. Air-side setpoints too low
+3. Air-side cooling coils fouled
+4. Inaccurate chilled water temperature sensors","1. Set chilled water setpoint at design
+2. Reset air-side setpoints up to design
+3. Clean cooling coils
+4. Recalibrate/replace chilled water temperature sensors"
+46,ChilledWaterPlant,"hvac,chilledWaterPlant,equip",Low Chilled Water Temperature Setpoint,{{Chilled Water Temp SP Too Cold}} = 1,{{Chilled Water Leaving Temp SP Exists}} = 1,4,3,The chilled water leaving temperature setpoint is too low.,"1. Setpoint overridden
+2. Improper setpoint reset","1. Release override
+2. Correct setpoint reset"
+47,ChilledWaterPlant,"hvac,chilledWaterPlant,equip",Low Condenser Water System Differential Temperature,{{Equipment Operating}} = 1 AND {{Condenser Water DT Too Low}} = 1,{{Equipment Operating}} = 1 AND {{Condenser Water Entering Temp Exists}} = 1 AND {{Condenser Water Leaving Temp Exists}} = 1,3,2,"The condenser water system is operating, but the condenser water differential temperature is low. ","1. High leaving water temperature
+2. Chiller condenser barrel fouled
+3. Inaccurate condenser water temperature sensors","1. Set condenser water setpoint at design
+2. Clean chiller condenser barrel(s)
+3. Recalibrate/replace condenser water temperature sensors"
+48,Chiller,"hvac,chiller,equip",Failed Sensor - Chilled Water Entering Temperature,{{Failed Sensor - Chilled Water Entering Temp}} = 1,{{Chilled Water Entering Temp Exists}} = 1,4,2,"The sensor is reading outside of the expected range. ",1. Sensor out of calibration,1. Recalibrate/replace sensor
+49,Chiller,"hvac,chiller,equip",Failed Sensor - Chilled Water Leaving Temperature,{{Failed Sensor - Chilled Water Leaving Temp}} = 1,{{Chilled Water Leaving Temp Exists}} = 1,4,2,"The sensor is reading outside of the expected range. ",1. Sensor out of calibration,1. Recalibrate/replace sensor
+50,Chiller,"hvac,chiller,equip",Failed Sensor - Condenser Water Entering Temperature,{{Failed Sensor - Condenser Water Entering Temp}} = 1,{{Condenser Water Entering Temp Exists}} = 1,4,2,"The sensor is reading outside of the expected range. ",1. Sensor out of calibration,1. Recalibrate/replace sensor
+51,Chiller,"hvac,chiller,equip",Failed Sensor - Condenser Water Leaving Temperature,{{Failed Sensor - Condenser Water Leaving Temp}} = 1,{{Condenser Water Leaving Temp Exists}} = 1,4,2,"The sensor is reading outside of the expected range. ",1. Sensor out of calibration,1. Recalibrate/replace sensor
+52,Chiller,"hvac,chiller,equip",Isolation Valve Stuck Closed - Controls,{{Equipment Operating}} = 1 AND {{Chilled Water Iso Valve Commanded Closed}} = 1 AND {{Chilled Water Iso Valve Proof Closed}} = 1,{{Equipment Operating}} = 1 AND {{Chilled Water Isolation Valve Exists}} = 1,3,4,"The chiller's isolation valve is commanded closed while the chiller is running. ","1. Isolation valve overridden to be closed
+2. Issue in controls logic","1. Release override
+2. Resolve issue in controls logic"
+53,Chiller,"hvac,chiller,equip",Isolation Valve Stuck Closed - Mechanical,{{Equipment Operating}} = 1 AND {{Chilled Water Iso Valve Commanded Open}} = 1 AND {{Chilled Water Iso Valve Proof Closed}} = 1,{{Equipment Operating}} = 1 AND {{Chilled Water Isolation Valve Exists}} = 1,3,4,"The chiller's isolation valve is commanded open, but is closed while the chiller is running. ","1. Mechanically failed valve actuator
+2. Inaccurate valve sensor","1. Repair/replace valve actuator
+2. Recalibrate/replace sensor"
+54,Chiller,"hvac,chiller,equip",Isolation Valve Stuck Open - Controls,{{Equipment Not Operating}} = 1 AND {{Chilled Water Iso Valve Commanded Open}} = 1 AND {{Chilled Water Iso Valve Proof Open}} = 1,{{Equipment Not Operating}} = 1 AND {{Chilled Water Isolation Valve Exists}} = 1,3,4,"The chiller's isolation valve is commanded open while the chiller is not running. ","1. Isolation valve overridden to be open
+2. Issue in controls logic","1. Release override
+2. Resolve issue in controls logic"
+55,Chiller,"hvac,chiller,equip",Isolation Valve Stuck Open - Mechanical,{{Equipment Not Operating}} = 1 AND {{Chilled Water Iso Valve Commanded Closed}} = 1 AND {{Chilled Water Iso Valve Proof Open}} = 1,{{Equipment Not Operating}} = 1 AND {{Chilled Water Isolation Valve Exists}} = 1,3,4,"The chiller's isolation valve is commanded closed, but is open while the chiller is not running. ","1. Mechanically failed valve actuator
+2. Inaccurate valve sensor","1. Repair/replace valve actuator
+2. Recalibrate/replace sensor"
+56,Chiller,"hvac,chiller,equip",Low Chilled Water System Differential Temperature,{{Equipment Operating}} = 1 AND {{Chilled Water DT Too Low}} = 1,{{Equipment Operating}} = 1 AND {{Chilled Water Entering Temp Exists}} = 1 AND {{Chilled Water Leaving Temp Exists}} = 1,3,2,"The chilled water system is operating, but the chilled water differential temperature is low. ","1. High leaving water temperature
+2. Air-side setpoints too low
+3. Air-side cooling coils fouled
+4. Inaccurate chilled water temperature sensors","1. Set chilled water setpoint at design
+2. Reset air-side setpoints up to design
+3. Clean cooling coils
+4. Recalibrate/replace chilled water temperature sensors"
+57,Chiller,"hvac,chiller,equip",Over Cooling,{{Equipment Operating}} = 1 AND {{Over Cooling}} = 1,{{Equipment Operating}} = 1 AND {{Chilled Water Leaving Temp Exists}} = 1 AND {{Chilled Water Leaving Temp SP Exists}} = 1,4,2,"The unit is running and cooling when the leaving water temperature is below setpoint. ","1. Chiller manually overridden
+2. Poor chiller control","1. Release override
+2. Tune chiller cooling PID loop"
+58,Chiller,"hvac,chiller,equip",Under Cooling,{{Equipment Operating}} = 1 AND {{Under Cooling}} = 1,{{Equipment Operating}} = 1 AND {{Chilled Water Leaving Temp Exists}} = 1 AND {{Chilled Water Leaving Temp SP Exists}} = 1,2,4,"The chiller is running but the leaving water temperature is above setpoint. ","1. Chiller manually overridden
+2. Poor chiller cooling control
+3. Inaccurate leaving water temperature sensor
+4. Leaving water temperature setpoint too low
+5. Evaporator tubes fouled
+6. Chiller undersized for load","1. Release override
+2. Tune chiller PID loop
+3. Recalibrate/replace leaving water temperature sensor
+4. Adjust leaving water temperature setpoint
+5. Clean evaporator tubes
+6. Check chiller staging"
+59,Cooler,"hvac,cooler,equip",Failed Sensor - Zone Air Temperature,{{Failed Sensor - Zone Air Temp}} = 1,{{Zone Air Temp Exists}} = 1,4,4,"The sensor is reading outside of the expected range. ",1. Sensor out of calibration,1. Recalibrate/replace sensor
+60,CoolingTower,"hvac,coolingTower,equip",Failed Closed Entering Isolation Valve,{{Condenser Water Entering Isolation Valve Commanded Open}} = 1 AND {{Condenser Water Entering Isolation Valve Proof Closed}} = 1,{{Condenser Water Entering Isolation Valve Commanded Open}} = 1 AND {{Condenser Water Entering Isolation Valve Proof Exists}} = 1,3,4,"The cooling tower's entering isolation valve is commanded open but is actually closed. ","1. Mechanically failed valve actuator
+2. Inaccurate valve sensor","1. Repair/replace valve actuator 
+2. Recalibrate/replace valve sensor "
+61,CoolingTower,"hvac,coolingTower,equip",Failed Closed Leaving Isolation Valve,{{Condenser Water Leaving Isolation Valve Commanded Open}} = 1 AND {{Condenser Water Leaving Isolation Valve Proof Closed}} = 1,{{Condenser Water Leaving Isolation Valve Commanded Open}} = 1 AND {{Condenser Water Leaving Isolation Valve Proof Exists}} = 1,3,3,"The cooling tower's leaving isolation valve is commanded open but is actually closed. ","1. Mechanically failed valve actuator
+2. Inaccurate valve sensor","1. Repair/replace valve actuator 
+2. Recalibrate/replace valve sensor "
+62,CoolingTower,"hvac,coolingTower,equip",Failed Fan,{{Fan Commanded On}} = 1 AND {{Fan Proof Off}} = 1,{{Fan Commanded On}} = 1 AND {{Fan Proof Exists}} = 1,2,4,"The unit is commanded on but is not running. ","1. Mechanically failed fan
+2. Fan locked off by controls
+3. Alarm preventing the unit from starting","1. Repair fan
+2. Release any locks/overrides
+3. Clear alarms"
+63,CoolingTower,"hvac,coolingTower,equip",Failed Open Entering Isolation Valve,{{Condenser Water Entering Isolation Valve Commanded Closed}} = 1 AND {{Condenser Water Entering Isolation Valve Proof Open}} = 1,{{Condenser Water Entering Isolation Valve Commanded Closed}} = 1 AND {{Condenser Water Entering Isolation Valve Proof Exists}} = 1,3,2,"The cooling tower's entering isolation valve is commanded closed but is actually open. ","1. Mechanically failed valve actuator
+2. Inaccurate valve sensor","1. Repair/replace valve actuator 
+2. Recalibrate/replace valve sensor "
+64,CoolingTower,"hvac,coolingTower,equip",Failed Open Leaving Isolation Valve,{{Condenser Water Leaving Isolation Valve Commanded Closed}} = 1 AND {{Condenser Water Leaving Isolation Valve Proof Open}} = 1,{{Condenser Water Leaving Isolation Valve Commanded Closed}} = 1 AND {{Condenser Water Leaving Isolation Valve Proof Exists}} = 1,4,3,"The cooling tower's leaving isolation valve is commanded closed but is actually open. ","1. Mechanically failed valve actuator
+2. Inaccurate valve sensor","1. Repair/replace valve actuator 
+2. Recalibrate/replace valve sensor "
+65,CoolingTower,"hvac,coolingTower,equip",Fan in Hand,{{Fan Commanded Off}} = 1 AND {{Fan Proof On}} = 1,{{Fan Commanded Off}} = 1 AND {{Fan Proof Exists}} = 1,3,3,"The unit is not being commanded on, but is running. ","1. Unit overridden to run
+2. Run sensor reading inaccurately","1. Release override
+2. Recalibrate/replace run sensor"
+66,CoolingTower,"hvac,coolingTower,equip",Tower and Entering Iso Valve Control Coordination,({{Equipment Operating}} = 1 AND {{Condenser Water Entering Iso Valve Closed}} = 1) OR ({{Equipment Not Operating}} = 1 AND {{Condenser Water Entering Iso Valve Open}} = 1),{{Equipment Operating}} = 1 AND {{Condenser Water Entering Iso Valve Exists}} = 1,3,2,"The cooling tower is operating while the entering isolation valve is closed or the cooling tower is not operating while the entering isolation valve is open. ","1. Manually overridden entering isolation valve or cooling tower
+2. Controls issue
+3. Inaccurate valve sensor or cooling tower run sensor","1. Release override(s)
+2. Correct controls issue
+3. Recalibrate/replace sensors"
+67,CoolingTower,"hvac,coolingTower,equip",Tower and Leaving Iso Valve Control Coordination,({{Equipment Operating}} = 1 AND {{Condenser Water Leaving Iso Valve Closed}} = 1) OR ({{Equipment Not Operating}} = 1 AND {{Condenser Water Leaving Iso Valve Open}} = 1),{{Equipment Operating}} = 1 AND {{Condenser Water Leaving Iso Valve Exists}} = 1,3,2,"The cooling tower is operating while the leaving isolation valve is closed or the cooling tower is not operating while the leaving isolation valve is open. ","1. Manually overridden leaving isolation valve or cooling tower
+2. Controls issue
+3. Inaccurate valve sensor or cooling tower run sensor","1. Release override(s)
+2. Correct controls issue
+3. Recalibrate/replace sensors"
+68,Crac,"hvac,crac,equip",Failed Sensor - Discharge Air Temperature,{{Failed Sensor - Discharge Air Temp}} = 1,{{Discharge Air Temp Exists}} = 1,3,4,"The sensor is reading outside of the expected range. ",1. Sensor out of calibration,1. Recalibrate/replace sensor
+69,Crac,"hvac,crac,equip",Failed Sensor - Return Air Temperature,{{Failed Sensor - Return Air Temp}} = 1,{{Return Air Temp Exists}} = 1,3,2,"The sensor is reading outside of the expected range. ",1. Sensor out of calibration,1. Recalibrate/replace sensor
+70,Crac,"hvac,crac,equip",Over Cooling,{{Discharge Air Temp Too Cold}} = 1,{{Discharge Air Temp Exists}} = 1 AND {{Discharge Air Temp SP Exists}} = 1,3,2,"The unit is running and cooling when the discharge air temperature is below setpoint. ","1. Cooling coil valve manually overridden
+2. Poor cooling coil valve control","1. Release override
+2. Tune cooling coil PID loop"
+71,Crac,"hvac,crac,equip",Under Cooling,{{Discharge Air Temp Too Hot}} = 1,{{Discharge Air Temp Exists}} = 1 AND {{Discharge Air Temp SP Exists}} = 1,2,3,"The unit is running and cooling, but the discharge air temperature is above setpoint. ","1. Cooling coil valve manually overridden
+2. Poor cooling coil valve control
+3. Inaccurate discharge air temperature sensor
+4. Discharge air temperature setpoint too low
+5. Cooling coil fouled
+6. Unit is undersized for load","1. Release override
+2. Tune cooling coil PID loop
+3. Recalibrate/replace discharge air temperature sensor
+4. Adjust discharge air temperature setpoint
+5. Clean cooling coil"
+72,Damper,"hvac,smoke,damper,equip",Damper Failed Closed,{{Damper Proof Closed}} = 1 AND {{Damper Commanded Open}} = 1,{{Damper Commanded Open}} = 1 AND {{Damper Proof Exists}} = 1,4,3,"The damper is commanded open, but sensors return a closed signal.","1. Mechanically stuck 
+2. Controls are mismatched","1. Replace actuator 
+2. Reprogram controls"
+73,Damper,"hvac,smoke,damper,equip",Damper Failed Open,{{Damper Proof Open}} = 1 AND {{Damper Commanded Closed}} = 1,{{Damper Commanded Closed}} = 1 AND {{Damper Proof Exists}} = 1,4,3,"The damper is commanded closed, but sensors are returning a open signal.","1. Mechanically stuck 
+2. Controls are mismatched","1. Replace actuator 
+2. Reprogram controls"
+74,Fan,"hvac,fan,exhaust,equip",Failed Fan,{{Fan Commanded On}} = 1 AND {{Fan Proof Off}} = 1,{{Fan Commanded On}} = 1 AND {{Fan Proof Exists}} = 1,1,4,"The unit is commanded on but is not running. ","1. Mechanically failed fan
+2. Fan locked off by controls
+3. Alarm preventing the unit from starting","1. Repair fan
+2. Release any locks/overrides
+3. Clear alarms"
+75,Fan,"hvac,outside,fan,equip",Failed Sensor - Building Static Pressure,{{Failed Sensor - Building Static Pressure}} = 1,{{Building Static Pressure Exists}} = 1,2,3,"The sensor is reading outside of the expected range. ",1. Sensor out of calibration,1. Recalibrate/replace sensor
+76,Fan,"hvac,fan,heating,equip",Failed Sensor - CO,{{Failed Sensor - CO}} = 1,{{CO Exists}} = 1,2,3,"The sensor is reading outside of the expected range. ",1. Sensor out of calibration,1. Recalibrate/replace sensor
+77,Fan,"hvac,presurization,fan,equip",Failed Sensor - Delta Pressure,{{Failed Sensor - Delta Pressure}} = 1,{{Delta Pressure Exists}} = 1,2,3,"The sensor is reading outside of the expected range. ",1. Sensor out of calibration,1. Recalibrate/replace sensor
+78,Fan,"hvac,fan,equip",Failed Sensor - Discharge Air Temperature,{{Failed Sensor - Discharge Air Temp}} = 1,{{Discharge Air Temp Exists}} = 1,3,4,"The sensor is reading outside of the expected range. ",1. Sensor out of calibration,1. Recalibrate/replace sensor
+79,Fan,"hvac,fan,equip",Failed Sensor - Outside Air Temperature,{{Failed Sensor - Outside Air Temp}} = 1,{{Outside Air Temp Exists}} = 1,4,2,"The sensor is reading outside of the expected range. ",1. Sensor out of calibration,1. Recalibrate/replace sensor
+80,Fan,"hvac,smoke,fan,equip",Failed Sensor - Static Pressure,{{Failed Sensor - Static Pressure}} = 1,{{Static Pressure Exists}} = 1,2,3,"The sensor is reading outside of the expected range. ",1. Sensor out of calibration,1. Recalibrate/replace sensor
+81,Fan,"hvac,fan,equip",Failed Sensor - Zone Air Temperature,{{Failed Sensor - Zone Air Temp}} = 1,{{Zone Air Temp Exists}} = 1,2,3,"The sensor is reading outside of the expected range. ",1. Sensor out of calibration,1. Recalibrate/replace sensor
+82,Fan,"hvac,fan,exhaust,equip",Fan in Hand,{{Fan Commanded Off}} = 1 AND {{Fan Proof On}} = 1,{{Fan Commanded Off}} = 1 AND {{Fan Proof Exists}} = 1,4,4,"The unit is not being commanded on, but is running. ","1. Unit overridden to run
+2. Run sensor reading inaccurately","1. Release override
+2. Recalibrate/replace run sensor"
+83,Fan,"hvac,fan,exhaust,equip",Off Hours Operation,{{Unoccupied Hours}} = 1 AND {{Equipment Operating}} = 1,{{Unoccupied Hours}} = 1 AND {{Command OR Proof Exist}} = 1,4,4,"The unit is operating when the spaces it serves are not occupied. ","1. Unit manually overridden to run
+2. Scheduling issue","1. Release override
+2. Correct scheduling issue"
+84,Fan,"hvac,fan,equip",Over Cooling,{{Equipment Operating}} = 1 AND {{Fan Speed Above Minimum}} = 1 AND {{Zone Air Temp Too Cold}} = 1,{{Equipment Operating}} = 1 AND {{Fan Speed Above Minimum}} = 1 AND {{Zone Air Temp Exists}} = 1 AND {{Zone Air Temp SP Exists}} = 1,4,2,"The unit is running above minimum speed when the zone air temperature is below setpoint. ","1. Fan speed manually overridden
+2. Poor fan speed control","1. Release override
+2. Tune fan speed PID loop"
+85,Fan,"hvac,smoke,fan,equip",Over Pressurization,{{Equipment Operating}} = 1 AND {{Fan Speed Above Minimum}} = 1 AND {{Over Pressurized}} = 1,{{Equipment Operating}} = 1 AND {{Fan Speed Above Minimum}} = 1 AND {{Static Pressure Exists}} = 1 AND {{Static Pressure SP Exists}} = 1,4,2,"The unit is running above minimum fan speed when the air pressure is higher than setpoint. ","1. Fan speed manually overridden
+2. Poor fan speed control","1. Release override
+2. Tune fan speed PID loop"
+86,Fan,"hvac,fan,equip",Under Cooling,{{Equipment Operating}} = 1 AND {{Fan Speed Below Maximum}} = 1 AND {{Zone Air Temp Too Hot}} = 1,{{Equipment Operating}} = 1 AND {{Fan Speed Below Maximum}} = 1 AND {{Zone Air Temp Exists}} = 1 AND {{Zone Air Temp SP Exists}} = 1,2,4,"The unit is running below maximum speed and the discharge air temperature is above setpoint. ","1. Fan speed manually overridden
+2. Poor fan speed control
+3. Inaccurate zone air temperature sensor
+4. zone air temperature setpoint too low
+5. Unit is undersized for load","1. Release override
+2. Tune fan speed PID loop
+3. Recalibrate/replace zone air temperature sensor
+4. Adjust zone air temperature setpoint"
+87,Fan,"hvac,presurization,fan,equip",Under Pressurization,{{Equipment Operating}} = 1 AND {{Fan Speed Below Maximum}} = 1 AND {{Under Pressurized}} = 1,{{Equipment Operating}} = 1 AND {{Fan Speed Below Maximum}} = 1 AND {{Delta Pressure Exists}} = 1 AND {{Delta Pressure SP Exists}} = 1,2,4,"The unit is running below maximum fan speed when the air pressure is lower than setpoint. ","1. Fan speed manually overridden
+2. Poor fan speed control","1. Release override
+2. Tune fan speed PID loop"
+88,FanCoilUnit,"hvac,fcu,equip",Cooling Without Operating,{{Equipment Not Operating}} = 1 AND {{Cooling Commanded On}} = 1,{{Equipment Not Operating}} = 1 AND {{Mech Cooling Exists}} = 1,4,2,"The unit's cooling coil is open when the discharge fan is not operating. ","1. Valve is manually overridden 
+2. Controls issue","1. Release override 
+2. Repair controls issue"
+89,FanCoilUnit,"hvac,fcu,equip",Failed Closed Chilled Water Valve,{{Equipment Operating}} = 1 AND {{Cooling Commanded On}} = 1 AND {{Cooling Proof Off}} = 1,{{Equipment Operating}} = 1 AND {{Cooling Commanded On}} = 1 AND {{Cooling Proof Exists}} = 1,3,4,"The unit is on and its chilled water valve is commanded open, but the valve sensor or temperatures across the valve indicate no cooling is being done. ","1. Mechanically failed valve actuator
+2. Fouled coils 
+3. Water to coil not being cooled enough
+4. Inaccurate valve or temperature sensors","1. Repair/replace valve actuator
+2. Clean coils 
+3. Resolve water cooling issues
+4. Recalibrate/replace sensor(s)"
+90,FanCoilUnit,"hvac,fcu,equip",Failed Fan,{{Fan Commanded On}} = 1 AND {{Fan Proof Off}} = 1,{{Fan Commanded On}} = 1 AND {{Fan Proof Exists}} = 1,2,4,"The unit is commanded on but is not running. ","1. Mechanically failed fan
+2. Fan locked off by controls
+3. Alarm preventing the unit from starting","1. Repair fan
+2. Release any locks/overrides
+3. Clear alarms"
+91,FanCoilUnit,"hvac,fcu,equip",Failed Open Chilled Water Valve,{{Equipment Operating}} = 1 AND {{Cooling Commanded Off}} = 1 AND {{Cooling Proof On}} = 1,{{Equipment Operating}} = 1 AND {{Cooling Commanded Off}} = 1 AND {{Cooling Proof Exists}} = 1,4,3,"The unit is on and its chilled water valve is commanded closed, but the valve sensor or temperatures across the valve indicate that cooling is being done. ","1. Mechanically failed valve actuator
+2. Inaccurate valve or temperature sensors","1. Repair/replace valve actuator
+2. Recalibrate/replace sensor(s)"
+92,FanCoilUnit,"hvac,fcu,equip",Failed Sensor - Discharge Air Temperature,{{Failed Sensor - Discharge Air Temp}} = 1,{{Discharge Air Temp Exists}} = 1,3,4,"The sensor is reading outside of the expected range. ",1. Sensor out of calibration,1. Recalibrate/replace sensor
+93,FanCoilUnit,"hvac,fcu,equip",Failed Sensor - Zone Air Temperature,{{Failed Sensor - Zone Air Temp}} = 1,{{Zone Air Temp Exists}} = 1,4,4,"The sensor is reading outside of the expected range. ",1. Sensor out of calibration,1. Recalibrate/replace sensor
+94,FanCoilUnit,"hvac,fcu,equip",Fan in Hand,{{Fan Commanded Off}} = 1 AND {{Fan Proof On}} = 1,{{Fan Commanded Off}} = 1 AND {{Fan Proof Exists}} = 1,4,4,"The unit is not being commanded on, but is running. ","1. Unit overridden to run
+2. Run sensor reading inaccurately","1. Release override
+2. Recalibrate/replace run sensor"
+95,FanCoilUnit,"hvac,fcu,equip",Low Occupied Setpoint,{{Equipment Operating}} = 1 AND {{Zone Air Temp SP Too Cold}} = 1,{{Equipment Operating}} = 1 AND {{Zone Air Temp SP Exists}} = 1,2,3,The unit's occupied setpoint is lower than desired.,1. Control logic,1. Set occupied setpoint to a higher value
+96,FanCoilUnit,"hvac,fcu,equip",Manual Override - Cooling Coil Valve,"{{Equipment Operating}} = 1 AND (({{Discharge Air Temp Too Hot}} = 1 AND {{Cooling Commanded Off}} = 1) OR ({{Discharge Air Temp Too Cold}} = 1 AND {{Cooling Commanded On}} = 1)) ",{{Equipment Operating}} = 1 AND {{Mech Cooling Exists}} = 1 AND (({{Discharge Air Temp Exists}} = 1 AND {{Discharge Air Temp SP Exists}} = 1) OR ({{Zone Air Temp Exists}} = 1 AND {{Zone Air Temp SP Exists}} = 1)),4,3,"The unit is operating and not cooling when the discharge temperature is higher than setpoint or cooling when the discharge temperature is lower than setpoint. ","1. Cooling coil valve manually overridden
+2. Poor cooling coil valve control","1. Release override
+2. Tune cooling coil PID loop"
+97,FanCoilUnit,"hvac,fcu,equip",Off Hours Operation,{{Unoccupied Hours}} = 1 AND {{Equipment Operating}} = 1,{{Unoccupied Hours}} = 1 AND {{Command OR Proof Exist}} = 1,4,1,"The unit is operating when the spaces it serves are not occupied. ","1. Unit manually overridden to run
+2. Scheduling issue","1. Release override
+2. Correct scheduling issue"
+98,FanCoilUnit,"hvac,fcu,equip",Over Cooling,{{Equipment Operating}} = 1 AND {{Cooling Commanded On}} = 1 AND ({{Zone Air Temp Too Cold}} = 1 OR {{Discharge Air Temp Too Cold}} = 1),{{Equipment Operating}} = 1 AND {{Mech Cooling Exists}} = 1 AND (({{Discharge Air Temp Exists}} = 1 AND {{Discharge Air Temp SP Exists}} = 1) OR ({{Zone Air Temp Exists}} = 1 AND {{Zone Air Temp SP Exists}} = 1)),4,4,"The unit is running and cooling when the discharge air temperature or zone air temperature is below setpoint. ","1. Cooling coil valve manually overridden
+2. Poor cooling coil valve control","1. Release override
+2. Tune cooling coil PID loop"
+99,FanCoilUnit,"hvac,fcu,equip",Under Cooling,{{Equipment Operating}} = 1 AND {{Cooling Commanded On}} = 1 AND ({{Zone Air Temp Too Hot}} = 1 OR {{Discharge Air Temp Too Hot}} = 1),{{Equipment Operating}} = 1 AND {{Mech Cooling Exists}} = 1 AND (({{Zone Air Temp Exists}} = 1 AND {{Zone Air Temp SP Exists}} = 1) OR ({{Discharge Air Temp Exists}} = 1 AND {{Discharge Air Temp SP Exists}} = 1)),2,4,"The unit is running and cooling, but the discharge air temperature or zone air temperature is above setpoint. ","1. Cooling coil valve manually overridden
+2. Poor cooling coil valve control
+3. Inaccurate discharge air temperature sensor
+4. Discharge air temperature setpoint too low
+5. Cooling coil fouled
+6. Unit is undersized for load","1. Release override
+2. Tune cooling coil PID loop
+3. Recalibrate/replace discharge air temperature sensor
+4. Adjust discharge air temperature setpoint
+5. Clean cooling coil"
+100,Freezer,"freezer,equip",Failed Sensor - Zone Air Temperature,{{Failed Sensor - Zone Air Temp}} = 1,{{Zone Air Temp Exists}} = 1,4,4,"The sensor is reading outside of the expected range. ",1. Sensor out of calibration,1. Recalibrate/replace sensor
+101,HeatExchanger,"heatExchanger,hvac,equip",Failed Sensor - Chilled Water Leaving Temperature,{{Failed Sensor - Chilled Water Leaving Temp}} = 1,{{Chilled Water Leaving Temp Exists}} = 1,4,3,"The sensor is reading outside of the expected range. ",1. Sensor out of calibration,1. Recalibrate/replace sensor
+102,HeatExchanger,"heatExchanger,hvac,equip",Failed Sensor - Hot Water Leaving Temperature,{{Failed Sensor - Hot Water Leaving Temp}} = 1,{{Hot Water Leaving Temp Exists}} = 1,4,2,"The sensor is reading outside of the expected range. ",1. Sensor out of calibration,1. Recalibrate/replace sensor
+103,HeatExchanger,"heatExchanger,hvac,equip",Failed Sensor - Return Water Temperature,{{Failed Sensor - Return Water Temp}} = 1,{{Return Water Temp Exists}} = 1,4,3,"The sensor is reading outside of the expected range. ",1. Sensor out of calibration,1. Recalibrate/replace sensor
+104,HeatExchanger,"heatExchanger,hvac,equip",Over Cooling,{{Chilled Water Valve Open}} = 1 AND {{Chilled Water Leaving Temp Too Cold}} = 1,{{Chilled Water Valve Open}} = 1 AND {{Chilled Water Leaving Temp Exists}} = 1 AND {{Chilled Water Leaving Temp SP Exists}} = 1,4,3,"The unit is running and cooling when the leaving water temperature is below setpoint. ","1. Heat exchanger control valve manually overridden
+2. Poor heat exchanger control","1. Release override
+2. Tune heat exchanger cooling PID loop"
+105,HeatExchanger,"heatExchanger,hvac,equip",Over Heating,{{Hot Water Valve Open}} = 1 AND {{Hot Water Leaving Temp Too Hot}} = 1,{{Hot Water Valve Open}} = 1 AND {{Hot Water Leaving Temp Exists}} = 1 AND {{Hot Water Leaving Temp SP Exists}} = 1,4,3,"The unit is running and heating when the leaving water temperature is above setpoint. ","1. Heat exchanger control valve manually overridden
+2. Poor heat exchanger control","1. Release override
+2. Tune heat exchanger heating PID loop"
+106,HeatExchanger,"heatExchanger,hvac,equip",Under Cooling,{{Chilled Water Valve Under Maximum}} = 1 AND {{Chilled Water Leaving Temp Too Hot}} = 1,{{Chilled Water Valve Under Maximum}} = 1 AND {{Chilled Water Leaving Temp Exists}} = 1 AND {{Chilled Water Leaving Temp SP Exists}} = 1,2,4,"The heat exchanger is running but the leaving water temperature is above setpoint. ","1. Heat exchanger manually overridden
+2. Poor heat exchanger cooling control
+3. Inaccurate leaving water temperature sensor
+4. Leaving water temperature setpoint too low
+5. Heat exchanger tubes fouled
+6. Heat exchanger undersized for load","1. Release override
+2. Tune heat exchanger PID loop
+3. Recalibrate/replace leaving water temperature sensor
+4. Adjust leaving water temperature setpoint
+5. Clean heat exchanger"
+107,HeatExchanger,"heatExchanger,hvac,equip",Under Heating,{{Hot Water Valve Under Maximum}} = 1 AND {{Hot Water Leaving Temp Too Cold}} = 1,{{Hot Water Valve Under Maximum}} = 1 AND {{Hot Water Leaving Temp Exists}} = 1 AND {{Hot Water Leaving Temp SP Exists}} = 1,2,4,"The heat exchanger is running but the leaving water temperature is below setpoint. ","1. Heat exchanger manually overridden
+2. Poor heat exchanger heating control
+3. Inaccurate leaving water temperature sensor
+4. Leaving water temperature setpoint too high
+5. Heat exchanger tubes fouled
+6. Heat exchanger undersized for load","1. Release override
+2. Tune heat exchanger PID loop
+3. Recalibrate/replace leaving water temperature sensor
+4. Adjust leaving water temperature setpoint
+5. Clean heat exchanger"
+108,HotWaterPlant,"hvac,hotWaterPlant,equip",High Differential Pressure Setpoint,{{System Over Pressurized}} = 1,{{Hot Water DP SP Exists}} = 1,3,2,The system heating water differential pressure setpoint is higher than desired.,1. Control logic,1. Set differential pressure setpoint to a lower value
+109,HotWaterPlant,"hvac,hotWaterPlant,equip",Hot Weather Operation,{{Outside Air Temp Too Hot}} = 1 AND {{Equipment Operating}} = 1,{{Outside Air Temp Too Hot}} = 1 AND {{System Command OR Proof Exist}} = 1,4,2,"The heating water system is operating when outside air temperature is warm and heating should not be necessary. ","1. No outside air temperature lockout in controls logic
+2. Outside air temperature lockout set too high in controls logic
+","1. Implement outside air temperature lockout
+2. Set outside air temperature lockout to 75°F"
+110,Hydrotherapy,"hvac,hydrotherapy,equip",Cooling Without Operating,{{Equipment Not Operating}} = 1 AND {{Mech Cooling On}} = 1,{{Equipment Not Operating}} = 1 AND {{Mech Cooling Exists}} = 1,3,3,"The unit's cooling coil is open when the discharge fan is not operating. ","1. Valve is manually overridden 
+2. Controls issue","1. Release override 
+2. Repair controls issue"
+111,Hydrotherapy,"hvac,hydrotherapy,equip",Failed Closed Heating Water Valve,{{Heating Water Valve Commanded Open}} = 1 AND {{Heating Water Valve Proof Closed}} = 1,{{Heating Water Valve Commanded Open}} = 1 AND {{Heating Water Valve Proof Exists}} = 1,2,4,"The unit is on and its heating water valve is commanded open, but the valve sensor or temperatures across the valve indicate no heating is being done. ","1. Mechanically failed valve actuator
+2. Fouled coils 
+3. Water to coil not being heated enough
+4. Inaccurate valve or temperature sensors","1. Repair/replace valve actuator
+2. Clean coils 
+3. Resolve water heating issues
+4. Recalibrate/replace sensor(s)"
+112,Hydrotherapy,"hvac,hydrotherapy,equip",Failed Fan,{{Fan Commanded On}} = 1 AND {{Fan Proof Off}} = 1,{{Fan Commanded On}} = 1 AND {{Fan Proof Exists}} = 1,1,4,"The unit is commanded on but is not running. ","1. Mechanically failed fan
+2. Fan locked off by controls
+3. Alarm preventing the unit from starting","1. Repair fan
+2. Release any locks/overrides
+3. Clear alarms"
+113,Hydrotherapy,"hvac,hydrotherapy,equip",Failed Open Heating Water Valve,{{Heating Water Valve Commanded Closed}} = 1 AND {{Heating Water Valve Proof Open}} = 1,{{Heating Water Valve Commanded Closed}} = 1 AND {{Heating Water Valve Proof Exists}} = 1,4,3,"The unit is on and its heating water valve is commanded closed, but the valve sensor or temperatures across the valve indicate that heating is being done. ","1. Mechanically failed valve actuator
+2. Inaccurate valve or temperature sensors","1. Repair/replace valve actuator
+2. Recalibrate/replace sensor(s)"
+114,Hydrotherapy,"hvac,hydrotherapy,equip",Fan in Hand,{{Fan Commanded Off}} = 1 AND {{Fan Proof On}} = 1,{{Fan Commanded Off}} = 1 AND {{Fan Proof Exists}} = 1,4,3,"The unit is not being commanded on, but is running. ","1. Unit overridden to run
+2. Run sensor reading inaccurately","1. Release override
+2. Recalibrate/replace run sensor"
+115,Hydrotherapy,"hvac,hydrotherapy,equip",Heating Without Operating,{{Equipment Not Operating}} = 1 AND {{Mech Heating On}} = 1,{{Equipment Not Operating}} = 1 AND {{Mech Heating Exists}} = 1,3,3,"The unit's heating coil is open when the discharge fan is not operating. ","1. Valve is manually overridden 
+2. Controls issue","1. Release override 
+2. Repair controls issue"
+116,LifeSafetyControlPanel,"hvac,lifeSafety,equip",Failed Sensor - Zone Air CO,{{Failed Sensor - Zone Air CO}} = 1,{{Zone Air CO Exists}} = 1,2,4,"The sensor is reading outside of the expected range. ",1. Sensor out of calibration,1. Recalibrate/replace sensor
+117,LifeSafetyControlPanel,"hvac,lifeSafety,equip",Zone Air CO Too High,{{Zone Air CO Too High}} = 1,{{Zone Air CO Exists}} = 1 AND {{Zone Air CO SP Exists}} = 1,2,4,"The zone air CO reading is higher than setpoint. ",1. Improper ventilation to space,"1. Increase exhaust from space
+2. Increase ventilation to space"
+118,Pump,"hvac,chilled,water,pump,equip",Failed Pump,{{Pump Failed}} = 1,{{Pump Commanded On}} = 1 AND {{Pump Proof Exists}} = 1,1,4,"The unit is commanded on but is not running. ","1. Mechanically failed pump
+2. Pump locked off by controls
+3. Alarm preventing the unit from starting","1. Repair pump
+2. Release any locks/overrides
+3. Clear alarms"
+119,Pump,"hvac,chilled,water,pump,equip",Pump in Hand,{{Pump in Hand}} = 1,{{Pump Commanded Off}} = 1 AND {{Pump Proof Exists}} = 1,4,3,"The unit is not being commanded on, but is running. ","1. Unit overridden to run
+2. Run sensor reading inaccurately","1. Release override
+2. Recalibrate/replace run sensor"
+120,RooftopUnit,"hvac,rtu,equip",Failed Sensor - Zone Air Temperature,{{Failed Sensor - Zone Air Temp}} = 1,{{Zone Air Temp Exists}} = 1,3,3,"The sensor is reading outside of the expected range. ",1. Sensor out of calibration,1. Recalibrate/replace sensor
+121,RooftopUnit,"hvac,rtu,equip",Over Cooling,{{Fan Speed Above Minimum}} = 1 AND {{Zone Air Temp Too Cold}} = 1,{{Fan Speed Above Minimum}} = 1 AND {{Zone Air Temp Exists}} = 1 AND {{Zone Air Temp SP Exists}} = 1,3,2,"The unit is running above minimum speed when the zone air temperature is below setpoint. ","1. Fan speed manually overridden
+2. Poor fan speed control","1. Release override
+2. Tune fan speed PID loop"
+122,RooftopUnit,"hvac,rtu,equip",Under Cooling,{{Fan Speed Below Maximum}} = 1 AND {{Zone Air Temp Too Hot}} = 1,{{Fan Speed Below Maximum}} = 1 AND {{Zone Air Temp Exists}} = 1 AND {{Zone Air Temp SP Exists}} = 1,2,3,"The unit is running below maximum speed and the discharge air temperature is above setpoint. ","1. Fan speed manually overridden
+2. Poor fan speed control
+3. Inaccurate zone air temperature sensor
+4. zone air temperature setpoint too low
+5. Unit is undersized for load","1. Release override
+2. Tune fan speed PID loop
+3. Recalibrate/replace zone air temperature sensor
+4. Adjust zone air temperature setpoint"
+123,VAV,"hvac,vav,equip",Failed Closed Damper,{{Occupied Hours}} = 1 AND {{Deficit Flow}} = 1 AND {{Discharge Air Damper At Maximum}} = 1,{{Occupied Hours}} = 1 AND {{Discharge Air Flow Exists}} = 1 AND {{Discharge Air Flow SP Exists}} = 1 AND {{Discharge Air Damper Exists}} = 1,3,4,"During occupied hours, the unit's damper is commanded fully open, but the unit is unable to meet its flow setpoint. ","1. Failed damper actuator 
+2. Inaccurate flow sensor
+3. Flow setpoint too high","1. Repair/replace damper actuator
+2. Recalibrate/replace flow sensor
+3. Ensure flow setpoint is within capacity of unit"
+124,VAV,"hvac,vav,equip",Failed Closed Heating Water Valve,{{Occupied Hours}} = 1 AND {{Mech Heating On}} = 1 AND {{Heating Proof Off}} = 1,{{Occupied Hours}} = 1 AND {{Mech Heating Exists}} = 1 AND {{Discharge Air Temp Exists}} = 1,2,4,"The unit is on and its heating water valve is commanded open, but the valve sensor or temperatures across the valve indicate no heating is being done. ","1. Mechanically failed valve actuator
+2. Fouled coils 
+3. Water to coil not being heated enough
+4. Inaccurate valve or temperature sensors","1. Repair/replace valve actuator
+2. Clean coils 
+3. Resolve water heating issues
+4. Recalibrate/replace sensor(s)"
+125,VAV,"hvac,vav,equip",Failed Open Damper,{{Occupied Hours}} = 1 AND {{Excess Flow}} = 1 AND {{Discharge Air Damper At Minimum}} = 1,{{Occupied Hours}} = 1 AND {{Discharge Air Flow Exists}} = 1 AND {{Discharge Air Flow SP Exists}} = 1 AND {{Discharge Air Damper Exists}} = 1,3,4,"During occupied hours, the unit's damper is commanded to its minimum position, but the unit is exceeding its flow setpoint. ","1. Failed damper actuator 
+2. Inaccurate flow sensor
+3. Flow setpoint too low","1. Repair/replace damper actuator
+2. Recalibrate/replace flow sensor
+3. Ensure flow setpoint is within capacity of unit"
+126,VAV,"hvac,vav,equip",Failed Open Heating Water Valve,{{Occupied Hours}} = 1 AND {{Mech Heating Off}} = 1 AND {{Heating Proof On}} = 1,{{Occupied Hours}} = 1 AND {{Mech Heating Exists}} = 1 AND {{Discharge Air Temp Exists}} = 1,4,2,"The unit is on and its heating water valve is commanded closed, but the valve sensor or temperatures across the valve indicate that heating is being done. ","1. Mechanically failed valve actuator
+2. Inaccurate valve or temperature sensors","1. Repair/replace valve actuator
+2. Recalibrate/replace sensor(s)"
+127,VAV,"hvac,vav,equip",Failed Sensor - CO2,{{Failed Sensor - CO2}} = 1,{{Zone Air CO2 Exists}} = 1,3,3,"The sensor is reading outside of the expected range. ",1. Sensor out of calibration,1. Recalibrate/replace sensor
+128,VAV,"hvac,vav,equip",Failed Sensor - Discharge Air Temperature,{{Failed Sensor - Discharge Air Temp}} = 1,{{Discharge Air Temp Exists}} = 1,3,4,"The sensor is reading outside of the expected range. ",1. Sensor out of calibration,1. Recalibrate/replace sensor
+129,VAV,"hvac,vav,equip",Failed Sensor - Zone Air Temperature,{{Failed Sensor - Zone Air Temp}} = 1,{{Zone Air Temp Exists}} = 1,3,4,"The sensor is reading outside of the expected range. ",1. Sensor out of calibration,1. Recalibrate/replace sensor
+130,VAV,"hvac,vav,equip",High Discharge Air Temperature Setpoint,{{Discharge Air Temp SP Too Hot}} = 1,{{Discharge Air Temp SP Exists}} = 1,4,4,"The unit's discharge air temperature setpoint is higher than desired. ",1. Control logic,1. Set discharge air temperature setpoint to a lower value
+131,VAV,"hvac,vav,equip",High Occupied Heating Setpoint,{{Occupied Hours}} = 1 AND {{Zone Air Temp Occ Heating SP Too Hot}} = 1,{{Occupied Hours}} = 1 AND {{Zone Air Temp Occ Heating SP Exists}} = 1,4,4,The unit's occupied heating setpoint is higher than desired.,1. Control logic,1. Set occupied heating setpoint to a lower value
+132,VAV,"hvac,vav,equip",High Unoccupied Heating Setpoint,{{Unoccupied Hours}} = 1 AND {{Zone Air Temp Unocc Heating SP Too Hot}} = 1,{{Unoccupied Hours}} = 1 AND {{Zone Air Temp Unocc Heating SP Exists}} = 1,4,4,The unit's unoccupied heating setpoint is higher than desired.,1. Control logic,1. Set unoccupied heating setpoint to a lower value
+133,VAV,"hvac,vav,equip",Ineffective Heating,{{Occupied Hours}} = 1 AND {{Mech Heating On}} = 1 AND {{Zone Air Temp Too Cold}} = 1,{{Occupied Hours}} = 1 AND {{Mech Heating Exists}} = 1 AND {{Zone Air Temp Exists}} = 1 AND {{Zone Air Temp Occ Heating SP Exists}} = 1,2,4,"The unit is on and heating, but the zone air temperature is still too cold. ","1. Fouled heating coil tubes
+2. Water to heating coil not being heated sufficiently
+3. Inaccurate zone air  temperature sensor
+4. Zone air temperature setpoint set too high","1. Clean heating coil
+2. Resolve water heating issues
+3. Recalibrate/replace zone air temperature sensor
+4. Adjust zone air temperature setpoint"
+134,VAV,"hvac,vav,equip",Low Occupied Cooling Setpoint,{{Occupied Hours}} = 1 AND {{Zone Air Temp Occ Cooling SP Too Cold}} = 1,{{Occupied Hours}} = 1 AND {{Zone Air Temp Occ Cooling SP Exists}} = 1,3,4,The unit's occupied cooling setpoint is lower than desired.,1. Control logic,1. Set occupied cooling setpoint to a higher value
+135,VAV,"hvac,vav,equip",Low Unoccupied Cooling Setpoint,{{Unoccupied Hours}} = 1 AND {{Zone Air Temp Unocc Cooling SP Too Cold}} = 1,{{Unoccupied Hours}} = 1 AND {{Zone Air Temp Unocc Cooling SP Exists}} = 1,3,2,The unit's unoccupied cooling setpoint is lower than desired.,1. Control logic,1. Set unoccupied cooling setpoint to a higher value
+136,VAV,"hvac,vav,equip",Manual Override - Heating Coil Valve,{{Occupied Hours}} = 1 AND (({{Discharge Air Temp Too Hot}} = 1 AND {{Mech Heating On}} = 1) OR ({{Discharge Air Temp Too Cold}} = 1 AND {{Mech Heating Off}} = 1)),{{Occupied Hours}} = 1 AND {{Mech Heating Exists}} = 1 AND {{Discharge Air Temp Exists}} = 1 AND {{Discharge Air Temp SP Exists}} = 1,4,4,"The unit is operating and not heating when the discharge temperature is lower than setpoint or heating when the discharge temperature is higher than setpoint. ","1. Heating coil valve manually overridden
+2. Poor heating coil valve control","1. Release override
+2. Tune heating coil PID loop"
+137,VAV,"hvac,vav,equip",Over Cooling,{{Occupied Hours}} = 1 AND {{Discharge Air Damper Above Minimum}} = 1 AND {{Mech Heating Off}} = 1 AND {{Zone Air Temp Too Cold}} = 1,{{Occupied Hours}} = 1 AND {{Discharge Air Damper Exists}} = 1 AND {{Mech Heating Exists}} = 1 AND {{Zone Air Temp Exists}} = 1 AND {{Zone Air Temp Occ Cooling SP Exists}} = 1,4,3,"The unit's damper is above minimum position while the zone air temperature is too cold. ","1. Damper manually overridden
+2. Inaccurate zone air  temperature sensor
+3. Zone air temperature setpoint set too high","1. Release override
+2. Recalibrate/replace zone air temperature sensor
+3. Adjust zone air temperature setpoint"
+138,VAV,"hvac,vav,equip",Overflowing Air Damper - Controls,{{Occupied Hours}} = 1 AND {{Discharge Air Damper At Maximum}} = 1 AND {{Excess Flow}} = 1,{{Occupied Hours}} = 1 AND {{Discharge Air Flow Exists}} = 1 AND {{Discharge Air Flow SP Exists}} = 1 AND {{Discharge Air Damper Exists}} = 1,4,3,"The unit's damper is fully open when the discharge air flow is higher than setpoint. ","1. Damper position manually overridden
+2. Poor damper control","1. Release override
+2. Tune damper PID loop"
+139,VAV,"hvac,vav,equip",Overflowing Air Damper - Mechanical,{{Occupied Hours}} = 1 AND {{Discharge Air Damper At Minimum}} = 1 AND {{Excess Flow}} = 1,{{Occupied Hours}} = 1 AND {{Discharge Air Flow Exists}} = 1 AND {{Discharge Air Flow SP Exists}} = 1 AND {{Discharge Air Damper Exists}} = 1,4,3,"The unit's damper is at minimum position when the discharge air flow is higher than setpoint. ","1. Mechanically failed damper actuator
+2. Inaccurate discharge flow sensor","1. Repair/replace damper actuator
+2. Recalibrate/replace flow sensor"
+140,VAV,"hvac,vav,equip",Reversed Airflow Sensor Tubes,{{Occupied Hours}} = 1 AND {{Deficit Flow}} = 1 AND {{Discharge Air Damper At Maximum}} = 1 AND {{Negative Discharge Air Flow}} = 1,{{Occupied Hours}} = 1 AND {{Discharge Air Flow Exists}} = 1 AND {{Discharge Air Flow SP Exists}} = 1 AND {{Discharge Air Damper Exists}} = 1,3,2,The unit's discharge air flow sensor is reading negative values.,"1. Reversed air flow sensor tubes
+2. Inaccurate air flow sensor","1. Correct reversed tubes
+2. Recalibrate/replace air flow sensor"
+141,VAV,"hvac,vav,equip",Under Cooling,{{Occupied Hours}} = 1 AND {{Discharge Air Damper Below Maximum}} = 1 AND {{Zone Air Temp Too Hot}} = 1,{{Occupied Hours}} = 1 AND {{Discharge Air Damper Exists}} = 1 AND {{Zone Air Temp Exists}} = 1 AND {{Zone Air Temp Occ Cooling SP Exists}} = 1,3,4,"The unit is running with the damper below maximum position and the zone air temperature is above setpoint. ","1. Damper position manually overridden
+2. Poor damper control
+3. Inaccurate zone air temperature sensor
+4. Zone air temperature setpoint too low
+5. Unit is undersized for load","1. Release override
+2. Tune damper PID loop
+3. Recalibrate/replace zone air temperature sensor
+4. Adjust zone air temperature setpoint"
+142,VAV,"hvac,vav,equip",Underflowing Air Damper - Controls,{{Occupied Hours}} = 1 AND {{Discharge Air Damper Below Maximum}} = 1 AND {{Deficit Flow}} = 1,{{Occupied Hours}} = 1 AND {{Discharge Air Flow Exists}} = 1 AND {{Discharge Air Flow SP Exists}} = 1 AND {{Discharge Air Damper Exists}} = 1,4,3,"The unit's damper is not fully open when the discharge air flow is lower than setpoint. ","1. Damper position manually overridden
+2. Poor damper control","1. Release override
+2. Tune damper PID loop"
+143,VAV,"hvac,vav,equip",Underflowing Air Damper - Mechanical,{{Occupied Hours}} = 1 AND {{Discharge Air Damper At Maximum}} = 1 AND {{Deficit Flow}} = 1,{{Occupied Hours}} = 1 AND {{Discharge Air Flow Exists}} = 1 AND {{Discharge Air Flow SP Exists}} = 1 AND {{Discharge Air Damper Exists}} = 1,4,3,"The unit's damper is at maximum position when the discharge air flow is lower than setpoint. ","1. Mechanically failed damper actuator
+2. Inaccurate discharge flow sensor","1. Repair/replace damper actuator
+2. Recalibrate/replace flow sensor"

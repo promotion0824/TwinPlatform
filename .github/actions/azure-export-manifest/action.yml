@@ -1,0 +1,100 @@
+name: Azure Export Manifest
+description: Update the manifest file with the correct values
+
+inputs:
+  environment:
+    description: Deployment environment (Prod/NonProd)
+    default: 'prod'
+  name:
+    description: Name of the rules engine
+    default: 'willow-rules-engine-non-prod'
+  code:
+    description: Code of the rules engine
+    default: 'rulesn'
+  authority:
+    description: Authority of the rules engine
+    required: true
+  source:
+    description: Relative path to source manifest file
+    default: applications/RulesEngine/willow-rules-engine.json
+  target:
+    description: Relative path to target manifest file
+    default: applications/RulesEngine/output-willow-rules-engine.json
+  appid:
+    description: AppId of the B2C application
+    required: true
+  clientid:
+    description: ClientId of the B2C application
+    required: true
+  clientsecret:
+    description: Client Secret of the application
+    required: true
+  issuer:
+    description: Issuer for the B2C tenant
+    required: true
+  tenantid:
+    description: TenantId of the B2C tenant
+    required: true
+  domain:
+    description: FQDN of the B2C tenant
+    required: true
+  audience:
+    description: Audience guid of the B2C tenant
+    required: true
+  instance:
+    description: URL of the B2C tenant domain
+    required: true
+  b2cscope:
+    description: B2CScope for 'Rules'
+    required: true
+  appInsightsWorkspace:
+    description: AppInsightsWorkspace of the rules engine
+    required: true
+  appInsightsWorkspaceId:
+    description: AppInsightsWorkspaceId of the rules engine
+    required: true
+  buildNumber:
+    description: BuildNumber
+    required: true
+
+runs:
+  using: composite
+  steps:
+  - name: Stamp manifest file with version numbers
+    shell: bash
+    run: |
+      cp ${{ inputs.source }} ${{ inputs.target }}
+
+      sed -i -E "s|(version\": \")([0-9]+\.[0-9]+\.[0-9]+)(\")|\1${{ inputs.BuildNumber }}\3|" ${{ inputs.target }}
+      sed -i -E "s|(image\":.*:)([0-9]+\.[0-9]+\.[0-9]+)(\")|\1${{ inputs.BuildNumber }}\3|" ${{ inputs.target }}
+      sed -i -E "s|(name\": \")(willow-rules-engine)(\")|\1${{ inputs.name }}\3|" ${{ inputs.target }}
+      sed -i -E "s|(code\": \")(rulesz)(\")|\1${{ inputs.code }}\3|" ${{ inputs.target }}
+
+      sed -i -E "s|(\"RULES_AZUREAPPLICATION__APPID\": \")([^\"]+)(\")|\1${{ inputs.appid }}\3|" ${{ inputs.target }}
+      sed -i -E "s|(\"RULES_AZUREAPPLICATION__CLIENTID\": \")([^\"]+)(\")|\1${{ inputs.clientid }}\3|" ${{ inputs.target }}
+      sed -i -E "s|(\"RULES_AZUREADB2C__CLIENTID\": \")([^\"]+)(\")|\1${{ inputs.clientid }}\3|" ${{ inputs.target }}
+
+      sed -i -E "s|(\"RULES_AZUREADB2C__CLIENTSECRET\": \")([^\"]+)(\")|\1${{ inputs.clientsecret }}\3|" ${{ inputs.target }}
+      sed -i -E "s|(\"RULES_AZUREAPPLICATION__CLIENTSECRET\": \")([^\"]+)(\")|\1${{ inputs.clientsecret }}\3|" ${{ inputs.target }}
+
+      sed -i -E "s|(\"RULES_AZUREAPPLICATION__AUTHORITY\": \")([^\"]+)(\")|\1${{ inputs.authority }}\3|" ${{ inputs.target }}
+      sed -i -E "s|(\"RULES_AZUREADB2C__AUTHORITY\": \")([^\"]+)(\")|\1${{ inputs.authority }}\3|" ${{ inputs.target }}
+      sed -i -E "s|(\"RULES_JWT__AUTHORITY\": \")([^\"]+)(\")|\1${{ inputs.authority }}\3|" ${{ inputs.target }}
+
+      sed -i -E "s|(\"RULES_AZUREAPPLICATION__TENANTID\": \")([^\"]+)(\")|\1${{ inputs.tenantid }}\3|" ${{ inputs.target }}
+      sed -i -E "s|(\"RULES_AZUREADB2C__TENANTID\": \")([^\"]+)(\")|\1${{ inputs.tenantid }}\3|" ${{ inputs.target }}
+
+      sed -i -E "s|(\"RULES_JWT__ISSUER\": \")([^\"]+)(\")|\1${{ inputs.issuer }}\3|"  ${{ inputs.target }}
+
+      sed -i -E "s|(\"RULES_JWT__AUDIENCE\": \")([^\"]+)(\")|\1${{ inputs.audience }}\3|" ${{ inputs.target }}
+      sed -i -E "s|(\"RULES_AZUREADB2C__AUDIENCE\": \")([^\"]+)(\")|\1${{ inputs.audience }}\3|" ${{ inputs.target }}
+
+      sed -i -E "s|(\"RULES_AZUREAPPLICATION__B2CSCOPES__0\": \")([^\"]+)(\")|\1${{ inputs.b2cscope }}\3|" ${{ inputs.target }}
+
+      sed -i -E "s|(\"RULES_AZUREADB2C__DOMAIN\": \")([^\"]+)(\")|\1${{ inputs.domain }}\3|" ${{ inputs.target }}
+      sed -i -E "s|(\"RULES_AZUREADB2C__INSTANCE\": \")([^\"]+)(\")|\1${{ inputs.instance }}\3|" ${{ inputs.target }}
+
+      sed -i -E "s|(\"RULES_APPINSIGHTSAPI__WORKSPACENAME\": \")([^\"]+)(\")|\1${{ inputs.appInsightsWorkspace }}\3|" ${{ inputs.target }}
+      sed -i -E "s|(\"RULES_APPINSIGHTSAPI__WORKSPACEID\": \")([^\"]+)(\")|\1${{ inputs.appInsightsWorkspaceId }}\3|" ${{ inputs.target }}
+
+      echo Updated version numbers in ${{ inputs.target }} for ${{ inputs.BuildNumber }}

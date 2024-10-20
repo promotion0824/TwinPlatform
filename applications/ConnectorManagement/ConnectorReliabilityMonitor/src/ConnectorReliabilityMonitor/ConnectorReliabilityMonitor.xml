@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Willow.ConnectorReliabilityMonitor</name>
+    </assembly>
+    <members>
+        <member name="M:Willow.ConnectorReliabilityMonitor.MetricsAggregatorWorker.ExecuteAsync(System.Threading.CancellationToken)">
+            <summary>
+            Executes the asynchronous task to fetch list of connectors and execute ADX queries.
+            </summary>
+            <param name="stoppingToken">The cancellation token to stop the execution.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous operation.</returns>
+        </member>
+        <member name="T:Willow.ConnectorReliabilityMonitor.Models.HealthMetricKey">
+            <summary>
+            Defines keys for health metrics.
+            </summary>
+        </member>
+        <member name="F:Willow.ConnectorReliabilityMonitor.Models.HealthMetricKey.LastSuccessfullQueryTime">
+            <summary>
+            The last successful query time.
+            </summary>
+        </member>
+        <member name="F:Willow.ConnectorReliabilityMonitor.Models.HealthMetricKey.ConnectorEnabledCount">
+            <summary>
+            Number of connectors enabled.
+            </summary>
+        </member>
+    </members>
+</doc>

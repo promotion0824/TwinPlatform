@@ -1,0 +1,63 @@
+name: "IoT Edge Deployment Dashboard"
+
+on:
+  push:
+    branches:
+      - main
+      - "release/**"
+    paths:
+      - applications/EdgeDeploymentDashboard/Willow.IoTService.DependencyInjection/**
+      - applications/EdgeDeploymentDashboard/Willow.IoTService.Deployment/**
+      - applications/EdgeDeploymentDashboard/Willow.IoTService.Deployment.Dashboard/**
+      - applications/EdgeDeploymentDashboard/Willow.IoTService.WebApiErrorHandling/**
+
+  pull_request:
+    branches:
+      - main
+    paths:
+      - applications/EdgeDeploymentDashboard/Willow.IoTService.DependencyInjection/**
+      - applications/EdgeDeploymentDashboard/Willow.IoTService.Deployment/**
+      - applications/EdgeDeploymentDashboard/Willow.IoTService.Deployment.Dashboard/**
+      - applications/EdgeDeploymentDashboard/Willow.IoTService.WebApiErrorHandling/**
+
+  workflow_dispatch:
+    inputs:
+      pushToDevAcr:
+        type: boolean
+        description: Push Docker image to Dev ACR
+        default: true
+      pushToPrdAcr:
+        type: boolean
+        description: Promote Docker image to Prod ACR
+        default: false
+
+env:
+  projectPath: applications/EdgeDeploymentDashboard/Willow.IoTService.Deployment.Dashboard
+  srcProjectDir: Willow.IoTService.Deployment.Dashboard
+  testProjectDir: Willow.IoTService.Deployment.Dashboard.Application.Tests
+  productName: iot-services
+  imageName: edge-deployment-dashboard
+
+jobs:
+  build:
+    name: Build, Test and Publish
+    runs-on: ubuntu-latest
+    steps:
+      - uses: WillowInc/TwinPlatform/.github/actions/docker/build_push_gitversioning@main
+        name: Build and Push Docker Image
+        with:
+          botToken: ${{ secrets.SVC_BOT_TOKEN }}
+          clientId: ${{ vars.CLIENT_ID }}
+          clientSecret: ${{ secrets.CLIENT_SECRET }}
+          directoryBuildPropsPath: .config/common.props
+          dockerfile: ${{ env.projectPath }}/${{ env.srcProjectDir }}/Dockerfile
+          dockerContext: ${{ github.workspace }}
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          imageName: ${{ env.productName }}/${{ env.imageName }}
+          infraProjectPath: Applications/EdgeDeploymentDashboard
+          nonProdAcrClientId: ${{ vars.NONPROD_ACR_CLIENT_ID }}
+          nonProdAcrClientSecret: ${{ secrets.NONPROD_ACR_CLIENT_SECRET }}
+          prodAcrClientId: ${{ vars.PROD_ACR_CLIENT_ID }}
+          prodAcrClientSecret: ${{ secrets.PROD_ACR_CLIENT_SECRET }}
+          productName: ${{ env.productName }}
+          tenantId: ${{ vars.TENANT_ID_WILLOWINC }}

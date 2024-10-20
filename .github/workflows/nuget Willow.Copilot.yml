@@ -1,0 +1,32 @@
+name: "Nuget Willow.Copilot"
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - libraries/Willow.Copilot/Willow.Copilot.ProxyAPI/**
+  pull_request:
+    branches:
+      - main
+    paths:
+      - libraries/Willow.Copilot/Willow.Copilot.ProxyAPI/**
+
+env:
+  buildConfiguration: Release
+  srcProjectDir: "libraries/Willow.Copilot/Willow.Copilot.ProxyAPI"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Nuget Build and Push action
+        uses: WillowInc/.github/.github/actions/nuget-build-push@main
+        with:
+          buildConfiguration: ${{ env.buildConfiguration}}
+          srcProjectDir: ${{ env.srcProjectDir}}
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          pushPackages: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch'}}
+          directoryBuildPropPath: ${{ github.workspace }}/.config/common.props

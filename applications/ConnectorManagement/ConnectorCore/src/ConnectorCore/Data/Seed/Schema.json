@@ -1,0 +1,182 @@
+[
+  {
+    "Id": "41cfe979-4b56-40f4-8aab-0292d2f96bb2",
+    "Name": "DefaultOpcUaConnectorConfiguration",
+    "ClientId": null,
+    "Type": null
+  },
+  {
+    "Id": "8e3de645-3c5c-443f-afd8-27e90f64c9a7",
+    "Name": "DefaultChipkinConnectorConfiguration",
+    "ClientId": null,
+    "Type": null
+  },
+  {
+    "Id": "203c392f-bb84-456c-aca9-2ab7af7f6595",
+    "Name": "DefaultOpcUaPointMetadata",
+    "ClientId": null,
+    "Type": null
+  },
+  {
+    "Id": "3d0dfd33-2954-42ab-b8a4-2faddd185c22",
+    "Name": "DefaultModbusPointMetadata",
+    "ClientId": null,
+    "Type": null
+  },
+  {
+    "Id": "8e5f3305-4bf9-4b14-b510-30713fc8a10b",
+    "Name": "DefaultOpcDaConnectorConfiguration",
+    "ClientId": null,
+    "Type": null
+  },
+  {
+    "Id": "86cb421a-bd47-4d09-b78e-3ed88976d9b9",
+    "Name": "DefaultBACnetPointMetadata",
+    "ClientId": null,
+    "Type": null
+  },
+  {
+    "Id": "7c2807f4-8868-4327-a960-4805edd775e9",
+    "Name": "DefaultChipkinScanConfiguration",
+    "ClientId": null,
+    "Type": null
+  },
+  {
+    "Id": "3299f0db-865d-4737-9f1e-4879586b5f1e",
+    "Name": "DefaultPointgrabPointMetadata",
+    "ClientId": null,
+    "Type": null
+  },
+  {
+    "Id": "e73e8e7a-bd79-4813-acff-51c8e51500a3",
+    "Name": "DefaultSiemensConnectorConfiguration",
+    "ClientId": null,
+    "Type": null
+  },
+  {
+    "Id": "429549f2-ebbe-44a0-b4ce-5cfe070c1258",
+    "Name": "DefaultStreamAnalyticsDeviceMetadata",
+    "ClientId": null,
+    "Type": null
+  },
+  {
+    "Id": "82928b99-10f6-4ad7-ba20-6e20a21291af",
+    "Name": "DefaultStreamAnalyticsPointMetadata",
+    "ClientId": null,
+    "Type": null
+  },
+  {
+    "Id": "30b72f42-e586-4ce1-a5f0-6f5c4a6d79e6",
+    "Name": "DefaultVergeSenseConnectorConfiguration",
+    "ClientId": null,
+    "Type": null
+  },
+  {
+    "Id": "5435c70d-4706-4a06-90d8-7198c215aeb9",
+    "Name": "DefaultStreamAnalyticsConnectorConfiguration",
+    "ClientId": null,
+    "Type": null
+  },
+  {
+    "Id": "0d5608fa-e06f-4beb-ac13-8a5f83fc3a5a",
+    "Name": "DefaultBACnetDeviceMetadata",
+    "ClientId": null,
+    "Type": null
+  },
+  {
+    "Id": "c5d57621-eaa6-4151-b956-900ff514c4ef",
+    "Name": "DefaultPointgrabDeviceMetadata",
+    "ClientId": null,
+    "Type": null
+  },
+  {
+    "Id": "0f086c54-6e01-4962-87e6-9769af7ad83a",
+    "Name": "DefaultSiemensDeviceMetadata",
+    "ClientId": null,
+    "Type": null
+  },
+  {
+    "Id": "5ec236a7-ddd7-468b-9bd9-a7ff0b6929c7",
+    "Name": "DefaultVergeSenseDeviceMetadata",
+    "ClientId": null,
+    "Type": null
+  },
+  {
+    "Id": "d4952c64-73c5-4e67-893f-b5227c73fe2b",
+    "Name": "DefaultModbusDeviceMetadata",
+    "ClientId": null,
+    "Type": null
+  },
+  {
+    "Id": "4f0e0d97-3ddf-49db-b114-b55bfb077fa4",
+    "Name": "DefaultSiemensPointMetadata",
+    "ClientId": null,
+    "Type": null
+  },
+  {
+    "Id": "d95c7d29-639c-4593-b5de-bc4af13ab650",
+    "Name": "DefaultPointgrabConnectorConfiguration",
+    "ClientId": null,
+    "Type": null
+  },
+  {
+    "Id": "62bf7d1b-b932-4e79-ba1d-c242a230ba3c",
+    "Name": "DefaultMarketplaceConnectorDeviceMetadata",
+    "ClientId": null,
+    "Type": null
+  },
+  {
+    "Id": "21e52a57-1dcf-4c13-a0f8-c65b2f2b99d2",
+    "Name": "DefaultModbusConnectorConfiguration",
+    "ClientId": null,
+    "Type": null
+  },
+  {
+    "Id": "e51b3861-4d11-4cef-9db6-d0189030178a",
+    "Name": "DefaultVergeSensePointMetadata",
+    "ClientId": null,
+    "Type": null
+  },
+  {
+    "Id": "38cf1f48-0b28-4790-bae7-d43c948fce7a",
+    "Name": "DefaultBACnetConnectorConfiguration",
+    "ClientId": null,
+    "Type": null
+  },
+  {
+    "Id": "0d6b389d-2a56-4fff-8921-e71bfb022d8f",
+    "Name": "DefaultMarketplacePointMetadata",
+    "ClientId": null,
+    "Type": null
+  },
+  {
+    "Id": "d103a025-9270-4ba2-9e74-ec8f19379d40",
+    "Name": "DefaultMarketplaceScanConfiguration",
+    "ClientId": null,
+    "Type": null
+  },
+  {
+    "Id": "6fa46e15-af91-4564-adfd-ed90869377aa",
+    "Name": "DefaultOpcUaDeviceMetadata",
+    "ClientId": null,
+    "Type": null
+  },
+  {
+    "Id": "cc26f6ce-25f9-426f-8617-ef98eac0ba03",
+    "Name": "DefaultOpcDaDeviceMetadata",
+    "ClientId": null,
+    "Type": null
+  },
+  {
+    "Id": "701a5962-5c7c-4d85-ba59-f5a843f36a84",
+    "Name": "DefaultMarketplaceConnectorConfiguration",
+    "ClientId": null,
+    "Type": null
+  },
+  {
+    "Id": "b6270aa7-294c-411c-94c8-ff2cd1c8268f",
+    "Name": "DefaultOpcDaPointMetadata",
+    "ClientId": null,
+    "Type": null
+  }
+]

@@ -1,0 +1,66 @@
+{
+  "TextSplitSkillRequest": {
+    "name": "Document Split Skill",
+    "description": "Split skill to chunk documents.",
+    "context": "/document",
+    "defaultLanguageCode": "en",
+    "textSplitMode": "pages",
+    "maximumPageLength": 2000,
+    "PageOverlapLength": 200,
+    "inputs": [
+      {
+        "name": "text",
+        "source": "/document/content"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "textItems",
+        "targetName": "pages"
+      }
+    ]
+  },
+  "OpenAIEmbeddingSkillRequest": {
+    "name": "Open AI Embedding Skill",
+    "description": "Azure OpenAI Embedding skill to generate embeddings.",
+    "context": "/document/pages/*",
+    "inputs": [
+      {
+        "name": "text",
+        "source": "/document/pages/*"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "embedding",
+        "targetName": "vector"
+      }
+    ]
+  },
+  "IndexProjectionSelector": {
+    "parentKeyFieldName": "GroupId",
+    "sourceContext": "/document/pages/*",
+    "mappings": [
+      {
+        "name": "Content",
+        "source": "/document/pages/*"
+      },
+      {
+        "name": "ContentVector",
+        "source": "/document/pages/*/vector"
+      },
+      {
+        "name": "Title",
+        "source": "/document/metadata_storage_name"
+      },
+      {
+        "name": "Uri",
+        "source": "/document/metadata_storage_path"
+      },
+      {
+        "name": "DocLastUpdateTime",
+        "source": "/document/metadata_storage_last_modified"
+      }
+    ]
+  }
+}

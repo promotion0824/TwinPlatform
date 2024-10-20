@@ -1,0 +1,9 @@
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: realestate-components
+  title: Realestate Components
+  description: A collection for realestate components
+spec:
+  targets:
+    - ../extensions/real-estate/back-end/SiteCore/backstage-components/sitecore-backstage.yaml

@@ -1,0 +1,83 @@
+trigger: none
+
+pr:
+  branches:
+    include:
+      - main
+      - feature/rulesengine
+  paths:
+    include:
+      - applications/RulesEngine/*
+
+pool:
+  vmImage: "ubuntu-latest"
+
+variables:
+  buildConfiguration: "Release"
+  buildClientApp: false
+
+jobs:
+  - job: build_and_test_C_sharp
+    displayName: 'Build Rules Engine and run tests'
+
+    steps:
+      - task: UseDotNet@2
+        displayName: "Use dotnet sdk 8.x"
+        inputs:
+          version: 8.x
+          includePreviewVersions: false
+
+      # NuGet Authentication (safety step, normally not required as all within the same organization/project)
+      - task: NuGetAuthenticate@1
+        displayName: "Nuget Authentication"
+
+        # Secrets must be passed in env not directly
+
+      - task: Bash@3
+        displayName: 'Add Github credentials to Nuget config'
+        env:
+          GITHUBPAT: ${githubpat}
+        inputs:
+          targetType: 'inline'
+          script: |
+            dotnet nuget remove source WillowGithub --configfile applications/RulesEngine/nuget.config
+            dotnet nuget add source --store-password-in-clear-text --username pat --password "$(GITHUBPAT)" --name WillowGithub "https://nuget.pkg.github.com/willowinc/index.json" --configfile applications/RulesEngine/nuget.config
+
+      - task: DotNetCoreCLI@2
+        inputs:
+          command: "build"
+          arguments: "applications/RulesEngine/RulesEngine.Processor/RulesEngine.Processor.csproj --configuration $(buildConfiguration)"
+        displayName: "Build Processor"
+
+      - task: DotNetCoreCLI@2
+        inputs:
+          command: "build"
+          arguments: "applications/RulesEngine/RulesEngine.Web/RulesEngine.Web.csproj --configuration $(buildConfiguration)"
+        displayName: "Build Web Host"
+
+      - task: DotNetCoreCLI@2
+        inputs:
+          command: test
+          projects: "applications/RulesEngine/*Test/*.csproj"
+          arguments: "--configuration $(buildConfiguration)"
+        displayName: "Run tests"
+
+  - job: build_and_test_react
+    condition: eq(variables.buildClientApp, 'true')
+    displayName: 'Build and test web react'
+
+    steps:
+      - task: NodeTool@0
+        condition: eq(variables.buildClientApp, 'true')
+        inputs:
+          versionSpec: "16.x"
+
+      - script: npm install
+        condition: eq(variables.buildClientApp, 'true')
+        workingDirectory: applications/RulesEngine/RulesEngine.Web/ClientApp
+        displayName: "npm install"
+
+      - script: npm run build
+        condition: eq(variables.buildClientApp, 'true')
+        workingDirectory: applications/RulesEngine/RulesEngine.Web/ClientApp
+        displayName: "npm run build"

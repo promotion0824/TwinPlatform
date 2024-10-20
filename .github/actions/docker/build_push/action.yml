@@ -1,0 +1,194 @@
+name: Docker Build and Push
+description: Build docker image and push to ACR
+
+inputs:
+  botToken:
+    description: Bot Token for the SVC bot
+    required: true
+  containerAppName:
+    description: Name of the ACA container app
+    required: false
+  clientId:
+    description: Client ID of service principal with access to the acr
+    required: true
+  clientSecret:
+    description: Client Secret of service principal with access to the acr
+    required:
+      true
+  dockerfile:
+    description: Dockerfile
+    required: true
+  dockerContext:
+    description: Docker context path
+    default: '.'
+  gitHubToken:
+    description: GitHub PAT
+    required: true
+  imageName:
+    description: Image Name
+    required: true
+  infraProjectPath:
+    description: Path to the application directory in IAD repo
+    required: false
+  majorVersion:
+    description: Major version
+    required: false
+    default: 1
+  nonProdAcrClientId:
+    description: Non-Prod ACR Client ID
+    required: true
+  nonProdAcrClientSecret:
+    description: Non-Prod ACR Client Secret
+    required: true
+  prodAcrClientId:
+    description: Non-Prod ACR Client ID
+    required: true
+  prodAcrClientSecret:
+    description: Non-Prod ACR Client Secret
+    required: true
+  productName:
+    description: Product Name
+    required: true
+  tenantId:
+    description: Tenant ID of service principal with access to the acr service
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - uses: actions/checkout@v4
+      name: Checkout
+
+    - name: Setup build number
+      shell: bash
+      id: BuildVersion
+      run: |
+        versionFull=${{ inputs.majorVersion }}.${{ github.run_number }}
+        echo "BuildNumber=$versionFull" >> $GITHUB_STEP_SUMMARY
+        echo "BuildNumber=$versionFull" >> $GITHUB_OUTPUT
+
+    - name: Add Authenticated Github Nuget Source
+      shell: bash
+      run: |
+        dotnet nuget remove source WillowGithub
+        dotnet nuget add source "https://nuget.pkg.github.com/WillowInc/index.json" --name WillowGithub --username gh --password ${{ inputs.gitHubToken }} --store-password-in-clear-text --configfile ./NuGet.Config
+
+    - name: Evaluate Push
+      id: evaluate-push
+      shell: pwsh
+      run: |
+        # only don't push to ACRs if manually triggered and pushToDevAcr is false
+        # if not manually triggered then always push to ACRs
+
+        $pushToDevAcr = 'true'
+        If ( '${{ github.event_name }}' -eq 'workflow_dispatch') { $pushToDevAcr = '${{ github.event.inputs.pushToDevAcr }}' }
+        write-output "pushToDevAcr=$pushToDevAcr" >> $Env:GITHUB_STEP_SUMMARY
+        write-output "pushToDevAcr=$pushToDevAcr" >> $Env:GITHUB_OUTPUT
+
+        # only push to prd acr when build from release branch
+        $pushToPrdAcr = 'false'
+        If ('${{ github.ref }}' -like 'refs/heads/release/*') {
+          $pushToPrdAcr = 'true'
+        }
+
+        If ('${{ github.event_name }}' -eq 'workflow_dispatch') {
+          $pushToPrdAcr = '${{ github.event.inputs.pushToPrdAcr }}'
+        }
+
+        write-output "pushToPrdAcr=$pushToPrdAcr" >> $Env:GITHUB_STEP_SUMMARY
+        write-output "pushToPrdAcr=$pushToPrdAcr" >> $Env:GITHUB_OUTPUT
+
+    - name: Login to Single Tenant Dev ACR
+      uses: docker/login-action@v2
+      with:
+        registry: crwildevshared01.azurecr.io
+        username: ${{ inputs.nonProdAcrClientId }}
+        password: ${{ inputs.nonProdAcrClientSecret }}
+
+    - name: Login to Single Tenant Prod ACR
+      uses: docker/login-action@v2
+      with:
+        registry: crwilprdshared01.azurecr.io
+        username: ${{ inputs.prodAcrClientId }}
+        password: ${{ inputs.prodAcrClientSecret }}
+
+    - name: Login to NonProd ACR
+      uses: docker/login-action@v2
+      with:
+        registry: nonprodplatformsharedcr.azurecr.io
+        username: ${{ inputs.clientId }}
+        password: ${{ inputs.clientSecret }}
+
+    - name: Login to Prod ACR
+      uses: docker/login-action@v2
+      with:
+        registry: prodplatformsharedcr.azurecr.io
+        username: ${{ inputs.clientId }}
+        password: ${{ inputs.clientSecret }}
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+    - name: Docker Build
+      uses: docker/build-push-action@v5
+      with:
+        context: ${{ inputs.dockerContext }}
+        build-args: |
+          VERSION=${{ steps.BuildVersion.outputs.buildNumber }}
+          NUGET_AUTH_TOKEN=${{ inputs.gitHubToken }}
+          NPM_AUTH_TOKEN=${{ inputs.gitHubToken }}
+        file: ${{ inputs.dockerfile }}
+        load: true
+        tags: |
+          crwildevshared01.azurecr.io/${{ inputs.imageName }}:${{ steps.BuildVersion.outputs.BuildNumber }}
+          crwilprdshared01.azurecr.io/${{ inputs.imageName }}:${{ steps.BuildVersion.outputs.BuildNumber }}
+          nonprodplatformsharedcr.azurecr.io/${{ inputs.imageName }}:${{ steps.BuildVersion.outputs.BuildNumber }}
+          nonprodplatformsharedcr.azurecr.io/${{ inputs.imageName }}:latest
+          prodplatformsharedcr.azurecr.io/${{ inputs.imageName }}:${{ steps.BuildVersion.outputs.BuildNumber }}
+          prodplatformsharedcr.azurecr.io/${{ inputs.imageName }}:latest
+
+    - name: Push to NonProd
+      if: ${{ steps.evaluate-push.outputs.pushToDevAcr == 'true' }}
+      shell: bash
+      run: |
+        docker push nonprodplatformsharedcr.azurecr.io/${{ inputs.imageName }}:${{ steps.BuildVersion.outputs.BuildNumber }}
+        docker push nonprodplatformsharedcr.azurecr.io/${{ inputs.imageName }}:latest
+
+    - name: Push to Prod
+      if: ${{ steps.evaluate-push.outputs.pushToPrdAcr == 'true' }}
+      shell: bash
+      run: |
+        docker push prodplatformsharedcr.azurecr.io/${{ inputs.imageName }}:${{ steps.BuildVersion.outputs.BuildNumber }}
+        docker push prodplatformsharedcr.azurecr.io/${{ inputs.imageName }}:latest
+
+    - name: Push to Single Tenant Dev
+      if: ${{ steps.evaluate-push.outputs.pushToDevAcr == 'true' }}
+      shell: bash
+      run: |
+        docker push crwildevshared01.azurecr.io/${{ inputs.imageName }}:${{ steps.BuildVersion.outputs.BuildNumber }}
+
+    - name: Push to Single Tenant Prod
+      if: ${{ steps.evaluate-push.outputs.pushToPrdAcr == 'true' }}
+      shell: bash
+      run: |
+        docker push crwilprdshared01.azurecr.io/${{ inputs.imageName }}:${{ steps.BuildVersion.outputs.BuildNumber }}
+
+    - name: Bump image version (Dev)
+      uses: WillowInc/.github/.github/actions/bump-version@main
+      if: ${{ steps.evaluate-push.outputs.pushToDevAcr == 'true' && (contains(github.ref, 'refs/heads/main') || contains(github.ref, 'refs/heads/release/')) }}
+      with:
+        team-name: ${{ inputs.productName }}
+        project-path: ${{ inputs.infraProjectPath }}
+        image: ${{ inputs.imageName }}:${{ steps.BuildVersion.outputs.BuildNumber }}
+        bot-token: ${{ inputs.botToken }}
+        container-name: ${{ inputs.containerAppName }}
+
+    - name: Bump image version (Prd)
+      uses: WillowInc/.github/.github/actions/bump-version@main
+      if: ${{ steps.evaluate-push.outputs.pushToPrdAcr == 'true' && (contains(github.ref, 'refs/heads/main') || contains(github.ref, 'refs/heads/release/')) }}
+      with:
+        team-name: ${{ inputs.productName }}
+        project-path: ${{ inputs.infraProjectPath }}
+        image: ${{ inputs.imageName }}:${{ steps.BuildVersion.outputs.BuildNumber }}
+        appsettings: "appsettings.prd.json"
+        bot-token: ${{ inputs.botToken }}
+        container-name: ${{ inputs.containerAppName }}

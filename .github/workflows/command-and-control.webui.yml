@@ -1,0 +1,42 @@
+name: "ActiveControl Build"
+
+on:
+  push:
+    branches:
+      - main
+      - release/**
+    paths:
+      - applications/CommandAndControl/**
+      - .github/workflows/command-and-control.webui.yml
+
+  pull_request:
+    branches:
+      - main
+    paths:
+      - applications/CommandAndControl/**
+      - .github/workflows/command-and-control.webui.yml
+
+  workflow_dispatch:
+
+jobs:
+  build_test_docker_push:
+    uses: WillowInc/.github/.github/workflows/Reusable-Build-Test-Docker-Push.yml@main
+    with:
+      path: "applications/CommandAndControl/src/Willow.CommandAndControl"
+      restore_path: "applications/CommandAndControl"
+      test_path: "applications/CommandAndControl/test/Willow.CommandAndControl.Tests"
+      build_configuration: "Release"
+      directoryBuildPropsPath: .config/common.props
+      coverage_thresholds: '0 50'
+      nugetConfigLocation: NuGet.Config
+      containerAppName: command-and-control-web
+      dockerfile: "applications/CommandAndControl/src/Willow.CommandAndControl/Dockerfile"
+      dockerContext: "applications/CommandAndControl/src/Willow.CommandAndControl"
+      imageName: "iot-services/command-and-control-web"
+      infraProjectPath: Applications/CommandAndControl
+      productName: "iot-services"
+      clientId: "empty"
+      npmrcPath: applications/CommandAndControl/src/willow.commandandcontrol.webui.client/.npmrc
+    secrets:
+      githubToken: ${{ secrets.GITHUB_TOKEN }}
+      botToken: ${{ secrets.SVC_BOT_TOKEN }}

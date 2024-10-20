@@ -1,0 +1,48 @@
+﻿{
+  "Id": "7cce88da-6649-4637-872c-7f0481fbaf1c",
+  "Name": "Gateway 1",
+  "CustomerId": "8b242df4-e0fa-4c15-99b4-66597a8d56ae",
+  "SiteId": "6a8cb6ef-f23b-4608-a08b-0b779fd616cb",
+  "Host": "abc123",
+  "IsEnabled": true,
+  "LastHeartbeatTime": "2022-02-28T16:11:50.91Z",
+  "IsOnline": true,
+  "Connectors": [
+    {
+      "Id": "360d2af2-446b-4b1f-bb6f-20af553ea289",
+      "Name": "Connector 1",
+      "ClientId": "8b242df4-e0fa-4c15-99b4-66597a8d56ae",
+      "SiteId": "6a8cb6ef-f23b-4608-a08b-0b779fd616cb",
+      "Configuration": "",
+      "ConnectorTypeId": "5113b3bf-0de6-4a56-818e-7828f938b6fa",
+      "ErrorThreshold": 5,
+      "IsEnabled": true,
+      "IsLoggingEnabled": true,
+      "RegistrationId": "0e1e581e-b47f-432d-bfae-d334eb0a3ded",
+      "RegistrationKey": "91301a50-b347-4846-a6c8-6a060a7079df",
+      "LastImport": null,
+      "LastUpdatedAt": "2022-02-28T16:11:50.809Z",
+      "ConnectionType": "",
+      "PointsCount": 0,
+      "IsArchived": false
+    },
+    {
+      "Id": "116bdce3-4ad1-48ce-9585-4adefa894efa",
+      "Name": "Connector 2",
+      "ClientId": "8b242df4-e0fa-4c15-99b4-66597a8d56ae",
+      "SiteId": "6a8cb6ef-f23b-4608-a08b-0b779fd616cb",
+      "Configuration": "",
+      "ConnectorTypeId": "5113b3bf-0de6-4a56-818e-7828f938b6fa",
+      "ErrorThreshold": 0,
+      "IsEnabled": true,
+      "IsLoggingEnabled": true,
+      "RegistrationId": null,
+      "RegistrationKey": null,
+      "LastImport": null,
+      "LastUpdatedAt": "2022-02-28T16:11:50.809Z",
+      "ConnectionType": "",
+      "PointsCount": 0,
+      "IsArchived": false
+    }
+  ]
+}

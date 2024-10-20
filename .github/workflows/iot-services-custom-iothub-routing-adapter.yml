@@ -1,0 +1,41 @@
+name: Custom IoTHub Routing Adapter
+
+on:
+  push:
+    branches:
+      - main
+      - release/**
+    paths:
+      - applications/IngestionPipeline/CustomIoTHubRoutingAdapter/**
+      - .github/workflows/iot-services-custom-iothub-routing-adapter-build.yml
+
+  pull_request:
+    branches:
+      - main
+    paths:
+      - applications/IngestionPipeline/CustomIoTHubRoutingAdapter/**
+      - .github/workflows/iot-services-custom-iothub-routing-adapter-build.yml
+
+  workflow_dispatch:
+
+jobs:
+  build_test_docker_push:
+    uses: WillowInc/.github/.github/workflows/Reusable-Build-Test-Docker-Push.yml@main
+    with:
+      path: applications/IngestionPipeline/CustomIoTHubRoutingAdapter/src/CustomIoTHubRoutingAdapter
+      restore_path: applications/IngestionPipeline/CustomIoTHubRoutingAdapter
+      test_path: applications/IngestionPipeline/CustomIoTHubRoutingAdapter/test/CustomIoTHubRoutingAdapter.Tests
+      build_configuration: "Release"
+      directoryBuildPropsPath: .config/common.props
+      coverage_thresholds: '0 50'
+      nugetConfigLocation: NuGet.Config
+      containerAppName: custom-iothub-routing-adapter
+      dockerfile: applications/IngestionPipeline/CustomIoTHubRoutingAdapter/src/CustomIoTHubRoutingAdapter/Dockerfile
+      dockerContext: applications/IngestionPipeline/CustomIoTHubRoutingAdapter/src/CustomIoTHubRoutingAdapter
+      imageName: iot-services/custom-iothub-routing-adapter
+      infraProjectPath: Applications/IoTServices.LiveData
+      productName: iot-services
+      clientId: "empty"
+    secrets:
+      githubToken: ${{ secrets.GITHUB_TOKEN }}
+      botToken: ${{ secrets.SVC_BOT_TOKEN }}

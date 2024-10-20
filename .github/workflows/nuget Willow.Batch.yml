@@ -1,0 +1,32 @@
+name: "Nuget Willow.Batch"
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - libraries/Willow.Batch/**
+  pull_request:
+    paths:
+      - libraries/Willow.Batch/**
+
+env:
+  buildConfiguration: Release
+  srcProjectDir: "libraries/Willow.Batch/src"
+  srcTestProjectDir: "libraries/Willow.Batch/test"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Nuget Build and Push action
+        uses: WillowInc/.github/.github/actions/nuget-build-push@main
+        with:
+          buildConfiguration: ${{ env.buildConfiguration}}
+          srcProjectDir: ${{ env.srcProjectDir}}
+          srcTestProjectDir: ${{ env.srcTestProjectDir}}
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          pushPackages: ${{ github.event_name == 'push' }}
+          directoryBuildPropPath: ${{ github.workspace }}/.config/common.props

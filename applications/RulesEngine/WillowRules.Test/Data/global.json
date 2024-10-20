@@ -1,0 +1,28 @@
+{
+  "id": "test",
+  "Name": "macro2",
+  "Expression": [
+    {
+      "Name": "result",
+      "FieldId": "result",
+      "PointExpression": "p1 + p2",
+      "CumulativeSetting": 0
+    }
+  ],
+  "Units": "bar",
+  "Description": "this is a macro.",
+  "IsBuiltIn": false,
+  "VariableType": 0,
+  "Parameters": [
+    {
+      "Name": "p1",
+      "Description": "",
+      "Units": "bar"
+    },
+    {
+      "Name": "p2",
+      "Description": "",
+      "Units": "bar"
+    }
+  ]
+}

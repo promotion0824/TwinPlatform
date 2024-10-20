@@ -1,0 +1,42 @@
+name: "LiveData.Core"
+
+on:
+  push:
+    branches:
+      - main
+      - "release/**"
+    paths:
+      - applications/LiveData/LiveDataCore/**
+      - .github/workflows/livedata.core-build.yml
+
+  pull_request:
+    branches:
+      - main
+    paths:
+      - applications/LiveData/LiveDataCore/**
+      - .github/workflows/livedata.core-build.yml
+
+  workflow_dispatch:
+
+jobs:
+  build_test_docker_push:
+    uses: WillowInc/.github/.github/workflows/Reusable-Build-Test-Docker-Push.yml@main
+    with:
+      path: applications/LiveData/LiveDataCore/src/LiveData.Core
+      restore_path: applications/LiveData/LiveDataCore
+      test_path: applications/LiveData/LiveDataCore/test/LiveData.Core.Tests
+      build_configuration: "Release"
+      directoryBuildPropsPath: .config/common.props
+      coverage_thresholds: '0 50'
+      nugetConfigLocation: NuGet.Config
+      containerAppName: LiveDataCore
+      dockerfile: applications/LiveData/LiveDataCore/src/LiveData.Core/Dockerfile
+      dockerContext: applications/LiveData/LiveDataCore/src/LiveData.Core
+      imageName: iot-services/livedatacore
+      infraProjectPath: Applications/WillowTwin
+      productName: iot-services
+      clientId: "empty"
+      testSql: true
+    secrets:
+      githubToken: ${{ secrets.GITHUB_TOKEN }}
+      botToken: ${{ secrets.SVC_BOT_TOKEN }}

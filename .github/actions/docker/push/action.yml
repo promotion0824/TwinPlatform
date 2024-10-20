@@ -1,0 +1,71 @@
+name: Docker Push
+description: Push docker image to ACR
+
+inputs:
+  dockerfile:
+    description: Dockerfile
+    required: true
+  alwaysPush:
+    description: Force push
+    default: false
+  dockerContext:
+    description: Docker context path
+    default: '.'
+  dockerRegistry:
+    description: Docker registry to push
+    default: 'nonprodplatformsharedcr.azurecr.io' # or prodplatformsharedcr.azurecr.io
+  dockerUsername:
+    description: Docker registry username
+    required: true
+  dockerPassword:
+    description: Docker registry password
+    required: true
+  productName:
+    description: Product Name'
+    required: true
+  imageName:
+    description: Image Name'
+    required: true
+  version:
+    description: Image version
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Check if should push image
+      run: echo "shouldPush=[${{ github.ref == 'refs/heads/main' }}] || [${{ startsWith(github.ref, 'refs/pull/') }}] || [${{ inputs.alwaysPush }}]" >> $GITHUB_ENV
+      shell: bash
+
+    - name: Set Repository Name
+      if: env.shouldPush
+      run: echo "imageRepository=${{ inputs.productName }}/${{ inputs.imageName }}" >> $GITHUB_ENV
+      shell: bash
+
+    - name: Build docker image
+      if: env.shouldPush
+      run: >
+        docker build ${{ inputs.dockerContext }}
+        --file ${{ inputs.dockerfile }}
+        --build-arg Version=${{ inputs.version }}
+        -t ${{ inputs.dockerRegistry }}/${{ env.imageRepository }}:${{ inputs.version }}
+      shell: bash
+      env:
+        DOCKER_BUILDKIT: 1
+
+    - name: Add latest tag
+      if: env.shouldPush && github.ref_name == 'main'
+      run: |-
+        docker tag ${{ inputs.dockerRegistry }}/${{ env.imageRepository }}:${{ inputs.version }} ${{ inputs.dockerRegistry }}/${{ env.imageRepository }}:latest
+      shell: bash
+
+    - name: Push docker image
+      uses: azure/docker-login@v1
+      if: env.shouldPush
+      with:
+        login-server: ${{ inputs.dockerRegistry }}
+        username: ${{ inputs.dockerUsername }}
+        password: ${{ inputs.dockerPassword }}
+    - run: >
+        docker image push --all-tags ${{ inputs.dockerRegistry }}/${{ env.imageRepository }}
+      shell: bash

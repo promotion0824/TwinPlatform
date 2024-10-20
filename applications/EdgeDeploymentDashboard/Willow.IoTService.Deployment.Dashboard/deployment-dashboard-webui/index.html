@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <link href="favicon.ico" rel="icon"/>
+    <link
+      href="https://fonts.googleapis.com/css?family=Material+Icons&display=block"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <meta content="#000000" name="theme-color"/>
+    <link href="logo192.png" rel="apple-touch-icon"/>
+    <base href="." id="base"/>
+
+    <script>
+        const extensionName = "edge-deployment-dashboard";
+        const baseUrl = (extensionName) => {
+            if (
+                window.location.origin.includes("localhost") ||
+                !window.location.pathname.includes(extensionName)
+            )
+                return window.location.origin;
+            const urlArray = window.location.href.split(extensionName);
+            return urlArray[0] + extensionName + "/";
+        };
+        document.getElementById("base").href = baseUrl(extensionName);
+    </script>
+    <title>Edge Deployment Dashboard</title>
+</head>
+<body>
+<div id="root"></div>
+<script src="src/index.tsx" type="module"></script>
+</body>
+</html>

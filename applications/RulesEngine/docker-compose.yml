@@ -1,0 +1,506 @@
+# Please refer https://aka.ms/HTTPSinContainer on how to setup an https developer certificate for your ASP .NET Core service.
+
+version: '3.4'
+
+services:
+  web-brookfield:
+    image: rulesweb
+    labels:
+      - "traefik.http.routers.brookfield.rule=PathPrefix(`/brookfield`)"
+      - "traefik.http.middlewares.brookfield-stripprefix.stripprefix.prefixes=/brookfield"
+      - "traefik.http.middlewares.brookfield-stripprefix.stripprefix.forceslash=true"
+      - "traefik.http.routers.brookfield.middlewares=brookfield-stripprefix"
+      #- "traefik.http.routers.brookfield.middlewares=brookfield-compress"
+      #- "traefik.http.middlewares.brookfield-compress.compress=true"
+      # - "traefik.http.routers.rules-web.tls=true"
+    build:
+      context: .
+      dockerfile: RulesEngine.Web/Dockerfile.local
+    # Expose 5001 externally => 80 nginx => 8080 aspnetcore
+    # depends_on:
+    #   - sql
+    ports:
+      - 5001:80
+    volumes:
+      # First is for Azure credentials, not needed in production, "appuser" was the user name it runs under, now "root"
+      - "/Users/IMercer/.azure:/root/.azure"
+      # Second is for a shared drive with cached copies of twins
+      # May be shared between front-end and back-end applications
+      - "/Users/Shared/cache:/cache"
+    environment:
+      # needs NPM: - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - DOTNET_ENVIRONMENT=Development
+      - RULES_AZUREAPPLICATION__BASEURL=/brookfield/
+      - RULES_AZUREAPPLICATION__REDIRECT=http://localhost/brookfield/
+      # The : separator doesn't work with environment variable hierarchical keys on all platforms. The double underscore (__) is automatically replaced by a : and is supported by all platforms
+      # Website uses a single service bus connection for all customers configured (if multitenant)
+      - "RULES_ServiceBus__Namespace=rules-engine.servicebus.windows.net"
+      - "RULES_ServiceBus__Send__TopicName=rule-execution"
+      - "RULES_ServiceBus__Receive__TopicName=rule-execution-response"
+      - "RULES_ServiceBus__Receive__SubscriptionName=wil-prd-lda-brf"
+      # Website uses a single application insights key
+      - "APPINSIGHTS_INSTRUMENTATIONKEY=e38e9002-7b83-4a28-9eea-6e05a6412bfa"
+      # Web can be multitenant so it's defined as an array, for a single tenant just use element 0 of the array
+
+      - "RULES_CUSTOMERS__CurrentCustomer=wil-prd-lda-brf"
+
+      - "RULES_CUSTOMER__Id=wil-prd-lda-brf"
+      - "RULES_CUSTOMER__Name=Brookfield 1MW"
+      - "RULES_CUSTOMER__TIMEZONE=Eastern Standard Time"
+      - "RULES_CUSTOMER__HOSTNAMES__0=BRF"
+      - "RULES_CUSTOMER__HOSTNAMES__1=Brookfield"
+      # - "RULES_CUSTOMER__SQL__CONNECTIONSTRING=Server\
+      #   =rulesengine_sql_1,1433; Database=wil-prd-lda-brf; User=sa;
+      #   Password=Willow3163412;"
+      - "RULES_CUSTOMER__SQL__CONNECTIONSTRING=Server=192.168.0.195,1434; Database=wil-prd-lda-brf; User=sa; Password=Willow3163412;TrustServerCertificate=True;"
+      - "RULES_CUSTOMER__ADT__0__URI=https://wil-prd-lda-brf-eu22-adt2.api.eus2.digitaltwins.azure.net"
+
+  web-microsoft:
+    image: rulesweb
+    labels:
+      - "traefik.http.routers.microsoft.rule=PathPrefix(`/microsoft`)"
+      - "traefik.http.middlewares.microsoft-stripprefix.stripprefix.prefixes=/microsoft"
+      - "traefik.http.middlewares.microsoft-stripprefix.stripprefix.forceslash=true"
+      - "traefik.http.routers.microsoft.middlewares=microsoft-stripprefix"
+      #- "traefik.http.routers.microsoft.middlewares=microsoft-compress"
+      #- "traefik.http.middlewares.microsoft-compress.compress=true"
+    build:
+      context: .
+      dockerfile: RulesEngine.Web/Dockerfile.local
+    # depends_on:
+    #   - sql
+    ports:
+      - 5002:80
+    volumes:
+      # First is for Azure credentials, not needed in production, "appuser" was the user name it runs under, now "root"
+      - "/Users/IMercer/.azure:/root/.azure"
+      # Second is for a shared drive with cached copies of twins
+      # May be shared between front-end and back-end applications
+      - "/Users/Shared/cache:/cache"
+    environment:
+      # needs NPM: - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - DOTNET_ENVIRONMENT=Development
+      - RULES_AZUREAPPLICATION__BASEURL=/microsoft/
+      - RULES_AZUREAPPLICATION__REDIRECT=http://localhost/microsoft/
+      # The : separator doesn't work with environment variable hierarchical keys on all platforms. The double underscore (__) is automatically replaced by a : and is supported by all platforms
+      # Website uses a single service bus connection for all customers configured (if multitenant)
+      - "RULES_ServiceBus__Namespace=rules-engine.servicebus.windows.net"
+      - "RULES_ServiceBus__Send__TopicName=rule-execution"
+      - "RULES_ServiceBus__Receive__TopicName=rule-execution-response"
+      - "RULES_ServiceBus__Receive__SubscriptionName=wil-prd-lda-msft"
+      # Website uses a single application insights key
+      - "APPINSIGHTS_INSTRUMENTATIONKEY=e38e9002-7b83-4a28-9eea-6e05a6412bfa"
+      # Web can be multitenant so it's defined as an array, for a single tenant just use element 0 of the array
+
+      - "RULES_CUSTOMERS__CurrentCustomer=wil-prd-lda-msft"
+
+      - "RULES_CUSTOMER__Id=wil-prd-lda-msft"
+      - "RULES_CUSTOMER__Name=Microsoft 121,122,..."
+      - "RULES_CUSTOMER__TIMEZONE=Pacific Standard Time"
+      - "RULES_CUSTOMER__HOSTNAMES__0=MSFT"
+      - "RULES_CUSTOMER__HOSTNAMES__1=Microsoft"
+      # - "RULES_CUSTOMER__SQL__CONNECTIONSTRING=Server\
+      #   =rulesengine_sql_1,1433; Database=wil-prd-lda-msft; User=sa;
+      #   Password=Willow3163412;"
+      - "RULES_CUSTOMER__SQL__CONNECTIONSTRING=Server=192.168.0.195,1434; Database=wil-prd-lda-msft; User=sa; Password=Willow3163412;TrustServerCertificate=True;"
+      - "RULES_CUSTOMER__ADT__0__URI=https://wil-prd-lda-msft-eu22-adt.api.wus2.digitaltwins.azure.net"
+      - "RULES_CUSTOMER__ADX__DatabaseName=wil-prd-lda-msft-livedata"
+
+  # web-rules-dfw:
+  #   image: rulesweb
+  #   labels:
+  #     - "traefik.http.routers.dfw.rule=PathPrefix(`/dfw`)"
+  #     - "traefik.http.middlewares.dfw-stripprefix.stripprefix.prefixes=/dfw"
+  #     - "traefik.http.middlewares.dfw-stripprefix.stripprefix.forceslash=true"
+  #     - "traefik.http.routers.dfw.middlewares=dfw-stripprefix"
+  #   build:
+  #     context: .
+  #     dockerfile: RulesEngine.Web/Dockerfile.local
+  #   depends_on:
+  #     - sql
+  #   ports:
+  #     - 5003:80
+  #   volumes:
+  #     # First is for Azure credentials, not needed in production, "appuser" was the user name it runs under, now "root"
+  #     - "/Users/IMercer/.azure:/root/.azure"
+  #     # Second is for a shared drive with cached copies of twins
+  #     # May be shared between front-end and back-end applications
+  #     - "/Users/Shared/cache:/cache"
+  #   environment:
+  #     # needs NPM: - ASPNETCORE_ENVIRONMENT=Development
+  #     - ASPNETCORE_URLS=http://+:80
+  #     - RULES_AZUREAPPLICATION__BASEURL=/dfw/
+  #     - RULES_AZUREAPPLICATION__REDIRECT=http://localhost/dfw/
+  #     # The : separator doesn't work with environment variable hierarchical keys on all platforms. The double underscore (__) is automatically replaced by a : and is supported by all platforms
+  #     # Website uses a single service bus connection for all customers configured (if multitenant)
+  #     - "RULES_ServiceBus__Namespace=rules-engine.servicebus.windows.net"
+  #     - "RULES_ServiceBus__Send__TopicName=rule-execution"
+  #     - "RULES_ServiceBus__Receive__TopicName=rule-execution-response"
+  #     - "RULES_ServiceBus__Receive__SubscriptionName=wil-prd-lda-dfw"
+  #     # Website uses a single application insights key
+  #     - "APPLICATIONINSIGHTS__INSTRUMENTATIONKEY=e38e9002-7b83-4a28-9eea-\
+  #       6e05a6412bfa"
+  #     # Web can be multitenant so it's defined as an array, for a single tenant just use element 0 of the array
+
+  #     - "RULES_CUSTOMERS__CurrentCustomer=wil-prd-lda-dfw"
+  #     - "RULES_CUSTOMERS__CustomerEnvironments__2__Id=wil-prd-lda-dfw"
+  #     - "RULES_CUSTOMERS__CustomerEnvironments__2__Name=Dallas Fort Worth"
+  #     - "RULES_CUSTOMERS__CustomerEnvironments__2__TIMEZONE=Central Time"
+  #     - "RULES_CUSTOMERS__CustomerEnvironments__2__HOSTNAMES__0=DFW"
+  #     - "RULES_CUSTOMERS__CustomerEnvironments__2__HOSTNAMES__1=DallasFortWorth"
+  #     - "RULES_CUSTOMERS__CustomerEnvironments__2__SQL__CONNECTIONSTRING=Server\
+  #       =rulesengine_sql_1,1433; Database=wil-prd-lda-dfw; User=sa;
+  #       Password=Willow3163412;"
+  #     - "RULES_CUSTOMERS__CustomerEnvironments__2__ADT__0__URI=https://wil-prd-\
+  #       lda-dfw-eu22-adt2.api.eus2.digitaltwins.azure.net"
+
+  web-axa:
+    image: rulesweb
+    labels:
+      - "traefik.http.routers.axa.rule=PathPrefix(`/axa`)"
+      - "traefik.http.middlewares.axa-stripprefix.stripprefix.prefixes=/axa"
+      - "traefik.http.middlewares.axa-stripprefix.stripprefix.forceslash=true"
+      - "traefik.http.routers.axa.middlewares=axa-stripprefix"
+      #- "traefik.http.routers.axa.middlewares=axa-compress"
+      #- "traefik.http.middlewares.axa-compress.compress=true"
+    build:
+      context: .
+      dockerfile: RulesEngine.Web/Dockerfile.local
+    ports:
+      - 5004:80
+    volumes:
+      # First is for Azure credentials, not needed in production, "appuser" was the user name it runs under, now "root"
+      - "/Users/IMercer/.azure:/root/.azure"
+      # Second is for a shared drive with cached copies of twins
+      # May be shared between front-end and back-end applications
+      - "/Users/Shared/cache:/cache"
+    environment:
+      # needs NPM: - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - DOTNET_ENVIRONMENT=Development
+      - RULES_AZUREAPPLICATION__BASEURL=/axa/
+      - RULES_AZUREAPPLICATION__REDIRECT=http://localhost/axa/
+      # The : separator doesn't work with environment variable hierarchical keys on all platforms. The double underscore (__) is automatically replaced by a : and is supported by all platforms
+      # Website uses a single service bus connection for all customers configured (if multitenant)
+      - "RULES_ServiceBus__Namespace=rules-engine.servicebus.windows.net"
+      - "RULES_ServiceBus__Send__TopicName=rule-execution"
+      - "RULES_ServiceBus__Receive__TopicName=rule-execution-response"
+      - "RULES_ServiceBus__Receive__SubscriptionName=wil-prd-lda-axa"
+      # Website uses a single application insights key
+      - "APPLICATIONINSIGHTS__INSTRUMENTATIONKEY=e38e9002-7b83-4a28-9eea-6e05a6412bfa"
+      # Web can be multitenant so it's defined as an array, for a single tenant just use element 0 of the array
+
+      - "RULES_CUSTOMERS__CurrentCustomer=wil-prd-lda-axa"
+
+      - "RULES_CUSTOMER__Id=wil-prd-lda-axa"
+      - "RULES_CUSTOMER__Name=AXA"
+      - "RULES_CUSTOMER__TIMEZONE=Pacific Standard Time"
+      - "RULES_CUSTOMER__HOSTNAMES__0=AXA"
+      - "RULES_CUSTOMER__SQL__CONNECTIONSTRING=Server=192.168.0.195,1434; Database=axa; User=sa; Password=Willow3163412;TrustServerCertificate=True;"
+      - "RULES_CUSTOMER__ADT__0__URI=https://wil-prd-lda-axa-weu2-adt.api.weu.digitaltwins.azure.net"
+
+  # web-stress:
+  #   image: rulesweb
+  #   labels:
+  #     - "traefik.http.routers.stress.rule=PathPrefix(`/stress`)"
+  #     - "traefik.http.middlewares.stress-stripprefix.stripprefix.prefixes=/stress"
+  #     - "traefik.http.middlewares.stress-stripprefix.stripprefix.forceslash=true"
+  #     - "traefik.http.routers.stress.middlewares=stress-stripprefix"
+  #     #- "traefik.http.routers.traefik.middlewares=stress-compress"
+  #     #- "traefik.http.middlewares.stress-compress.compress=true"
+  #   build:
+  #     context: .
+  #     dockerfile: RulesEngine.Web/Dockerfile.local
+  #   ports:
+  #     - 5009:80
+  #   volumes:
+  #     # First is for Azure credentials, not needed in production, "appuser" was the user name it runs under, now "root"
+  #     - "/Users/IMercer/.azure:/root/.azure"
+  #     # Second is for a shared drive with cached copies of twins
+  #     # May be shared between front-end and back-end applications
+  #     - "/Users/Shared/cache:/cache"
+  #   environment:
+  #     # needs NPM: - ASPNETCORE_ENVIRONMENT=Development
+  #     - ASPNETCORE_URLS=http://+:80
+  #     - RULES_AZUREAPPLICATION__BASEURL=/stress/
+  #     - RULES_AZUREAPPLICATION__REDIRECT=http://localhost/stress/
+  #     # The : separator doesn't work with environment variable hierarchical keys on all platforms. The double underscore (__) is automatically replaced by a : and is supported by all platforms
+  #     # Website uses a single service bus connection for all customers configured (if multitenant)
+  #     - "RULES_ServiceBus__Namespace=rules-engine.servicebus.windows.net"
+  #     - "RULES_ServiceBus__Send__TopicName=rule-execution"
+  #     - "RULES_ServiceBus__Receive__TopicName=rule-execution-response"
+  #     - "RULES_ServiceBus__Receive__SubscriptionName=stress"
+  #     # Website uses a single application insights key
+  #     - "APPINSIGHTS_INSTRUMENTATIONKEY=e38e9002-7b83-4a28-9eea-6e05a6412bfa"
+  #     # Web can be multitenant so it's defined as an array, for a single tenant just use element 0 of the array
+
+  #     - "RULES_CUSTOMERS__CurrentCustomer=stress"
+  #     - "RULES_CUSTOMER__Id=stress"
+  #     - "RULES_CUSTOMER__Name=Stress"
+  #     - "RULES_CUSTOMER__TIMEZONE=Eastern Standard Time"
+  #     - "RULES_CUSTOMER__HOSTNAMES__0=stress"
+  #     - "RULES_CUSTOMER__SQL__CONNECTIONSTRING=Server=192.168.0.195,1434; Database=stress; User=sa; Password=Willow3163412;TrustServerCertificate=True;"
+  #     - "RULES_CUSTOMER__ADT__0__URI=https://wil-prd-lda-brf-eu22-adt2.api.eus2.digitaltwins.azure.net"
+  #     - "RULES_CUSTOMER__ADT__1__URI=https://wil-prd-lda-msft-eu22-adt.api.wus2.digitaltwins.azure.net"
+  #     - "RULES_CUSTOMER__ADT__3__URI=https://wil-prd-lda-inv-aue2-adt.api.aue.digitaltwins.azure.net"
+  #     - "RULES_CUSTOMER__ADT__4__URI=https://wil-prd-lda-axa-weu2-adt.api.weu.digitaltwins.azure.net"
+
+  # processor-stress:
+  #   image: rulesengineprocessor
+  #   build:
+  #     context: .
+  #     dockerfile: RulesEngine.Processor/Dockerfile.local
+  #   # depends_on:
+  #   #   - sql
+  #   volumes:
+  #     - "/Users/IMercer/.azure:/root/.azure"
+  #     - "/Users/Shared/cache:/cache"
+  #   environment:
+  #     - "APPINSIGHTS_INSTRUMENTATIONKEY=e38e9002-7b83-4a28-9eea-6e05a6412bfa"
+  #     - "RULES_CUSTOMER__Id=stress"
+  #     - "RULES_CUSTOMER__Name=Stress"
+  #     - "RULES_CUSTOMER__TIMEZONE=Pacific Standard Time"
+  #     # - "RULES_CUSTOMER__SQL__CONNECTIONSTRING=Server=rulesengine_sql_1,1433;
+  #     #   Database=wil-prd-lda-msft; User=sa; Password=Willow3163412;"
+  #     - "RULES_CUSTOMER__SQL__CONNECTIONSTRING=Server=192.168.0.195,1434; Database=stress; User=sa; Password=Willow3163412;TrustServerCertificate=True;"
+  #     - "RULES_CUSTOMER__ADT__0__URI=https://wil-prd-lda-brf-eu22-adt2.api.eus2.digitaltwins.azure.net"
+  #     - "RULES_CUSTOMER__ADT__1__URI=https://wil-prd-lda-msft-eu22-adt.api.wus2.digitaltwins.azure.net"
+  #     - "RULES_CUSTOMER__ADT__3__URI=https://wil-prd-lda-inv-aue2-adt.api.aue.digitaltwins.azure.net"
+  #     - "RULES_CUSTOMER__ADT__4__URI=https://wil-prd-lda-axa-weu2-adt.api.weu.digitaltwins.azure.net"
+  #     - "RULES_CUSTOMER__ADT__4__URI=https://wil-prd-lda-axa-weu2-adt.api.weu.digitaltwins.azure.net"
+  #     - "RULES_CUSTOMER__ADX__URI=https://adxdemouat.australiaeast.kusto.windows.net/wil-prd-lda-msft-livedata"
+  #     - "RULES_CUSTOMER__ADX__DatabaseName=wil-prd-lda-msft-livedata"
+  #     - "RULES_ServiceBus__Namespace=rules-engine.servicebus.windows.net"
+  #     - "RULES_ServiceBus__Receive__TopicName=rule-execution"
+  #     - "RULES_ServiceBus__Receive__SubscriptionName=stress"
+  #     - "RULES_ServiceBus__Send__TopicName=rule-execution-response"
+
+  processor-msft:
+    image: rulesengineprocessor
+    build:
+      context: .
+      dockerfile: RulesEngine.Processor/Dockerfile.local
+    # depends_on:
+    #   - sql
+    volumes:
+      - "/Users/IMercer/.azure:/root/.azure"
+      - "/Users/Shared/cache:/cache"
+    environment:
+      - "APPINSIGHTS_INSTRUMENTATIONKEY=e38e9002-7b83-4a28-9eea-6e05a6412bfa"
+      - "RULES_CUSTOMER__Id=wil-prd-lda-msft"
+      - "RULES_CUSTOMER__Name=Microsoft 121,122,..."
+      - "RULES_CUSTOMER__TIMEZONE=Pacific Standard Time"
+      # - "RULES_CUSTOMER__SQL__CONNECTIONSTRING=Server=rulesengine_sql_1,1433;
+      #   Database=wil-prd-lda-msft; User=sa; Password=Willow3163412;"
+      - "RULES_CUSTOMER__SQL__CONNECTIONSTRING=Server=192.168.0.195,1434; Database=wil-prd-lda-msft; User=sa; Password=Willow3163412;TrustServerCertificate=True;"
+      - "RULES_CUSTOMER__ADT__0__URI=https://wil-prd-lda-msft-eu22-adt.api.wus2.digitaltwins.azure.net"
+      - "RULES_CUSTOMER__ADX__URI=https://adxdemouat.australiaeast.kusto.windows.net/wil-prd-lda-msft-livedata"
+      - "RULES_CUSTOMER__ADX__DatabaseName=wil-prd-lda-msft-livedata"
+      - "RULES_ServiceBus__Namespace=rules-engine.servicebus.windows.net"
+      - "RULES_ServiceBus__Receive__TopicName=rule-execution"
+      - "RULES_ServiceBus__Receive__SubscriptionName=wil-prd-lda-msft"
+      - "RULES_ServiceBus__Send__TopicName=rule-execution-response"
+
+  processor-brookfield:
+    image: rulesengineprocessor
+    build:
+      context: .
+      dockerfile: RulesEngine.Processor/Dockerfile.local
+    labels:
+      - "test"
+    # depends_on:
+    #   - sql
+    volumes:
+      - "/Users/IMercer/.azure:/root/.azure"
+      - "/Users/Shared/cache:/cache"
+    environment:
+      - "APPINSIGHTS_INSTRUMENTATIONKEY=e38e9002-7b83-4a28-9eea-6e05a6412bfa"
+      - "RULES_CUSTOMER__Id=wil-prd-lda-brf"
+      - "RULES_CUSTOMER__Name=Brookfield 1MW"
+      - "RULES_CUSTOMER__TIMEZONE=Eastern Standard Time"
+      # - "RULES_CUSTOMER__SQL__CONNECTIONSTRING=Server=rulesengine_sql_1,1433;
+      #   Database=wil-prd-lda-brf; User=sa; Password=Willow3163412;"
+      - "RULES_CUSTOMER__SQL__CONNECTIONSTRING=Server=192.168.0.195,1434; Database=wil-prd-lda-brf; User=sa; Password=Willow3163412;TrustServerCertificate=True;"
+      - "RULES_CUSTOMER__ADT__0__URI=https://wil-prd-lda-brf-eu22-adt2.api.eus2.digitaltwins.azure.net"
+      - "RULES_CUSTOMER__ADX__URI=https://adxdemouat.australiaeast.kusto.windows.net/wil-uat-lda-brf-livedata"
+      - "RULES_CUSTOMER__ADX__DatabaseName=wil-uat-lda-brf-livedata"
+      - "RULES_ServiceBus__Namespace=rules-engine.servicebus.windows.net"
+      - "RULES_ServiceBus__Receive__TopicName=rule-execution"
+      - "RULES_ServiceBus__Receive__SubscriptionName=wil-prd-lda-brf"
+      - "RULES_ServiceBus__Send__TopicName=rule-execution-response"
+      - "subscription-id=0be01d84-8432-4558-9aba-ecd204a3ee61"
+      - "resource-group=rules-engine-arc"
+      - "identity-client-id=/subscriptions/0be01d84-8432-4558-9aba-ecd204a3ee61/resourcegroups/rules-engine-arc/providers/Microsoft.ManagedIdentity/userAssignedIdentities/rules-engine-identity"
+
+  # processor-dfw:
+  #   image: rulesengineprocessor
+  #   build:
+  #     context: .
+  #     dockerfile: RulesEngine.Processor/Dockerfile.local
+  #   depends_on:
+  #     - sql
+  #   volumes:
+  #     - "/Users/IMercer/.azure:/root/.azure"
+  #     - "/Users/Shared/cache:/cache"
+  #   environment:
+  #     - "APPLICATIONINSIGHTS__INSTRUMENTATIONKEY=e38e9002-7b83-4a28-9eea-\
+  #       6e05a6412bfa"
+  #     - "RULES_CUSTOMER__Id=wil-prd-lda-dfw"
+  #     - "RULES_CUSTOMER__Name=Dallas Fort Worth Airport"
+  #     - "RULES_CUSTOMER__TIMEZONE=Central Standard Time"
+  #     - "RULES_CUSTOMER__SQL__ConnectionString=Server=rulesengine_sql_1,1433;
+  #       Database=wil-prd-lda-dfw; User=sa; Password=Willow3163412;"
+  #     - "RULES_CUSTOMER__ADT__0__URI=https://wil-prd-lda-dfw-eu22-adt.api.eus2.\
+  #       digitaltwins.azure.net"
+  #     - "RULES_CUSTOMER__ADX__URI=https://adxdemouat.australiaeast.kusto.window\
+  #       s.net/wil-prd-lda-dfw-livedata"
+  #     - "RULES_CUSTOMER__ADX__DatabaseName=wil-prd-lda-dfw-livedata"
+  #     - "RULES_ServiceBus__Namespace=rules-engine.servicebus.windows.\
+  #       net"
+  #     - "RULES_ServiceBus__Receive__TopicName=rule-execution"
+  #     - "RULES_ServiceBus__Receive__SubscriptionName=wil-prd-lda-dfw"
+  #     - "RULES_ServiceBus__Send__TopicName=rule-execution-response"
+
+  processor-axa:
+    image: rulesengineprocessor
+    build:
+      context: .
+      dockerfile: RulesEngine.Processor/Dockerfile.local
+    volumes:
+      - "/Users/IMercer/.azure:/root/.azure"
+      - "/Users/Shared/cache:/cache"
+    environment:
+      - "APPLICATIONINSIGHTS__INSTRUMENTATIONKEY=e38e9002-7b83-4a28-9eea-6e05a6412bfa"
+      - "RULES_CUSTOMER__Id=wil-prd-lda-axa"
+      - "RULES_CUSTOMER__Name=AXA"
+      - "RULES_CUSTOMER__TIMEZONE=Paris"
+      - "RULES_CUSTOMER__SQL__CONNECTIONSTRING=Server=192.168.0.195,1434; Database=axa; User=sa; Password=Willow3163412;TrustServerCertificate=True;"
+      - "RULES_CUSTOMER__ADT__0__URI=https://wil-prd-lda-axa-weu2-adt.api.weu.digitaltwins.azure.net"
+      - "RULES_ServiceBus__Namespace=rules-engine.servicebus.windows.net"
+      - "RULES_ServiceBus__Receive__TopicName=rule-execution"
+      - "RULES_ServiceBus__Receive__SubscriptionName=wil-prd-lda-axa"
+      - "RULES_ServiceBus__Send__TopicName=rule-execution-response"
+
+  # processor-inv:
+  #   image: rulesengineprocessor
+  #   build:
+  #     context: .
+  #     dockerfile: RulesEngine.Processor/Dockerfile.local
+  #   depends_on:
+  #     - sql
+  #   volumes:
+  #     - "/Users/IMercer/.azure:/root/.azure"
+  #     - "/Users/Shared/cache:/cache"
+  #   environment:
+  #     - "APPLICATIONINSIGHTS__INSTRUMENTATIONKEY=e38e9002-7b83-4a28-9eea-\
+  #       6e05a6412bfa"
+  #     - "RULES_CUSTOMER__Id=wil-prd-lda-inv"
+  #     - "RULES_CUSTOMER__Name=Investa"
+  #     - "RULES_CUSTOMER__TIMEZONE=Pacific Standard Time"
+  #     - "RULES_CUSTOMER__SQL__ConnectionString=Server=rulesengine_sql_1,1433;
+  #       Database=wil-prd-lda-inv; User=sa; Password=Willow3163412;"
+  #     - "RULES_CUSTOMER__ADT__0__URI=https://wil-prd-lda-inv-aue2-adt.api.aue.d\
+  #       igitaltwins.azure.net"
+  #     - "RULES_ServiceBus__Namespace=rules-engine.servicebus.windows.\
+  #       net"
+  #     - "RULES_ServiceBus__Receive__TopicName=rule-execution"
+  #     - "RULES_ServiceBus__Receive__SubscriptionName=wil-prd-lda-inv"
+  #     - "RULES_ServiceBus__Send__TopicName=rule-execution-response"
+
+  # processor-met:
+  #   image: rulesengineprocessor
+  #   build:
+  #     context: .
+  #     dockerfile: RulesEngine.Processor/Dockerfile.local
+  #   depends_on:
+  #     - sql
+  #   volumes:
+  #     - "/Users/IMercer/.azure:/root/.azure"
+  #     - "/Users/Shared/cache:/cache"
+  #   environment:
+  #     - "APPLICATIONINSIGHTS__INSTRUMENTATIONKEY=e38e9002-7b83-4a28-9eea-\
+  #       6e05a6412bfa"
+  #     - "RULES_CUSTOMER__Id=wil-prd-lda-met"
+  #     - "RULES_CUSTOMER__Name=MET"
+  #     - "RULES_CUSTOMER__TIMEZONE=Pacific Standard Time"
+  #     - "RULES_CUSTOMER__SQL__ConnectionString=Server=rulesengine_sql_1,1433;
+  #       Database=wil-prd-lda-met; User=sa; Password=Willow3163412;"
+  #     - "RULES_CUSTOMER__ADT__0__URI=https://wil-prd-lda-met-aue2-adt.api.aue.d\
+  #       igitaltwins.azure.net"
+  #     # Configure ADX goes here
+  #     - "RULES_ServiceBus__Namespace=rules-engine.servicebus.windows.\
+  #       net"
+  #     - "RULES_ServiceBus__Receive__TopicName=rule-execution"
+  #     - "RULES_ServiceBus__Receive__SubscriptionName=wil-prd-lda-met"
+  #     - "RULES_ServiceBus__Send__TopicName=rule-execution-response"
+
+  # processor-oxf:
+  #   image: rulesengineprocessor
+  #   build:
+  #     context: .
+  #     dockerfile: RulesEngine.Processor/Dockerfile.local
+  #   depends_on:
+  #     - sql
+  #   volumes:
+  #     - "/Users/IMercer/.azure:/root/.azure"
+  #     - "/Users/Shared/cache:/cache"
+  #   environment:
+  #     - "APPLICATIONINSIGHTS__INSTRUMENTATIONKEY=e38e9002-7b83-4a28-9eea-\
+  #       6e05a6412bfa"
+  #     - "RULES_CUSTOMER__Id=wil-prd-lda-oxf"
+  #     - "RULES_CUSTOMER__Name=Oxford"
+  #     - "RULES_CUSTOMER__TIMEZONE=Pacific Standard Time"
+  #     - "RULES_CUSTOMER__SQL__ConnectionString=Server=rulesengine_sql_1,1433;
+  #       Database=wil-prd-lda-oxf; User=sa; Password=Willow3163412;"
+  #     - "RULES_CUSTOMER__ADT__0__URI=https://wil-prd-lda-oxf-eu22-adt.api.eus2.\
+  #       digitaltwins.azure.net"
+  #     - "RULES_ServiceBus__Namespace=rules-engine.servicebus.windows.\
+  #       net"
+  #     - "RULES_ServiceBus__Receive__TopicName=rule-execution"
+  #     - "RULES_ServiceBus__Receive__SubscriptionName=wil-prd-lda-oxf"
+  #     - "RULES_ServiceBus__Send__TopicName=rule-execution-response"
+
+  # sql:
+  #   image: mcr.microsoft.com/mssql/server:2019-latest
+  #   ports:
+  #     - 1433:1433
+  #   volumes:
+  #     - "/Users/Shared/sql/data:/var/opt/mssql/data"
+  #   environment:
+  #     - "ACCEPT_EULA=Y"
+  #     - "SA_PASSWORD=Willow3163412"
+
+  # # Experimental, using nginx inside the pod as the reverse proxy and url rewriter
+  # nginx:
+  #   build:
+  #     context: .
+  #     dockerfile: RulesEngine.Web/Dockerfile.nginx
+  #   ports:
+  #     # The HTTP port
+  #     - "81:81"
+  #     - "444:444"
+  #   links:
+  #     - web-rules-brf:brookfield
+  #     - web-rules-msft:microsoft
+
+  # Using Traefik as a reverse proxy to pass /customer to the appropriate customer without
+  # the customer prefix. This is how we should handle front door / ingress routes instead
+  # of passing the full path with prefixes for region and customer.
+  reverse-proxy:
+    image: traefik:v2.5
+    # Enables the web UI and tells Traefik to listen to docker
+    command: --api.insecure=true --providers.docker - --entrypoints.websecure.address=:443 - --certificatesresolvers.le.acme.email=imercer@willowinc.com - --certificatesresolvers.le.acme.storage=/acme.json - --certificatesresolvers.le.acme.tlschallenge=true - --pilot.token=4af97a98-5c1a-43fd-94d8-bbfccc93f74b
+    labels:
+      - "traefik.http.routers.traefik.middlewares=traefik-compress"
+      - "traefik.http.middlewares.traefik-compress.compress=true"
+    ports:
+      # The HTTP port
+      - "80:80"
+      - "443:443"
+      # The Web UI (enabled by --api.insecure=true)
+      - "8080:8080"
+    volumes:
+      # So that Traefik can listen to the Docker events
+      - /var/run/docker.sock:/var/run/docker.sock

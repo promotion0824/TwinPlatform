@@ -1,0 +1,147 @@
+name: "Platform - AssetCore - Build"
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - extensions/real-estate/back-end/AssetCore/**
+  pull_request:
+    branches:
+      - main
+      - releases/real-estate/*
+    paths:
+      - extensions/real-estate/back-end/AssetCore/**
+  workflow_dispatch:
+    inputs:
+      push_dev_acr:
+        type: boolean
+        default: false
+      push_prd_acr:
+        type: boolean
+        default: false
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
+env:
+  buildConfiguration: Release
+  majorVersion: 1
+  projectPath: extensions/real-estate/back-end/AssetCore
+  srcProjectDir: "src/AssetCore"
+  testProjectDir: "test/AssetCore.Test"
+  imageName: assetcore
+  productName: willowplatform
+
+jobs:
+  build:
+    name: AssetCore Build, Test, and Publish
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    outputs:
+      buildId: ${{ env.BuildId }}
+    steps:
+      - uses: actions/checkout@v4
+        name: Checkout
+
+      - uses: ./.github/actions/semantic_build_numbers
+        name: Setup Build Number
+        with:
+          majorVersion: ${{ env.majorVersion }}
+
+      - uses: ./.github/actions/add-willow-nuget-credentials
+        name: Add Willow Nuget credentials
+        with:
+          nugetFilePath: ${{ env.projectPath }}/nuget.config
+          githubPatToken: ${{ secrets.GITHUB_TOKEN }}
+
+      # Explicitly run 'dotnet restore' with the specified nuget.config file to ensure the correct configuration.
+      # Without this step, the implicitly triggered 'dotnet restore' in the next step might use a different nuget.config,
+      # potentially leading to unexpected behavior or dependency resolution issues.
+      - name: Dotnet restore
+        shell: bash
+        run: |
+          dotnet restore --configfile ../../nuget.config
+        working-directory: ${{ env.projectPath }}/${{ env.srcProjectDir }}
+
+      - uses: ./.github/actions/dotnet/build_test_publish
+        name: Build, Test and Publish
+        with:
+          srcProjectDir: ${{ env.projectPath }}/${{ env.srcProjectDir }}
+          testProjectDir: ${{ env.projectPath }}/${{ env.testProjectDir }}
+          outputZip: ${{ github.workspace }}/AssetCore.zip
+          zipAfterPublish: false
+          disableCodeQL: true
+
+      # Manually create a zip file since setting 'zipAfterPublish: false' in the previous action
+      # avoids unexpected permission issues that may occur with the implicitly generated zip file
+      - name: Zip
+        shell: bash
+        run: |
+          cd ${{ github.workspace }}/output
+          zip -r ${{ github.workspace }}/AssetCore.zip *
+
+      - uses: actions/upload-artifact@v3
+        name: Upload artifact
+        with:
+          name: AssetCore
+          path: ${{ github.workspace }}/AssetCore.zip
+          retention-days: 14
+
+  docker:
+    name: Docker Push
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v3
+        with:
+          name: AssetCore
+          path: ${{ github.workspace }}/download
+
+      - name: Extract files
+        run: Expand-Archive -Path ${{ github.workspace }}/download/AssetCore.zip -DestinationPath ${{ github.workspace }}/release
+        shell: pwsh
+
+      - uses: ./.github/actions/docker/push
+        name: Upload docker image
+        with:
+          imageName: ${{ env.imageName }}
+          productName: ${{ env.productName }}
+          dockerfile: ${{ env.projectPath }}/${{ env.srcProjectDir }}/Dockerfile
+          dockerContext: ${{ github.workspace }}/download
+          alwaysPush: true
+          dockerUsername: ${{ vars.NONPROD_ACR_CLIENT_ID }}
+          dockerPassword: ${{ secrets.NONPROD_ACR_CLIENT_SECRET }}
+          version: ${{ needs.build.outputs.buildId }}
+
+      - uses: ./.github/actions/docker/push
+        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.push_dev_acr == 'true' }}
+        name: Upload docker image (crwildevshared01)
+        with:
+          imageName: ${{ env.imageName }}
+          productName: ${{ env.productName }}
+          dockerfile: ${{ env.projectPath }}/${{ env.srcProjectDir }}/Dockerfile
+          dockerContext: ${{ github.workspace }}/download/
+          alwaysPush: true
+          dockerRegistry: crwildevshared01.azurecr.io
+          dockerUsername: ${{ vars.DEV_SHARED_ACR_CLIENT_ID }}
+          dockerPassword: ${{ secrets.DEV_SHARED_ACR_CLIENT_SECRET }}
+          version: ${{ needs.build.outputs.buildId }}
+
+      - uses: ./.github/actions/docker/push
+        if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.push_prd_acr == 'true' }}
+        name: Upload docker image (crwilprdshared01)
+        with:
+          imageName: ${{ env.imageName }}
+          productName: ${{ env.productName }}
+          dockerfile: ${{ env.projectPath }}/${{ env.srcProjectDir }}/Dockerfile
+          dockerContext: ${{ github.workspace }}/download/
+          alwaysPush: true
+          dockerRegistry: crwilprdshared01.azurecr.io
+          dockerUsername: ${{ vars.PRD_SHARED_ACR_CLIENT_ID }}
+          dockerPassword: ${{ secrets.PRD_SHARED_ACR_CLIENT_SECRET }}
+          version: ${{ needs.build.outputs.buildId }}

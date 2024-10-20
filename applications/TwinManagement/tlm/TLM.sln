@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34309.116
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Willow.TwinLifecycleManagement.Web", "Willow.TwinLifecycleManagement.Web\Willow.TwinLifecycleManagement.Web.csproj", "{007800C1-96A1-468A-B43C-30B0ADE4B859}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Willow.TwinLifecycleManagement.Web.APITests", "Willow.TwinLifecycleManagement.Web.APITests\Willow.TwinLifecycleManagement.Web.APITests.csproj", "{14171E44-91E9-4AB8-8BD3-475C74564B78}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Willow.TwinLifecycleManagement.Web.UnitTests", "Willow.TwinLifecycleManagement.Web.UnitTests\Willow.TwinLifecycleManagement.Web.UnitTests.csproj", "{B25DD340-1F71-4C44-B1DE-1500EE3E1478}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{007800C1-96A1-468A-B43C-30B0ADE4B859}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{007800C1-96A1-468A-B43C-30B0ADE4B859}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{007800C1-96A1-468A-B43C-30B0ADE4B859}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{007800C1-96A1-468A-B43C-30B0ADE4B859}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14171E44-91E9-4AB8-8BD3-475C74564B78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14171E44-91E9-4AB8-8BD3-475C74564B78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14171E44-91E9-4AB8-8BD3-475C74564B78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14171E44-91E9-4AB8-8BD3-475C74564B78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B25DD340-1F71-4C44-B1DE-1500EE3E1478}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B25DD340-1F71-4C44-B1DE-1500EE3E1478}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B25DD340-1F71-4C44-B1DE-1500EE3E1478}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B25DD340-1F71-4C44-B1DE-1500EE3E1478}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9FE61786-5984-4DCF-924A-59B6C3DB4E2A}
+	EndGlobalSection
+EndGlobal

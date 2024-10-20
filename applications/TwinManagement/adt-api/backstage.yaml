@@ -1,0 +1,39 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: twinplatform-adt-api
+  title: Azure Digital Twins API
+  description: Twin Platform ADT API designed for general consumption by the App Module industry verticals
+  tags:
+    - adt
+    - dotnet
+  links:
+    - url: https://dev.azure.com/willowdev/Twin%20Platform/_git/TwinPlatform?path=/core/Willow.AzureDigitalTwins/Willow.AzureDigitalTwins.Api
+      title: Repo
+      icon: code
+    - url: https://dev.azure.com/willowdev/Twin%20Platform/_build?definitionId=460
+      title: Build Pipeline
+      icon: build
+  annotations:
+    sonarqube.org/project-key: TwinPlatform-AzureDigitalTwinApi
+spec:
+  type: service
+  lifecycle: experimental
+  owner: pne_willowtwin_platform
+  system: twinplatform-system
+  providesApis:
+    - adt-Api
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: adt-Api
+  description: Azure Digital Twins API
+spec:
+  type: openapi
+  lifecycle: experimental
+  owner: pne_willowtwin_platform
+  system: twinplatform-system
+  definition:
+    $text: https://adtapicommonsa.blob.core.windows.net/swagger/swagger.json
+  dependsOn: ['component:twinplatform-adt-api']

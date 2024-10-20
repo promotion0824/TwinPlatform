@@ -1,0 +1,24 @@
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: twinplatform-system
+  title: WillowTwin Platform - Foundations
+  description: WillowTwin Platform Base System
+  tags:
+    - twinplatform
+  links:
+    - url: https://teams.microsoft.com/l/team/19%3a4iw6WbxG8IbttLwZ-NtB5x-GWSNt4EugvAwz1_swzLM1%40thread.tacv2/conversations?groupId=c6d7c64f-4877-4cd1-8d84-2d3395786a4b&tenantId=d43166d1-c2a1-4f26-a213-f620dba13ab8
+      title: MS Teams
+      icon: chat
+    - url: https://willow.atlassian.net/wiki/spaces/WCP
+      title: WillowTwin Platform Team Wiki
+      icon: comment
+    - url: https://fd-twin-willow-dev-shared.azurefd.net/
+      title: NonProd
+      icon: build
+    - url: https://fd-twin-willow-dev-shared.azurefd.net/
+      title: Prod
+      icon: build
+spec:
+  owner: pne_willowtwin_platform
+  domain: twinplatform

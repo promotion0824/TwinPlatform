@@ -1,0 +1,11 @@
+﻿**/bin
+**/obj
+*.v2
+.vs/**
+RulesEngine.Web/Logs
+node_modules/
+/test-results/
+/playwright-report/
+/playwright/.cache/
+
+.fake

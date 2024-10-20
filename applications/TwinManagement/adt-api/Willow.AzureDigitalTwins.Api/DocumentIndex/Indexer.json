@@ -1,0 +1,32 @@
+{
+  "parameters": {
+    "batchSize": null,
+    "maxFailedItems": null,
+    "maxFailedItemsPerBatch": null,
+    "base64EncodeKeys": null,
+    "configuration": {
+      "dataToExtract": "contentAndMetadata",
+      "parsingMode": "default",
+      "pdfTextRotationAlgorithm": "detectAngles"
+    }
+  },
+  "fieldMappings": [
+    {
+      "sourceFieldName": "metadata_storage_name",
+      "targetFieldName": "Title",
+      "mappingFunction": null
+    },
+    {
+      "sourceFieldName": "metadata_storage_path",
+      "targetFieldName": "Uri",
+      "mappingFunction": null
+    },
+    {
+      "sourceFieldName": "metadata_storage_last_modified",
+      "targetFieldName": "DocLastUpdateTime",
+      "mappingFunction": null
+    }
+  ],
+  "outputFieldMappings": [],
+  "scheduleInterval": "0.00:15:00"
+}

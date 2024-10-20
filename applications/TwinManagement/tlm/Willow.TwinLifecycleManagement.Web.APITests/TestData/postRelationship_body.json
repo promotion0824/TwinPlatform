@@ -1,0 +1,9 @@
+[
+  {
+    "$relationshipId": "manufacturedBy_CARRIER_c823f959-349a-4c97-80c0-d6a9dca9f486",
+    "$targetId": "CARRIER",
+    "$sourceId": "AXA-STO-GFR_A_RCB_001",
+    "$relationshipName": "manufacturedBy",
+    "$etag": null
+  }
+]

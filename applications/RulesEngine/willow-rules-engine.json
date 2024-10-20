@@ -1,0 +1,120 @@
+{
+  "schema": "v2.0",
+  "metadata": {
+    "name": "willow-rules-engine",
+    "code": "rulesz",
+    "displayName": "Willow Activate",
+    "description": "Willow’s Activate Technology",
+    "version": "0.10.7620",
+    "author": "Willow",
+    "logo": "",
+    "thumbnail": ""
+  },
+  "spec": {
+    "infrastructure": {
+      "sqlDatabases": [
+        "RulesEngine"
+      ],
+      "serviceBusTopics": [
+        {
+          "name": "rule-execution",
+          "subscriptions": [
+            "rule-execution-subscription"
+          ]
+        },
+        {
+          "name": "rule-execution-response",
+          "subscriptions": [
+            "rule-execution-response-subscription"
+          ]
+        }
+      ],
+      "cognitiveSearch": {
+        "name": "shared"
+      }
+    },
+    "workloads": [
+      {
+        "name": "rules-engine-processor",
+        "image": "rules-engine/processor:0.10.7620",
+        "route": "rules-engine-processor",
+        "health": "/healthz",
+        "allowPublicAccess": true,
+        "cpu": 2000,
+        "memory": 2000,
+        "configs": {
+          "APPLICATIONINSIGHTS__INSTRUMENTATIONKEY": "%WillowTwin_ApplicationInsightsInstrumentationKey%",
+          "APPLICATIONINSIGHTS_CONNECTION_STRING": "%WillowTwin_ApplicationInsightsConnectionString%",
+          "APPLICATIONINSIGHTS__LOGLEVEL__DEFAULT": "Debug",
+          "RULES_CUSTOMER__Id": "twin-%WillowTwin_CustomerCode%-%WillowTwin_EnvironmentCode%",
+          "RULES_CUSTOMER__Name": "%CUSTOMER_NAME%",
+          "RULES_CUSTOMER__TIMEZONE": "%CUSTOMER_TIMEZONE%",
+          "RULES_CUSTOMER__SQL__CONNECTIONSTRING": "%WillowTwin_SqlDatabases_RulesEngine_ConnectionString%",
+          "RULES_CUSTOMER__ADT__0__URI": "%ADT_0_URI%",
+          "RULES_CUSTOMER__ADX__URI": "%ADX_URI%",
+          "RULES_CUSTOMER__ADX__DatabaseName": "%ADX_DatabaseName%",
+          "RULES_CUSTOMER__EventHub__NamespaceName": "%EventHub_NamespaceName%",
+          "RULES_CUSTOMER__EventHub__QueueName": "%EventHub_QueueName%",
+          "RULES_CUSTOMER__ADTAPI__URI": "http://adt-api-svc",
+          "RULES_CUSTOMER__ADTAPI__AUDIENCE": "api://742a5de4-db47-418b-b8a8-acdd5ab6ea39",
+          "RULES_RULES__SEARCHAPI__URI": "%WillowTwin_CognitiveSearch_shared_Uri%",
+          "RULES_RULES__KEYVAULTURI": "Inserted by pipeline",
+          "RULES_ServiceBus__Namespace": "%WillowTwin_ServiceBusNamespaceHostName%",
+          "RULES_ServiceBus__Receive__TopicName": "%WillowTwin_Topic_rule-execution_Name%",
+          "RULES_ServiceBus__Receive__SubscriptionName": "%WillowTwin_Topic_rule-execution_Subscription_rule-execution-subscription_Name%",
+          "RULES_ServiceBus__Send__TopicName": "%WillowTwin_Topic_rule-execution-response_Name%",
+          "RULES_GitSync__GithubURI": "https://github.com/WillowSkills/RulesLibrary-%WillowTwin_CustomerCode%-%WillowTwin_EnvironmentCode%",
+          "RULES_GitSync__StandardRulesPath": "Rules Engine/Standard"
+        }
+      },
+      {
+        "name": "rules-engine-web",
+        "image": "rules-engine/web:0.10.7620",
+        "route": "rules-engine-web",
+        "health": "/healthz",
+        "allowPublicAccess": true,
+        "cpu": 500,
+        "memory": 1000,
+        "configs": {
+          "APPLICATIONINSIGHTS__INSTRUMENTATIONKEY": "%WillowTwin_ApplicationInsightsInstrumentationKey%",
+          "APPLICATIONINSIGHTS_CONNECTION_STRING": "%WillowTwin_ApplicationInsightsConnectionString%",
+          "APPLICATIONINSIGHTS__LOGLEVEL__DEFAULT": "Informational",
+          "RULES_AZUREAPPLICATION__BASEURL": "/%WillowTwin_Environment_BaseUrl%/rules-engine-web/",
+          "RULES_AZUREAPPLICATION__BASEAPI": "/%WillowTwin_Environment_BaseUrl%/rules-engine-web/",
+          "RULES_AZUREAPPLICATION__REDIRECT": "%WillowTwin_PublicHostName%/%WillowTwin_Environment_BaseUrl%/rules-engine-web/",
+          "RULES_ServiceBus__Namespace": "%WillowTwin_ServiceBusNamespaceHostName%",
+          "RULES_ServiceBus__Send__TopicName": "%WillowTwin_Topic_rule-execution_Name%",
+          "RULES_ServiceBus__Receive__TopicName": "%WillowTwin_Topic_rule-execution-response_Name%",
+          "RULES_ServiceBus__Receive__SubscriptionName": "%WillowTwin_Topic_rule-execution-response_Subscription_rule-execution-response-subscription_Name%",
+          "RULES_CUSTOMER__Id": "twin-%WillowTwin_CustomerCode%-%WillowTwin_EnvironmentCode%",
+          "RULES_CUSTOMER__Name": "%Customer_Name%",
+          "RULES_CUSTOMER__TIMEZONE": "%Customer_Timezone%",
+          "RULES_CUSTOMER__SQL__CONNECTIONSTRING": "%WillowTwin_SqlDatabases_RulesEngine_ConnectionString%",
+          "RULES_CUSTOMER__ADT__0__URI": "%ADT_0_URI%",
+          "RULES_CUSTOMER__ADX__URI": "%ADX_URI%",
+          "RULES_CUSTOMER__ADX__DatabaseName": "%ADX_DatabaseName%",
+          "RULES_RULES__SEARCHAPI__URI": "%WillowTwin_CognitiveSearch_shared_Uri%",
+          "RULES_RULES__KEYVAULTURI": "Inserted by pipeline",
+          "RULES_JWT__AUTHORITY": "%B2C_Authority%",
+          "RULES_JWT__ISSUER": "%B2C_Issuer%",
+          "RULES_JWT__AUDIENCE": "%B2C_Audience%",
+          "RULES_AZUREAPPLICATION__APPID": "%B2C_ClientId%",
+          "RULES_AZUREAPPLICATION__CLIENTID": "%B2C_ClientId%",
+          "RULES_AZUREAPPLICATION__TENANTID": "%B2C_TenantId%",
+          "RULES_AZUREAPPLICATION__AUTHORITY": "Inserted by pipeline",
+          "RULES_AZUREAPPLICATION__B2CSCOPES__0": "https://willowidentity.onmicrosoft.com/ebb53e69-b5be-454d-928e-a2e69cdcdfc7/Rules",
+          "RULES_AZUREADB2C__AUTHORITY": "%B2C_Authority%",
+          "RULES_AZUREADB2C__AUDIENCE": "%B2C_Audience",
+          "RULES_AZUREADB2C__TENANTID": "%B2C_TenantId%",
+          "RULES_AZUREADB2C__DOMAIN": "%WillowTwin_B2C_Domain%",
+          "RULES_AZUREADB2C__INSTANCE": "%WillowTwin_B2C_Instance%",
+          "RULES_AZUREADB2C__CLIENTID": "Inserted by pipeline",
+          "RULES_APPINSIGHTSAPI__WORKSPACENAME": "Inserted by pipeline",
+          "RULES_APPINSIGHTSAPI__WORKSPACEID": "Inserted by pipeline",
+          "RULES_AUTHORIZATIONAPI__BASEADDRESS": "http://authrz-api-svc",
+          "RULES_AUTHORIZATIONAPI__TOKENAUDIENCE": "api://8c74e778-9a35-473b-bbf0-4b0e9cc6000e"
+        }
+      }
+    ]
+  }
+}

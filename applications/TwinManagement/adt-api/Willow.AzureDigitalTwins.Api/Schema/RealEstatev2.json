@@ -1,0 +1,326 @@
+{
+  "name": "RealEstatev2",
+  "tableDefinitions": [
+    {
+      "Destination": "twins",
+      "Name": "Id",
+      "Type": "string",
+      "SourceType": "path",
+      "Source": "$.$dtId"
+    },
+    {
+      "Destination": "twins",
+      "Name": "Name",
+      "Type": "string",
+      "SourceType": "path",
+      "Source": "$.name"
+    },
+    {
+      "Destination": "twins",
+      "Name": "SiteId",
+      "Type": "guid",
+      "SourceType": "query",
+      "Source": "SELECT Target FROM DIGITALTWINS match (Source)-[:locatedIn|isPartOf|isCapabilityOf|hostedBy|isDocumentOf*..6]->(Target) WHERE IS_OF_MODEL(Target, 'dtmi:com:willowinc:Building;1') AND Source.$dtId = '{$dtId}'",
+      "Select": "Target.siteID",
+      "IsCustomColumn": true,
+      "UseForLocationSearch": true,
+      "WriteBackToADT": true,
+      "AdtPropName": "siteID"
+    },
+    {
+      "Destination": "twins",
+      "Name": "ModelId",
+      "Type": "string",
+      "SourceType": "path",
+      "Source": "$.$metadata.$model"
+    },
+    {
+      "Destination": "twins",
+      "Name": "FloorId",
+      "Type": "guid",
+      "SourceType": "query",
+      "Source": "SELECT Floor FROM DIGITALTWINS match (Asset)-[:locatedIn|isPartOf*..3]->(Floor) WHERE Asset.$dtId = '{$dtId}' AND IS_OF_MODEL(Floor, 'dtmi:com:willowinc:Level;1')",
+      "Select": "Floor.uniqueID",
+      "IsCustomColumn": true,
+      "UseForLocationSearch": true,
+      "WriteBackToADT": false,
+      "AdtPropName": "floorID"
+    },
+    {
+      "Destination": "twins",
+      "Name": "UniqueId",
+      "Type": "guid",
+      "SourceType": "path",
+      "Source": "$.uniqueID",
+      "IsCustomColumn": true,
+      "WriteBackToADT": true,
+      "AdtPropName": "uniqueID"
+    },
+    {
+      "Destination": "twins",
+      "Name": "GeometryViewerId",
+      "Type": "guid",
+      "SourceType": "path",
+      "Source": "$.geometryViewerID"
+    },
+    {
+      "Destination": "twins",
+      "Name": "TrendId",
+      "Type": "guid",
+      "SourceType": "path",
+      "Source": "$.trendID",
+      "IsCustomColumn": true,
+      "WriteBackToADT": true,
+      "AdtPropName": "trendID"
+    },
+    {
+      "Destination": "twins",
+      "Name": "ExternalId",
+      "Type": "string",
+      "SourceType": "path",
+      "Source": "$.externalID"
+    },
+    {
+      "Destination": "twins",
+      "Name": "ConnectorId",
+      "Type": "guid",
+      "SourceType": "path",
+      "Source": "$.connectorID"
+    },
+    {
+      "Destination": "twins",
+      "Name": "Tags",
+      "Type": "object",
+      "SourceType": "path",
+      "IsCustomColumn": true
+    },
+    {
+      "Destination": "twins",
+      "Name": "ExportTime",
+      "Type": "dateTime",
+      "SourceType": "path",
+      "IsCustomColumn": true,
+      "IsIngestionTimeColumn": true
+    },
+    {
+      "Destination": "twins",
+      "Name": "Raw",
+      "Type": "object",
+      "SourceType": "path",
+      "IsCustomColumn": true,
+      "IsFullEntityColumn": true
+    },
+    {
+      "Destination": "twins",
+      "Name": "Deleted",
+      "Type": "boolean",
+      "SourceType": "path",
+      "IsDeleteColumn": true
+    },
+    {
+      "Destination": "twins",
+      "Name": "Location",
+      "Type": "object",
+      "SourceType": "complex",
+      "IsCustomColumn": true,
+      "UseForLocationSearch": true,
+      "Children": [
+        {
+          "Destination": "twins",
+          "Name": "SiteId",
+          "Type": "guid",
+          "SourceType": "query",
+          "Source": "SELECT Target FROM DIGITALTWINS match (Source)-[:locatedIn|isPartOf|isCapabilityOf|hostedBy|isDocumentOf*..6]->(Target) WHERE IS_OF_MODEL(Target, 'dtmi:com:willowinc:Building;1') AND Source.$dtId = '{$dtId}'",
+          "Select": "Target.siteID"
+        },
+        {
+          "Destination": "twins",
+          "Name": "SiteDtId",
+          "Type": "guid",
+          "SourceType": "query",
+          "Source": "SELECT Target FROM DIGITALTWINS match (Source)-[:locatedIn|isPartOf|isCapabilityOf|hostedBy|isDocumentOf*..6]->(Target) WHERE IS_OF_MODEL(Target, 'dtmi:com:willowinc:Building;1') AND Source.$dtId = '{$dtId}'",
+          "Select": "Target.$dtId"
+        },
+        {
+          "Destination": "twins",
+          "Name": "SiteName",
+          "Type": "string",
+          "SourceType": "query",
+          "Source": "SELECT Target FROM DIGITALTWINS match (Source)-[:locatedIn|isPartOf|isCapabilityOf|hostedBy|isDocumentOf*..6]->(Target) WHERE IS_OF_MODEL(Target, 'dtmi:com:willowinc:Building;1') AND Source.$dtId = '{$dtId}'",
+          "Select": "Target.name"
+        },
+        {
+          "Destination": "twins",
+          "Name": "FloorId",
+          "Type": "guid",
+          "SourceType": "query",
+          "Source": "SELECT Floor FROM DIGITALTWINS match (Asset)-[:locatedIn|isPartOf*..5]->(Floor) WHERE Asset.$dtId = '{$dtId}' AND IS_OF_MODEL(Floor, 'dtmi:com:willowinc:Level;1')",
+          "Select": "Floor.uniqueID"
+        },
+        {
+          "Destination": "twins",
+          "Name": "FloorDtId",
+          "Type": "guid",
+          "SourceType": "query",
+          "Source": "SELECT Floor FROM DIGITALTWINS match (Asset)-[:locatedIn|isPartOf*..5]->(Floor) WHERE Asset.$dtId = '{$dtId}' AND IS_OF_MODEL(Floor, 'dtmi:com:willowinc:Level;1')",
+          "Select": "Floor.$dtId"
+        },
+        {
+          "Destination": "twins",
+          "Name": "FloorName",
+          "Type": "string",
+          "SourceType": "query",
+          "Source": "SELECT Floor FROM DIGITALTWINS match (Asset)-[:locatedIn|isPartOf*..5]->(Floor) WHERE Asset.$dtId = '{$dtId}' AND IS_OF_MODEL(Floor, 'dtmi:com:willowinc:Level;1')",
+          "Select": "Floor.name"
+        }
+      ]
+    },
+    {
+      "Destination": "twins",
+      "Name": "UserId",
+      "Type": "string",
+      "SourceType": "path"
+    },
+    {
+      "Destination": "relationships",
+      "Name": "Id",
+      "Type": "string",
+      "SourceType": "path",
+      "Source": "$.$relationshipId"
+    },
+    {
+      "Destination": "relationships",
+      "Name": "SourceId",
+      "Type": "string",
+      "SourceType": "path",
+      "Source": "$.$sourceId"
+    },
+    {
+      "Destination": "relationships",
+      "Name": "TargetId",
+      "Type": "string",
+      "SourceType": "path",
+      "Source": "$.$targetId"
+    },
+    {
+      "Destination": "relationships",
+      "Name": "Name",
+      "Type": "string",
+      "SourceType": "path",
+      "Source": "$.$relationshipName"
+    },
+    {
+      "Destination": "relationships",
+      "Name": "ExportTime",
+      "Type": "dateTime",
+      "SourceType": "path",
+      "IsCustomColumn": true,
+      "IsIngestionTimeColumn": true
+    },
+    {
+      "Destination": "relationships",
+      "Name": "Raw",
+      "Type": "object",
+      "SourceType": "path",
+      "IsCustomColumn": true,
+      "IsFullEntityColumn": true
+    },
+    {
+      "Destination": "relationships",
+      "Name": "Deleted",
+      "Type": "boolean",
+      "SourceType": "path",
+      "IsDeleteColumn": true
+    },
+    {
+      "Destination": "models",
+      "Name": "Id",
+      "Type": "string",
+      "SourceType": "path",
+      "Source": "$.DtdlModel.@id"
+    },
+    {
+      "Destination": "models",
+      "Name": "IsDecommissioned",
+      "Type": "boolean",
+      "DefaultValue": false
+    },
+    {
+      "Destination": "models",
+      "Name": "ExportTime",
+      "Type": "dateTime",
+      "SourceType": "path",
+      "Source": "$.CustomProperties.ExportTime",
+      "IsCustomColumn": true,
+      "IsIngestionTimeColumn": true
+    },
+    {
+      "Destination": "models",
+      "Name": "DisplayName",
+      "Type": "string",
+      "SourceType": "path",
+      "Source": "$.DtdlModel.displayName.en"
+    },
+    {
+      "Destination": "models",
+      "Name": "ModelDefinition",
+      "Type": "object",
+      "SourceType": "path",
+      "Source": "$.DtdlModel",
+      "IsFullEntityColumn": true
+    },
+    {
+      "Destination": "models",
+      "Name": "Deleted",
+      "Type": "boolean",
+      "SourceType": "path",
+      "IsDeleteColumn": true
+    },
+    {
+      "Destination": "models",
+      "Name": "allExtends",
+      "Type": "object",
+      "SourceType": "path",
+      "Source": "$.CustomProperties.allExtends",
+      "IsCustomColumn": true
+    }
+  ],
+  "materializedViews": [
+    {
+      "name": "DedupTwinsView",
+      "table": "Twins",
+      "body": "Twins | summarize arg_max(ExportTime, *) by Id",
+      "Backfill": true,
+      "EnforceInfiniteCachingOnTable": true
+    },
+    {
+      "name": "DedupModelsView",
+      "table": "Models",
+      "body": "Models | summarize arg_max(ExportTime, *) by Id",
+      "Backfill": true
+    },
+    {
+      "name": "DedupRelationshipsView",
+      "table": "Relationships",
+      "body": "Relationships | summarize arg_max(ExportTime, *) by SourceId,TargetId,Name",
+      "Backfill": true
+    }
+  ],
+  "functions": [
+    {
+      "name": "ActiveTwins",
+      "folder": "Twins",
+      "body": "DedupTwinsView | where isnull(Deleted) or Deleted == false"
+    },
+    {
+      "name": "ActiveModels",
+      "folder": "Models",
+      "body": "DedupModelsView | where isnull(Deleted) or Deleted == false"
+    },
+    {
+      "name": "ActiveRelationships",
+      "folder": "Relationships",
+      "body": "DedupRelationshipsView | where isnull(Deleted) or Deleted == false"
+    }
+  ]
+}

@@ -1,0 +1,93 @@
+﻿[
+  {
+    "Id": 5,
+    "StartTime": "2022-03-06T13:12:11.95Z",
+    "EndTime": "2022-03-06T13:13:11.95Z",
+    "ConnectorId": "f7923423-bc96-4fab-ad44-1335c0af3eb5",
+    "Connector": null,
+    "PointCount": 12,
+    "ErrorCount": 2,
+    "RetryCount": 3,
+    "Errors": "[{errorMessage: \"string\", deviceId: \"guid\", externaldeviceid: \"string\"}]",
+    "Source": "TestSource",
+    "CreatedAt": "2022-03-06T13:14:11.97Z"
+  },
+  {
+    "Id": 6,
+    "StartTime": "2022-03-06T13:10:11.95Z",
+    "EndTime": "2022-03-06T13:12:11.95Z",
+    "ConnectorId": "f7923423-bc96-4fab-ad44-1335c0af3eb5",
+    "Connector": null,
+    "PointCount": 12,
+    "ErrorCount": 2,
+    "RetryCount": 3,
+    "Errors": "[{errorMessage: \"string\", deviceId: \"guid\", externaldeviceid: \"string\"}]",
+    "Source": "TestSource",
+    "CreatedAt": "2022-03-06T13:14:11.973Z"
+  },
+  {
+    "Id": 7,
+    "StartTime": "2022-03-06T13:09:11.95Z",
+    "EndTime": "2022-03-06T13:11:11.95Z",
+    "ConnectorId": "f7923423-bc96-4fab-ad44-1335c0af3eb5",
+    "Connector": null,
+    "PointCount": 12,
+    "ErrorCount": 2,
+    "RetryCount": 3,
+    "Errors": "[{errorMessage: \"string\", deviceId: \"guid\", externaldeviceid: \"string\"}]",
+    "Source": "TestSource",
+    "CreatedAt": "2022-03-06T13:14:11.973Z"
+  },
+  {
+    "Id": 2,
+    "StartTime": "2022-03-06T13:12:11.95Z",
+    "EndTime": "2022-03-06T13:13:11.95Z",
+    "ConnectorId": "360d2af2-446b-4b1f-bb6f-20af553ea289",
+    "Connector": null,
+    "PointCount": 12,
+    "ErrorCount": 8,
+    "RetryCount": 3,
+    "Errors": "[{errorMessage: \"string\", deviceId: \"guid\", externaldeviceid: \"string\"}]",
+    "Source": "TestSource",
+    "CreatedAt": "2022-03-06T13:14:11.97Z"
+  },
+  {
+    "Id": 3,
+    "StartTime": "2022-03-06T13:12:11.95Z",
+    "EndTime": "2022-03-06T13:13:11.95Z",
+    "ConnectorId": "360d2af2-446b-4b1f-bb6f-20af553ea289",
+    "Connector": null,
+    "PointCount": 12,
+    "ErrorCount": 800,
+    "RetryCount": 3,
+    "Errors": "[{errorMessage: \"string\", deviceId: \"guid\", externaldeviceid: \"string\"}]",
+    "Source": "Sender",
+    "CreatedAt": "2022-03-06T13:14:11.97Z"
+  },
+  {
+    "Id": 8,
+    "StartTime": "2019-02-28T13:00:00Z",
+    "EndTime": "2019-03-31T13:00:00Z",
+    "ConnectorId": "360d2af2-446b-4b1f-bb6f-20af553ea289",
+    "Connector": null,
+    "PointCount": 21,
+    "ErrorCount": 11,
+    "RetryCount": 31,
+    "Errors": "[{errorMessage: \"string\", deviceId: \"guid\", externaldeviceid: \"string\"}]",
+    "Source": "TestSource",
+    "CreatedAt": "2022-03-06T13:14:12.306Z"
+  },
+  {
+    "Id": 1,
+    "StartTime": "2018-12-31T13:00:00Z",
+    "EndTime": "2019-01-31T13:00:00Z",
+    "ConnectorId": "360d2af2-446b-4b1f-bb6f-20af553ea289",
+    "Connector": null,
+    "PointCount": 2,
+    "ErrorCount": 1,
+    "RetryCount": 3,
+    "Errors": "[{errorMessage: \"string\", deviceId: \"guid\", externaldeviceid: \"string\"}]",
+    "Source": "TestSource",
+    "CreatedAt": "2022-03-06T13:14:11.95Z"
+  }
+]

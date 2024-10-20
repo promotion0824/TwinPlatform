@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+        <UserSecretsId>Telemetry.DataQuality</UserSecretsId>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Azure.DigitalTwins.Core" Version="1.4.0" />
+      <PackageReference Include="LazyCache.AspNetCore" Version="2.4.0"/>
+      <PackageReference Include="Microsoft.Azure.StackExchangeRedis" Version="3.1.0" />
+      <PackageReference Include="Microsoft.Extensions.Azure" Version="1.7.5" />
+      <PackageReference Include="Polly" Version="8.4.1" />
+      <PackageReference Include="Willow.AzureDigitalTwins.SDK" Version="2.2.2842" />
+      <PackageReference Include="Willow.Expressions" Version="2.2.2600" />
+      <PackageReference Include="Willow.Hosting" Version="2.2.2734" />
+      <PackageReference Include="Willow.LiveData.Pipeline" Version="2.2.2734" />
+      <PackageReference Include="Willow.Security" Version="2.2.2621" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Update="appsettings.development.json" CopyToPublishDirectory="Never" />
+    </ItemGroup>
+
+</Project>

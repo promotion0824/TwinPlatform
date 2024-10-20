@@ -1,0 +1,22 @@
+{
+   "tasks": [
+      {
+        "group": "pre-commit",
+        "name": "DirectoryCore: Run csharpier",
+        "command": "dotnet",
+        "args": ["csharpier", "${staged}"],
+        "include": ["extensions/real-estate/back-end/DirectoryCore/**/*.cs"],
+        "pathMode": "absolute",
+        "cwd": "extensions/real-estate/back-end/DirectoryCore"
+      },
+      {
+        "group": "pre-commit",
+        "name": "Web: Run prettier",
+        "command": "npx",
+        "args": ["prettier", "--write", "${staged}"],
+        "include": ["extensions/real-estate/front-end/Web/**/*"],
+        "pathMode": "absolute",
+        "cwd": "extensions/real-estate/front-end/Web"
+      }
+   ]
+}

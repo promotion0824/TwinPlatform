@@ -1,0 +1,101 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: livedatacore
+  title: LiveDataCore
+  description: LiveDataCore
+  annotations:
+    dev.azure.com/project-repo: Connectors/LiveData-Core
+  tags:
+    - iot
+  links:
+    - url: https://dev.azure.com/willowdev/Connectors/_git/LiveData-Core
+      title: Repo
+      icon: web
+    - url: https://dev.azure.com/willowdev/Connectors/_build?definitionId=144
+      title: Pipeline
+      icon: web
+    - url: https://saas.whitesourcesoftware.com/Wss/WSS.html#!project;id=1966686
+      title: Whitesource
+      icon: web
+    - url: https://willow.atlassian.net/wiki/spaces/INTEG/pages/292782320/Live+Data+Core
+      title: Wiki
+      icon: web
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/e878a98a-20ec-4516-a59d-f393429fe07c/resourceGroups/t3-wil-prd-lda-aue2-app-rsg/providers/Microsoft.Web/sites/wil-prd-lda-aue2-livedatacore/appServices
+      title: AU App Service
+      icon: web
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/e878a98a-20ec-4516-a59d-f393429fe07c/resourceGroups/t3-wil-prd-lda-eu22-app-rsg/providers/Microsoft.Web/sites/wil-prd-lda-eu22-livedatacore/appServices
+      title: US App Service
+      icon: web
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/e878a98a-20ec-4516-a59d-f393429fe07c/resourceGroups/t3-wil-prd-lda-weu2-app-rsg/providers/Microsoft.Web/sites/wil-prd-lda-weu2-livedatacore/appServices
+      title: EU App Service
+      icon: web
+spec:
+  type: service
+  lifecycle: production
+  owner: pne_willowtwin_iot
+  system: iotservices-system
+  dependsOn: 
+    [
+      'resource:AU-LiveData-keyvault',
+      'resource:EU-LiveData-keyvault',
+      'resource:US-LiveData-keyvault'
+    ]
+  providesApis:
+    - LiveDataCore-Api
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: AU-LiveData-keyvault
+  links:
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/e878a98a-20ec-4516-a59d-f393429fe07c/resourceGroups/t3-wil-prd-lda-aue2-app-rsg/providers/Microsoft.KeyVault/vaults/wil-prd-lda-aue2-kvl/overview
+      title: AU LiveData KeyVault
+      icon: web
+  description: AU LiveData Keyvault
+spec:
+  type: keyvault
+  owner: pne_willowtwin_iot
+  system: iotservices-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: US-LiveData-keyvault
+  links:
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/e878a98a-20ec-4516-a59d-f393429fe07c/resourceGroups/t3-wil-prd-lda-eu22-app-rsg/providers/Microsoft.KeyVault/vaults/wil-prd-lda-eu22-kvl/overview
+      title: US LiveData KeyVault
+      icon: web
+  description: US LiveData Keyvault
+spec:
+  type: keyvault
+  owner: pne_willowtwin_iot
+  system: iotservices-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: EU-LiveData-keyvault
+  links:
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/e878a98a-20ec-4516-a59d-f393429fe07c/resourceGroups/t3-wil-prd-lda-weu2-app-rsg/providers/Microsoft.KeyVault/vaults/wil-prd-lda-weu2-kvl/overview
+      title: EU LiveData KeyVault
+      icon: web
+  description: EU LiveData Keyvault
+spec:
+  type: keyvault
+  owner: pne_willowtwin_iot
+  system: iotservices-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: LiveDataCore-Api
+  description: LiveDataCore Api
+spec:
+  type: openapi
+  lifecycle: production
+  owner: pne_willowtwin_iot
+  system: iotservices-system
+  definition:
+    $text: https://wil-dev-lda-aue1-livedatacore.azurewebsites.net/swagger/v1/swagger.json
+  dependsOn: ['component:LiveDataCore']

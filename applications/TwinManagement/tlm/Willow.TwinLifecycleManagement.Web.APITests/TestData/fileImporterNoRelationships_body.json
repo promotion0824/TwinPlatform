@@ -1,0 +1,15 @@
+{
+  "twins": [
+    {
+      "id": "",
+      "metadata": {
+        "modelId": "dtmi:com:willowinc:Chiller;1",
+        "propertyMetadata": {}
+      },
+      "contents": {
+        "siteId": "11111"
+      }
+    }
+  ],
+  "relationships": []
+}

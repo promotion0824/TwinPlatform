@@ -1,0 +1,121 @@
+{
+  "config": {
+    "configFile": "E:\\Workspace\\Willow\\TwinPlatform\\design-system\\apps\\ui-e2e\\playwright.config.ts",
+    "rootDir": "E:/Workspace/Willow/TwinPlatform/design-system/apps/ui-e2e/src/visual-regression",
+    "forbidOnly": true,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "html",
+        {
+          "outputFolder": "../../dist/apps/ui-e2e/playwright-report",
+          "open": "never"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "../../dist/apps/ui-e2e/playwright-report/test-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 15000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "E:/Workspace/Willow/TwinPlatform/design-system/dist/apps/ui-e2e/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {},
+        "id": "Google Chrome",
+        "name": "Google Chrome",
+        "testDir": "E:/Workspace/Willow/TwinPlatform/design-system/apps/ui-e2e/src/visual-regression",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "version": "1.45.0",
+    "workers": 4,
+    "webServer": {
+      "command": "npm start",
+      "url": "http://localhost:4400",
+      "reuseExistingServer": true,
+      "cwd": "E:\\Workspace\\Willow\\TwinPlatform\\design-system"
+    }
+  },
+  "suites": [
+    {
+      "title": "Flex\\Flex.spec.ts",
+      "file": "Flex/Flex.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "responsive props",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "Google Chrome",
+              "projectName": "Google Chrome",
+              "results": [
+                {
+                  "workerIndex": 55,
+                  "status": "passed",
+                  "duration": 9405,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2024-08-08T23:51:38.043Z",
+                  "attachments": [
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "E:\\Workspace\\Willow\\TwinPlatform\\design-system\\dist\\apps\\ui-e2e\\test-results\\Flex-Flex-responsive-props-Google-Chrome\\trace.zip"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "289ba5b732f08854f7c4-d9d78f0261d8a23d7f04",
+          "file": "Flex/Flex.spec.ts",
+          "line": 56,
+          "column": 5
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2024-08-08T23:51:33.953Z",
+    "duration": 14152.259000000078,
+    "expected": 1,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

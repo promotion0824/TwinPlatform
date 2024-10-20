@@ -1,0 +1,41 @@
+name: "Nuget Willow.SpecFlow"
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - libraries/Willow.SpecFlow/**
+  pull_request:
+    paths:
+      - libraries/Willow.SpecFlow/**
+
+env:
+  buildConfiguration: Release
+  testProjectDir: "libraries/Willow.SpecFlow/test/Willow.SpecFlow.Tests"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Nuget Build and Push action
+        uses: WillowInc/.github/.github/actions/nuget-build-push@main
+        with:
+          buildConfiguration: ${{ env.buildConfiguration}}
+          srcProjectDir: "libraries/Willow.SpecFlow/src/Willow.SpecFlow"
+          srcTestProjectDir: ${{ env.testProjectDir}}
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          pushPackages: ${{ github.event_name == 'push' }}
+          directoryBuildPropPath: ${{ github.workspace }}/.config/common.props
+
+      - name: Nuget Build and Push action
+        uses: WillowInc/.github/.github/actions/nuget-build-push@main
+        with:
+          buildConfiguration: ${{ env.buildConfiguration}}
+          srcProjectDir: "libraries/Willow.SpecFlow/src/Willow.SpecFlow.Xunit"
+          srcTestProjectDir: ${{ env.testProjectDir}}
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          pushPackages: ${{ github.event_name == 'push' }}
+          directoryBuildPropPath: ${{ github.workspace }}/.config/common.props

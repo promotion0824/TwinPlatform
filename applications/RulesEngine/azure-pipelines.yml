@@ -1,0 +1,598 @@
+trigger: none
+
+pr: none
+
+parameters:
+- name: deploy_Msft_Test
+  displayName: MSFT-TEST
+  type: boolean
+  default: true
+- name: deploy_DDK_Prod
+  displayName: DDK Prod
+  type: boolean
+  default: true
+- name: deploy_BP_Prod
+  displayName: BP Prod
+  type: boolean
+  default: true
+- name: deploy_HPK_Prod
+  displayName: HPK Prod
+  type: boolean
+  default: true
+- name: deploy_AXA_Prod
+  displayName: AXA Prod
+  type: boolean
+  default: true
+- name: deploy_BRF_Prod
+  displayName: BRF Prod
+  type: boolean
+  default: true
+- name: deploy_SANOFI_Prod
+  displayName: Sanofi Prod
+  type: boolean
+  default: true
+- name: deploy_INV_Prod
+  displayName: INV Prod
+  type: boolean
+  default: true
+- name: deploy_DFW_Prod
+  displayName: DFW Prod
+  type: boolean
+  default: true
+- name: deploy_DURST_Prod
+  displayName: DURST Prod
+  type: boolean
+  default: true
+- name: deploy_JPMC_PROD
+  displayName: JPMC Prod
+  type: boolean
+  default: true
+- name: deploy_TURNER_PROD
+  displayName: TURNER Prod
+  type: boolean
+  default: true
+
+stages:
+- stage: Build_stage
+  displayName: 'Build stage'
+
+  variables:
+    major: 0
+    minor: 12
+    semantic: $(major).$(minor)
+    # increments by one each build, resets when minor version changes
+    patch: $[counter(variables['semantic'], 100)]
+    versionFull: $(semantic).$(patch)
+
+  jobs:
+    - job: Build_version
+      displayName: 'Semantic build number'
+
+      steps:
+      - checkout: none
+      # Note that the build id is split into two numbers in order to stay within the allowed range limits for nuget
+      - task: Bash@3
+        displayName: '[Bash] Set Build Number and variables'
+        inputs:
+          targetType: 'inline'
+          script: |
+            echo Version ${{ variables.versionFull }}
+            newbuildid=${{ variables.versionFull }}
+            echo "##vso[build.updatebuildnumber]${newbuildid}"
+
+    # Rules Engine
+    - job: Build_Rules_Processor
+      displayName: 'Rules Engine Processor'
+      dependsOn:
+        - Build_version
+      pool:
+        vmImage: 'ubuntu-latest'
+      steps:
+      - template: azure-set-version.yml
+        parameters:
+          majorVersion: 0
+          path: core/RulesEngine/Directory.Build.props
+
+      # Because RulesEngine.Processor is built inside Docker, we need to authenticate to NuGet
+
+      # NuGet Authentication sets VSS_NUGET_ACCESSTOKEN
+      - task: NuGetAuthenticate@1
+        displayName: "Nuget Authentication"
+
+      # Secrets must be passed in env not directly
+
+      - task: Bash@3
+        displayName: 'Add Github credentials to Nuget config'
+        env:
+          GITHUBPAT: ${githubpat}
+        inputs:
+          targetType: 'inline'
+          script: |
+            dotnet nuget remove source WillowGithub --configfile core/RulesEngine/nuget.config
+            dotnet nuget add source --store-password-in-clear-text --username pat --password "$(GITHUBPAT)" --name WillowGithub "https://nuget.pkg.github.com/willowinc/index.json" --configfile core/RulesEngine/nuget.config
+
+      - task: Bash@3
+        displayName: 'Dump nuget config'
+        inputs:
+          targetType: 'inline'
+          script: |
+            cat core/RulesEngine/nuget.config
+
+      - template: azure-docker.yml
+        parameters:
+          imageName: 'rules-engine/processor'
+          dockerfile: 'core/RulesEngine/RulesEngine.Processor/Dockerfile'
+          dockerContext: .
+
+    - job: Build_Web_Assets
+      displayName: 'Web Assets'
+
+      dependsOn:
+        - Build_version
+      pool:
+        vmImage: 'ubuntu-latest'
+      steps:
+
+      # npm authenticate (for task runners) v0
+      # Don't use this task if you're also using the npm task.
+      # Provides npm credentials to an .npmrc file in your repository for the scope of the build.
+      # This enables npm task runners like gulp and Grunt to authenticate with private registries.
+      - task: npmAuthenticate@0
+        inputs:
+          workingFile: core/RulesEngine/RulesEngine.Web/ClientApp/.npmrc
+          customEndpoint: npm.pkg.github.com
+
+      - script: |
+          npm install
+        workingDirectory: 'core/RulesEngine/RulesEngine.Web/ClientApp'
+        displayName: 'npm install'
+
+      - script: |
+          npm run build
+        env:
+          NODE_OPTIONS: --max-old-space-size=16384
+        workingDirectory: 'core/RulesEngine/RulesEngine.Web/ClientApp'
+        displayName: 'npm build'
+
+      # Vite puts a / on assets which means it cannot run on a subdirectory
+      - script: |
+          sed -i -E "s|(\"/assets/)|\"assets/|" index.html
+        workingDirectory: 'core/RulesEngine/RulesEngine.Web/ClientApp/dist'
+        displayName: 'Fix asset paths'
+
+      - publish: $(System.DefaultWorkingDirectory)/core/RulesEngine/RulesEngine.Web/ClientApp/dist
+        artifact: webfiles
+
+      # DOTNET BELOW HERE
+    - job: Build_Web_App
+      displayName: 'Web Code'
+
+      dependsOn:
+        - Build_version
+      pool:
+        vmImage: 'ubuntu-latest'
+      steps:
+
+      - template: azure-set-version.yml
+        parameters:
+          majorVersion: 0
+          path: core/RulesEngine/Directory.Build.props
+
+      - task: NuGetAuthenticate@1
+        displayName: "Nuget Authentication"
+
+      - task: Bash@3
+        displayName: 'Add Github credentials to Nuget config'
+        env:
+          GITHUBPAT: ${githubpat}
+        inputs:
+          targetType: 'inline'
+          script: |
+            dotnet nuget remove source WillowGithub --configfile core/RulesEngine/nuget.config
+            dotnet nuget add source --store-password-in-clear-text --username pat --password "$(GITHUBPAT)" --name WillowGithub "https://nuget.pkg.github.com/willowinc/index.json" --configfile core/RulesEngine/nuget.config
+
+      - task: UseDotNet@2
+        displayName: "Use dotnet sdk 8.x"
+        inputs:
+          version: 8.x
+          includePreviewVersions: false
+
+      - task: DotNetCoreCLI@2
+        displayName: 'dotnet publish'
+        inputs:
+          workingDirectory:  'core/RulesEngine/RulesEngine.Web/'
+          command: 'publish'
+          projects: 'core/RulesEngine/RulesEngine.Web/RulesEngine.Web.csproj'
+          publishWebProjects: false
+          zipAfterPublish: false
+          modifyOutputPath: false
+          arguments: '--configuration Release --output $(System.DefaultWorkingDirectory)/app/publish'
+
+      - publish: $(System.DefaultWorkingDirectory)/app/publish
+        artifact: dotnetfiles
+
+      - publish: $(System.DefaultWorkingDirectory)/core/RulesEngine/RulesEngine.Web/Dockerfile.Vite
+        artifact: docker
+
+    - job: Merge_jobs_and_finish_web
+      displayName: Merge web and create image
+      dependsOn:
+        - Build_Web_Assets
+        - Build_Web_App
+      pool:
+        vmImage: 'ubuntu-latest'
+      steps:
+        - checkout: none
+        - download: current
+          artifact: webfiles
+        - download: current
+          artifact: dotnetfiles
+        - download: current
+          artifact: docker
+
+        - task: CopyFiles@2
+          inputs:
+            SourceFolder: '$(Pipeline.Workspace)/webfiles'
+            Contents: '**'
+            TargetFolder: '$(System.DefaultWorkingDirectory)/core/RulesEngine/RulesEngine.Web/ClientApp/dist'
+          displayName: 'Put web files back in place'
+
+        - task: CopyFiles@2
+          inputs:
+            SourceFolder: '$(Pipeline.Workspace)/dotnetfiles'
+            Contents: '**'
+            TargetFolder: '$(System.DefaultWorkingDirectory)/app/publish'
+          displayName: 'Put dotnet files back in place'
+
+        - task: CopyFiles@2
+          inputs:
+            SourceFolder: '$(Pipeline.Workspace)/docker'
+            Contents: '**'
+            TargetFolder: '$(System.DefaultWorkingDirectory)/core/RulesEngine/RulesEngine.Web'
+          displayName: 'Put docker file back in place'
+
+        - template: azure-docker.yml
+          parameters:
+            imageName: 'rules-engine/web'
+            dockerfile: 'core/RulesEngine/RulesEngine.Web/Dockerfile.Vite'
+            dockerContext: .
+
+    # - job: Build_Rules_Init
+    #   displayName: 'Rules Engine Init'
+    #   dependsOn:
+    #     - Build_version
+    #   pool:
+    #     vmImage: 'ubuntu-latest'
+    #   steps:
+    #   - template: azure-set-version.yml
+    #     parameters:
+    #       majorVersion: 0
+    #       path: core/RulesEngine/Directory.Build.props
+    #   - template: azure-docker.yml
+    #     parameters:
+    #       imageName: 'rules-engine/init'
+    #       dockerfile: 'core/RulesEngine/RulesEngine.Init/Dockerfile'
+    #       dockerContext: .
+
+    # Not used yet - used for three container deployments like Azure Container Instances
+    # - job: Build_Rules_React_App
+    #   displayName: 'Build Rules Engine ReactApp'
+    #   dependsOn:
+    #     - Build_version
+    #   pool:
+    #     vmImage: 'ubuntu-latest'
+    #   steps:
+    #   - template: azure-set-version.yml
+    #     parameters:
+    #       majorVersion: 0
+    #       path: core/RulesEngine/Directory.Build.props
+    #   - template: azure-docker.yml
+    #     parameters:
+    #       imageName: 'rules-engine/react'
+    #       dockerfile: 'core/RulesEngine/RulesEngine.Web/Dockerfile.ReactApp'
+    #       dockerContext: core/RulesEngine/
+
+
+
+    - job: Export_manifest_files
+      displayName: Export updated manifest files
+      dependsOn:
+        - Build_version
+      steps:
+      - template: azure-export-manifest.yml
+        parameters:
+          environment: 'prod'
+          name: 'willow-rules-engine'
+          code: 'rulesz'
+          source: core/RulesEngine/willow-rules-engine.json
+          target: core/RulesEngine/prod-willow-rules-engine.json
+          clientid: 'b5586a06-5e3d-4d2a-aee3-5f39abfcb34b'
+          authority: 'https://willowidentity.b2clogin.com/willowidentity.onmicrosoft.com/B2C_1A_SeamlessMigration_SignUpOrSignIn'
+          issuer: 'https://willowidentity.b2clogin.com/540c8929-ab7e-478f-b401-cbd037da66bd/v2.0/'
+          audience: 'ebb53e69-b5be-454d-928e-a2e69cdcdfc7'
+          appid: 'b5586a06-5e3d-4d2a-aee3-5f39abfcb34b'
+          tenantid: '540c8929-ab7e-478f-b401-cbd037da66bd'
+          b2cscope: 'https://willowidentity.onmicrosoft.com/ebb53e69-b5be-454d-928e-a2e69cdcdfc7/Rules'
+          instance: 'https://willowidentity.b2clogin.com/'
+          domain: 'willowidentity.b2clogin.com'
+          appInsightsWorkspace: 'nonprodplatformshared-aue-log'
+          appInsightsWorkspaceId: '61cc7320-e391-4525-a02b-b93f75ee8e93'
+          authAppAudience: 'api://0d9f112e-0b1e-4609-9fa7-e78066b0993a'
+          publicApiUri: 'https://api.willowinc.com'
+          keyvaultUri: 'https://rules-engine-key-vault.vault.azure.net/'
+      - publish: core/RulesEngine/prod-willow-rules-engine.json
+        artifact: rules-engine-manifest-prod-$(Build.BuildNumber).json
+      - template: azure-export-manifest.yml
+        parameters:
+          environment: 'non-prod'
+          name: 'willow-rules-engine-non-prod'
+          code: 'rulesn'
+          source: core/RulesEngine/willow-rules-engine.json
+          target: core/RulesEngine/non-prod-willow-rules-engine.json
+          appid: '2945cf39-b6f5-4c4c-ae41-df9d155d2880'
+          clientid: '2945cf39-b6f5-4c4c-ae41-df9d155d2880'
+          authority: 'https://willowdevb2c.b2clogin.com/willowdevb2c.onmicrosoft.com/B2C_1A_SeamlessMigration_SignUpOrSignIn'
+          issuer: 'https://willowdevb2c.b2clogin.com/a80618f8-f5e9-43bf-a98f-107dd8f54aa9/v2.0/'
+          tenantid: 'a80618f8-f5e9-43bf-a98f-107dd8f54aa9'
+          domain: 'willowdevb2c.b2clogin.com'
+          audience: '6bb6cec6-8309-4891-9b25-42a3ef3247ec'
+          instance: 'https://willowdevb2c.b2clogin.com/'
+          b2cscope: 'https://willowdevb2c.onmicrosoft.com/demo-api/demo.read'
+          appInsightsWorkspace: 'prodplatformshared-aue-log'
+          appInsightsWorkspaceId: '09b48b86-3897-4fd2-947b-cd810de6e688'
+          authAppAudience: 'api://8c74e778-9a35-473b-bbf0-4b0e9cc6000e'
+          publicApiUri: ' '
+          keyvaultUri: 'https://sbx-rules-engine.vault.azure.net/'
+      - publish: core/RulesEngine/non-prod-willow-rules-engine.json
+        artifact: rules-engine-manifest-non-prod-$(Build.BuildNumber).json
+
+- stage: Non_prod_deployments
+  displayName: "Non-prod deployments"
+  jobs:
+  - job: Msft_test_deployment
+    displayName: 'MSFT-TEST deployment'
+    condition: eq(${{ parameters.deploy_Msft_Test }}, true)
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - template: azure-deploy.yml
+      parameters:
+        buildNumber: $(Build.BuildNumber)
+        id: msft_test
+        namespace: twin-msft-test
+        resourceGroup: nonprod-platformapps
+        cluster: nonprod-platformapps-aks
+        acr: 'nonprodplatformsharedcr.azurecr.io'
+        subscriptionEndpoint : 'az-k8s-internal-Twin Platform'
+
+# promote all images to production
+- template: azure-promote-all.yml
+  parameters:
+    buildNumber: $(Build.BuildNumber)
+
+- stage: Approval_stage_canary
+  displayName: "Canary Approval?"
+  jobs:
+  - job: waitForValidation
+    displayName: Wait for approval to deploy the image to canary production site
+    pool: server
+    timeoutInMinutes: 2880 # job timesout in 2 days
+    steps:
+    - task: ManualValidation@0
+      timeoutInMinutes: 1440 # task timesout in 1 day
+      inputs:
+        notifyUsers: |
+          imercer@willowinc.com
+        instructions: 'Please validate the built image and resume the production deployment'
+        onTimeout: reject
+
+# - stage: Pulumi_Sandbox
+#   displayName: Pulumi to Sandbox
+#   condition: eq(variables['pulumi'], 'true')
+#   jobs:
+#     - job: Pulumi
+#       displayName: 'Pulumi'
+#       pool:
+#         vmImage: 'ubuntu-latest'
+#       steps:
+#       - template: azure-pulumi.yml
+#         parameters:
+#           customerName: 'Microsoft'
+
+- stage: Canary_deployment
+  displayName: "Canary deployment"
+  jobs:
+  - job: Msft_deployment
+    displayName: 'MSFT deployment'
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - template: azure-deploy.yml
+      parameters:
+        buildNumber: $(Build.BuildNumber)
+        id: msft_prod
+        namespace: twin-msft-prod
+        resourceGroup: prod-platformapps-eu2
+        cluster: prod-platformapps-eu2-aks
+
+  #ST Only now
+  #- job: DDK_deployment
+  #  displayName: 'DDK deployment'
+  #  condition: and(succeeded(), eq(${{ parameters.deploy_DDK_Prod }}, true))
+  #  pool:
+  #    vmImage: 'ubuntu-latest'
+  #  steps:
+  #  - template: azure-deploy.yml
+  #    parameters:
+  #      buildNumber: $(Build.BuildNumber)
+  #      id: ddk_prod
+  #      namespace: twin-ddk-prod
+  #      resourceGroup: prod-platformapps-aue
+  #      cluster: prod-platformapps-aue-aks
+
+- stage: Approval_stage_remainder
+  displayName: "Remainder Approval?"
+  jobs:
+  - job: waitForValidation
+    displayName: Wait for approval to deploy to remainder of production
+    pool: server
+    timeoutInMinutes: 4320 # job timesout in 3 days
+    steps:
+    - task: ManualValidation@0
+      timeoutInMinutes: 1440 # task timesout in 1 day
+      inputs:
+        notifyUsers: |
+          imercer@willowinc.com
+        instructions: 'Please validate the canary deployment'
+        onTimeout: reject
+
+# Proceed in Tranches rather than all at once
+
+- stage: Tranche_One
+  displayName: "Tranche One"
+  jobs:
+
+  - job: BP_deployment
+    displayName: 'BP deployment'
+    condition: and(succeeded(), eq(${{ parameters.deploy_BP_Prod }}, true))
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - template: azure-deploy.yml
+      parameters:
+        buildNumber: $(Build.BuildNumber)
+        id: bp_prod
+        namespace: twin-bp-prod
+        resourceGroup: prod-platformapps-eu2
+        cluster: prod-platformapps-eu2-aks
+
+  - job: HPK_deployment
+    displayName: 'Hollywood Park deployment'
+    condition: and(succeeded(), eq(${{ parameters.deploy_HPK_Prod }}, true))
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - template: azure-deploy.yml
+      parameters:
+        buildNumber: $(Build.BuildNumber)
+        id: hpk_prod
+        namespace: twin-hpk-prod
+        resourceGroup: prod-platformapps-eu2
+        cluster: prod-platformapps-eu2-aks
+
+# Proceed in Tranches - Tranche 2
+
+- stage: Tranche_Two
+  displayName: "Tranche Two"
+  jobs:
+  - job: Axa_deployment
+    displayName: 'Axa deployment'
+    condition: and(succeeded(), eq(${{ parameters.deploy_AXA_Prod }}, true))
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - template: azure-deploy.yml
+      parameters:
+        buildNumber: $(Build.BuildNumber)
+        id: axa_prod
+        namespace: twin-axa-prod
+        resourceGroup: prod-platformapps-weu
+        cluster: prod-platformapps-weu-aks
+
+  - job: Brookfield_deployment
+    displayName: 'Brookfield deployment'
+    condition: and(succeeded(), eq(${{ parameters.deploy_BRF_Prod }}, true))
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - template: azure-deploy.yml
+      parameters:
+        buildNumber: $(Build.BuildNumber)
+        id: brf_prod
+        namespace: twin-brf-prod
+        resourceGroup: prod-platformapps-eu2
+        cluster: prod-platformapps-eu2-aks
+
+  - job: Sanofi_deployment
+    displayName: 'Sanofi deployment'
+    condition: and(succeeded(), eq(${{ parameters.deploy_SANOFI_Prod }}, true))
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - template: azure-deploy.yml
+      parameters:
+        buildNumber: $(Build.BuildNumber)
+        id: san_prod
+        namespace: twin-san-prod
+        resourceGroup: prod-platformapps-eu2
+        cluster: prod-platformapps-eu2-aks
+
+  - job: Investa_deployment
+    displayName: 'Investa deployment'
+    condition: and(succeeded(), eq(${{ parameters.deploy_INV_Prod }}, true))
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - template: azure-deploy.yml
+      parameters:
+        buildNumber: $(Build.BuildNumber)
+        id: inv_prod
+        namespace: twin-inv-prod
+        resourceGroup: prod-platformapps-aue
+        cluster: prod-platformapps-aue-aks
+
+  - job: DFW_deployment
+    displayName: 'DFW deployment'
+    condition: and(succeeded(), eq(${{ parameters.deploy_DFW_Prod }}, true))
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - template: azure-deploy.yml
+      parameters:
+        buildNumber: $(Build.BuildNumber)
+        id: dfw_prod
+        namespace: twin-dfw-prod
+        resourceGroup: prod-platformapps-eu2
+        cluster: prod-platformapps-eu2-aks
+
+  - job: DURST_deployment
+    displayName: 'DURST deployment'
+    condition: and(succeeded(), eq(${{ parameters.deploy_DURST_Prod }}, true))
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - template: azure-deploy.yml
+      parameters:
+        buildNumber: $(Build.BuildNumber)
+        id: durst_prod
+        namespace: twin-durst-prod
+        resourceGroup: prod-platformapps-eu2
+        cluster: prod-platformapps-eu2-aks
+
+  - job: JPMC_deployment
+    displayName: 'JPMC deployment'
+    condition: and(succeeded(), eq(${{ parameters.deploy_JPMC_Prod }}, true))
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - template: azure-deploy.yml
+      parameters:
+        buildNumber: $(Build.BuildNumber)
+        id: jpmc_prod
+        namespace: twin-jpmc-prod
+        resourceGroup: prod-platformapps-eu2
+        cluster: prod-platformapps-eu2-aks
+
+  - job: TURNER_deployment
+    displayName: 'TURNER deployment'
+    condition: and(succeeded(), eq(${{ parameters.deploy_TURNER_Prod }}, true))
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - template: azure-deploy.yml
+      parameters:
+        buildNumber: $(Build.BuildNumber)
+        id: turn_prod
+        namespace: twin-turn-prod
+        resourceGroup: prod-platformapps-eu2
+        cluster: prod-platformapps-eu2-aks

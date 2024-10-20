@@ -1,0 +1,67 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <IsPackable>false</IsPackable>
+    <Nullable>disable</Nullable>
+    <LangVersion>12</LangVersion>
+    <RootNamespace>Willow.Connectors.Core.Tests</RootNamespace>
+    <AssemblyName>Willow.Conntectors.Core.Tests</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="appsettings.json" />
+    <None Remove="appsettings.dev.json" />
+    <None Remove="appsettings.unversioned.json" />
+    <None Remove="Infrastructure\**" />
+    <None Remove="IntegrationTests\**" />
+    <None Remove="TestData\**" />
+    <None Remove="UnitTests\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoFixture.NUnit3" Version="4.18.1" />
+    <PackageReference Include="Bogus" Version="35.4.0" />
+	<PackageReference Include="coverlet.collector" Version="6.0.2">
+		<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		<PrivateAssets>all</PrivateAssets>
+	</PackageReference>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="8.0.6" />
+    <PackageReference Include="NSubstitute" Version="5.1.0" />
+    <PackageReference Include="nunit" Version="3.14.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.5.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+    <PackageReference Include="FluentAssertions" Version="6.12.0" />
+    <PackageReference Include="Snapshooter.NUnit" Version="0.13.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\ConnectorCore\ConnectorCore.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="UnitTests\ScannerBlobServiceTests.cs" />
+    <Compile Remove="Infrastructure\**" />
+    <Compile Remove="IntegrationTests\**" />
+    <Compile Remove="TestData\**" />
+    <Compile Remove="UnitTests\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Infrastructure\**" />
+    <EmbeddedResource Remove="IntegrationTests\**" />
+    <EmbeddedResource Remove="TestData\**" />
+    <EmbeddedResource Remove="UnitTests\**" />
+  </ItemGroup>
+
+</Project>

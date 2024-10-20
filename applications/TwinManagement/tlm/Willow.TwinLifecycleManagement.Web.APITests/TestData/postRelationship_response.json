@@ -1,0 +1,15 @@
+[
+  {
+    "requestPath": "adt-twin-akvelon-testdev-default-02f46bab.api.aue.digitaltwins.azure.net/import/requests/7cc95dab-cffa-4bb6-a789-c8f65f90e71b",
+    "jobId": "7cc95dab-cffa-4bb6-a789-c8f65f90e71b",
+    "details": {
+      "status": "Queued"
+    },
+    "createTime": "2022-06-22T15:16:39.9284476Z",
+    "lastUpdateTime": "2022-06-22T15:16:39.9284489Z",
+    "userEmail": "SGrujicic@willowinc.com",
+    "target": [
+      "Relationships"
+    ]
+  }
+]

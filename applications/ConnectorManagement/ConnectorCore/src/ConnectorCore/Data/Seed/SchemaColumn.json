@@ -1,0 +1,866 @@
+[
+  {
+    "Id": "9fe3de15-ccf4-4250-9d34-021c7e4ba869",
+    "Name": "Scale",
+    "IsRequired": false,
+    "DataType": "String",
+    "SchemaId": "b6270aa7-294c-411c-94c8-ff2cd1c8268f",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "e0671f5b-5cad-4aa8-a14f-094db13e2914",
+    "Name": "NetworkSettingInterfaceName",
+    "IsRequired": true,
+    "DataType": "String",
+    "SchemaId": "8e3de645-3c5c-443f-afd8-27e90f64c9a7",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "ab5342fb-bb43-4674-878b-0a3a55620ba8",
+    "Name": "Port",
+    "IsRequired": true,
+    "DataType": "Number",
+    "SchemaId": "8e5f3305-4bf9-4b14-b510-30713fc8a10b",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "ee3daaa2-61cd-4e03-8a5b-0bb4c9d2df94",
+    "Name": "NodeId",
+    "IsRequired": true,
+    "DataType": "String",
+    "SchemaId": "203c392f-bb84-456c-aca9-2ab7af7f6595",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "f34f1404-2e27-4c3e-87a0-10e5535f1e22",
+    "Name": "WhoisSegmentSize",
+    "IsRequired": true,
+    "DataType": "Number",
+    "SchemaId": "7c2807f4-8868-4327-a960-4805edd775e9",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "b1d58f82-1e62-4f05-be72-15015d4393f7",
+    "Name": "IsCalculated",
+    "IsRequired": false,
+    "DataType": "String",
+    "SchemaId": "86cb421a-bd47-4d09-b78e-3ed88976d9b9",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "cd6e1881-add7-40fe-b8f1-15eb17c8d6c7",
+    "Name": "InterReadDelay",
+    "IsRequired": false,
+    "DataType": "Number",
+    "SchemaId": "41cfe979-4b56-40f4-8aab-0292d2f96bb2",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "a3a84729-8e2e-4c33-8cf6-1655cf7e8bac",
+    "Name": "PointGroupSize",
+    "IsRequired": false,
+    "DataType": "Number",
+    "SchemaId": "41cfe979-4b56-40f4-8aab-0292d2f96bb2",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "13a85958-e53d-4ac1-abdc-1aa662368b2c",
+    "Name": "NodeId",
+    "IsRequired": true,
+    "DataType": "String",
+    "SchemaId": "4f0e0d97-3ddf-49db-b114-b55bfb077fa4",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "69aabeee-53c8-426d-8a63-1b84bea70a63",
+    "Name": "Username",
+    "IsRequired": true,
+    "DataType": "string",
+    "SchemaId": "d95c7d29-639c-4593-b5de-bc4af13ab650",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "49a74c36-febb-46fd-aaac-1d43fb8c19f4",
+    "Name": "Username",
+    "IsRequired": true,
+    "DataType": "String",
+    "SchemaId": "8e5f3305-4bf9-4b14-b510-30713fc8a10b",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "2943ec90-a97c-4ec3-bf74-1f88b449a498",
+    "Name": "BbmdConnection",
+    "IsRequired": false,
+    "DataType": "Boolean",
+    "SchemaId": "8e3de645-3c5c-443f-afd8-27e90f64c9a7",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "28d7c3da-cb24-4310-b3fc-22ad1cc5bcbc",
+    "Name": "MaxDevicesPerThread",
+    "IsRequired": true,
+    "DataType": "Number",
+    "SchemaId": "21e52a57-1dcf-4c13-a0f8-c65b2f2b99d2",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "5176f3c7-cd36-4ad3-9623-292223f1b787",
+    "Name": "PollingInterval",
+    "IsRequired": true,
+    "DataType": "String",
+    "SchemaId": "203c392f-bb84-456c-aca9-2ab7af7f6595",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "ee370e87-91b4-4dcb-b208-29afc5086804",
+    "Name": "FieldName",
+    "IsRequired": true,
+    "DataType": "string",
+    "SchemaId": "3299f0db-865d-4737-9f1e-4879586b5f1e",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "f8ddac53-d640-4408-b245-2ba3da45f771",
+    "Name": "Timeout",
+    "IsRequired": true,
+    "DataType": "Number",
+    "SchemaId": "21e52a57-1dcf-4c13-a0f8-c65b2f2b99d2",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "2b83c9dd-1901-4b75-a8c8-2f1e3507f5ac",
+    "Name": "InRangeOnly",
+    "IsRequired": true,
+    "DataType": "Boolean",
+    "SchemaId": "7c2807f4-8868-4327-a960-4805edd775e9",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "b978cc14-9ef6-4aaa-83da-3179d767d26c",
+    "Name": "ThreadsPerNetwork",
+    "IsRequired": true,
+    "DataType": "Number",
+    "SchemaId": "21e52a57-1dcf-4c13-a0f8-c65b2f2b99d2",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "a2b0c5ed-192c-4fca-8b3b-321d294f85ca",
+    "Name": "Interval",
+    "IsRequired": false,
+    "DataType": "Number",
+    "SchemaId": "30b72f42-e586-4ce1-a5f0-6f5c4a6d79e6",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "fbcdc821-417f-4504-a4ee-34570ebe5023",
+    "Name": "Interval",
+    "IsRequired": false,
+    "DataType": "Number",
+    "SchemaId": "5435c70d-4706-4a06-90d8-7198c215aeb9",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "0de4c336-3425-45c1-80c2-3556aa464a6f",
+    "Name": "DataType",
+    "IsRequired": true,
+    "DataType": "String",
+    "SchemaId": "3d0dfd33-2954-42ab-b8a4-2faddd185c22",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "eb164b27-d743-4c36-b051-3b43f969f94a",
+    "Name": "SAJResourceId",
+    "IsRequired": true,
+    "DataType": "String",
+    "SchemaId": "5435c70d-4706-4a06-90d8-7198c215aeb9",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "f3cc42ad-fc28-4c12-a2bc-3c3d45cb3bdf",
+    "Name": "InitDelay",
+    "IsRequired": false,
+    "DataType": "Number",
+    "SchemaId": "38cf1f48-0b28-4790-bae7-d43c948fce7a",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "01fbc602-5bd0-4718-9ed9-3c4189b2e586",
+    "Name": "RegisterAddress",
+    "IsRequired": true,
+    "DataType": "String",
+    "SchemaId": "3d0dfd33-2954-42ab-b8a4-2faddd185c22",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "9c305624-324b-45ec-bf19-3d4ca606d66f",
+    "Name": "MaxRetry",
+    "IsRequired": true,
+    "DataType": "Number",
+    "SchemaId": "21e52a57-1dcf-4c13-a0f8-c65b2f2b99d2",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "a933a8e2-1327-4ea1-a243-3d9e17d56c60",
+    "Name": "Swap",
+    "IsRequired": true,
+    "DataType": "String",
+    "SchemaId": "3d0dfd33-2954-42ab-b8a4-2faddd185c22",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "9cfa3b16-4874-4497-a9fa-3f359e9bc20f",
+    "Name": "BbmdAddress",
+    "IsRequired": false,
+    "DataType": "String",
+    "SchemaId": "8e3de645-3c5c-443f-afd8-27e90f64c9a7",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "98a40ca7-1319-49c4-ab7f-3f9864b949cf",
+    "Name": "Interval",
+    "IsRequired": true,
+    "DataType": "Number",
+    "SchemaId": "21e52a57-1dcf-4c13-a0f8-c65b2f2b99d2",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "269779e9-a4ce-4955-8e38-3fe20686bafb",
+    "Name": "PollingInterval",
+    "IsRequired": true,
+    "DataType": "String",
+    "SchemaId": "4f0e0d97-3ddf-49db-b114-b55bfb077fa4",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "ca43c3e5-c52a-48c2-9ad7-405717178655",
+    "Name": "BbmdAddress",
+    "IsRequired": false,
+    "DataType": "String",
+    "SchemaId": "38cf1f48-0b28-4790-bae7-d43c948fce7a",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "89f8b976-0f02-419a-9c52-415e1a82a3b8",
+    "Name": "MacAddress",
+    "IsRequired": false,
+    "DataType": "String",
+    "SchemaId": "0d5608fa-e06f-4beb-ac13-8a5f83fc3a5a",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "7a561cd7-05d8-40c6-8b0d-454e8c3f83d5",
+    "Name": "Height",
+    "IsRequired": false,
+    "DataType": "string",
+    "SchemaId": "c5d57621-eaa6-4151-b956-900ff514c4ef",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "0cd7417c-356c-48a6-b23f-462f46c7b8f3",
+    "Name": "MaxNumberThreads",
+    "IsRequired": true,
+    "DataType": "Number",
+    "SchemaId": "21e52a57-1dcf-4c13-a0f8-c65b2f2b99d2",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "60a945cf-3943-4bd7-8a4e-47a0110fd7fe",
+    "Name": "Address",
+    "IsRequired": false,
+    "DataType": "String",
+    "SchemaId": "0d5608fa-e06f-4beb-ac13-8a5f83fc3a5a",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "d01b40f8-2ea8-4a39-9157-4abf532b186a",
+    "Name": "PollingInterval",
+    "IsRequired": true,
+    "DataType": "String",
+    "SchemaId": "3d0dfd33-2954-42ab-b8a4-2faddd185c22",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "57f9b5af-44c6-4a7e-a97b-4ec93e88ca53",
+    "Name": "GeoPosition",
+    "IsRequired": false,
+    "DataType": "string",
+    "SchemaId": "c5d57621-eaa6-4151-b956-900ff514c4ef",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "57abd723-6a20-45f3-a563-503732f46b1b",
+    "Name": "ScanInterval",
+    "IsRequired": true,
+    "DataType": "Number",
+    "SchemaId": "38cf1f48-0b28-4790-bae7-d43c948fce7a",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "4aa7a38c-0541-400e-b4b8-50bd8e9d1ab9",
+    "Name": "ConnectionStatus",
+    "IsRequired": false,
+    "DataType": "string",
+    "SchemaId": "c5d57621-eaa6-4151-b956-900ff514c4ef",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "b8b8618a-fbe1-45d7-bcb4-51b64235b216",
+    "Name": "IsAnalyticsEnabled",
+    "IsRequired": false,
+    "DataType": "String",
+    "SchemaId": "203c392f-bb84-456c-aca9-2ab7af7f6595",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "73eba101-a615-456e-bcbc-5433f5393ceb",
+    "Name": "Description",
+    "IsRequired": true,
+    "DataType": "string",
+    "SchemaId": "86cb421a-bd47-4d09-b78e-3ed88976d9b9",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "41772d03-2acb-4bf2-b67a-566f887561a5",
+    "Name": "InitDelay",
+    "IsRequired": true,
+    "DataType": "Number",
+    "SchemaId": "21e52a57-1dcf-4c13-a0f8-c65b2f2b99d2",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "b69e6a72-898e-462c-9776-5a5e12b0985b",
+    "Name": "PollingInterval",
+    "IsRequired": true,
+    "DataType": "String",
+    "SchemaId": "86cb421a-bd47-4d09-b78e-3ed88976d9b9",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "138c1878-7d81-4cd9-9b49-5b39974e4d11",
+    "Name": "MaxNumberThreads",
+    "IsRequired": true,
+    "DataType": "Number",
+    "SchemaId": "8e5f3305-4bf9-4b14-b510-30713fc8a10b",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "3171c942-a245-4500-af98-5e5f9c8ba1bb",
+    "Name": "FwVersion",
+    "IsRequired": false,
+    "DataType": "string",
+    "SchemaId": "c5d57621-eaa6-4151-b956-900ff514c4ef",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "efe6bbad-1232-4a02-8abf-60414f8bab2a",
+    "Name": "MaxRetry",
+    "IsRequired": true,
+    "DataType": "Number",
+    "SchemaId": "8e5f3305-4bf9-4b14-b510-30713fc8a10b",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "b00ac8ef-43df-4613-b89f-6088d7b63f4a",
+    "Name": "Interval",
+    "IsRequired": true,
+    "DataType": "Number",
+    "SchemaId": "38cf1f48-0b28-4790-bae7-d43c948fce7a",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "77ca468b-8a5c-4dfd-b2a2-6433e8b59560",
+    "Name": "DeviceId",
+    "IsRequired": true,
+    "DataType": "String",
+    "SchemaId": "86cb421a-bd47-4d09-b78e-3ed88976d9b9",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "b81fda60-0857-4431-8bac-64dbaf9b71dc",
+    "Name": "NodeId",
+    "IsRequired": true,
+    "DataType": "String",
+    "SchemaId": "b6270aa7-294c-411c-94c8-ff2cd1c8268f",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "ff207352-2e48-440f-bdb1-6758c7d0375c",
+    "Name": "BbmdConnection",
+    "IsRequired": false,
+    "DataType": "Boolean",
+    "SchemaId": "38cf1f48-0b28-4790-bae7-d43c948fce7a",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "a0a6d471-276d-403a-8f8e-67af270f6846",
+    "Name": "Ip",
+    "IsRequired": true,
+    "DataType": "String",
+    "SchemaId": "38cf1f48-0b28-4790-bae7-d43c948fce7a",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "896385b0-07ef-4582-99c8-6879868deb27",
+    "Name": "Password",
+    "IsRequired": true,
+    "DataType": "String",
+    "SchemaId": "8e5f3305-4bf9-4b14-b510-30713fc8a10b",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "3196c10a-caef-47b6-a6a8-69b213bd9f91",
+    "Name": "ThreadsPerNetwork",
+    "IsRequired": true,
+    "DataType": "Number",
+    "SchemaId": "41cfe979-4b56-40f4-8aab-0292d2f96bb2",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "64939a23-f397-4e5c-9e20-69c9b3e94116",
+    "Name": "Url",
+    "IsRequired": true,
+    "DataType": "string",
+    "SchemaId": "d95c7d29-639c-4593-b5de-bc4af13ab650",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "b5c01826-dc74-43c6-a480-69dbf476c893",
+    "Name": "Interval",
+    "IsRequired": true,
+    "DataType": "Number",
+    "SchemaId": "8e3de645-3c5c-443f-afd8-27e90f64c9a7",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "5292e636-c142-4659-afe4-6b1ea13db46c",
+    "Name": "MaxDevicesPerThread",
+    "IsRequired": true,
+    "DataType": "Number",
+    "SchemaId": "41cfe979-4b56-40f4-8aab-0292d2f96bb2",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "991cb1bd-c279-48ad-b43b-6f3f02f1ad9d",
+    "Name": "SerialNo",
+    "IsRequired": false,
+    "DataType": "string",
+    "SchemaId": "c5d57621-eaa6-4151-b956-900ff514c4ef",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "2bc51d11-72d6-45c3-b77e-6fa5742dde59",
+    "Name": "AttachmentState",
+    "IsRequired": false,
+    "DataType": "string",
+    "SchemaId": "c5d57621-eaa6-4151-b956-900ff514c4ef",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "3632df09-46fe-4e80-b6fb-78be379fef3d",
+    "Name": "Password",
+    "IsRequired": true,
+    "DataType": "String",
+    "SchemaId": "41cfe979-4b56-40f4-8aab-0292d2f96bb2",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "714ad0ef-91c8-4d56-b3c5-7a419a6c1d70",
+    "Name": "Timeout",
+    "IsRequired": true,
+    "DataType": "Number",
+    "SchemaId": "41cfe979-4b56-40f4-8aab-0292d2f96bb2",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "14f2a3cf-dda7-4523-987a-81b6ee22cada",
+    "Name": "DeviceId",
+    "IsRequired": true,
+    "DataType": "Number",
+    "SchemaId": "8e3de645-3c5c-443f-afd8-27e90f64c9a7",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "a5ec8c7e-5263-4266-a857-82f83970e2ef",
+    "Name": "InitDelay",
+    "IsRequired": true,
+    "DataType": "Number",
+    "SchemaId": "8e5f3305-4bf9-4b14-b510-30713fc8a10b",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "65565e22-9ab1-499a-9fd5-85ed2b7fe702",
+    "Name": "MaxDevicesPerThread",
+    "IsRequired": true,
+    "DataType": "Number",
+    "SchemaId": "38cf1f48-0b28-4790-bae7-d43c948fce7a",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "5f7fdb76-73c0-4716-8bd2-8c4cea5e0de1",
+    "Name": "MaxNumberThreads",
+    "IsRequired": true,
+    "DataType": "Number",
+    "SchemaId": "41cfe979-4b56-40f4-8aab-0292d2f96bb2",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "69b58dbe-694d-4ae7-a6ad-8dc9fe79c9b6",
+    "Name": "TimeInterval",
+    "IsRequired": true,
+    "DataType": "Number",
+    "SchemaId": "7c2807f4-8868-4327-a960-4805edd775e9",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "39150a9c-63cb-4bbd-92e4-8e15e77188e6",
+    "Name": "AreaId",
+    "IsRequired": true,
+    "DataType": "string",
+    "SchemaId": "3299f0db-865d-4737-9f1e-4879586b5f1e",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "ef5a1647-278a-4de0-8ac6-8ee3e18221b7",
+    "Name": "IsAnalyticsEnabled",
+    "IsRequired": false,
+    "DataType": "String",
+    "SchemaId": "86cb421a-bd47-4d09-b78e-3ed88976d9b9",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "21730086-4441-4aaa-9009-9186c3a3d768",
+    "Name": "Port",
+    "IsRequired": true,
+    "DataType": "Number",
+    "SchemaId": "41cfe979-4b56-40f4-8aab-0292d2f96bb2",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "0b8b8e58-9ceb-476f-be09-93a5a56c62e9",
+    "Name": "Interval",
+    "IsRequired": true,
+    "DataType": "Number",
+    "SchemaId": "41cfe979-4b56-40f4-8aab-0292d2f96bb2",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "9928ed64-b25c-4acd-8743-9568bdc85b2e",
+    "Name": "SlaveId",
+    "IsRequired": true,
+    "DataType": "String",
+    "SchemaId": "3d0dfd33-2954-42ab-b8a4-2faddd185c22",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "2ce65654-f7e7-4206-b9c7-98ddfaddaba4",
+    "Name": "Url",
+    "IsRequired": true,
+    "DataType": "String",
+    "SchemaId": "8e5f3305-4bf9-4b14-b510-30713fc8a10b",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "56f6a8b3-4c60-41bc-814e-9ce6f1389557",
+    "Name": "Interval",
+    "IsRequired": false,
+    "DataType": "Number",
+    "SchemaId": "e73e8e7a-bd79-4813-acff-51c8e51500a3",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "f3c9ec7c-e0ae-44f8-a447-9d3984f670e7",
+    "Name": "ThreadsPerNetwork",
+    "IsRequired": true,
+    "DataType": "Number",
+    "SchemaId": "8e5f3305-4bf9-4b14-b510-30713fc8a10b",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "492fb02c-3060-48f7-af24-a3849f21a64e",
+    "Name": "IsAnalyticsEnabled",
+    "IsRequired": false,
+    "DataType": "String",
+    "SchemaId": "b6270aa7-294c-411c-94c8-ff2cd1c8268f",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "379a7ddd-eca3-44eb-84d5-aabe14a35f96",
+    "Name": "EndianBig",
+    "IsRequired": true,
+    "DataType": "String",
+    "SchemaId": "3d0dfd33-2954-42ab-b8a4-2faddd185c22",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "f859aa52-f3cd-4d01-94f5-ae62314cbc2c",
+    "Name": "ThreadsPerNetwork",
+    "IsRequired": true,
+    "DataType": "Number",
+    "SchemaId": "38cf1f48-0b28-4790-bae7-d43c948fce7a",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "25ddab08-7bdf-4940-a14d-b2446ed1a4fa",
+    "Name": "Timeout",
+    "IsRequired": true,
+    "DataType": "Number",
+    "SchemaId": "38cf1f48-0b28-4790-bae7-d43c948fce7a",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "882fd7fe-7d17-417d-8dc1-ba4c49ab856e",
+    "Name": "Endian",
+    "IsRequired": true,
+    "DataType": "String",
+    "SchemaId": "3d0dfd33-2954-42ab-b8a4-2faddd185c22",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "242f9680-0e0e-4da2-b5a9-c35202a5f80c",
+    "Name": "MaxRetry",
+    "IsRequired": true,
+    "DataType": "Number",
+    "SchemaId": "38cf1f48-0b28-4790-bae7-d43c948fce7a",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "aeb7fdbf-66d9-4195-92fe-c4fa1dbbdc8b",
+    "Name": "MaxRetry",
+    "IsRequired": true,
+    "DataType": "Number",
+    "SchemaId": "41cfe979-4b56-40f4-8aab-0292d2f96bb2",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "a137227a-1296-49a1-a8cb-c73e34875279",
+    "Name": "Port",
+    "IsRequired": true,
+    "DataType": "Number",
+    "SchemaId": "38cf1f48-0b28-4790-bae7-d43c948fce7a",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "7bad44b7-0679-4727-81b1-c79fbac4f94a",
+    "Name": "MinScanTime",
+    "IsRequired": true,
+    "DataType": "Number",
+    "SchemaId": "7c2807f4-8868-4327-a960-4805edd775e9",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "a7b8502b-b470-4b55-885b-c975d581bd2b",
+    "Name": "IsCalculated",
+    "IsRequired": false,
+    "DataType": "String",
+    "SchemaId": "3d0dfd33-2954-42ab-b8a4-2faddd185c22",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "49d346b4-a294-44da-a028-c992fbf6e42a",
+    "Name": "Url",
+    "IsRequired": true,
+    "DataType": "String",
+    "SchemaId": "41cfe979-4b56-40f4-8aab-0292d2f96bb2",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "22b28a61-862c-443e-977c-cbb35a9450ec",
+    "Name": "MaxNumberThreads",
+    "IsRequired": true,
+    "DataType": "Number",
+    "SchemaId": "38cf1f48-0b28-4790-bae7-d43c948fce7a",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "5ab499af-f289-441b-906d-cd6c5829d2cf",
+    "Name": "Interval",
+    "IsRequired": true,
+    "DataType": "Number",
+    "SchemaId": "8e5f3305-4bf9-4b14-b510-30713fc8a10b",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "aeba86be-053d-4489-b698-ced524c2fed6",
+    "Name": "Port",
+    "IsRequired": false,
+    "DataType": "Number",
+    "SchemaId": "8e3de645-3c5c-443f-afd8-27e90f64c9a7",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "6430d85e-670e-4c39-b46a-cf8293d413ff",
+    "Name": "PollingInterval",
+    "IsRequired": true,
+    "DataType": "String",
+    "SchemaId": "b6270aa7-294c-411c-94c8-ff2cd1c8268f",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "20429035-23de-482a-8129-d074740e34b1",
+    "Name": "Rotation",
+    "IsRequired": false,
+    "DataType": "string",
+    "SchemaId": "c5d57621-eaa6-4151-b956-900ff514c4ef",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "91be29b2-1cba-4c7d-9ada-d35922661608",
+    "Name": "InitDelay",
+    "IsRequired": true,
+    "DataType": "Number",
+    "SchemaId": "41cfe979-4b56-40f4-8aab-0292d2f96bb2",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "25900e8f-5c48-4861-9f28-d5a59831a615",
+    "Name": "IsCalculated",
+    "IsRequired": false,
+    "DataType": "String",
+    "SchemaId": "b6270aa7-294c-411c-94c8-ff2cd1c8268f",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "4b37a22b-40cf-4b1b-996f-d62c67697330",
+    "Name": "Timeout",
+    "IsRequired": true,
+    "DataType": "Number",
+    "SchemaId": "8e5f3305-4bf9-4b14-b510-30713fc8a10b",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "80cdafc8-1caa-4133-841f-d6edbb4671bb",
+    "Name": "LegacyPointId",
+    "IsRequired": false,
+    "DataType": "String",
+    "SchemaId": "86cb421a-bd47-4d09-b78e-3ed88976d9b9",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "9d1c77c1-3355-4089-ad49-d84e4cf015e7",
+    "Name": "MetricPosition",
+    "IsRequired": false,
+    "DataType": "string",
+    "SchemaId": "c5d57621-eaa6-4151-b956-900ff514c4ef",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "3d2288ea-f386-4be8-b0e3-daf3b95450e5",
+    "Name": "MaxRetry",
+    "IsRequired": true,
+    "DataType": "Number",
+    "SchemaId": "8e3de645-3c5c-443f-afd8-27e90f64c9a7",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "f1ea6ca2-6116-49f6-ba8d-deaa74058bd3",
+    "Name": "IpAddress",
+    "IsRequired": true,
+    "DataType": "String",
+    "SchemaId": "d4952c64-73c5-4e67-893f-b5227c73fe2b",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "3193ca50-7de2-4f82-81af-e299c32ff2b7",
+    "Name": "BacnetClient",
+    "IsRequired": false,
+    "DataType": "String",
+    "SchemaId": "0d5608fa-e06f-4beb-ac13-8a5f83fc3a5a",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "a123a4a7-77c3-4cbd-9659-e2f2e1fe9bbb",
+    "Name": "IsCalculated",
+    "IsRequired": false,
+    "DataType": "String",
+    "SchemaId": "203c392f-bb84-456c-aca9-2ab7af7f6595",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "9362655a-1433-4993-bb73-e3ee72b46544",
+    "Name": "RegisterType",
+    "IsRequired": true,
+    "DataType": "String",
+    "SchemaId": "3d0dfd33-2954-42ab-b8a4-2faddd185c22",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "574f72f9-9b56-4def-a431-e423cbf74cc7",
+    "Name": "ObjectType",
+    "IsRequired": true,
+    "DataType": "String",
+    "SchemaId": "86cb421a-bd47-4d09-b78e-3ed88976d9b9",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "7d34eec4-91e2-4426-b8e7-e5678e8e6b2b",
+    "Name": "Scale",
+    "IsRequired": false,
+    "DataType": "String",
+    "SchemaId": "86cb421a-bd47-4d09-b78e-3ed88976d9b9",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "4234f558-6c39-4c23-bcc8-e66718943a06",
+    "Name": "Password",
+    "IsRequired": true,
+    "DataType": "string",
+    "SchemaId": "d95c7d29-639c-4593-b5de-bc4af13ab650",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "5a70100e-612e-4bd9-b968-e6f9f0512803",
+    "Name": "DeviceId",
+    "IsRequired": true,
+    "DataType": "string",
+    "SchemaId": "3299f0db-865d-4737-9f1e-4879586b5f1e",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "0bec7014-ae61-4a3c-a6cb-e7d22973a3a7",
+    "Name": "MaxDevicesPerThread",
+    "IsRequired": true,
+    "DataType": "Number",
+    "SchemaId": "8e5f3305-4bf9-4b14-b510-30713fc8a10b",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "f196da35-f412-43ef-829c-ef7c8aff2658",
+    "Name": "Scale",
+    "IsRequired": false,
+    "DataType": "String",
+    "SchemaId": "203c392f-bb84-456c-aca9-2ab7af7f6595",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "ff8ac561-ae80-4a99-8f18-f58e71dc0185",
+    "Name": "Scale",
+    "IsRequired": true,
+    "DataType": "String",
+    "SchemaId": "3d0dfd33-2954-42ab-b8a4-2faddd185c22",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "4592173b-374e-4e27-ab86-f97a9a76ebb7",
+    "Name": "IsAnalyticsEnabled",
+    "IsRequired": false,
+    "DataType": "String",
+    "SchemaId": "3d0dfd33-2954-42ab-b8a4-2faddd185c22",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "04ab9e6f-e48f-4d68-98e1-f9fa9399d260",
+    "Name": "Username",
+    "IsRequired": true,
+    "DataType": "String",
+    "SchemaId": "41cfe979-4b56-40f4-8aab-0292d2f96bb2",
+    "UnitOfMeasure": ""
+  },
+  {
+    "Id": "59e6d4e7-e172-44f0-b1da-fcda90eb8ceb",
+    "Name": "ObjectId",
+    "IsRequired": true,
+    "DataType": "String",
+    "SchemaId": "86cb421a-bd47-4d09-b78e-3ed88976d9b9",
+    "UnitOfMeasure": ""
+  }
+]

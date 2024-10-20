@@ -1,0 +1,77 @@
+{
+  "id": "ahu-air-humidity-out-of-range",
+  "Name": "AHU Humidity Out of Range",
+  "Tags": [
+    "HVAC,AHU,AirHandlingUnit,FailedSensor"
+  ],
+  "Category": "Data Quality",
+  "Description": "The air handling unit's humidity sensor is reporting values outside an acceptable range.",
+  "Recommendations": "1. Check the humidity sensor for a failure.\n2. Confirm sensor has communication.",
+  "PrimaryModelId": "dtmi:com:willowinc:AirHandlingUnit;1",
+  "ParentIds": [],
+  "TemplateId": "rule-template-hysteresis",
+  "Elements": [
+    {
+      "$type": "Willow.Rules.Model.DoubleField, WillowRules",
+      "Id": "min_trigger",
+      "Name": "Min trigger",
+      "Units": "%",
+      "ValueString": "NOT SET",
+      "ValueInt": 0,
+      "ValueDouble": 0.0,
+      "ElementType": 1
+    },
+    {
+      "$type": "Willow.Rules.Model.DoubleField, WillowRules",
+      "Id": "max_trigger",
+      "Name": "Max trigger",
+      "Units": "%",
+      "ValueString": "NOT SET",
+      "ValueInt": 0,
+      "ValueDouble": 110.0,
+      "ElementType": 1
+    },
+    {
+      "$type": "Willow.Rules.Model.PercentageField, WillowRules",
+      "Id": "percentage_of_time",
+      "Name": "Percentage of time",
+      "Units": "%",
+      "ValueString": "NOT SET",
+      "ValueInt": 0,
+      "ValueDouble": 0.08333333333333333,
+      "ElementType": 2
+    },
+    {
+      "$type": "Willow.Rules.Model.IntegerField, WillowRules",
+      "Id": "over_hours",
+      "Name": "Over how many hours",
+      "Units": "hours",
+      "ValueString": "NOT SET",
+      "ValueInt": 12,
+      "ValueDouble": 0.0,
+      "ElementType": 3
+    }
+  ],
+  "Parameters": [
+    {
+      "Name": "Air Humidity Sensor",
+      "FieldId": "result",
+      "PointExpression": "OPTION([dtmi:com:willowinc:AirHumiditySensor;1])"
+    },
+    {
+      "Name": "Cost impact",
+      "FieldId": "cost_impact",
+      "PointExpression": "0.5 * TIME"
+    },
+    {
+      "Name": "Comfort impact",
+      "FieldId": "comfort_impact",
+      "PointExpression": "1.0 * TOTAL * TOTAL"
+    },
+    {
+      "Name": "Reliability impact",
+      "FieldId": "reliability_impact",
+      "PointExpression": "1.0 * TIME"
+    }
+  ]
+}

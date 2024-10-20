@@ -1,0 +1,332 @@
+{
+  "AuthorizationAPI": {
+    "Import": {
+      "ApplicationOption": {
+        "description": "Willow User Management Application",
+        "SupportClientAuthentication": false
+      },
+      "Permissions": [
+        {
+          "name": "CanReadUser",
+          "description": "Can read users data."
+        },
+        {
+          "name": "CanCreateUser",
+          "description": "Can create user record."
+        },
+        {
+          "name": "CanEditUser",
+          "description": "Can edit user data."
+        },
+        {
+          "name": "CanDeleteUser",
+          "description": "Can delete user record."
+        },
+        {
+          "name": "CanReadRole",
+          "description": "Can read role data ."
+        },
+        {
+          "name": "CanCreateRole",
+          "description": "Can create role record."
+        },
+        {
+          "name": "CanEditRole",
+          "description": "Can edit role record."
+        },
+        {
+          "name": "CanDeleteRole",
+          "description": "Can delete role record."
+        },
+        {
+          "name": "CanAssignPermission",
+          "description": "Can assign permission to role."
+        },
+        {
+          "name": "CanRemovePermission",
+          "description": "Can remove permission from role."
+        },
+        {
+          "name": "CanReadGroup",
+          "description": "Can read group data."
+        },
+        {
+          "name": "CanViewAdGroup",
+          "description": "Can View AD based groups."
+        },
+        {
+          "name": "CanManageAdGroup",
+          "description": "Can Manage AD based groups."
+        },
+        {
+          "name": "CanCreateGroup",
+          "description": "Can create group record."
+        },
+        {
+          "name": "CanEditGroup",
+          "description": "Can edit group record."
+        },
+        {
+          "name": "CanDeleteGroup",
+          "description": "Can delete group record."
+        },
+        {
+          "name": "CanAssignUser",
+          "description": "Can assign user to role record."
+        },
+        {
+          "name": "CanRemoveUser",
+          "description": "Can remove user from role record."
+        },
+        {
+          "name": "CanReadPermission",
+          "description": "Can read permission data."
+        },
+        {
+          "name": "CanCreatePermission",
+          "description": "Can create permission record."
+        },
+        {
+          "name": "CanEditPermission",
+          "description": "Can edit permission record."
+        },
+        {
+          "name": "CanDeletePermission",
+          "description": "Can delete permission record."
+        },
+        {
+          "name": "CanReadAssignment",
+          "description": "Can read assignment record."
+        },
+        {
+          "name": "CanCreateAssignment",
+          "description": "Can create assignment record."
+        },
+        {
+          "name": "CanEditAssignment",
+          "description": "Can edit assignment record."
+        },
+        {
+          "name": "CanDeleteAssignment",
+          "description": "Can delete assignments record."
+        },
+        {
+          "name": "CanImportData",
+          "description": "Can import data in to user management."
+        },
+        {
+          "name": "CanExportData",
+          "description": "Can export data from user management."
+        },
+        {
+          "name": "CanReadApplication",
+          "description": "Can read application record."
+        },
+        {
+          "name": "CanReadApplicationClient",
+          "description": "Can read application client record."
+        },
+        {
+          "name": "CanCreateApplicationClient",
+          "description": "Can add application client record."
+        },
+        {
+          "name": "CanEditApplicationClient",
+          "description": "Can edit application client record."
+        },
+        {
+          "name": "CanDeleteApplicationClient",
+          "description": "Can delete application client record."
+        },
+        {
+          "name": "CanReadClientAssignment",
+          "description": "Can read client assignment record."
+        },
+        {
+          "name": "CanCreateClientAssignment",
+          "description": "Can create client assignment record."
+        },
+        {
+          "name": "CanEditClientAssignment",
+          "description": "Can edit client assignment record."
+        },
+        {
+          "name": "CanDeleteClientAssignment",
+          "description": "Can delete client assignment record."
+        }
+      ],
+      "Roles": [
+        {
+          "name": "UM Admin",
+          "Description": "This role provides admin access to non-production environments.",
+          "permissions": [
+            "CanReadUser",
+            "CanCreateUser",
+            "CanEditUser",
+            "CanDeleteUser",
+            "CanReadRole",
+            "CanCreateRole",
+            "CanEditRole",
+            "CanDeleteRole",
+            "CanAssignPermission",
+            "CanRemovePermission",
+            "CanReadGroup",
+            "CanCreateGroup",
+            "CanEditGroup",
+            "CanDeleteGroup",
+            "CanAssignUser",
+            "CanRemoveUser",
+            "CanReadPermission",
+            "CanCreatePermission",
+            "CanEditPermission",
+            "CanDeletePermission",
+            "CanReadAssignment",
+            "CanCreateAssignment",
+            "CanEditAssignment",
+            "CanDeleteAssignment",
+            "CanReadApplication",
+            "CanReadApplicationClient",
+            "CanCreateApplicationClient",
+            "CanEditApplicationClient",
+            "CanDeleteApplicationClient",
+            "CanReadClientAssignment",
+            "CanCreateClientAssignment",
+            "CanEditClientAssignment",
+            "CanDeleteClientAssignment"
+          ]
+        },
+        {
+          "name": "UM Reader",
+          "description": "This role provides view access to non-prod environments (e.g. to show a new feature to sales team)",
+          "permissions": [
+            "CanReadUser",
+            "CanReadRole",
+            "CanReadGroup",
+            "CanReadPermission",
+            "CanReadAssignment",
+            "CanReadApplication",
+            "CanReadApplicationClient",
+            "CanReadClientAssignment"
+          ]
+        },
+        {
+          "name": "Willow Support Admin",
+          "Description": "This role provides admin access to all production environments.",
+          "permissions": [
+            "CanReadUser",
+            "CanCreateUser",
+            "CanEditUser",
+            "CanDeleteUser",
+            "CanReadRole",
+            "CanCreateRole",
+            "CanEditRole",
+            "CanDeleteRole",
+            "CanAssignPermission",
+            "CanRemovePermission",
+            "CanViewAdGroup",
+            "CanReadGroup",
+            "CanCreateGroup",
+            "CanEditGroup",
+            "CanDeleteGroup",
+            "CanAssignUser",
+            "CanRemoveUser",
+            "CanReadPermission",
+            "CanCreatePermission",
+            "CanEditPermission",
+            "CanDeletePermission",
+            "CanReadAssignment",
+            "CanCreateAssignment",
+            "CanEditAssignment",
+            "CanDeleteAssignment",
+            "CanImportData",
+            "CanExportData",
+            "CanReadApplication",
+            "CanReadApplicationClient",
+            "CanCreateApplicationClient",
+            "CanEditApplicationClient",
+            "CanDeleteApplicationClient",
+            "CanReadClientAssignment",
+            "CanCreateClientAssignment",
+            "CanEditClientAssignment",
+            "CanDeleteClientAssignment"
+          ]
+        },
+        {
+          "name": "Willow Support",
+          "description": "This role provides view access to prod environments.",
+          "permissions": [
+            "CanReadUser",
+            "CanReadRole",
+            "CanViewAdGroup",
+            "CanReadGroup",
+            "CanReadPermission",
+            "CanReadAssignment",
+            "CanReadApplication",
+            "CanReadApplicationClient",
+            "CanReadClientAssignment"
+          ]
+        }
+      ],
+      "Groups": [
+        {
+          "Name": "Willow Account Managers",
+          "Type": "AzureAD"
+        },
+        {
+          "Name": "Willow Support Admins",
+          "Type": "AzureAD"
+        },
+        {
+          "Name": "Willow Support",
+          "Type": "AzureAD"
+        },
+        {
+          "Name": "Willow Performance Engineers",
+          "Type": "AzureAD"
+        },
+        {
+          "Name": "Willow Delivery Team",
+          "Type": "AzureAD"
+        },
+        {
+          "Name": "Willow New Build Team",
+          "Type": "AzureAD"
+        },
+        {
+          "Name": "Willow Setup Admins",
+          "Type": "AzureAD"
+        }
+      ],
+      "GroupAssignments": [
+        {
+          "GroupName": "Willow Account Managers",
+          "RoleName": "Willow Support"
+        },
+        {
+          "GroupName": "Willow Support Admins",
+          "RoleName": "Willow Support Admin"
+        },
+        {
+          "GroupName": "Willow Support",
+          "RoleName": "Willow Support"
+        },
+        {
+          "GroupName": "Willow Performance Engineers",
+          "RoleName": "Willow Support Admin"
+        },
+        {
+          "GroupName": "Willow Delivery Team",
+          "RoleName": "Willow Support Admin"
+        },
+        {
+          "GroupName": "Willow New Build Team",
+          "RoleName": "Willow Support Admin"
+        },
+        {
+          "GroupName": "Willow Setup Admins",
+          "RoleName": "Willow Support Admin"
+        }
+      ]
+    }
+  }
+}

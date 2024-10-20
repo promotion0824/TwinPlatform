@@ -1,0 +1,41 @@
+name: "Connector.XL - Build"
+
+on:
+  push:
+    branches:
+      - main
+      - "release/**"
+    paths:
+      - applications/ConnectorManagement/ConnectorXL/**
+      - .github/workflows/connector.xl.yml
+
+  pull_request:
+    branches:
+      - main
+    paths:
+      - applications/ConnectorManagement/ConnectorXL/**
+      - .github/workflows/connector.xl.yml
+
+  workflow_dispatch:
+
+jobs:
+  build_test_docker_push:
+    uses: WillowInc/.github/.github/workflows/Reusable-Build-Test-Docker-Push.yml@main
+    with:
+      path: applications/ConnectorManagement/ConnectorXL/src/Connector.XL
+      restore_path: applications/ConnectorManagement/ConnectorXL
+      test_path: applications/ConnectorManagement/ConnectorXL/test/Connector.XL.UnitTests
+      build_configuration: "Release"
+      directoryBuildPropsPath: .config/common.props
+      coverage_thresholds: '0 50'
+      nugetConfigLocation: NuGet.Config
+      containerAppName: ConnectorXL
+      dockerfile: applications/ConnectorManagement/ConnectorXL/src/Connector.XL/Dockerfile
+      dockerContext: applications/ConnectorManagement/ConnectorXL/src/Connector.XL
+      imageName: iot-services/connectorxl
+      infraProjectPath: Applications/WillowTwin
+      productName: iot-services
+      clientId: "empty"
+    secrets:
+      githubToken: ${{ secrets.GITHUB_TOKEN }}
+      botToken: ${{ secrets.SVC_BOT_TOKEN }}

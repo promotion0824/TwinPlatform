@@ -1,0 +1,41 @@
+name: IoTHub Telemetry Adaptor
+
+on:
+  push:
+    branches:
+      - main
+      - release/**
+    paths:
+      - applications/IngestionPipeline/IoTHubAdaptor/**
+      - .github/workflows/iot-services-iot-hub-telemetry-adaptor-build.yml
+
+  pull_request:
+    branches:
+      - main
+    paths:
+      - applications/IngestionPipeline/IoTHubAdaptor/**
+      - .github/workflows/iot-services-iot-hub-telemetry-adaptor-build.yml
+
+  workflow_dispatch:
+
+jobs:
+  build_test_docker_push:
+    uses: WillowInc/.github/.github/workflows/Reusable-Build-Test-Docker-Push.yml@main
+    with:
+      path: applications/IngestionPipeline/IoTHubAdaptor/src/IoTHubAdaptor
+      restore_path: applications/IngestionPipeline/IoTHubAdaptor
+      test_path: applications/IngestionPipeline/IoTHubAdaptor/test/IoTHubAdaptor.Tests
+      build_configuration: "Release"
+      directoryBuildPropsPath: .config/common.props
+      coverage_thresholds: '0 50'
+      nugetConfigLocation: NuGet.Config
+      containerAppName: iothub-telemetry-adaptor
+      dockerfile: applications/IngestionPipeline/IoTHubAdaptor/src/IoTHubAdaptor/Dockerfile
+      dockerContext: applications/IngestionPipeline/IoTHubAdaptor/src/IoTHubAdaptor
+      imageName: iot-services/iothub-telemetry-adaptor
+      infraProjectPath: Applications/IoTServices.LiveData
+      productName: iot-services
+      clientId: "empty"
+    secrets:
+      githubToken: ${{ secrets.GITHUB_TOKEN }}
+      botToken: ${{ secrets.SVC_BOT_TOKEN }}

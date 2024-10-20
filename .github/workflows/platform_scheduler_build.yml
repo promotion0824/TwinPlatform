@@ -1,0 +1,55 @@
+name: "Platform - Scheduler - Build"
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - extensions/real-estate/back-end/Scheduler/**
+  pull_request:
+    branches:
+      - main
+      - releases/real-estate/*
+    paths:
+      - extensions/real-estate/back-end/Scheduler/**
+      - .github/workflows/platform_scheduler_build.yml
+  workflow_dispatch:
+    inputs:
+      push_dev_acr:
+        description: "Push to dev ACR"
+        type: boolean
+        required: false
+        default: false
+      push_prd_acr:
+        description: "Push to prod ACR"
+        type: boolean
+        required: false
+        default: false
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
+jobs:
+  build_test_docker_push:
+    uses: WillowInc/.github/.github/workflows/Reusable-Build-Test-Docker-Push.yml@main
+    with:
+      path: "extensions/real-estate/back-end/Scheduler/Scheduler"
+      restore_path: "extensions/real-estate/back-end/Scheduler"
+      test_path: "extensions/real-estate/back-end/Scheduler/Scheduler.Test"
+      build_configuration: "Release"
+      directoryBuildPropsPath: .config/common.props
+      coverage_thresholds: '0 50'
+      nugetConfigLocation: NuGet.Config
+      containerAppName: "scheduler"
+      dockerfile: "extensions/real-estate/back-end/Scheduler/Scheduler/Dockerfile"
+      dockerContext: "extensions/real-estate/back-end/Scheduler/Scheduler"
+      imageName: "willowplatform/scheduler"
+      infraProjectPath: "Applications/WillowTwin"
+      productName: "willowplatform"
+      clientId: "empty"
+      pushDevAcr: "${{inputs.push_dev_acr}}"
+      pushPrdAcr: "${{inputs.push_prd_acr}}"
+    secrets:
+      githubToken: ${{ secrets.GITHUB_TOKEN }}
+      botToken: ${{ secrets.SVC_BOT_TOKEN }}

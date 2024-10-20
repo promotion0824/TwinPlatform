@@ -1,0 +1,4 @@
+INSERT INTO [dbo].[SchemaColumn] ([Id], [Name], [IsRequired], [DataType] ,[SchemaId]) VALUES ('b8b8618a-fbe1-45d7-bcb4-51b64235b216','IsAnalyticsEnabled',0,'String','203C392F-BB84-456C-ACA9-2AB7AF7F6595')
+INSERT INTO [dbo].[SchemaColumn] ([Id], [Name], [IsRequired], [DataType] ,[SchemaId]) VALUES ('4592173b-374e-4e27-ab86-f97a9a76ebb7','IsAnalyticsEnabled',0,'String','3D0DFD33-2954-42AB-B8A4-2FADDD185C22')
+INSERT INTO [dbo].[SchemaColumn] ([Id], [Name], [IsRequired], [DataType] ,[SchemaId]) VALUES ('ef5a1647-278a-4de0-8ac6-8ee3e18221b7','IsAnalyticsEnabled',0,'String','86CB421A-BD47-4D09-B78E-3ED88976D9B9')
+INSERT INTO [dbo].[SchemaColumn] ([Id], [Name], [IsRequired], [DataType] ,[SchemaId]) VALUES ('492fb02c-3060-48f7-af24-a3849f21a64e','IsAnalyticsEnabled',0,'String','B6270AA7-294C-411C-94C8-FF2CD1C8268F')

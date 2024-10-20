@@ -1,0 +1,1 @@
+INSERT INTO [dbo].[SchemaColumn] ([Id], [Name], [IsRequired], [DataType] ,[SchemaId]) VALUES ('5AB499AF-F289-441B-906D-CD6C5829D2CF','Interval',1,'String','8E5F3305-4BF9-4B14-B510-30713FC8A10B')

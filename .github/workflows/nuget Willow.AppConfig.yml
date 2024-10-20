@@ -1,0 +1,32 @@
+name: "Nuget Willow.AppConfig"
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - libraries/Willow.AppConfig/Willow.AzureAppConfiguration/**
+      - libraries/Willow.AppConfig/Willow.KeyVaultSecretsProvider/**
+  pull_request:
+    paths:
+      - libraries/Willow.AppConfig/Willow.AzureAppConfiguration/**
+      - libraries/Willow.AppConfig/Willow.KeyVaultSecretsProvider/**
+
+env:
+  buildConfiguration: Release
+  srcProjectDir: "libraries/Willow.AppConfig"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Nuget Build and Push action
+        uses: WillowInc/.github/.github/actions/nuget-build-push@main
+        with:
+          buildConfiguration: ${{ env.buildConfiguration}}
+          srcProjectDir: ${{ env.srcProjectDir}}
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          pushPackages: ${{ github.event_name == 'push' }}
+          directoryBuildPropPath: ${{ github.workspace }}/.config/common.props

@@ -1,0 +1,429 @@
+
+ [discharge air pressure 1 active sp]
+![dtmi:com:willowinc:DamperOpenState;1]
+![dtmi:com:willowinc:DischargeFanRunActuator;1]
+![dtmi:com:willowinc:DischargeFanRunState;1]
+![dtmi:com:willowinc:ExhaustFanRunActuator;1]
+![dtmi:com:willowinc:ExhaustFanRunState;1]
+![dtmi:com:willowinc:OccupiedState;1]
+![dtmi:com:willowinc:PumpRunActuator;1]
+![dtmi:com:willowinc:ReturnFanRunActuator;1]
+![dtmi:com:willowinc:ReturnFanRunState;1]
+![dtmi:com:willowinc:RunActuator;1]
+![dtmi:com:willowinc:RunState;1]
+!ANY([command]) & ANY([status])
+((actual_cw_deltaT < design_cw_deltaT) & (cw_flow < design_cw_flow * 0.8)) & chiller_enabled & cwrt_isValid & cwst_isValid
+((actual_cw_deltaT < design_cw_deltaT) & (cw_flow > design_cw_flow * 1.2)) & chiller_enabled & cwrt_isValid & cwst_isValid
+((MIN(pump_speed, 60) / 60) ^ 3 * AVERAGE([dtmi:com:willowinc:HVACPump;1].brakeHorsepower) * 0.7456) * count_pumps_enabled
+([active_power] > 1400)
+([active_power] > 500)
+([active_power] > 5000)
+([air_flow] < 0.9 * [air_flow_sp]) & [damper_cmd] < 0.95
+([air_flow] < 0.9 * [air_flow_sp]) & [damper_cmd] > 0.95
+([air_flow] > 1.1 * [air_flow_sp]) & [damper_cmd] < 0.05
+([air_flow] > 1.1 * [air_flow_sp]) & [damper_cmd] > 0.05
+([ChwValvePosition] > 0) & ([HwValvePosition] > 0)
+([common hot water pump run sensor])
+([dtmi:com:willowinc:LeavingChilledWaterTemperatureSensor;1])
+([dtmi:com:willowinc:OnLevelSensor;1] > 0.0) != ([dtmi:com:willowinc:StartStopSensor;1] == 1)
+([dtmi:com:willowinc:SecondaryLoopEnteringChilledWaterTemperatureSensor;1] - [dtmi:com:willowinc:SecondaryLoopLeavingChilledWaterTemperatureSensor;1]) < AVERAGE([dtmi:com:willowinc:Chiller;1].evaporator.designDeltaWaterTemperature) * 0.8)
+([enabled_chiller_count]) > 0 & s_swt > (p_swt + 1))
+([enabled_chiller_count]) > 1 & [total_tons] < 900
+([enabled_chiller_count]) > 2 & [total_tons] < (design_chiller_capacity * (enabled_chiller_count - 1) * 0.9)
+([low_cooling_sp] OR [high_heating_sp])
+([op_rateloss] > 10) | ([ceug_rateloss] > 10)
+([outside air min alarm sensor])
+([ppl_count] == 0) & [cooling_or_heating] & [low_cooling_or_high_heating_sp]
+([RunStat] >= 1) AND (IF([OccStat] >= 1, ([ZAT] > [TSPUpperOcc] OR [ZAT] < [TSPLowerOcc]), ([ZAT] > [TSPUpperUnocc] OR [ZAT] < [TSPLowerUnocc])))
+([speed_status] - [speed_command])
+([ssp] > 0.25 AND [sf_cmd] = 0) OR ([sf_cmd] = 0 AND [sf_sts])
+([terminal_unit_cooling_level] > 0) OR ([terminal_unit_heating_level] > 0)
+([terminal_unit_cooling_setpoint] < 78)
+([terminal_unit_heating_setpoint] > 63)
+([water_flow] > 50)
+([zone_co2] > [zone_co2_setpoint]) & [damper_position] > 0.95
+([zone_temp_clg_sp] < 78) & [unoccupied]
+([zone_temp_htg_sp] > 63) & [unoccupied]
+([zone_temp_sp_deviation] < -1.5) & [cooling]
+([zone_temp_sp_deviation] < -1) & [cooling]
+([zone_temp_sp_deviation] < -2) & [heating_level] > 0.9
+([zone_temp_sp_deviation] < -3) & [low_heating]
+([zone_temp_sp_deviation] > 1.5) & [heating]
+([zone_temp_sp_deviation] > 1) & [heating]
+([zone_temp_sp_deviation] > 2) & [cooling_level] > 0.9
+([zone_temp_sp_deviation] > 3) & [low_cooling]
+(actual_chw_deltaT < design_chw_deltaT * 0.8) & rwt_isValid & swt_isValid & chiller_enabled
+(ANY([command]) OR ANY([time_schedule])) & ANY([status])
+(chiller_rwt - chiller_swt) * 500 * actual_flow
+(cwrt - cond_refrig_temp) > 10 & chiller_enabled
+(expected_btuh / design_btuh) * this.brakeHorsepower * 0.7456
+(hz / 60) * this.flowCapacity
+(hz / 60) ^ 3 * this.brakeHorsepower * 0.7456
+(MAX(damper_pos, 90d) - MIN(damper_pos, 90d)) < 95 & damper_pos_isValid
+(MIN(pump_speed, 60) / 60) * pump_count * MAX([dtmi:com:willowinc:HVACPump;1].flowCapacity)
+(new_flow_per_pump / MAX([dtmi:com:willowinc:HVACPump;1].flowCapacity)) ^ 3 * AVERAGE([dtmi:com:willowinc:HVACPump;1].brakeHorsepower) * 0.7456 * new_pump_count
+[actual_hp] - [this].supplyFan.brakeHorsepower
+[actual_hp] - this.supplyFan.breakHorsepower
+[command_close] & [proven_open]
+[command_off] & [proven_on]
+[command_on] & [proven_off]
+[command_on] & [unoccupied]
+[command_open] & [proven_close]
+[damper_position_command]
+[discharge air fan proven on sensor]
+[discharge air fan run sensor]
+[discharge air sp]
+[discharge airflow sensor] / [airflow setpoint]
+[discharge pressure] / [discharge pressure setpoint]
+[discharge_air_flow]
+[discharge_air_temp]
+[DoorStateSide1]
+[dtmi:com:willowinc:ActiveElectricalPowerSensor;1]
+[dtmi:com:willowinc:AirHandlingUnit;1].[dtmi:com:willowinc:DischargeAirTemperatureSensor;1]
+[dtmi:com:willowinc:ChilledWaterFlowSensor;1]
+[dtmi:com:willowinc:ChilledWaterTemperatureSetpoint;1]
+[dtmi:com:willowinc:CO2AirQualitySensor;1]
+[dtmi:com:willowinc:CompressorLeavingRefrigerantTemperatureSensor;1]
+[dtmi:com:willowinc:CondenserWaterFlowSensor;1]
+[dtmi:com:willowinc:CondenserWaterFlowSensor;1]*0.2642
+[dtmi:com:willowinc:DamperOpenActuator;1]
+[dtmi:com:willowinc:DamperOpenState;1]
+[dtmi:com:willowinc:DamperStatusSensor;1]>98.0
+[dtmi:com:willowinc:DamperStatusSensor;1]>98.0,[dtmi:com:willowinc:DamperPositionActuator;1]>0.98
+[dtmi:com:willowinc:DischargeFanRunActuator;1]
+[dtmi:com:willowinc:DischargeFanRunState;1]
+[dtmi:com:willowinc:EnergySensor;1]
+[dtmi:com:willowinc:EnteringCondenserWaterTemperatureSensor;1]
+[dtmi:com:willowinc:ExhaustFanRunActuator;1]
+[dtmi:com:willowinc:ExhaustFanRunState;1]
+[dtmi:com:willowinc:FireExtinguisherRemovedSensor;1]
+[dtmi:com:willowinc:FlowSensor;1]
+[dtmi:com:willowinc:InferredOccupancySensor;1]
+[dtmi:com:willowinc:LeavingChilledWaterTemperatureSensor;1]
+[dtmi:com:willowinc:LeavingCondenserWaterTemperatureSensor;1]
+[dtmi:com:willowinc:mining:OfflineMassFlowLossPerformanceIndicator;1]
+[dtmi:com:willowinc:mining:SetpointOverrideMassFlowLossPerformanceIndicator;1]
+[dtmi:com:willowinc:OccupancySensor;1]
+[dtmi:com:willowinc:PeopleCountSensor;1]
+[dtmi:com:willowinc:PM025AirQualitySensor;1]
+[dtmi:com:willowinc:PrimaryLoopEnteringChilledWaterTemperatureSensor;1]
+[dtmi:com:willowinc:PrimaryLoopLeavingChilledWaterTemperatureSensor;1]
+[dtmi:com:willowinc:PumpActuator;1]
+[dtmi:com:willowinc:PumpRunState;1]
+[dtmi:com:willowinc:ReturnFanRunActuator;1]
+[dtmi:com:willowinc:ReturnFanRunState;1]
+[dtmi:com:willowinc:Room;1].[dtmi:com:willowinc:HVACZone;1].[dtmi:com:willowinc:TerminalUnit;1].[dtmi:com:willowinc:CoolingLevelActuator;1]
+[dtmi:com:willowinc:Room;1].[dtmi:com:willowinc:HVACZone;1].[dtmi:com:willowinc:TerminalUnit;1].[dtmi:com:willowinc:HeatingLevelActuator;1]
+[dtmi:com:willowinc:Room;1].[dtmi:com:willowinc:HVACZone;1].[dtmi:com:willowinc:TerminalUnit;1].[dtmi:com:willowinc:OccupiedCoolingZoneAirTemperatureSetpoint;1]
+[dtmi:com:willowinc:Room;1].[dtmi:com:willowinc:HVACZone;1].[dtmi:com:willowinc:TerminalUnit;1].[dtmi:com:willowinc:OccupiedHeatingZoneAirTemperatureSetpoint;1]
+[dtmi:com:willowinc:RunActuator;1]
+[dtmi:com:willowinc:RunState;1]
+[dtmi:com:willowinc:SecondaryLoopChilledWaterFlowSensor;1]
+[dtmi:com:willowinc:SecondaryLoopEnteringChilledWaterTemperatureSensor;1]
+[dtmi:com:willowinc:SecondaryLoopLeavingChilledWaterTemperatureSensor;1]
+[dtmi:com:willowinc:VolumeSensor;1]
+[dtmi:com:willowinc:WaterDeltaPressureSensor;1]
+[dtmi:com:willowinc:WaterDeltaPressureSetpoint;1]
+[dtmi:com:willowinc:WetBulbTemperatureSensor;1]
+[dtmi:com:willowinc:ZoneAirTemperatureSensor;1]
+[energy]
+[exhaust measured] / [exhaust setpoint]
+[fan fail alarm sensor]
+[fan_hp_deviation] > 0
+[flow]
+[inlet_air_flow]
+[inlet_air_temp]
+[MovingDirection]
+[offline_massflowloss] > 40
+[outside air co2 sensor]
+[outside air damper sensor] > 98.0%
+[PositionCM]
+[provenon] != [runsensor]
+[RAT] - [SAT]
+[rated fan airflow]
+[run fail alarm sensor]
+[runsensor] & (ratio > 1.15 | ratio < 0.85)
+[SAPress] - [SAPressSP]
+[SAT] - [SATsp]
+[SFSts] != [SFCmd]
+[SFSts] & ![OccCmd]
+[SFSts] & ([ChwValvePosition] = 100) & ([SAT_DT] > 5)
+[SFSts] & ([ChwValvePosition] > 10) & ([SAT_DT] < -5)
+[SFSts] & ([ChwValvePosition] > 10) & ([ZAT_DT] < -5)
+[SFSts] & ([ChwValvePosition] > 10) & ([ZAT_DT] > 5)
+[SFSts] & ([HwValvePosition] = 100) & ([SAT_DT] < -5)
+[SFSts] & ([HwValvePosition] > 10) & ([SAT_DT] > 5)
+[SFSts] & ([RDCmd] > 0) & ([ChwValvePosition] = 0) & ([AHU_DT] > 5)
+[SFSts] & ([RDCmd] > 0) & ([ChwValvePosition] > 30) & ([AHU_DT] < 3)
+[SFSts] & ([RDCmd] > 0) & ([HwValvePosition] = 0) & ([AHU_DT] < -5)
+[SFSts] & ([RDCmd] > 0) & ([HwValvePosition] = 0) & ([AHU_DT] > -3)
+[SFSts] & ([SAPress_DT] < -0.15)
+[SFSts] & ([SAPress_DT] > 0.15)
+[sp_override_massflowloss] > 40
+[Speed]
+[tamper alarm sensor]
+[tamper run alarm sensor]
+[this]
+[this].supplyFan.motorPower * [fan_speed]^3
+[vfd run cmd] != [vfd run sensor]
+[volume]
+[ZAT] - [ZATsp]
+[zone_temp]
+[zone_temp] - [zone_temp_sp]
+[zone_temp] + [zone_temp_sp]
+0.0
+0.01 * OVER
+0.01 * TIME
+0.1 * CYCLES
+0.1 * OVER
+0.2 * TIME
+0.5 * AREA
+0.5 * TIME
+0.5 * TOTAL
+0.5*TIME
+0.7 * Tw + 0.3 * T
+1.0 * CYCLES
+1.0 * TIME
+1.0 * TOTAL
+1.0 * TOTAL * TOTAL
+15
+20
+25
+3.0 * TIME
+35
+45
+60
+ABS(ahu_discharge - [dtmi:com:willowinc:InletAirTemperatureSensor;1])
+actual_cw_supply_temp > 50 & actual_cw_supply_temp < 120
+actual_eff > design_chiller_eff & chiller_enabled & rwt_isValid & swt_isValid & kw_isValid
+ahu_enabled & (znt - znt_sp) > 3 & znt_sp_isValid & znt_isValid
+ahu_enabled & (znt_sp - znt) > 3 & znt_sp_isValid & znt_isValid
+ahu_enabled & damper_pos < 2 & damper_pos_isValid & ABS(znt - znt_sp) > 3 & znt_sp_isValid & znt_isValid
+ahu_enabled & damper_pos > 90 & damper_pos_isValid
+ahu_enabled & damper_pos > 98 & damper_pos_isValid & ABS(znt - znt_sp) > 3 & znt_sp_isValid & znt_isValid
+ahu_enabled & IsCooling & damper_pos < 90 & damper_pos_isValid & (znt - znt_sp) > 3 & znt_sp_isValid & znt_isValid
+ahu_enabled & IsHeating & damper_pos < 90 & damper_pos_isValid & (znt_sp - znt) > 3 & znt_sp_isValid & znt_isValid
+all([result] > 0)
+ALL([result] > 0)
+any([result] > 0)
+ANY(EACH([dtmi:com:willowinc:Chiller;1], chiller, IF(chiller.[dtmi:com:willowinc:ActiveElectricalPowerSensor;1], (chiller.[dtmi:com:willowinc:LeavingChilledWaterTemperatureSensor;1] - chiller.[dtmi:com:willowinc:EnteringChilledWaterTemperatureSensor;1]) < chiller.evaporator.designDeltaWaterTemperature * 0.8, 0))
+AVERAGE([dtmi:com:willowinc:AirHandlingUnit;1].[dtmi:com:willowinc:CoolingLevelActuator;1])
+AVERAGE([dtmi:com:willowinc:AirHandlingUnit;1].[dtmi:com:willowinc:DischargeAirTemperatureSensor;1], 5d)
+AVERAGE([dtmi:com:willowinc:AirHandlingUnit;1].[dtmi:com:willowinc:DischargeAirTemperatureSensor;1], 5h)
+AVERAGE([dtmi:com:willowinc:AirHandlingUnit;1].[dtmi:com:willowinc:DischargeAirTemperatureSensor;1], 5m)
+AVERAGE([dtmi:com:willowinc:AirHandlingUnit;1].[dtmi:com:willowinc:DischargeAirTemperatureSensor;1])
+AVERAGE([dtmi:com:willowinc:Chiller;1].evaporator.designDeltaWaterTemperature)
+average([zone_temp], 5d)
+average([zone_temp], 5h)
+average([zone_temp], 5m)
+AVERAGE([zone_temp])
+chiller_enabled & (((wb_temp < 65) & (actual_cw_supply_temp > 72)) | ((wb_temp < 70) & (actual_cw_supply_temp > wb_temp + 7))) & wb_isValid & cwst_isValid
+chiller_enabled & (design_cw_supply_temp > wb_temp) & (actual_cw_supply_temp > design_cw_supply_temp) & wb_isValid & cwst_isValid
+chiller_enabled > 0 & (chws_temp < chws_temp_sp - 1) & swt_isValid
+chiller_enabled > 0 & (chws_temp > chws_temp_sp + 1) & swt_isValid
+CHW_Flow > (chw_flow_design*1.2) & chiller_enabled > 0 & CHW_Flow_isValid
+CHW_Flow > (chw_flow_design*1.2) & chiller_enabled_count > 0 & CHW_Flow_isValid
+CHW_Flow >= 0 & CHW_Flow < 10000
+chws_temp > 25 & chws_temp < 60
+command != sensor
+count_pumps_enabled + 1
+count_pumps_enabled < pump_count & pump_speed > (design_percentage * max_pump_speed)
+COUNT([ahu_discharge])
+Count([dtmi:com:willowinc:Chiller;1].[dtmi:com:willowinc:ElectricalPowerSensor;1] > 10)
+COUNT([dtmi:com:willowinc:HVACPump;1])
+COUNT([zone_temp])
+COUNT(EACH([dtmi:com:willowinc:Chiller;1], chiller, OPTION(chiller.[dtmi:com:willowinc:ActiveElectricalPowerSensor;1] > 10, chiller.[dtmi:com:willowinc:RunSensor;1] > 0)))
+COUNT(EACH([dtmi:com:willowinc:HVACPump;1], pump, OPTION(pump.[dtmi:com:willowinc:WaterPumpRunState;1], pump.[dtmi:com:willowinc:WaterPumpRunActuator;1])))
+COUNT(OPTION([dtmi:com:willowinc:Chiller;1].[dtmi:com:willowinc:ActiveElectricalPowerSensor;1] > 10, [dtmi:com:willowinc:Chiller;1].[dtmi:com:willowinc:CurrentSensor;1] > 10, [dtmi:com:willowinc:Chiller;1].[dtmi:com:willowinc:RunSensor;1] > 0))
+cwrt - cwst
+cwrt > 50 & cwrt < 120
+cwst > 50 & cwst < 120
+damper_pos > (-1) & damper_pos < 101
+design_chw_deltaT * 500 * max_flow
+discharge_pressure > (-1) & discharge_pressure < 70
+discharge_pressure_sp > (-1) & discharge_pressure_sp < 70
+FAHRENHEIT([dtmi:com:willowinc:ChilledWaterTemperatureSensor;1])
+FAHRENHEIT([dtmi:com:willowinc:DischargeAirTemperatureSensor;1])
+FAHRENHEIT([dtmi:com:willowinc:DischargeAirTemperatureSetpoint;1])
+FAHRENHEIT([dtmi:com:willowinc:ReturnAirTemperatureSensor;1])
+FAHRENHEIT([dtmi:com:willowinc:ZoneAirTemperatureSensor;1])
+FAHRENHEIT([dtmi:com:willowinc:ZoneAirTemperatureSetpoint;1])
+FAHRENHEIT([occupied heating temp sp])
+FAHRENHEIT([this])
+FAHRENHEIT(0.5)
+FAHRENHEIT(OPTION([dtmi:com:willowinc:DischargeAirTemperatureSensor;1]))
+FAHRENHEIT(OPTION([dtmi:com:willowinc:EffectiveCoolingZoneAirTemperatureSetpoint;1],[dtmi:com:willowinc:EffectiveZoneAirTemperatureSetpoint;1],[dtmi:com:willowinc:ZoneAirTemperatureSetpoint;1]))
+FAHRENHEIT(OPTION([dtmi:com:willowinc:EffectiveCoolingZoneAirTemperatureSetpoint;1],[dtmi:com:willowinc:UnoccupiedCoolingZoneAirTemperatureSetpoint;1],[dtmi:com:willowinc:UnoccupiedCoolingSetpoint;1], [dtmi:com:willowinc:ZoneAirTemperatureSetpoint;1]))
+FAHRENHEIT(OPTION([dtmi:com:willowinc:EffectiveHeatingZoneAirTemperatureSetpoint;1],[dtmi:com:willowinc:EffectiveZoneAirTemperatureSetpoint;1],[dtmi:com:willowinc:ZoneAirTemperatureSetpoint;1]))
+FAHRENHEIT(OPTION([dtmi:com:willowinc:EffectiveHeatingZoneAirTemperatureSetpoint;1],[dtmi:com:willowinc:UnoccupiedHeatingZoneAirTemperatureSetpoint;1],[dtmi:com:willowinc:UnoccupiedHeatingSetpoint;1]))
+FAHRENHEIT(OPTION([dtmi:com:willowinc:MixedAirTemperatureSensor;1]))
+FAHRENHEIT(OPTION([dtmi:com:willowinc:OutsideAirTemperatureSensor;1]))
+FAHRENHEIT(OPTION([dtmi:com:willowinc:ReturnAirTemperatureSensor;1]))
+FAHRENHEIT(OPTION([dtmi:com:willowinc:ZoneAirTemperatureSensor;1],[dtmi:com:willowinc:TemperatureSensor;1]))
+FAHRENHEIT(OPTION([dtmi:com:willowinc:ZoneAirTemperatureSensor;1]))
+FAHRENHEIT(OPTION([master zone air temp sensor],[zone temp sensor air master],[dtmi:com:willowinc:ZoneAirTemperatureSensor;1],[MASTER_ZT_CELSIUS_1]))
+FAHRENHEIT(OPTION([temp return sensor air]))
+FARHENHEIT(OPTION([dtmi:com:willowinc:DischargeAirTemperatureSensor;1]))
+IF(!ahu_enabled & (damper_pos > 5) & damper_pos_isValid, damper_pos, 0)
+IF((znt_sp - znt) > 3, OPTION([dtmi:com:willowinc:AirFlowSensor;1] * 1.085 * (znt_sp - znt), 0), 0)
+IF(actual_chw_deltaT < design_chw_deltaT, design_chw_deltaT - actual_chw_deltaT, 0)
+IF(actual_eff > design_chiller_eff, (actual_eff - design_chiller_eff) * [Tons], 0)
+IF(actual_kw > design_kw, (actual_kw - design_kw), 0)
+IF(ahu_enabled & (damper_pos > 2 & damper_pos < 98) &  ABS(znt - znt_sp) > 3 & znt_sp_isValid & znt_isValid, damper_pos, 0)
+IF(result & actual_kw > expected_kw, (actual_kw - expected_kw), 0)
+IF(result, MAX([dtmi:com:willowinc:Chiller;1].[dtmi:com:willowinc:ElectricalPowerSensor;1]) / 1000, 0)
+IsCooling & ahu_enabled & damper_pos > 20 & damper_pos_isValid & (znt_sp - znt) > 3 & znt_sp_isValid & znt_isValid
+IsHeating & ahu_enabled & damper_pos > 20 & damper_pos_isValid & (znt - znt_sp) > 3 & znt_sp_isValid & znt_isValid
+KW > 0 & KW < 5000
+MAX([ahu_discharge])
+MAX([zone_temp])
+MAX(EACH([dtmi:com:willowinc:Chiller;1], chiller, OPTION(chiller.designCoolingCapacity, (500 * FAHRENHEIT(chiller.evaporator.designDeltaWaterTemperature) * (chiller.evaporator.designFlow * 15.85037)), chiller.nominalCoolingCapacity) / 12000))
+MAX(EACH([dtmi:com:willowinc:HVACPump;1], pump, OPTION(pump.[dtmi:com:willowinc:PumpVFDFrequencySensor;1], pump.[dtmi:com:willowinc:SpeedSensor;1] / 60)))
+MAX(EACH([dtmi:com:willowinc:HVACPump;1], pump, OPTION(pump.brakeHorsepower / pump.motorPower, 0.9)))
+METRIC(OPTION([dtmi:com:willowinc:InletAirFlowSensor;1],[dtmi:com:willowinc:DischargeAirFlowSensor;1],[dtmi:com:willowinc:AirFlowSensor;1]))
+METRIC(OPTION([dtmi:com:willowinc:InletAirFlowSetpoint;1],[dtmi:com:willowinc:DischargeAirFlowSetpoint;1],[dtmi:com:willowinc:AirFlowSetpoint;1]))
+MIN([ahu_discharge])
+MIN([zone_temp])
+MIN(OPTION([dtmi:com:willowinc:PumpVFDFrequencySensor;1], [dtmi:com:willowinc:SpeedSensor;1] / 60), 60)
+occupied & heating & [zone temperature] > [occupied setpoint]
+OPTION([dtmi:com:willowinc:OccupiedActuator;1], [dtmi:com:willowinc:OccupancySensor;1], [dtmi:com:willowinc:OccupancySetpoint;1], 1)
+OPTION([_1_OUTPUTSPEEDPCT]>85%),
+OPTION([_2_OUTPUTSPEEDPCT]>85%),
+OPTION([_3_OUTPUTSPEEDPCT]>85%),
+OPTION([_4_OUTPUTSPEEDPCT]>85%),
+OPTION([-SSP],[dtmi:com:willowinc:PressureSensor;1])
+OPTION([002-L1-CEUG-CDA])
+OPTION([010-L1-OP-CDA])
+OPTION([cooling coil valve position],[WISE_BYP_CTL_1_1])
+OPTION([discharge air fan run sensor],[-STS])
+OPTION([discharge air pressure 1 sensor],[discharge air pressure StaticPressure sensor])
+OPTION([discharge run fan sensor air], [run sensor])
+OPTION([DMPROPSTS],[exhaust damper open sensor],[dtmi:com:willowinc:DamperStatusSensor;1]>98.0%)
+OPTION([dtmi:com:willowinc:ActiveElectricalPowerSensor;1] > 10, [dtmi:com:willowinc:CurrentSensor;1] > 10, [dtmi:com:willowinc:RunSensor;1] > 0)
+OPTION([dtmi:com:willowinc:ActiveElectricalPowerSensor;1])
+OPTION([dtmi:com:willowinc:AirFlowSetpoint;1], [air flow effective sp], [EXAIRFLOWACSP])
+OPTION([dtmi:com:willowinc:AirHandlingUnit;1].[dtmi:com:willowinc:RunActuator;1], [dtmi:com:willowinc:AirHandlingUnit;1].[dtmi:com:willowinc:DischargeFanRunState;1])
+OPTION([dtmi:com:willowinc:AirHumiditySensor;1])
+OPTION([dtmi:com:willowinc:AirHumiditySetpoint;1])
+OPTION([dtmi:com:willowinc:BuildingAirStaticPressureSensor;1])
+OPTION([dtmi:com:willowinc:BuildingAirStaticPressureSetpoint;1])
+OPTION([dtmi:com:willowinc:ChilledWaterFlowSensor;1])
+OPTION([dtmi:com:willowinc:ChilledWaterValvePositionActuator;1],[dtmi:com:willowinc:CoolingLevelActuator;1],[dtmi:com:willowinc:CoolingLevelSensor;1] > 0.1)
+OPTION([dtmi:com:willowinc:ChilledWaterValvePositionSensor;1], [dtmi:com:willowinc:ChilledWaterValvePositionActuator;1])
+OPTION([dtmi:com:willowinc:CO2AirQualitySensor;1])
+OPTION([dtmi:com:willowinc:CO2AirQualitySetpoint;1],1000)
+OPTION([dtmi:com:willowinc:CO2AirQualitySetpoint;1])
+OPTION([dtmi:com:willowinc:CompressorRunActuator;1],[dtmi:com:willowinc:RunActuator;1])
+OPTION([dtmi:com:willowinc:CompressorRunSensor;1],[dtmi:com:willowinc:CompressorRunState;1],[dtmi:com:willowinc:RunState;1],[dtmi:com:willowinc:RunSensor;1])
+OPTION([dtmi:com:willowinc:CoolingLevelActuator;1] < 0.1)
+OPTION([dtmi:com:willowinc:CoolingLevelActuator;1] > 0.1)
+OPTION([dtmi:com:willowinc:CoolingLevelActuator;1])
+OPTION([dtmi:com:willowinc:DamperPositionActuator;1], [dtmi:com:willowinc:DamperPositionSensor;1])
+OPTION([dtmi:com:willowinc:DischargeAirDamperPositionActuator;1],[dtmi:com:willowinc:DamperPositionActuator;1],[dtmi:com:willowinc:DamperPositionSensor;1])
+OPTION([dtmi:com:willowinc:DischargeAirDamperPositionActuator;1],[dtmi:com:willowinc:DamperPositionActuator;1],[dtmi:com:willowinc:DischargeAirDamperPositionSensor;1],[dtmi:com:willowinc:DamperPositionSensor;1])
+OPTION([dtmi:com:willowinc:DischargeAirDamperPositionSensor;1],[dtmi:com:willowinc:DischargeAirDamperPositionActuator;1],[dtmi:com:willowinc:DamperPositionSensor;1],[dtmi:com:willowinc:DamperPositionActuator;1])
+OPTION([dtmi:com:willowinc:DischargeAirFlowSensor;1], [total discharge air flow sensor],[EXAIRFLOW])
+OPTION([dtmi:com:willowinc:DischargeAirFlowSensor;1])
+OPTION([dtmi:com:willowinc:DischargeAirStaticPressureSensor;1], [dtmi:com:willowinc:AirStaticPressureSensor;1])
+OPTION([dtmi:com:willowinc:DischargeAirStaticPressureSensor;1])
+OPTION([dtmi:com:willowinc:DischargeAirStaticPressureSetpoint;1], [dtmi:com:willowinc:AirStaticPressureSetpoint;1])
+OPTION([dtmi:com:willowinc:DischargeAirStaticPressureSetpoint;1])
+OPTION([dtmi:com:willowinc:DischargeAirTemperatureSensor;1])
+OPTION([dtmi:com:willowinc:DischargeAirTemperatureSetpoint;1])
+OPTION([dtmi:com:willowinc:DischargeFanRunActuator;1],[dtmi:com:willowinc:ReturnFanRunActuator;1],[dtmi:com:willowinc:FanRunActuator;1],[dtmi:com:willowinc:RunActuator;1])
+OPTION([dtmi:com:willowinc:DischargeFanRunActuator;1])
+OPTION([dtmi:com:willowinc:DischargeFanRunState;1], [dtmi:com:willowinc:FanStatusSensor;1])
+OPTION([dtmi:com:willowinc:DischargeFanRunState;1],[dtmi:com:willowinc:DischargeFanRunSensor;1],[dtmi:com:willowinc:ReturnFanRunState;1],[dtmi:com:willowinc:ReturnFanRunSensor;1],[dtmi:com:willowinc:FanRunSensor;1],[dtmi:com:willowinc:FanRunState;1],[dtmi:com:willowinc:RunState;1],[dtmi:com:willowinc:RunSensor;1])
+OPTION([dtmi:com:willowinc:DischargeFanRunState;1],[dtmi:com:willowinc:DischargeFanRunSensor;1])
+OPTION([dtmi:com:willowinc:DischargeFanVFDFrequencySensor;1]/60,[dtmi:com:willowinc:DischargeFanVFDRunLevelActuator;1],[dtmi:com:willowinc:DischargeFanRunLevelState;1])
+OPTION([dtmi:com:willowinc:DischargeFanVFDFrequencySensor;1]/60,[dtmi:com:willowinc:DischargeFanVFDRunLevelActuator;1])
+OPTION([dtmi:com:willowinc:EffectiveCoolingZoneAirTemperatureSetpoint;1], [dtmi:com:willowinc:CoolingZoneAirTemperatureSetpoint;1], [dtmi:com:willowinc:OccupiedCoolingZoneAirTemperatureSetpoint;1], [dtmi:com:willowinc:OccupiedCoolingSetpoint;1], [dtmi:com:willowinc:EffectiveZoneAirTemperatureSetpoint;1], [dtmi:com:willowinc:ZoneAirTemperatureSetpoint;1], [dtmi:com:willowinc:AirTemperatureSetpoint;1]) + 1.2
+OPTION([dtmi:com:willowinc:EffectiveCoolingZoneAirTemperatureSetpoint;1], [dtmi:com:willowinc:CoolingZoneAirTemperatureSetpoint;1], [dtmi:com:willowinc:UnoccupiedCoolingZoneAirTemperatureSetpoint;1], [dtmi:com:willowinc:UnoccupiedCoolingSetpoint;1], [dtmi:com:willowinc:EffectiveZoneAirTemperatureSetpoint;1], [dtmi:com:willowinc:ZoneAirTemperatureSetpoint;1], [dtmi:com:willowinc:AirTemperatureSetpoint;1]) + 1.2
+OPTION([dtmi:com:willowinc:EffectiveCoolingZoneAirTemperatureSetpoint;1],[dtmi:com:willowinc:EffectiveZoneAirTemperatureSetpoint;1],[dtmi:com:willowinc:ZoneAirTemperatureSetpoint;1])
+OPTION([dtmi:com:willowinc:EffectiveHeatingZoneAirTemperatureSetpoint;1], [dtmi:com:willowinc:HeatingZoneAirTemperatureSetpoint;1], [dtmi:com:willowinc:OccupiedHeatingZoneAirTemperatureSetpoint;1], [dtmi:com:willowinc:OccupiedHeatingSetpoint;1], [dtmi:com:willowinc:EffectiveZoneAirTemperatureSetpoint;1], [dtmi:com:willowinc:ZoneAirTemperatureSetpoint;1], [dtmi:com:willowinc:AirTemperatureSetpoint;1]) - 1.2
+OPTION([dtmi:com:willowinc:EffectiveHeatingZoneAirTemperatureSetpoint;1], [dtmi:com:willowinc:HeatingZoneAirTemperatureSetpoint;1], [dtmi:com:willowinc:UnoccupiedHeatingZoneAirTemperatureSetpoint;1], [dtmi:com:willowinc:UnoccupiedHeatingSetpoint;1], [dtmi:com:willowinc:EffectiveZoneAirTemperatureSetpoint;1], [dtmi:com:willowinc:ZoneAirTemperatureSetpoint;1], [dtmi:com:willowinc:AirTemperatureSetpoint;1]) - 1.2
+OPTION([dtmi:com:willowinc:EffectiveHeatingZoneAirTemperatureSetpoint;1],[dtmi:com:willowinc:EffectiveZoneAirTemperatureSetpoint;1],[dtmi:com:willowinc:ZoneAirTemperatureSetpoint;1])
+OPTION([dtmi:com:willowinc:EffectiveZoneAirTemperatureSetpoint;1],[dtmi:com:willowinc:ZoneAirTemperatureSetpoint;1])
+OPTION([dtmi:com:willowinc:EnteringChilledWaterTemperatureSensor;1])
+OPTION([dtmi:com:willowinc:ExhaustAirFlowSensor;1], [exhaust sensor air flow], [EXAIRFLOW])
+OPTION([dtmi:com:willowinc:ExhaustAirFlowSetpoint;1], [exhaust sensor air flow sp], [EXAIRFLOWACSP])
+OPTION([dtmi:com:willowinc:FanActuator;1])
+OPTION([dtmi:com:willowinc:FanRunActuator;1],[dtmi:com:willowinc:RunActuator;1])
+OPTION([dtmi:com:willowinc:FanRunSensor;1],[dtmi:com:willowinc:FanRunState;1],[dtmi:com:willowinc:RunState;1],[dtmi:com:willowinc:RunSensor;1])
+OPTION([dtmi:com:willowinc:FanStatusSensor;1])
+OPTION([dtmi:com:willowinc:HeatingLevelActuator;1] < 0.1)
+OPTION([dtmi:com:willowinc:HeatingLevelActuator;1] <= 0, [dtmi:com:willowinc:ReheatLevelActuator;1] <= 0, 1)
+OPTION([dtmi:com:willowinc:HeatingLevelActuator;1] > 0, [dtmi:com:willowinc:ReheatLevelActuator;1] > 0, 0)
+OPTION([dtmi:com:willowinc:HeatingLevelActuator;1] > 0.01)
+OPTION([dtmi:com:willowinc:HeatingLevelActuator;1])
+OPTION([dtmi:com:willowinc:HotWaterValvePositionActuator;1],[dtmi:com:willowinc:HeatingLevelActuator;1],[dtmi:com:willowinc:HeatingLevelSensor;1] > 0.01)
+OPTION([dtmi:com:willowinc:HotWaterValvePositionSensor;1], [dtmi:com:willowinc:HotWaterValvePositionActuator;1])
+OPTION([dtmi:com:willowinc:HVACChilledWaterSystem;1].[dtmi:com:willowinc:PrimaryLoopChilledWaterFlowSensor;1], [dtmi:com:willowinc:HVACChilledWaterSystem;1].[dtmi:com:willowinc:LeavingChilledWaterFlowSensor;1])
+OPTION([dtmi:com:willowinc:InletAirFlowSensor;1])
+OPTION([dtmi:com:willowinc:InletAirTemperatureSensor;1])
+OPTION([dtmi:com:willowinc:KWPerTon;1], [KW]/[Tons])
+OPTION([dtmi:com:willowinc:OccupiedCoolingZoneAirTemperatureSetpoint;1], [dtmi:com:willowinc:OccupiedCoolingSetpoint;1])
+OPTION([dtmi:com:willowinc:OccupiedHeatingZoneAirTemperatureSetpoint;1], [dtmi:com:willowinc:OccupiedHeatingSetpoint;1])
+OPTION([dtmi:com:willowinc:OccupiedState;1], [dtmi:com:willowinc:OccupiedUnoccupiedState;1])
+OPTION([dtmi:com:willowinc:OccupiedState;1],[dtmi:com:willowinc:NormalScheduleOccupiedState;1],[dtmi:com:willowinc:OvertimeScheduleOccupiedState;1])
+OPTION([dtmi:com:willowinc:OutsideAirFlowSensor;1], [exhaust sensor air flow], [OUTAIRFLOW])
+OPTION([dtmi:com:willowinc:OutsideAirFlowSetpoint;1], [exhaust sensor air flow sp], [OUTAIRFLOWACSP])
+OPTION([dtmi:com:willowinc:PumpRunActuator;1],[dtmi:com:willowinc:RunActuator;1],[dtmi:com:willowinc:EnableActuator;1])
+OPTION([dtmi:com:willowinc:PumpRunLevelState;1],[dtmi:com:willowinc:VFDRunLevelState;1],[dtmi:com:willowinc:RunLevelState;1])
+OPTION([dtmi:com:willowinc:PumpRunSensor;1],[dtmi:com:willowinc:PumpRunState;1],[dtmi:com:willowinc:RunState;1],[dtmi:com:willowinc:RunSensor;1])
+OPTION([dtmi:com:willowinc:PumpVFDRunLevelActuator;1],[dtmi:com:willowinc:PumpRunLevelActuator;1],[dtmi:com:willowinc:RunLevelActuator;1])
+OPTION([dtmi:com:willowinc:ReturnFanRunState;1],[dtmi:com:willowinc:ReturnFanRunSensor;1])
+OPTION([dtmi:com:willowinc:RunActuator;1], [dtmi:com:willowinc:FanRunActuator;1], [dtmi:com:willowinc:DischargeFanRunActuator;1], [dtmi:com:willowinc:RunSensor;1], [dtmi:com:willowinc:FanRunSensor;1], [dtmi:com:willowinc:DischargeFanRunSensor;1], [dtmi:com:willowinc:DischargeAirFlowSensor;1], [dtmi:com:willowinc:AirFlowSensor;1], [dtmi:com:willowinc:FlowSensor;1], [dtmi:com:willowinc:VFDRunLevelSensor;1], [dtmi:com:willowinc:FanRunLevelSensor;1], [dtmi:com:willowinc:RunLevelSensor;1], [dtmi:com:willowinc:FanRunLevelActuator;1], [dtmi:com:willowinc:FanVFDRunLevelActuator;1], [dtmi:com:willowinc:DischargeFanVFDRunLevelActuator;1], [dtmi:com:willowinc:VFDRunLevelActuator;1], [dtmi:com:willowinc:RunLevelActuator;1], 1)
+OPTION([dtmi:com:willowinc:RunLevelState;1],[dtmi:com:willowinc:RunLevelActuator;1],[dtmi:com:willowinc:PumpRunLevelState;1],[dtmi:com:willowinc:PumpRunLevelActuator;1])
+OPTION([dtmi:com:willowinc:RunSensor;1])
+OPTION([dtmi:com:willowinc:ThermalEnergySensor;1])
+OPTION([dtmi:com:willowinc:ThermalPowerSensor;1], ((500*[CHW_Flow]*([RWT]-[SWT]))/12000))
+OPTION([dtmi:com:willowinc:TotalImportActiveElectricalEnergySensor;1],[dtmi:com:willowinc:ActiveElectricalEnergySensor;1],[dtmi:com:willowinc:ElectricalEnergySensor;1],[dtmi:com:willowinc:EnergySensor;1])
+OPTION([dtmi:com:willowinc:WaterFlowSensor;1])
+OPTION([dtmi:com:willowinc:WaterPumpRunState;1], [dtmi:com:willowinc:WaterPumpRunActuator;1])
+OPTION([dtmi:com:willowinc:WaterVolumeSensor;1])
+OPTION([dtmi:com:willowinc:ZoneAirHumiditySensor;1],[dtmi:com:willowinc:HumiditySensor;1])
+OPTION([dtmi:com:willowinc:ZoneAirHumiditySensor;1],[dtmi:com:willowinc:HumiditySensor;1])>90.0
+OPTION([dtmi:com:willowinc:ZoneAirTemperatureSensor;1], [dtmi:com:willowinc:AirTemperatureSensor;1])
+OPTION([dtmi:com:willowinc:ZoneAirTemperatureSensor;1])
+OPTION([heating cmd],[dtmi:com:willowinc:HeatingActuator;1] > 0.0)
+OPTION([occupied cmd], [occupancy cmd mode] == 1)
+OPTION([OUTPUTSPEEDPCT]>85%, [discharge run fan sensor air], [fan speed sensor]>10%),
+OPTION([OUTPUTSPEEDPCT]>85%, [run sensor],[dtmi:com:willowinc:FanStatusSensor;1])
+OPTION([outside run fan sensor air], [run sensor])
+OPTION([PeopleCountSensor-Total],[dtmi:com:willowinc:PeopleCountSensor;1])
+OPTION([reheat cmd],[dtmi:com:willowinc:ReheatActuator;1]) > 0
+OPTION([reheat sensor] > 0, [dtmi:com:willowinc:ReheatActuator;1],[reheat cmd])
+OPTION([return air co2 sensor],[RETURNCO2], [dtmi:com:willowinc:CO2Sensor;1])
+OPTION([RETURNCO2],[return air co2 sensor])
+OPTION([run cmd],[-CMD])
+OPTION([supply fan speed],[discharge sensor air flow])
+OPTION([vfd run cmd],[speed sensor]>85%,[run sensor])
+OPTION([vfd run sensor],[vfd speed sensor]>0,[vfd cmd],[-CMD])
+OPTION(IF([dtmi:com:willowinc:DischargeAirTemperatureSensor;1] < [dtmi:com:willowinc:ZoneAirTemperatureSensor;1], [dtmi:com:willowinc:EffectiveCoolingZoneAirTemperatureSetpoint;1], [dtmi:com:willowinc:EffectiveHeatingZoneAirTemperatureSetpoint;1]), [dtmi:com:willowinc:ZoneAirTemperatureSetpoint;1], IF([dtmi:com:willowinc:OutsideAirTemperatureSensor;1] > 50, [dtmi:com:willowinc:EffectiveCoolingZoneAirTemperatureSetpoint;1], [dtmi:com:willowinc:EffectiveHeatingZoneAirTemperatureSetpoint;1]))
+OPTION(PERCENTAGE([dtmi:com:willowinc:DamperPositionActuator;1]),PERCENTAGE([dtmi:com:willowinc:DamperPositionSensor;1]))
+pump_enabled & chiller_dt_below_design
+pump_enabled & chwv_pos > 80
+pump_enabled & discharge_pressure_isValid & discharge_pressure_sp_isValid & discharge_pressure < (discharge_pressure_sp * 0.8)
+pump_enabled & discharge_pressure_isValid & discharge_pressure_sp_isValid & discharge_pressure > (discharge_pressure_sp * 1.2)
+runsensor & (ratio > 1.15 | ratio < 0.85)
+RWT - SWT
+RWT > 50 & RWT < 80
+Sum([ahu_discharge])
+SUM([dtmi:com:willowinc:Chiller;1].evaporator.designFlow)
+Sum([zone_temp])
+SUM(EACH([dtmi:com:willowinc:Chiller;1], chiller, IF(chiller.[dtmi:com:willowinc:ElectricalPowerSensor;1] > 10, 500*chiller.[dtmi:com:willowinc:ChilledWaterFlowSensor;1]*(chiller.[dtmi:com:willowinc:EnteringChilledWaterTemperatureSensor;1]-chiller.[dtmi:com:willowinc:LeavingChilledWaterTemperatureSensor;1])/12000, 0)))
+SWT > 25 & SWT < 60
+T * arctan(0.151977 * (rh + 8.313659)^(1/2)) + arctan(T + rh) - arctan(rh - 1.676331) + 0.00391838 *(rh)^(3/2) * arctan(0.023101 * rh) - 4.686035
+this.condenser.designDeltaWaterTemperature
+this.condenser.designEnteringWaterTemperature
+this.condenser.designFlow
+this.designKWPerTon
+this.evaporator.designDeltaWaterTemperature
+this.evaporator.designFlow
+this.flowCapacity
+this.supplyFan.motorPower * [fan_speed]^3
+total_flow / new_pump_count
+wb_temp > 0 & wb_temp < 120
+znt > 58 & znt < 90
+znt_sp > 58 & znt_sp < 90

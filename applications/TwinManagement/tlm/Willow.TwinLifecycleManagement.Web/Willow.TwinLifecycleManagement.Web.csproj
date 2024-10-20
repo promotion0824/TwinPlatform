@@ -1,0 +1,141 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>disable</Nullable>
+        <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+        <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
+        <IsPackable>false</IsPackable>
+        <SpaRoot>ClientApp\</SpaRoot>
+        <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
+        <SpaProxyServerUrl>http://localhost:44423</SpaProxyServerUrl>
+        <SpaProxyLaunchCommand>npm start</SpaProxyLaunchCommand>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+        <CodeAnalysisRuleSet>Willow.TwinLifecycleManagement.Web.ruleset</CodeAnalysisRuleSet>
+    </PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="authorization.twinPlatform.common" Version="2.2.2676" />
+		<PackageReference Include="DTDLParser" Version="1.0.52" />
+		<PackageReference Include="ExcelDataReader" Version="3.6.0" />
+		<PackageReference Include="ExcelDataReader.DataSet" Version="3.6.0" />
+		<PackageReference Include="Microsoft.AspNetCore.SpaProxy" Version="8.0.6">
+		  <TreatAsUsed>true</TreatAsUsed>
+		</PackageReference>
+		<PackageReference Include="Microsoft.TypeScript.MSBuild" Version="5.4.5">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="NSwag.Annotations" Version="14.0.7" />
+		<PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.556">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.6.1" />
+		<PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.6.1" />
+		<PackageReference Include="Willow.Copilot.ProxyAPI" Version="2.2.2403" />
+		<PackageReference Include="Willow.Extensions.Logging" Version="1.2.85" />
+		<PackageReference Include="Willow.HealthChecks" Version="2.2.2734" />
+		<PackageReference Include="Willow.Telemetry.Web" Version="2.2.2734" />
+	</ItemGroup>
+
+    <ItemGroup>
+        <!-- Don't publish the SPA source files, but do show them in the project files list -->
+        <Content Remove="$(SpaRoot)**" />
+        <None Remove="$(SpaRoot)**" />
+        <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+    </ItemGroup>
+	<ItemGroup>
+		<InternalsVisibleTo Include="Willow.TwinLifecycleManagement.Web.APITests" />
+	</ItemGroup>
+
+    <ItemGroup>
+      <Content Remove="stylecop.json" />
+      <None Remove="ClientApp\src\AppPermissions.ts" />
+      <None Remove="ClientApp\src\components\AuthHandler.tsx" />
+      <None Remove="ClientApp\src\components\PopUps\Popup.tsx" />
+      <None Remove="ClientApp\src\context\AuthorizationPermissionContext.ts" />
+      <None Remove="ClientApp\src\hooks\UseActionComment.ts" />
+      <None Remove="ClientApp\src\hooks\useAuth.ts" />
+      <None Remove="ClientApp\src\hooks\useDataGridPersistence.ts" />
+      <None Remove="ClientApp\src\hooks\useLoader.ts" />
+      <None Remove="ClientApp\src\HotKeyMap.ts" />
+      <None Remove="ClientApp\src\pages\Copilot\CopilotChat.tsx" />
+      <None Remove="ClientApp\src\pages\Copilot\CopilotChatMessage.tsx" />
+      <None Remove="ClientApp\src\pages\Copilot\CopilotHelper.ts" />
+      <None Remove="ClientApp\src\pages\Copilot\CopilotMessage.ts" />
+      <None Remove="ClientApp\src\pages\Copilot\hooks\useStateRef.ts" />
+      <None Remove="ClientApp\src\pages\Documents\DocumentsSearch.tsx" />
+      <None Remove="ClientApp\src\pages\UnifiedJobs\components\JobOnDemandTriggerButton.tsx" />
+      <None Remove="ClientApp\src\providers\PermissionProvider.tsx" />
+      <None Remove="ClientApp\src\types\WillowContext.ts" />
+      <AdditionalFiles Include="stylecop.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\adt-api\Willow.DataQuality.Model\Willow.DataQuality.Model.csproj" />
+      <ProjectReference Include="..\..\lib\Willow.AzureDigitalTwins.SDK\Willow.AzureDigitalTwins.SDK.csproj" />
+      <ProjectReference Include="..\..\lib\Willow.Exceptions\Willow.Exceptions.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <TypeScriptCompile Include="ClientApp\src\AppPermissions.ts" />
+      <TypeScriptCompile Include="ClientApp\src\components\AuthHandler.tsx" />
+      <TypeScriptCompile Include="ClientApp\src\components\PopUps\Popup.tsx" />
+      <TypeScriptCompile Include="ClientApp\src\context\AuthorizationPermissionContext.ts" />
+      <TypeScriptCompile Include="ClientApp\src\hooks\useAuth.ts" />
+      <TypeScriptCompile Include="ClientApp\src\hooks\useLoader.ts" />
+      <TypeScriptCompile Include="ClientApp\src\pages\Copilot\CopilotChat.tsx" />
+      <TypeScriptCompile Include="ClientApp\src\pages\Documents\DocumentsSearch.tsx" />
+      <TypeScriptCompile Include="ClientApp\src\providers\PermissionProvider.tsx" />
+      <TypeScriptCompile Include="ClientApp\src\types\WillowContext.ts" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="ClientApp\cypress\fixtures\corruptedFile.xlsx">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="ClientApp\cypress\fixtures\emptyFile.xlsx">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="ClientApp\cypress\fixtures\TwinsImportcsv.csv">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="ClientApp\cypress\fixtures\TwinsImportxls.xlsx">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
+    <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
+        <!-- Ensure Node.js is installed -->
+        <Exec Command="node --version" ContinueOnError="true">
+            <Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
+        </Exec>
+        <Error Condition="'$(ErrorCode)' != '0'" Text="Node.js is required to build and run this project. To continue, please install Node.js from https://nodejs.org/, and then restart your command prompt or IDE." />
+        <Message Importance="high" Text="Restoring dependencies using 'npm'. This may take several minutes..." />
+        <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
+    </Target>
+
+    <Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
+
+        <!-- Include the newly-built files in the publish output -->
+        <ItemGroup>
+            <DistFiles Include="$(SpaRoot)dist\**" />
+            <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
+                <RelativePath>wwwroot\%(RecursiveDir)%(FileName)%(Extension)</RelativePath>
+                <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+                <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+            </ResolvedFileToPublish>
+        </ItemGroup>
+    </Target>
+	<Target Name="NSwag" BeforeTargets="AfterBuild" Condition="'$(Configuration)'=='Debug' and '$(AzureDevOps)'!='True' and '$(Willow_ADT_API_EnableSDKGeneration)'!='False' ">
+		<Exec WorkingDirectory="$(ProjectDir)" Command="dotnet new tool-manifest --force" />
+		<Exec WorkingDirectory="$(ProjectDir)" Command="dotnet tool install Swashbuckle.AspNetCore.Cli --version 6.5.0 --disable-parallel --ignore-failed-sources" />
+		<Exec WorkingDirectory="$(ProjectDir)" Command="dotnet swagger tofile --output swagger.json bin\Debug\net8.0\Willow.TwinLifecycleManagement.Web.dll v1" />
+		<Exec WorkingDirectory="$(ProjectDir)" Command="dotnet tool uninstall Swashbuckle.AspNetCore.Cli" />
+		<Exec WorkingDirectory="$(ProjectDir)" Command="dotnet tool install NSwag.ConsoleCore --disable-parallel --ignore-failed-sources" />
+		<Exec ContinueOnError="true" WorkingDirectory="$(ProjectDir)" EnvironmentVariables="ASPNETCORE_ENVIRONMENT=Development" Command="dotnet nswag run nswag.json /variables:Configuration=$(Configuration)" />
+		<Exec WorkingDirectory="$(ProjectDir)" Command="dotnet tool uninstall NSwag.ConsoleCore" />
+	</Target>
+</Project>

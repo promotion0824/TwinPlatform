@@ -1,0 +1,15 @@
+name: CodeQL Initialize
+description: Initialize CodeQL database
+
+inputs:
+  language:
+    required: true
+    description: Compiled language name
+
+runs:
+  using: composite
+  steps:
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v2
+      with:
+        languages: ${{ inputs.language }}

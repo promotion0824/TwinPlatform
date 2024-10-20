@@ -1,0 +1,48 @@
+name: Dotnet Test
+
+inputs:
+  testProjectDir:
+    description: Path to the project test folder
+    required: true
+  excludeLibraries:
+    description: Excluded libraries from coverage
+    default: \"[*]Microsoft.*,[*]System.*\"
+  buildConfiguration:
+    description: Build Configuration
+    default: Release
+
+runs:
+  using: composite
+  steps:
+  - name: Run unit tests
+    run: dotnet test --no-build ${{ inputs.testProjectDir }} --logger trx /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:Exclude=${{ inputs.excludeLibraries }} --configuration ${{ inputs.buildConfiguration }}
+    shell: bash
+
+  - name: Create code coverage report
+    run: |-
+      dotnet tool install -g dotnet-reportgenerator-globaltool
+      reportgenerator -reports:${{ github.workspace }}/${{ inputs.testProjectDir }}/coverage.opencover.xml -targetdir:${{ github.workspace }}/${{ inputs.testProjectDir }}/CodeCoverage -reporttypes:Cobertura
+    shell: bash
+
+  - name: "[Debug] Publish cobertura report for debug"
+    uses: actions/upload-artifact@v3.1.3
+    with:
+      name: opencover_report
+      path: ${{ github.workspace }}/${{ inputs.testProjectDir }}/CodeCoverage
+      retention-days: 1
+
+  - name: Generate Coverage Report
+    uses: danielpalme/ReportGenerator-GitHub-Action@5.1.15
+    with:
+      reports: ${{ github.workspace }}/${{ inputs.testProjectDir }}/CodeCoverage/Cobertura.xml
+      targetdir: coveragereport_${{ github.run_number }}
+      reporttypes: HtmlInline
+      tag: ${{ github.run_number }}_${{ github.run_id }}
+    continue-on-error: true
+
+  - name: Upload CoverageReport
+    uses: actions/upload-artifact@v3.1.3
+    with:
+      name: CoverageReport
+      path: coveragereport_${{ github.run_number }}
+      retention-days: 1

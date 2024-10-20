@@ -1,0 +1,44 @@
+[
+  {
+    "jobId": "5a6545e9-e7a9-41cc-bda0-b6907a1a0be0",
+    "details": {
+      "startTime": "2022-05-24T12:20:04.9594936Z",
+      "endTime": "2022-05-24T12:20:05.2615152Z",
+      "status": "Error",
+      "statusMessage": "Value cannot be null. (Parameter 'key')"
+    },
+    "type": "Twins",
+    "entitiesError": null,
+    "processedEntities": 1,
+    "createTime": "2022-05-24T12:20:04.0501632Z",
+    "userEmail": "SGrujicic@willowinc.com"
+  },
+  {
+    "jobId": "5a6545e9-e7a9-41cc-bda0-b6907a1a0be1",
+    "details": {
+      "startTime": "2022-05-24T12:20:04.9594936Z",
+      "endTime": "2022-05-24T12:20:05.2615152Z",
+      "status": "Error",
+      "statusMessage": "Value cannot be null. (Parameter 'key')"
+    },
+    "type": "Twins",
+    "entitiesError": null,
+    "processedEntities": 1,
+    "createTime": "2022-05-24T12:20:04.0501632Z",
+    "userEmail": "SGrujicic@willowinc.com"
+  },
+  {
+    "jobId": "5a6545e9-e7a9-41cc-bda0-b6907a1a0be2",
+    "details": {
+      "startTime": "2022-05-24T12:20:04.9594936Z",
+      "endTime": "2022-05-24T12:20:05.2615152Z",
+      "status": "Error",
+      "statusMessage": "Value cannot be null. (Parameter 'key')"
+    },
+    "type": "Twins",
+    "entitiesError": null,
+    "processedEntities": 1,
+    "createTime": "2022-05-24T12:20:04.0501632Z",
+    "userEmail": "SGrujicic@willowinc.com"
+  }
+]

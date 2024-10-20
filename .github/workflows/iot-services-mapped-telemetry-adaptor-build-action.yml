@@ -1,0 +1,41 @@
+name: Mapped Telemetry Adaptor
+
+on:
+  push:
+    branches:
+      - main
+      - release/**
+    paths:
+      - applications/IngestionPipeline/MappedTelemetryAdaptor/**
+      - .github/workflows/iot-services-mapped-telemetry-adaptor-build-action.yml
+
+  pull_request:
+    branches:
+      - main
+    paths:
+      - applications/IngestionPipeline/MappedTelemetryAdaptor/**
+      - .github/workflows/iot-services-mapped-telemetry-adaptor-build-action.yml
+
+  workflow_dispatch:
+
+jobs:
+  build_test_docker_push:
+    uses: WillowInc/.github/.github/workflows/Reusable-Build-Test-Docker-Push.yml@main
+    with:
+      path: applications/IngestionPipeline/MappedTelemetryAdaptor/src/MappedTelemetryAdaptor
+      restore_path: applications/IngestionPipeline/MappedTelemetryAdaptor
+      test_path: applications/IngestionPipeline/MappedTelemetryAdaptor/test/MappedTelemetryAdaptor.Tests
+      build_configuration: "Release"
+      directoryBuildPropsPath: .config/common.props
+      coverage_thresholds: '0 50'
+      nugetConfigLocation: NuGet.Config
+      containerAppName: mapped-telemetry-adaptor
+      dockerfile: applications/IngestionPipeline/MappedTelemetryAdaptor/src/MappedTelemetryAdaptor/Dockerfile
+      dockerContext: applications/IngestionPipeline/MappedTelemetryAdaptor/src/MappedTelemetryAdaptor
+      imageName: iot-services/mapped-telemetry-adaptor
+      infraProjectPath: Applications/IoTServices.LiveData
+      productName: iot-services
+      clientId: "empty"
+    secrets:
+      githubToken: ${{ secrets.GITHUB_TOKEN }}
+      botToken: ${{ secrets.SVC_BOT_TOKEN }}

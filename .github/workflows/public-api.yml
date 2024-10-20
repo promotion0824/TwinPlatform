@@ -1,0 +1,41 @@
+name: "Public API"
+
+on:
+  push:
+    branches:
+      - main
+      - release/**
+    paths:
+      - applications/PublicApi/**
+      - .github/workflows/public-api.yml
+
+  pull_request:
+    branches:
+      - main
+    paths:
+      - applications/PublicApi/**
+      - .github/workflows/public-api.yml
+
+  workflow_dispatch:
+
+jobs:
+  build_test_docker_push:
+    uses: WillowInc/.github/.github/workflows/Reusable-Build-Test-Docker-Push.yml@main
+    with:
+      path: "applications/PublicApi/src/Willow.PublicApi"
+      restore_path: "applications/PublicApi"
+      test_path: "applications/PublicApi/test/Willow.PublicApi.Tests"
+      build_configuration: "Release"
+      directoryBuildPropsPath: .config/common.props
+      coverage_thresholds: '0 50'
+      nugetConfigLocation: NuGet.Config
+      containerAppName: public-api-v3
+      dockerfile: "applications/PublicApi/src/Willow.PublicApi/Dockerfile"
+      dockerContext: "applications/PublicApi/src/Willow.PublicApi"
+      imageName: "iot-services/public-api-v3"
+      infraProjectPath: Applications/PublicApi
+      productName: "iot-services"
+      clientId: "empty"
+    secrets:
+      githubToken: ${{ secrets.GITHUB_TOKEN }}
+      botToken: ${{ secrets.SVC_BOT_TOKEN }}

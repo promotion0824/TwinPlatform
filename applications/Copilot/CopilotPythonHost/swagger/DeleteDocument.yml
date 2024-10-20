@@ -1,0 +1,36 @@
+tags:
+  - Indexing
+description: Delete all the index document chunks related to a blob file
+parameters:
+  - in: body
+    name: DeleteDocumentRequest
+    schema:
+        id: DeleteDocumentRequest
+        type: object
+        required: [blob_file]
+        properties:
+            blob_file:
+                type: string
+                description: The file to be deleted from the index
+            index_name:
+                type: string
+                description: The name of the index to use - for debugging and A/B testing (Normally should be omitted)
+
+
+responses:
+  200:
+    description: Idempotent delete always returns 200.
+    schema:
+        id: DeleteDocumentResponse
+        type: object
+        properties:
+            status:
+                type: string
+                description: Status (OK | NotFound) of the indexing request
+            num_index_docs_deleted:
+                description: The number of document chunks deleted from the index
+                type: number
+  400:
+    description: Bad request
+  500:
+    description: Internal server error

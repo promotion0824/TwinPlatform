@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Willow.AzureDataExplorer\Willow.AzureDataExplorer.csproj" />
+    <ProjectReference Include="..\Willow.AzureDigitalTwins.Services\Willow.AzureDigitalTwins.Services.csproj" />
+    <ProjectReference Include="..\Willow.DataQuality.Model\Willow.DataQuality.Model.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,160 @@
+name: "adt-api"
+
+on:
+  workflow_dispatch:
+    inputs:
+      pushToDevAcr:
+        type: boolean
+        description: Promote Docker image to DEV ACRs
+        default: true
+      pushToPrdAcr:
+        type: boolean
+        description: Promote Docker image to PROD ACRs. If false works only on release branch trigger.
+        default: false
+      bumpImageVersion:
+        type: boolean
+        description: Create an approved PR to bump up image version in the IAD Repo.
+        default: false
+
+  pull_request:
+    branches:
+      - main
+    paths:
+      - applications/TwinManagement/adt-api/Willow.AzureDigitalTwins.Api/**
+
+  push:
+    branches:
+      - main
+      - "releases/**"
+    paths:
+      - applications/TwinManagement/adt-api/Willow.AzureDigitalTwins.Api/**
+
+env:
+  buildConfiguration: Release
+  mainProject: Willow.AzureDigitalTwins.Api
+  imageName: twin/willow-azuredigitaltwins-api
+  productName: twin
+  majorVersion: 0.25
+  projectPath: "applications/TwinManagement/adt-api/Willow.AzureDigitalTwins.Api"
+  srcProjectDir: "."
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: "Checkout Repository"
+        uses: actions/checkout@v4
+
+      - name: Update build number
+        shell: bash
+        id: BuildVersion
+        run: |
+          versionFull=${{ env.majorVersion }}.${{ github.run_number }}
+          echo "BuildNumber=$versionFull" >> $GITHUB_STEP_SUMMARY
+          echo "BuildNumber=$versionFull" >> $GITHUB_OUTPUT
+
+      - name: Add Authenticated Github Nuget Source
+        shell: bash
+        run: |
+          dotnet nuget remove source WillowGithub
+          dotnet nuget add source "https://nuget.pkg.github.com/WillowInc/index.json" --name WillowGithub --username gh --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --configfile ./NuGet.Config
+
+      - name: Evaluate whether to Push
+        id: evaluate-push
+        shell: pwsh
+        run: |
+          # only to ACRs if manually triggered and pushToDevAcr is true
+          # or if it triggered from main branch
+
+          $pushToDevAcr = 'false'
+          If ( '${{ github.event_name }}' -eq 'workflow_dispatch') { $pushToDevAcr = '${{ github.event.inputs.pushToDevAcr }}' }
+          If ('${{ github.ref }}' -eq 'refs/heads/main') {
+            $pushToDevAcr = 'true'
+          }
+          write-output "pushToDevAcr=$pushToDevAcr" >> $Env:GITHUB_STEP_SUMMARY
+          write-output "pushToDevAcr=$pushToDevAcr" >> $Env:GITHUB_OUTPUT
+
+          # only push to prd acr when build from release branch
+          $pushToPrdAcr = 'false'
+          If ('${{ github.ref }}' -like 'refs/heads/release/*') {
+            $pushToPrdAcr = 'true'
+          }
+
+          If ('${{ github.event_name }}' -eq 'workflow_dispatch') {
+            $pushToPrdAcr = '${{ github.event.inputs.pushToPrdAcr }}'
+          }
+
+          write-output "pushToPrdAcr=$pushToPrdAcr" >> $Env:GITHUB_STEP_SUMMARY
+          write-output "pushToPrdAcr=$pushToPrdAcr" >> $Env:GITHUB_OUTPUT
+
+          $bumpImageVersion = '${{ github.event.inputs.bumpImageVersion }}'
+          write-output "bumpImageVersion=$bumpImageVersion" >> $Env:GITHUB_STEP_SUMMARY
+          write-output "bumpImageVersion=$bumpImageVersion" >> $Env:GITHUB_OUTPUT
+
+      - name: Login to Single Tenant Dev ACR
+        uses: docker/login-action@v3
+        with:
+          registry: crwildevshared01.azurecr.io
+          username: ${{ vars.NONPROD_ACR_CLIENT_ID }}
+          password: ${{ secrets.NONPROD_ACR_CLIENT_SECRET }}
+      - name: Login to Single Tenant Prod ACR
+        uses: docker/login-action@v3
+        with:
+          registry: crwilprdshared01.azurecr.io
+          username: ${{ vars.PROD_ACR_CLIENT_ID }}
+          password: ${{ secrets.PROD_ACR_CLIENT_SECRET }}
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Docker Build
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          build-args: |
+            ASSEMBLY_VERSION=${{ steps.BuildVersion.outputs.buildNumber }}
+            NUGET_USERNAME=gh
+            NUGET_PASSWORD=${{ secrets.GITHUB_TOKEN }}
+          file: ${{ env.projectPath }}/Dockerfile
+          load: true
+          tags: |
+            nonprodplatformsharedcr.azurecr.io/${{ env.imageName }}:${{ steps.BuildVersion.outputs.buildNumber }}
+            nonprodplatformsharedcr.azurecr.io/${{ env.imageName }}:latest
+            prodplatformsharedcr.azurecr.io/${{ env.imageName }}:${{ steps.BuildVersion.outputs.buildNumber }}
+            prodplatformsharedcr.azurecr.io/${{ env.imageName }}:latest
+            crwildevshared01.azurecr.io/${{ env.imageName }}:${{ steps.BuildVersion.outputs.buildNumber }}
+            crwilprdshared01.azurecr.io/${{ env.imageName }}:${{ steps.BuildVersion.outputs.buildNumber }}
+
+      - name: Push to Single Tenant Dev
+        if: ${{ steps.evaluate-push.outputs.pushToDevAcr == 'true' }}
+        run: |
+          docker push crwildevshared01.azurecr.io/${{ env.imageName }}:${{ steps.BuildVersion.outputs.buildNumber }}
+
+      - name: Push to Single Tenant Prod
+        if: ${{ steps.evaluate-push.outputs.pushToPrdAcr == 'true' }}
+        run: |
+          docker push crwilprdshared01.azurecr.io/${{ env.imageName }}:${{ steps.BuildVersion.outputs.buildNumber }}
+
+      - uses: WillowInc/.github/.github/actions/bump-version@main
+        name: Bump Dev Image Version
+        id: bump-version-dev
+        if: ${{ (steps.evaluate-push.outputs.pushToDevAcr == 'true') && (steps.evaluate-push.outputs.bumpImageVersion == 'true') }}
+        with:
+          team-name: ${{ env.productName }}
+          project-path: Applications/AdtAPI
+          image: "${{ env.imageName }}:${{ steps.BuildVersion.outputs.buildNumber }}"
+          bot-token: ${{ secrets.SVC_BOT_TOKEN }}
+          appsettings: "appsettings.json"
+          container-name: "adt-api"
+
+      - uses: WillowInc/.github/.github/actions/bump-version@main
+        name: Bump Prod Image Version
+        id: bump-version-prod
+        if: ${{ (steps.evaluate-push.outputs.pushToPrdAcr == 'true') && (steps.evaluate-push.outputs.bumpImageVersion == 'true') }}
+        with:
+          team-name: ${{ env.productName }}
+          project-path: Applications/AdtAPI
+          image: "${{ env.imageName }}:${{ steps.BuildVersion.outputs.buildNumber }}"
+          bot-token: ${{ secrets.SVC_BOT_TOKEN }}
+          appsettings: "appsettings.prd.json"
+          container-name: "adt-api"

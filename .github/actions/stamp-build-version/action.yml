@@ -1,0 +1,40 @@
+name: Stamp build version
+description: Inject build version to assembly
+
+inputs:
+  directoryBuildPropPath:
+    description: Relative path to directory build prop
+    required: true
+  assemblySemVer:
+    description: Assembly SemVer Version
+    required: true
+  majorMinorPatch:
+    description: Major Minor Patch
+    required: true
+  informationalVersion:
+    description: Informational Version
+    required: true
+  nuGetVersion:
+    description: Nuget Version
+    required: true
+  fullSemVer:
+    description: FullSemVer Version
+    required: true
+
+# Move this to a shared action
+# See https://gitversion.net/docs/usage/msbuild for details of which versions go where in the below
+
+runs:
+  using: composite
+  steps:
+      - name: stamp
+        shell: bash
+        run: |
+          year=$(date +%Y)
+          sed -i -E "s|(<Version>)([0-9]+\.[0-9]+\.[0-9]+)(<\/Version>)|\1${{ inputs.nuGetVersion }}\3|" ${{ inputs.directoryBuildPropPath }}
+          sed -i -E "s|(<AssemblyVersion>)([0-9]+\.[0-9]+\.[0-9]+)(<\/AssemblyVersion>)|\1${{ inputs.assemblySemVer }}\3|" ${{ inputs.directoryBuildPropPath }}
+          sed -i -E "s|(<AssemblyFileVersion>)([0-9]+\.[0-9]+\.[0-9]+)(<\/AssemblyFileVersion>)|\1${{ inputs.majorMinorPatch }}.0\3|" ${{ inputs.directoryBuildPropPath }}
+          sed -i -E "s|(<AssemblyInformationalVersion>)([0-9]+\.[0-9]+\.[0-9]+)(<\/AssemblyInformationalVersion>)|\1${{ inputs.informationalVersion }}\3|" ${{ inputs.directoryBuildPropPath }}
+          sed -i -E "s|(<Copyright>)(.*)(<\/Copyright>)|\1${year}\3|" ${{ inputs.directoryBuildPropPath }}
+          echo Updated version numbers in Directory.Build.props ${{ inputs.nuGetVersion }} ${{ inputs.fullSemVer }}
+          cat ${{ inputs.directoryBuildPropPath }}

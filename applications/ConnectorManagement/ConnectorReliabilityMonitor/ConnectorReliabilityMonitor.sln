@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConnectorReliabilityMonitor", "src\ConnectorReliabilityMonitor\ConnectorReliabilityMonitor.csproj", "{2C6B9EB2-D450-4F6F-B8CC-93405885E699}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConnectorReliabilityMonitor.Tests", "test\ConnectorReliabilityMonitor.Tests\ConnectorReliabilityMonitor.Tests.csproj", "{FC3ED9E1-7C7B-42B3-8084-8C7C353E5C82}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{08A3F249-50F3-4F35-902B-090A922E1E47}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\.github\workflows\connector-reliability-monitor.yml = ..\..\..\.github\workflows\connector-reliability-monitor.yml
+		Directory.Build.props = Directory.Build.props
+		Directory.Build.targets = Directory.Build.targets
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2C6B9EB2-D450-4F6F-B8CC-93405885E699}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C6B9EB2-D450-4F6F-B8CC-93405885E699}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C6B9EB2-D450-4F6F-B8CC-93405885E699}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C6B9EB2-D450-4F6F-B8CC-93405885E699}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC3ED9E1-7C7B-42B3-8084-8C7C353E5C82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC3ED9E1-7C7B-42B3-8084-8C7C353E5C82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC3ED9E1-7C7B-42B3-8084-8C7C353E5C82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC3ED9E1-7C7B-42B3-8084-8C7C353E5C82}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D1A4D06E-DD76-48F6-B812-7C7FA7EEE310}
+	EndGlobalSection
+EndGlobal

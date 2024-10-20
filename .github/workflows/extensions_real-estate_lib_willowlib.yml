@@ -1,0 +1,63 @@
+name: "Real Estate - WillowLib CI"
+
+on:
+  push:
+    branches:
+    - main
+    - releases/real-estate/*
+    paths:
+    - extensions/real-estate/lib/*
+    - .github/actions/*
+    - .github/workflows/extensions_real-estate_lib_willowlib.yml
+  pull_request:
+    branches:
+    - main
+    - releases/real-estate/*
+    paths:
+    - extensions/real-estate/lib/*
+    - .github/actions/*
+    - .github/workflows/extensions_real-estate_lib_willowlib.yml
+
+env:
+  buildConfiguration: Release
+  srcRoot: "${{ github.workspace }}/extensions/real-estate/lib"
+
+jobs:
+  build_and_test:
+    runs-on: windows-latest
+    steps:
+    - name: Support longpaths
+      run: git config --system core.longpaths true
+
+    - name: checkout
+      uses: actions/checkout@v4
+
+    - name: Use .NET 6.x
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 6.x
+
+    - name: Use .NET 7.x
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 7.x
+
+    - name: Restore nuget packages
+      shell: pwsh
+      run: dotnet restore
+      working-directory: ${{ env.srcRoot }}
+
+    - name: Build Project
+      shell: pwsh
+      run: dotnet build --no-restore --configuration ${{ env.buildConfiguration }}
+      working-directory: ${{ env.srcRoot }}
+
+    - name: Run unit tests
+      shell: pwsh
+      run: dotnet test --no-build --results-directory ${{ env.srcRoot }}/test-results --logger trx --collect:"XPlat Code Coverage" --configuration ${{ env.buildConfiguration }}
+      working-directory: ${{ env.srcRoot }}
+
+    - name: Create code coverage report
+      uses: "./.github/actions/dotnet_code_coverage"
+      with:
+        base_directory: ${{ env.srcRoot }}

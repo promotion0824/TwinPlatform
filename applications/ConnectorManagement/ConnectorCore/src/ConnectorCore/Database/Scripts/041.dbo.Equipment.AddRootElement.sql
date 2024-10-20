@@ -1,0 +1,2 @@
+insert into [dbo].[Equipment]([Id], [Name], [EquipmentHierarchyId], [ClientId], [SiteId], [CreatedAt], [CreatedBy])
+values('dfc0bbce-92a1-4a12-93b5-90355b95965c', 'Root Equipment DO NOT DELETE', '/', '00000000-0000-0000-0000-000000000000', '00000000-0000-0000-0000-000000000000', GetDate(), '00000000-0000-0000-0000-000000000000')

@@ -1,0 +1,39 @@
+name: Azure Deploy
+description: Deploy an Azure Container App
+
+inputs:
+  app_name:
+    description: ACA App Name
+    required: true
+  resource_group:
+    description: ACA Resource Group
+    required: true
+  subscription_id:
+    description: ACA Subscription Id
+    required: true
+  image:
+    description: ACR Image
+    required: true
+  client_id:
+    description: "Azure service principal client id to use"
+    required: true
+  tenant_id:
+    description: "Azure service principal tenant id"
+    required: true
+
+runs:
+  using: composite
+  steps:
+
+  # login with oidc
+  - uses: azure/login@v1
+    with:
+      client-id: ${{ inputs.client_id }}
+      tenant-id: ${{ inputs.tenant_id }}
+      subscription-id: ${{ inputs.subscription_id }}
+
+  - name: Deploy Conatiner App
+    shell: bash
+    run: |
+      az config set extension.use_dynamic_install=yes_without_prompt
+      az containerapp update -n ${{ inputs.app_name }} -g ${{ inputs.resource_group }} --image ${{ inputs.image }}

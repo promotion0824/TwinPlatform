@@ -1,0 +1,16 @@
+name: CodeQL Finalize
+description: Finalize CodeQL scan
+
+inputs:
+  language:
+    required: true
+    description: Compiled language name
+
+runs:
+  using: composite
+  steps:
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v2
+      with:
+        category: /language:${{ inputs.language }}
+        add-snippets: true

@@ -1,0 +1,3 @@
+name: RulesEngine.Pulumi.Stacks.Compute
+runtime: dotnet
+description: Willow Platform Rule Engine Compute

@@ -1,0 +1,282 @@
+name: Rules-Engine
+
+on:
+  workflow_dispatch:
+
+  push:
+    branches:
+      - feature/rulesengine
+    paths:
+      - applications/RulesEngine/**
+
+concurrency:
+  group: ${{ github.ref }}
+
+env:
+  NONPROD_ACR_SUBSCRIPTION_ID: 48a16780-c719-4528-a0f2-4e7640a9c850
+  NONPROD_ACR_NAME: crwildevshared01
+  NONPROD_ACR_RESOURCE_GROUP: rg-dev
+
+permissions:
+  contents: read
+  packages: read
+  pages: write
+  id-token: write
+
+# default to using bash shell in any 'run' steps
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  Build_version:
+    runs-on: ubuntu-latest
+    outputs:
+        semVer: ${{ steps.gitversion.outputs.semVer }} # e.g. 2.1.1-wsup.1 from a branch
+        fullSemVer: ${{ steps.gitversion.outputs.fullSemVer }} # e.g. 2.1.1-wsup.1+3 from a branch
+        assemblySemVer: ${{ steps.gitversion.outputs.assemblySemVer }}
+        assemblySemFileVer: ${{ steps.gitversion.outputs.assemblySemFileVer}}
+        informationalVersion: ${{ steps.gitversion.outputs.informationalVersion}}
+        nugetVersion: ${{ steps.gitversion.outputs.nuGetVersion}} # e.g. 2.1.1-wsup0001 from a branch
+        major: ${{ steps.gitversion.outputs.major }}
+        minor: ${{ steps.gitversion.outputs.minor }}
+        patch: ${{ steps.gitversion.outputs.patch }}
+        majorMinorPatch: ${{ steps.gitversion.outputs.majorMinorPatch }}
+        escapedBranchName : ${{ steps.gitversion.outputs.EscapedBranchName }}
+        versionSourceSha : ${{ steps.gitversion.outputs.VersionSourceSha }}
+        dockerImageVersion: ${{ steps.gitversion.outputs.dockerImageVersion }}
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: false
+
+    - name: Run Gitversion
+      id: gitversion
+      uses: WillowInc/.github/.github/actions/generate-versions@main
+      with:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  Build_Rules_Engine_Processor:
+    name: Build Rules Processor
+    runs-on: ubuntu-latest
+    environment: NonProd
+    needs:
+      - Build_version
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: false
+
+    - name: Set Version to ${{ needs.Build_version.outputs.majorMinorPatch }}
+      uses: WillowInc/.github/.github/actions/azure-set-version@main
+      with:
+        Version: ${{ needs.Build_version.outputs.nugetVersion }}
+        AssemblyVersion: ${{ needs.Build_version.outputs.assemblySemVer }}
+        AssemblyFileVersion: ${{ needs.Build_version.outputs.majorMinorPatch }}
+        AssemblyInformationalVersion: ${{ needs.Build_version.outputs.informationalVersion }}
+        DirectoryBuildPropPath: applications/RulesEngine/Directory.Build.props
+
+    - name: Update Nuget Config Credentials
+      uses: WillowInc/TwinPlatform/.github/actions/update-nuget-credentials@main
+      with:
+        sourceUrl: https://nuget.pkg.github.com/willowinc/index.json
+        sourceName: WillowGithub
+        nugetFilePath: applications/RulesEngine/nuget.config
+        patToken: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Docker Build ${{ needs.Build_version.outputs.dockerImageVersion }}
+      uses: WillowInc/TwinPlatform/.github/actions/azure-docker@main
+      with:
+        imageName: rules-engine/processor
+        dockerfile: applications/RulesEngine/RulesEngine.Processor/Dockerfile
+        dockerContext: .
+        acrName: ${{ env.NONPROD_ACR_NAME }}
+        BuildNumber: ${{ needs.Build_version.outputs.dockerImageVersion }}
+        client_id: ${{ vars.CLIENT_ID }}
+        tenant_id: ${{ vars.TENANT_ID_WILLOWINC }}
+        subscription_id: ${{ env.NONPROD_ACR_SUBSCRIPTION_ID }}
+        acr_resource_group: ${{ env.NONPROD_ACR_RESOURCE_GROUP }}
+
+  Generate_Rules_Engine_Web_App_Artifacts:
+    name: Generate Rules Web App Artifacts
+    runs-on: ubuntu-latest
+    environment: NonProd
+    needs:
+      - Build_version
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+         fetch-depth: false
+
+      - name: Set Version
+        uses: WillowInc/.github/.github/actions/azure-set-version@main
+        with:
+          Version: ${{ needs.Build_version.outputs.nugetVersion }}
+          AssemblyVersion: ${{ needs.Build_version.outputs.assemblySemVer }}
+          AssemblyFileVersion: ${{ needs.Build_version.outputs.majorMinorPatch }}
+          AssemblyInformationalVersion: ${{ needs.Build_version.outputs.informationalVersion }}
+          DirectoryBuildPropPath: applications/RulesEngine/Directory.Build.props
+
+      - name: Update Nuget Config Credentials
+        uses: WillowInc/TwinPlatform/.github/actions/update-nuget-credentials@main
+        with:
+          sourceUrl: https://nuget.pkg.github.com/willowinc/index.json
+          sourceName: WillowGithub
+          nugetFilePath: applications/RulesEngine/nuget.config
+          patToken: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set SDK version
+        uses: actions/setup-dotnet@v4
+        with:
+         dotnet-version: '8.x'
+
+      - name: NET Publish Web
+        working-directory: applications/RulesEngine/RulesEngine.Web
+        run: |
+          dotnet publish RulesEngine.Web.csproj -c Release -o ./dotnet-webapp
+
+      - name: Upload NET Publish Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: dotnetfiles
+          path: applications/RulesEngine/RulesEngine.Web/dotnet-webapp
+          retention-days: 1
+
+      - name: Setup .npmrc file
+        uses: actions/setup-node@v3
+        with:
+          node-version: "16.14"
+          registry-url: "https://npm.pkg.github.com"
+          always-auth: true
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN  }}
+
+      - name: NPM Install
+        working-directory: applications/RulesEngine/RulesEngine.Web/ClientApp
+        run: |
+          npm ci
+
+      - name: NPM Build
+        working-directory: applications/RulesEngine/RulesEngine.Web/ClientApp
+        env:
+          NODE_OPTIONS: --max-old-space-size=16384
+        run: |
+          npm run build
+
+      - name: Fix asset paths
+        working-directory: applications/RulesEngine/RulesEngine.Web/ClientApp
+        shell: bash
+        run: |
+          sed -i -E "s|(\"/assets/)|\"assets/|" index.html
+
+      - name: Upload NPM Build Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: webfiles
+          path: applications/RulesEngine/RulesEngine.Web/ClientApp/dist
+          retention-days: 1
+
+      - name: Upload Vite Docker Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: vitedocker
+          path: applications/RulesEngine/RulesEngine.Web/Dockerfile.Vite
+          retention-days: 1
+
+  Build_Rules_Engine_Web_App:
+    name: Build Rules Web App
+    runs-on: ubuntu-latest
+    environment: NonProd
+    needs:
+      - Build_version
+      - Generate_Rules_Engine_Web_App_Artifacts
+    steps:
+      - name: Download webfiles artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: webfiles
+          path: applications/RulesEngine/RulesEngine.Web/ClientApp/dist
+
+      - name: Download dotnetfiles artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: dotnetfiles
+          path: app/publish
+
+      - name: Download vitedocker artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: vitedocker
+          path: applications/RulesEngine/RulesEngine.Web
+
+      - name: Docker Build
+        uses: WillowInc/TwinPlatform/.github/actions/azure-docker@main
+        with:
+          imageName: rules-engine/web
+          dockerfile: applications/RulesEngine/RulesEngine.Web/Dockerfile.Vite
+          dockerContext: .
+          acrName: ${{ env.NONPROD_ACR_NAME }}
+          BuildNumber: ${{ needs.Build_version.outputs.dockerImageVersion }}
+          client_id: ${{ vars.CLIENT_ID }}
+          tenant_id: ${{ vars.TENANT_ID_WILLOWINC }}
+          subscription_id: ${{ env.NONPROD_ACR_SUBSCRIPTION_ID }}
+          acr_resource_group: ${{ env.NONPROD_ACR_RESOURCE_GROUP }}
+
+  Promote_Images_Prod:
+    name: Promote Images To Prod ACR
+    runs-on: ubuntu-latest
+    environment: NonProd
+    needs: [Build_version, Build_Rules_Engine_Processor, Build_Rules_Engine_Web_App]
+    steps:
+    - uses: azure/login@v1
+      with:
+        client-id: ${{ vars.CLIENT_ID }}
+        tenant-id: ${{ vars.TENANT_ID_WILLOWINC }}
+        subscription-id: 249312a0-4c83-4d73-b164-18c5e72bf219
+
+    - uses: WillowInc/TwinPlatform/.github/actions/azure-promote@main
+      name: Copy web image to production acr
+      with:
+        client_id: ${{ vars.CLIENT_ID }}
+        tenant_id: ${{ vars.TENANT_ID_WILLOWINC }}
+        imageName: rules-engine/web
+        buildNumber: ${{ needs.Build_version.outputs.dockerImageVersion }}
+
+    - uses: WillowInc/TwinPlatform/.github/actions/azure-promote@main
+      name: Copy processor image to production acr
+      with:
+        client_id: ${{ vars.CLIENT_ID }}
+        tenant_id: ${{ vars.TENANT_ID_WILLOWINC }}
+        imageName: rules-engine/processor
+        buildNumber: ${{ needs.Build_version.outputs.dockerImageVersion }}
+
+  Create_Image_Bump_PR:
+    name: Create IAD PR
+    runs-on: ubuntu-latest
+    environment: NonProd
+    needs: [Build_version, Promote_Images_Prod]
+    steps:
+    - name: Bump Web Processor Version
+      uses: WillowInc/.github/.github/actions/bump-version@main
+      with:
+        team-name: rules-engine
+        project-path: Applications/RulesEngine
+        image: rules-engine/processor:${{ needs.Build_version.outputs.dockerImageVersion }}
+        bot-token: ${{ secrets.SVC_BOT_TOKEN }}
+        appsettings: appsettings.json
+        container-name: rules-engine-processor-svc
+
+    - name: Bump Web Application Version
+      uses: WillowInc/.github/.github/actions/bump-version@main
+      with:
+        team-name: rules-engine
+        project-path: Applications/RulesEngine
+        image: rules-engine/web:${{ needs.Build_version.outputs.dockerImageVersion }}
+        bot-token: ${{ secrets.SVC_BOT_TOKEN }}
+        appsettings: appsettings.json
+        container-name: rules-engine-web

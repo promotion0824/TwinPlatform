@@ -1,0 +1,10 @@
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: livedatacore-components
+  description: A collection for LiveData.Core resources
+spec:
+  targets:
+    - ../src/LiveData.Core/backstage.yaml
+    - ./iotservices-system.yaml
+    - ./iotservices-domain.yaml

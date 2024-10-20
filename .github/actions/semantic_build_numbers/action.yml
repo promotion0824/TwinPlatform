@@ -1,0 +1,18 @@
+name: Semantic Build Numbers
+
+inputs:
+  majorVersion:
+    required: false
+    default: 0
+  minorVersion:
+    required: false
+    default: 0
+
+runs:
+  using: composite
+  steps:
+    - name: Set Build Number
+      run: |-
+        runNumber=${{ github.run_number }}
+        echo "BuildId=${{ inputs.majorVersion }}.${{inputs.minorVersion}}.${runNumber}.0" >> $GITHUB_ENV
+      shell: bash

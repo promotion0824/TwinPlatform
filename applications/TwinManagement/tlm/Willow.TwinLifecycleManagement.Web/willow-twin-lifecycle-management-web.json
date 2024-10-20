@@ -1,0 +1,65 @@
+{
+  "schema": "v3.0",
+  "metadata": {
+    "name": "tlmweb",
+    "code": "tlmweb",
+    "displayName": "TLM Web",
+    "description": "Twin Lifecycle Management Extension",
+    "version": "0.0.1",
+    "author": "Willow",
+    "logo": "",
+    "thumbnail": ""
+  },
+  "settings": [
+    {
+      "name": "log_level",
+      "label": "Application Insights Log Level",
+      "description": "TLM Application Insights default logging level",
+      "defaultValue": "Informational",
+      "type": "String"
+    }
+  ],
+  "spec": {
+    "workloads": [
+      {
+        "name": "tlm-web",
+        "image": "twin/willow-twinlifecyclemanagement-web:0.0.0000",
+        "route": "tlm-web",
+        "health": "/health",
+        "allowPublicAccess": true,
+        "memory": 2000,
+        "env": {
+          "TLM_TWINSAPI__BASEURL": "http://adt-api-svc/",
+          "TLM_CACHEOPTIONS__PATH": "/cache",
+          "TLM_AZUREAPPLICATION__LOGLEVEL__DEFAULT": "%log_level%",
+          "TLM_APPLICATIONINSIGHTS__CONNECTIONSTRING": "%WillowTwin_ApplicationInsightsConnectionString%",
+          "TLM_APPLICATIONINSIGHTS__INSTRUMENTATIONKEY": "%WillowTwin_ApplicationInsightsInstrumentationKey%",
+          "TLM_AZUREAPPLICATION__TENANTID": "pipelineInject_azure_b2c_tenant_id",
+          "TLM_AZUREAPPLICATION__CLIENTID": "pipelineInject_tlm_frontend_app_id",
+          "TLM_AZUREAPPLICATION__AUTHORITY": "pipelineInject_azure_b2c_authority",
+          "TLM_AZUREAPPLICATION__FRONTENDB2CSCOPES__0": "pipelineInject_tlm_backend_app_api_scope",
+          "TLM_AZUREAPPLICATION__BACKENDB2CSCOPES__0": "pipelineInject_tlm_frontend_app_api_scope",
+          "TLM_AZUREAPPLICATION__BASEURL": "%WillowTwin_Environment_BaseUrl%/tlm-web/",
+          "TLM_JWT__AUTHORITY": "pipelineInject_azure_b2c_authority",
+          "TLM_JWT__AUDIENCE": "pipelineInject_tlm_backend_app_id",
+          "TLM_JWT__ISSUER": "pipelineInject_azure_b2c_issuer",
+          "TLM_AZUREADB2C__TENANTID": "pipelineInject_azure_b2c_tenant_id",
+          "TLM_AZUREADB2C__AUTHORITY": "pipelineInject_azure_b2c_authority",
+          "TLM_AZUREADB2C__CLIENTID": "pipelineInject_tlm_backend_app_id",
+          "TLM_AZUREADB2C__DOMAIN": "%WillowTwin_B2C_Domain%",
+          "TLM_AZUREADB2C__INSTANCE": "%WillowTwin_B2C_Instance%",
+          "TLM_GRAPHAPI__CLIENTID": "pipelineInject_tlm_backend_app_id",
+          "TLM_GRAPHAPI__TENANTID": "pipelineInject_azure_b2c_tenant_id",
+          "TLM_GRAPHAPI__CLIENTSECRET": "pipelineInject_tlm_backend_app_client_secret",
+          "TLM_ENVIRONMENTCUSTOMER__CUSTOMERCODE": "%WillowTwin_CustomerCode%",
+          "TLM_AuthorizationAPI__TokenAudience": "pipelineInject_authorization_token_audience",
+          "WillowContext__EnvironmentConfiguration__ShortName": "%environmentShortName%",
+          "WillowContext__RegionConfiguration__ShortName": "%regionShortName%",
+          "WillowContext__StampConfiguration__Name": "%stampName%",
+          "WillowContext__CustomerInstanceConfiguration__CustomerSalesId": "%customerSalesId%",
+          "WillowContext__CustomerInstanceConfiguration__CustomerInstanceName": "%customerInstanceName%"
+        }
+      }
+    ]
+  }
+}

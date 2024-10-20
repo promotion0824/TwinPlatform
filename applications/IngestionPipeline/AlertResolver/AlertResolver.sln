@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{14B5E3C6-2E67-4718-BA0E-8FBD1B669C66}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\.github\workflows\alert-resolver.yml = ..\..\..\.github\workflows\alert-resolver.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{073A72B1-85DC-4262-BDDD-51D647401B4B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alert.Resolver", "src\Alert.Resolver\Alert.Resolver.csproj", "{D3C5A2DF-B9A9-47ED-8600-56391D088EB0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Willow.IoTService.Monitoring", "src\Willow.IoTService.Monitoring\Willow.IoTService.Monitoring.csproj", "{FE028A24-C773-48A6-ADF7-87CB90DB6B68}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alert.Resolver.Tests", "test\Alert.Resolver.Tests\Alert.Resolver.Tests.csproj", "{E2BC698F-B739-4DBA-9E10-B537E8090E1B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D3C5A2DF-B9A9-47ED-8600-56391D088EB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3C5A2DF-B9A9-47ED-8600-56391D088EB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3C5A2DF-B9A9-47ED-8600-56391D088EB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3C5A2DF-B9A9-47ED-8600-56391D088EB0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE028A24-C773-48A6-ADF7-87CB90DB6B68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE028A24-C773-48A6-ADF7-87CB90DB6B68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE028A24-C773-48A6-ADF7-87CB90DB6B68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE028A24-C773-48A6-ADF7-87CB90DB6B68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2BC698F-B739-4DBA-9E10-B537E8090E1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2BC698F-B739-4DBA-9E10-B537E8090E1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2BC698F-B739-4DBA-9E10-B537E8090E1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2BC698F-B739-4DBA-9E10-B537E8090E1B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

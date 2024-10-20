@@ -1,0 +1,62 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>disable</Nullable>
+
+    <IsPackable>false</IsPackable>
+    <CodeAnalysisRuleSet>Willow.TwinLifecycleManagement.Web.UnitTests.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="TestExtensions\csvTestData.csv" />
+    <None Remove="TestExtensions\csvTestDataEmptyUniqueId.csv" />
+    <None Remove="TestExtensions\csvTestDataWithSiteId.csv" />
+    <None Remove="TestExtensions\excelTestData.xlsx" />
+    <None Remove="TestExtensions\excelTestDataWithSiteId.xlsx" />
+    <None Remove="TestExtensions\ExportedTwins.zip" />
+    <None Remove="TestExtensions\imhiding.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="TestExtensions\csvTestDataEmptyUniqueId.csv" />
+    <EmbeddedResource Include="TestExtensions\csvTestData.csv" />
+    <EmbeddedResource Include="TestExtensions\csvTestDataWithSiteId.csv" />
+    <EmbeddedResource Include="TestExtensions\excelTestData.xlsx" />
+    <EmbeddedResource Include="TestExtensions\excelTestDataWithSiteId.xlsx" />
+    <EmbeddedResource Include="TestExtensions\ExportedTwins.zip" />
+    <EmbeddedResource Include="TestExtensions\imhiding.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="coverlet.msbuild" Version="3.2.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0" />
+    <PackageReference Include="Moq" Version="4.18.4" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.556">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Willow.Api.Logging" Version="2.419.0" />
+    <PackageReference Include="xunit" Version="2.4.2" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="coverlet.collector" Version="3.2.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Willow.TwinLifecycleManagement.Web\Willow.TwinLifecycleManagement.Web.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="stylecop.json" />
+  </ItemGroup>
+
+</Project>

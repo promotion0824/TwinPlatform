@@ -1,0 +1,32 @@
+name: "Nuget Willow.Security"
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - libraries/Willow.Security/**
+  pull_request:
+    paths:
+      - libraries/Willow.Security/**
+
+env:
+  buildConfiguration: Release
+  srcProjectDir: "libraries/Willow.Security/Willow.Security"
+  srcTestProjectDir: "libraries/Willow.Security/Willow.Security.Test"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Nuget Build and Push action
+        uses: WillowInc/.github/.github/actions/nuget-build-push@main
+        with:
+          buildConfiguration: ${{ env.buildConfiguration}}
+          srcProjectDir: ${{ env.srcProjectDir}}
+          srcTestProjectDir: ${{ env.srcTestProjectDir}}
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          pushPackages: ${{ github.event_name == 'push' }}
+          directoryBuildPropPath: ${{ github.workspace }}/.config/common.props

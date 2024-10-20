@@ -1,0 +1,50 @@
+name: Azure Deploy
+description: Deploy the rules engine to Azure
+
+inputs:
+  buildNumber:
+    description: The build number
+    required: true
+  resource_group:
+    description: ACA Resource Group
+    required: true
+  subscription_id:
+    description: ACA Subscription Id
+    required: true
+  acr:
+    description: ACR Name
+    required: true
+  repository:
+    description: ACR Repository
+    required: false
+    default: rules-engine
+  client_id:
+    description: "Azure service principal client id to use"
+    required: true
+  tenant_id:
+    description: "Azure service principal tenant id"
+    required: true
+
+runs:
+  using: composite
+  steps:
+  
+  - name: Deploy Processor 
+    uses: WillowInc/TwinPlatform/.github/actions/azure-deploy@main
+    with:
+      client_id: ${{ inputs.client_id }}
+      tenant_id: ${{ inputs.tenant_id }}
+      subscription_id: ${{ inputs.subscription_id }}
+      app_name: rules-engine-processor-svc
+      resource_group: ${{ inputs.resource_group }}
+      image: ${{ inputs.acr }}.azurecr.io/${{ inputs.repository }}/processor:${{ inputs.buildNumber }}
+
+  - name: Deploy Web
+    uses: WillowInc/TwinPlatform/.github/actions/azure-deploy@main
+    with:
+      client_id: ${{ inputs.client_id }}
+      tenant_id: ${{ inputs.tenant_id }}
+      subscription_id: ${{ inputs.subscription_id }}
+      app_name: rules-engine-web
+      resource_group: ${{ inputs.resource_group }}
+      image: ${{ inputs.acr }}.azurecr.io/${{ inputs.repository }}/web:${{ inputs.buildNumber }}

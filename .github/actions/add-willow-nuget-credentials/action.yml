@@ -1,0 +1,42 @@
+name: Add Willow Nuget credentials
+description: Add the Willow Nuget sources in a nuget.config file with the necessary credentials
+
+inputs:
+  nugetFilePath:
+    description: Path to the nuget file to update
+    required: true
+  githubPatToken:
+    description: GitHub PAT Token
+    required: true
+  devopsPatToken:
+    description: DevOps PAT Token
+    required: false
+
+runs:
+  using: composite
+  steps:
+
+  - name: Add Github Nuget Config
+    shell: bash
+    env:
+      source: https://nuget.pkg.github.com/willowinc/index.json
+      config: ${{ inputs.nugetFilePath }}
+      userName: gh
+      patToken: ${{ inputs.githubPatToken }}
+      name: WillowGithub
+    run: |
+      dotnet nuget remove source ${{ env.name }} --configfile ${{ env.config }}
+      dotnet nuget add source ${{ env.source }} --name ${{ env.name }} --username ${{ env.userName }} --password ${{ env.patToken }} --store-password-in-clear-text --configfile ${{ env.config }}
+
+  - name: Add DevOps Nuget Config
+    if: ${{ inputs.devopsPatToken != '' }}
+    shell: bash
+    env:
+      source: https://pkgs.dev.azure.com/willowdev/willowlib/_packaging/willowlib/nuget/v3/index.json
+      config: ${{ inputs.nugetFilePath }}
+      userName: dhopper
+      patToken: ${{ inputs.devopsPatToken }}
+      name: WillowLib
+    run: |
+      dotnet nuget remove source ${{ env.name }} --configfile ${{ env.config }}
+      dotnet nuget add source ${{ env.source }} --name ${{ env.name }} --username ${{ env.userName }} --password ${{ env.patToken }} --store-password-in-clear-text --configfile ${{ env.config }}

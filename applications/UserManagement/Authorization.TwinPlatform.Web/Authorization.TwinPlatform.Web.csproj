@@ -1,0 +1,221 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+		<TypeScriptNoEmit>True</TypeScriptNoEmit>
+		<TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
+		<IsPackable>false</IsPackable>
+		<SpaRoot>authorization-client-app\</SpaRoot>
+		<DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
+		<SpaProxyServerUrl>https://localhost:3000</SpaProxyServerUrl>
+		<SpaProxyLaunchCommand>npm start</SpaProxyLaunchCommand>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<UserSecretsId>4116580e-e1a1-45ea-9c6a-afeaaa5d7b9e</UserSecretsId>
+		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="CsvHelper" Version="33.0.1" />
+		<PackageReference Include="Microsoft.AspNetCore.SpaProxy" Version="8.0.7" />
+		<PackageReference Include="Microsoft.Identity.Web" Version="3.0.1" />
+		<PackageReference Include="Microsoft.TypeScript.MSBuild" Version="5.5.3">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.7.0" />
+		<PackageReference Include="Willow.AzureDigitalTwins.SDK" Version="2.2.2842" />
+		<PackageReference Include="Willow.Model" Version="2.0.563" />
+		<PackageReference Include="Willow.Telemetry.Web" Version="2.2.2734" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<!-- Don't publish the SPA source files, but do show them in the project files list -->
+		<Content Remove="$(SpaRoot)**" />
+		<Content Remove="authorization-client-app\src\Helpers\**" />
+		<None Remove="$(SpaRoot)**" />
+		<None Remove="authorization-client-app\src\Helpers\**" />
+		<None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Remove="authorization-client-app\src\Helpers\**" />
+	  <EmbeddedResource Remove="authorization-client-app\src\Helpers\**" />
+	  <TypeScriptCompile Remove="authorization-client-app\src\Helpers\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Remove="authorization-client-app\src\App.tsx" />
+		<None Remove="authorization-client-app\src\AppIcons.tsx" />
+		<None Remove="authorization-client-app\src\AppInsightsLogger.ts" />
+		<None Remove="authorization-client-app\src\AppPermissions.ts" />
+		<None Remove="authorization-client-app\src\authConfig.ts" />
+		<None Remove="authorization-client-app\src\AuthTheme.ts" />
+		<None Remove="authorization-client-app\src\axiosClients.ts" />
+		<None Remove="authorization-client-app\src\Components\AuthRoutes.tsx" />
+		<None Remove="authorization-client-app\src\Components\CheckboxList.tsx" />
+		<None Remove="authorization-client-app\src\Components\CustomAvatar.tsx" />
+		<None Remove="authorization-client-app\src\Components\CustomChipGroup.tsx" />
+		<None Remove="authorization-client-app\src\Components\CustomTooltip.tsx" />
+		<None Remove="authorization-client-app\src\Components\ExpressionStatusIndicator.tsx" />
+		<None Remove="authorization-client-app\src\Components\FormComponents\CustomAvatarGroup.tsx" />
+		<None Remove="authorization-client-app\src\Components\FormComponents\FormAutoComplete.tsx" />
+		<None Remove="authorization-client-app\src\Components\FormComponents\FormSelectTree.tsx" />
+		<None Remove="authorization-client-app\src\Components\GridQuickFilter.tsx" />
+		<None Remove="authorization-client-app\src\Components\Layout.tsx" />
+		<None Remove="authorization-client-app\src\Components\LeftDrawer.tsx" />
+		<None Remove="authorization-client-app\src\Components\MenuAppBar.tsx" />
+		<None Remove="authorization-client-app\src\Components\ProgressWithBackDrop.tsx" />
+		<None Remove="authorization-client-app\src\Components\SignInButton.tsx" />
+		<None Remove="authorization-client-app\src\Components\SnackbarErrorReport.tsx" />
+		<None Remove="authorization-client-app\src\Components\TabPanel.tsx" />
+		<None Remove="authorization-client-app\src\Components\UserProfileBar.tsx" />
+		<None Remove="authorization-client-app\src\Config.ts" />
+		<None Remove="authorization-client-app\src\Hooks\useAccountInfo.ts" />
+		<None Remove="authorization-client-app\src\Hooks\useCustomSnackbar.ts" />
+		<None Remove="authorization-client-app\src\Hooks\useLoading.ts" />
+		<None Remove="authorization-client-app\src\Pages\About.tsx" />
+		<None Remove="authorization-client-app\src\Pages\Admin\AdminPage.tsx" />
+		<None Remove="authorization-client-app\src\Pages\Admin\ExportPage.tsx" />
+		<None Remove="authorization-client-app\src\Pages\ApplicationDetails\AddApplicationClient.tsx" />
+		<None Remove="authorization-client-app\src\Pages\ApplicationDetails\ClientAssignment\ClientAssignmentAdd.tsx" />
+		<None Remove="authorization-client-app\src\Pages\ApplicationDetails\ClientAssignment\ClientAssignmentDelete.tsx" />
+		<None Remove="authorization-client-app\src\Pages\ApplicationDetails\ClientAssignment\ClientAssignmentEdit.tsx" />
+		<None Remove="authorization-client-app\src\Pages\ApplicationDetails\ClientAssignment\ClientAssignmentsTab.tsx" />
+		<None Remove="authorization-client-app\src\Pages\ApplicationDetails\ClientAssignment\ClientAssignmentsTable.tsx" />
+		<None Remove="authorization-client-app\src\Pages\ApplicationDetails\ApplicationClient\ApplicationClientsTab.tsx" />
+		<None Remove="authorization-client-app\src\Pages\ApplicationDetails\ApplicationClient\ApplicationClientsTable.tsx" />
+		<None Remove="authorization-client-app\src\Pages\ApplicationDetails\ApplicationClient\DeleteApplicationClient.tsx" />
+		<None Remove="authorization-client-app\src\Pages\ApplicationDetails\ApplicationClient\EditApplicationClient.tsx" />
+		<None Remove="authorization-client-app\src\Pages\ApplicationDetails\ApplicationDetailsPage.tsx" />
+		<None Remove="authorization-client-app\src\Pages\ApplicationDetails\ApplicationPermission\ApplicationPermissionTab.tsx" />
+		<None Remove="authorization-client-app\src\Pages\Applications\ApplicationPage.tsx" />
+		<None Remove="authorization-client-app\src\Pages\Applications\ApplicationTable.tsx" />
+		<None Remove="authorization-client-app\src\Pages\AssignmentPage.tsx" />
+		<None Remove="authorization-client-app\src\Pages\Assignments\AssignmentAdd.tsx" />
+		<None Remove="authorization-client-app\src\Pages\Assignments\AssignmentDelete.tsx" />
+		<None Remove="authorization-client-app\src\Pages\Assignments\AssignmentEdit.tsx" />
+		<None Remove="authorization-client-app\src\Pages\Assignments\AssignmentTable.tsx" />
+		<None Remove="authorization-client-app\src\Pages\Assignments\UploadPage.tsx" />
+		<None Remove="authorization-client-app\src\Pages\ErrorPage.tsx" />
+		<None Remove="authorization-client-app\src\Pages\GroupAdd.tsx" />
+		<None Remove="authorization-client-app\src\Pages\GroupDelete.tsx" />
+		<None Remove="authorization-client-app\src\Pages\GroupEdit.tsx" />
+		<None Remove="authorization-client-app\src\Pages\GroupPage.tsx" />
+		<None Remove="authorization-client-app\src\Pages\GroupRoleAssignmentPage.tsx" />
+		<None Remove="authorization-client-app\src\Pages\GroupTable.tsx" />
+		<None Remove="authorization-client-app\src\Pages\GroupUsers\AssignUserToGroup.tsx" />
+		<None Remove="authorization-client-app\src\Pages\GroupUsers\GroupUserPage.tsx" />
+		<None Remove="authorization-client-app\src\Pages\GroupUsers\RemoveUserFromGroup.tsx" />
+		<None Remove="authorization-client-app\src\Pages\HomePage.tsx" />
+		<None Remove="authorization-client-app\src\Pages\LoginPage.tsx" />
+		<None Remove="authorization-client-app\src\Pages\NoPageFound.tsx" />
+		<None Remove="authorization-client-app\src\Pages\PermissionPage.tsx" />
+		<None Remove="authorization-client-app\src\Pages\Permissions\PermissionAdd.tsx" />
+		<None Remove="authorization-client-app\src\Pages\Permissions\PermissionDelete.tsx" />
+		<None Remove="authorization-client-app\src\Pages\Permissions\PermissionEdit.tsx" />
+		<None Remove="authorization-client-app\src\Pages\Permissions\PermissionTable.tsx" />
+		<None Remove="authorization-client-app\src\Pages\RolePage.tsx" />
+		<None Remove="authorization-client-app\src\Pages\RolePermissions\AssignPermissionToRole.tsx" />
+		<None Remove="authorization-client-app\src\Pages\RolePermissions\RemovePermissionFromRole.tsx" />
+		<None Remove="authorization-client-app\src\Pages\RolePermissions\RolePermissionPage.tsx" />
+		<None Remove="authorization-client-app\src\Pages\Roles\AssignPermissionPage.tsx" />
+		<None Remove="authorization-client-app\src\Pages\Roles\RoleAdd.tsx" />
+		<None Remove="authorization-client-app\src\Pages\Roles\RoleDelete.tsx" />
+		<None Remove="authorization-client-app\src\Pages\Roles\RoleEdit.tsx" />
+		<None Remove="authorization-client-app\src\Pages\Roles\RoleTable.tsx" />
+		<None Remove="authorization-client-app\src\Pages\UserPage.tsx" />
+		<None Remove="authorization-client-app\src\Pages\UserRoleAssignmentPage.tsx" />
+		<None Remove="authorization-client-app\src\Pages\Users\UserAdd.tsx" />
+		<None Remove="authorization-client-app\src\Pages\Users\UserDelete.tsx" />
+		<None Remove="authorization-client-app\src\Pages\Users\UserEdit.tsx" />
+		<None Remove="authorization-client-app\src\Pages\Users\UserProfile.tsx" />
+		<None Remove="authorization-client-app\src\Pages\Users\UserTable.tsx" />
+		<None Remove="authorization-client-app\src\Providers\AppContext.tsx" />
+		<None Remove="authorization-client-app\src\Providers\Auth.tsx" />
+		<None Remove="authorization-client-app\src\Providers\PermissionProvider.tsx" />
+		<None Remove="authorization-client-app\src\Providers\RequestInterceptor.tsx" />
+		<None Remove="authorization-client-app\src\Services\AuthClient.ts" />
+		<None Remove="authorization-client-app\src\types\ApplicationClientModel.ts" />
+		<None Remove="authorization-client-app\src\types\ApplicationModel.ts" />
+		<None Remove="authorization-client-app\src\types\AssignmentModel.ts" />
+		<None Remove="authorization-client-app\src\types\AuthorizationModel.ts" />
+		<None Remove="authorization-client-app\src\types\BaseModel.ts" />
+		<None Remove="authorization-client-app\src\types\BatchDto.ts" />
+		<None Remove="authorization-client-app\src\types\BatchRequestDto.ts" />
+		<None Remove="authorization-client-app\src\types\ClientAppPasswordModel.ts" />
+		<None Remove="authorization-client-app\src\types\ClientAssignmentModel.ts" />
+		<None Remove="authorization-client-app\src\types\ConfigModel.ts" />
+		<None Remove="authorization-client-app\src\types\Context.ts" />
+		<None Remove="authorization-client-app\src\types\DashboardModel.ts" />
+		<None Remove="authorization-client-app\src\types\ExpressionStatus.ts" />
+		<None Remove="authorization-client-app\src\types\FilterOptions.ts" />
+		<None Remove="authorization-client-app\src\types\GroupModel.ts" />
+		<None Remove="authorization-client-app\src\types\GroupRoleAssignmentModel.ts" />
+		<None Remove="authorization-client-app\src\types\GroupTypeModel.ts" />
+		<None Remove="authorization-client-app\src\types\GroupUserModel.ts" />
+		<None Remove="authorization-client-app\src\types\Guid.ts" />
+		<None Remove="authorization-client-app\src\types\pageroutes.tsx" />
+		<None Remove="authorization-client-app\src\types\PermissionContext.ts" />
+		<None Remove="authorization-client-app\src\types\PermissionModel.ts" />
+		<None Remove="authorization-client-app\src\types\RoleModel.ts" />
+		<None Remove="authorization-client-app\src\types\RolePermissionModel.ts" />
+		<None Remove="authorization-client-app\src\types\SelectTreeModel.ts" />
+		<None Remove="authorization-client-app\src\types\UserModel.ts" />
+		<None Remove="authorization-client-app\src\types\UserProfileModel.ts" />
+		<None Remove="authorization-client-app\src\types\UserRoleAssignmentModel.ts" />
+		<None Remove="authorization-client-app\src\types\ValidateExpressionModel.ts" />
+		<None Remove="authorization-client-app\src\willowAppContext.ts" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Authorization.TwinPlatform.Common\Authorization.TwinPlatform.Common.csproj" />
+		<ProjectReference Include="..\Authorization.TwinPlatform\Authorization.TwinPlatform.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<TypeScriptCompile Include="authorization-client-app\src\authConfig.ts" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<TypeScriptCompile Update="authorization-client-app\src\Pages\Groups\GroupPage.tsx">
+		  <SubType>Code</SubType>
+		</TypeScriptCompile>
+		<TypeScriptCompile Update="authorization-client-app\src\Pages\HomePage.tsx">
+			<SubType>Code</SubType>
+		</TypeScriptCompile>
+		<TypeScriptCompile Update="authorization-client-app\src\types\GroupTypeModel.ts">
+		  <SubType>Code</SubType>
+		</TypeScriptCompile>
+	</ItemGroup>
+
+	<Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
+		<!-- Ensure Node.js is installed -->
+		<Exec Command="node --version" ContinueOnError="true">
+			<Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
+		</Exec>
+		<Error Condition="'$(ErrorCode)' != '0'" Text="Node.js is required to build and run this project. To continue, please install Node.js from https://nodejs.org/, and then restart your command prompt or IDE." />
+		<Message Importance="high" Text="Restoring dependencies using 'npm'. This may take several minutes..." />
+		<Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
+	</Target>
+
+	<Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
+		<!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
+		<!--<Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />-->
+		<!--<Exec WorkingDirectory="$(SpaRoot)" Command="npm run build" />-->
+		
+		<!--WillowInc UI libraries failed to resolve when built from the docker
+		So for publish: NPM Build and NPM Run action will occur inside the git workflow and the artifacts will be copied to the root/dist folder-->
+
+		<!-- Include the newly-built files in the publish output -->
+		<ItemGroup>
+			<DistFiles Include="$(SpaRoot)dist\**" />
+			<ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
+				<RelativePath>wwwroot\%(RecursiveDir)%(FileName)%(Extension)</RelativePath>
+				<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+				<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			</ResolvedFileToPublish>
+		</ItemGroup>
+	</Target>
+</Project>

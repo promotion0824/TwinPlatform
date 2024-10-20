@@ -1,0 +1,118 @@
+parameters:
+  - name: environment
+    type: string
+    default: "prod"
+  - name: name
+    type: string
+    default: "willow-rules-engine-non-prod"
+  - name: code
+    type: string
+    default: "rulesn"
+  - name: authority
+    type: string
+  - name: source
+    type: string
+    default: core/RulesEngine/willow-rules-engine.json
+  - name: target
+    type: string
+    default: core/RulesEngine/output-willow-rules-engine.json
+  - name: appid
+    type: string
+  - name: clientid
+    type: string
+  - name: issuer
+    type: string
+  - name: tenantid
+    type: string
+  - name: domain
+    type: string
+  - name: audience
+    type: string
+  - name: instance
+    type: string
+  - name: b2cscope
+    type: string
+  - name: appInsightsWorkspace
+    type: string
+  - name: appInsightsWorkspaceId
+    type: string
+  - name: authAppAudience
+    type: string
+  - name: publicApiUri
+    type: string
+  - name: keyvaultUri
+    type: string
+
+steps:
+  # TODO: Investigate this as a better way to achieve this substitution
+  # # Update appsettings.json via FileTransform task.
+  # - task: FileTransform@1
+  #   displayName: 'File transformation: manifest'
+  #   inputs:
+  #     folderPath: '$(source)'
+  #     targetFiles: '$(target)'
+  #     fileType: json
+
+  - task: Bash@3
+    displayName: "Stamp manifest file with version numbers"
+    env:
+      environment: ${{ parameters.environment }}
+      name: ${{ parameters.name }}
+      code: ${{ parameters.code }}
+      authority: ${{ parameters.authority }}
+      source: ${{ parameters.source }}
+      target: ${{ parameters.target }}
+      appid: ${{ parameters.appid }}
+      clientid: ${{ parameters.clientid }}
+      issuer: ${{ parameters.issuer }}
+      tenantid: ${{ parameters.tenantid }}
+      domain: ${{ parameters.domain }}
+      audience: ${{ parameters.audience }}
+      instance: ${{ parameters.instance }}
+      b2cscope: ${{ parameters.b2cscope }}
+      authAppAudience: ${{ parameters.authAppAudience }}
+      keyvaultUri: ${{ parameters.keyvaultUri }}
+    inputs:
+      targetType: "inline"
+      script: |
+        buildnumber=$(Build.BuildNumber)
+
+        echo copying ${source} to ${target}
+        cp ${source} ${target}
+
+        sed -i -E "s|(version\": \")([0-9]+\.[0-9]+\.[0-9]+)(\")|\1${buildnumber}\3|" ${target}
+        sed -i -E "s|(image\":.*:)([0-9]+\.[0-9]+\.[0-9]+)(\")|\1${buildnumber}\3|" ${target}
+        sed -i -E "s|(name\": \")(willow-rules-engine)(\")|\1${name}\3|" ${target}
+        sed -i -E "s|(code\": \")(rulesz)(\")|\1${code}\3|" ${target}
+
+        sed -i -E "s|(\"RULES_AZUREAPPLICATION__APPID\": \")([^\"]+)(\")|\1${appid}\3|" ${target}
+        sed -i -E "s|(\"RULES_AZUREAPPLICATION__CLIENTID\": \")([^\"]+)(\")|\1${clientid}\3|" ${target}
+        sed -i -E "s|(\"RULES_AZUREADB2C__CLIENTID\": \")([^\"]+)(\")|\1${clientid}\3|" ${target}
+
+        sed -i -E "s|(\"RULES_AZUREAPPLICATION__AUTHORITY\": \")([^\"]+)(\")|\1${authority}\3|" ${target}
+        sed -i -E "s|(\"RULES_AZUREADB2C__AUTHORITY\": \")([^\"]+)(\")|\1${authority}\3|" ${target}
+        sed -i -E "s|(\"RULES_JWT__AUTHORITY\": \")([^\"]+)(\")|\1${authority}\3|" ${target}
+
+        sed -i -E "s|(\"RULES_AZUREAPPLICATION__TENANTID\": \")([^\"]+)(\")|\1${tenantid}\3|" ${target}
+        sed -i -E "s|(\"RULES_AZUREADB2C__TENANTID\": \")([^\"]+)(\")|\1${tenantid}\3|" ${target}
+
+        sed -i -E "s|(\"RULES_JWT__ISSUER\": \")([^\"]+)(\")|\1${issuer}\3|"  ${target}
+
+        sed -i -E "s|(\"RULES_JWT__AUDIENCE\": \")([^\"]+)(\")|\1${audience}\3|" ${target}
+        sed -i -E "s|(\"RULES_AZUREADB2C__AUDIENCE\": \")([^\"]+)(\")|\1${audience}\3|" ${target}
+
+        sed -i -E "s|(\"RULES_AZUREAPPLICATION__B2CSCOPES__0\": \")([^\"]+)(\")|\1${b2cscope}\3|" ${target}
+
+        sed -i -E "s|(\"RULES_AZUREADB2C__DOMAIN\": \")([^\"]+)(\")|\1${domain}\3|" ${target}
+        sed -i -E "s|(\"RULES_AZUREADB2C__INSTANCE\": \")([^\"]+)(\")|\1${instance}\3|" ${target}
+
+        sed -i -E "s|(\"RULES_APPINSIGHTSAPI__WORKSPACENAME\": \")([^\"]+)(\")|\1${appInsightsWorkspaceName}\3|" ${target}
+        sed -i -E "s|(\"RULES_APPINSIGHTSAPI__WORKSPACEID\": \")([^\"]+)(\")|\1${appInsightsWorkspaceId}\3|" ${target}
+
+        sed -i -E "s|(\"RULES_AUTHORIZATIONAPI__TOKENAUDIENCE\": \")([^\"]+)(\")|\1${authAppAudience}\3|" ${target}
+
+        sed -i -E "s|(\"RULES_RULES__PUBLICAPI__URI\": \")([^\"]+)(\")|\1${publicApiUri}\3|" ${target}
+
+        sed -i -E "s|(\"RULES_RULES__KEYVAULTURI\": \")([^\"]+)(\")|\1${keyvaultUri}\3|" ${target}
+
+        echo Updated version numbers in ${target} for ${buildnumber}

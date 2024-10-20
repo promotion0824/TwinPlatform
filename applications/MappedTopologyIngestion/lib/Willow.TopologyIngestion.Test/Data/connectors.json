@@ -1,0 +1,71 @@
+{
+  "data": {
+    "connectors": [
+      {
+        "baseUrl": null,
+        "configHash": "CONHASH4Koxkq2fzzavGRhdHLhHrr",
+        "connectorTypeId": "MAPPED_UG",
+        "direction": "SOURCE",
+        "id": "CONRdBLQCNvWoKGUA4kRoUMoe",
+        "lastUpdatedBy": null,
+        "name": "Intellicare Infirmary Mapped Universal Gateway",
+        "state": "ACTIVE",
+        "stateDetails": null,
+        "userId": "USRgUBU5xGXMbw4LeH33N18Lndhue8Emr3P3mR6SHs4JB3",
+        "workflowId": null
+      },
+      {
+        "baseUrl": null,
+        "configHash": "CONHASHTkfHhFatZj8cqKQwTPpeGe",
+        "connectorTypeId": "azure-event-hubs",
+        "direction": "DESTINATION",
+        "id": "CONUgNfxLvUpPqwzmceypRPhc",
+        "lastUpdatedBy": null,
+        "name": "Willow - CI",
+        "state": "ACTIVE",
+        "stateDetails": null,
+        "userId": "USREGWDnMB9wc42ZFXjjFrFzRbWiQCkaE66QEa4SzCFtDbd13",
+        "workflowId": "connectorRun-azure-event-hubs.CONUgNfxLvUpPqwzmceypRPhc"
+      },
+      {
+        "baseUrl": null,
+        "configHash": "CONHASHUeggZm2WH2R7arVETAXpny",
+        "connectorTypeId": "azure-event-hubs",
+        "direction": "DESTINATION",
+        "id": "CON5qLKsjAnkSzGpK29wFYod6",
+        "lastUpdatedBy": null,
+        "name": "Willow - PPE",
+        "state": "ACTIVE",
+        "stateDetails": null,
+        "userId": "USREGWDnMB9wc42ZFXjjFrFzRbWiQCkaE66QEa4SzCFtDbd13",
+        "workflowId": "connectorRun-azure-event-hubs.CON5qLKsjAnkSzGpK29wFYod6"
+      },
+      {
+        "baseUrl": null,
+        "configHash": "CONHASH29mTN6oku3X6w3b3H2Wtt5",
+        "connectorTypeId": "mapped-space-designer",
+        "direction": "SOURCE",
+        "id": "CONAWiEEqQM6pqbC88Gv7DqML",
+        "lastUpdatedBy": null,
+        "name": "Intellicare Infirmary Mapped Space Designer",
+        "state": "DELETING",
+        "stateDetails": null,
+        "userId": "USRgUBU5xGXMbw4LeH33N18Lndhue8Emr3P3mR6SHs4JB3",
+        "workflowId": "connectorRun-mapped-space-designer.CONAWiEEqQM6pqbC88Gv7DqML"
+      },
+      {
+        "baseUrl": null,
+        "configHash": "CONHASHDzbBgSn6pjq1GU6WW4QHb4",
+        "connectorTypeId": "willow-source",
+        "direction": "SOURCE",
+        "id": "CON5xe1TMdfNiXtgxwnY2TA29",
+        "lastUpdatedBy": null,
+        "name": "Willow Import",
+        "state": "ACTIVE",
+        "stateDetails": null,
+        "userId": "USR3SrnmmiUMUiAwLzizAFPziMWRAgCVsJMEQ3RhCwtWv5MeuVr1pcHYaAhqSPJAAJRixxzirm",
+        "workflowId": "connectorRun-willow-source.CON5xe1TMdfNiXtgxwnY2TA29"
+      }
+    ]
+  }
+}

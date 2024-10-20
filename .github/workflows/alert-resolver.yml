@@ -1,0 +1,41 @@
+name: "Alert Resolver"
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - release/**
+    paths:
+      - applications/IngestionPipeline/AlertResolver/**
+      - .github/workflows/alert-resolver.yml
+
+  pull_request:
+    branches:
+      - main
+      - release/**
+    paths:
+      - applications/IngestionPipeline/AlertResolver/**
+      - .github/workflows/alert-resolver.yml
+
+jobs:
+  build_test_docker_push:
+    uses: WillowInc/.github/.github/workflows/Reusable-Build-Test-Docker-Push.yml@main
+    with:
+      path: "applications/IngestionPipeline/AlertResolver/src/Alert.Resolver"
+      restore_path: "applications/IngestionPipeline/AlertResolver"
+      test_path: "applications/IngestionPipeline/AlertResolver/test/Alert.Resolver.Tests"
+      build_configuration: "Release"
+      directoryBuildPropsPath: .config/common.props
+      coverage_thresholds: '0 50'
+      nugetConfigLocation: NuGet.Config
+      containerAppName: "alert-resolver"
+      dockerfile: "applications/IngestionPipeline/AlertResolver/src/Alert.Resolver/Dockerfile"
+      dockerContext: "applications/IngestionPipeline/AlertResolver/src/Alert.Resolver"
+      imageName: "iot-services/alert-resolver"
+      infraProjectPath: "Applications/IoTServices.LiveData"
+      productName: "iot-services"
+      clientId: "empty"
+    secrets:
+      githubToken: ${{ secrets.GITHUB_TOKEN }}
+      botToken: ${{ secrets.SVC_BOT_TOKEN }}

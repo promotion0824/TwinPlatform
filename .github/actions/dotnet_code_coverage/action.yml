@@ -1,0 +1,65 @@
+name: DotNet Core Coverage Report
+description: Collect and Publish code coverage report
+inputs:
+  report_file_name:
+    description: 'Code coverage file name'
+    default: 'coverage.cobertura.xml'
+  report_types:
+    description: 'Code coverage report types'
+    default: 'Cobertura'
+  base_directory:
+    description: 'Working directory'
+    required: true
+  coverage_thresholds:
+    description: 'Thresholds for coverage'
+    required: true
+    default: '50 80'
+runs:
+  using: composite
+  steps:
+    - name: Create code coverage report
+      shell: pwsh
+      run: |-
+        dotnet tool install -g dotnet-reportgenerator-globaltool
+        reportgenerator -reports:**/${{ inputs.report_file_name }} -targetdir:./CodeCoverage -reporttypes:${{ inputs.report_types }}
+      working-directory: ${{ inputs.base_directory }}
+
+    - name: Publish Test Results
+      uses: EnricoMi/publish-unit-test-result-action@v2
+      if: ${{ always() && runner.os == 'Linux' }}
+      with:
+        trx_files: "${{ inputs.base_directory }}/**/*.trx"
+
+    - name: Publish Test Results
+      uses: EnricoMi/publish-unit-test-result-action/composite@v2
+      if: ${{ always() && runner.os != 'Linux' }}
+      with:
+        trx_files: "${{ inputs.base_directory }}/**/*.trx"
+
+    - name: Code Coverage Report
+      uses: irongut/CodeCoverageSummary@v1.3.0
+      if: runner.os == 'Linux'
+      with:
+        filename: ${{ inputs.base_directory }}/CodeCoverage/*.xml
+        badge: true
+        fail_below_min: false
+        format: markdown
+        hide_branch_rate: false
+        hide_complexity: false
+        indicators: true
+        output: both
+        thresholds: ${{ inputs.coverage_thresholds }}
+
+    - name: Code Coverage Output
+      if: runner.os == 'Linux'
+      shell: bash
+      run: |
+        echo '### Coverage thresholds ${{ inputs.coverage_thresholds }} :dragon_face:' >> $GITHUB_STEP_SUMMARY
+        cat code-coverage-results.md >> $GITHUB_STEP_SUMMARY
+
+    - name: Add Coverage PR Comment
+      uses: marocchino/sticky-pull-request-comment@v2
+      if: runner.os == 'Linux' && github.event_name == 'pull_request'
+      with:
+        header: code coverage
+        path: code-coverage-results.md

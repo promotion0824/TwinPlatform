@@ -1,0 +1,16 @@
+[
+  {
+    "$dtId": "AXA-STO-GFR_A_RCB_001",
+    "$etag": null,
+    "$metadata": { "$model": "dtmi:com:willowinc:Chiller;1" },
+    "siteId": "11111111111",
+    "geometryViewerID": "cc0aa0d1-1448-4897-b916-94abb5b90797",
+    "geometrySpatialReference": "CVCD",
+    "geometryExternalID": "6728114",
+    "description": "Groupe frigorifique",
+    "comments": "R\u00E9gime d\u0027eau : 8/13 \u00B0C",
+    "name": "GFR A-RCB 001 - Confort",
+    "modelNumber": "30XW-P1464A",
+    "nominalCoolingCapacity": 1174
+  }
+]

@@ -1,0 +1,13 @@
+{
+  "requestPath": "adt-twin-akvelon-testdev-default-02f46bab.api.aue.digitaltwins.azure.net/import/requests/a9bfbd78-7acd-452b-92e5-eae6b32d78fa",
+  "jobId": "a9bfbd78-7acd-452b-92e5-eae6b32d78fa",
+  "details": {
+    "status": "Queued"
+  },
+  "createTime": "2022-06-14T12:14:30.0999679Z",
+  "lastUpdateTime": "2022-06-14T12:14:30.0999694Z",
+  "userEmail": "SGrujicic@willowinc.com",
+  "target": [
+    "Models"
+  ]
+}

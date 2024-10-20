@@ -1,0 +1,60 @@
+name: Dotnet Build
+
+inputs:
+  srcProjectDir:
+    description: Path to the project source folder
+    required: true
+  testProjectDir:
+    description: Path to the project test folder
+    default: ''
+  buildConfiguration:
+    description: Build Configuration
+    default: Release
+  buildVersion:
+    description: Build Version
+    default: 1.0.0.0
+  dotnetVersion:
+    description: Dotnet SDK version
+    default: 6.0.x
+  nugetSource:
+    description: NuGet source URL
+    default: ''
+  nugetToken:
+    description: NuGet source authentication token
+    default: ''
+
+runs:
+  using: composite
+  steps:
+    - name: Use .NET ${{ inputs.dotnetVersion }}
+      if: ${{ inputs.nugetSource == '' && inputs.nugetToken == '' }}
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: ${{ inputs.dotnetVersion }}
+
+    - name: Use .NET ${{ inputs.dotnetVersion }}
+      if: ${{ inputs.nugetSource != '' && inputs.nugetToken != '' }}
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: ${{ inputs.dotnetVersion }}
+        source-url: ${{ inputs.nugetSource }}
+      env:
+        NUGET_AUTH_TOKEN: ${{ inputs.nugetToken }}
+
+    - name: Restore src nuget packages
+      shell: pwsh
+      run: dotnet restore ${{ inputs.srcProjectDir }}
+
+    - name: Restore test nuget packages
+      if: ${{ inputs.testProjectDir != '' }}
+      shell: pwsh
+      run: dotnet restore ${{ inputs.testProjectDir }}
+
+    - name: Build src Project
+      shell: pwsh
+      run: dotnet build ${{ inputs.srcProjectDir }} --no-restore --configuration ${{ inputs.buildConfiguration }} /p:Version=${{ inputs.buildVersion }}
+
+    - name: Build test Project
+      if: ${{ inputs.testProjectDir != '' }}
+      shell: pwsh
+      run: dotnet build ${{ inputs.testProjectDir }} --no-restore --configuration ${{ inputs.buildConfiguration }} /p:Version=${{ inputs.buildVersion }}

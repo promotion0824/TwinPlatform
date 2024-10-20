@@ -1,0 +1,76 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Willow.IoTService.Deployment.DbSync.Worker", "Willow.IoTService.Deployment.DbSync.Worker\Willow.IoTService.Deployment.DbSync.Worker.csproj", "{D9B9B64F-0B19-477B-9D5A-E89E78B2AB33}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dependencies", "Dependencies", "{B8F3D2B6-1AD3-47FF-9838-875856BEB50F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{1B5477B1-8A2D-4ECF-8D34-1258E34223B3}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pipelines", "Pipelines", "{EEF36EBC-8C24-41AD-9557-D321CD99A442}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\.github\workflows\iot-deployment-dbsync.yml = ..\..\..\.github\workflows\iot-deployment-dbsync.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{603D2014-4696-448B-8726-A37BF37B5360}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{E826B77C-3FF8-42EA-BF77-B5E78DD28D3B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{C07A77FF-6565-454D-9B60-A0422F1B76A6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{29D450DC-7D7B-4E0A-BB0A-BB0014C798C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Willow.IoTService.Deployment.DataAccess", "..\Willow.IoTService.Deployment\Willow.IoTService.Deployment.DataAccess\Willow.IoTService.Deployment.DataAccess.csproj", "{CD3652BC-2933-42D3-8E08-DF815CE7831F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Willow.IoTService.Deployment.DataAccess.DependencyInjection", "..\Willow.IoTService.Deployment\Willow.IoTService.Deployment.DataAccess.DependencyInjection\Willow.IoTService.Deployment.DataAccess.DependencyInjection.csproj", "{1CCD5167-2CBF-4BDD-9A94-84F89A94968D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Willow.IoTService.Deployment.Common", "..\Willow.IoTService.Deployment\Willow.IoTService.Deployment.Common\Willow.IoTService.Deployment.Common.csproj", "{FB2CAAE5-1D4B-4435-9CBC-20800CBF08A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Willow.IoTService.Deployment.DbSync.Application", "Willow.IoTService.Deployment.DbSync.Application\Willow.IoTService.Deployment.DbSync.Application.csproj", "{0DF4A93D-9EB5-481F-85E7-5A76CF02B312}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Willow.IoTService.Deployment.DbSync.Application.Tests", "Willow.IoTService.Deployment.DbSync.Application.Tests\Willow.IoTService.Deployment.DbSync.Application.Tests.csproj", "{886D866F-E1C2-487A-881C-F53355CDF9D4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D9B9B64F-0B19-477B-9D5A-E89E78B2AB33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9B9B64F-0B19-477B-9D5A-E89E78B2AB33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9B9B64F-0B19-477B-9D5A-E89E78B2AB33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9B9B64F-0B19-477B-9D5A-E89E78B2AB33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD3652BC-2933-42D3-8E08-DF815CE7831F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD3652BC-2933-42D3-8E08-DF815CE7831F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD3652BC-2933-42D3-8E08-DF815CE7831F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD3652BC-2933-42D3-8E08-DF815CE7831F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CCD5167-2CBF-4BDD-9A94-84F89A94968D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CCD5167-2CBF-4BDD-9A94-84F89A94968D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CCD5167-2CBF-4BDD-9A94-84F89A94968D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CCD5167-2CBF-4BDD-9A94-84F89A94968D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB2CAAE5-1D4B-4435-9CBC-20800CBF08A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB2CAAE5-1D4B-4435-9CBC-20800CBF08A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB2CAAE5-1D4B-4435-9CBC-20800CBF08A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB2CAAE5-1D4B-4435-9CBC-20800CBF08A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0DF4A93D-9EB5-481F-85E7-5A76CF02B312}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DF4A93D-9EB5-481F-85E7-5A76CF02B312}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DF4A93D-9EB5-481F-85E7-5A76CF02B312}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DF4A93D-9EB5-481F-85E7-5A76CF02B312}.Release|Any CPU.Build.0 = Release|Any CPU
+		{886D866F-E1C2-487A-881C-F53355CDF9D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{886D866F-E1C2-487A-881C-F53355CDF9D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{886D866F-E1C2-487A-881C-F53355CDF9D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{886D866F-E1C2-487A-881C-F53355CDF9D4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E826B77C-3FF8-42EA-BF77-B5E78DD28D3B} = {603D2014-4696-448B-8726-A37BF37B5360}
+		{C07A77FF-6565-454D-9B60-A0422F1B76A6} = {603D2014-4696-448B-8726-A37BF37B5360}
+		{D9B9B64F-0B19-477B-9D5A-E89E78B2AB33} = {C07A77FF-6565-454D-9B60-A0422F1B76A6}
+		{CD3652BC-2933-42D3-8E08-DF815CE7831F} = {B8F3D2B6-1AD3-47FF-9838-875856BEB50F}
+		{1CCD5167-2CBF-4BDD-9A94-84F89A94968D} = {B8F3D2B6-1AD3-47FF-9838-875856BEB50F}
+		{FB2CAAE5-1D4B-4435-9CBC-20800CBF08A2} = {B8F3D2B6-1AD3-47FF-9838-875856BEB50F}
+		{0DF4A93D-9EB5-481F-85E7-5A76CF02B312} = {E826B77C-3FF8-42EA-BF77-B5E78DD28D3B}
+		{886D866F-E1C2-487A-881C-F53355CDF9D4} = {29D450DC-7D7B-4E0A-BB0A-BB0014C798C8}
+	EndGlobalSection
+EndGlobal

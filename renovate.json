@@ -1,0 +1,43 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["local>WillowInc/renovate-config"],
+  "vulnerabilityAlerts": {
+    "enabled": true,
+    "schedule": ["at any time"],
+    "dependencyDashboardApproval": false,
+    "stabilityDays": 0,
+    "rangeStrategy": "update-lockfile",
+    "commitMessageSuffix": "[SECURITY]",
+    "branchTopic": "{{{datasource}}}-{{{depName}}}-vulnerability",
+    "prCreation": "immediate",
+    "labels": ["security"]
+  },
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["patch"],
+      "dependencyDashboardApproval": false,
+      "automerge": true
+    },
+    {
+      "matchUpdateTypes": ["major", "minor"],
+      "dependencyDashboardApproval": true
+    },
+    {
+      "matchManagers": ["npm"],
+      "dependencyDashboardApproval": true
+    }
+  ],
+  "ignorePaths": [
+    "**/node_modules/**",
+    "**/bower_components/**",
+    "applications/Copilot/**"
+  ],
+  "hostRules": [
+    {
+      "hostType": "nuget",
+      "matchHost": "https://nuget.pkg.github.com/WillowInc/",
+      "username": "dhopper",
+      "password": "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"
+    }
+  ]
+}

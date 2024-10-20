@@ -1,0 +1,221 @@
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: twinplatform-components
+  title: TwinPlatform Components
+  description: A collection for Twin Platform components
+spec:
+  targets:
+    - ./twinplatform-domain.yaml
+    - ./twinplatform-system.yaml
+    - ../extensions/adt-api/backstage.yaml
+    - ../platform-services/admin-ui/backstage.yaml
+    - ../design-system/backstage.yaml
+    - ../extensions/willowtwin-core/Willow.ExtensionDeployer/backstage.yaml
+    - ../platform-services/EnvironmentRegistry/backstage.yaml
+    - ../platform-services/Willow.Directory/backstage.yaml
+    - ../platform-services/Willow.Marketplace/backstage.yaml
+
+# CosmosDB
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: NONPROD-Shared-CosmosDB
+  links:
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/178b67d7-b6fd-46db-b4a3-b57f8a6b045f/resourceGroups/rg-twin-willow-nonprod-shared-c2291924/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-twin-willow-nonprod-shared-ec570b87/overview
+      title: NonProd Shared CosmosDB
+      icon: web
+  description: Shared CosmosDB for nonprod environment
+spec:
+  type: cosmosdb
+  owner: pne_willowtwin_platform
+  system: twinplatform-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: PROD-Shared-CosmosDB
+  links:
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/d4746c7a-19cb-47ac-82b5-069b17cb99de/resourceGroups/rg-twin-willow-prod-shared-dce9ba1c/providers/Microsoft.DocumentDB/databaseAccounts/cosmos-twin-willow-prod-shared-fbca6193/overview
+      title: Prod Shared CosmosDB
+      icon: web
+  description: Shared CosmosDB for prod environment
+spec:
+  type: cosmosdb
+  owner: pne_willowtwin_platform
+  system: twinplatform-system
+# KeyVault
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: NONPROD-Shared-keyvault
+  links:
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/178b67d7-b6fd-46db-b4a3-b57f8a6b045f/resourceGroups/rg-twin-willow-nonprod-shared-c2291924/providers/Microsoft.KeyVault/vaults/kvtwiwilnonshare43352c7b/overview
+      title: NonProd Shared KeyVault
+      icon: web
+  description: Shared KeyVault for nonprod environment
+spec:
+  type: keyvault
+  owner: pne_willowtwin_platform
+  system: twinplatform-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: PROD-Shared-keyvault
+  links:
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/d4746c7a-19cb-47ac-82b5-069b17cb99de/resourceGroups/rg-twin-willow-prod-shared-dce9ba1c/providers/Microsoft.KeyVault/vaults/kvtwiwilproshare8531d93b/overview
+      title: Prod Shared KeyVault
+      icon: web
+  description: Shared KeyVault for prod environment
+spec:
+  type: keyvault
+  owner: pne_willowtwin_platform
+  system: twinplatform-system
+#ServiceBus
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: NONPROD-Shared-servicebus
+  links:
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/178b67d7-b6fd-46db-b4a3-b57f8a6b045f/resourceGroups/rg-twin-willow-nonprod-shared-c2291924/providers/Microsoft.ServiceBus/namespaces/sb-twin-willow-nonprod-shared-94547d1b/overview
+      title: NonProd Shared ServiceBus
+      icon: web
+  description: Shared ServiceBus for nonprod environment
+spec:
+  type: serviceBus
+  owner: pne_willowtwin_platform
+  system: twinplatform-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: PROD-Shared-servicebus
+  links:
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/d4746c7a-19cb-47ac-82b5-069b17cb99de/resourceGroups/rg-twin-willow-prod-shared-dce9ba1c/providers/Microsoft.ServiceBus/namespaces/sb-twin-willow-prod-shared-251e604b/overview
+      title: Prod Shared ServiceBus
+      icon: web
+  description: Shared ServiceBus for prod environment
+spec:
+  type: serviceBus
+  owner: pne_willowtwin_platform
+  system: twinplatform-system
+#ApplicationInsight
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: NONPROD-Shared-applicationInsight
+  links:
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/178b67d7-b6fd-46db-b4a3-b57f8a6b045f/resourceGroups/rg-twin-willow-nonprod-shared-c2291924/providers/Microsoft.Insights/components/ain-twin-willow-nonprod-shared-68415691/overview
+      title: NonProd Shared ApplicationInsight
+      icon: web
+  description: Shared ApplicationInsight for nonprod environment
+spec:
+  type: applicationInsight
+  owner: pne_willowtwin_platform
+  system: twinplatform-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: PROD-Shared-applicationInsight
+  links:
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/d4746c7a-19cb-47ac-82b5-069b17cb99de/resourceGroups/rg-twin-willow-prod-shared-dce9ba1c/providers/Microsoft.Insights/components/ain-twin-willow-prod-shared-bd00fdd8/overview
+      title: Prod Shared ApplicationInsight
+      icon: web
+  description: Shared ApplicationInsight for prod environment
+spec:
+  type: applicationInsight
+  owner: pne_willowtwin_platform
+  system: twinplatform-system
+#Storage Account
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: NONPROD-Pulumi-State-Storage
+  links:
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/7dab7b5a-d968-43a5-a50f-9509244c297b/resourceGroups/deployment-data/providers/Microsoft.Storage/storageAccounts/k8sintenvdeploydata/overview
+      title: NonProd Pulumi State Storage
+      icon: web
+  description: This storage account contains all the pulumi state (extensions and core) of every environment.
+spec:
+  type: storageAccount
+  owner: pne_willowtwin_platform
+  system: twinplatform-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: PROD-Pulumi-State-Storage
+  links:
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/5f077d49-cd08-48b4-a26b-59d708d7847b/resourceGroups/deployment-data/providers/Microsoft.Storage/storageAccounts/prodcshrenvdeploydata/overview
+      title: Prod Pulumi State Storage
+      icon: web
+  description: This storage account contains all the pulumi state (extensions and core) of every environment.
+spec:
+  type: storageAccount
+  owner: pne_willowtwin_platform
+  system: twinplatform-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: NONPROD-Shared-storageAccount
+  links:
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/178b67d7-b6fd-46db-b4a3-b57f8a6b045f/resourceGroups/rg-twin-willow-nonprod-shared-c2291924/providers/Microsoft.Storage/storageAccounts/sttwiwilnonshare3d74e88a/overview
+      title: NonProd Shared StorageAccount
+      icon: web
+  description: Shared StorageAccount for nonprod environment
+spec:
+  type: storageAccount
+  owner: pne_willowtwin_platform
+  system: twinplatform-system
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: PROD-Shared-storageAccount
+  links:
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/d4746c7a-19cb-47ac-82b5-069b17cb99de/resourceGroups/rg-twin-willow-prod-shared-dce9ba1c/providers/Microsoft.Storage/storageAccounts/sttwiwilproshare37333737/overview
+      title: Prod Shared StorageAccount
+      icon: web
+  description: Shared StorageAccount for prod environment
+spec:
+  type: storageAccount
+  owner: pne_willowtwin_platform
+  system: twinplatform-system
+# Managed Identity
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: NONPROD-EnvironmentRegistry-identity
+  links:
+    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/178b67d7-b6fd-46db-b4a3-b57f8a6b045f/resourceGroups/rg-twin-willow-nonprod-shared-c2291924/providers/Microsoft.ManagedIdentity/userAssignedIdentities/twin-environment-registry-nonprod-identity-36f06f85/overview
+      title: Nonprod Environment Regisgtry Identity
+      icon: web
+  description: Managed identity used for nonprod environment registry. This identity has the following permisssion — EnvironmentDeployer, Storage Blob Reader (Pulumi state storage & Shared), ServiceBus Owner (Shared), Keyvault Reader on Secret and Keys.
+spec:
+  type: managedIdentity
+  owner: pne_willowtwin_platform
+  system: twinplatform-system
+#---
+##apiVersion: backstage.io/v1alpha1
+##kind: Resource
+##metadata:
+##  name: PROD-EnvironmentRegistry-identity
+##  links:
+##    - url: https://portal.azure.com/#@willowinc.com/resource/subscriptions/178b67d7-b6fd-46db-b4a3-b57f8a6b045f/resourceGroups/rg-twin-willow-nonprod-shared-c2291924/providers/Microsoft.ManagedIdentity/userAssignedIdentities/twin-environment-registry-nonprod-identity-36f06f85/overview
+##      title: Prod Environment Regisgtry Identity
+##      icon: web
+##  description: Managed identity used for prod environment registry
+##spec:
+##  type: managedIdentity
+##  owner: pne_willowtwin_platform
+##  system: twinplatform-system
+# TODO Add PROD environment registry once shared infra has been pushed to prod

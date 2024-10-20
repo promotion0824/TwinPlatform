@@ -1,0 +1,26 @@
+parameters:
+  - name: customerName
+    type: string
+    default: "customer"
+
+steps:
+
+- task: Kubernetes@1
+  displayName: 'AKS cluster login'
+  inputs:
+    connectionType: 'Azure Resource Manager'
+    azureSubscriptionEndpoint: "az-sandbox-shared-Twin Platform"
+    azureResourceGroup: "t2-wil-sbx-wco-wrt-aue1-mgt-rsg"
+    kubernetesCluster: "wil-sbx-wco-wrt-aue1-aks"
+    useClusterAdmin: true
+    command: login
+
+- task: Pulumi@1
+  displayName: Pulumi up -y Sandbox Stack
+  inputs:
+    azureSubscription: "az-sandbox-shared-Twin Platform"
+    command: "up"
+    arguments: "--yes"
+    args: "--yes"
+    stack: "Sandbox"
+    cwd: "core/RulesEngine/RulesEngine.Pulumi/"

@@ -1,0 +1,42 @@
+name: "ConnectorCore - Build"
+
+on:
+  push:
+    branches:
+      - main
+      - "release/**"
+    paths:
+      - applications/ConnectorManagement/ConnectorCore/**
+      - .github/workflows/connector.core.yml
+
+  pull_request:
+    branches:
+      - main
+    paths:
+      - applications/ConnectorManagement/ConnectorCore/**
+      - .github/workflows/connector.core.yml
+
+  workflow_dispatch:
+
+jobs:
+  build_test_docker_push:
+    uses: WillowInc/.github/.github/workflows/Reusable-Build-Test-Docker-Push.yml@main
+    with:
+      path: applications/ConnectorManagement/ConnectorCore/src/ConnectorCore
+      restore_path: applications/ConnectorManagement/ConnectorCore
+      test_path: applications/ConnectorManagement/ConnectorCore/test/Connector.Nunit.Tests
+      build_configuration: "Release"
+      directoryBuildPropsPath: .config/common.props
+      coverage_thresholds: '0 50'
+      nugetConfigLocation: NuGet.Config
+      containerAppName: ConnectorCore
+      dockerfile: applications/ConnectorManagement/ConnectorCore/src/ConnectorCore/Dockerfile
+      dockerContext: applications/ConnectorManagement/ConnectorCore/src/ConnectorCore
+      imageName: iot-services/connectorcore
+      infraProjectPath: Applications/WillowTwin
+      productName: iot-services
+      clientId: "empty"
+      testSql: true
+    secrets:
+      githubToken: ${{ secrets.GITHUB_TOKEN }}
+      botToken: ${{ secrets.SVC_BOT_TOKEN }}

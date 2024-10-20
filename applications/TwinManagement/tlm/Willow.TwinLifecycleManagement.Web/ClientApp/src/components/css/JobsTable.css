@@ -1,0 +1,14 @@
+.idColumn div {
+  cursor: pointer;
+  color: #1976d2;
+}
+
+.MuiDataGrid-row:hover .idColumn a,
+.MuiDataGrid-row.Mui-selected .idColumn a{
+  color: #fffffa;
+}
+
+.MuiDataGrid-row .actionColumn .cancelBtn{
+  background-color: #666565;
+  color: #fffffa;
+}

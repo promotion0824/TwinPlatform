@@ -1,0 +1,11 @@
+{
+  "$schema": "https://unpkg.com/@changesets/config@2.3.0/schema.json",
+  "changelog": "../tools/scripts/changesets-changelog.js",
+  "commit": "../tools/scripts/changesets-commit.js",
+  "fixed": [["@willowinc/*"]],
+  "linked": [],
+  "access": "restricted",
+  "baseBranch": "main",
+  "ignore": [],
+  "updateInternalDependencies": "patch"
+}

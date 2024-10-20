@@ -1,0 +1,211 @@
+# This workflow is designed to consistently update the visual regression test snapshots
+# in a consistent hardware and software environment.
+# For more detailed reasons, visit: https://dev.azure.com/willowdev/Unified/_workitems/edit/79523
+
+# Triggered by a PR comment containing the text '/update-snapshots', this workflow executes
+# the visual regression snapshot update, commits the snapshot changes to the corresponding PR branch,
+# and posts a comment in the PR indicating the result.
+name: Platform UI update snapshots
+
+on:
+  issue_comment:
+    # trigger by adding a new comment to an issue or PR
+    types: [created]
+
+env:
+  ROOT_DIRECTORY: design-system
+
+# cancel running jobs if a new job is queued for the same Pull Request
+concurrency:
+  group: Platform UI - ${{ github.workflow }}-${{ github.event.issue.id }}
+  cancel-in-progress: true
+
+jobs:
+  comment-on-pr-before-start:
+    runs-on: ubuntu-latest
+    # Only run if the comment is on a pull request and the comment body contains '/update-snapshots'
+    if: github.event.issue.pull_request && contains(github.event.comment.body, '/update-snapshots')
+    steps:
+      - name: Comment on PR
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: ':rocket: Workflow [${{github.workflow}}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) is successfully triggered. '
+              })
+
+  check-if-need-update:
+    runs-on: ubuntu-22.04
+    needs: comment-on-pr-before-start
+    env:
+      need_to_update: false
+      pull_request_ref: undefined
+    outputs:
+      need_to_update: ${{ env.need_to_update }}
+      pull_request_ref: ${{ env.pull_request_ref }}
+    steps:
+      - name: Get Pull Request info the comment was made on
+        uses: actions/github-script@v6
+        id: get-pr
+        with:
+          script: |
+            const request = {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number
+            }
+            core.info(`Getting PR #${request.pull_number} from ${request.owner}/${request.repo}`)
+            try {
+              const result = await github.rest.pulls.get(request)
+              return result.data
+            } catch (err) {
+              core.setFailed(`Request failed with error ${err}`)
+            }
+
+      - name: Set variables
+        run: |
+          echo "pull_request_ref=${{ fromJSON(steps.get-pr.outputs.result).head.ref }}" >> $GITHUB_ENV
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.pull_request_ref }}
+          persist-credentials: true
+          token: ${{ github.token }}
+          fetch-depth: 0
+
+      - name: Check if there are changes in design-system/
+        run: |
+          # list current branch name
+          git rev-parse --abbrev-ref HEAD
+
+          # check if there are changes in design-system/ directory within this PR
+          if git diff --quiet origin/main...HEAD -- 'design-system/'; then
+              echo "No changes in design-system/, no snapshots need to be updated."
+              exit 0
+          else
+              echo "The code in design-system/ has changed compared to the main branch. Will update snapshots."
+              echo "need_to_update=true" >> $GITHUB_ENV
+          fi
+
+  comment-on-pr-when-skip:
+    runs-on: ubuntu-latest
+    needs: check-if-need-update
+    if: ${{ needs.check-if-need-update.outputs.need_to_update == 'false' }}
+    steps:
+      - name: Comment on PR
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: ':no_entry: Workflow [${{github.workflow}}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) will exit because no file change detected for target project. '
+              })
+
+  update-snapshots-and-commit:
+    runs-on: ubuntu-22.04
+    needs: check-if-need-update
+    if: ${{ needs.check-if-need-update.outputs.need_to_update == 'true' }}
+    container: mcr.microsoft.com/playwright:v1.34.0-jammy
+    defaults:
+      run:
+        working-directory: design-system
+    permissions:
+      contents: write
+    env:
+      snapshots_updated: false
+    outputs:
+      snapshots_updated: ${{ env.snapshots_updated }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.check-if-need-update.outputs.pull_request_ref }}
+          persist-credentials: true
+          # use PAT to trigger workflows rerun in PullRequest after push snapshots changes
+          token: ${{ secrets.WORKFLOW_GITHUB_PAT }}
+
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.*
+          cache: "npm"
+          cache-dependency-path: ${{ env.ROOT_DIRECTORY }}/package-lock.json
+
+      - name: Cache node_modules
+        id: cache-node-modules
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ${{ env.ROOT_DIRECTORY }}/node_modules
+          key: node-modules-${{ runner.os }}-${{ hashFiles(format('{0}/package-lock.json', env.ROOT_DIRECTORY)) }}
+
+      - name: Install packages
+        if: steps.cache-node-modules.outputs.cache-hit != 'true'
+        run: npm ci
+
+      - name: Install Playwright Browsers
+        run: npx playwright install chrome --with-deps
+
+      - name: Update snapshots for visual regression tests
+        run: npx nx e2e ui-e2e --update-snapshots
+
+      - name: Commit and push if changed
+        id: commit
+        shell: bash
+        run: |
+          # this is required to make git work in the container
+          git config --global --add safe.directory /__w/TwinPlatform/TwinPlatform
+
+          # list current branch name
+          git rev-parse --abbrev-ref HEAD
+
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+          # If there are any changes, commit them and push them.
+          if [[ -n $(git status --porcelain) ]]; then
+            # commit snapshot changes
+            git add .
+            git commit -m "[Bot]: Update visual regression test snapshots"
+            
+            # If new commits are added to PR, pull them before push changes, otherwise push will fail. 
+            git pull origin $(git rev-parse --abbrev-ref HEAD) --rebase
+            git push
+
+            echo "snapshots_updated=true" >> $GITHUB_ENV
+          else
+            echo "No changes detected."
+            echo "snapshots_updated=false" >> $GITHUB_ENV
+          fi
+
+  comment-on-pr-post-update:
+    needs: update-snapshots-and-commit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Comment on PR
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const comment_source = "This comment was generated by a GitHub Action. See details in [${{github.workflow}}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})"
+
+            let output = ''
+            if ('${{ needs.update-snapshots-and-commit.outputs.snapshots_updated }}' == 'true') {
+              output = ':construction: Snapshots updated! :rocket:'
+            } else {
+              output = ':no_entry: No snapshot changes detected.'
+            }
+
+            github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: output + '\n\n' + comment_source
+              })

@@ -1,0 +1,2002 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Willow.CommandAndControl</name>
+    </assembly>
+    <members>
+        <member name="T:Willow.CommandAndControl.Application.BackgroundJobs.PeriodicCommandExecutorJob">
+            <summary>
+            Background Service for managing the command.
+            </summary>
+        </member>
+        <member name="T:Willow.CommandAndControl.Application.Helpers.SetPointCommandName">
+            <summary>
+            Set point command name.
+            </summary>
+        </member>
+        <member name="F:Willow.CommandAndControl.Application.Helpers.SetPointCommandName.atMost">
+            <summary>
+            At most.
+            </summary>
+        </member>
+        <member name="F:Willow.CommandAndControl.Application.Helpers.SetPointCommandName.atLeast">
+            <summary>
+            At least.
+            </summary>
+        </member>
+        <member name="F:Willow.CommandAndControl.Application.Helpers.SetPointCommandName.set">
+            <summary>
+            Set exactly.
+            </summary>
+        </member>
+        <member name="T:Willow.CommandAndControl.Application.Helpers.RequestedCommandAction">
+            <summary>
+            Actions for requested commands.
+            </summary>
+        </member>
+        <member name="F:Willow.CommandAndControl.Application.Helpers.RequestedCommandAction.Approve">
+            <summary>
+            Approve.
+            </summary>
+        </member>
+        <member name="F:Willow.CommandAndControl.Application.Helpers.RequestedCommandAction.Reject">
+            <summary>
+            Reject.
+            </summary>
+        </member>
+        <member name="F:Willow.CommandAndControl.Application.Helpers.RequestedCommandAction.Pending">
+            <summary>
+            Pending.
+            </summary>
+        </member>
+        <member name="T:Willow.CommandAndControl.Application.Helpers.ResolvedCommandAction">
+            <summary>
+            Actions for resolved commands.
+            </summary>
+        </member>
+        <member name="F:Willow.CommandAndControl.Application.Helpers.ResolvedCommandAction.Cancel">
+            <summary>
+            Cancel.
+            </summary>
+        </member>
+        <member name="F:Willow.CommandAndControl.Application.Helpers.ResolvedCommandAction.Execute">
+            <summary>
+            Execute.
+            </summary>
+        </member>
+        <member name="F:Willow.CommandAndControl.Application.Helpers.ResolvedCommandAction.Suspend">
+            <summary>
+            Suspended.
+            </summary>
+        </member>
+        <member name="F:Willow.CommandAndControl.Application.Helpers.ResolvedCommandAction.Unsuspend">
+            <summary>
+            Unsuspend.
+            </summary>
+        </member>
+        <member name="F:Willow.CommandAndControl.Application.Helpers.ResolvedCommandAction.Retry">
+            <summary>
+            Retry.
+            </summary>
+        </member>
+        <member name="T:Willow.CommandAndControl.Application.Models.LocationTwin">
+            <summary>
+            Represents a location twin.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Models.LocationTwin.TwinName">
+            <summary>
+            Gets the twin ID.
+            </summary>
+            <remarks>
+            EF Core gets upset if we suffix properties with ID and don't define a primary key.
+            </remarks>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Models.LocationTwin.LocationModelName">
+            <summary>
+            Gets the location model ID.
+            </summary>
+            <remarks>
+            EF Core gets upset if we suffix properties with ID and don't define a primary key.
+            </remarks>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Models.LocationTwin.LocationTwinName">
+            <summary>
+            Gets the location twin ID.
+            </summary>
+            <remarks>
+            EF Core gets upset if we suffix properties with ID and don't define a primary key.
+            </remarks>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Models.LocationTwin.Order">
+            <summary>
+            Gets the location order.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Models.LocationTwin.Model">
+            <summary>
+            Gets the last part of the model name.
+            </summary>
+        </member>
+        <member name="T:Willow.CommandAndControl.Application.Models.SetValueRequest">
+            <summary>
+            Set value request.
+            </summary>
+            <param name="Value">The value.</param>
+            <param name="TimeoutSecs">The timeout in seconds.</param>
+        </member>
+        <member name="M:Willow.CommandAndControl.Application.Models.SetValueRequest.#ctor(System.String,System.Int32)">
+            <summary>
+            Set value request.
+            </summary>
+            <param name="Value">The value.</param>
+            <param name="TimeoutSecs">The timeout in seconds.</param>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Models.SetValueRequest.Value">
+            <summary>The value.</summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Models.SetValueRequest.TimeoutSecs">
+            <summary>The timeout in seconds.</summary>
+        </member>
+        <member name="T:Willow.CommandAndControl.Application.Models.SetValueResponse">
+            <summary>
+            Response model for setting a value.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Models.SetValueResponse.StatusCode">
+            <summary>
+            Gets or sets the status code of the response.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Models.SetValueResponse.Id">
+            <summary>
+            Gets or sets the ID of the point.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Models.SetValueResponse.Result">
+            <summary>
+            Gets or sets the result.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Models.SetValueResponse.Error">
+            <summary>
+            Gets or sets the error.
+            </summary>
+        </member>
+        <member name="T:Willow.CommandAndControl.Application.Models.Error">
+            <summary>
+            A response error.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Models.Error.Description">
+            <summary>
+            Gets or sets the error message.
+            </summary>
+        </member>
+        <member name="T:Willow.CommandAndControl.Application.Models.TwinInfoModel">
+            <summary>
+            Twin Info Model.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Models.TwinInfoModel.TwinId">
+            <summary>
+            Gets or sets the Twin ID or Sensor ID.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Models.TwinInfoModel.ExternalId">
+            <summary>
+            Gets or sets the External ID.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Models.TwinInfoModel.PresentValue">
+            <summary>
+            Gets or sets the present value of Twin.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Models.TwinInfoModel.SiteId">
+            <summary>
+            Gets or sets the site ID.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Models.TwinInfoModel.ConnectorId">
+            <summary>
+            Gets or sets the connector ID.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Models.TwinInfoModel.Location">
+            <summary>
+            Gets or sets the location name.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Models.TwinInfoModel.IsHostedBy">
+            <summary>
+            Gets or sets the asset that hosts the twin.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Models.TwinInfoModel.IsCapabilityOf">
+            <summary>
+            Gets or sets the asset which has this capability.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Models.TwinInfoModel.Unit">
+            <summary>
+            Gets or sets the unit of the twin's value.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Models.TwinInfoModel.Locations">
+            <summary>
+            Gets or sets the location hierarchy of the twin.
+            </summary>
+        </member>
+        <member name="T:Willow.CommandAndControl.Application.Requests.ActivityLogs.DownloadActivityLogs.DownloadActivityLogsRequestDto">
+            <summary>
+            Request to download activity logs.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ActivityLogs.DownloadActivityLogs.DownloadActivityLogsRequestDto.SortSpecifications">
+            <summary>
+            Gets the specifications on how to sort the batch.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ActivityLogs.DownloadActivityLogs.DownloadActivityLogsRequestDto.FilterSpecifications">
+            <summary>
+            Gets the specifications on how to filter the batch.
+            </summary>
+        </member>
+        <member name="T:Willow.CommandAndControl.Application.Requests.ActivityLogs.DownloadActivityLogs.DownloadActivityLogsResponseDto">
+            <summary>
+            Get Activity Log Feeds.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ActivityLogs.DownloadActivityLogs.DownloadActivityLogsResponseDto.CommandName">
+            <summary>
+            Gets or sets the requested command's name.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ActivityLogs.DownloadActivityLogs.DownloadActivityLogsResponseDto.Timestamp">
+            <summary>
+            Gets or sets the date when the activity was logged.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ActivityLogs.DownloadActivityLogs.DownloadActivityLogsResponseDto.Type">
+            <summary>
+            Gets or sets the activity type.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ActivityLogs.DownloadActivityLogs.DownloadActivityLogsResponseDto.Description">
+            <summary>
+            Gets or sets the activity log description.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ActivityLogs.DownloadActivityLogs.DownloadActivityLogsResponseDto.TwinId">
+            <summary>
+            Gets or sets the twin ID.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ActivityLogs.DownloadActivityLogs.DownloadActivityLogsResponseDto.Location">
+            <summary>
+            Gets or sets the location of the twin.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ActivityLogs.DownloadActivityLogs.DownloadActivityLogsResponseDto.Parent">
+            <summary>
+            Gets or sets the asset that hosts the capability or twin.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ActivityLogs.DownloadActivityLogs.DownloadActivityLogsResponseDto.UpdatedBy">
+            <summary>
+            Gets or sets the user who carried out the activity.
+            </summary>
+        </member>
+        <member name="T:Willow.CommandAndControl.Application.Requests.ActivityLogs.GetActivityLogs.ActivityLogsRequestDto">
+            <summary>
+            Get Activity Log Feeds Request DTO.
+            </summary>
+        </member>
+        <member name="T:Willow.CommandAndControl.Application.Requests.ActivityLogs.GetActivityLogs.ActivityLogsResponseDto">
+            <summary>
+            Get Activity Log Feeds.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ActivityLogs.GetActivityLogs.ActivityLogsResponseDto.Id">
+            <summary>
+            Gets or sets the Id of the activity log entry.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ActivityLogs.GetActivityLogs.ActivityLogsResponseDto.RequestedCommandId">
+            <summary>
+            Gets or sets the Id of the resolved command.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ActivityLogs.GetActivityLogs.ActivityLogsResponseDto.ResolvedCommandId">
+            <summary>
+            Gets or sets the Id of the resolved command.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ActivityLogs.GetActivityLogs.ActivityLogsResponseDto.CommandName">
+            <summary>
+            Gets or sets the requested command's name.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ActivityLogs.GetActivityLogs.ActivityLogsResponseDto.Timestamp">
+            <summary>
+            Gets or sets the date when the activity was logged.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ActivityLogs.GetActivityLogs.ActivityLogsResponseDto.Type">
+            <summary>
+            Gets or sets the activity type.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ActivityLogs.GetActivityLogs.ActivityLogsResponseDto.Value">
+            <summary>
+            Gets or sets the set value of the command.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ActivityLogs.GetActivityLogs.ActivityLogsResponseDto.Unit">
+            <summary>
+            Gets or sets the unit of the value.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ActivityLogs.GetActivityLogs.ActivityLogsResponseDto.StartTime">
+            <summary>
+            Gets or sets the requested command's start time.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ActivityLogs.GetActivityLogs.ActivityLogsResponseDto.EndTime">
+            <summary>
+            Gets or sets the requested command's end time.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ActivityLogs.GetActivityLogs.ActivityLogsResponseDto.SiteId">
+            <summary>
+            Gets or sets the site ID.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ActivityLogs.GetActivityLogs.ActivityLogsResponseDto.RuleId">
+            <summary>
+            Gets or sets the rule ID.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ActivityLogs.GetActivityLogs.ActivityLogsResponseDto.TwinId">
+            <summary>
+            Gets or sets the twin ID.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ActivityLogs.GetActivityLogs.ActivityLogsResponseDto.ExternalId">
+            <summary>
+            Gets or sets the external ID.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ActivityLogs.GetActivityLogs.ActivityLogsResponseDto.ConnectorId">
+            <summary>
+            Gets or sets the connector ID.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ActivityLogs.GetActivityLogs.ActivityLogsResponseDto.Location">
+            <summary>
+            Gets or sets the location of the twin.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ActivityLogs.GetActivityLogs.ActivityLogsResponseDto.IsCapabilityOf">
+            <summary>
+            Gets or sets the asset that hosts the capability.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ActivityLogs.GetActivityLogs.ActivityLogsResponseDto.IsHostedBy">
+            <summary>
+            Gets or sets the asset that hosts the twin.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ActivityLogs.GetActivityLogs.ActivityLogsResponseDto.UpdatedBy">
+            <summary>
+            Gets or sets the user who carried out the activity.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ActivityLogs.GetActivityLogs.ActivityLogsResponseDto.ExtraInfo">
+            <summary>
+            Gets or sets any extra information logged as part of the activity.
+            </summary>
+        </member>
+        <member name="T:Willow.CommandAndControl.Application.Requests.ActivityLogs.GetStatistics.CommandsCountStatisticsDto">
+            <summary>
+            Statistics counts for commands.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ActivityLogs.GetStatistics.CommandsCountStatisticsDto.TotalRequestedCommands">
+            <summary>
+            Gets the total number of requested commands received.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ActivityLogs.GetStatistics.CommandsCountStatisticsDto.TotalApprovedCommands">
+            <summary>
+            Gets the total number of approved commands.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ActivityLogs.GetStatistics.CommandsCountStatisticsDto.TotalExecutedCommands">
+            <summary>
+            Gets the total number of resolved commands that have been executed.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ActivityLogs.GetStatistics.CommandsCountStatisticsDto.TotalCancelledCommands">
+            <summary>
+            Gets the total number of resolved commands that have been cancelled.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ActivityLogs.GetStatistics.CommandsCountStatisticsDto.TotalSuspendedCommands">
+            <summary>
+            Gets the total number of currently suspended commands.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ActivityLogs.GetStatistics.CommandsCountStatisticsDto.TotalFailedCommands">
+            <summary>
+            Gets ttotal number of failed commands.
+            </summary>
+        </member>
+        <member name="T:Willow.CommandAndControl.Application.Requests.ActivityLogs.GetStatistics.CommandTrendsDto">
+            <summary>
+            Command Trends DTO.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ActivityLogs.GetStatistics.CommandTrendsDto.Categories">
+            <summary>
+            Gets or sets the categories for the chart.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ActivityLogs.GetStatistics.CommandTrendsDto.Dataset">
+            <summary>
+            Gets or sets the data sets for the chart.
+            </summary>
+        </member>
+        <member name="T:Willow.CommandAndControl.Application.Requests.ActivityLogs.GetStatistics.CommandsTrendDataSetDto">
+            <summary>
+            Command Trend Data Set.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ActivityLogs.GetStatistics.CommandsTrendDataSetDto.Name">
+            <summary>
+            Gets or sets the name of the data set.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ActivityLogs.GetStatistics.CommandsTrendDataSetDto.Data">
+            <summary>
+            Gets or sets the list of data.
+            </summary>
+        </member>
+        <member name="T:Willow.CommandAndControl.Application.Requests.ActivityLogs.GetStatistics.GetStatisticsRequestDto">
+            <summary>
+            Get Statistics Request DTO.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ActivityLogs.GetStatistics.GetStatisticsRequestDto.SiteId">
+            <summary>
+            Gets or sets the site ID for search.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ActivityLogs.GetStatistics.GetStatisticsRequestDto.StartDate">
+            <summary>
+            Gets or sets the start date for the search.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ActivityLogs.GetStatistics.GetStatisticsRequestDto.EndDate">
+            <summary>
+            Gets or sets the end date for the search.
+            </summary>
+        </member>
+        <member name="T:Willow.CommandAndControl.Application.Requests.ActivityLogs.GetStatistics.GetStatisticsResponseDto">
+            <summary>
+            Statistics for commands.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ActivityLogs.GetStatistics.GetStatisticsResponseDto.CommandsCount">
+            <summary>
+            Gets or sets the statistics count.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ActivityLogs.GetStatistics.GetStatisticsResponseDto.RecentActivities">
+            <summary>
+            Gets or sets the list of most Recent Activities.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ActivityLogs.GetStatistics.GetStatisticsResponseDto.CommandTrends">
+            <summary>
+            Gets or sets the command Trends data to populate the chart.
+            </summary>
+        </member>
+        <member name="T:Willow.CommandAndControl.Application.Requests.ContactUs.PostContactUs.PostContactUsDto">
+            <summary>
+            Contact us.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ContactUs.PostContactUs.PostContactUsDto.RequestersName">
+            <summary>
+            Gets the requester's name.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ContactUs.PostContactUs.PostContactUsDto.RequestersEmail">
+            <summary>
+            Gets the requester's email.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ContactUs.PostContactUs.PostContactUsDto.Comment">
+            <summary>
+            Gets the comment.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ContactUs.PostContactUs.PostContactUsDto.Url">
+            <summary>
+            Gets the URL of the page the user was on.
+            </summary>
+        </member>
+        <member name="T:Willow.CommandAndControl.Application.Requests.GetUserPermissions.UserPermissionsResponseDto">
+            <summary>
+            User Management Authorization Response .
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.GetUserPermissions.UserPermissionsResponseDto.Permissions">
+            <summary>
+            Gets or sets the list of user's permissions.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.GetUserPermissions.UserPermissionsResponseDto.IsAdminUser">
+            <summary>
+            Gets or sets a value indicating whether the user has admin privileges.
+            </summary>
+        </member>
+        <member name="T:Willow.CommandAndControl.Application.Requests.RequestedCommand.GetConflictingCommandsByTwinId.GetConflictingCommandsByTwinIdDto">
+            <summary>
+            Get Command By Id.
+            </summary>
+            <param name="Id">Request command Twin Id.</param>
+        </member>
+        <member name="M:Willow.CommandAndControl.Application.Requests.RequestedCommand.GetConflictingCommandsByTwinId.GetConflictingCommandsByTwinIdDto.#ctor(System.String)">
+            <summary>
+            Get Command By Id.
+            </summary>
+            <param name="Id">Request command Twin Id.</param>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.RequestedCommand.GetConflictingCommandsByTwinId.GetConflictingCommandsByTwinIdDto.Id">
+            <summary>Request command Twin Id.</summary>
+        </member>
+        <member name="T:Willow.CommandAndControl.Application.Requests.RequestedCommand.GetConflictingCommands.GetConflictingCommandPresentValuesRequestDto">
+            <summary>
+            Get Conflicting Commands.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.RequestedCommand.GetConflictingCommands.GetConflictingCommandPresentValuesRequestDto.ExternalIds">
+            <summary>
+            Gets or sets external Ids.
+            </summary>
+        </member>
+        <member name="T:Willow.CommandAndControl.Application.Requests.RequestedCommand.GetConflictingCommands.GetConflictingCommandPresentValuesResponseDto">
+            <summary>
+            Conflicting Commands Response Dto.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.RequestedCommand.GetConflictingCommands.GetConflictingCommandPresentValuesResponseDto.PresentValues">
+            <summary>
+            Gets or Sets PresentValues.
+            </summary>
+        </member>
+        <member name="T:Willow.CommandAndControl.Application.Requests.RequestedCommand.GetConflictingCommands.ConflictingCommandsResponseDto">
+            <summary>
+            Conflicting Commands Response Dto.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.RequestedCommand.GetConflictingCommands.ConflictingCommandsResponseDto.Key">
+            <summary>
+            Gets a deterministic key of the conflicting command.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.RequestedCommand.GetConflictingCommands.ConflictingCommandsResponseDto.ReceivedDate">
+            <summary>
+            Gets the date of the earliest received command.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.RequestedCommand.GetConflictingCommands.ConflictingCommandsResponseDto.Commands">
+            <summary>
+            Gets the number of commands.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.RequestedCommand.GetConflictingCommands.ConflictingCommandsResponseDto.ApprovedCommands">
+            <summary>
+            Gets the number of approved commands.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.RequestedCommand.GetConflictingCommands.ConflictingCommandsResponseDto.Requests">
+            <summary>
+            Gets or sets the ist of Requested Commands.
+            </summary>
+        </member>
+        <member name="T:Willow.CommandAndControl.Application.Requests.RequestedCommand.GetConflictingCommands.GetConflictingCommandsRequestDto">
+            <summary>
+            Get Conflicting Commands.
+            </summary>
+        </member>
+        <member name="T:Willow.CommandAndControl.Application.Requests.RequestedCommand.GetRequestedCommandById.GetRequestedCommandByIdDto">
+            <summary>
+            Get Command By Id.
+            </summary>
+            <param name="Id">Request command Id.</param>
+        </member>
+        <member name="M:Willow.CommandAndControl.Application.Requests.RequestedCommand.GetRequestedCommandById.GetRequestedCommandByIdDto.#ctor(System.String)">
+            <summary>
+            Get Command By Id.
+            </summary>
+            <param name="Id">Request command Id.</param>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.RequestedCommand.GetRequestedCommandById.GetRequestedCommandByIdDto.Id">
+            <summary>Request command Id.</summary>
+        </member>
+        <member name="T:Willow.CommandAndControl.Application.Requests.RequestedCommand.GetRequestedCommandsCount.GetRequestedCommandsCountDto">
+            <summary>
+            Get count of Requested Commands.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.RequestedCommand.GetRequestedCommandsCount.GetRequestedCommandsCountDto.Status">
+            <summary>
+            Gets or sets the status to filter by.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.RequestedCommand.GetRequestedCommandsCount.GetRequestedCommandsCountDto.FilterSpecifications">
+            <summary>
+            Gets the filter specifications.
+            </summary>
+        </member>
+        <member name="T:Willow.CommandAndControl.Application.Requests.RequestedCommand.GetRequestedCommands.GetRequestedCommandsDto">
+            <summary>
+            Get Requested Commands.
+            </summary>
+        </member>
+        <member name="T:Willow.CommandAndControl.Application.Requests.RequestedCommand.PostRequestedCommands.PostRequestedCommandsDto">
+            <summary>
+            Creates new command.
+            </summary>
+            <param name="Commands">List of commands.</param>
+        </member>
+        <member name="M:Willow.CommandAndControl.Application.Requests.RequestedCommand.PostRequestedCommands.PostRequestedCommandsDto.#ctor(System.Collections.Generic.List{Willow.CommandAndControl.Application.Requests.RequestedCommand.PostRequestedCommands.RequestedCommandDto})">
+            <summary>
+            Creates new command.
+            </summary>
+            <param name="Commands">List of commands.</param>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.RequestedCommand.PostRequestedCommands.PostRequestedCommandsDto.Commands">
+            <summary>List of commands.</summary>
+        </member>
+        <member name="T:Willow.CommandAndControl.Application.Requests.RequestedCommand.PostRequestedCommands.RequestedCommandDto">
+            <summary>
+            Post command detail.
+            </summary>
+            <param name="ConnectorId">Connector Id.</param>
+            <param name="CommandName">Name of Command.</param>
+            <param name="Type">Type of Command.</param>
+            <param name="TwinId">Twin Id.</param>
+            <param name="ExternalId">External Id from Mapped.</param>
+            <param name="RuleId">RulesEngine Rule Id with which the command was generated.</param>
+            <param name="Value">Value.</param>
+            <param name="Unit">Unit of given value.</param>
+            <param name="StartTime">Desired time to apply given value.</param>
+            <param name="EndTime">Desired end time.</param>
+            <param name="Relationships">This twin's relationships and ancestors.</param>
+        </member>
+        <member name="M:Willow.CommandAndControl.Application.Requests.RequestedCommand.PostRequestedCommands.RequestedCommandDto.#ctor(System.String,System.String,System.String,System.String,System.String,System.String,System.Double,System.String,System.DateTimeOffset,System.Nullable{System.DateTimeOffset},System.Collections.Generic.IEnumerable{Willow.CommandAndControl.Application.Requests.RequestedCommand.PostRequestedCommands.RelationshipDto})">
+            <summary>
+            Post command detail.
+            </summary>
+            <param name="ConnectorId">Connector Id.</param>
+            <param name="CommandName">Name of Command.</param>
+            <param name="Type">Type of Command.</param>
+            <param name="TwinId">Twin Id.</param>
+            <param name="ExternalId">External Id from Mapped.</param>
+            <param name="RuleId">RulesEngine Rule Id with which the command was generated.</param>
+            <param name="Value">Value.</param>
+            <param name="Unit">Unit of given value.</param>
+            <param name="StartTime">Desired time to apply given value.</param>
+            <param name="EndTime">Desired end time.</param>
+            <param name="Relationships">This twin's relationships and ancestors.</param>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.RequestedCommand.PostRequestedCommands.RequestedCommandDto.ConnectorId">
+            <summary>Connector Id.</summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.RequestedCommand.PostRequestedCommands.RequestedCommandDto.CommandName">
+            <summary>Name of Command.</summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.RequestedCommand.PostRequestedCommands.RequestedCommandDto.Type">
+            <summary>Type of Command.</summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.RequestedCommand.PostRequestedCommands.RequestedCommandDto.TwinId">
+            <summary>Twin Id.</summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.RequestedCommand.PostRequestedCommands.RequestedCommandDto.ExternalId">
+            <summary>External Id from Mapped.</summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.RequestedCommand.PostRequestedCommands.RequestedCommandDto.RuleId">
+            <summary>RulesEngine Rule Id with which the command was generated.</summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.RequestedCommand.PostRequestedCommands.RequestedCommandDto.Value">
+            <summary>Value.</summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.RequestedCommand.PostRequestedCommands.RequestedCommandDto.Unit">
+            <summary>Unit of given value.</summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.RequestedCommand.PostRequestedCommands.RequestedCommandDto.StartTime">
+            <summary>Desired time to apply given value.</summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.RequestedCommand.PostRequestedCommands.RequestedCommandDto.EndTime">
+            <summary>Desired end time.</summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.RequestedCommand.PostRequestedCommands.RequestedCommandDto.Relationships">
+            <summary>This twin's relationships and ancestors.</summary>
+        </member>
+        <member name="T:Willow.CommandAndControl.Application.Requests.RequestedCommand.PostRequestedCommands.RelationshipDto">
+            <summary>
+            Represents a relationship twin.
+            </summary>
+            <param name="TwinId">The ID of the twin at the other end of the relationship.</param>
+            <param name="TwinName">The name of the twin at the other end of the relationship.</param>
+            <param name="ModelId">The ID of the model at the other end of the relationship.</param>
+            <param name="RelationshipType">The type of the relationship.</param>
+        </member>
+        <member name="M:Willow.CommandAndControl.Application.Requests.RequestedCommand.PostRequestedCommands.RelationshipDto.#ctor(System.String,System.String,System.String,System.String)">
+            <summary>
+            Represents a relationship twin.
+            </summary>
+            <param name="TwinId">The ID of the twin at the other end of the relationship.</param>
+            <param name="TwinName">The name of the twin at the other end of the relationship.</param>
+            <param name="ModelId">The ID of the model at the other end of the relationship.</param>
+            <param name="RelationshipType">The type of the relationship.</param>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.RequestedCommand.PostRequestedCommands.RelationshipDto.TwinId">
+            <summary>The ID of the twin at the other end of the relationship.</summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.RequestedCommand.PostRequestedCommands.RelationshipDto.TwinName">
+            <summary>The name of the twin at the other end of the relationship.</summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.RequestedCommand.PostRequestedCommands.RelationshipDto.ModelId">
+            <summary>The ID of the model at the other end of the relationship.</summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.RequestedCommand.PostRequestedCommands.RelationshipDto.RelationshipType">
+            <summary>The type of the relationship.</summary>
+        </member>
+        <member name="T:Willow.CommandAndControl.Application.Requests.RequestedCommand.RequestedCommandResponseDto">
+            <summary>
+            Response Dto for Requested Commands.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.RequestedCommand.RequestedCommandResponseDto.Id">
+            <summary>
+            Gets the ID.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.RequestedCommand.RequestedCommandResponseDto.Status">
+            <summary>
+            Gets or sets the requested command can be Pending when entered, approved to be resolved, and rejected.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.RequestedCommand.RequestedCommandResponseDto.RuleId">
+            <summary>
+            Gets a uniquely identifiable ID of the Rules Engine rule.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.RequestedCommand.RequestedCommandResponseDto.CommandName">
+            <summary>
+            Gets the command name.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.RequestedCommand.RequestedCommandResponseDto.Type">
+            <summary>
+            Gets the command type.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.RequestedCommand.RequestedCommandResponseDto.ConnectorId">
+            <summary>
+            Gets the Connector ID.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.RequestedCommand.RequestedCommandResponseDto.Value">
+            <summary>
+            Gets the value for the command.
+            </summary>
+            <remarks>This may be the value that is set depending on the conflict resolution strategy.</remarks>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.RequestedCommand.RequestedCommandResponseDto.StartTime">
+            <summary>
+            Gets the time from which the value should be applied. This may correspond to an actual start time for an executed command but it might not if conflict resolution decides otherwise.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.RequestedCommand.RequestedCommandResponseDto.EndTime">
+            <summary>
+            Gets the command end time.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.RequestedCommand.RequestedCommandResponseDto.CreatedDate">
+            <summary>
+            Gets the command created date.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.RequestedCommand.RequestedCommandResponseDto.ReceivedDate">
+            <summary>
+            Gets the received date of the command.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.RequestedCommand.RequestedCommandResponseDto.StatusUpdatedBy">
+            <summary>
+            Gets the user who last updated the status.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.RequestedCommand.RequestedCommandResponseDto.LastUpdated">
+            <summary>
+            Gets the command last updated date.
+            </summary>
+        </member>
+        <member name="T:Willow.CommandAndControl.Application.Requests.RequestedCommand.UpdateRequestedCommandsStatus.UpdateRequestedCommandsStatusDto">
+            <summary>
+            Update RequestedCommand Status as Approved or Rejected.
+            </summary>
+            <param name="ApproveIds">The ids of the approved commands.</param>
+            /// <param name="RejectIds">The ids of the rejected commands.</param>
+        </member>
+        <member name="M:Willow.CommandAndControl.Application.Requests.RequestedCommand.UpdateRequestedCommandsStatus.UpdateRequestedCommandsStatusDto.#ctor(System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Update RequestedCommand Status as Approved or Rejected.
+            </summary>
+            <param name="ApproveIds">The ids of the approved commands.</param>
+            /// <param name="RejectIds">The ids of the rejected commands.</param>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.RequestedCommand.UpdateRequestedCommandsStatus.UpdateRequestedCommandsStatusDto.ApproveIds">
+            <summary>The ids of the approved commands.</summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.RequestedCommand.UpdateRequestedCommandsStatus.UpdateRequestedCommandsStatusDto.RejectIds">
+            /// <summary>The ids of the rejected commands.</summary>
+        </member>
+        <member name="T:Willow.CommandAndControl.Application.Requests.RequestedCommand.UpdateStatusCommand.UpdateRequestedCommandStatusDto">
+            <summary>
+            Update RequestedCommand Status as Approved or Rejected.
+            </summary>
+            <param name="Action">Requested Command can only be Approve or Reject.</param>
+        </member>
+        <member name="M:Willow.CommandAndControl.Application.Requests.RequestedCommand.UpdateStatusCommand.UpdateRequestedCommandStatusDto.#ctor(System.String)">
+            <summary>
+            Update RequestedCommand Status as Approved or Rejected.
+            </summary>
+            <param name="Action">Requested Command can only be Approve or Reject.</param>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.RequestedCommand.UpdateStatusCommand.UpdateRequestedCommandStatusDto.Action">
+            <summary>Requested Command can only be Approve or Reject.</summary>
+        </member>
+        <member name="T:Willow.CommandAndControl.Application.Requests.ResolvedCommand.GetResolvedCommandById.GetResolvedCommandByIdRequestDto">
+            <summary>
+            Request DTO for GetResolvedCommandById.
+            </summary>
+            <param name="Id">Resolved Command Id.</param>
+        </member>
+        <member name="M:Willow.CommandAndControl.Application.Requests.ResolvedCommand.GetResolvedCommandById.GetResolvedCommandByIdRequestDto.#ctor(System.Guid)">
+            <summary>
+            Request DTO for GetResolvedCommandById.
+            </summary>
+            <param name="Id">Resolved Command Id.</param>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ResolvedCommand.GetResolvedCommandById.GetResolvedCommandByIdRequestDto.Id">
+            <summary>Resolved Command Id.</summary>
+        </member>
+        <member name="T:Willow.CommandAndControl.Application.Requests.ResolvedCommand.GetResolvedCommands.GetResolvedCommandsDto">
+            <summary>
+            Get Resolved Commands.
+            </summary>
+        </member>
+        <member name="T:Willow.CommandAndControl.Application.Requests.ResolvedCommand.ResolvedCommandResponseDto">
+            <summary>
+            Response Dto for Resolved Commands.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ResolvedCommand.ResolvedCommandResponseDto.Id">
+            <summary>
+            Gets the ID.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ResolvedCommand.ResolvedCommandResponseDto.CommandName">
+            <summary>
+            Gets or sets the command name.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ResolvedCommand.ResolvedCommandResponseDto.Type">
+            <summary>
+            Gets or sets the command type.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ResolvedCommand.ResolvedCommandResponseDto.RuleId">
+            <summary>
+            Gets a uniquely identifiable ID of RulesEngine rule.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ResolvedCommand.ResolvedCommandResponseDto.Status">
+            <summary>
+            Gets the description of a Source App.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ResolvedCommand.ResolvedCommandResponseDto.ConnectorId">
+            <summary>
+            Gets the connector ID.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ResolvedCommand.ResolvedCommandResponseDto.Value">
+            <summary>
+            Gets the value for the command.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ResolvedCommand.ResolvedCommandResponseDto.StartTime">
+            <summary>
+            Gets the actual time from which the value should be applied.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ResolvedCommand.ResolvedCommandResponseDto.EndTime">
+            <summary>
+            Gets the time until other values cannot be applied.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ResolvedCommand.ResolvedCommandResponseDto.Comment">
+            <summary>
+            Gets or sets the comment provided during the last status update.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ResolvedCommand.ResolvedCommandResponseDto.CreatedDate">
+            <summary>
+            Gets the command created date.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ResolvedCommand.ResolvedCommandResponseDto.StatusUpdatedBy">
+            <summary>
+            Gets the last updated by user.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ResolvedCommand.ResolvedCommandResponseDto.LastUpdated">
+            <summary>
+            Gets the command last updated date.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ResolvedCommand.ResolvedCommandResponseDto.RequestId">
+            <summary>
+            Gets the requested command ID.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ResolvedCommand.ResolvedCommandResponseDto.Actions">
+            <summary>
+            Gets or sets the list of allowed actions.
+            </summary>
+        </member>
+        <member name="T:Willow.CommandAndControl.Application.Requests.ResolvedCommand.UpdateStatusCommand.UpdateResolvedCommandStatusDto">
+            <summary>
+            Update ResolvedCommand Status.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ResolvedCommand.UpdateStatusCommand.UpdateResolvedCommandStatusDto.Action">
+            <summary>
+            Gets the resource command action.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ResolvedCommand.UpdateStatusCommand.UpdateResolvedCommandStatusDto.Comment">
+            <summary>
+            Gets any comment provided with the status update.
+            </summary>
+        </member>
+        <member name="T:Willow.CommandAndControl.Application.Requests.ResolvedCommand.UpdateStatusCommand.UpdateResolvedCommandStatusResponseDto">
+            <summary>
+            Approved Command Response.
+            </summary>
+            <param name="Id">Id of Resolved Command.</param>
+        </member>
+        <member name="M:Willow.CommandAndControl.Application.Requests.ResolvedCommand.UpdateStatusCommand.UpdateResolvedCommandStatusResponseDto.#ctor(System.Guid)">
+            <summary>
+            Approved Command Response.
+            </summary>
+            <param name="Id">Id of Resolved Command.</param>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.ResolvedCommand.UpdateStatusCommand.UpdateResolvedCommandStatusResponseDto.Id">
+            <summary>Id of Resolved Command.</summary>
+        </member>
+        <member name="T:Willow.CommandAndControl.Application.Requests.Sites.SiteDto">
+            <summary>
+            Site Information.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.Sites.SiteDto.SiteId">
+            <summary>
+            Gets or sets the site ID.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Application.Requests.Sites.SiteDto.SiteName">
+            <summary>
+            Gets or sets the site name or address of the site.
+            </summary>
+        </member>
+        <member name="T:Willow.CommandAndControl.Application.Services.Abstractions.IActivityLogger">
+            <summary>
+            Logs user activity.
+            </summary>
+        </member>
+        <member name="M:Willow.CommandAndControl.Application.Services.Abstractions.IActivityLogger.LogAsync(Willow.CommandAndControl.Data.Enums.ActivityType,Willow.CommandAndControl.Data.Models.RequestedCommand,System.Threading.CancellationToken)">
+            <summary>
+            Creates an activity log entry.
+            </summary>
+            <param name="type">The type of activity.</param>
+            <param name="command">The requested command.</param>
+            <param name="cancellationToken">A cancellation token.</param>
+            <returns>A task.</returns>
+        </member>
+        <member name="M:Willow.CommandAndControl.Application.Services.Abstractions.IActivityLogger.LogAsync(Willow.CommandAndControl.Data.Enums.ActivityType,Willow.CommandAndControl.Data.Models.ResolvedCommand,System.Threading.CancellationToken)">
+            <summary>
+            Creates an activity log entry.
+            </summary>
+            <param name="type">The type of activity.</param>
+            <param name="command">The resolved command.</param>
+            <param name="cancellationToken">A cancellation token.</param>
+            <returns>A task.</returns>
+        </member>
+        <member name="M:Willow.CommandAndControl.Application.Services.Abstractions.IActivityLogger.LogAsync(Willow.CommandAndControl.Data.Enums.ActivityType,Willow.CommandAndControl.Data.Models.ResolvedCommand,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Creates an activity log entry.
+            </summary>
+            <param name="type">The type of activity.</param>
+            <param name="command">The resolved command.</param>
+            <param name="extraInfo">Extra Information to log.</param>
+            <param name="cancellationToken">A cancellation token.</param>
+            <returns>A task.</returns>
+        </member>
+        <member name="T:Willow.CommandAndControl.Application.Services.Abstractions.ICommandManager">
+            <summary>
+            Provides command management functionality for Requested/Resolved Commands.
+            </summary>
+        </member>
+        <member name="M:Willow.CommandAndControl.Application.Services.Abstractions.ICommandManager.ApproveRequestedCommandAsync(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Approve Request Command to be resolved for execution.
+            </summary>
+            <param name="id">Id of the Requested Command.</param>
+            <param name="cancellationToken">Cancellation token.</param>
+            <returns>Operation success.</returns>
+        </member>
+        <member name="M:Willow.CommandAndControl.Application.Services.Abstractions.ICommandManager.RejectRequestedCommandAsync(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Reject Requested Command. Rejected commands cannot be actioned.
+            </summary>
+            <param name="id">Id of the Requested Command.</param>
+            <param name="cancellationToken">Cancellation token.</param>
+            <returns>Operation success.</returns>
+        </member>
+        <member name="M:Willow.CommandAndControl.Application.Services.Abstractions.ICommandManager.GetOverlappingRequestedCommandsAsync(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Get overlapping commands for the given External Id.
+            </summary>
+            <param name="id">The ID of the command.</param>
+            <param name="cancellationToken">Cancellation token.</param>
+            <returns>A list of requested commands.</returns>
+        </member>
+        <member name="M:Willow.CommandAndControl.Application.Services.Abstractions.ICommandManager.ExecuteResolvedCommandAsync(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Send command to Mapped Gateway.
+            </summary>
+            <param name="id">The ID of the command.</param>
+            <param name="cancellationToken">Cancellation token.</param>
+            <returns>A task.</returns>
+        </member>
+        <member name="M:Willow.CommandAndControl.Application.Services.Abstractions.ICommandManager.GetDueResolvedCommandsAsync(System.Threading.CancellationToken)">
+            <summary>
+            Get all Resolved Command which are due for execution.
+            </summary>
+            <param name="cancellationToken">Cancellation token.</param>
+            <returns>A list of requested commands.</returns>
+        </member>
+        <member name="M:Willow.CommandAndControl.Application.Services.Abstractions.ICommandManager.ResolveAsync(System.String,System.Boolean,System.Collections.Generic.List{Willow.CommandAndControl.Data.Models.RequestedCommand},System.Threading.CancellationToken)">
+            <summary>
+            Resolve commands.
+            </summary>
+            <param name="externalId">The asset external ID.</param>
+            <param name="valueChanged">Whether or not the value has changed.</param>
+            <param name="commands">The list of requested commands.</param>
+            <param name="cancellationToken">Cancellation token.</param>
+            <returns>A task.</returns>
+        </member>
+        <member name="T:Willow.CommandAndControl.Application.Services.Abstractions.IConflictDetector">
+            <summary>
+            Provides conditions for identifying conflicts in commands.
+            </summary>
+        </member>
+        <member name="M:Willow.CommandAndControl.Application.Services.Abstractions.IConflictDetector.AreContained(Willow.CommandAndControl.Data.Models.RequestedCommand,Willow.CommandAndControl.Data.Models.RequestedCommand)">
+            <summary>
+            Returns True when one command is fully contained in another command.
+            </summary>
+            <param name="inner">The first command.</param>
+            <param name="outer">The second command.</param>
+            <returns>true if one command is inside the other, otherwise false.</returns>
+        </member>
+        <member name="M:Willow.CommandAndControl.Application.Services.Abstractions.IConflictDetector.HaveSameInterval(Willow.CommandAndControl.Data.Models.RequestedCommand,Willow.CommandAndControl.Data.Models.RequestedCommand)">
+            <summary>
+            Returns True when both commands have Start/End time .
+            </summary>
+            <param name="inner">The first command.</param>
+            <param name="outer">The second command.</param>
+            <returns>true if the commands have the same interval, otherwise false.</returns>
+        </member>
+        <member name="M:Willow.CommandAndControl.Application.Services.Abstractions.IConflictDetector.HaveSameIntervalAndValue(Willow.CommandAndControl.Data.Models.RequestedCommand,Willow.CommandAndControl.Data.Models.RequestedCommand)">
+            <summary>
+            Returns True when both commands have same Start/End time and same Value.
+            </summary>
+            <param name="inner">The first command.</param>
+            <param name="outer">The second command.</param>
+            <returns>true if the commands have the same interval and value, otherwise false.</returns>
+        </member>
+        <member name="M:Willow.CommandAndControl.Application.Services.Abstractions.IConflictDetector.IsOverlapping(Willow.CommandAndControl.Data.Models.RequestedCommand,Willow.CommandAndControl.Data.Models.RequestedCommand)">
+            <summary>
+            Returns True when new command is overlapping existing command.
+            </summary>
+            <param name="existing">The existing command.</param>
+            <param name="newCommand">The new command.</param>
+            <returns>true if the commands overlap, otherwise false.</returns>
+        </member>
+        <member name="M:Willow.CommandAndControl.Application.Services.Abstractions.IConflictDetector.AreConflicting(Willow.CommandAndControl.Data.Models.RequestedCommand,Willow.CommandAndControl.Data.Models.RequestedCommand)">
+            <summary>
+             Returns True when new command has overlapping interval with existing one, and values less than or greater than existing command depending on the type of command.
+            </summary>
+            <param name="existing">The existing command.</param>
+            <param name="newCommand">The new command.</param>
+            <returns>true if the commands conflict, otherwise false.</returns>
+        </member>
+        <member name="T:Willow.CommandAndControl.Application.Services.Abstractions.IMappedGatewayService">
+            <summary>
+            Interacts with Mapped API.
+            </summary>
+        </member>
+        <member name="M:Willow.CommandAndControl.Application.Services.Abstractions.IMappedGatewayService.SendSetValueCommandAsync(System.String,System.Double)">
+            <summary>
+            Sends a command to the Mapped API to set the value of a point.
+            </summary>
+            <param name="pointId">The ID of the point.</param>
+            <param name="value">The value to set.</param>
+            <returns>An response object.</returns>
+        </member>
+        <member name="T:Willow.CommandAndControl.Application.Services.Abstractions.IUserInfoService">
+            <summary>
+            Provides information about the current user.
+            </summary>
+        </member>
+        <member name="M:Willow.CommandAndControl.Application.Services.Abstractions.IUserInfoService.GetUser">
+            <summary>
+            Gets Username if user is logged in.
+            </summary>
+            <returns>A user.</returns>
+        </member>
+        <member name="T:Willow.CommandAndControl.Application.Services.ActivityLogger">
+            <summary>
+            Logs user activity.
+            </summary>
+        </member>
+        <member name="M:Willow.CommandAndControl.Application.Services.ActivityLogger.#ctor(Willow.CommandAndControl.Data.IApplicationDbContext,Willow.CommandAndControl.Application.Services.Abstractions.IUserInfoService)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Willow.CommandAndControl.Application.Services.ActivityLogger"/> class.
+            </summary>
+            <param name="dbContext">Database context.</param>
+            <param name="userInfoService">User information service.</param>
+        </member>
+        <member name="M:Willow.CommandAndControl.Application.Services.ActivityLogger.LogAsync(Willow.CommandAndControl.Data.Enums.ActivityType,Willow.CommandAndControl.Data.Models.RequestedCommand,System.Threading.CancellationToken)">
+            <summary>
+            Save activity log to database.
+            </summary>
+            <param name="type">The type of activity.</param>
+            <param name="command">The requested command.</param>
+            <param name="cancellationToken">A cancellation token.</param>
+            <returns>A task.</returns>
+        </member>
+        <member name="M:Willow.CommandAndControl.Application.Services.ActivityLogger.LogAsync(Willow.CommandAndControl.Data.Enums.ActivityType,Willow.CommandAndControl.Data.Models.ResolvedCommand,System.Threading.CancellationToken)">
+            <summary>
+            Save activity log to database.
+            </summary>
+            <param name="type">The type of activity.</param>
+            <param name="command">The resolved command.</param>
+            <param name="cancellationToken">A cancellation token.</param>
+            <returns>A task.</returns>
+        </member>
+        <member name="M:Willow.CommandAndControl.Application.Services.ActivityLogger.LogAsync(Willow.CommandAndControl.Data.Enums.ActivityType,Willow.CommandAndControl.Data.Models.ResolvedCommand,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Save activity log to database.
+            </summary>
+            <param name="type">The type of activity.</param>
+            <param name="command">The resolved command.</param>
+            <param name="extraInfo">Extra Information to log.</param>
+            <param name="cancellationToken">A cancellation token.</param>
+            <returns>A task.</returns>
+        </member>
+        <member name="T:Willow.CommandAndControl.Application.Services.CommandManager">
+            <summary>
+            Provides command management functionality for Requested/Resolved Commands.
+            </summary>
+        </member>
+        <member name="M:Willow.CommandAndControl.Application.Services.CommandManager.#ctor(Microsoft.Extensions.Logging.ILogger{Willow.CommandAndControl.Application.Services.CommandManager},Willow.CommandAndControl.Data.IApplicationDbContext,Willow.CommandAndControl.Data.IDbTransactions,Willow.CommandAndControl.Application.Services.Abstractions.IMappedGatewayService,Willow.CommandAndControl.Application.Services.Abstractions.IConflictResolver)">
+            <summary>
+            Provides command management functionality for Requested/Resolved Commands.
+            </summary>
+        </member>
+        <member name="T:Willow.CommandAndControl.Application.Services.HealthCheckCommandExecutor">
+            <summary>
+            A health check for command executor service.
+            </summary>
+        </member>
+        <member name="F:Willow.CommandAndControl.Application.Services.HealthCheckCommandExecutor.NotEnabled">
+            <summary>
+            Not Enabled.
+            </summary>
+        </member>
+        <member name="F:Willow.CommandAndControl.Application.Services.HealthCheckCommandExecutor.FailedToExecuteCommand">
+            <summary>
+            Failed to execute command.
+            </summary>
+        </member>
+        <member name="T:Willow.CommandAndControl.Application.Services.TwinInfoService">
+            <summary>
+            Twin info service.
+            </summary>
+        </member>
+        <member name="M:Willow.CommandAndControl.Application.Services.TwinInfoService.#ctor(Willow.Adx.IAdxService)">
+            <summary>
+            Twin info service.
+            </summary>
+        </member>
+        <member name="M:Willow.CommandAndControl.Application.Services.TwinInfoService.GetPresentValueAsync(System.String,System.String)">
+            <summary>
+            Get the present value of a single twins.
+            </summary>
+            <param name="connectorId">The connector ID of the twin.</param>
+            <param name="externalId">The external ID of the twin.</param>
+            <returns>The present value of the twin or null.</returns>
+        </member>
+        <member name="M:Willow.CommandAndControl.Application.Services.TwinInfoService.GetPresentValueAsync(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Get the present value of one or more twins.
+            </summary>
+            <param name="externalIds">The external IDs of the twins.</param>
+            <returns>A dictionary of the external ID and the twin information.</returns>
+        </member>
+        <member name="M:Willow.CommandAndControl.Application.Services.TwinInfoService.GetTwinInfoAsync(System.Collections.Generic.IReadOnlyCollection{System.String})">
+            <summary>
+            Gets twin information.
+            </summary>
+            <param name="twinIds">The external IDs of the twins.</param>
+            <returns>A dictionary of the external ID and the twin information.</returns>
+        </member>
+        <member name="M:Willow.CommandAndControl.Application.Services.TwinInfoService.GetTwinLocationInfoAsync(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Gets twin location information.
+            </summary>
+            <param name="twinIds">The external IDs of the twins.</param>
+            <returns>A dictionary of the external ID and the twin information.</returns>
+        </member>
+        <member name="T:Willow.CommandAndControl.Application.Services.UserInfoService">
+            <summary>
+            Class to provide information about the logged in user.
+            </summary>
+        </member>
+        <member name="M:Willow.CommandAndControl.Application.Services.UserInfoService.#ctor(Microsoft.AspNetCore.Http.IHttpContextAccessor)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Willow.CommandAndControl.Application.Services.UserInfoService"/> class.
+            </summary>
+            <param name="httpContextAccessor">Context accessor.</param>
+        </member>
+        <member name="M:Willow.CommandAndControl.Application.Services.UserInfoService.GetUser">
+            <summary>
+            Returns the username of the logged in user.
+            </summary>
+            <returns>A user, or null if the username and email cannot be found in the auth token.</returns>
+        </member>
+        <member name="M:Willow.CommandAndControl.Data.CustomAzureSqlExecutionStrategy.ShouldRetryOn(System.Exception)">
+            <summary>
+            Check whether to retry or not.
+            </summary>
+            <param name="exception">Exception that triggered the retry check.</param>
+            <returns>True to retry, false if not.</returns>
+        </member>
+        <member name="T:Willow.CommandAndControl.Data.Enums.ActivityType">
+            <summary>
+            Type of user command.
+            </summary>
+        </member>
+        <member name="F:Willow.CommandAndControl.Data.Enums.ActivityType.Received">
+            <summary>
+            Indicates that the command has been received.
+            </summary>
+        </member>
+        <member name="F:Willow.CommandAndControl.Data.Enums.ActivityType.Approved">
+            <summary>
+            Indicates that the command has been approved.
+            </summary>
+        </member>
+        <member name="F:Willow.CommandAndControl.Data.Enums.ActivityType.Retracted">
+            <summary>
+            Indicates that the command has been rejected.
+            </summary>
+        </member>
+        <member name="F:Willow.CommandAndControl.Data.Enums.ActivityType.Executed">
+            <summary>
+            Indicates that the command has been sent for execution.
+            </summary>
+        </member>
+        <member name="F:Willow.CommandAndControl.Data.Enums.ActivityType.Failed">
+            <summary>
+            Indicates that the command has failed.
+            </summary>
+        </member>
+        <member name="F:Willow.CommandAndControl.Data.Enums.ActivityType.Cancelled">
+            <summary>
+            Indicates that the command has been cancelled.
+            </summary>
+        </member>
+        <member name="F:Willow.CommandAndControl.Data.Enums.ActivityType.Suspended">
+            <summary>
+            Indicates that the command has been suspended.
+            </summary>
+        </member>
+        <member name="F:Willow.CommandAndControl.Data.Enums.ActivityType.MessageSent">
+            <summary>
+            Indicates the write message was sent to the controller.
+            </summary>
+        </member>
+        <member name="F:Willow.CommandAndControl.Data.Enums.ActivityType.MessageReceivedSuccess">
+            <summary>
+            Indicates that a success message was received from the controller.
+            </summary>
+        </member>
+        <member name="F:Willow.CommandAndControl.Data.Enums.ActivityType.MessageReceivedFailed">
+            <summary>
+            Indicates that a failed message was received from the controller.
+            </summary>
+        </member>
+        <member name="F:Willow.CommandAndControl.Data.Enums.ActivityType.Completed">
+            <summary>
+            Indicates that the command has been completed successfully.
+            </summary>
+        </member>
+        <member name="F:Willow.CommandAndControl.Data.Enums.ActivityType.Retried">
+            <summary>
+            Indicates that the command has been retried.
+            </summary>
+        </member>
+        <member name="T:Willow.CommandAndControl.Data.Enums.RequestedCommandStatus">
+            <summary>
+            Requested Command Status.
+            </summary>
+        </member>
+        <member name="F:Willow.CommandAndControl.Data.Enums.RequestedCommandStatus.Pending">
+            <summary>
+            Command is new and no action has been taken.
+            </summary>
+        </member>
+        <member name="F:Willow.CommandAndControl.Data.Enums.RequestedCommandStatus.Approved">
+            <summary>
+            Command has been approved.
+            </summary>
+        </member>
+        <member name="F:Willow.CommandAndControl.Data.Enums.RequestedCommandStatus.Rejected">
+            <summary>
+            Command has been rejected.
+            </summary>
+        </member>
+        <member name="T:Willow.CommandAndControl.Data.Enums.ResolvedCommandStatus">
+            <summary>
+            Resolved Command Status.
+            </summary>
+        </member>
+        <member name="F:Willow.CommandAndControl.Data.Enums.ResolvedCommandStatus.Approved">
+            <summary>
+            The command has been approved but not yet scheduled.
+            </summary>
+            <remarks>
+            This supports the initial scenario where resolved commands must be.
+            explicitly executed.
+            </remarks>
+        </member>
+        <member name="F:Willow.CommandAndControl.Data.Enums.ResolvedCommandStatus.Scheduled">
+            <summary>
+            Scheduled Command.
+            </summary>
+        </member>
+        <member name="F:Willow.CommandAndControl.Data.Enums.ResolvedCommandStatus.Suspended">
+            <summary>
+            Command which suspended by user.
+            </summary>
+        </member>
+        <member name="F:Willow.CommandAndControl.Data.Enums.ResolvedCommandStatus.Failed">
+            <summary>
+            Command which failed while executing.
+            </summary>
+        </member>
+        <member name="F:Willow.CommandAndControl.Data.Enums.ResolvedCommandStatus.Executing">
+            <summary>
+            Command which is executing and is not completed yet.
+            </summary>
+        </member>
+        <member name="F:Willow.CommandAndControl.Data.Enums.ResolvedCommandStatus.Cancelled">
+            <summary>
+            Command which cancelled by user.
+            </summary>
+        </member>
+        <member name="F:Willow.CommandAndControl.Data.Enums.ResolvedCommandStatus.Executed">
+            <summary>
+            Command which is executed successfully.
+            </summary>
+        </member>
+        <member name="T:Willow.CommandAndControl.Data.IApplicationDbContext">
+            <summary>
+            DB Context for Command and Control API.
+            </summary>
+        </member>
+        <member name="T:Willow.CommandAndControl.Data.ResolvedCommandId">
+            <inheritdoc />
+        </member>
+        <member name="M:Willow.CommandAndControl.Data.ResolvedCommandId.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Willow.CommandAndControl.Data.ResolvedCommandId.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Willow.CommandAndControl.Data.ResolvedCommandId.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Willow.CommandAndControl.Data.Migrations.ExtraInfo">
+            <inheritdoc />
+        </member>
+        <member name="M:Willow.CommandAndControl.Data.Migrations.ExtraInfo.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Willow.CommandAndControl.Data.Migrations.ExtraInfo.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Willow.CommandAndControl.Data.Migrations.ExtraInfo.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Willow.CommandAndControl.Data.Migrations.ReceivedDate">
+            <inheritdoc />
+        </member>
+        <member name="M:Willow.CommandAndControl.Data.Migrations.ReceivedDate.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Willow.CommandAndControl.Data.Migrations.ReceivedDate.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Willow.CommandAndControl.Data.Migrations.ReceivedDate.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Willow.CommandAndControl.Data.Migrations.Locations">
+            <inheritdoc />
+        </member>
+        <member name="M:Willow.CommandAndControl.Data.Migrations.Locations.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Willow.CommandAndControl.Data.Migrations.Locations.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Willow.CommandAndControl.Data.Migrations.Locations.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Willow.CommandAndControl.Data.Migrations.AddIndexToTwinId">
+            <inheritdoc />
+        </member>
+        <member name="M:Willow.CommandAndControl.Data.Migrations.AddIndexToTwinId.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Willow.CommandAndControl.Data.Migrations.AddIndexToTwinId.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Willow.CommandAndControl.Data.Migrations.AddIndexToTwinId.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Willow.CommandAndControl.Data.Migrations.AddRequestCommandMultiIndex">
+            <inheritdoc />
+        </member>
+        <member name="M:Willow.CommandAndControl.Data.Migrations.AddRequestCommandMultiIndex.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Willow.CommandAndControl.Data.Migrations.AddRequestCommandMultiIndex.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Willow.CommandAndControl.Data.Migrations.AddRequestCommandMultiIndex.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Willow.CommandAndControl.Data.Models.ActivityLog">
+            <summary>
+            Stores application activity logs.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Data.Models.ActivityLog.Id">
+            <summary>
+            Gets or sets the ID of the activity log.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Data.Models.ActivityLog.Timestamp">
+            <summary>
+            Gets or sets the timestamp of the activity.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Data.Models.ActivityLog.Type">
+            <summary>
+            Gets or sets the activity type.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Data.Models.ActivityLog.RequestedCommandId">
+            <summary>
+            Gets or sets the foreign key of requested command.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Data.Models.ActivityLog.ResolvedCommandId">
+            <summary>
+            Gets or sets the Id of the resolved command, if applicable.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Data.Models.ActivityLog.ExtraInfo">
+            <summary>
+            Gets or sets any extra data associated with the activity.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Data.Models.ActivityLog.UpdatedBy">
+            <summary>
+            Gets or sets the user who carried out the activity.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Data.Models.ActivityLog.RequestedCommand">
+            <summary>
+            Gets or sets the navigation property of RequestedCommand entity.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Data.Models.ActivityLog.ResolvedCommand">
+            <summary>
+            Gets or sets the navigation property for the resolved command.
+            </summary>
+        </member>
+        <member name="T:Willow.CommandAndControl.Data.Models.BaseAuditableEntity">
+            <summary>
+            Provides implementation for auditable fields. Also supports soft-delete for the entity.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Data.Models.BaseAuditableEntity.Id">
+            <summary>
+            Gets or sets the ID field for entity.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Data.Models.BaseAuditableEntity.CreatedDate">
+            <summary>
+            Gets or sets the creation time of record.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Data.Models.BaseAuditableEntity.LastUpdated">
+            <summary>
+            Gets or sets the when the record was last updated.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Data.Models.BaseAuditableEntity.IsDeleted">
+            <summary>
+            Gets or sets a value indicating whether the entity is soft deleted..
+            </summary>
+        </member>
+        <member name="T:Willow.CommandAndControl.Data.Models.BaseEntity">
+            <summary>
+            Provides implementation for common fields.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Data.Models.BaseEntity.Id">
+            <summary>
+            Gets or sets the ID field for entity.
+            </summary>
+        </member>
+        <member name="T:Willow.CommandAndControl.Data.Models.IAuditableEntity">
+            <summary>
+            Base interface for auditable entities.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Data.Models.IAuditableEntity.CreatedDate">
+            <summary>
+            Gets or sets the creation time of the record.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Data.Models.IAuditableEntity.LastUpdated">
+            <summary>
+            Gets or sets the updated time of the record.
+            </summary>
+        </member>
+        <member name="T:Willow.CommandAndControl.Data.Models.IEntity">
+            <summary>
+            Base interface for all entities.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Data.Models.IEntity.Id">
+            <summary>
+            Gets or sets the ID field for entity.
+            </summary>
+        </member>
+        <member name="T:Willow.CommandAndControl.Data.Models.ISoftDeleteEntity">
+            <summary>
+            Base interface for entities that don't allow deleting from database.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Data.Models.ISoftDeleteEntity.IsDeleted">
+            <summary>
+            Gets or sets a value indicating whether the entity is deleted.
+            </summary>
+        </member>
+        <member name="T:Willow.CommandAndControl.Data.Models.RequestedCommand">
+            <summary>
+            Represent command requested by source app.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Data.Models.RequestedCommand.CommandName">
+            <summary>
+            Gets or sets the incoming command name.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Data.Models.RequestedCommand.Type">
+            <summary>
+            Gets or sets the command type.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Data.Models.RequestedCommand.ConnectorId">
+            <summary>
+            Gets or sets the connector ID.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Data.Models.RequestedCommand.TwinId">
+            <summary>
+            Gets or sets the twin ID.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Data.Models.RequestedCommand.ExternalId">
+            <summary>
+            Gets or sets the ID of the point on the external system.
+            </summary>
+            <remarks>For Mapped this happens to be the same as the twinId, but that may not always be the case.</remarks>
+        </member>
+        <member name="P:Willow.CommandAndControl.Data.Models.RequestedCommand.Value">
+            <summary>
+            Gets or sets the value for the command.
+            </summary>
+            <remarks>This may be the value that is set depending on the conflict resolution strategy.</remarks>
+        </member>
+        <member name="P:Willow.CommandAndControl.Data.Models.RequestedCommand.Unit">
+            <summary>
+            Gets or sets the unit of the value.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Data.Models.RequestedCommand.StartTime">
+            <summary>
+            Gets or sets the the time from which the value should be applied. This may correspond to an actual start time for an executed command but it might not if conflict resolution decides otherwise.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Data.Models.RequestedCommand.EndTime">
+            <summary>
+            Gets or sets the the time until other values cannot be applied. The actual end time depends on the conflict resolution strategy.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Data.Models.RequestedCommand.RuleId">
+            <summary>
+            Gets or sets the unique ID of a rule in Rules Engine.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Data.Models.RequestedCommand.SiteId">
+            <summary>
+            Gets or sets the site ID.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Data.Models.RequestedCommand.IsHostedBy">
+            <summary>
+            Gets or sets the host asset ID.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Data.Models.RequestedCommand.IsCapabilityOf">
+            <summary>
+            Gets or sets the twin of which this twin is a capability of.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Data.Models.RequestedCommand.Location">
+            <summary>
+            Gets or sets the location of the twin.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Data.Models.RequestedCommand.Status">
+            <summary>
+            Gets or sets the status of the requested command.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Data.Models.RequestedCommand.StatusUpdatedBy">
+            <summary>
+            Gets or sets the name of the user who approved/retracted the command.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Data.Models.RequestedCommand.ReceivedDate">
+            <summary>
+            Gets or sets the received time of the latest version of the request.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Data.Models.RequestedCommand.ResolvedCommands">
+            <summary>
+            Gets or sets the list of resolved commands.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Data.Models.RequestedCommand.Locations">
+            <summary>
+            Gets or sets the twin's location hierarchy.
+            </summary>
+        </member>
+        <member name="T:Willow.CommandAndControl.Data.Models.ResolvedCommand">
+            <summary>
+            Represents the commands resolved for execution.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Data.Models.ResolvedCommand.Status">
+            <summary>
+            Gets or sets the status of the resolved command.
+            </summary>
+            <remarks>
+            Resolved Command will be created as Scheduled Status. User can mark the Scheduled commands as Cancelled. Depending on the action, status can be Executing, Executed, or Failed.
+            </remarks>
+        </member>
+        <member name="P:Willow.CommandAndControl.Data.Models.ResolvedCommand.RequestedCommandId">
+            <summary>
+            Gets or sets the foreign key of requested command.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Data.Models.ResolvedCommand.StartTime">
+            <summary>
+            Gets or sets the the actual time from which the value should be applied.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Data.Models.ResolvedCommand.EndTime">
+            <summary>
+            Gets or sets the the time until other values cannot be applied.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Data.Models.ResolvedCommand.Comment">
+            <summary>
+            Gets or sets the any comment provided during the last status update.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Data.Models.ResolvedCommand.StatusUpdatedBy">
+            <summary>
+            Gets or sets the user who last updated the status.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Data.Models.ResolvedCommand.IsExpired">
+            <summary>
+            Gets a value indicating whether the command has expired. A command is expired if it has not been executed successfully and interval has passed.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Data.Models.ResolvedCommand.RequestedCommand">
+            <summary>
+            Gets or sets the navigation property of RequestedCommand entity.
+            </summary>
+        </member>
+        <member name="T:Willow.CommandAndControl.Data.Models.User">
+            <summary>
+            Application User.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Data.Models.User.Empty">
+            <summary>
+            Gets an empty user.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Data.Models.User.Name">
+            <summary>
+            Gets or sets the full name.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Data.Models.User.Email">
+            <summary>
+            Gets or sets the email address.
+            </summary>
+        </member>
+        <member name="T:Willow.CommandAndControl.WebApi.Data.Migrations.InitialSchema">
+            <inheritdoc />
+        </member>
+        <member name="M:Willow.CommandAndControl.WebApi.Data.Migrations.InitialSchema.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Willow.CommandAndControl.WebApi.Data.Migrations.InitialSchema.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Willow.CommandAndControl.WebApi.Data.Migrations.InitialSchema.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Willow.CommandAndControl.WebApi.Data.Migrations.AddStatusUpdatedBy">
+            <inheritdoc />
+        </member>
+        <member name="M:Willow.CommandAndControl.WebApi.Data.Migrations.AddStatusUpdatedBy.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Willow.CommandAndControl.WebApi.Data.Migrations.AddStatusUpdatedBy.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Willow.CommandAndControl.WebApi.Data.Migrations.AddStatusUpdatedBy.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Willow.CommandAndControl.WebApi.Data.Migrations.AddNewLocationInfoAndActivityLogsColumns">
+            <inheritdoc />
+        </member>
+        <member name="M:Willow.CommandAndControl.WebApi.Data.Migrations.AddNewLocationInfoAndActivityLogsColumns.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Willow.CommandAndControl.WebApi.Data.Migrations.AddNewLocationInfoAndActivityLogsColumns.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Willow.CommandAndControl.WebApi.Data.Migrations.AddNewLocationInfoAndActivityLogsColumns.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Willow.CommandAndControl.WebApi.Data.Migrations.AddUserValueObject">
+            <inheritdoc />
+        </member>
+        <member name="M:Willow.CommandAndControl.WebApi.Data.Migrations.AddUserValueObject.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Willow.CommandAndControl.WebApi.Data.Migrations.AddUserValueObject.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Willow.CommandAndControl.WebApi.Data.Migrations.AddUserValueObject.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Willow.CommandAndControl.WebApi.Data.Migrations.AddActivityLogsForeignKeyRefenceToRequestedCommands">
+            <inheritdoc />
+        </member>
+        <member name="M:Willow.CommandAndControl.WebApi.Data.Migrations.AddActivityLogsForeignKeyRefenceToRequestedCommands.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Willow.CommandAndControl.WebApi.Data.Migrations.AddActivityLogsForeignKeyRefenceToRequestedCommands.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Willow.CommandAndControl.WebApi.Data.Migrations.AddActivityLogsForeignKeyRefenceToRequestedCommands.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Willow.CommandAndControl.WebApi.Data.ResolvedComment">
+            <inheritdoc />
+        </member>
+        <member name="M:Willow.CommandAndControl.WebApi.Data.ResolvedComment.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Willow.CommandAndControl.WebApi.Data.ResolvedComment.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Willow.CommandAndControl.WebApi.Data.ResolvedComment.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Willow.CommandAndControl.Extensions.CurrentHttpContextExtensions">
+            <summary>
+            Extensions for the <see cref="T:Willow.Api.Common.Runtime.ICurrentHttpContext"/> interface.
+            </summary>
+        </member>
+        <member name="M:Willow.CommandAndControl.Extensions.CurrentHttpContextExtensions.GetFullName(Willow.Api.Common.Runtime.ICurrentHttpContext)">
+            <summary>
+            Gets the full name of the user from the bearer token.
+            </summary>
+            <param name="currentHttpContext">The current context.</param>
+            <returns>The user's name.</returns>
+        </member>
+        <member name="T:Willow.CommandAndControl.Hubs.CommandExecutionResultDto">
+            <summary>
+            Command execution result DTO.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Hubs.CommandExecutionResultDto.StatusCode">
+            <summary>
+            Gets or sets the status code.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Hubs.CommandExecutionResultDto.Message">
+            <summary>
+            Gets or sets the message.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Hubs.CommandExecutionResultDto.RequestBody">
+            <summary>
+            Gets or sets the RequestBody.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Hubs.CommandExecutionResultDto.ResponseBody">
+            <summary>
+            Gets or sets the ResponseBody.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Hubs.CommandExecutionResultDto.CommandId">
+            <summary>
+            Gets or sets the command ID.
+            </summary>
+        </member>
+        <member name="T:Willow.CommandAndControl.Hubs.SendCommandRequestDto">
+            <summary>
+            Send command request DTO.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Hubs.SendCommandRequestDto.CommandId">
+            <summary>
+            Gets or sets the command ID.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Hubs.SendCommandRequestDto.ExternalId">
+            <summary>
+            Gets or sets the external ID.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Hubs.SendCommandRequestDto.Value">
+            <summary>
+            Gets or sets the value.
+            </summary>
+        </member>
+        <member name="T:Willow.CommandAndControl.Options.ADB2COptions">
+            <summary>
+            ADB2C Options for client calls.
+            </summary>
+        </member>
+        <member name="F:Willow.CommandAndControl.Options.ADB2COptions.CONFIG">
+            <summary>
+            The name used in app settings file.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Options.ADB2COptions.Authority">
+            <summary>
+            Gets or sets the authority for B2C.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Options.ADB2COptions.ClientId">
+            <summary>
+            Gets or sets the client ID for B2C.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Options.ADB2COptions.KnownAuthorities">
+            <summary>
+            Gets or sets the known authorities for B2C.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Options.ADB2COptions.B2CScopes">
+            <summary>
+            Gets or sets the scopes for calling the API from the React App.
+            </summary>
+        </member>
+        <member name="T:Willow.CommandAndControl.Options.ContactUs">
+            <summary>
+            Options for contact us.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Options.ContactUs.FromEmail">
+            <summary>
+            Gets the email address to send contact us emails from.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Options.ContactUs.ToEmailAddresses">
+            <summary>
+            Gets a list of email addresses to send contact us emails to.
+            </summary>
+        </member>
+        <member name="T:Willow.CommandAndControl.Options.ServiceBusOptions">
+            <summary>
+            Options for Service Bus configuration.
+            </summary>
+        </member>
+        <member name="F:Willow.CommandAndControl.Options.ServiceBusOptions.CONFIG">
+            <summary>
+            The section name.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Options.ServiceBusOptions.FullyQualifiedNamespace">
+            <summary>
+            Gets or sets the fully qualified namespace of the Service Bus.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Options.ServiceBusOptions.SendCommandsTopic">
+            <summary>
+            Gets or sets teh topic name for sending commands.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Options.ServiceBusOptions.ListenStatusTopic">
+            <summary>
+            Gets or sets the topic name for listening for status responses.
+            </summary>
+        </member>
+        <member name="P:Willow.CommandAndControl.Options.ServiceBusOptions.ListenStatusSubscription">
+            <summary>
+            Gets or sets the subscription name for receiving status responses.
+            </summary>
+        </member>
+    </members>
+</doc>

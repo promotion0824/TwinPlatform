@@ -1,0 +1,162 @@
+
+tags:
+  - Chat
+definitions:
+    ChatRequestOptions:
+        type: object
+        properties:
+            model_hint:
+                type: string
+                description: A hint to help choose the proper LLM 
+            prompt_hints:
+                type: array
+                items:
+                    type: string
+                description: >
+                    A list of prompt hint to use to create the LLM prompt template
+            run_flags:
+                type: array
+                items:
+                    type: string
+                description: > 
+                    A list of flags to control the behavior of the chat request.
+
+    ChatResponseCitation:
+        type: object
+        properties:
+            name:
+                type: string
+            pages:
+                type: array
+                items:
+                    type: string
+
+    ChatResponseDebugInfoDocument:
+        type: object
+        properties:
+            name:
+                type: string
+            page:
+                type: number
+            type:
+                type: string
+            content: 
+                type: string
+            score:
+                type: number
+parameters:
+  - in: body
+    name: ChatRequest
+    schema:
+        id: ChatRequest
+        type: object
+        required: [user_input]
+        properties:
+            user_input:
+                type: string
+                description: The text to process.
+            options:
+                description: Options for the chat request.
+                $ref: '#/definitions/ChatRequestOptions'
+            context:
+                name: ChatRequestContext
+                description: Information about the context of the chat request.
+                type: object
+                required: [session_id]
+                properties:
+                    session_id:
+                        type: string
+                        description: >
+                            ID of the session used to attach to 
+                            cached resources such as conversation memory.
+                    user_name:
+                        type: string
+                        description: The name of the user.
+                    user_email:
+                        type: string
+                        description: The email of the user.
+                    user_id:
+                        type: string
+                        description: > 
+                            The ID (must unique between callers) of the user.
+                            Should not be PII.
+responses:
+  200:
+    description: Successful response
+    schema:
+        id: ChatResponse
+        type: object
+        properties:
+            responseText:
+                type: string
+                description: The response from the chat processor.
+            response_format:
+                type: string
+                description: |
+                    The format of the response (e.g., text/plain)
+                    May not be limited to MIME types (e.g., text/markup)
+            citations:
+                type: array
+                items:
+                    $ref: '#/definitions/ChatResponseCitation'
+            debug_info:
+                type: object
+                description: Debugging information (if reqeusted in request run_flags)
+                properties:
+                    num_tokens_used:
+                        type: number
+                        description: The number of LLM tokens used during processing
+                    history_tokens_used:
+                        type: number
+                        description: The number of LLM tokens currently used for chat history
+                    history_max_tokens:
+                        type: number
+                        description: The max number of LLM tokens allowed in chat history
+                    history_turns:
+                        type: number
+                        description: The number of dialog turns currently in history
+                    index_name:
+                        type: string
+                        description: The index used for document search
+                    user_question:
+                        type: string
+                        description: The user's input question
+                    generated_question:
+                        type: string
+                        description: The user's question rephrased by the llm (if applicable)
+                    history_summary_buffer:
+                        type: string
+                        description: The contents of the chat history buffer
+                    prompt:
+                        type: string
+                        description: The main LLM prompt used 
+                    citations:
+                        type: array
+                        items:
+                            $ref: '#/definitions/ChatResponseCitation'
+                    documents:
+                        type: array
+                        items:
+                            $ref: '#/definitions/ChatResponseDebugInfoDocument'
+                    llm_response:
+                        type: string
+                        description: The response from the main LLM call before any pre-processing
+                    request_options:
+                        $ref: '#/definitions/ChatRequestOptions'
+  204:
+    description: Successful empty response to empty chat request
+    schema:
+        id: EmptyChatResponse
+        type: object
+        properties:
+            responseText:
+                type: string
+                description: The empty string
+            response_format:
+                type: string
+                description: "text"
+        
+  400:
+    description: Bad request
+  500:
+    description: Internal server error

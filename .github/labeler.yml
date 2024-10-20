@@ -1,0 +1,80 @@
+activate-technology:
+  - applications/RulesEngine/**/*
+
+active-control:
+  - applications/CommandAndControl/**/*
+
+admin:
+  - extensions/real-estate/front-end/Web/packages/admin/**/*
+
+backend:
+  - extensions/real-estate/back-end/**/*
+
+cloudops:
+  - .azuredevops/**/*
+  - .config/**/*
+  - .github/**/*
+  - .husky/**/*
+  - extensions/willowtwin-core/environment-admin-ui/**/*
+  - extensions/willowtwin-core/EnvironmentAdmin/**/*
+  - extensions/willowtwin-core/Willow.ExtensionDeployer/**/*
+  - infrastructure/**/*
+  - platform-services/**/*
+  - samples/**/*
+  - tools/**/*
+
+connector-management:
+  - applications/EdgeDeploymentDashboard/**/*
+  - applications/ConnectorManagement/**/*
+
+copilot:
+  - applications/copilot/**/*
+
+frontend:
+  - extensions/real-estate/front-end/**/*
+
+ingestion-pipeline:
+  - applications/IngestionPipeline/**/*
+
+iot-services:
+  - applications/IngestionPipeline/**/*
+  - applications/EdgeDeploymentDashboard/**/*
+  - applications/ConnectorManagement/**/*
+  - applications/CommandAndControl/**/*
+  - applications/LiveData/**/*
+  - applications/PublicApi/**/*
+
+libraries:
+  - libraries/**/*
+
+live-data:
+  - applications/LiveData/**/*
+
+mobile:
+  - extensions/real-estate/front-end/Web/packages/mobile/**/*
+
+mti:
+  - applications/MappedTopologyIngestion/**/*
+
+platform:
+  - extensions/real-estate/front-end/Web/packages/platform/**/*
+
+public-api:
+  - applications/PublicApi/**/*
+
+real-estate:
+  - extensions/real-estate/**/*
+
+twin-management:
+  - applications/TwinManagement/**/*
+
+UI:
+  - design-system/**/*
+
+user-management:
+  - applications/UserManagement/**/*
+
+wsup:
+  - tools/WillowWSUP/**/*
+
+
